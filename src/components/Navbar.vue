@@ -71,7 +71,7 @@
                         <ul class="navbar-nav menu-list-bottom">
 
                             <li class="nav-item mr-3 for-active">
-                                <a class="nav-link active" href="#"><router-link style="color: white;" to="/">Home</router-link></a>
+                                <a class="nav-link active" href="#"><router-link class="router_link" to="/">Home</router-link></a>
                             </li>
                             <li class="nav-item mr-3 for-active">
                                 <a class="nav-link" href="#"><router-link style="color: white;" to="/games">Store</router-link></a>
@@ -124,3 +124,9 @@
 
     }
 </script>
+
+<style scoped>
+    .router_link {
+        color: white;
+    }
+</style>

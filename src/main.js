@@ -4,9 +4,18 @@ import './assets/scss/bxslider/jquery.bxslider.css'
 import './assets/scss/style.css'
 
 
-import 'jquery/dist/jquery.min'
-import 'popper.js/dist/popper.min'
-import 'bootstrap/dist/js/bootstrap.min'
+import 'jquery'
+import 'popper.js'
+import 'bootstrap'
+
+global.jQuery = require('jquery');
+let $ = global.jQuery;
+window.$ = $;
+let owl_carousel = require('./assets/js/owl/owl.carousel.min');
+window.fn = owl_carousel;
+import './assets/js/bx/jquery.bxslider'
+let main = require('./assets/js/main')
+window.fn = main;
 
 import Vue from 'vue'
 import App from './App.vue'

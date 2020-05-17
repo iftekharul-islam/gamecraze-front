@@ -1,4 +1,5 @@
 // back to top
+import $ from 'jquery';
 $(document).ready(function(){
 // Check distance to top and display back-to-top.
 $( window ).scroll( function() {
@@ -15,12 +16,12 @@ $( '.back-to-top' ).click( function() {
 	return false;
 });
 // read more js
-$('article').readmore({
-    speed: 75,
-    lessLink: '<a href="#" class="seeless">Less answer <span class="arrow-up"></span></a>',
-    moreLink: '<a href="#" class="see-more">See more answer (8) <span class="arrow-down"></span></a>',
-    collapsedHeight: 200,
-  });
+// $("article").readmore({
+//     speed: 75,
+//     lessLink: '<a href="#" class="seeless">Less answer <span class="arrow-up"></span></a>',
+//     moreLink: '<a href="#" class="see-more">See more answer (8) <span class="arrow-down"></span></a>',
+//     collapsedHeight: 200,
+//   });
 
   $("article").slice(0,3).show();
   $(".loadmore").click(function(e){
@@ -159,8 +160,8 @@ $('.owl-carousel-four').owlCarousel({
     nav: true,
     autoplay: true,
     navText: [
-        '<img src="../img/icon/left-arrow.png">',
-        '<img src="../img/icon/right-arrow.png">'
+        "<img src='../img/icon/left-arrow.png'>",
+        "<img src='../img/icon/right-arrow.png'>"
     ],
 	dots: false,
     responsive:{
@@ -189,11 +190,11 @@ $('.owl-carousel-four').owlCarousel({
     }
 })
 // dropdown animation
-$('.dropdown').on('show.bs.dropdown', function(e){
+$('.dropdown').on('show.bs.dropdown', function(){
     $(this).find('.dropdown-menu').first().stop(true, true).slideDown(300);
   });
   
-  $('.dropdown').on('hide.bs.dropdown', function(e){
+  $('.dropdown').on('hide.bs.dropdown', function(){
     $(this).find('.dropdown-menu').first().stop(true, true).slideUp(200);
   });
 });
@@ -248,22 +249,23 @@ $(document).ready(function() {
       }); 
     });
   
+    // eslint-disable-next-line no-unused-vars
     function getRndInteger(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
   });
 // read more
-$(function(){
-    $('.example').expandable({
-        'height': 160,
-        'more': 'See More Answers (8)',
-        'less': 'Less Answer',
-        'no_less': false,
-        'animation_duration': 500,
-        expand_responsive : 768
-
-      });
-  });
+// $(function(){
+//     $('.example').expandable({
+//         'height': 160,
+//         'more': 'See More Answers (8)',
+//         'less': 'Less Answer',
+//         'no_less': false,
+//         'animation_duration': 500,
+//         expand_responsive : 768
+//
+//       });
+//   });
 
 
   

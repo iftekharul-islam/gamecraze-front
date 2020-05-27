@@ -1,5 +1,5 @@
 // back to top
-import $ from 'jquery';
+
 $(document).ready(function(){
 // Check distance to top and display back-to-top.
 $( window ).scroll( function() {
@@ -15,21 +15,14 @@ $( '.back-to-top' ).click( function() {
 	$( 'html, body' ).animate( { scrollTop : 0 }, 800 );
 	return false;
 });
-// read more js
-// $("article").readmore({
-//     speed: 75,
-//     lessLink: '<a href="#" class="seeless">Less answer <span class="arrow-up"></span></a>',
-//     moreLink: '<a href="#" class="see-more">See more answer (8) <span class="arrow-down"></span></a>',
-//     collapsedHeight: 200,
-//   });
-
-  $("article").slice(0,3).show();
-  $(".loadmore").click(function(e){
+// load more
+  $(".loading-more").slice(0,3).show();
+  $(".hide-load").click(function(e){
     e.preventDefault();
-    $("article:hidden").slice(0,3).fadeIn("slow");
+    $(".loading-more:hidden").slice(0,2).fadeIn("slow");
     
-    if($("article:hidden").length == 0){
-       $(".loadmore").fadeOut("slow");
+    if($(".loading-more:hidden").length == 0){
+       $(".hide-load").fadeOut("slow");
       }
   });
   });
@@ -39,11 +32,6 @@ $(document).ready(function(){
     $('.for-active a').removeClass("active");
     $(this).addClass("active");
 });
-// thumbnail active
-// $('.thumbnails li:second a').click(function(){
-//     $('li:second a').removeClass("active");
-//     $(this).addClass("active");
-// });
 $('.thumbnails li a').click(function(){
     $('.thumbnails li a').removeClass("active");
     $(this).addClass("active");
@@ -160,8 +148,8 @@ $('.owl-carousel-four').owlCarousel({
     nav: true,
     autoplay: true,
     navText: [
-        "<img src='../img/icon/left-arrow.png'>",
-        "<img src='../img/icon/right-arrow.png'>"
+        '<img src="../img/icon/left-arrow.png">',
+        '<img src="../img/icon/right-arrow.png">'
     ],
 	dots: false,
     responsive:{
@@ -198,81 +186,41 @@ $('.dropdown').on('show.bs.dropdown', function(){
     $(this).find('.dropdown-menu').first().stop(true, true).slideUp(200);
   });
 });
-// bx slider
-$(document).ready(function(){
-    $('.slider').bxSlider({
-        auto: true,
-        pager: false,
 
-    });
+  $(function() {
+  //toggle class open on button
+  $('#exCollapsingNavbar').on('hide.bs.collapse', function () {
+    $('.navbar-toggler').removeClass('open');
+  })
+  $('#exCollapsingNavbar').on('show.bs.collapse', function () {
+    $('.navbar-toggler').addClass('open');
   });
-//   item details 
-// cart count
+}); 
+
+
+// avatar upload preview
 $(document).ready(function() {
-    var cartCountValue = 0;
-    var cartCount = $('.cart .count');
-    $(cartCount).text(cartCountValue);
-  
-  
-  
-    $('.cart-btn').on('click', function() {
-      var cartBtn = this;
-      var cartCountPosition = $(cartCount).offset();
-      var btnPosition = $(this).offset();
-      var leftPos =
-        cartCountPosition.left < btnPosition.left
-          ? btnPosition.left - (btnPosition.left - cartCountPosition.left)
-          : cartCountPosition.left;
-      var topPos =
-        cartCountPosition.top < btnPosition.top
-          ? cartCountPosition.top
-          : cartCountPosition.top;
-      $(cartBtn)
-        .append("<span class='count'>1</span>");
-      
-      $(cartBtn).find(".count").each(function(i,count){
-        $(count).offset({
-          left: leftPos,
-          top: topPos
-        })
-        .animate(
-          {
-            opacity: 0
-          },
-          100,
-          function() {
-            $(this).remove();
-            cartCountValue++;
-            $(cartCount).text(cartCountValue);
-          }
-        );
-      }); 
-    });
-  
-    // eslint-disable-next-line no-unused-vars
-    function getRndInteger(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
+	
+    var readURL = function(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('.profile-pic').attr('src', e.target.result);
+            }
+    
+            reader.readAsDataURL(input.files[0]);
+        }
     }
-  });
-// read more
-// $(function(){
-//     $('.example').expandable({
-//         'height': 160,
-//         'more': 'See More Answers (8)',
-//         'less': 'Less Answer',
-//         'no_less': false,
-//         'animation_duration': 500,
-//         expand_responsive : 768
-//
-//       });
-//   });
+   
+    $(".file-upload").on('change', function(){
+        readURL(this);
+    });
+    
+    $(".upload-button").on('click', function() {
+       $(".file-upload").click();
+    });
+});
 
-
-  
-  
-// tooltip
-// $(document).ready(function(){
-//   $('[data-toggle="tooltip"]').tooltip();   
-// });
 
 

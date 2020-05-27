@@ -1,19 +1,19 @@
 import './assets/scss/owl/owl.carousel.min.css'
 import './assets/scss/owl/owl.theme.default.min.css'
-import './assets/scss/bxslider/jquery.bxslider.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/scss/style.css'
 
 
-import 'jquery'
+global.jQuery = require('jquery/dist/jquery.min');
+let $ = global.jQuery;
+window.$ = $;
+
 import 'popper.js'
 import 'bootstrap'
 
-global.jQuery = require('jquery');
-let $ = global.jQuery;
-window.$ = $;
 let owl_carousel = require('./assets/js/owl/owl.carousel.min');
 window.fn = owl_carousel;
-import './assets/js/bx/jquery.bxslider'
+
 let main = require('./assets/js/main')
 window.fn = main;
 
@@ -34,7 +34,7 @@ import axios from 'axios'
 Vue.use({
   install (Vue) {
     Vue.prototype.$api = axios.create({
-      baseURL: 'http://api.gamingapp.test/api/'
+      baseURL: 'http://gamingapp.test/api/'
     })
   }
 });

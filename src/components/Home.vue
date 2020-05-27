@@ -1,12 +1,30 @@
 <template>
     <div>
-        <!-- Hunter section -->
+        <!-- Hunter section slider -->
         <section class="hunter-section">
-            <div class="slider">
-                <div> <a href="#"><img data-u="image" src="../assets/img/slider/hunter.jpg" class="img-fluid" alt="hunter"/></a> </div>
-                <div> <a href="#"><img data-u="image" src="../assets/img/slider/god-war.png" class="img-fluid" alt="god war"/></a></div>
-                <div> <a href="#"><img data-u="image" src="../assets/img/slider/blood.png" class="img-fluid" alt="bloodborn"/></a></div>
-                <div> <a href="#"><img data-u="image" src="../assets/img/slider/the.png" class="img-fluid" alt="the witcher3"/></a></div>
+            <div id="mainslider" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <a href="#"><img data-u="image" src="../assets/img/slider/hunter.jpg" class="img-fluid d-block w-100" alt="hunter"/></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"><img data-u="image" src="../assets/img/slider/god-war.png" class="img-fluid d-block w-199" alt="god war"/></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"><img data-u="image" src="../assets/img/slider/the.png" class="img-fluid d-block w-100" alt="the witcher3"/></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"><img data-u="image" src="../assets/img/slider/blood.png" class="img-fluid d-block w-100" alt="bloodborn"/></a>
+                    </div>
+                </div>
+                <a class="carousel-control-prev slider-icon" href="#mainslider" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next slider-icon" href="#mainslider" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
             </div>
         </section>
 
@@ -17,7 +35,6 @@
                     <h2>New Release</h2>
                 </div>
                 <div class="owl-carousel-one owl-carousel owl-theme">
-
                     <div class="item">
                         <div class="card" >
                             <a href="#"> <img class="card-img-top" src="../assets/img/release/codevein.jpg" alt="Code vein"></a>

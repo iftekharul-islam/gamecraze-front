@@ -20,6 +20,9 @@ window.fn = main;
 import Vue from 'vue'
 import App from './App.vue'
 
+//global variable
+Vue.prototype.$backendPath = 'https://gamingapp.test/storage/games/'
+
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 

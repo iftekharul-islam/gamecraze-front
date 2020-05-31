@@ -36,7 +36,7 @@
                                     <button type="submit" class="btn btn-primary mb-2">Sign in</button>
                                 </div>
                                 <div class="footer">
-                                    <p>Dont't have an account ? <a href="#" class="">Create Account</a> </p>
+                                    <p>Dont't have an account ? <router-link to="registration">Create Account</router-link> </p>
                                 </div>
                             </form>
 

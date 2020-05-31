@@ -37,74 +37,74 @@ $('.thumbnails li a').click(function(){
     $(this).addClass("active");
 });
 // owl carousel
-$('.owl-carousel-one').owlCarousel({
-    loop:true,
-    margin:10,
-    autoplay: false,
-    nav: true,
-    navText: [
-        '<img src="../img/icon/left-arrow.png">',
-        '<img src="../img/icon/right-arrow.png">'
-    ],
-	dots: false,
-    responsive:{
-        0:{
-            items:1
-        },
-        575:{
-            items:2
-        },
-        768:{
-            items:2
-        },
-        992:{
-            items:3
-        },
-        1200:{
-            items:3,
-            nav: true
-        },
-        1400:{
-            items:4,
-            nav: true
-        }
-    }
-})
+// $('.owl-carousel-one').owlCarousel({
+//     loop:true,
+//     margin:10,
+//     autoplay: false,
+//     nav: true,
+//     navText: [
+//         '<img src="../img/icon/left-arrow.png">',
+//         '<img src="../img/icon/right-arrow.png">'
+//     ],
+// 	dots: false,
+//     responsive:{
+//         0:{
+//             items:1
+//         },
+//         575:{
+//             items:2
+//         },
+//         768:{
+//             items:2
+//         },
+//         992:{
+//             items:3
+//         },
+//         1200:{
+//             items:3,
+//             nav: true
+//         },
+//         1400:{
+//             items:4,
+//             nav: true
+//         }
+//     }
+// })
 // carosel 2
-$('.owl-carousel-two').owlCarousel({
-    loop:true,
-    margin:10,
-    nav: true,
-    autoplay: true,
-    navText: [
-        '<img src="../img/icon/left-arrow.png">',
-        '<img src="../img/icon/right-arrow.png">'
-    ],
-	dots: false,
-    responsive:{
-        0:{
-            items:1
-        },
-        575:{
-            items:2
-        },
-        768:{
-            items:3
-        },
-        992:{
-            items:4,
-            nav: true
-        },
-        1200:{
-            items:4,
-            nav: true
-        },
-        1400:{
-            items:4,
-            nav: true
-        }
-    }
-})
+// $('.owl-carousel-two').owlCarousel({
+//     loop:true,
+//     margin:10,
+//     nav: true,
+//     autoplay: true,
+//     navText: [
+//         '<img src="../img/icon/left-arrow.png">',
+//         '<img src="../img/icon/right-arrow.png">'
+//     ],
+// 	dots: false,
+//     responsive:{
+//         0:{
+//             items:1
+//         },
+//         575:{
+//             items:2
+//         },
+//         768:{
+//             items:3
+//         },
+//         992:{
+//             items:4,
+//             nav: true
+//         },
+//         1200:{
+//             items:4,
+//             nav: true
+//         },
+//         1400:{
+//             items:4,
+//             nav: true
+//         }
+//     }
+// })
 // carosel 3
 $('.owl-carousel-three').owlCarousel({
     loop:true,

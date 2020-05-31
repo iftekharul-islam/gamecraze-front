@@ -4,18 +4,18 @@
         <section class="hunter-section">
             <div id="mainslider" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <a href="#"><img data-u="image" src="../assets/img/slider/hunter.jpg" class="img-fluid d-block w-100" alt="hunter"/></a>
+                    <div class="carousel-item" v-for="(game,index) in latestGames" :key="index" :class="{active: index==0}">
+                        <a href="#"><img data-u="image" :src="backendPath + game.assets[0].name" class="img-fluid d-block w-100" alt="hunter"/></a>
                     </div>
-                    <div class="carousel-item">
-                        <a href="#"><img data-u="image" src="../assets/img/slider/god-war.png" class="img-fluid d-block w-199" alt="god war"/></a>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="#"><img data-u="image" src="../assets/img/slider/the.png" class="img-fluid d-block w-100" alt="the witcher3"/></a>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="#"><img data-u="image" src="../assets/img/slider/blood.png" class="img-fluid d-block w-100" alt="bloodborn"/></a>
-                    </div>
+<!--                    <div class="carousel-item">-->
+<!--                        <a href="#"><img data-u="image" :src="backendPath+imageNames[1]" class="img-fluid d-block w-199" alt="god war"/></a>-->
+<!--                    </div>-->
+<!--                    <div class="carousel-item">-->
+<!--                        <a href="#"><img data-u="image" :src="backendPath+imageNames[2]" class="img-fluid d-block w-100" alt="the witcher3"/></a>-->
+<!--                    </div>-->
+<!--                    <div class="carousel-item">-->
+<!--                        <a href="#"><img data-u="image" :src="backendPath+imageNames[3]" class="img-fluid d-block w-100" alt="bloodborn"/></a>-->
+<!--                    </div>-->
                 </div>
                 <a class="carousel-control-prev slider-icon" href="#mainslider" role="button" data-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -35,56 +35,54 @@
                     <h2>New Release</h2>
                 </div>
                 <div class="owl-carousel-one owl-carousel owl-theme">
-                    <div class="item">
-                        <div class="card" >
-                            <a href="#"> <img class="card-img-top" src="../assets/img/release/codevein.jpg" alt="Code vein"></a>
+                    <div class="item" v-for="(game,index) in latestGames" :key="index">
+                        <div class="card">
+                            <a href="#"> <img class="card-img-top" :src="backendPath+game.assets[0].name" alt="Code vein"></a>
                             <div class="card-body">
-                                <h4 class="mb-3 game-name">Code Vein</h4>
-                                <p class="card-text">In the not too distant future, a mysterious disaster has brought collapse to the world as we know it. Towering skyscrapers once symbols of prosperity, are now lifeless graves of humanity's past pierced by the Thorns of judgment.</p>
+                                <h4 class="mb-3 game-name">{{game.name}}</h4>
+                                <p class="card-text">{{game.description}}</p>
                             </div>
                             <div class="more-read text-right pb-3 pr-2">
                                 <a href="#">View More <span class="material-icons">arrow_forward_ios</span></a>
                             </div>
                         </div>
                     </div>
-                    <div class="item">
-                        <div class="card" >
-                            <a href="#"> <img class="card-img-top" src="../assets/img/release/monkey.jpg" alt="monkey king hero is back"></a>
-                            <div class="card-body">
-                                <h4 class="mb-3 game-name">Monkey King Hero Is Back</h4>
-                                <p class="card-text">In the not too distant future, a mysterious disaster has brought collapse to the world as we know it.</p>
-                            </div>
-                            <div class="more-read text-right pb-3 pr-2">
-                                <a href="#">View More <span class="material-icons">arrow_forward_ios</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="card" >
-                            <a href="#"> <img class="card-img-top" src="../assets/img/release/fifa.jpg" alt="fifa20"></a>
-                            <div class="card-body">
-                                <h4 class="mb-3 game-name">EA Sports <span class="badge">&nbsp;</span>&nbsp; FIFA 20</h4>
-                                <p class="card-text">The world's Game comes to life on Playstation 4, as FIFA returns for a new season with improved on and off the ball mechanics to elevate every moment on the pitch.</p>
-                            </div>
-                            <div class="more-read text-right pb-3 pr-2">
-                                <a href="#">View More <span class="material-icons">arrow_forward_ios</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="card" >
-                            <a href="#"> <img class="card-img-top" src="../assets/img/release/call.jpg" alt="call of duty"></a>
-                            <div class="card-body">
-                                <h4 class="mb-3 game-name">Call of Duty</h4>
-                                <p class="card-text">Call of Duty: Mordern Warfare engulfs fans in an incredibly raw,gritty,provocative narrative that brings unrivaled intensity and shines a light on the changing nature of modern war.</p>
-                            </div>
-                            <div class="more-read text-right pb-3 pr-2">
-                                <a href="#">View More <span class="material-icons">arrow_forward_ios</span></a>
-                            </div>
-                        </div>
-                    </div>
-
-
+<!--                    <div class="item">-->
+<!--                        <div class="card" >-->
+<!--                            <a href="#"> <img class="card-img-top" src="../assets/img/release/monkey.jpg" alt="monkey king hero is back"></a>-->
+<!--                            <div class="card-body">-->
+<!--                                <h4 class="mb-3 game-name">Monkey King Hero Is Back</h4>-->
+<!--                                <p class="card-text">In the not too distant future, a mysterious disaster has brought collapse to the world as we know it.</p>-->
+<!--                            </div>-->
+<!--                            <div class="more-read text-right pb-3 pr-2">-->
+<!--                                <a href="#">View More <span class="material-icons">arrow_forward_ios</span></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="item">-->
+<!--                        <div class="card" >-->
+<!--                            <a href="#"> <img class="card-img-top" src="../assets/img/release/fifa.jpg" alt="fifa20"></a>-->
+<!--                            <div class="card-body">-->
+<!--                                <h4 class="mb-3 game-name">EA Sports <span class="badge">&nbsp;</span>&nbsp; FIFA 20</h4>-->
+<!--                                <p class="card-text">The world's Game comes to life on Playstation 4, as FIFA returns for a new season with improved on and off the ball mechanics to elevate every moment on the pitch.</p>-->
+<!--                            </div>-->
+<!--                            <div class="more-read text-right pb-3 pr-2">-->
+<!--                                <a href="#">View More <span class="material-icons">arrow_forward_ios</span></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="item">-->
+<!--                        <div class="card" >-->
+<!--                            <a href="#"> <img class="card-img-top" src="../assets/img/release/call.jpg" alt="call of duty"></a>-->
+<!--                            <div class="card-body">-->
+<!--                                <h4 class="mb-3 game-name">Call of Duty</h4>-->
+<!--                                <p class="card-text">Call of Duty: Mordern Warfare engulfs fans in an incredibly raw,gritty,provocative narrative that brings unrivaled intensity and shines a light on the changing nature of modern war.</p>-->
+<!--                            </div>-->
+<!--                            <div class="more-read text-right pb-3 pr-2">-->
+<!--                                <a href="#">View More <span class="material-icons">arrow_forward_ios</span></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
             </div>
         </section>
@@ -144,30 +142,30 @@
                 </div>
                 <div class="owl-carousel-two owl-carousel owl-theme">
 
-                    <div class="item">
+                    <div class="item" v-for="(game,index) in latestGames" :key="index">
                         <div class="card" >
-                            <a href="#"><img class="card-img-top" src="../assets/img/selling/doom.jpg" alt="doom"></a>
+                            <a href="#"><img class="card-img-top" :src="backendPath+game.assets[0].name" alt="doom"></a>
 
                         </div>
                     </div>
-                    <div class="item">
-                        <div class="card" >
-                            <a href="#" target="_blank"> <img class="card-img-top" src="../assets/img/selling/jedi-fallen.jpg" alt="jedi fallen"></a>
+<!--                    <div class="item">-->
+<!--                        <div class="card" >-->
+<!--                            <a href="#" target="_blank"> <img class="card-img-top" src="../assets/img/selling/jedi-fallen.jpg" alt="jedi fallen"></a>-->
 
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="card" >
-                            <a href="#"> <img class="card-img-top" src="../assets/img/selling/red-death.jpg" alt="red death"></a>
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="item">-->
+<!--                        <div class="card" >-->
+<!--                            <a href="#"> <img class="card-img-top" src="../assets/img/selling/red-death.jpg" alt="red death"></a>-->
 
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="card" >
-                            <a href="#"> <img class="card-img-top" src="../assets/img/selling/res.jpg" alt="residential evil"></a>
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="item">-->
+<!--                        <div class="card" >-->
+<!--                            <a href="#"> <img class="card-img-top" src="../assets/img/selling/res.jpg" alt="residential evil"></a>-->
 
-                        </div>
-                    </div>
+<!--                        </div>-->
+<!--                    </div>-->
 
 
                 </div>
@@ -273,7 +271,7 @@
                             </div>
                             <div class="item">
                                 <div class="card" >
-                                    <img class="card-img-top" src="../assets/img//rented/max.png" alt="max">
+                                    <img class="card-img-top" src="../assets/img/rented/max.png" alt="max">
                                     <div class="card-body">
                                         <h4 class="mb-2 game-name text-center">Titanfall 2</h4>
                                     </div>
@@ -291,7 +289,101 @@
 </template>
 
 <script>
+    import Vue from 'vue';
     export default {
+        data() {
+            return {
+                latestGames: [],
+                imageNames: [],
+                backendPath: 'https://gamingapp.test/storage/games/',
+            }
+        },
+        methods: {
+            installOwlCarousel: function () {
+                $('.owl-carousel-one').owlCarousel({
+                    loop: true,
+                    margin: 10,
+                    autoplay: false,
+                    nav: true,
+                    navText: [
+                        '<img src="https://gamingapp.test/img/icon/left-arrow.png">',
+                        '<img src="https://gamingapp.test/img/icon/right-arrow.png">'
+                    ],
+                    dots: false,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        575: {
+                            items: 2
+                        },
+                        768: {
+                            items: 2
+                        },
+                        992: {
+                            items: 3
+                        },
+                        1200: {
+                            items: 3,
+                            nav: true
+                        },
+                        1400: {
+                            items: 4,
+                            nav: true
+                        }
+                    }
+                });
+
+                $('.owl-carousel-two').owlCarousel({
+                    loop:true,
+                    margin:10,
+                    nav: true,
+                    autoplay: true,
+                    navText: [
+                        '<img src="https://gamingapp.test/img/icon/left-arrow.png">',
+                        '<img src="https://gamingapp.test/img/icon/right-arrow.png">'
+                    ],
+                    dots: false,
+                    responsive:{
+                        0:{
+                            items:1
+                        },
+                        575:{
+                            items:2
+                        },
+                        768:{
+                            items:3
+                        },
+                        992:{
+                            items:4,
+                            nav: true
+                        },
+                        1200:{
+                            items:4,
+                            nav: true
+                        },
+                        1400:{
+                            items:4,
+                            nav: true
+                        }
+                    }
+                });
+            }
+        },
+        created() {
+            this.$api.get('games/latest').then(response => {
+                var vm = this;
+                vm.latestGames = response.data.data;
+                Vue.nextTick(function(){
+                    vm.installOwlCarousel();
+                }.bind(vm));
+
+                for (let x of this.latestGames) {
+                    this.imageNames.push(x.assets[0].name);
+                }
+                console.log(this.latestGames);
+            })
+        }
 
     }
 </script>

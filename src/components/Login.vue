@@ -8,16 +8,16 @@
                         <div class="card">
                             <h3 class="card-title text-center">Sign in</h3>
                             <!-- form -->
-                            <form action="#" >
+                            <form v-on:submit.prevent="onLogin" method="post" >
                                 <div class="form-group">
                                     <!-- user anme -->
                                     <label for="username1" class="sr-only">User Name</label>
-                                    <input type="text" class="form-control" id="username1" value="" placeholder="User Name" required>
+                                    <input type="text" class="form-control" id="username1" value="" placeholder="User Name or Email" required v-model="form.email">
                                 </div>
                                 <!-- password -->
                                 <div class="form-group mb-3">
                                     <label for="gamepassword1" class="sr-only">Password</label>
-                                    <input type="password" class="form-control" id="gamepassword1" placeholder="Password" required>
+                                    <input type="password" class="form-control" id="gamepassword1" placeholder="Password" required v-model="form.password">
                                 </div>
                                 <div class="d-flex justify-content-between">
                                     <div class="custom-control custom-checkbox">
@@ -51,6 +51,21 @@
 
 <script>
     export default {
-
+        data() {
+            return {
+                form: {
+                    email: "",
+                    password: "",
+                }
+            }
+        },
+        methods: {
+            onLogin() {
+                this.$api.post('login', this.form).then(response => {
+                    console.log(response.data.token);
+                });
+                console.log(this.form);
+            }
+        }
     }
 </script>

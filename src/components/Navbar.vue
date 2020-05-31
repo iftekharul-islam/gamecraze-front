@@ -3,7 +3,7 @@
         <!-- navbar -->
         <nav class="navbar navbar-expand-xl navbar-light">
             <div class="container-fluid nav-width">
-                <a class="navbar-brand mr-5" href="#"><img src="../assets/img/logo/logo.jpg" alt="Game-logo"></a>
+                <a class="navbar-brand mr-5" href="#"><router-link to="/"><img src="../assets/img/logo/logo.jpg" alt="Game-logo"></router-link></a>
                 <div class="toggler-pos">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
                         <!--just add these span here-->
@@ -60,10 +60,10 @@
                         <!-- menu-list-bottom -->
                         <ul class="navbar-nav menu-list-bottom">
                             <li class="nav-item mr-3 for-active">
-                                <a class="nav-link active" href="#">Home</a>
+                                <a class="nav-link active" href="#"> <router-link class="router_link" to="/">Home</router-link></a>
                             </li>
                             <li class="nav-item mr-3 for-active">
-                                <a class="nav-link" href="#">Store</a>
+                                <a class="nav-link" href="#"><router-link class="router_link" to="games">Store</router-link></a>
                             </li>
                             <li class="nav-item mr-3 for-active">
                                 <a class="nav-link" href="#">Categories</a>

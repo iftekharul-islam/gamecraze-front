@@ -104,8 +104,8 @@
                     <form class="my-2 my-lg-0 menu-search">
                         <div class="input-group">
                             <div class="input-group-append">
-                                <input type="search" class="form-control menu-search-input" placeholder="Search...">
-                                <button class="btn btn-secondary menu-search-icon" type="button">
+                                <input type="search" class="form-control menu-search-input" placeholder="Search Game Name" v-model="gameName">
+                                <button class="btn btn-secondary menu-search-icon" type="button" @click="searchGame">
                                     <i class="fa fa-search "></i>
                                 </button>
                             </div>
@@ -120,6 +120,19 @@
 
 <script>
     export default {
+        data() {
+            return {
+                gameName: ''
+            }
+        },
+        methods: {
+            searchGame() {
+                this.$api.get('search/'+ this.gameName).then(response => {
+                    console.log(response);
+                    console.log(this.gameName);
+                })
+            }
+        }
 
     }
 </script>

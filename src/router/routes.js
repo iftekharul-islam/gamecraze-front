@@ -1,7 +1,8 @@
-import Home from '../components/Home'
-import Games from '../components/Games'
+import Home from '../components/Home';
+import Games from '../components/Games';
 import Login from "../components/Login";
 import Registration from "../components/Registration";
+import GameDetails from '../components/GameDetails';
 
 export const routes = [
     {
@@ -19,5 +20,9 @@ export const routes = [
     {
         path: '/registration',
         component: Registration
+    },
+    {
+        path: '/game-details/:gameId',
+        component: GameDetails,
     },
 ]

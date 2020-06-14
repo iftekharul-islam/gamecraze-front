@@ -3,7 +3,7 @@
         <!-- navbar -->
         <nav class="navbar navbar-expand-xl navbar-light">
             <div class="container-fluid nav-width">
-                <a class="navbar-brand mr-5" href="#"><router-link to="/"><img src="../assets/img/logo/logo.jpg" alt="Game-logo"></router-link></a>
+                <a class="navbar-brand mr-5" href="#"><router-link to="/"><img src="../../assets/img/logo/logo.jpg" alt="Game-logo"></router-link></a>
                 <div class="toggler-pos">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
                         <!--just add these span here-->
@@ -105,11 +105,12 @@
                         <div class="input-group">
                             <div class="input-group-append">
                                 <input type="search" class="form-control menu-search-input" placeholder="Search Game Name" v-model="gameName">
-                                <button class="btn btn-secondary menu-search-icon" type="button" @click="searchGame">
+                                <button class="btn btn-secondary menu-search-icon" type="button" @click.prevent="searchGame">
                                     <i class="fa fa-search "></i>
                                 </button>
                             </div>
-                            <a href="#" target="_blank" class="btn btn-danger ml-4 sign-in-btn" type="submit"><router-link to="login" style="color: white;">Sign in</router-link></a>
+                            <a v-if="this.$store.state.profile" href="#" target="_blank" class="btn btn-danger ml-4 sign-in-btn" type="button"><router-link to="profile" style="color: white;">{{this.$store.state.profile.name}}</router-link></a>
+                            <a v-else href="#" target="_blank" class="btn btn-danger ml-4 sign-in-btn" type="submit"><router-link to="login" style="color: white;">Sign in</router-link></a>
                         </div>
                     </form>
                 </div>
@@ -127,13 +128,14 @@
         },
         methods: {
             searchGame() {
-                this.$api.get('search/'+ this.gameName).then(response => {
-                    console.log(response);
-                    console.log(this.gameName);
-                })
+                if(this.gameName !== '') {
+                    this.$api.get('search/'+ this.gameName+'?include=assets').then(response => {
+                        this.$store.commit('addToSearchResult', response.data.data);
+                        this.$router.push('/search').catch(err => {});
+                    });
+                }
             }
-        }
-
+        },
     }
 </script>
 

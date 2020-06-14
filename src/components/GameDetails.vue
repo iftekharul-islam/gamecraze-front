@@ -6,13 +6,13 @@
                 <div class="row">
                     <div class="col-lg-6 col-xl-5">
                         <div class="item-slide">
-                            <ul class="thumbnails" id="two">
-                                <li class="thumbnail-active" v-for="(asset,index) in game.assets" :key="index">
-                                    <a :href="'#slide'+index" class="thumbnail-active-action"><img :src="backendPath+asset.name" alt="jedi fallen" class="img-fluid"/></a>
+                            <ul class="thumbnails" id="two" v-if="game.assets">
+                                <li class="thumbnail-active" v-for="(asset,index) in game.assets.data" :key="index">
+                                    <a :href="'#slide'+index" class="thumbnail-active-action"><img :src="$backendPath+'games/'+asset.name" alt="jedi fallen" class="img-fluid"/></a>
                                 </li>
                             </ul>
-                            <ul class="slides">
-                                <li v-for="(asset,index) in game.assets" :key="index" :id="'slide'+index"><img :src="backendPath+asset.name" alt="jedi fallen" class="img-fluid"/></li>
+                            <ul class="slides" v-if="game.assets">
+                                <li v-for="(asset,index) in game.assets.data" :key="index" :id="'slide'+index"><img :src="$backendPath+'games/'+asset.name" alt="jedi fallen" class="img-fluid"/></li>
                             </ul>
                         </div>
                         <div class="row">
@@ -41,10 +41,10 @@
                                             </div>
                                         </div>
                                         <div class="col-sm-9 pb-5">
-                                            <div class="part-right">
-                                                <h6>Platforms: <span v-for="(platform,index) in game.platforms" :key="index">
+                                            <div class="part-right" v-if="game.platforms && game.genres">
+                                                <h6>Platforms: <span v-for="(platform,index) in game.platforms.data" :key="index">
                                                     {{platform.name}}<span v-if="index < game.platforms.length-1">, </span></span></h6>
-                                                <h6>Genre: <span v-for="(genre,index) in game.genres" :key="index">
+                                                <h6>Genre: <span v-for="(genre,index) in game.genres.data" :key="index">
                                                     {{genre.name}}<span v-if="index < game.genres.length-1">, </span></span></h6>
                                                 <h6>Edition: Standard Edition</h6>
                                                 <h6>Game Modes: {{game.game_mode}}</h6>
@@ -81,7 +81,7 @@
             </div>
         </section>
         <!-- tab menu -->
-        <section class="games-main-details">
+        <section class="games-main-details sign-in-bg">
             <div class="container-fluid games-main-details-width">
                 <ul class="nav nav-pills mb-2" id="pills-tab" role="tablist">
                     <li class="nav-item">
@@ -103,7 +103,7 @@
             <div class="tab-content" id="pills-tabContent">
                 <!-- specification tab -->
                 <div class="tab-pane fade" id="pills-specifications" role="tabpanel" aria-labelledby="pills-specifications-tab">
-                    <div class="specification">
+                    <div class="specification sign-in-bg">
                         <div class="container-fluid specification-width">
                             <div class="row">
                                 <div class="col-lg-6">
@@ -118,9 +118,9 @@
                                                 <td class="general-titles">Title Name</td>
                                                 <td class="general-titles-details">{{game.name}}</td>
                                             </tr>
-                                            <tr>
+                                            <tr v-if="game.platforms">
                                                 <td class="general-titles">Platform</td>
-                                                <td class="general-titles-details"><span v-for="(platform,index) in game.platforms" :key="index">
+                                                <td class="general-titles-details"><span v-for="(platform,index) in game.platforms.data" :key="index">
                                                     {{platform.name}}<span v-if="index < game.platforms.length-1">, </span></span></td>
                                             </tr>
                                             <tr>
@@ -131,9 +131,9 @@
                                                 <td class="general-titles">Type</td>
                                                 <td class="general-titles-details">Full Game</td>
                                             </tr>
-                                            <tr>
+                                            <tr v-if="game.genres">
                                                 <td class="general-titles">Genre</td>
-                                                <td class="general-titles-details"><span v-for="(genre,index) in game.genres" :key="index">
+                                                <td class="general-titles-details"><span v-for="(genre,index) in game.genres.data" :key="index">
                                                     {{genre.name}}<span v-if="index < game.genres.length-1">, </span></span></td>
                                             </tr>
                                             <tr>
@@ -183,19 +183,19 @@
                     <div class="overview-main-photo">
                         <img src="../assets/img/selling/jedi/jed.png" alt="jedi fallen order" class="img-fluid">
                     </div>
-                    <div class="over-view">
+                    <div class="over-view sign-in-bg">
                         <div class="container-fluid item-tab-width overview">
                             <!-- overview details -->
                             <div class="row pt-5">
                                 <div class="col-md-6">
-                                    <div class="title-1">
+                                    <div class="title-1" v-if="game.genres">
                                         <h2>{{game.name}}<span>TM</span></h2>
                                         <p>{{game.description}}</p>
                                         <br>
                                         <br>
                                         <p class="release">Release Date: {{game.release_date}}</p>
                                         <p>Devloper: Respawn Entertainment </p>
-                                        <p>Genre: <span v-for="(genre,index) in game.genres" :key="index">
+                                        <p>Genre: <span v-for="(genre,index) in game.genres.data" :key="index">
                                                     {{genre.name}}<span v-if="index < game.genres.length-1">, </span></span></p>
                                         <p>Publisher: {{game.publisher}}</p>
                                     </div>
@@ -248,7 +248,7 @@
                 </div>
                 <!-- question tab -->
                 <div class="tab-pane fade" id="pills-question" role="tabpanel" aria-labelledby="pills-question-tab">
-                    <div class="question">
+                    <div class="question sign-in-bg">
                         <div class="container-fluid question-width">
                             <div class="row">
                                 <div class="col-xl-6 all-question">
@@ -515,7 +515,7 @@
                                             </div>
                                         </div>
                                         <!-- Load more button -->
-                                        <div class="hide-load">
+                                        <div class="hide-load sign-in-bg">
                                             <div class="loadmore">
                                                 <a href="#" id="loadMore">See more answered questions (130)</a>
                                             </div>
@@ -533,16 +533,16 @@
 
 <script>
     export default {
+        name: 'GameDetails',
+        props: ['gameId'],
         data() {
             return {
                 game: {},
-                backendPath: 'https://gamingapp.test/storage/games/',
             }
         },
         created() {
-            this.$api.get('games/'+this.$route.params.gameId).then(response => {
+            this.$api.get('games/'+this.gameId+'?include=assets,genres,platforms').then(response => {
                 this.game = response.data.data;
-                console.log(this.game);
             });
         }
 

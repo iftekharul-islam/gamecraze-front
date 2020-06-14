@@ -2,14 +2,12 @@
     <div>
         <div class="container">
             <div class="box">
-                <div class="box-item" v-for="(game,index) in this.games" :key="index">
+                <div class="box-item" v-for="(game,index) in games" :key="index">
                     <h4>{{game.name}}</h4>
                     <p>Description: {{game.description}}</p>
-                    <p>Genre: {{game.genre.name}}</p>
-                    <p>Category: {{game.categories.name}}</p>
+                    <p>Genres: <span v-for="(genre,index) in game.genres.data" :key="index">{{genre.name}}</span></p>
                     <p>Release Date: {{game.release_date}}</p>
                     <p>Publisher: {{game.publisher}}</p>
-                    <p>Platform: {{game.platform}}</p>
                     <p>Rating: {{game.rating}}</p>
                 </div>
             </div>
@@ -26,8 +24,9 @@
             }
         },
         created() {
-            this.$api.get('games').then(response => {
+            this.$api.get('games?include=genres').then(response => {
                 this.games = response.data.data;
+                console.log(this.games);
             })
         }
     }

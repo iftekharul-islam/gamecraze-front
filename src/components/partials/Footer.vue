@@ -1,6 +1,6 @@
 <template>
     <div>
-        <section class="more-rented">
+        <section class="more-rented sign-in-bg">
             <div class="border w-100">
 
             </div>

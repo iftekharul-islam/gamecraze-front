@@ -62,9 +62,19 @@
         methods: {
             onLogin() {
                 this.$api.post('login', this.form).then(response => {
-                    console.log(response.data.token);
+                    this.$store.dispatch('setToken', response.data.token)
+                    // console.log(this.$store.state.token);
+                    let config = {
+                        headers: {
+                            'Authorization': 'Bearer ' + response.data.token
+                        }
+                    }
+                    this.$api.get('profile', config).then(response => {
+                        this.$store.dispatch('setProfile', response.data)
+                        console.log(response);
+                    });
                 });
-                console.log(this.form);
+                this.$router.push('/').catch(err => {});
             }
         }
     }

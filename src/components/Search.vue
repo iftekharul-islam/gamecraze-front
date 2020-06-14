@@ -23,7 +23,7 @@
                             <h3>Your search Results</h3>
                         </div>
                         <div class="search-list">
-                            <p><small>You have 0 results found...</small></p>
+                            <p><small>You have {{searchResult.length}} results found...</small></p>
                         </div>
                     </div>
                     <div class="col-sm">
@@ -59,7 +59,7 @@
                         <ul id="product-list" class="row">
                             <li class="col-sm-6 col-md-3 filter_rented mb-4" v-for="(game,index) in searchResult" :key="index">
                                 <div class="card">
-                                    <a href="#"><img v-if="game.assets.data" :src="$backendPath+'games/'+game.assets.data[0].name" alt="doom" class="img-fluid img-effect">
+                                    <a href="#"><img v-if="game.assets.data" :src="$gamehubStorageApi+'games/'+game.assets.data[0].name" alt="doom" class="img-fluid img-effect">
                                     </a>
                                 </div>
                             </li>

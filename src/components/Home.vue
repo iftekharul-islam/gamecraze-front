@@ -5,7 +5,7 @@
             <div id="mainslider" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
                     <div class="carousel-item" v-for="(game,index) in latestGames" :key="index" :class="{active: index==0}">
-                        <a href="#"><img data-u="image" :src="$backendPath +'games/'+ game.assets.data[0].name" class="img-fluid d-block w-100" alt="hunter"/></a>
+                        <a href="#"><img data-u="image" :src="$gamehubStorageApi +'games/'+ game.assets.data[0].name" class="img-fluid d-block w-100" alt="hunter"/></a>
                     </div>
                 </div>
                 <a class="carousel-control-prev slider-icon" href="#mainslider" role="button" data-slide="prev">
@@ -28,7 +28,7 @@
                 <div class="owl-carousel-one owl-carousel owl-theme">
                     <div class="item" v-for="(game,index) in latestGames" :key="index">
                         <div class="card">
-                            <a href="#"> <img class="card-img-top" :src="$backendPath+'games/'+game.assets.data[0].name" alt="Code vein"></a>
+                            <a href="#"> <img class="card-img-top" :src="$gamehubStorageApi+'games/'+game.assets.data[0].name" alt="Code vein"></a>
                             <div class="card-body">
                                 <h4 class="mb-3 game-name">{{game.name}}</h4>
                                 <p class="card-text">{{game.description}}</p>
@@ -136,7 +136,7 @@
 
                             <div class="item" v-for="(rent,index) in rents" :key="index">
                                 <div class="card" >
-                                    <img class="card-img-top" :src="$backendPath+'games/'+rent.game.assets[0].name" alt="wwe">
+                                    <img class="card-img-top" :src="$gamehubStorageApi+'games/'+rent.game.assets[0].name" alt="wwe">
                                     <div class="card-body">
                                         <h4 class="mb-2 game-name text-center">{{rent.game.name}}</h4>
                                     </div>
@@ -344,7 +344,7 @@
                 Vue.nextTick(function(){
                     vm.carouselFour();
                 }.bind(vm));
-                console.log(response.data);
+                // console.log(response.data);
             })
         }
     }

@@ -109,8 +109,8 @@
                                     <i class="fa fa-search "></i>
                                 </button>
                             </div>
-                            <a v-if="this.$store.state.profile" href="#" target="_blank" class="btn btn-danger ml-4 sign-in-btn" type="button"><router-link to="profile" style="color: white;">{{this.$store.state.profile.name}}</router-link></a>
-                            <a v-else href="#" target="_blank" class="btn btn-danger ml-4 sign-in-btn" type="submit"><router-link to="login" style="color: white;">Sign in</router-link></a>
+                            <a v-if="this.$store.state.profile" class="btn btn-danger ml-4 sign-in-btn" type="button"><router-link to="profile" style="color: white;">{{this.$store.state.profile.name}}</router-link></a>
+                            <a v-else class="btn btn-danger ml-4 sign-in-btn" type="submit"><router-link to="login" style="color: white;">Sign in</router-link></a>
                         </div>
                     </form>
                 </div>

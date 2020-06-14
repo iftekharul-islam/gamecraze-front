@@ -22,9 +22,9 @@ import Vue from 'vue'
 import App from './App.vue'
 
 //global variable
-Vue.prototype.$backendPath = 'https://gamingapp.test/storage/'
-Vue.prototype.$upcomingGamesApi = 'https://api.rawg.io/api/games?dates=2020-06-01%2C2020-10-10&ordering=-added'
-Vue.prototype.$popularGamesApi = 'https://api.rawg.io/api/games?dates=2020-01-01,2020-05-31&ordering=-added'
+Vue.prototype.$gamehubStorageApi = process.env.VUE_APP_GAMEHUB_STORAGE_API
+Vue.prototype.$upcomingGamesApi = process.env.VUE_APP_UPCOMING_GAMES_API
+Vue.prototype.$popularGamesApi = process.env.VUE_APP_POPULAR_GAMES_API
 
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
@@ -46,7 +46,7 @@ import axios from 'axios'
 Vue.use({
   install (Vue) {
     Vue.prototype.$api = axios.create({
-      baseURL: 'http://gamingapp.test/api/'
+      baseURL: process.env.VUE_APP_GAMEHUB_BASE_API
     })
   }
 });

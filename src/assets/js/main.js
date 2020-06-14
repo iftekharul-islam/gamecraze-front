@@ -167,9 +167,9 @@ $('.dropdown').on('show.bs.dropdown', function(){
       })(jQuery);
 });
 
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();
-});
+// $(document).ready(function(){
+//     $('[data-toggle="tooltip"]').tooltip();
+// });
 // recharge --->button collapse
 $(document).ready(function() {
 

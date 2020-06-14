@@ -23,7 +23,7 @@
                                 </div>
                             </div>
                             <div class="user-image">
-                                <a href="#"><img :src="$backendPath+'users/'+profile.image" alt="user image"></a>
+                                <a href="#"><img :src="$gamehubStorageApi+'users/'+profile.image" alt="user image"></a>
                             </div>
                             <div class="user-details">
                                 <!-- tabs -->

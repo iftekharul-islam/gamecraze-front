@@ -172,8 +172,8 @@
                     autoplay: false,
                     nav: true,
                     navText: [
-                        '<img src="https://gamingapp.test/img/icon/left-arrow.png">',
-                        '<img src="https://gamingapp.test/img/icon/right-arrow.png">'
+                        '<img src="' + this.$baseApi + 'img/icon/left-arrow.png' + '">',
+                        '<img src="' + this.$baseApi + 'img/icon/right-arrow.png' + '">'
                     ],
                     dots: false,
                     responsive: {
@@ -207,8 +207,8 @@
                     nav: true,
                     autoplay: true,
                     navText: [
-                        '<img src="https://gamingapp.test/img/icon/left-arrow.png">',
-                        '<img src="https://gamingapp.test/img/icon/right-arrow.png">'
+                        '<img src="' + this.$baseApi + 'img/icon/left-arrow.png' + '">',
+                        '<img src="' + this.$baseApi + 'img/icon/right-arrow.png' + '">'
                     ],
                     dots: false,
                     responsive:{
@@ -243,8 +243,8 @@
                     nav: true,
                     autoplay: true,
                     navText: [
-                        '<img src="https://gamingapp.test/img/icon/left-arrow.png">',
-                        '<img src="https://gamingapp.test/img/icon/right-arrow.png">'
+                        '<img src="' + this.$baseApi + 'img/icon/left-arrow.png' + '">',
+                        '<img src="' + this.$baseApi + 'img/icon/right-arrow.png' + '">'
                     ],
                     dots: false,
                     responsive:{
@@ -280,8 +280,8 @@
                     nav: true,
                     autoplay: true,
                     navText: [
-                        '<img src="https://gamingapp.test/img/icon/left-arrow.png">',
-                        '<img src="https://gamingapp.test/img/icon/right-arrow.png">'
+                        '<img src="' + this.$baseApi + 'img/icon/left-arrow.png' + '">',
+                        '<img src="' + this.$baseApi + 'img/icon/right-arrow.png' + '">'
                     ],
                     dots: false,
                     responsive:{
@@ -309,41 +309,50 @@
                         }
                     }
                 })
+            },
+            getLatestGames: function () {
+                this.$api.get('games/latest?include=assets').then(response => {
+                    var vm = this;
+                    vm.latestGames = response.data.data;
+                    Vue.nextTick(function(){
+                        vm.carouselOne();
+                    }.bind(vm));
+                });
+            },
+            getUpcomingGames: function () {
+                this.$api.get(this.$upcomingGamesApi).then(response => {
+                    var vm = this;
+                    vm.upcomingGames = response.data.results;
+                    Vue.nextTick(function() {
+                        vm.carouselThree();
+                    }.bind(vm));
+                });
+            },
+            getPopularGames: function () {
+                this.$api.get(this.$popularGamesApi).then(response => {
+                    var vm = this;
+                    vm.popularGames = response.data.results;
+                    Vue.nextTick(function(){
+                        vm.carouselTwo();
+                    }.bind(vm));
+                });
+            },
+            getRentGames: function () {
+                this.$api.get('rents?include=game.assets').then(response => {
+                    var vm = this;
+                    vm.rents = response.data.data;
+                    console.log(vm.rents);
+                    Vue.nextTick(function(){
+                        vm.carouselFour();
+                    }.bind(vm));
+                });
             }
         },
         created() {
-            this.$api.get('games/latest?include=assets').then(response => {
-                var vm = this;
-                vm.latestGames = response.data.data;
-                Vue.nextTick(function(){
-                    vm.carouselOne();
-                }.bind(vm));
-            });
-
-            this.$api.get(this.$upcomingGamesApi).then(response => {
-                var vm = this;
-                vm.upcomingGames = response.data.results;
-                Vue.nextTick(function() {
-                    vm.carouselThree();
-                }.bind(vm));
-            })
-
-            this.$api.get(this.$popularGamesApi).then(response => {
-                var vm = this;
-                vm.popularGames = response.data.results;
-                Vue.nextTick(function(){
-                    vm.carouselTwo();
-                }.bind(vm));
-            })
-
-            this.$api.get('rents?include=game.assets').then(response => {
-                var vm = this;
-                vm.rents = response.data.data;
-                console.log(vm.rents);
-                Vue.nextTick(function(){
-                    vm.carouselFour();
-                }.bind(vm));
-            })
+            this.getLatestGames();
+            this.getUpcomingGames();
+            this.getPopularGames();
+            this.getRentGames();
         }
     }
 </script>

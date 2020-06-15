@@ -3,7 +3,7 @@
         <!-- navbar -->
         <nav class="navbar navbar-expand-xl navbar-light">
             <div class="container-fluid nav-width">
-                <a class="navbar-brand mr-5" href="#"><router-link to="/"><img src="../../assets/img/logo/logo.jpg" alt="Game-logo"></router-link></a>
+                <router-link class="navbar-brand mr-5" to="/"><img src="../../assets/img/logo/logo.jpg" alt="Game-logo"></router-link>
                 <div class="toggler-pos">
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">
                         <!--just add these span here-->
@@ -60,7 +60,7 @@
                         <!-- menu-list-bottom -->
                         <ul class="navbar-nav menu-list-bottom">
                             <li class="nav-item mr-3 for-active">
-                                <a class="nav-link active"> <router-link class="router_link" to="/">Home</router-link></a>
+                                <router-link class="nav-link active router_link" to="/">Home</router-link>
                             </li>
                             <li class="nav-item mr-3 for-active">
                                 <a class="nav-link" href="#"><router-link class="router_link" to="games">Store</router-link></a>
@@ -109,8 +109,8 @@
                                     <i class="fa fa-search "></i>
                                 </button>
                             </div>
-                            <a v-if="this.$store.state.profile" class="btn btn-danger ml-4 sign-in-btn" type="button"><router-link to="profile" style="color: white;">{{this.$store.state.profile.name}}</router-link></a>
-                            <a v-else class="btn btn-danger ml-4 sign-in-btn" type="submit"><router-link to="login" style="color: white;">Sign in</router-link></a>
+                            <router-link v-if="this.$store.state.profile" class="btn btn-danger ml-4 sign-in-btn" to="profile" style="color: white;">{{this.$store.state.profile.name}}</router-link>
+                            <router-link v-else class="btn btn-danger ml-4 sign-in-btn" to="login" style="color: white;">Sign in</router-link>
                         </div>
                     </form>
                 </div>

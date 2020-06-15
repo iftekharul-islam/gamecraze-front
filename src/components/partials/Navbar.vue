@@ -60,13 +60,13 @@
                         <!-- menu-list-bottom -->
                         <ul class="navbar-nav menu-list-bottom">
                             <li class="nav-item mr-3 for-active">
-                                <a class="nav-link active" href="#"> <router-link class="router_link" to="/">Home</router-link></a>
+                                <a class="nav-link active"> <router-link class="router_link" to="/">Home</router-link></a>
                             </li>
                             <li class="nav-item mr-3 for-active">
                                 <a class="nav-link" href="#"><router-link class="router_link" to="games">Store</router-link></a>
                             </li>
                             <li class="nav-item mr-3 for-active">
-                                <a class="nav-link" href="#">Categories</a>
+                                <a class="nav-link"><router-link class="router_link" to="/categories">Categories</router-link></a>
                             </li>
                             <li class="nav-item dropdown for-active mr-4">
                                 <a class="nav-link dropdown-toggle" href="#" id="serviceDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

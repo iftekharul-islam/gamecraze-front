@@ -5,6 +5,7 @@ import Registration from "../components/login_registration/Registration";
 import GameDetails from '../components/GameDetails';
 import Search from "../components/Search";
 import Profile from "../components/Profile";
+import Categories from "../components/Categories";
 
 export const routes = [
     {
@@ -39,5 +40,10 @@ export const routes = [
         path: '/profile',
         name: 'Profile',
         component: Profile,
+    },
+    {
+        path: '/categories',
+        name: 'Category',
+        component: Categories,
     },
 ]

@@ -136,9 +136,9 @@
 
                             <div class="item" v-for="(rent,index) in rents" :key="index">
                                 <div class="card" >
-                                    <img class="card-img-top" :src="$gamehubStorageApi+'games/'+rent.game.assets[0].name" alt="wwe">
+                                    <img class="card-img-top" :src="$gamehubStorageApi+'games/'+rent.game.data.assets.data[0].name" alt="wwe">
                                     <div class="card-body">
-                                        <h4 class="mb-2 game-name text-center">{{rent.game.name}}</h4>
+                                        <h4 class="mb-2 game-name text-center">{{rent.game.data.name}}</h4>
                                     </div>
                                     <div class="view-more-btn text-center pb-4">
                                         <a href="#" class="btn btn-dark">View More</a>
@@ -313,10 +313,8 @@
         },
         created() {
             this.$api.get('games/latest?include=assets').then(response => {
-                
                 var vm = this;
                 vm.latestGames = response.data.data;
-                console.log(vm.latestGames);
                 Vue.nextTick(function(){
                     vm.carouselOne();
                 }.bind(vm));
@@ -338,13 +336,13 @@
                 }.bind(vm));
             })
 
-            this.$api.get('rents').then(response => {
+            this.$api.get('rents?include=game.assets').then(response => {
                 var vm = this;
-                vm.rents = response.data;
+                vm.rents = response.data.data;
+                console.log(vm.rents);
                 Vue.nextTick(function(){
                     vm.carouselFour();
                 }.bind(vm));
-                // console.log(response.data);
             })
         }
     }

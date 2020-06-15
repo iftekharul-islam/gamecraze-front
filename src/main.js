@@ -25,6 +25,8 @@ import App from './App.vue'
 Vue.prototype.$gamehubStorageApi = process.env.VUE_APP_GAMEHUB_STORAGE_API
 Vue.prototype.$upcomingGamesApi = process.env.VUE_APP_UPCOMING_GAMES_API
 Vue.prototype.$popularGamesApi = process.env.VUE_APP_POPULAR_GAMES_API
+Vue.prototype.$leftArrow = process.env.VUE_APP_LEFT_ARROW
+Vue.prototype.$rightArrow = process.env.VUE_APP_RIGHT_ARROW
 
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)

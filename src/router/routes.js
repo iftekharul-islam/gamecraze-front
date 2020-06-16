@@ -1,5 +1,5 @@
 import Home from '../components/Home';
-import Games from '../components/Games';
+import Store from '../components/Store';
 import Login from "../components/login_registration/Login";
 import Registration from "../components/login_registration/Registration";
 import GameDetails from '../components/GameDetails';
@@ -13,8 +13,8 @@ export const routes = [
         component: Home
     },
     {
-        path: '/games',
-        component: Games
+        path: '/store',
+        component: Store
     },
     {
         path: '/login',

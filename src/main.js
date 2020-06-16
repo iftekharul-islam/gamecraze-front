@@ -27,7 +27,7 @@ Vue.prototype.$upcomingGamesApi = process.env.VUE_APP_UPCOMING_GAMES_API
 Vue.prototype.$popularGamesApi = process.env.VUE_APP_POPULAR_GAMES_API
 Vue.prototype.$baseApi = process.env.VUE_APP_BASE_API
 
-
+//vue-router
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
@@ -37,9 +37,19 @@ const router = new VueRouter({
   routes
 });
 
+//vee-validate
+import { ValidationProvider } from 'vee-validate';
+import { ValidationObserver } from "vee-validate";
+import * as VeeValidate from "vee-validate";
+Vue.use(VeeValidate, { inject: false });
+Vue.component('ValidationProvider', ValidationProvider);
+Vue.component("ValidationObserver", ValidationObserver);
+
+import './validation'
+
+//vuex
 import Vuex from 'vuex'
 Vue.use(Vuex)
-
 import {storage} from "./store";
 const store = new Vuex.Store(storage)
 

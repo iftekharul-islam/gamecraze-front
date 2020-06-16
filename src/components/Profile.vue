@@ -117,7 +117,7 @@
         },
         created() {
             this.profile = this.$store.state.profile
-            console.log(this.profile);
+            // console.log(this.profile);
         }
     }
 </script>

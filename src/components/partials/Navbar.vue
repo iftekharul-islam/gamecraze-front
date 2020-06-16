@@ -63,7 +63,7 @@
                                 <router-link class="nav-link active router_link" to="/">Home</router-link>
                             </li>
                             <li class="nav-item mr-3 for-active">
-                                <a class="nav-link" href="#"><router-link class="router_link" to="games">Store</router-link></a>
+                                <a class="nav-link" href="#"><router-link class="router_link" to="store">Store</router-link></a>
                             </li>
                             <li class="nav-item mr-3 for-active">
                                 <a class="nav-link"><router-link class="router_link" to="/categories">Categories</router-link></a>

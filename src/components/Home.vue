@@ -4,8 +4,17 @@
         <section class="hunter-section">
             <div id="mainslider" class="carousel slide" data-ride="carousel">
                 <div class="carousel-inner">
-                    <div class="carousel-item" v-for="(game,index) in latestGames" :key="index" :class="{active: index==0}">
-                        <a href="#"><img data-u="image" :src="$gamehubStorageApi +'games/'+ game.assets.data[0].name" class="img-fluid d-block w-100" alt="hunter"/></a>
+                    <div class="carousel-item active">
+                        <a href="#"><img data-u="image" src="../assets/img/slider/blood.png" class="img-fluid d-block w-100" alt="hunter"/></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"><img data-u="image" src="../assets/img/slider/god-war.png" class="img-fluid d-block w-100" alt="hunter"/></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"><img data-u="image" src="../assets/img/slider/hunter.jpg" class="img-fluid d-block w-100" alt="hunter"/></a>
+                    </div>
+                    <div class="carousel-item">
+                        <a href="#"><img data-u="image" src="../assets/img/slider/the.png" class="img-fluid d-block w-100" alt="hunter"/></a>
                     </div>
                 </div>
                 <a class="carousel-control-prev slider-icon" href="#mainslider" role="button" data-slide="prev">
@@ -26,15 +35,51 @@
                     <h2>New Release</h2>
                 </div>
                 <div class="owl-carousel-one owl-carousel owl-theme">
-                    <div class="item" v-for="(game,index) in latestGames" :key="index">
+                    <div class="item">
                         <div class="card">
-                            <a href="#"> <img class="card-img-top" :src="$gamehubStorageApi+'games/'+game.assets.data[0].name" alt="Code vein"></a>
+                            <a href="#"> <img class="card-img-top" src="../assets/img/release/codevein.jpg" alt="Code vein"></a>
                             <div class="card-body">
-                                <h4 class="mb-3 game-name">{{game.name}}</h4>
-                                <p class="card-text">{{game.description}}</p>
+                                <h4 class="mb-3 game-name">Code Vein</h4>
+                                <p class="card-text">The Jedi are leaders and peacekeepers in the Star Wars universe. The Jedi Order are depicted as an ancient monastic, academic, meritocratic and quasi-militaristic organization whose origin dates back approximately 25,000 years before the events of the first film released in the franchise</p>
                             </div>
                             <div class="more-read text-right pb-3 pr-2">
-                                <a href="#"><router-link :to="{ name: 'GameDetails', params: {gameId: game.id }}">View More <span class="material-icons">arrow_forward_ios</span></router-link></a>
+                                <a href="#">View More <span class="material-icons">arrow_forward_ios</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card">
+                            <a href="#"> <img class="card-img-top" src="../assets/img/release/monkey.jpg" alt="Code vein"></a>
+                            <div class="card-body">
+                                <h4 class="mb-3 game-name">Monkey</h4>
+                                <p class="card-text">The Jedi are leaders and peacekeepers in the Star Wars universe. The Jedi Order are depicted as an ancient monastic, academic, meritocratic and quasi-militaristic organization whose origin dates back approximately 25,000 years before the events of the first film released in the franchise</p>
+                            </div>
+                            <div class="more-read text-right pb-3 pr-2">
+                                <a href="#">View More <span class="material-icons">arrow_forward_ios</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card">
+                            <a href="#"> <img class="card-img-top" src="../assets/img/release/call.jpg" alt="Code vein"></a>
+                            <div class="card-body">
+                                <h4 class="mb-3 game-name">Call of Duty</h4>
+                                <p class="card-text">The Jedi are leaders and peacekeepers in the Star Wars universe. The Jedi Order are depicted as an ancient monastic, academic, meritocratic and quasi-militaristic organization whose origin dates back approximately 25,000 years before the events of the first film released in the franchise</p>
+                            </div>
+                            <div class="more-read text-right pb-3 pr-2">
+                                <a href="#">View More <span class="material-icons">arrow_forward_ios</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="card">
+                            <a href="#"> <img class="card-img-top" src="../assets/img/release/fifa.jpg" alt="Code vein"></a>
+                            <div class="card-body">
+                                <h4 class="mb-3 game-name">FIFA</h4>
+                                <p class="card-text">The Jedi are leaders and peacekeepers in the Star Wars universe. The Jedi Order are depicted as an ancient monastic, academic, meritocratic and quasi-militaristic organization whose origin dates back approximately 25,000 years before the events of the first film released in the franchise</p>
+                            </div>
+                            <div class="more-read text-right pb-3 pr-2">
+                                <a href="#">View More <span class="material-icons">arrow_forward_ios</span></a>
                             </div>
                         </div>
                     </div>
@@ -133,12 +178,44 @@
                             <h2>More Rented</h2>
                         </div>
                         <div class="owl-carousel-four owl-carousel owl-theme">
-
-                            <div class="item" v-for="(rent,index) in rents" :key="index">
+                            <div class="item">
                                 <div class="card" >
-                                    <img class="card-img-top" :src="$gamehubStorageApi+'games/'+rent.game.data.assets.data[0].name" alt="wwe">
+                                    <img class="card-img-top" src="../assets/img/rented/dark-soul.png" alt="wwe">
                                     <div class="card-body">
-                                        <h4 class="mb-2 game-name text-center">{{rent.game.data.name}}</h4>
+                                        <h4 class="mb-2 game-name text-center">Dark Souls ||| Fullsound track</h4>
+                                    </div>
+                                    <div class="view-more-btn text-center pb-4">
+                                        <a href="#" class="btn btn-dark">View More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card" >
+                                    <img class="card-img-top" src="../assets/img/rented/empire.png" alt="wwe">
+                                    <div class="card-body">
+                                        <h4 class="mb-2 game-name text-center">Empire of Sin</h4>
+                                    </div>
+                                    <div class="view-more-btn text-center pb-4">
+                                        <a href="#" class="btn btn-dark">View More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card" >
+                                    <img class="card-img-top" src="../assets/img/rented/fallout.png" alt="wwe">
+                                    <div class="card-body">
+                                        <h4 class="mb-2 game-name text-center">Fallout</h4>
+                                    </div>
+                                    <div class="view-more-btn text-center pb-4">
+                                        <a href="#" class="btn btn-dark">View More</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="item">
+                                <div class="card" >
+                                    <img class="card-img-top" src="../assets/img/rented/grid.png" alt="wwe">
+                                    <div class="card-body">
+                                        <h4 class="mb-2 game-name text-center">Greed Fall</h4>
                                     </div>
                                     <div class="view-more-btn text-center pb-4">
                                         <a href="#" class="btn btn-dark">View More</a>

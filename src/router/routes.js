@@ -6,6 +6,7 @@ import GameDetails from '../components/GameDetails';
 import Search from "../components/Search";
 import Profile from "../components/Profile";
 import Categories from "../components/Categories";
+import Contacts from "../components/Contacts";
 
 export const routes = [
     {
@@ -45,5 +46,10 @@ export const routes = [
         path: '/categories',
         name: 'Category',
         component: Categories,
+    },
+    {
+        path: '/contacts',
+        name: 'Contacts',
+        component: Contacts,
     },
 ]

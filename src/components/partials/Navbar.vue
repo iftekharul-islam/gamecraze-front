@@ -16,9 +16,9 @@
                 </div>
                 <div class="collapse navbar-collapse" id="exCollapsingNavbar">
                     <!-- menu-list -->
-                    <div class="menu-list w-100">
+                    <div class="menu-list m-auto">
                         <!-- menu-list-top -->
-                        <ul class="navbar-nav menu-list-top">
+                        <!-- <ul class="navbar-nav menu-list-top">
                             <li class="nav-item mr-2">
                                 <a class="nav-link" href="#">Platforms</a>
                             </li>
@@ -56,46 +56,23 @@
                             </li>
                             <li class="nav-item ml-auto search">
                             </li>
-                        </ul>
+                        </ul> -->
                         <!-- menu-list-bottom -->
                         <ul class="navbar-nav menu-list-bottom">
                             <li class="nav-item mr-3 for-active">
                                 <router-link class="nav-link active router_link" to="/">Home</router-link>
                             </li>
                             <li class="nav-item mr-3 for-active">
-                                <a class="nav-link" href="#"><router-link class="router_link" to="store">Store</router-link></a>
+                                <router-link class="router_link" to="/categories">Categories</router-link>
                             </li>
                             <li class="nav-item mr-3 for-active">
-                                <a class="nav-link"><router-link class="router_link" to="/categories">Categories</router-link></a>
-                            </li>
-                            <li class="nav-item dropdown for-active mr-4">
-                                <a class="nav-link dropdown-toggle" href="#" id="serviceDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Lend/Borrow/Exchange <i class="fas fa-chevron-down ml-1"></i>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="serviceDropdown">
-                                    <a class="dropdown-item" href="#">Game 1</a>
-                                    <a class="dropdown-item" href="#">Game 2</a>
-                                    <a class="dropdown-item" href="#">Game 3</a>
-                                    <a class="dropdown-item" href="#">Game 4</a>
-                                    <a class="dropdown-item" href="#">Game 5</a>
-                                    <a class="dropdown-item" href="#">Game 6</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown for-active mr-4">
-                                <a class="nav-link dropdown-toggle" href="#" id="sitesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Game Shops <i class="fas fa-chevron-down ml-1"></i>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="sitesDropdown">
-                                    <a class="dropdown-item" href="#">Game 1</a>
-                                    <a class="dropdown-item" href="#">Game 2</a>
-                                    <a class="dropdown-item" href="#">Game 3</a>
-                                    <a class="dropdown-item" href="#">Game 4</a>
-                                    <a class="dropdown-item" href="#">Game 5</a>
-                                    <a class="dropdown-item" href="#">Game 6</a>
-                                </div>
+                                <router-link class="router_link" to="games">Games</router-link>
                             </li>
                             <li class="nav-item mr-3 for-active">
-                                <a class="nav-link" href="#">Support</a>
+                                <router-link class="router_link" to="supports">Supports</router-link>
+                            </li>
+                            <li class="nav-item mr-3 for-active">
+                                <router-link class="router_link" to="contacts">Contact us</router-link>
                             </li>
                         </ul>
                     </div>

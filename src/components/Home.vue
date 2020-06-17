@@ -418,7 +418,7 @@
                 this.$api.get('rents?include=game.assets').then(response => {
                     var vm = this;
                     vm.rents = response.data.data;
-                    console.log(vm.rents);
+                    // console.log(vm.rents);
                     Vue.nextTick(function(){
                         vm.carouselFour();
                     }.bind(vm));

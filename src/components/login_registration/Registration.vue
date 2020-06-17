@@ -6,105 +6,29 @@
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
                         <div class="card">
-                            <h3 class="card-title text-center">Registration</h3>
-                            <!-- photo upload with preview -->
-                            <div class="avatar-wrapper">
-                                <img class="profile-pic" src="" alt=""/>
-                                <div class="upload-button">
-                                    <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
-                                </div>
-                                <input class="file-upload" type="file" ref="files" accept="image/*" @change="onImageChange"/>
-                            </div>
-
-                            <!-- form -->
-                            <form method="post" enctype="multipart/form-data">
-                                <!-- name -->
-                                <div class="form-group">
-                                    <label for="name1" class="sr-only">Name</label>
-                                    <input type="text" class="form-control" id="name1" value="" name="name1" placeholder="Name" required v-model="form.name">
-                                </div>
-                                <!-- email -->
-                                <div class="form-row">
-                                    <div class="form-group col-lg form-width">
-                                        <label for="email1" class="sr-only">Email</label>
-                                        <input type="email" class="form-control" id="email1" placeholder="Email" required v-model="form.email">
+                            <h4 class="card-title text-center">Your Information</h4>
+                            <ValidationObserver v-slot="{ handleSubmit }">
+                                <form id="regForm" @submit.prevent="handleSubmit(onNext)" method="post">
+                                    <div class="form-group">
+                                        <label for="user-name" class="sr-only">Email</label>
+                                        <ValidationProvider name="name" rules="required" v-slot="{ errors }">
+                                            <input type="text" class="form-control" id="user-name" placeholder="Your Name" v-model="form.name">
+                                            <span style="color: red;">{{ errors[0] }}</span>
+                                        </ValidationProvider>
                                     </div>
-                                    <!-- mobile number -->
-                                    <div class="form-group col-lg form-width">
-                                        <label for="mobile1" class="sr-only">Mobile</label>
-                                        <input type="tel" class="form-control" id="mobile1" placeholder="Mobile Number" name="mobile1" required v-model="form.phone_number">
-                                    </div>
-                                </div>
-                                <!-- gender -->
-                                <div class="form-row">
-                                    <div class="form-group col-lg form-width">
-                                        <label class="gender-label">Gender</label>
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                            <input class="custom-control-input" type="radio" name="gender" id="male1" value="male" v-model="form.gender">
-                                            <label class="custom-control-label" for="male1">Male</label>
-                                        </div>
-                                        <div class="custom-control custom-radio custom-control-inline">
-                                            <input class="custom-control-input" type="radio" name="gender" id="female2" value="female" v-model="form.gender">
-                                            <label class="custom-control-label" for="female2">Female</label>
-                                        </div>
-                                    </div>
-                                    <!-- birth year -->
-                                    <div class="form-group col-lg form-width">
-                                        <label for="datepicker" class="sr-only">Birthyear</label>
-                                        <input type="text" class="form-control" id="datepicker" placeholder="Birthday" onfocus="(this.type='date')" onblur="(this.type='text')" name="datepicker" required v-model="form.birth_date">
-                                    </div>
-                                </div>
-                                <!-- password -->
-                                <div class="form-row">
-                                    <div class="form-group col-lg form-width">
-                                        <label for="password" class="sr-only">Password</label>
-                                        <input type="password" class="form-control" id="password" placeholder="Password" name="password" required v-model="form.password">
-                                    </div>
-                                    <div class="form-group col-lg form-width">
-                                        <label for="password-verify" class="sr-only">Confirm-password</label>
-                                        <input type="password" class="form-control" id="password-verify" placeholder="Confirm Password" name="password-verify" required>
-                                        <p class="incorrectMsg">passwords do not match!</p>
-                                    </div>
-                                </div>
-                                <!-- confirm paswword info -->
-                                <div class="pswd_info">
-                                    <h4 class="pswd_reqs">Password must meet the following requirements:</h4>
-                                    <ul>
-                                        <li id='letter' class='invalid'>Contains <strong>a lowercase letter</strong></li>
+                                    <div class="form-group">
+                                        <label for="user-number" class="sr-only">Number</label>
+                                        <ValidationProvider name="phone number" rules="required|max:11|min:11" v-slot="{ errors }">
+                                            <input type="tel" class="form-control" id="user-number" placeholder="Your Phone Number" v-model="form.phone_number">
+                                            <span style="color: red;">{{ errors[0] }}</span>
+                                        </ValidationProvider>
 
-                                        <li id='capital' class='invalid'>Contains <strong>a capital letter</strong></li>
-
-                                        <li id='number' class='invalid'>Contains <strong>a number</strong></li>
-
-                                        <li id='special' class='invalid'>Contains <strong>a special character</strong></li>
-
-                                        <li id='length' class='invalid'>Contains <strong>8 characters</strong></li>
-                                    </ul>
-                                </div>
-                                <!-- address -->
-                                <div class="form-group">
-                                    <label for="address1" class="sr-only">Address</label>
-                                    <textarea class="form-control" id="address1" rows="4"  placeholder="Address" required v-model="form.address"></textarea>
-                                </div>
-                                <!-- interested -->
-                                <div class="form-group">
-                                    <label for="interest1" class="sr-only">Interest</label>
-                                    <textarea class="form-control" id="interest1" rows="4"  placeholder="Interest" required v-model="form.interest"></textarea>
-                                </div>
-                                <!-- status -->
-                                <div class="form-group">
-                                    <label for="status1" class="sr-only">Status</label>
-                                    <textarea class="form-control" id="status1" rows="4"  placeholder="Status" required v-model="form.status"></textarea>
-                                </div>
-                                <!-- registration button -->
-                                <div class="text-center registration-btn pt-5">
-                                    <button @click="onRegistration" type="submit" class="passwordButton btn btn-primary mb-2">Registration</button>
-                                </div>
-                                <div class="footer">
-                                    <p>Have an account ? Please <router-link to="login" class="">Sign in</router-link> </p>
-                                </div>
-                            </form>
-
+                                    </div>
+                                    <div class="regbtn">
+                                        <button type="submit" class="btn btn-success">Next</button>
+                                    </div>
+                                </form>
+                            </ValidationObserver>
                         </div>
                     </div>
                 </div>
@@ -114,150 +38,26 @@
 </template>
 
 <script>
-    import Vue from 'vue';
     export default {
         data() {
             return {
                 form: {
                     name: "",
-                    email: "",
                     phone_number: "",
-                    gender: "",
-                    birth_date: "",
-                    password: "",
-                    address: "",
-                    interest: "",
-                    status: "",
-                    image: "",
                 }
             }
         },
         methods: {
-            onImageChange(event) {
-                let fileReader = new FileReader();
-                fileReader.onload = (e) => {
-                    this.form.image = e.target.result;
-                }
-                fileReader.readAsDataURL(event.target.files[0]);
-            },
-            onRegistration() {
+            onNext() {
                 console.log(this.form);
-                this.$api.post('register', this.form).then(response => {
-                    console.log(response);
-                    this.$router.push('/login').catch(err => {});
-                });
+                //send otp to the user
+                this.$router.push('/otp-verification').catch(err => {});
+                // this.$api.post('register', this.form).then(response => {
+                //     console.log(response);
+                //
+                // });
             },
-            imageUpload: function () {
-                // avatar upload preview
-                $(document).ready(function() {
-                    var readURL = function(input) {
-                        if (input.files && input.files[0]) {
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                                $('.profile-pic').attr('src', e.target.result);
-                            }
-                            reader.readAsDataURL(input.files[0]);
-                        }
-                    }
-                    $(".file-upload").on('change', function(){
-                        readURL(this);
-                    });
-                    $(".upload-button").on('click', function() {
-                        $(".file-upload").click();
-                        $(".profile-pic").css({
-                            'z-index' : '99',
-                        });
-                    });
-                });
-            },
-            passwordValidation: function () {
-                var password = [];
-                var password2 = [];
-                $(document).ready(function() {
-                    password = $('#password');
-                    password2 = $('#password-verify');
-                    var ruleValidator = function() {
-                        var pswd = $(this).val();
-                        //gets what is being input in the field and sets as variable
-                        if(pswd.length < 8) {
-                            $('#length').removeClass('valid').addClass('invalid');
-                        } else {
-                            $('#length').removeClass('invalid').addClass('valid');
-                            console.log('length '+ pswd.length);
-                        }
-                        // letter
-                        if(pswd.match(/[a-z]/) ) {
-                            $('#letter').removeClass('invalid').addClass('valid');
-                        } else {
-                            $('#letter').removeClass('valid').addClass('invalid');
-                        }
-                        // Capital
-                        if(pswd.match(/[A-Z]/)) {
-                            $('#capital').removeClass('invalid').addClass('valid');
-                        } else {
-                            $('#capital').removeClass('valid').addClass('invalid');
-                        }
-                        // number
-                        if ( pswd.match(/\d/) ) {
-                            $('#number').removeClass('invalid').addClass('valid');
-                        } else {
-                            $('#number').removeClass('valid').addClass('invalid');
-                        }
-                        // character
-                        if ( pswd.match(/[$&+,:;=?@#|'<>.^*()%!-]/) ) {
-                            $('#special').removeClass('invalid').addClass('valid');
-                            console.log('log: '+ pswd);
-                        } else {
-                            $('#special').removeClass('valid').addClass('invalid');
-                        }
-                    }
-                    password.focus(function() {
-                        // (triggers whenever the password field is selected by the user)
-                        $('.pswd_info').fadeIn('low');
-                    });
-                    password.blur(function() {
-                        // (triggers whenever the password field is unselected)
-                        $('.pswd_info').fadeOut('low');
-                    });
-                    $('.passwordButton').on('click', function(e) {
-                        e.preventDefault();
-                        if(password.val() !== password2.val()) {
-                            $('.incorrectMsg').show();
-                            password2.addClass('shake').addClass('invalidPass');
-                            password2.blur(function() {
-                                // (triggers whenever the password field is unselected)
-                                password2.trigger('reset');
-                                $('.incorrectMsg').hide();
-                                password2.removeClass('shake').removeClass('invalidPass');
-                            });
-                        } else {
-                            $('.incorrectMsg').hide();
-                        }
-                    });
-                    $('.pswd_show').click(function (){
-                        console.log('click');
-                        password2.toggleClass('showPswd');
-                        if (password2.hasClass('showPswd')) {
-                            password2.attr('type', 'text');
-                            console.log("text");
-                            $('.pswd_show').html('Hide Password');
-                        } else{
-                            console.log("pswd");
-                            password2.attr('type', 'password');
-                            $('.pswd_show').html('Show Password');
-                        }
-                    });
-                    password.keyup(ruleValidator);
-                });
-            }
         },
-        created() {
-            var vm = this;
-            Vue.nextTick(function () {
-                vm.imageUpload();
-                vm.passwordValidation();
-            }.bind(vm))
-        }
     }
 
 </script>

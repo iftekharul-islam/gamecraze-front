@@ -16,7 +16,7 @@
                 </div>
                 <div class="collapse navbar-collapse" id="exCollapsingNavbar">
                     <!-- menu-list -->
-                    <div class="menu-list m-auto">
+                    <div class="menu-list">
                         <!-- menu-list-top -->
                         <!-- <ul class="navbar-nav menu-list-top">
                             <li class="nav-item mr-2">

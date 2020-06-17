@@ -7,6 +7,9 @@ import Search from "../components/Search";
 import Profile from "../components/Profile";
 import Categories from "../components/Categories";
 import Contacts from "../components/Contacts";
+import OTP from "../components/login_registration/OTP";
+import GameList from "../components/admin/GameList";
+import UploadGame from "../components/admin/UploadGame";
 
 export const routes = [
     {
@@ -51,5 +54,20 @@ export const routes = [
         path: '/contacts',
         name: 'Contacts',
         component: Contacts,
+    },
+    {
+        path: '/otp-verification',
+        name: 'OTP',
+        component: OTP,
+    },
+    {
+        path: '/game-list',
+        name: 'GameList',
+        component: GameList,
+    },
+    {
+        path: '/upload-game',
+        name: 'UploadGame',
+        component: UploadGame,
     },
 ]

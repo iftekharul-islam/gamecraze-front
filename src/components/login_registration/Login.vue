@@ -9,7 +9,7 @@
                             <h3 class="card-title text-center">Sign in</h3>
                             <!-- form -->
                             <ValidationObserver v-slot="{ handleSubmit }">
-                                <form @submit.prevent="handleSubmit(onLogin)" method="post" >
+                                <form @submit.prevent="handleSubmit(onLogin)" method="post">
                                     <div class="form-group">
                                         <!-- user anme -->
                                         <label for="username1" class="sr-only">User Name</label>

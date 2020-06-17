@@ -37,6 +37,11 @@ const router = new VueRouter({
   routes
 });
 
+//vue-suggesion
+
+import VueSuggestion from 'vue-suggestion'
+Vue.use(VueSuggestion)
+
 //vee-validate
 import { ValidationProvider } from 'vee-validate';
 import { ValidationObserver } from "vee-validate";
@@ -53,6 +58,7 @@ Vue.use(Vuex)
 import {storage} from "./store";
 const store = new Vuex.Store(storage)
 
+//axios
 import axios from 'axios'
 
 Vue.use({

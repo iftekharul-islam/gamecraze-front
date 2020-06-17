@@ -12885,59 +12885,8 @@ footer .footer-width p span {
   border-radius: 10px;
   margin-bottom: 3rem;
   border: 3px solid #222f5e;
-}
-
-.registration .registration-width .card .avatar-wrapper {
-  position: relative;
-  height: 200px;
-  width: 200px;
-  margin: 50px auto;
-  border-radius: 10px;
-  overflow: hidden;
-  -webkit-box-shadow: 1px 1px 15px -5px black;
-          box-shadow: 1px 1px 15px -5px black;
-  -webkit-transition: all .3s ease;
-  transition: all .3s ease;
-}
-
-.registration .registration-width .card .avatar-wrapper:hover {
-  cursor: pointer;
-}
-
-.registration .registration-width .card .avatar-wrapper .profile-pic {
-  height: 100%;
-  width: 100%;
-  -webkit-transition: all .3s ease;
-  transition: all .3s ease;
-  position: relative;
-}
-
-.registration .registration-width .card .avatar-wrapper .upload-button {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-}
-
-.registration .registration-width .card .avatar-wrapper .upload-button::after {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background: url(../img/color.png) no-repeat;
-  content: "";
-}
-
-.registration .registration-width .card .avatar-wrapper .upload-button .fa-arrow-circle-up {
-  position: absolute;
-  font-size: 234px;
-  top: -17px;
-  left: 0;
-  text-align: center;
-  opacity: 0;
-  -webkit-transition: all .3s ease;
-  transition: all .3s ease;
-  color: #34495e;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
 }
 
 .registration .registration-width .card .card-title {
@@ -12951,167 +12900,37 @@ footer .footer-width p span {
 }
 
 .registration .registration-width .card form {
-  width: 70%;
+  width: 60%;
   margin: auto;
+  margin-top: 2rem;
 }
 
-@-webkit-keyframes "shake" {
-  10%, 90% {
-    -webkit-transform: translate3d(-1px, 0, 0);
-            transform: translate3d(-1px, 0, 0);
-  }
-  20%, 80% {
-    -webkit-transform: translate3d(2px, 0, 0);
-            transform: translate3d(2px, 0, 0);
-  }
-  30%, 50%, 70% {
-    -webkit-transform: translate3d(-4px, 0, 0);
-            transform: translate3d(-4px, 0, 0);
-  }
-  40%, 60% {
-    -webkit-transform: translate3d(4px, 0, 0);
-            transform: translate3d(4px, 0, 0);
-  }
+.registration .registration-width .card form#regForm .regbtn button {
+  background: #0099e1;
+  margin-left: 1rem;
+  padding: .4rem 1.5rem;
+  border-color: #0099e1;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
 }
 
-@keyframes "shake" {
-  10%, 90% {
-    -webkit-transform: translate3d(-1px, 0, 0);
-            transform: translate3d(-1px, 0, 0);
-  }
-  20%, 80% {
-    -webkit-transform: translate3d(2px, 0, 0);
-            transform: translate3d(2px, 0, 0);
-  }
-  30%, 50%, 70% {
-    -webkit-transform: translate3d(-4px, 0, 0);
-            transform: translate3d(-4px, 0, 0);
-  }
-  40%, 60% {
-    -webkit-transform: translate3d(4px, 0, 0);
-            transform: translate3d(4px, 0, 0);
-  }
+.registration .registration-width .card form#regForm .regbtn button:hover {
+  background: #328ab3;
+  border-color: #328ab3;
 }
 
-@-webkit-keyframes "grow" {
-  50% {
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1);
-  }
+.registration .registration-width .card form#otpForm .otpbtn button {
+  background: #0099e1;
+  margin-left: 1rem;
+  padding: .4rem 1.5rem;
+  border-color: #0099e1;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
 }
 
-@keyframes "grow" {
-  50% {
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1);
-  }
-}
-
-.registration .registration-width .card form .pswd_info {
-  display: none;
-  font-family: arial;
-  position: relative;
-  margin: auto;
-  margin-bottom: 1rem;
-}
-
-.registration .registration-width .card form .pswd_info ul {
-  margin: 0 auto;
-  width: 250px;
-}
-
-.registration .registration-width .card form .pswd_info ul li {
-  padding: 5px;
-  text-align: left;
-  -webkit-transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
-  transition: all 800ms cubic-bezier(0.19, 1, 0.22, 1);
-  -webkit-backface-visibility: visible;
-  -webkit-transition: all .2s ease-in;
-  transition: all .2s ease-in;
-}
-
-.registration .registration-width .card form .pswd_info .pswd_reqs {
-  color: #ffffff;
-  text-align: center;
-}
-
-.registration .registration-width .card form .incorrectMsg {
-  display: none;
-  margin-left: 10px;
-  color: #c0392b;
-  margin-bottom: 0;
-}
-
-.registration .registration-width .card form .shake {
-  -webkit-animation: shake 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-          animation: shake 0.8s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-  -webkit-transform: translate3d(0, 0, 0);
-          transform: translate3d(0, 0, 0);
-  -webkit-backface-visibility: hidden;
-          backface-visibility: hidden;
-  -webkit-perspective: 1000px;
-          perspective: 1000px;
-}
-
-.registration .registration-width .card form .invalid {
-  color: #ffffff;
-  -webkit-transition: all .1s ease-in;
-  transition: all .1s ease-in;
-}
-
-.registration .registration-width .card form .invalid:before {
-  content: "";
-  padding-right: 15px;
-}
-
-.registration .registration-width .card form .invalidPass {
-  background: #c0392b !important;
-}
-
-.registration .registration-width .card form .valid {
-  color: #2bc039;
-  -webkit-transition: all .2s ease-in;
-  transition: all .2s ease-in;
-  -webkit-animation-name: grow;
-          animation-name: grow;
-  -webkit-animation-duration: .2s;
-          animation-duration: .2s;
-  -webkit-animation-iteration-count: 1;
-          animation-iteration-count: 1;
-  -webkit-animation-timing-function: ease-in;
-          animation-timing-function: ease-in;
-}
-
-.registration .registration-width .card form .valid strong {
-  text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.1), 5px 10px 5px rgba(0, 0, 0, 0.05), -5px 10px 5px rgba(0, 0, 0, 0.05);
-}
-
-.registration .registration-width .card form .valid::before {
-  content: "\2713 ";
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  left: -5px;
-  position: relative;
-  font-weight: 800;
-  -webkit-animation-name: grow;
-          animation-name: grow;
-  -webkit-animation-duration: 1s;
-          animation-duration: 1s;
-  -webkit-animation-iteration-count: 1;
-          animation-iteration-count: 1;
-  -webkit-animation-timing-function: ease-in;
-          animation-timing-function: ease-in;
-  -webkit-transition: opacity 100ms ease-out, -webkit-transform 1200ms cubic-bezier(0.19, 1, 0.22, 1);
-  transition: opacity 100ms ease-out, -webkit-transform 1200ms cubic-bezier(0.19, 1, 0.22, 1);
-  transition: transform 1200ms cubic-bezier(0.19, 1, 0.22, 1), opacity 100ms ease-out;
-  transition: transform 1200ms cubic-bezier(0.19, 1, 0.22, 1), opacity 100ms ease-out, -webkit-transform 1200ms cubic-bezier(0.19, 1, 0.22, 1);
-  -webkit-transform: scale(1.3);
-          transform: scale(1.3);
-  -webkit-backface-visibility: hidden;
-}
-
-.registration .registration-width .card form .form-row {
-  margin: 0;
+.registration .registration-width .card form#otpForm .otpbtn button:hover {
+  background: #328ab3;
+  border-color: #328ab3;
 }
 
 .registration .registration-width .card form .form-group {
@@ -13177,16 +12996,6 @@ footer .footer-width p span {
   opacity: 1;
 }
 
-.registration .registration-width .card form .form-group input#datepicker {
-  background: #222f5e url("../img/calender.png") right 1rem center no-repeat;
-  cursor: pointer;
-}
-
-.registration .registration-width .card form .form-group input#datepicker:focus {
-  background: #ffffff url("../img/calender2.png") right 1rem center no-repeat;
-  border-color: #ffffff;
-}
-
 .registration .registration-width .card form .form-group label.gender-label {
   color: #ffffff;
   margin-right: 1rem;
@@ -13200,145 +13009,8 @@ footer .footer-width p span {
   margin-right: 0 !important;
 }
 
-.registration .registration-width .card form .form-group input[type="date"] {
-  display: block;
-  position: relative;
-  background: white url("../img/calender.png") right 1rem center no-repeat;
-  cursor: pointer;
-}
-
-.registration .registration-width .card form .form-group input[type="date"]:focus {
-  outline: none;
-  border-color: #3acfff;
-  -webkit-box-shadow: 0 0 0 0.25rem rgba(0, 120, 250, 0.1);
-          box-shadow: 0 0 0 0.25rem rgba(0, 120, 250, 0.1);
-}
-
-.registration .registration-width .card form .form-group ::-webkit-datetime-edit-text {
-  opacity: 0;
-}
-
-.registration .registration-width .card form .form-group ::-webkit-clear-button,
-.registration .registration-width .card form .form-group ::-webkit-inner-spin-button {
-  display: none;
-}
-
-.registration .registration-width .card form .form-group ::-webkit-calendar-picker-indicator {
-  position: absolute;
-  width: 2.5rem;
-  height: 100%;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  opacity: 0;
-  cursor: pointer;
-  color: #0078fa;
-  background: #0078fa;
-}
-
-.registration .registration-width .card form .form-group input[type="date"]::before {
-  color: #ffffff;
-  content: attr(placeholder) ": ";
-}
-
-.registration .registration-width .card form .form-group input[type="date"]:focus::before {
-  content: "" !important;
-}
-
-.registration .registration-width .card form .form-group textarea {
-  border-radius: 10px;
-  padding-left: 20px;
-  background: #222f5e;
-  border-color: #222f5e;
-  color: #ffffff;
-  -webkit-transition: all .3s ease-in;
-  transition: all .3s ease-in;
-}
-
-.registration .registration-width .card form .form-group textarea::-webkit-input-placeholder {
-  color: #ffffff;
-  opacity: 1;
-}
-
-.registration .registration-width .card form .form-group textarea:-ms-input-placeholder {
-  color: #ffffff;
-  opacity: 1;
-}
-
-.registration .registration-width .card form .form-group textarea::-ms-input-placeholder {
-  color: #ffffff;
-  opacity: 1;
-}
-
-.registration .registration-width .card form .form-group textarea::placeholder {
-  color: #ffffff;
-  opacity: 1;
-}
-
-.registration .registration-width .card form .form-group textarea:focus {
-  background: #ffffff;
-  border-color: #ffffff;
-  color: #000000;
-  -webkit-box-shadow: none;
-          box-shadow: none;
-}
-
-.registration .registration-width .card form .form-group textarea:focus::-webkit-input-placeholder {
-  color: #000000;
-  opacity: 1;
-}
-
-.registration .registration-width .card form .form-group textarea:focus:-ms-input-placeholder {
-  color: #000000;
-  opacity: 1;
-}
-
-.registration .registration-width .card form .form-group textarea:focus::-ms-input-placeholder {
-  color: #000000;
-  opacity: 1;
-}
-
-.registration .registration-width .card form .form-group textarea:focus::placeholder {
-  color: #000000;
-  opacity: 1;
-}
-
-.registration .registration-width .card form .footer p {
-  color: #ffffff;
-  font-family: 'Roboto Condensed', sans-serif;
-}
-
-.registration .registration-width .card form .footer p a {
-  border: 1px solid #ffffff;
-  border-radius: 20px;
-  padding: 5px 20px;
-  margin-left: 1rem;
-  color: #ffffff;
-  -webkit-transition: all .3s ease-in;
-  transition: all .3s ease-in;
-}
-
-.registration .registration-width .card form .footer p a:hover {
-  background: #0c2355;
-}
-
-.registration .registration-width .card .registration-btn {
-  padding-bottom: 3rem;
-}
-
-.registration .registration-width .card .registration-btn button {
-  width: 50%;
-  border-radius: 20px;
-  background: #fcd700;
-  color: #000000;
+.registration .registration-width .card:hover {
   border-color: #fcd700;
-  -webkit-transition: all .3s ease-in;
-  transition: all .3s ease-in;
-}
-
-.registration .registration-width .card .registration-btn button:hover {
-  background: #caa612;
-  border-color: #caa612;
 }
 
 .search-results {
@@ -14082,7 +13754,7 @@ footer .footer-width p span {
     width: 100px;
   }
   .registration .card form {
-    width: 80% !important;
+    width: 70% !important;
   }
   .user-profile .user-profile-width .card .user-image {
     left: 40%;
@@ -14099,7 +13771,6 @@ footer .footer-width p span {
   nav .nav-width .navbar-brand {
     padding-left: 1rem;
     padding-top: .5rem;
-    margin-right: 0 !important;
   }
   nav .nav-width .navbar-brand img {
     width: 150px;
@@ -14313,9 +13984,6 @@ footer .footer-width p span {
   .registration .registration-width {
     width: 100%;
   }
-  .registration .registration-width .card form {
-    width: 90% !important;
-  }
   .search-results .search-results-width {
     width: 100%;
     padding: 0 2rem;
@@ -14347,7 +14015,6 @@ footer .footer-width p span {
   }
   nav .nav-width .navbar-brand {
     padding-left: 0;
-    margin-right: 0 !important;
   }
   nav .nav-width .navbar-brand img {
     width: 150px;
@@ -14810,7 +14477,7 @@ footer .footer-width p span {
     width: 70%;
   }
   .registration .registration-width .card form {
-    width: 100% !important;
+    width: 80% !important;
   }
   .registration .registration-width .card form .form-group label.gender-label {
     width: 100%;

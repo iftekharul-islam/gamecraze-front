@@ -3,6 +3,7 @@
         <section class="registration sign-in-bg">
             <div class="container-fluid registration-width">
                 <router-link to="/game-list" class="btn btn-primary mt-4 mb-2">Game List</router-link>
+                <h3 class="text-white text-center mb-0">Search Game by Name</h3>
                 <vue-suggestion :items="items"
                                 v-model="item"
                                 :setLabel="setLabel"
@@ -78,8 +79,6 @@
                     this.game.publisher = this.gameDetails.publishers[0].name
                     this.game.released = this.gameDetails.released
                     this.game.genres = this.gameDetails.genres
-                    console.log(this.game);
-                    console.log(this.gameDetails);
                 })
             },
             setLabel (item) {
@@ -91,15 +90,20 @@
                 // now `items` will be showed in the suggestion list
             },
             onUpload () {
-                this.$api.post('games', this.game).then(response => {
-                    console.log(response);
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                }
+                this.$api.post('games', this.game, config).then(response => {
+                    this.$swal("Game Uploaded!", "Game Upload Successful!", "success")
+                    this.$router.push('/game-list').catch(err => {});
                 })
             }
         },
         created() {
             this.$api.get('https://api.rawg.io/api/games').then(response => {
                 this.items = response.data.results;
-                // console.log(this.items);
             })
         }
     };

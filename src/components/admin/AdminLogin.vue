@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
                         <div class="card">
-                            <h3 class="card-title text-center">Sign in</h3>
+                            <h3 class="card-title text-center">Admin Sign in</h3>
                             <!-- form -->
                             <ValidationObserver v-slot="{ handleSubmit }">
                                 <form @submit.prevent="handleSubmit(onLogin)" method="post">
@@ -65,7 +65,7 @@
                 form: {
                     email: "",
                     password: "",
-                },
+                }
             }
         },
         methods: {
@@ -73,15 +73,16 @@
                 this.$api.post('login', this.form).then(response => {
                     if (response.data) {
                         this.$store.dispatch('setToken', response.data)
-                        console.log(this.$store.state.token);
                         let config = {
                             headers: {
                                 'Authorization': 'Bearer ' + response.data
                             }
                         }
                         this.$api.get('profile', config).then(response => {
-                            this.$store.dispatch('setProfile', response.data)
-                            this.$router.push('/').catch(err => {});
+                            if (response) {
+                                this.$store.dispatch('setProfile', response.data)
+                                this.$router.push('/game-list').catch(err => {});
+                            }
                         });
                     }
                 });

@@ -10,6 +10,7 @@ import Contacts from "../components/Contacts";
 import OTP from "../components/login_registration/OTP";
 import GameList from "../components/admin/GameList";
 import UploadGame from "../components/admin/UploadGame";
+import AdminLogin from "../components/admin/AdminLogin";
 
 export const routes = [
     {
@@ -69,5 +70,10 @@ export const routes = [
         path: '/upload-game',
         name: 'UploadGame',
         component: UploadGame,
+    },
+    {
+        path: '/admin',
+        name: 'Admin',
+        component: AdminLogin,
     },
 ]

@@ -27,6 +27,10 @@ Vue.prototype.$upcomingGamesApi = process.env.VUE_APP_UPCOMING_GAMES_API
 Vue.prototype.$popularGamesApi = process.env.VUE_APP_POPULAR_GAMES_API
 Vue.prototype.$baseApi = process.env.VUE_APP_BASE_API
 
+//vue swal
+import VueSwal, {swal} from 'vue-swal'
+Vue.use(VueSwal);
+
 //vue-router
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)

@@ -24,7 +24,7 @@
                             <td>{{ game.release_date }}</td>
                             <td>{{ game.rating }}</td>
                             <td><button class="btn btn-primary" @click="onEdit">Edit</button></td>
-                            <td><button class="btn btn-danger" @click="onDelete(game.id)">Delete</button></td>
+                            <td><button class="btn btn-danger" @click="onDelete(game)">Delete</button></td>
                         </tr>
                         </tbody>
                     </table>
@@ -47,23 +47,45 @@
     export default {
         data () {
             return {
-                games: []
+                games: [],
+                game: {}
             }
         },
         methods: {
             onEdit() {
 
             },
-            onDelete(id) {
-                this.$api.delete('games/' + id).then(response => {
-                    console.log("Deleted");
-                })
+            onDelete(game) {
+                this.$swal({
+                    title: "Delete Game!",
+                    text: "Do you want to delete the game?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        let config = {
+                            headers: {
+                                'Authorization': 'Bearer ' + this.$store.state.token
+                            }
+                        }
+                        this.$api.delete('games/' + game.id, config).then(response => {
+                            if (response.data) {
+                                this.games.splice(this.games.indexOf(game), 1)
+                            }
+                        })
+                        this.$swal("Game Deleted!", "Game Delete Successful!", "success")
+                    }
+                    else {
+                        this.$swal("Your information is safe!");
+                    }
+                });
+
             }
         },
         created() {
             this.$api.get('games').then(response => {
                 this.games = response.data.data;
-                console.log(this.games);
             })
         }
     };

@@ -4,7 +4,9 @@
             <div class="container-fluid registration-width">
                 <router-link to="/game-list" class="btn btn-primary mt-4 mb-2">Game List</router-link>
                 <h3 class="text-white text-center mb-0">Search Game by Name</h3>
-                <vue-suggestion :items="items"
+                <vue-suggestion
+                                :class="{paddingBottom: show}"
+                                :items="items"
                                 v-model="item"
                                 :setLabel="setLabel"
                                 @changed="inputChange"
@@ -12,7 +14,7 @@
                                 @selected="itemSelected"
                                 aria-placeholder="Search by name">
                 </vue-suggestion>
-                <div class="container mt-3" v-if="show">
+                <div class="container mt-3" v-if="!show">
                     <h3 class="text-center text-white">Selected Game Details</h3>
                     <table class="table table-hover table-dark mb-0">
                         <tbody>
@@ -53,7 +55,7 @@
             return {
                 item: {},
                 items: [],
-                show: false,
+                show: true,
                 gameDetails: {},
                 game: {
                     name: "",
@@ -70,7 +72,7 @@
         methods: {
             itemSelected (item) {
                 this.item = item;
-                this.show = true;
+                this.show = false;
                 this.$api.get('https://api.rawg.io/api/games/' + this.item.slug).then(response => {
                     this.gameDetails = response.data;
                     this.game.name = this.gameDetails.name;
@@ -102,16 +104,28 @@
             }
         },
         created() {
-            this.$api.get('https://api.rawg.io/api/games').then(response => {
+            this.$api.get('https://api.rawg.io/api/games?page=1&page_size=100').then(response => {
                 this.items = response.data.results;
+                console.log(this.items);
             })
         }
     };
 </script>
 
 <style scope>
+    .vue-suggestion {
+        width: 37%;
+        margin: 0 auto;
+    }
+    .paddingBottom {
+        padding-bottom: 300px;
+    }
     .vue-suggestion .vs__input-group {
-        width: 40%;
+        width: 100%;
+        margin: 0 auto;
+    }
+    .vue-suggestion .vs__input-group {
+        width: 100%;
         margin: 0 auto;
     }
     .vue-suggestion .vs__input-group input {

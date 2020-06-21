@@ -11492,6 +11492,7 @@ nav.searchbar-nav {
   font-weight: 700;
   font-size: 22px;
   letter-spacing: 1px;
+  text-transform: uppercase;
   font-family: 'Roboto Condensed', sans-serif;
   -webkit-transition: all .3s ease-in;
   transition: all .3s ease-in;
@@ -11565,6 +11566,7 @@ nav.searchbar-nav {
   font-weight: 700;
   font-size: 22px;
   letter-spacing: 1px;
+  text-transform: uppercase;
   font-family: 'Roboto Condensed', sans-serif;
   -webkit-transition: all .3s ease-in;
   transition: all .3s ease-in;
@@ -11846,6 +11848,10 @@ nav.searchbar-nav {
           box-shadow: 0px 0px 5px 2px #c2d918;
 }
 
+.rented-brdr {
+  border: 0.094rem solid #0a001b !important;
+}
+
 .more-rented {
   padding-top: 4rem;
   padding-bottom: 4rem;
@@ -11999,23 +12005,30 @@ nav.searchbar-nav {
           box-shadow: 0px 0px 5px 2px #c2d918;
 }
 
-.more-rented .border {
-  border: 0.094rem solid #0a001b !important;
-}
-
 .more-rented .rented-menu-width {
   width: 85%;
 }
 
-.more-rented .rented-menu-width .menu-1 .rented-menu-part-1 {
+.more-rented .rented-menu-width .footer-menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.more-rented .rented-menu-width .footer-menu .menu-1 .rented-menu-part-1 {
   list-style: none;
 }
 
-.more-rented .rented-menu-width .menu-1 .rented-menu-part-1 li {
+.more-rented .rented-menu-width .footer-menu .menu-1 .rented-menu-part-1 li {
   margin-bottom: 5px;
 }
 
-.more-rented .rented-menu-width .menu-1 .rented-menu-part-1 li a {
+.more-rented .rented-menu-width .footer-menu .menu-1 .rented-menu-part-1 li a {
   text-decoration: none;
   color: #ffffff;
   font-weight: 500;
@@ -12023,19 +12036,19 @@ nav.searchbar-nav {
   transition: all .3s ease-in;
 }
 
-.more-rented .rented-menu-width .menu-1 .rented-menu-part-1 li a:hover {
+.more-rented .rented-menu-width .footer-menu .menu-1 .rented-menu-part-1 li a:hover {
   color: #8c8c8c;
 }
 
-.more-rented .rented-menu-width .menu-2 .rented-menu-part-2 {
+.more-rented .rented-menu-width .footer-menu .menu-2 .rented-menu-part-2 {
   list-style: none;
 }
 
-.more-rented .rented-menu-width .menu-2 .rented-menu-part-2 li {
+.more-rented .rented-menu-width .footer-menu .menu-2 .rented-menu-part-2 li {
   margin-bottom: 5px;
 }
 
-.more-rented .rented-menu-width .menu-2 .rented-menu-part-2 li a {
+.more-rented .rented-menu-width .footer-menu .menu-2 .rented-menu-part-2 li a {
   text-decoration: none;
   color: #ffffff;
   font-weight: 500;
@@ -12043,70 +12056,87 @@ nav.searchbar-nav {
   transition: all .3s ease-in;
 }
 
-.more-rented .rented-menu-width .menu-2 .rented-menu-part-2 li a:hover {
+.more-rented .rented-menu-width .footer-menu .menu-2 .rented-menu-part-2 li a:hover {
   color: #8c8c8c;
 }
 
-.more-rented .rented-menu-width .social h6 {
+.more-rented .rented-menu-width .footer-menu .social h6 {
   color: #ffffff;
   font-weight: 500;
   margin-bottom: 15px;
 }
 
-.more-rented .rented-menu-width .social .social-icon {
-  margin-bottom: 2rem;
+.more-rented .rented-menu-width .footer-menu .social .Social-media {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1rem;
 }
 
-.more-rented .rented-menu-width .social .social-icon i {
-  background: #ffffff;
-  border-radius: 50%;
-  height: 40px;
-  width: 40px;
-  font-size: 25px;
-  margin-right: 10px;
-  cursor: pointer;
+.more-rented .rented-menu-width .footer-menu .social .Social-media a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background: #e3edf7;
+  height: 45px;
+  width: 45px;
+  margin: 0 15px;
+  border-radius: 8px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-decoration: none;
+  border: 1px solid rgba(0, 0, 0, 0);
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
 }
 
-.more-rented .rented-menu-width .social .social-icon i.facebook {
-  padding-left: 12px;
-  padding-top: 10px;
-  -webkit-transition: all .3s ease-in;
-  transition: all .3s ease-in;
+.more-rented .rented-menu-width .footer-menu .social .Social-media a:first-child {
+  margin-left: 0;
 }
 
-.more-rented .rented-menu-width .social .social-icon i.facebook:hover {
-  background: #4840a0;
+.more-rented .rented-menu-width .footer-menu .social .Social-media a i {
+  font-size: 22px;
+  color: blue;
+  -webkit-transition: -webkit-transform 0.5s;
+  transition: -webkit-transform 0.5s;
+  transition: transform 0.5s;
+  transition: transform 0.5s, -webkit-transform 0.5s;
+}
+
+.more-rented .rented-menu-width .footer-menu .social .Social-media a:hover {
+  border: 1px solid rgba(255, 0, 0, 0.1);
+  -webkit-transform: translateY(2px);
+          transform: translateY(2px);
+}
+
+.more-rented .rented-menu-width .footer-menu .social .Social-media a:hover i {
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.more-rented .rented-menu-width .footer-menu .social .Social-media a:hover i.fa-facebook {
+  color: #4840a0;
+}
+
+.more-rented .rented-menu-width .footer-menu .social .Social-media a:hover i.fa-twitter {
+  color: #179ee9;
+}
+
+.more-rented .rented-menu-width .footer-menu .social .Social-media a:hover i.fa-youtube {
+  color: red;
+}
+
+.more-rented .rented-menu-width .footer-menu .contact-us h6 {
   color: #ffffff;
 }
 
-.more-rented .rented-menu-width .social .social-icon i.youtube {
-  padding-top: 8px;
-  padding-left: 6px;
-  -webkit-transition: all .3s ease-in;
-  transition: all .3s ease-in;
-}
-
-.more-rented .rented-menu-width .social .social-icon i.youtube:hover {
-  background: red;
-  color: #ffffff;
-}
-
-.more-rented .rented-menu-width .social .social-icon i.twitter {
-  padding: 8px;
-  -webkit-transition: all .3s ease-in;
-  transition: all .3s ease-in;
-}
-
-.more-rented .rented-menu-width .social .social-icon i.twitter:hover {
-  background: #179ee9;
-  color: #ffffff;
-}
-
-.more-rented .rented-menu-width .contact-us h6 {
-  color: #ffffff;
-}
-
-.more-rented .rented-menu-width .contact-us address {
+.more-rented .rented-menu-width .footer-menu .contact-us address {
   color: #ffffff;
 }
 
@@ -13944,9 +13974,6 @@ footer .footer-width p span {
   .more-rented .rented-menu-width .menu-2 .rented-menu-part-2 li a {
     font-size: 16px;
   }
-  .more-rented .rented-menu-width .contact {
-    margin-left: 3rem;
-  }
   .more-rented .rented-menu-width .contact .social h6 {
     font-size: 20px;
     font-weight: 600;
@@ -14202,9 +14229,6 @@ footer .footer-width p span {
   .more-rented .rented-menu-width .menu-2 .rented-menu-part-2 li a {
     font-size: 16px;
   }
-  .more-rented .rented-menu-width .contact {
-    margin-left: 3rem;
-  }
   .more-rented .rented-menu-width .contact .social h6 {
     font-size: 20px;
     font-weight: 600;
@@ -14438,25 +14462,6 @@ footer .footer-width p span {
   }
   .more-rented .rented-width .owl-carousel-four .owl-nav button img {
     width: 25px;
-  }
-  .more-rented .rented-menu-width {
-    width: 100%;
-  }
-  .more-rented .rented-menu-width .menu-1 .rented-menu-part-1 {
-    margin-bottom: 0;
-  }
-  .more-rented .rented-menu-width .menu-1 .rented-menu-part-1 li a {
-    font-size: 16px;
-  }
-  .more-rented .rented-menu-width .menu-2 .rented-menu-part-2 li a {
-    font-size: 16px;
-  }
-  .more-rented .rented-menu-width .contact {
-    margin-left: 3rem;
-  }
-  .more-rented .rented-menu-width .contact .social h6 {
-    font-size: 20px;
-    font-weight: 600;
   }
   .item-details .item-description .card .part-left h4 {
     font-size: 17px !important;
@@ -14701,19 +14706,37 @@ footer .footer-width p span {
   .more-rented .rented-menu-width {
     width: 100%;
   }
-  .more-rented .rented-menu-width .menu-1 .rented-menu-part-1 {
+  .more-rented .rented-menu-width .footer-menu {
+    display: block;
+  }
+  .more-rented .rented-menu-width .footer-menu .menu-1 {
+    float: left;
+    width: 50%;
+  }
+  .more-rented .rented-menu-width .footer-menu .menu-1 .rented-menu-part-1 {
     margin-bottom: 0;
   }
-  .more-rented .rented-menu-width .menu-1 .rented-menu-part-1 li a {
+  .more-rented .rented-menu-width .footer-menu .menu-1 .rented-menu-part-1 li a {
     font-size: 16px;
   }
-  .more-rented .rented-menu-width .menu-2 .rented-menu-part-2 li a {
+  .more-rented .rented-menu-width .footer-menu .menu-2 {
+    float: left;
+    width: 50%;
+  }
+  .more-rented .rented-menu-width .footer-menu .menu-2 .rented-menu-part-2 li a {
     font-size: 16px;
   }
-  .more-rented .rented-menu-width .contact {
-    margin-left: 0 !important;
+  .more-rented .rented-menu-width .footer-menu .contact {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
-  .more-rented .rented-menu-width .contact .social h6 {
+  .more-rented .rented-menu-width .footer-menu .contact .social h6 {
     font-size: 20px;
     margin-top: 10px;
     font-weight: 600;
@@ -15073,10 +15096,10 @@ footer .footer-width p span {
     margin-bottom: 0;
   }
   .more-rented .rented-menu-width .menu-1 .rented-menu-part-1 li a {
-    font-size: 12px !important;
+    font-size: 13px !important;
   }
   .more-rented .rented-menu-width .menu-2 .rented-menu-part-2 li a {
-    font-size: 12px !important;
+    font-size: 13px !important;
   }
   .more-rented .rented-menu-width .social h6 {
     font-size: 20px;
@@ -15417,6 +15440,10 @@ footer .footer-width p span {
   .more-rented .rented-menu-width {
     width: 100%;
   }
+  .more-rented .rented-menu-width .menu-1 {
+    width: 100% !important;
+    float: initial !important;
+  }
   .more-rented .rented-menu-width .menu-1 .rented-menu-part-1 {
     border-bottom: 1px solid #383838;
     margin-bottom: 0;
@@ -15424,8 +15451,9 @@ footer .footer-width p span {
   .more-rented .rented-menu-width .menu-1 .rented-menu-part-1 li a {
     font-size: 15px !important;
   }
-  .more-rented .rented-menu-width .menu-2 .rented-menu-part-2 {
-    border-bottom: 1px solid #383838;
+  .more-rented .rented-menu-width .menu-2 {
+    width: 100% !important;
+    float: initial !important;
   }
   .more-rented .rented-menu-width .menu-2 .rented-menu-part-2 li a {
     font-size: 15px !important;

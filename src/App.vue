@@ -1,20 +1,34 @@
 <template>
   <div id="app">
-    <navbar></navbar>
+    <adminNavbar v-if="this.$store.state.admin"></adminNavbar>
+    <navbar v-else></navbar>
+    <mainSidebar v-if="this.$store.state.admin"></mainSidebar>
     <router-view></router-view>
-    <Footer></Footer>
+    <adminFooter v-if="this.$store.state.admin"></adminFooter>
+    <Footer v-else></Footer>
   </div>
 </template>
 
 <script>
 import navbar from './components/partials/Navbar.vue'
 import Footer from './components/partials/Footer.vue'
+import adminNavbar from './components/admin/partial/Navbar'
+import adminFooter from './components/admin/partial/Footer'
+import mainSidebar from './components/admin/partial/MainSidebar'
 
 export default {
   name: 'App',
+  data() {
+    return {
+
+    }
+  },
   components: {
     navbar,
-    Footer
+    Footer,
+    adminNavbar,
+    adminFooter,
+    mainSidebar
   }
 }
 </script>

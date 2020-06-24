@@ -69,6 +69,9 @@
             }
         },
         methods: {
+            checkAdminRole(roles) {
+                return roles.some(el => el.name === 'admin')
+            },
             onLogin() {
                 this.$api.post('login', this.form).then(response => {
                     if (response.data) {
@@ -80,9 +83,17 @@
                             }
                         }
                         this.$api.get('profile', config).then(response => {
-                            this.$store.dispatch('setProfile', response.data)
-                            this.$router.push('/').catch(err => {});
+                            let admin = this.checkAdminRole(response.data.data.roles)
+                            if (admin) {
+                                this.$store.dispatch('setAdmin', admin)
+                                this.$router.push('/admin').catch(err => {});
+                            }
+                            else {
+                                this.$router.push('/').catch(err => {});
+                            }
+                            this.$store.dispatch('setProfile', response.data.data)
                         });
+
                     }
                 });
 

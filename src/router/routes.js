@@ -10,7 +10,11 @@ import Contacts from "../components/Contacts";
 import OTP from "../components/login_registration/OTP";
 import GameList from "../components/admin/GameList";
 import UploadGame from "../components/admin/UploadGame";
-import AdminLogin from "../components/admin/AdminLogin";
+// import AdminLogin from "../components/admin/AdminLogin";
+import GameEdit from "../components/admin/GameEdit";
+import Navbar from "../components/admin/partial/Navbar"
+
+
 
 export const routes = [
     {
@@ -72,8 +76,8 @@ export const routes = [
         component: UploadGame,
     },
     {
-        path: '/admin',
-        name: 'Admin',
-        component: AdminLogin,
-    },
+        path: '/game-edit',
+        name: 'GameEdit',
+        component: GameEdit,
+    }
 ]

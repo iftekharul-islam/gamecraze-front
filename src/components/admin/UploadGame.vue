@@ -1,34 +1,54 @@
 <template>
     <div>
-        <section class="registration sign-in-bg">
-            <div class="container-fluid registration-width">
-                <router-link to="/game-list" class="btn btn-primary mt-4 mb-2">Game List</router-link>
-                <h3 class="text-white text-center mb-0">Search Game by Name</h3>
-                <vue-suggestion
-                                :class="{paddingBottom: show}"
-                                :items="items"
-                                v-model="item"
-                                :setLabel="setLabel"
-                                @changed="inputChange"
-                                :itemTemplate="itemTemplate"
-                                @selected="itemSelected"
-                                aria-placeholder="Search by name">
-                </vue-suggestion>
-                <div class="container mt-3" v-if="!show">
-                    <h3 class="text-center text-white">Selected Game Details</h3>
-                    <table class="table table-hover table-dark mb-0">
-                        <tbody>
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1 class="m-0 text-dark">Upload Game</h1>
+                        </div><!-- /.col -->
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">Home</a></li>
+                                <li class="breadcrumb-item active">Upload Game</li>
+                            </ol>
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <h3 class="text-center mb-0">Search Game by Name</h3>
+                    <vue-suggestion
+                            :class="{paddingBottom: show}"
+                            :items="items"
+                            v-model="item"
+                            :setLabel="setLabel"
+                            @changed="inputChange"
+                            :itemTemplate="itemTemplate"
+                            @selected="itemSelected"
+                            aria-placeholder="Search by name">
+                    </vue-suggestion>
+                    <div class="container mt-3" v-if="!show">
+                        <h3 class="text-center">Selected Game Details</h3>
+                        <table class="table table-hover table-dark mb-0">
+                            <tbody>
                             <tr>
                                 <th>Name</th>
                                 <td>{{item.name}}</td>
                             </tr>
                             <tr>
                                 <th>Genres</th>
-                                <td><span v-for="(genre,index) in item.genres" :key="index">{{genre.name}}<span v-if="index < item.genres.length-1">, </span></span></td>
+                                <td><span v-for="(genre,index) in item.genres" :key="index"><input type="checkbox" class="mx-2" :value="genre.name" v-model="game.genres">{{genre.name}}</span></td>
                             </tr>
                             <tr>
                                 <th>Platforms</th>
-                                <td><span v-for="(platform,index) in item.platforms" :key="index">{{platform.platform.name}}<span v-if="index < item.platforms.length-1">, </span></span></td>
+                                <td><span v-for="(platform,index) in item.platforms" :key="index"><input type="checkbox" class="mx-2" :value="platform.platform.name" v-model="game.platforms">{{platform.platform.name}}</span></td>
                             </tr>
                             <tr>
                                 <th>Release Date</th>
@@ -38,13 +58,16 @@
                                 <th>Rating</th>
                                 <td>{{item.rating}}</td>
                             </tr>
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
 
-                    <button class="btn btn-success mt-3" @click="onUpload">Upload</button>
-                </div>
-            </div>
-        </section>
+                        <button class="btn btn-success mt-3" @click="onUpload">Upload</button>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
     </div>
 </template>
 
@@ -65,6 +88,7 @@
                     publisher: "",
                     released: "",
                     genres: [],
+                    platforms: []
                 },
                 itemTemplate
             }
@@ -80,7 +104,6 @@
                     this.game.rating = this.gameDetails.rating
                     this.game.publisher = this.gameDetails.publishers[0].name
                     this.game.released = this.gameDetails.released
-                    this.game.genres = this.gameDetails.genres
                 })
             },
             setLabel (item) {
@@ -106,7 +129,7 @@
         created() {
             this.$api.get('https://api.rawg.io/api/games?page=1&page_size=100').then(response => {
                 this.items = response.data.results;
-                console.log(this.items);
+                // console.log(this.items);
             })
         }
     };

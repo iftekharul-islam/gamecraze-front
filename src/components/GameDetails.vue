@@ -19,8 +19,79 @@
                             <div class="col-md-10 offset-md-2">
                                 <div class="item-btn">
                                     <a href="#" class="btn btn-success buy-now cart-btn">Buy Now</a>
-                                    <a href="#" class="btn btn-success rent">Rent</a>
-                                    <a href="#" class="btn btn-success exchange">Exchange</a>
+<!--                                    <a href="#" class="btn btn-success rent">Rent</a>-->
+                                    <a class="btn btn-success rent" data-toggle="modal" data-target="#rentModal">
+                                        Rent
+                                    </a>
+<!--                                    <a href="#" class="btn btn-success exchange">Exchange</a>-->
+
+                                    <a class="btn btn-success exchange" data-toggle="modal" data-target="#exchangeModal">
+                                        Exchange
+                                    </a>
+
+                                    <!-- Exchange Modal -->
+                                    <div class="modal fade" id="exchangeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Give Your Game Details</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <label for="gameName" class="d-block text-left">Your Game Name</label>
+                                                            <input type="text" class="form-control" id="gameName" placeholder="Enter game name">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="diskCondition" class="d-block text-left">Disk Condition</label>
+                                                            <input type="text" class="form-control" id="diskCondition" placeholder="Used, New ...">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="diskHealth" class="d-block text-left">Disk Health</label>
+                                                            <input type="text" class="form-control" id="diskHealth" placeholder="Disk Health Percentage">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="numberOfDays" class="d-block text-left">Number of Days</label>
+                                                            <input type="text" class="form-control" id="numberOfDays" placeholder="Enter number of days">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Add to Cart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Rent Modal -->
+                                    <div class="modal fade" id="rentModal" tabindex="-1" role="dialog" aria-labelledby="rentModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="rentModalLabel">Rent Details</h5>
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form>
+                                                        <div class="form-group">
+                                                            <label for="rentDays" class="d-block text-left">Number of Days for rent</label>
+                                                            <input type="text" class="form-control" id="rentDays" placeholder="Enter number of days">
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Add to Cart</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -43,9 +114,9 @@
                                         <div class="col-sm-9 pb-5">
                                             <div class="part-right" v-if="game.platforms && game.genres">
                                                 <h6>Platforms: <span v-for="(platform,index) in game.platforms.data" :key="index">
-                                                    {{platform.name}}<span v-if="index < game.platforms.length-1">, </span></span></h6>
+                                                    {{platform.name}}<span v-if="index < game.platforms.data.length-1">, </span></span></h6>
                                                 <h6>Genre: <span v-for="(genre,index) in game.genres.data" :key="index">
-                                                    {{genre.name}}<span v-if="index < game.genres.length-1">, </span></span></h6>
+                                                    {{genre.name}}<span v-if="index < game.genres.data.length-1">, </span></span></h6>
                                                 <h6>Edition: Standard Edition</h6>
                                                 <h6>Game Modes: {{game.game_mode}}</h6>
                                             </div>
@@ -121,7 +192,7 @@
                                             <tr v-if="game.platforms">
                                                 <td class="general-titles">Platform</td>
                                                 <td class="general-titles-details"><span v-for="(platform,index) in game.platforms.data" :key="index">
-                                                    {{platform.name}}<span v-if="index < game.platforms.length-1">, </span></span></td>
+                                                    {{platform.name}}<span v-if="index < game.platforms.data.length-1">, </span></span></td>
                                             </tr>
                                             <tr>
                                                 <td class="general-titles">Edition</td>
@@ -134,7 +205,7 @@
                                             <tr v-if="game.genres">
                                                 <td class="general-titles">Genre</td>
                                                 <td class="general-titles-details"><span v-for="(genre,index) in game.genres.data" :key="index">
-                                                    {{genre.name}}<span v-if="index < game.genres.length-1">, </span></span></td>
+                                                    {{genre.name}}<span v-if="index < game.genres.data.length-1">, </span></span></td>
                                             </tr>
                                             <tr>
                                                 <td class="general-titles">Game Modes</td>
@@ -230,7 +301,7 @@
                             <!-- screenshots section -->
                             <div class="row mt-5 ex-padding">
                                 <div class="col-12">
-                                    <div class="action-part">
+                                    <div class="action-part pb-5">
                                         <a href="../assets/img/selling/jedi/jediseat.jpg"> <img src="../assets/img/selling/jedi/jediseat.jpg" alt="jedi fallen order"></a>
                                         <div class="row mt-5 ex-padding">
                                             <div class="col-md-6">
@@ -541,8 +612,9 @@
             }
         },
         created() {
-            this.$api.get('games/'+this.gameId+'?include=assets,genres,platforms').then(response => {
+            this.$api.get('games/' + this.gameId + '?include=assets,genres,platforms').then(response => {
                 this.game = response.data.data;
+                console.log(this.game)
             });
         }
 

@@ -65,7 +65,7 @@
         <!-- footer -->
         <footer class="">
             <div class="container-fluid footer-width">
-                <p>&copy; 2020 @ Gamerz <span></span> Devloped by: Augnitive</p>
+                <p>&copy; 2020 @ Gamerz <span></span> Developed by: Augnitive</p>
             </div>
         </footer>
     </div>

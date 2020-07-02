@@ -12,8 +12,8 @@ import GameList from "../components/admin/GameList";
 import UploadGame from "../components/admin/UploadGame";
 // import AdminLogin from "../components/admin/AdminLogin";
 import GameEdit from "../components/admin/GameEdit";
-import Navbar from "../components/admin/partial/Navbar"
-
+// import Navbar from "../components/admin/partial/Navbar"
+import Password from "../components/login_registration/Password";
 
 
 export const routes = [
@@ -79,5 +79,10 @@ export const routes = [
         path: '/game-edit',
         name: 'GameEdit',
         component: GameEdit,
+    },
+    {
+        path: '/password-setup',
+        name: 'Password',
+        component: Password,
     }
 ]

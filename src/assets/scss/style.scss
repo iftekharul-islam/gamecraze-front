@@ -1738,7 +1738,7 @@
                 }
               }
             }
-           margin-bottom: 2.4rem;
+           margin-bottom: 2rem;
           }
           .custom-checkbox {
             label {
@@ -1779,9 +1779,14 @@
           }
         }
         .sign-btn {
-          padding-bottom: 3rem;
+          padding-bottom: 1rem;
+          display: flex;
+          justify-content: space-between;
           button {
            @include sign-regis-btn;
+           width: initial;
+           padding: .3rem 2rem;
+          
           }
         }
       }
@@ -1872,7 +1877,7 @@
                 margin-right: 0 !important;
               }
             }
-           margin-bottom: 2.4rem;
+           margin-bottom: 2rem;
           }
         }
         &:hover {
@@ -3110,7 +3115,7 @@ padding: 0 !important;
    form {
     .input-group {
       .input-group-append {
-        width: 70%;
+        width: 60%;
       }
     }
   }

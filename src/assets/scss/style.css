@@ -12805,7 +12805,7 @@ footer .footer-width p span {
 }
 
 .sign-in .sign-in-width .card form .form-group {
-  margin-bottom: 2.4rem;
+  margin-bottom: 2rem;
 }
 
 .sign-in .sign-in-width .card form .form-group input {
@@ -12902,7 +12902,13 @@ footer .footer-width p span {
 }
 
 .sign-in .sign-in-width .card .sign-btn {
-  padding-bottom: 3rem;
+  padding-bottom: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .sign-in .sign-in-width .card .sign-btn button {
@@ -12913,6 +12919,8 @@ footer .footer-width p span {
   border-color: #fcd700;
   -webkit-transition: all .3s ease-in;
   transition: all .3s ease-in;
+  width: initial;
+  padding: .3rem 2rem;
 }
 
 .sign-in .sign-in-width .card .sign-btn button:hover {
@@ -12982,7 +12990,7 @@ footer .footer-width p span {
 
 .registration .registration-width .card form .form-group {
   padding: 0 10px;
-  margin-bottom: 2.4rem;
+  margin-bottom: 2rem;
 }
 
 .registration .registration-width .card form .form-group input {
@@ -14130,7 +14138,7 @@ footer .footer-width p span {
     font-size: 35px;
   }
   nav .nav-width .search form .input-group .input-group-append {
-    width: 70%;
+    width: 60%;
   }
   nav .nav-width .search.jedi-search {
     margin-bottom: 38px !important;

@@ -4,6 +4,10 @@ export const storage = {
         profile: null,
         searchResult: [],
         admin: null,
+        signup: {
+            name: '',
+            phoneNumber: ''
+        }
     },
     getters: {
         getToken(state) {
@@ -28,6 +32,13 @@ export const storage = {
         },
         setAdmin(state, payload) {
             state.admin = payload
+        },
+        setSignUp(state, payload) {
+            state.signup.name = payload.name
+            state.signup.phoneNumber = payload.phone_number
+        },
+        setPhoneNumber(state, payload) {
+            state.signup.phoneNumber = payload
         }
     },
     actions: {
@@ -39,6 +50,12 @@ export const storage = {
         },
         setAdmin(context, payload) {
             context.commit('setAdmin', payload)
+        },
+        setSignUp(context, payload) {
+            context.commit('setSignUp', payload)
+        },
+        setPhoneNumber (context, payload) {
+            context.commit('setPhoneNumber', payload)
         }
     }
 }

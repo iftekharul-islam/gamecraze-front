@@ -3,7 +3,6 @@ import './assets/scss/owl/owl.theme.default.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/scss/style.css'
 import './assets/admin/dist/css/adminlte.css'
-// import 'animate.css'
 
 
 global.jQuery = require('jquery/dist/jquery.min');

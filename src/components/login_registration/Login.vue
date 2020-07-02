@@ -7,8 +7,9 @@
                     <div class="col-md-6 offset-md-3">
                         <div class="card">
                             <h3 class="card-title text-center">Sign in</h3>
+                            <button class="btn btn-success mb-5" @click="onChangeLoginOption">Login with {{ loginOption }}</button>
                             <!-- form -->
-                            <ValidationObserver v-slot="{ handleSubmit }">
+                            <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption==='Phone Number'">
                                 <form @submit.prevent="handleSubmit(onLogin)" method="post">
                                     <div class="form-group">
                                         <!-- user anme -->
@@ -49,6 +50,27 @@
                                 </form>
                             </ValidationObserver>
 
+                            <!-- form -->
+                            <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption==='Email'">
+                                <form @submit.prevent="handleSubmit(onLogin)" method="post">
+                                    <div class="form-group">
+                                        <label for="user-number" class="sr-only">Number</label>
+                                        <ValidationProvider name="phone number" rules="required|max:14|min:11" v-slot="{ errors }">
+                                            <input type="tel" class="form-control" id="user-number" placeholder="Your Phone Number" v-model="form.phone_number">
+                                            <span style="color: red;">{{ errors[0] }}</span>
+                                        </ValidationProvider>
+
+                                    </div>
+                                    <!-- sign in button -->
+                                    <div class="text-center sign-btn pt-5">
+                                        <button type="submit" class="btn btn-primary mb-2">Sign in</button>
+                                    </div>
+                                    <div class="footer">
+                                        <p>Dont't have an account ? <router-link to="registration">Create Account</router-link> </p>
+                                    </div>
+                                </form>
+                            </ValidationObserver>
+
                         </div>
                     </div>
                 </div>
@@ -65,27 +87,57 @@
                 form: {
                     email: "",
                     password: "",
+                    phone_number: ""
                 },
+                loginOption: "Email"
             }
         },
         methods: {
+            checkAdminRole(roles) {
+                return roles.some(el => el.name === 'admin')
+            },
             onLogin() {
-                this.$api.post('login', this.form).then(response => {
-                    if (response.data) {
-                        this.$store.dispatch('setToken', response.data)
-                        console.log(this.$store.state.token);
-                        let config = {
-                            headers: {
-                                'Authorization': 'Bearer ' + response.data
+                if (this.loginOption === "Email") {
+                    this.$store.dispatch('setPhoneNumber', this.form.phone_number)
+                    this.$api.post('sendOtp', this.form).then(response => {
+                        console.log(response);
+                        this.$router.push('/otp-verification').catch(err => {});
+                    });
+                    // this.$router.push('/admin').catch(err => {});
+                }
+                else {
+                    this.$api.post('login', this.form).then(response => {
+                        if (response.data) {
+                            this.$store.dispatch('setToken', response.data)
+                            console.log(this.$store.state.token);
+                            let config = {
+                                headers: {
+                                    'Authorization': 'Bearer ' + response.data
+                                }
                             }
-                        }
-                        this.$api.get('profile', config).then(response => {
-                            this.$store.dispatch('setProfile', response.data)
-                            this.$router.push('/').catch(err => {});
-                        });
-                    }
-                });
+                            this.$api.get('profile', config).then(response => {
+                                let admin = this.checkAdminRole(response.data.data.roles)
+                                if (admin) {
+                                    this.$store.dispatch('setAdmin', admin)
+                                    this.$router.push('/admin').catch(err => {});
+                                }
+                                else {
+                                    this.$router.push('/').catch(err => {});
+                                }
+                                this.$store.dispatch('setProfile', response.data.data)
+                            });
 
+                        }
+                    });
+                }
+            },
+            onChangeLoginOption: function () {
+                if (this.loginOption === "Phone Number") {
+                    this.loginOption = "Email"
+                }
+                else {
+                    this.loginOption = "Phone Number"
+                }
             }
         }
     }

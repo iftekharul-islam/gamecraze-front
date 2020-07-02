@@ -8,12 +8,13 @@
                         <div class="card">
                             <h4 class="card-title text-center">Your OTP</h4>
                             <ValidationObserver v-slot="{ handleSubmit }">
-                                <form id="otpForm" @submit.prevent="handleSubmit(onRegistration)" method="post">
+                                <form id="otpForm" @submit.prevent="handleSubmit(onOtpVerification)" method="post">
                                     <div class="form-group">
                                         <label for="user-otp" class="sr-only">otp</label>
-                                        <ValidationProvider name="otp" rules="required|digits:4" v-slot="{ errors }">
-                                            <input type="text" class="form-control" id="user-otp" placeholder="Your OTP" v-model="otp">
+                                        <ValidationProvider name="otp" rules="required|digits:6" v-slot="{ errors }">
+                                            <input type="text" class="form-control" id="user-otp" placeholder="Your OTP" v-model="oneTimePassword.otp">
                                             <span style="color: red;">{{ errors[0] }}</span>
+                                            <span style="color: red;" v-if="otpVerfication.notVerified">{{ otpVerfication.message }}</span>
                                         </ValidationProvider>
                                     </div>
                                     <div class="otpbtn">
@@ -33,11 +34,47 @@
     export default {
         data() {
             return {
-                otp: ''
+                oneTimePassword: {
+                    name: this.$store.state.signup.name,
+                    phone_number: this.$store.state.signup.phoneNumber,
+                    otp: ''
+                },
+                otpVerfication: {
+                    notVerified: false,
+                    message: 'Sorry! You entered wrong OTP.'
+                },
+                form: {
+                    phone_number: this.$store.state.signup.phoneNumber
+                },
             }
         },
         methods: {
-            onRegistration: function () {
+            onOtpVerification: function () {
+                this.$api.post('verifyOtp', this.oneTimePassword).then(response => {
+                    console.log(response);
+                    if (response.data) {
+                        this.$api.post('login', this.form).then(response => {
+                            if (response.data) {
+                                console.log(response.data);
+                                this.$store.dispatch('setToken', response.data)
+                                console.log(this.$store.state.token);
+                                let config = {
+                                    headers: {
+                                        'Authorization': 'Bearer ' + response.data
+                                    }
+                                }
+                                this.$api.get('profile', config).then(response => {
+                                    this.$store.dispatch('setProfile', response.data.data)
+                                    this.$router.push('/password-setup').catch(err => {});
+                                });
+                            }
+                        });
+                    }
+                    else {
+                        this.otpVerfication.notVerified = true
+                    }
+
+                });
 
             }
         }

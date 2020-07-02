@@ -2,7 +2,12 @@ export const storage = {
     state: {
         token: '',
         profile: null,
-        searchResult: []
+        searchResult: [],
+        admin: null,
+        signup: {
+            name: '',
+            phoneNumber: ''
+        }
     },
     getters: {
         getToken(state) {
@@ -24,6 +29,16 @@ export const storage = {
         },
         addToSearchResult(state, payload) {
             state.searchResult = payload
+        },
+        setAdmin(state, payload) {
+            state.admin = payload
+        },
+        setSignUp(state, payload) {
+            state.signup.name = payload.name
+            state.signup.phoneNumber = payload.phone_number
+        },
+        setPhoneNumber(state, payload) {
+            state.signup.phoneNumber = payload
         }
     },
     actions: {
@@ -32,6 +47,15 @@ export const storage = {
         },
         setProfile(context, payload) {
             context.commit('setProfile', payload)
+        },
+        setAdmin(context, payload) {
+            context.commit('setAdmin', payload)
+        },
+        setSignUp(context, payload) {
+            context.commit('setSignUp', payload)
+        },
+        setPhoneNumber (context, payload) {
+            context.commit('setPhoneNumber', payload)
         }
     }
 }

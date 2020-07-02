@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- navbar -->
-        <nav class="navbar navbar-expand-xl navbar-light">
+        <nav class="navbar navbar-expand-xl navbar-light sign-in-bg ">
             <div class="container-fluid nav-width">
                 <router-link class="navbar-brand mr-5" to="/"><img src="../../assets/img/logo/logo.jpg" alt="Game-logo"></router-link>
                 <div class="toggler-pos">
@@ -86,7 +86,7 @@
                                     <i class="fa fa-search "></i>
                                 </button>
                             </div>
-                            <router-link v-if="this.$store.state.profile" class="btn btn-danger ml-4 sign-in-btn" to="profile" style="color: white;">{{this.$store.state.profile.name}}</router-link>
+                            <router-link v-if="this.$store.state.profile" class="btn btn-danger ml-4 sign-in-btn" to="profile" style="color: white;">{{this.$store.state.profile.phone_number}}</router-link>
                             <router-link v-else class="btn btn-danger ml-4 sign-in-btn" to="login" style="color: white;">Sign in</router-link>
                         </div>
                     </form>

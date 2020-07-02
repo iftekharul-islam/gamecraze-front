@@ -10,7 +10,7 @@
                             <ValidationObserver v-slot="{ handleSubmit }">
                                 <form id="regForm" @submit.prevent="handleSubmit(onNext)" method="post">
                                     <div class="form-group">
-                                        <label for="user-name" class="sr-only">Email</label>
+                                        <label for="user-name" class="sr-only">Name</label>
                                         <ValidationProvider name="name" rules="required" v-slot="{ errors }">
                                             <input type="text" class="form-control" id="user-name" placeholder="Your Name" v-model="form.name">
                                             <span style="color: red;">{{ errors[0] }}</span>
@@ -49,13 +49,10 @@
         },
         methods: {
             onNext() {
-                console.log(this.form);
-                //send otp to the user
-                this.$router.push('/otp-verification').catch(err => {});
-                // this.$api.post('register', this.form).then(response => {
-                //     console.log(response);
-                //
-                // });
+                this.$store.dispatch('setSignUp', this.form)
+                this.$api.post('sendOtp', this.form).then(response => {
+                    this.$router.push('/otp-verification').catch(err => {});
+                });
             },
         },
     }

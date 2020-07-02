@@ -8,17 +8,20 @@
                         <div class="card">
                             <h4 class="card-title text-center">Your OTP</h4>
                             <ValidationObserver v-slot="{ handleSubmit }">
-                                <form id="otpForm" @submit.prevent="handleSubmit(onOtpVerification)" method="post">
+                                <form id="otpForm" method="post">
                                     <div class="form-group">
                                         <label for="user-otp" class="sr-only">otp</label>
                                         <ValidationProvider name="otp" rules="required|digits:6" v-slot="{ errors }">
                                             <input type="text" class="form-control" id="user-otp" placeholder="Your OTP" v-model="oneTimePassword.otp">
                                             <span style="color: red;">{{ errors[0] }}</span>
                                             <span style="color: red;" v-if="otpVerfication.notVerified">{{ otpVerfication.message }}</span>
+                                            <br v-if="resendOtp.resend">
+                                            <span style="color: green;" v-if="resendOtp.resend">{{ resendOtp.message }}</span>
                                         </ValidationProvider>
                                     </div>
                                     <div class="otpbtn">
-                                        <button type="submit" class="btn btn-success">Submit</button>
+                                        <button type="button" class="btn btn-success" @click.prevent="handleSubmit(onOtpVerification)">Submit</button>
+                                        <button type="button" class="btn btn-success" @click.prevent="onResendOtp">Resend OTP</button>
                                     </div>
                                 </form>
                             </ValidationObserver>
@@ -46,10 +49,15 @@
                 form: {
                     phone_number: this.$store.state.signup.phoneNumber
                 },
+                resendOtp: {
+                    resend: false,
+                    message: 'OTP resend successfully!'
+                }
             }
         },
         methods: {
             onOtpVerification: function () {
+                this.resendOtp.resend = false
                 this.$api.post('verifyOtp', this.oneTimePassword).then(response => {
                     console.log(response);
                     if (response.data) {
@@ -65,7 +73,12 @@
                                 }
                                 this.$api.get('profile', config).then(response => {
                                     this.$store.dispatch('setProfile', response.data.data)
-                                    this.$router.push('/password-setup').catch(err => {});
+                                    if (response.data.data.email) {
+                                        this.$router.push('/').catch(err => {});
+                                    }
+                                    else {
+                                        this.$router.push('/password-setup').catch(err => {});
+                                    }
                                 });
                             }
                         });
@@ -76,6 +89,13 @@
 
                 });
 
+            },
+            onResendOtp: function () {
+                this.$store.dispatch('setPhoneNumber', this.form.phone_number)
+                this.$api.post('sendOtp', this.form).then(response => {
+                    this.resendOtp.resend = true
+                    // this.$router.push('/otp-verification').catch(err => {});
+                });
             }
         }
     }

@@ -68,13 +68,16 @@
         },
         methods: {
             onSubmit: function () {
-                let config = {
+                var config = {
                     headers: {
                         'Authorization': 'Bearer ' + this.$store.state.token
                     }
                 }
                 this.$api.put('users', this.form, config).then(response => {
-                    this.$router.push('/').catch(err => {});
+                    this.$api.get('profile', config).then(response => {
+                        this.$store.dispatch('setProfile', response.data.data)
+                        this.$router.push('/').catch(err => {});
+                    });
                 });
             },
             onSkip: function () {

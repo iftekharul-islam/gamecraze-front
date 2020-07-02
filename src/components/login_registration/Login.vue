@@ -7,12 +7,13 @@
                     <div class="col-md-6 offset-md-3">
                         <div class="card">
                             <h3 class="card-title text-center">Sign in</h3>
-                            <button class="btn btn-success mb-5" @click="onChangeLoginOption">Login with {{ loginOption }}</button>
+                            <button class="btn btn-success mb-5" style="width: 60%; margin: 0 auto;" @click="onChangeLoginOption">Login with {{ loginOption }}</button>
                             <!-- form -->
                             <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption==='Phone Number'">
                                 <form @submit.prevent="handleSubmit(onLogin)" method="post">
                                     <div class="form-group">
                                         <!-- user anme -->
+                                        <span style="color: red;" v-if="unauthorized===0">{{ unautorizedError }}</span>
                                         <label for="username1" class="sr-only">User Name</label>
                                         <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                                             <input type="text" class="form-control" id="username1" value="" placeholder="User Name or Email" v-model="form.email">
@@ -37,7 +38,7 @@
                                         </div>
                                         <!-- forget password -->
                                         <div class="forget">
-                                            <a href="#">Forget Password ?</a>
+                                            <router-link to="reset-password">Forget Password ?</router-link>
                                         </div>
                                     </div>
                                     <!-- sign in button -->
@@ -89,7 +90,9 @@
                     password: "",
                     phone_number: ""
                 },
-                loginOption: "Email"
+                loginOption: "Email",
+                unauthorized: "",
+                unautorizedError: "Wrong email or password!"
             }
         },
         methods: {
@@ -107,6 +110,7 @@
                 }
                 else {
                     this.$api.post('login', this.form).then(response => {
+                        console.log(response);
                         if (response.data) {
                             this.$store.dispatch('setToken', response.data)
                             console.log(this.$store.state.token);
@@ -127,6 +131,10 @@
                                 this.$store.dispatch('setProfile', response.data.data)
                             });
 
+                        }
+                        else {
+                            this.unauthorized = response.data
+                            console.log(this.unauthorized)
                         }
                     });
                 }

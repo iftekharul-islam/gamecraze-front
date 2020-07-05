@@ -13773,6 +13773,242 @@ footer .footer-width p span {
   pointer-events: auto;
 }
 
+.rented-page .rented-page-width {
+  width: 85%;
+}
+
+.rented-page .rented-page-width .card {
+  background: transparent;
+  padding-bottom: 4rem;
+  padding-top: 2rem;
+  margin-top: 5rem !important;
+  border-radius: 10px;
+  margin-bottom: 3rem;
+  border: 3px solid #222f5e;
+}
+
+.rented-page .rented-page-width .card .card-title {
+  color: #ffffff;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.rented-page .rented-page-width .card form {
+  width: 70%;
+  margin: auto;
+}
+
+.rented-page .rented-page-width .card form .form-group {
+  margin-bottom: 2rem;
+}
+
+.rented-page .rented-page-width .card form .form-group input {
+  position: relative;
+  border-radius: 10px;
+  padding-left: 20px;
+  background: #222f5e;
+  border-color: #222f5e;
+  color: #ffffff;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
+.rented-page .rented-page-width .card form .form-group input::-webkit-input-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.rented-page .rented-page-width .card form .form-group input:-ms-input-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.rented-page .rented-page-width .card form .form-group input::-ms-input-placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.rented-page .rented-page-width .card form .form-group input::placeholder {
+  color: #ffffff;
+  opacity: 1;
+}
+
+.rented-page .rented-page-width .card form .form-group input:focus {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.rented-page .rented-page-width .card form .form-group input:focus::-webkit-input-placeholder {
+  color: #000000;
+  opacity: 1;
+}
+
+.rented-page .rented-page-width .card form .form-group input:focus:-ms-input-placeholder {
+  color: #000000;
+  opacity: 1;
+}
+
+.rented-page .rented-page-width .card form .form-group input:focus::-ms-input-placeholder {
+  color: #000000;
+  opacity: 1;
+}
+
+.rented-page .rented-page-width .card form .form-group input:focus::placeholder {
+  color: #000000;
+  opacity: 1;
+}
+
+.rented-page .rented-page-width .card form .form-group input[type="date"] {
+  position: relative;
+  cursor: pointer;
+}
+
+.rented-page .rented-page-width .card form .form-group input[type="date"]:after {
+  content: "";
+  background: url(../img/calender.png);
+  background-repeat: no-repeat;
+  width: 35px;
+  height: 30px;
+  position: absolute;
+  right: 5px;
+  background-position: 1px -1px;
+  cursor: pointer;
+}
+
+.rented-page .rented-page-width .card form .form-group input[type="date"]:hover:after {
+  color: #777;
+}
+
+.rented-page .rented-page-width .card form .form-group input[type="date"]::-webkit-calendar-picker-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: auto;
+  height: auto;
+  color: #666;
+  background: transparent;
+}
+
+.rented-page .rented-page-width .card form .form-group input[type="date"]::-webkit-inner-spin-button {
+  z-index: 1;
+}
+
+.rented-page .rented-page-width .card form .form-group input[type="date"]::-webkit-clear-button {
+  z-index: 1;
+}
+
+.rented-page .rented-page-width .card form .form-group label {
+  color: #b9b9b9;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.rented-page .rented-page-width .card form .form-group select {
+  background: #222f5e;
+  border-color: #222f5e;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.rented-page .rented-page-width .card form .form-group select option {
+  background: #ffffff !important;
+}
+
+.rented-page .rented-page-width .card form .form-group select:focus {
+  background: #ffffff;
+  border-color: #ffffff;
+  color: #000000;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.rented-page .rented-page-width .card form .form-group .disk-upload .file {
+  visibility: hidden;
+  position: absolute;
+}
+
+.rented-page .rented-page-width .card form .form-group .disk-upload .input-group .upload-input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.rented-page .rented-page-width .card form .form-group .disk-upload .input-group .input-group-append .browse {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.rented-page .rented-page-width .card form .form-group .disk-preview {
+  width: 100%;
+  height: 100%;
+}
+
+.rented-page .rented-page-width .card form .form-group .disk-preview img {
+  width: 100%;
+  height: 100%;
+}
+
+.rented-page .rented-page-width .card form .form-group .cover-upload .file-2 {
+  visibility: hidden;
+  position: absolute;
+}
+
+.rented-page .rented-page-width .card form .form-group .cover-upload .input-group .upload-input {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.rented-page .rented-page-width .card form .form-group .cover-upload .input-group .input-group-append .browse-2 {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.rented-page .rented-page-width .card form .form-group .disk-preview {
+  width: 100%;
+  height: auto;
+}
+
+.rented-page .rented-page-width .card form .form-group .disk-preview img {
+  width: 100%;
+  height: 100%;
+}
+
+.rented-page .rented-page-width .card form .form-group .form-check input {
+  cursor: pointer;
+}
+
+.rented-page .rented-page-width .card form .form-group .form-check label {
+  cursor: pointer;
+}
+
+.rented-page .rented-page-width .card form .earning-amount {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, #a09e9ed9 4px, transparent 4px) 0 0, linear-gradient(to right, #a09e9ed9 4px, transparent 4px) 0 100%, linear-gradient(to left, #a09e9ed9 4px, transparent 4px) 100% 0, linear-gradient(to left, #a09e9ed9 4px, transparent 4px) 100% 100%, linear-gradient(to bottom, #a09e9ed9 4px, transparent 4px) 0 0, linear-gradient(to bottom, #a09e9ed9 4px, transparent 4px) 100% 0, linear-gradient(to top, #a09e9ed9 4px, transparent 4px) 0 100%, linear-gradient(to top, #a09e9ed9 4px, transparent 4px) 100% 100%;
+  background-repeat: no-repeat;
+  background-size: 30px auto;
+  padding: 1rem;
+}
+
+.rented-page .rented-page-width .card form .earning-amount table tbody tr td {
+  color: #ffffff;
+}
+
+.rented-page .rented-page-width .card form .rented-page-btn button {
+  background: #1c68c7;
+  border-color: #1c68c7;
+  padding: 0.5rem 2rem;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
+.rented-page .rented-page-width .card form .rented-page-btn button:hover {
+  background: #5583bd;
+  border-color: #5583bd;
+}
+
 @media (max-width: 1800px) {
   .exchange-section .exchange-width .card {
     margin-right: 0 !important;
@@ -14109,6 +14345,9 @@ footer .footer-width p span {
   .category .category-width {
     width: 100%;
   }
+  .rented-page .rented-page-width {
+    width: 100%;
+  }
 }
 
 @media (max-width: 1400px) {
@@ -14337,6 +14576,9 @@ footer .footer-width p span {
   }
   .category .category-width form fieldset .custom-control .custom-control-input:checked ~ .custom-control-label::after {
     background-position: 2px 1px;
+  }
+  .rented-page .rented-page-width .card form {
+    width: 80%;
   }
 }
 

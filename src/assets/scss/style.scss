@@ -2521,7 +2521,208 @@
   }
 }
   }
-  } 
+  }
+// rented page
+.rented-page {
+  .rented-page-width {
+    width: 85%;
+    .card {
+      @include sign-regis-card;
+      .card-title {
+        color: $white-clr;
+        @include roboto-con;
+      }
+      form {
+        width: 70%;
+        margin: auto;
+        .form-group {
+          input {
+            position: relative;
+            border-radius: 10px;
+            padding-left: 20px;
+            background: $sign-in-form;
+            border-color: $sign-in-form;
+            color: $white-clr;
+            @include transition-3;
+            &::placeholder {
+              color: $white-clr;
+              opacity: 1;
+            }
+            &:focus {
+              background: $white-clr;
+              border-color: $white-clr;
+              color: $black-clr;
+              box-shadow: none;
+              &::placeholder {
+                color: $black-clr;
+                opacity: 1;
+              }
+            }
+          }
+          input[type="date"] {
+            position: relative;
+            cursor:pointer;
+            &:after {
+              content: "";
+              background:url(../img/calender.png);
+              background-repeat: no-repeat;
+              width:35px;
+              height:30px;
+              position: absolute;
+              right:5px;
+              background-position: 1px -1px;
+              cursor:pointer;
+            }
+            &:hover {
+              &:after {
+                color: $color_2;
+              }
+            }
+            &::-webkit-calendar-picker-indicator {
+              position: absolute;
+              top: 0;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              width: auto;
+              height: auto;
+              color: $color_3;
+              background: transparent;
+            }
+            &::-webkit-inner-spin-button {
+              z-index: 1;
+            }
+            &::-webkit-clear-button {
+              z-index: 1;
+            }
+          }
+          label {
+            color: $rented-label;
+            @include roboto-con;
+          }
+          margin-bottom: 2rem;
+          select {
+            background: $sign-in-form;
+            border-color: $sign-in-form;
+            color: $white-clr;
+            cursor:pointer;
+            option {
+              background: $white-clr !important;
+            }
+            &:focus {
+              background: $white-clr;
+              border-color: $white-clr;
+              color: $black-clr;
+              box-shadow: none;
+            }
+          }
+          // disk upload
+          .disk-upload {
+            .file {
+              visibility: hidden;
+              position: absolute;
+            }
+            .input-group {
+              .upload-input {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+              }
+              .input-group-append {
+                .browse {
+                  border-top-right-radius: 10px;
+                  border-bottom-right-radius: 10px;
+                }
+              }
+            }
+          }
+          // disk-preview
+          .disk-preview {
+            width: 100%;
+            height: 100%;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          // cover upload
+          .cover-upload {
+            .file-2 {
+              visibility: hidden;
+              position: absolute;
+            }
+            .input-group {
+              .upload-input {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+              }
+              .input-group-append {
+                .browse-2 {
+                  border-top-right-radius: 10px;
+                  border-bottom-right-radius: 10px;
+                }
+              }
+            }
+          }
+          // cover-preview
+          .disk-preview {
+            width: 100%;
+            height: auto;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .form-check {
+            input {
+              cursor:pointer;
+            }
+            label {
+              cursor:pointer;
+            }
+          }
+        }
+        .earning-amount {
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(to right, $earning-brd 4px, transparent 4px)
+          0 0,
+          linear-gradient(to right, $earning-brd 4px, transparent 4px) 0 100%,
+          linear-gradient(to left, $earning-brd 4px, transparent 4px) 100% 0,
+          linear-gradient(to left, $earning-brd 4px, transparent 4px) 100%
+          100%,
+          linear-gradient(to bottom, $earning-brd 4px, transparent 4px) 0 0,
+          linear-gradient(to bottom, $earning-brd 4px, transparent 4px) 100% 0,
+          linear-gradient(to top, $earning-brd 4px, transparent 4px) 0 100%,
+          linear-gradient(to top, $earning-brd 4px, transparent 4px) 100% 100%;
+          background-repeat: no-repeat;
+          background-size: 30px auto;
+          padding: 1rem;
+          table {
+            tbody {
+              tr {
+                td {
+                  color: $white-clr;
+                }
+              }
+            }
+          }
+        }
+        .rented-page-btn {
+          button {
+            background: $rented-page-btn;
+            border-color: $rented-page-btn;
+            padding: 0.5rem 2rem;
+            transition: all .3s ease-in;
+            &:hover {
+              background: $rented-page-btn-hvr;
+              border-color:$rented-page-btn-hvr;
+            }
+          }
+        }
+      }
+    }
+  }
+}
 // Media queries --->
 
 
@@ -3067,6 +3268,12 @@ padding: 0 !important;
     width: 100%;
   }
 }
+// rented page
+.rented-page {
+  .rented-page-width {
+    width : 100%;
+  }
+}
 }
 // max 1400px
 @include for-desktop-device-only {
@@ -3450,6 +3657,16 @@ padding: 0 !important;
     }
   }
 }
+//  rented page
+   .rented-page {
+    .rented-page-width {
+      .card {
+        form {
+          width : 80%;
+        }
+      }
+    }
+  }
 }
 // max 1200px
 @include for-large-device-only {

@@ -1,4 +1,5 @@
 import Home from '../components/Home';
+import Rent from '../components/Rent';
 import Game from '../components/Games';
 import Login from "../components/login_registration/Login";
 import Registration from "../components/login_registration/Registration";
@@ -84,5 +85,10 @@ export const routes = [
         path: '/password-setup',
         name: 'Password',
         component: Password,
+    },
+    {
+        path: '/rent-post',
+        name: 'RentPost',
+        component: Rent,
     }
 ]

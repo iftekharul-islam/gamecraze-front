@@ -14,6 +14,7 @@
                                         <ValidationProvider name="otp" rules="required|digits:6" v-slot="{ errors }">
                                             <input type="text" class="form-control" id="user-otp" placeholder="Your OTP" v-model="oneTimePassword.otp">
                                             <span style="color: red;">{{ errors[0] }}</span>
+                                            <span style="color: green;">We've sent a 6-digit one time PIN in your phone </span> <span style="color: white;">{{ oneTimePassword.phone_number }}</span>
                                             <span style="color: red;" v-if="otpVerfication.notVerified">{{ otpVerfication.message }}</span>
                                             <br v-if="resendOtp.resend">
                                             <span style="color: green;" v-if="resendOtp.resend">{{ resendOtp.message }}</span>
@@ -92,10 +93,11 @@
             },
             onResendOtp: function () {
                 this.$store.dispatch('setPhoneNumber', this.form.phone_number)
-                this.$api.post('sendOtp', this.form).then(response => {
-                    this.resendOtp.resend = true
-                    // this.$router.push('/otp-verification').catch(err => {});
-                });
+                // this.$api.post('sendOtp', this.form).then(response => {
+                //     this.resendOtp.resend = true
+                //     // this.$router.push('/otp-verification').catch(err => {});
+                // });
+                this.resendOtp.resend = true
             }
         }
     }

@@ -7,7 +7,7 @@
                     <div class="col-md-6 offset-md-3">
                         <div class="card">
                             <h3 class="card-title text-center">Sign in</h3>
-                            <button class="btn btn-success mb-5" style="width: 60%; margin: 0 auto;" @click="onChangeLoginOption">Login with {{ loginOption }}</button>
+                            <button class="btn btn-success mb-4" style="width: 60%; margin: 0 auto;" @click="onChangeLoginOption">Login with {{ loginOption }}</button>
                             <!-- form -->
                             <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption==='Phone Number'">
                                 <form @submit.prevent="handleSubmit(onLogin)" method="post">
@@ -45,9 +45,6 @@
                                     <div class="text-center sign-btn pt-5">
                                         <button type="submit" class="btn btn-primary mb-2">Sign in</button>
                                     </div>
-                                    <div class="footer">
-                                        <p>Dont't have an account ? <router-link to="registration">Create Account</router-link> </p>
-                                    </div>
                                 </form>
                             </ValidationObserver>
 
@@ -55,20 +52,41 @@
                             <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption==='Email'">
                                 <form @submit.prevent="handleSubmit(onLogin)" method="post">
                                     <div class="form-group">
-                                        <label for="user-number" class="sr-only">Number</label>
+                                        <label for="user-number"></label>
                                         <ValidationProvider name="phone number" rules="required|max:14|min:11" v-slot="{ errors }">
                                             <input type="tel" class="form-control" id="user-number" placeholder="Your Phone Number" v-model="form.phone_number">
                                             <span style="color: red;">{{ errors[0] }}</span>
                                         </ValidationProvider>
 
                                     </div>
+
+                                    <div v-if="showOTP">
+                                        <div class="form-group">
+                                            <label for="user-otp" class="sr-only">otp</label>
+                                            <ValidationProvider name="otp" rules="required|digits:6" v-slot="{ errors }">
+                                                <input type="text" class="form-control" id="user-otp" placeholder="Your OTP" v-model="form.otp">
+                                                <span style="color: red;">{{ errors[0] }}</span>
+                                                <br v-if="!resend">
+                                                <span style="color: green;" v-if="!resend">We've sent a 6-digit one time PIN in your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>
+                                                <br v-if="wrongOTP">
+                                                <span style="color: red;" v-if="wrongOTP">You entered wrong OTP or Timeout</span>
+                                                <br v-if="resend">
+                                                <span style="color: green;" v-if="resend">We've Resent a 6-digit one time PIN in your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>
+                                            </ValidationProvider>
+                                        </div>
+                                        <div class="otpbtn">
+                                            <button type="button" class="btn btn-success" @click.prevent="handleSubmit(onOtpVerification)">Submit</button>
+                                            <button type="button" class="btn btn-success" @click.prevent="onResendOtp">Resend OTP</button>
+                                        </div>
+                                    </div>
+
                                     <!-- sign in button -->
-                                    <div class="text-center sign-btn pt-5">
-                                        <button type="submit" class="btn btn-primary mb-2">Sign in</button>
+                                    <div v-else>
+                                        <div class="text-center sign-btn pt-2">
+                                            <button type="submit" class="btn btn-primary mb-2">Login / Sign up</button>
+                                        </div>
                                     </div>
-                                    <div class="footer">
-                                        <p>Dont't have an account ? <router-link to="registration">Create Account</router-link> </p>
-                                    </div>
+
                                 </form>
                             </ValidationObserver>
 
@@ -88,11 +106,15 @@
                 form: {
                     email: "",
                     password: "",
-                    phone_number: ""
+                    phone_number: "",
+                    otp: ""
                 },
                 loginOption: "Email",
                 unauthorized: "",
-                unautorizedError: "Wrong email or password!"
+                unautorizedError: "Wrong email or password!",
+                showOTP: false,
+                resend: false,
+                wrongOTP: false
             }
         },
         methods: {
@@ -102,11 +124,13 @@
             onLogin() {
                 if (this.loginOption === "Email") {
                     this.$store.dispatch('setPhoneNumber', this.form.phone_number)
-                    this.$api.post('sendOtp', this.form).then(response => {
+                    this.$api.post('send-otp', this.form).then(response => {
                         console.log(response);
-                        this.$router.push('/otp-verification').catch(err => {});
+                        if (response.data.error === false) {
+                            // this.$router.push('/otp-verification').catch(err => {});
+                            this.showOTP = true
+                        }
                     });
-                    // this.$router.push('/admin').catch(err => {});
                 }
                 else {
                     this.$api.post('login', this.form).then(response => {
@@ -146,6 +170,45 @@
                 else {
                     this.loginOption = "Phone Number"
                 }
+            },
+            onOtpVerification: function () {
+                this.resend = false
+                this.$api.post('verify-otp', this.form).then(response => {
+                    console.log(response);
+                    if (response.data.error === true) {
+                        this.wrongOTP = true
+                    }
+                    else {
+                        if (response.data.new_user === false) {
+                            this.$store.dispatch('setToken', response.data.token)
+                            let config = {
+                                headers: {
+                                    'Authorization': 'Bearer ' + response.data.token
+                                }
+                            }
+                            this.$api.get('profile', config).then(response => {
+                                this.$store.dispatch('setProfile', response.data.data)
+                                if (response.data.data.name) {
+                                    this.$router.push('/').catch(err => {});
+                                }
+                                this.$router.push('/password-setup').catch(err => {});
+                            });
+                        }
+                        else {
+                            this.$router.push('/password-setup').catch(err => {});
+                        }
+                    }
+
+                });
+
+            },
+            onResendOtp: function () {
+                this.$store.dispatch('setPhoneNumber', this.form.phone_number)
+                this.$api.post('send-otp', this.form).then(response => {
+                    this.resend = true
+                    // this.$router.push('/otp-verification').catch(err => {});
+                });
+                this.resend = true
             }
         }
     }

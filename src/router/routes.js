@@ -15,6 +15,7 @@ import UploadGame from "../components/admin/UploadGame";
 import GameEdit from "../components/admin/GameEdit";
 // import Navbar from "../components/admin/partial/Navbar"
 import Password from "../components/login_registration/Password";
+import ForgotPassword from "../components/forgot_password/ForgotPassword";
 
 
 export const routes = [
@@ -85,6 +86,14 @@ export const routes = [
         path: '/password-setup',
         name: 'Password',
         component: Password,
+    },
+    {
+        path: '/reset-password',
+        name: 'reset-password',
+        component: ForgotPassword,
+        meta: {
+            auth:false
+        }
     },
     {
         path: '/rent-post',

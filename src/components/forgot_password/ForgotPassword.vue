@@ -1,39 +1,53 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-6">
-                <div class="card card-default">
-                    <div class="card-header">Reset Password</div>
-                    <div class="card-body">
-                        <form autocomplete="off" @submit.prevent="requestResetPassword" method="post">
-                            <div class="form-group">
-                                <label for="email">E-mail</label>
-                                <input type="email" id="email" class="form-control" placeholder="user@example.com" v-model="email" required>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Send Password Reset Link</button>
-                        </form>
+    <div>
+        <!-- sign in  -->
+        <section class="sign-in sign-in-bg">
+            <div class="container-fluid sign-in-width">
+                <div class="row">
+                    <div class="col-md-6 offset-md-3">
+                        <div class="card">
+                            <h3 class="card-title text-center">Reset Password</h3>
+                            <!-- form -->
+                            <ValidationObserver v-slot="{ handleSubmit }">
+                                <form @submit.prevent="handleSubmit(onSendResetCode)" method="post">
+                                    <div class="form-group">
+                                        <!-- user anme -->
+                                        <label for="username1" class="sr-only">Email</label>
+                                        <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
+                                            <input type="text" class="form-control" id="username1" value="" placeholder="User Email" v-model="form.email">
+                                            <span style="color: red;">{{ errors[0] }}</span>
+                                        </ValidationProvider>
+
+                                    </div>
+
+                                    <!-- sign in button -->
+                                    <div class="text-center sign-btn pt-5">
+                                        <button type="submit" class="btn btn-primary mb-2">Send Reset Code</button>
+                                    </div>
+                                </form>
+                            </ValidationObserver>
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </section>
+
     </div>
 </template>
+
 <script>
     export default {
         data() {
             return {
-                email: null,
-                has_error: false
+                form: {
+                    email: "",
+                }
             }
         },
         methods: {
-            requestResetPassword() {
-                this.$api.post("/auth/reset-password", {email: this.email}).then(result => {
-                    this.response = result.data;
-                    console.log(result.data);
-                }, error => {
-                    console.error(error);
-                });
+            onSendResetCode: function () {
+                this.$api.post('send')
             }
         }
     }

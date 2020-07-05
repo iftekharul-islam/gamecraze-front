@@ -1,3 +1,5 @@
+import createPersistedState from "vuex-persistedstate";
+
 export const storage = {
     state: {
         token: '',
@@ -57,5 +59,6 @@ export const storage = {
         setPhoneNumber (context, payload) {
             context.commit('setPhoneNumber', payload)
         }
-    }
+    },
+    // plugins: [createPersistedState()],
 }

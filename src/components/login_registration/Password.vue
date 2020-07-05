@@ -12,8 +12,17 @@
                                 <form method="post">
                                     <div class="form-group">
                                         <!-- user anme -->
+                                        <label for="name" class="sr-only">Name</label>
+                                        <ValidationProvider name="name" rules="required" v-slot="{ errors }">
+                                            <input type="text" class="form-control" id="name" value="" placeholder="Name" v-model="form.name">
+                                            <span style="color: red;">{{ errors[0] }}</span>
+                                        </ValidationProvider>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <!-- user anme -->
                                         <label for="email" class="sr-only">Email</label>
-                                        <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
+                                        <ValidationProvider name="email" rules="email" v-slot="{ errors }">
                                             <input type="email" class="form-control" id="email" value="" placeholder="Email" v-model="form.email">
                                             <span style="color: red;">{{ errors[0] }}</span>
                                         </ValidationProvider>
@@ -22,7 +31,7 @@
                                     <!-- password -->
                                     <div class="form-group">
                                         <label for="gamepassword1" class="sr-only">Password</label>
-                                        <ValidationProvider name="password" rules="required|min:8|password:@confirm" v-slot="{ errors }">
+                                        <ValidationProvider name="password" rules="min:8|password:@confirm" v-slot="{ errors }">
                                             <input type="password" class="form-control" id="gamepassword1" placeholder="Password" v-model="form.password">
                                             <span style="color: red;">{{ errors[0] }}</span>
                                         </ValidationProvider>
@@ -31,7 +40,7 @@
                                     <!-- confirm password -->
                                     <div class="form-group">
                                         <label for="gamepassword2" class="sr-only">Confirm Password</label>
-                                        <ValidationProvider name="confirm" rules="required|min:8" v-slot="{ errors }">
+                                        <ValidationProvider name="confirm" rules="min:8" v-slot="{ errors }">
                                             <input type="password" class="form-control" id="gamepassword2" placeholder="Confirm Password" v-model="form.confirmPassword">
                                             <span style="color: red;">{{ errors[0] }}</span>
                                         </ValidationProvider>
@@ -40,7 +49,6 @@
                                     <!-- sign in button -->
                                     <div class="text-center sign-btn pt-5">
                                         <button type="button" class="btn btn-primary mb-2" @click.prevent="handleSubmit(onSubmit)">Submit</button>
-                                        <button type="button" class="btn btn-primary mb-2" @click.prevent="onSkip">Skip</button>
                                     </div>
 
                                 </form>
@@ -59,6 +67,7 @@
         data () {
             return {
                 form: {
+                    name: '',
                     email: '',
                     password: '',
                     confirmPassword: '',
@@ -79,9 +88,6 @@
                         this.$router.push('/').catch(err => {});
                     });
                 });
-            },
-            onSkip: function () {
-                this.$router.push('/').catch(err => {});
             }
         },
 

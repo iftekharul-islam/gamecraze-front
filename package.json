@@ -20,6 +20,7 @@
     "vee-validate": "^3.3.3",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",
+    "vue-select": "^3.10.5",
     "vue-suggestion": "^1.1.0",
     "vue-swal": "^1.0.0",
     "vuex": "^3.4.0",

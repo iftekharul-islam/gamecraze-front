@@ -3,6 +3,7 @@ import './assets/scss/owl/owl.theme.default.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/scss/style.css'
 import './assets/admin/dist/css/adminlte.css'
+import "vue-select/dist/vue-select.css";
 
 
 global.jQuery = require('jquery/dist/jquery.min');
@@ -15,6 +16,9 @@ import 'bootstrap'
 let owl_carousel = require('./assets/js/owl/owl.carousel.min');
 window.fn = owl_carousel;
 
+let bootstrap_select_js = require('./assets/js/bootstrap-select.min.js')
+window.fn = bootstrap_select_js;
+
 let main = require('./assets/js/main')
 window.fn = main;
 
@@ -25,6 +29,10 @@ window.fn = adminLte;
 
 import Vue from 'vue'
 import App from './App.vue'
+
+//For Vue select
+import vSelect from "vue-select";
+Vue.component("v-select", vSelect);
 
 
 //global variable

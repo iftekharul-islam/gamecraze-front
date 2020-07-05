@@ -268,7 +268,38 @@ $(document).ready(function() {
     }
 
 });
-
+// rented image preview for disk image
+$(document).on("click", ".browse", function () {
+  var file = $(this).parents().find(".file");
+  file.trigger("click");
+  $("#DiskUpload").change(function (e) {
+    var fileName = e.target.files[0].name;
+    $("#file").val(fileName);
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      // get loaded data and render thumbnail.
+      document.getElementById("preview").src = e.target.result;
+    };
+    // read the image file as a data URL.
+    reader.readAsDataURL(this.files[0]);
+  });
+});
+// rented image preview for cover image
+$(document).on("click", ".browse-2", function () {
+  var filetwo = $(this).parents().find(".file-2");
+  filetwo.trigger("click");
+  $("#CoverUpload").change(function (e) {
+    var fileNametwo = e.target.files[0].name;
+    $("#file-2").val(fileNametwo);
+    var readertwo = new FileReader();
+    readertwo.onload = function (e) {
+      // get loaded data and render thumbnail.
+      document.getElementById("preview-2").src = e.target.result;
+    };
+    // read the image file as a data URL.
+    readertwo.readAsDataURL(this.files[0]);
+  });
+});
 
 
 

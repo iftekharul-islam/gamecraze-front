@@ -77,9 +77,15 @@
         },
         methods: {
             onSubmit () {
-                this.$api.post('rents', this.$store.state.rentPostDetails)
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                }
+                this.$api.post('rents', this.$store.state.rentPostDetails, config)
                     .then(response => {
-                        console.log(response);
+                        this.$swal("Rent Post Uploaded!", "Rent Post Successful!", "success")
+                        this.$router.push('/').catch(err => {});
                     });
                 console.log("Store successfully");
             },

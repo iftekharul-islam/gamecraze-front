@@ -14,13 +14,14 @@
                                 <div class="rating">
                                     <h5>Player Rating</h5>
                                     <span>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star"></i>
-                      <i class="fas fa-star-half-alt"></i>
-                      <i class="fas fa-star-half-alt"></i>
-                  </span>
+                                      <i class="fas fa-star"></i>
+                                      <i class="fas fa-star"></i>
+                                      <i class="fas fa-star"></i>
+                                      <i class="fas fa-star-half-alt"></i>
+                                      <i class="fas fa-star-half-alt"></i>
+                                     </span>
                                 </div>
+                                <button type="button" class="btn btn-primary mr-4" @click.prevent="onRentPost">Post for Rent</button>
                             </div>
                             <div class="user-image">
                                 <a href="#"><img :src="$gamehubStorageApi+'users/'+profile.image" alt="user image"></a>
@@ -113,6 +114,11 @@
         data() {
             return {
                 profile: {}
+            }
+        },
+        methods: {
+            onRentPost() {
+                this.$router.push('/rent-post').catch(err => {});
             }
         },
         created() {

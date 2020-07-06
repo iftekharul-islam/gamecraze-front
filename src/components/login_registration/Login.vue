@@ -13,8 +13,7 @@
                                 <form @submit.prevent="handleSubmit(onLogin)" method="post">
                                     <div class="form-group">
                                         <!-- user anme -->
-                                        <span style="color: red;" v-if="unauthorized===0">{{ unautorizedError }}</span>
-                                        <label for="username1" class="sr-only">User Name</label>
+                                        <label for="username1" class="sr-only">Email</label>
                                         <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                                             <input type="text" class="form-control" id="username1" value="" placeholder="User Name or Email" v-model="form.email">
                                             <span style="color: red;">{{ errors[0] }}</span>
@@ -27,7 +26,9 @@
                                         <ValidationProvider name="password" rules="required|min:8" v-slot="{ errors }">
                                             <input type="password" class="form-control" id="gamepassword1" placeholder="Password" v-model="form.password">
                                             <span style="color: red;">{{ errors[0] }}</span>
+                                            <br v-if="errors[0]">
                                         </ValidationProvider>
+                                        <span style="color: red;" v-if="unauthorized">{{ unautorizedError }}<br></span>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <div class="custom-control custom-checkbox">
@@ -53,7 +54,7 @@
                                 <form @submit.prevent="handleSubmit(onLogin)" method="post">
                                     <div class="form-group">
                                         <label for="user-number"></label>
-                                        <ValidationProvider name="phone number" rules="required|max:14|min:11" v-slot="{ errors }">
+                                        <ValidationProvider name="phone number" rules="required|max:11|min:11" v-slot="{ errors }">
                                             <input type="tel" class="form-control" id="user-number" placeholder="Your Phone Number" v-model="form.phone_number">
                                             <span style="color: red;">{{ errors[0] }}</span>
                                         </ValidationProvider>
@@ -75,8 +76,8 @@
                                             </ValidationProvider>
                                         </div>
                                         <div class="otpbtn">
-                                            <button type="button" class="btn btn-success" @click.prevent="handleSubmit(onOtpVerification)">Submit</button>
                                             <button type="button" class="btn btn-success" @click.prevent="onResendOtp">Resend OTP</button>
+                                            <button type="button" class="btn btn-success" @click.prevent="handleSubmit(onOtpVerification)">Submit</button>
                                         </div>
                                     </div>
 
@@ -111,7 +112,7 @@
                 },
                 loginOption: "Email",
                 unauthorized: "",
-                unautorizedError: "Wrong email or password!",
+                unautorizedError: "",
                 showOTP: false,
                 resend: false,
                 wrongOTP: false
@@ -135,12 +136,12 @@
                 else {
                     this.$api.post('login', this.form).then(response => {
                         console.log(response);
-                        if (response.data) {
-                            this.$store.dispatch('setToken', response.data)
+                        if (!response.data.error) {
+                            this.$store.dispatch('setToken', response.data.token)
                             console.log(this.$store.state.token);
                             let config = {
                                 headers: {
-                                    'Authorization': 'Bearer ' + response.data
+                                    'Authorization': 'Bearer ' + response.data.token
                                 }
                             }
                             this.$api.get('profile', config).then(response => {
@@ -157,7 +158,8 @@
 
                         }
                         else {
-                            this.unauthorized = response.data
+                            this.unauthorized = response.data.error
+                            this.unautorizedError = response.data.message
                             console.log(this.unauthorized)
                         }
                     });
@@ -179,8 +181,8 @@
                         this.wrongOTP = true
                     }
                     else {
+                        this.$store.dispatch('setToken', response.data.token)
                         if (response.data.new_user === false) {
-                            this.$store.dispatch('setToken', response.data.token)
                             let config = {
                                 headers: {
                                     'Authorization': 'Bearer ' + response.data.token
@@ -191,7 +193,9 @@
                                 if (response.data.data.name) {
                                     this.$router.push('/').catch(err => {});
                                 }
-                                this.$router.push('/password-setup').catch(err => {});
+                                else {
+                                    this.$router.push('/password-setup').catch(err => {});
+                                }
                             });
                         }
                         else {
@@ -206,9 +210,7 @@
                 this.$store.dispatch('setPhoneNumber', this.form.phone_number)
                 this.$api.post('send-otp', this.form).then(response => {
                     this.resend = true
-                    // this.$router.push('/otp-verification').catch(err => {});
                 });
-                this.resend = true
             }
         }
     }

@@ -9,7 +9,8 @@ export const storage = {
         signup: {
             name: '',
             phoneNumber: ''
-        }
+        },
+        rentPostDetails: {}
     },
     getters: {
         getToken(state) {
@@ -41,6 +42,9 @@ export const storage = {
         },
         setPhoneNumber(state, payload) {
             state.signup.phoneNumber = payload
+        },
+        setRentPostDetails(state, payload) {
+            state.rentPostDetails = payload
         }
     },
     actions: {
@@ -58,6 +62,9 @@ export const storage = {
         },
         setPhoneNumber (context, payload) {
             context.commit('setPhoneNumber', payload)
+        },
+        setRentPostDetails(context, payload) {
+            context.commit('setRentPostDetails', payload)
         }
     },
     // plugins: [createPersistedState()],

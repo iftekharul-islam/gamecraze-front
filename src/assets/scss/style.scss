@@ -1800,6 +1800,85 @@
                 }
               }
             }
+            .form-check {
+              input {
+                cursor:pointer;
+              }
+              [type="radio"] {
+                &:checked {
+                  position: absolute;
+                  left: -9999px;
+                  &+label {
+                    position: relative;
+                    padding-left: 28px;
+                    cursor: pointer;
+                    line-height: 20px;
+                    display: inline-block;
+                    color: $white-clr;
+                    &:before {
+                      content: '';
+                      position: absolute;
+                      left: 0;
+                      top: 0;
+                      width: 18px;
+                      height: 18px;
+                      border: 1px solid $forgot-border;
+                      border-radius: 100%;
+                      background: $white-clr;
+                    }
+                    &:after {
+                      content: '';
+                      width: 12px;
+                      height: 12px;
+                      background: $forgot-pass;
+                      position: absolute;
+                      top: 3px;
+                      left: 3px;
+                      border-radius: 100%;
+                      transition: all 0.2s ease;
+                      opacity: 1;
+                      transform: scale(1);
+                    }
+                  }
+                }
+                &:not(:checked) {
+                  position: absolute;
+                  left: -9999px;
+                  &+label {
+                    position: relative;
+                    padding-left: 28px;
+                    cursor: pointer;
+                    line-height: 20px;
+                    display: inline-block;
+                    color: $description-clr;
+                    &:before {
+                      content: '';
+                      position: absolute;
+                      left: 0;
+                      top: 0;
+                      width: 18px;
+                      height: 18px;
+                      border: 1px solid $forgot-border;
+                      border-radius: 100%;
+                      background: $top-nav;
+                    }
+                    &:after {
+                      content: '';
+                      width: 12px;
+                      height: 12px;
+                      background: $forgot-pass;
+                      position: absolute;
+                      top: 3px;
+                      left: 3px;
+                      border-radius: 100%;
+                      transition: all 0.2s ease;
+                      opacity: 0;
+                      transform: scale(0);
+                    }
+                  }
+                }
+              }
+            }
             .country-code {
               position: absolute;
               color: $white-clr;

@@ -27,33 +27,6 @@
                                         <label class="mr-2">Platform:</label>
                                         <label>{{ platforms.name }}</label>
                                     </div>
-<!--                                    &lt;!&ndash; earning amount &ndash;&gt;-->
-<!--                                    <div class="form-group">-->
-<!--                                        <label>Earning Amount</label>-->
-<!--                                        <div class="earning-amount">-->
-<!--                                            <table class="table table-borderless">-->
-<!--                                                <tbody>-->
-<!--                                                <tr class="">-->
-<!--                                                    <td>Your Estimated earning for 1 week</td>-->
-<!--                                                    <td>BDT 550</td>-->
-<!--                                                </tr>-->
-<!--                                                <tr class="">-->
-<!--                                                    <td>Your Estimated earning for 2 week</td>-->
-<!--                                                    <td>BDT 990</td>-->
-<!--                                                </tr>-->
-<!--                                                <tr class="">-->
-<!--                                                    <td>Your Estimated earning for 3 week</td>-->
-<!--                                                    <td>BDT 1500</td>-->
-<!--                                                </tr>-->
-<!--                                                <tr class="">-->
-<!--                                                    <td>Your Estimated earning for 1 month</td>-->
-<!--                                                    <td>BDT 1600</td>-->
-<!--                                                </tr>-->
-<!--                                                </tbody>-->
-<!--                                            </table>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-                                    <!-- disk condition -->
                                     <div class="form-group">
                                         <label class="mr-2">Disk Condition:</label>
                                         <label class="mr-2">{{ diskConditions.name_of_type }}</label>
@@ -81,7 +54,6 @@
                                         <label v-if="this.$store.state.rentPostDetails.status == 1">Active</label>
                                         <label v-else >Inactive</label>
                                     </div>
-                                    <!-- Rent submit button -->
                                 </form>
                                 <div class="text-center rented-page-btn">
                                     <button type="button" class="btn btn-primary mb-2" @click.prevent="onSubmit">Confirm</button>
@@ -112,7 +84,6 @@
                 console.log("Store successfully");
             },
         },
-        // name: "Rent_preview"
         created() {
             this.$api.get('games/' + this.$store.state.rentPostDetails.game_id)
                 .then(response =>
@@ -124,13 +95,11 @@
                 .then(response =>
                 {
                     this.platforms = response.data.data
-                    // console.log(this.platforms)
                 })
             this.$api.get('disk-conditions/' + this.$store.state.rentPostDetails.disk_condition_id)
                 .then(response =>
                 {
                     this.diskConditions = response.data.data
-                    // console.log(this.diskConditions)
                 })
         }
     }

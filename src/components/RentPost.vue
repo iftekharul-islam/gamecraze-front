@@ -19,11 +19,6 @@
                                     <span style="color: red;">{{ errors[0] }}</span>
                                 </ValidationProvider>
                                 </div>
-                                <!-- Rented week -->
-<!--                                <ValidationProvider name="phone number" rules="required|max:14|min:11" v-slot="{ errors }">-->
-<!--                                    <input type="tel" class="form-control" id="user-number" placeholder="Your Phone Number" v-model="form.phone_number">-->
-<!--                                    <span style="color: red;">{{ errors[0] }}</span>-->
-<!--                                </ValidationProvider>-->
                                 <div class="form-group">
                                     <label for="rentedWeek" class="">Maximum rented week</label>
                                 <ValidationProvider name="rented week" rules="required" v-slot="{ errors }">
@@ -162,7 +157,6 @@
             onDiskimageChange (event) {
                 let fileReader = new FileReader();
                 fileReader.onload = (e) => {
-                    console.log('disk', e)
                     this.form.disk_image = e.target.result;
                 }
                 fileReader.readAsDataURL(event.target.files[0]);
@@ -171,26 +165,12 @@
                 let fileReader = new FileReader();
 
                 fileReader.onload = (e) => {
-                    console.log('Cover', e)
                     this.form.cover_image = e.target.result;
                 }
                 fileReader.readAsDataURL(event.target.files[0]);
             },
             onSubmit () {
-                // this.$validator.validate().then((result) => {
-                //     if (result) {
-                //         // eslint-disable-next-line
-                //         alert('All Passes!');
-                //         return;
-                //     }
-                //     alert('Oh NO!');
-                // });
-                // console.log(this.form);
-                // this.$api.post('rents', this.form)
-                //     .then(response => {
-                //        console.log(response);
-                //     });
-                // console.log(this.form);
+
                 this.$store.dispatch('setRentPostDetails', this.form)
                 this.$router.push('/rent-preview').catch(err => {});
             },
@@ -200,19 +180,16 @@
                 .then(response =>
                 {
                     this.games = response.data.data
-                    console.log(this.games)
                 })
             this.$api.get('platforms')
                 .then(response =>
                 {
                     this.platforms = response.data.data
-                    console.log(this.platforms)
                 })
             this.$api.get('disk-conditions')
                 .then(response =>
                 {
                     this.diskConditions = response.data.data
-                    console.log(this.diskConditions)
                 })
         }
     }

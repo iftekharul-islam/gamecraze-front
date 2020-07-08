@@ -1,6 +1,6 @@
 import Home from '../components/Home';
 import RentPost from '../components/RentPost';
-import RentPreview from '../components/RentPreview';
+import Dashboard from '../components/Dashboard';
 import Game from '../components/Games';
 import Login from "../components/login_registration/Login";
 import Registration from "../components/login_registration/Registration";
@@ -102,8 +102,13 @@ export const routes = [
         component: RentPost,
     },
     {
-        path: '/rent-preview',
-        name: 'RentPreview',
-        component: RentPreview,
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: Dashboard,
+    },
+    {
+        path: '*',
+        name: 'Dashboard',
+        component: Dashboard,
     }
 ]

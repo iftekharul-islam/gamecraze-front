@@ -133,9 +133,9 @@ let router = new Router({
             }
         },
         {
-            path: '/rent-preview',
-            name: 'RentPreview',
-            component: RentPreview,
+            path: '/dashboard',
+            name: 'Dashboard',
+            component: Dashboard,
             meta: {
                 requiresAuth: true
             }
@@ -143,8 +143,8 @@ let router = new Router({
         {
             path: '*',
             name: 'notFound',
-            component: RentPreview,
-        }
+            component: GameList,
+        },
     ]
 })
 
@@ -153,18 +153,8 @@ router.beforeEach((to, from, next) => {
         if (localStorage.getItem('token')) {
             return next()
         }
-    },
-    {
-        path: '/rent-post',
-        name: 'RentPost',
-        component: RentPost,
-    },
-    {
-        path: '/dashboard',
-        name: 'Dashboard',
-        component: Dashboard,
+        return next('login')
     }
-
     next();
 })
 

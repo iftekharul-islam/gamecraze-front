@@ -305,7 +305,6 @@
               &:hover {
                 background: $yellow-btn-hover;
                 border-color: $yellow-btn-hover;
-                color: $black-clr;
               }
               &:active {
                 box-shadow: 0px 0px 3px 2px #fff !important;
@@ -331,6 +330,7 @@
                 border-radius:20px;
                 padding:.3rem;
                 @include transition-3;
+                cursor: pointer;
                 &:hover {
                   color: $black-clr;
                   background: $white-clr ;
@@ -351,7 +351,7 @@
             &:hover {
               background: $yellow-btn-hover;
               border-color: $yellow-btn-hover;
-              color: $black-clr;
+  
             }
             &:active {
               box-shadow:  0px 0px 3px 2px #fff !important;
@@ -2016,6 +2016,14 @@
               font-size: 18px;
             }
            margin-bottom: 2rem;
+           .error-message {
+            color: red;
+            font-size: 14px;
+           }
+           .success-message {
+             color: green;
+             font-size: 14px;
+           }
           }
           // otp
           .otpbtn {

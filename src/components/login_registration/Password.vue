@@ -14,7 +14,7 @@
                                         <!-- user anme -->
                                         <label for="name" class="sr-only">Name</label>
                                         <ValidationProvider name="name" rules="required" v-slot="{ errors }">
-                                            <input type="text" class="form-control" id="name" value="" placeholder="Name" v-model="form.name">
+                                            <input type="text" class="form-control" id="name" value="" placeholder="Name*" v-model="form.name">
                                             <span style="color: red;">{{ errors[0] }}</span>
                                         </ValidationProvider>
 

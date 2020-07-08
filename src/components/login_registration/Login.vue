@@ -55,16 +55,11 @@
                                     <div class="form-group">
                                         <div class="floating-label-group">
                                             <ValidationProvider name="phone number" rules="required|max:14|min:11" v-slot="{ errors }">
-                                                <input type="tel" id="user-number" class="form-control country-number" autocomplete="off" v-model="form.phone_number"  placeholder="Mobile Number" autofocus required />
+                                                <input type="tel" id="user-number" class="form-control country-number" autocomplete="off" v-model="phone_number"  placeholder="Mobile Number" autofocus required />
                                                 <span style="color: red;">{{ errors[0] }}</span>
                                                 <label class="floating-label">+88</label>
                                             </ValidationProvider>
                                         </div>
-                                        <label for="user-number"></label>
-                                        <ValidationProvider name="phone number" rules="required|max:11|min:11" v-slot="{ errors }">
-                                            <input type="tel" class="form-control" id="user-number" placeholder="Your Phone Number" v-model="form.phone_number">
-                                            <span style="color: red;">{{ errors[0] }}</span>
-                                        </ValidationProvider>
                                     </div>
 
                                     <div v-if="showOTP">
@@ -140,35 +135,6 @@
                 }
                 else {
                     this.$store.dispatch('login', this.form)
-                    this.$api.post('login', this.form).then(response => {
-                        console.log(response);
-                        if (!response.data.error) {
-                            this.$store.dispatch('setToken', response.data.token)
-                            console.log(this.$store.state.token);
-                            let config = {
-                                headers: {
-                                    'Authorization': 'Bearer ' + response.data.token
-                                }
-                            }
-                            this.$api.get('profile', config).then(response => {
-                                let admin = this.checkAdminRole(response.data.data.roles)
-                                if (admin) {
-                                    this.$store.dispatch('setAdmin', admin)
-                                    this.$router.push('/admin').catch(err => {});
-                                }
-                                else {
-                                    this.$router.push('/').catch(err => {});
-                                }
-                                this.$store.dispatch('setProfile', response.data.data)
-                            });
-
-                        }
-                        else {
-                            this.unauthorized = response.data.error
-                            this.unautorizedError = response.data.message
-                            console.log(this.unauthorized)
-                        }
-                    });
                 }
             },
             onChangeLoginOption: function () {

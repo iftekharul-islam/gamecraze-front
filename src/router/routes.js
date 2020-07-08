@@ -5,7 +5,7 @@ Vue.use(Router)
 // components
 import Home from '../components/Home';
 import RentPost from '../components/RentPost';
-import RentPreview from '../components/RentPreview';
+import Dashboard from '../components/Dashboard';
 import Game from '../components/Games';
 import Login from "../components/login_registration/Login";
 import Registration from "../components/login_registration/Registration";
@@ -153,8 +153,16 @@ router.beforeEach((to, from, next) => {
         if (localStorage.getItem('token')) {
             return next()
         }
-
-        return next('login');
+    },
+    {
+        path: '/rent-post',
+        name: 'RentPost',
+        component: RentPost,
+    },
+    {
+        path: '/dashboard',
+        name: 'Dashboard',
+        component: Dashboard,
     }
 
     next();

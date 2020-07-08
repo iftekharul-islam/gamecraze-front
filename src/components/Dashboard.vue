@@ -35,7 +35,7 @@
                                     </td>
                                     <td>{{ rent.availability_from_date }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        <button type="button" class="btn btn-danger mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button>
                                     </td>
                                 </tr>
                                 </tbody>

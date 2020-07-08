@@ -84,7 +84,12 @@
                 }
             },
             created() {
-                this.$api.get('rents?include=game,platform,diskCondition' )
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                }
+                this.$api.get('rents?include=game,platform,diskCondition', config)
                     .then(response =>
                     {
                         this.rents = response.data.data

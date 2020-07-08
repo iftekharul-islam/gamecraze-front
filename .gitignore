@@ -21,6 +21,3 @@ yarn-error.log*
 *.sw?
 package-lock.json
 
-#css file ignored
-*.css
-*.css.map

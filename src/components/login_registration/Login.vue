@@ -7,7 +7,7 @@
                     <div class="col-md-6 offset-md-3">
                         <div class="card">
                             <h3 class="card-title text-center">Sign in</h3>
-                            <button class="btn btn-success mb-4" style="width: 60%; margin: 0 auto;" @click="onChangeLoginOption">Login with {{ loginOption }}</button>
+                            <button class="btn btn-success mb-4 sign-in-option-btn button-style" style="margin: 0 auto;" @click="onChangeLoginOption">Login with {{ loginOption }} <i v-if="loginOption === 'Email'" class="far fa-envelope login-email"></i> <i v-if="loginOption === 'Phone Number'" class="fas fa-phone login-phone"></i> </button>
                             <!-- form -->
                             <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption==='Phone Number'">
                                 <form @submit.prevent="handleSubmit(onLogin)" method="post">
@@ -53,19 +53,25 @@
                             <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption==='Email'">
                                 <form @submit.prevent="handleSubmit(onLogin)" method="post">
                                     <div class="form-group">
+                                        <div class="floating-label-group">
+                                            <ValidationProvider name="phone number" rules="required|max:14|min:11" v-slot="{ errors }">
+                                                <input type="tel" id="user-number" class="form-control country-number" autocomplete="off" v-model="form.phone_number"  placeholder="Mobile Number" autofocus required />
+                                                <span style="color: red;">{{ errors[0] }}</span>
+                                                <label class="floating-label">+88</label>
+                                            </ValidationProvider>
+                                        </div>
                                         <label for="user-number"></label>
                                         <ValidationProvider name="phone number" rules="required|max:11|min:11" v-slot="{ errors }">
                                             <input type="tel" class="form-control" id="user-number" placeholder="Your Phone Number" v-model="form.phone_number">
                                             <span style="color: red;">{{ errors[0] }}</span>
                                         </ValidationProvider>
-
                                     </div>
 
                                     <div v-if="showOTP">
                                         <div class="form-group">
                                             <label for="user-otp" class="sr-only">otp</label>
                                             <ValidationProvider name="otp" rules="required|digits:6" v-slot="{ errors }">
-                                                <input type="text" class="form-control" id="user-otp" placeholder="Your OTP" v-model="form.otp">
+                                                <input type="text" class="form-control" id="user-otp" placeholder="Your OTP" v-model="otp">
                                                 <span style="color: red;">{{ errors[0] }}</span>
                                                 <br v-if="!resend">
                                                 <span style="color: green;" v-if="!resend">We've sent a 6-digit one time PIN in your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>
@@ -107,15 +113,15 @@
                 form: {
                     email: "",
                     password: "",
-                    phone_number: "",
-                    otp: ""
                 },
+                phone_number: "",
+                otp: "",
                 loginOption: "Email",
                 unauthorized: "",
                 unautorizedError: "",
                 showOTP: false,
                 resend: false,
-                wrongOTP: false
+                wrongOTP: false,
             }
         },
         methods: {
@@ -125,15 +131,15 @@
             onLogin() {
                 if (this.loginOption === "Email") {
                     this.$store.dispatch('setPhoneNumber', this.form.phone_number)
-                    this.$api.post('send-otp', this.form).then(response => {
+                    this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
                         console.log(response);
                         if (response.data.error === false) {
-                            // this.$router.push('/otp-verification').catch(err => {});
                             this.showOTP = true
                         }
                     });
                 }
                 else {
+                    this.$store.dispatch('login', this.form)
                     this.$api.post('login', this.form).then(response => {
                         console.log(response);
                         if (!response.data.error) {
@@ -175,6 +181,7 @@
             },
             onOtpVerification: function () {
                 this.resend = false
+                this.$store.dispatch('verifyOtp', {phone_number: this.phone_number, otp: this.otp})
                 this.$api.post('verify-otp', this.form).then(response => {
                     console.log(response);
                     if (response.data.error === true) {

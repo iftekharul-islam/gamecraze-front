@@ -12869,6 +12869,27 @@ footer .footer-width p span {
   font-weight: 700;
 }
 
+.sign-in .sign-in-width .card button.button-style {
+  width: 50%;
+  border: none;
+  -webkit-transition: all .5s ease-in;
+  transition: all .5s ease-in;
+}
+
+.sign-in .sign-in-width .card button.button-style:hover {
+  -webkit-box-shadow: 0 0px 0px 0 rgba(0, 40, 120, 0);
+          box-shadow: 0 0px 0px 0 rgba(0, 40, 120, 0);
+  background-position: 0 0;
+}
+
+.sign-in .sign-in-width .card button.sign-in-option-btn {
+  background-color: #002878;
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(27%, #43cea2), color-stop(79%, #185a9d));
+  background-image: linear-gradient(90deg, #43cea2 27%, #185a9d 79%);
+  background-position: 100% 0;
+  background-size: 200% 200%;
+}
+
 .sign-in .sign-in-width .card form {
   width: 50%;
   margin: auto;
@@ -12876,6 +12897,43 @@ footer .footer-width p span {
 
 .sign-in .sign-in-width .card form .form-group {
   margin-bottom: 2rem;
+}
+
+.sign-in .sign-in-width .card form .form-group .floating-label-group {
+  position: relative;
+  margin-top: 15px;
+  margin-bottom: 25px;
+}
+
+.sign-in .sign-in-width .card form .form-group .floating-label-group .floating-label {
+  color: #ffffff;
+  position: absolute;
+  top: 0px;
+  left: -1px;
+  font-size: 18px;
+  font-weight: normal !important;
+  background: #185a9d;
+  height: 38px;
+  padding-top: 6px;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  width: 45px;
+  padding-left: 5px;
+}
+
+.sign-in .sign-in-width .card form .form-group .floating-label-group input:focus ~ .floating-label {
+  opacity: 1;
+  color: #000000;
+  font-size: 18px;
+  background: #7c8b9a;
+}
+
+.sign-in .sign-in-width .card form .form-group .country-label {
+  position: absolute;
+  margin-top: 9px;
+  z-index: 9;
+  margin-left: 7px;
+  color: #ffffff;
 }
 
 .sign-in .sign-in-width .card form .form-group input {
@@ -12936,16 +12994,18 @@ footer .footer-width p span {
   opacity: 1;
 }
 
-.sign-in .sign-in-width .card form .form-group input.country-code-input {
-  position: relative;
+.sign-in .sign-in-width .card form .form-group input.country-number {
   padding-left: 3rem;
   font-size: 18px;
+  font-weight: normal;
 }
 
-.sign-in .sign-in-width .card form .form-group input.country-code-input:focus .country-code {
-  color: black;
+.sign-in .sign-in-width .card form .form-group .form-check input {
+  cursor: pointer;
 }
 
+.sign-in .sign-in-width .card form .form-group .form-check [type="radio"]:checked {
+=======
 .sign-in .sign-in-width .card form .form-group .form-check input {
   cursor: pointer;
 }
@@ -13036,11 +13096,86 @@ footer .footer-width p span {
 
 .sign-in .sign-in-width .card form .form-group .country-code {
   position: absolute;
+  left: -9999px;
+}
+
+.sign-in .sign-in-width .card form .form-group .form-check [type="radio"]:checked + label {
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
   color: #ffffff;
-  z-index: 1;
-  margin-top: 6px;
-  margin-left: 10px;
-  font-size: 18px;
+}
+
+.sign-in .sign-in-width .card form .form-group .form-check [type="radio"]:checked + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ddd;
+  border-radius: 100%;
+  background: #ffffff;
+}
+
+.sign-in .sign-in-width .card form .form-group .form-check [type="radio"]:checked + label:after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: #0f5171;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  opacity: 1;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+}
+
+.sign-in .sign-in-width .card form .form-group .form-check [type="radio"]:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+
+.sign-in .sign-in-width .card form .form-group .form-check [type="radio"]:not(:checked) + label {
+  position: relative;
+  padding-left: 28px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #cfced2;
+}
+
+.sign-in .sign-in-width .card form .form-group .form-check [type="radio"]:not(:checked) + label:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #ddd;
+  border-radius: 100%;
+  background: #0e0e30;
+}
+
+.sign-in .sign-in-width .card form .form-group .form-check [type="radio"]:not(:checked) + label:after {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: #0f5171;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+  opacity: 0;
+  -webkit-transform: scale(0);
+          transform: scale(0);
 }
 
 .sign-in .sign-in-width .card form .otpbtn {
@@ -14741,6 +14876,9 @@ footer .footer-width p span {
   .item-tab .question .question-width .questions .main-question .see-more > a[aria-expanded="true"]:before {
     right: 63%;
   }
+  .sign-in .sign-in-width .card button.sign-in-option-btn {
+    width: 60%;
+  }
   .sign-in .sign-in-width .card form {
     width: 60%;
   }
@@ -14988,6 +15126,9 @@ footer .footer-width p span {
   }
   .item-tab .over-view .item-tab-width .action-part {
     width: 80%;
+  }
+  .sign-in .sign-in-width .card button.sign-in-option-btn {
+    width: 70%;
   }
   .sign-in .sign-in-width .card form {
     width: 70%;
@@ -15327,6 +15468,9 @@ footer .footer-width p span {
     margin-top: 3rem !important;
     margin-bottom: 0;
   }
+  .sign-in .sign-in-width .card button.sign-in-option-btn {
+    width: 90%;
+  }
   .sign-in .sign-in-width .card form {
     width: 90%;
   }
@@ -15637,6 +15781,9 @@ footer .footer-width p span {
   }
   .item-tab .question .question-width .all-question .questions {
     width: initial;
+  }
+  .sign-in .sign-in-width .card button.sign-in-option-btn {
+    width: 60%;
   }
   .sign-in .sign-in-width .card form {
     width: 60%;
@@ -16052,6 +16199,9 @@ footer .footer-width p span {
   }
   .item-tab .specification table tr td {
     font-size: 14px !important;
+  }
+  .sign-in .sign-in-width .card button.sign-in-option-btn {
+    width: 94%;
   }
   .sign-in .sign-in-width .card form {
     width: 100%;

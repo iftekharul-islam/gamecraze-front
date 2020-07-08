@@ -22,6 +22,7 @@ import GameEdit from "../components/admin/GameEdit";
 // import Navbar from "../components/admin/partial/Navbar"
 import Password from "../components/login_registration/Password";
 import ForgotPassword from "../components/forgot_password/ForgotPassword";
+import NotFoundPage from "../components/NotFoundPage";
 
 
 let router = new Router({
@@ -142,8 +143,8 @@ let router = new Router({
         },
         {
             path: '*',
-            name: 'notFound',
-            component: GameList,
+            name: 'NotFoundPage',
+            component: NotFoundPage,
         },
     ]
 })

@@ -3,7 +3,7 @@
             <section class="rented-page sign-in-bg">
                 <div class="container rented-page-width pb-5">
                     <div class="dashbord mb-5">
-                        <h2 class="text-center text-light">DASHBORD</h2>
+                        <h2 class="text-center text-light">DASHBOARD</h2>
                     </div>
                     <div class="table-responsive pb-5" v-if="rents.length">
                             <table class="table table-striped table-dark">
@@ -36,7 +36,7 @@
                                     </td>
                                     <td>{{ rent.availability_from_date }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-primary mb-2" @click.prevent="onDelete(rent.id)" ><i class="fa fa-trash" aria-hidden="true"></i></button>
+                                        <button type="button" class="btn btn-primary mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -58,7 +58,8 @@
                 }
             },
             methods: {
-                onDelete(id) {
+                onDelete(rent) {
+                    console.log(rent.id);
                     this.$swal({
                         title: "Rent Post Delete!",
                         text: "Do you want to delete the Rent Post?",
@@ -72,12 +73,18 @@
                                     'Authorization': 'Bearer ' + this.$store.state.token
                                 }
                             }
-                            this.$api.delete('rents/' + id, config).then(response => {
+                            // console.log(this.rents)
+                            this.$api.delete('rents/' + rent.id, config).then(response => {
                                 if (response.data) {
-                                    this.rents.splice(this.rents.indexOf(id), 1)
+                                    this.rents.splice(this.rents.indexOf(rent), 1)
                                 }
                             })
-                            this.$swal("Rent Post Deleted!", "Rent Post Delete Successful!", "success")
+                            this.$swal ({
+                                title: "Post Deleted!",
+                                text: "Rent Post Delete Successful!",
+                                timer: 1500
+                            });
+
                         }
                         else {
                             this.$swal("Your information is safe!");

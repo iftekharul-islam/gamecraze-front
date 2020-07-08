@@ -260,7 +260,11 @@
                     }
                     this.$api.post('rents', this.form, config)
                         .then(response => {
-                            this.$swal("Rent Post Uploaded!", "Rent Post Successful!", "success")
+                            this.$swal({
+                                title: "Post Uploaded!",
+                                text: "Rent Post Successful!",
+                                timer: 1000
+                            });
                             this.$router.push('dashboard').catch(err => {});
                         });
                     console.log("Store successfully");
@@ -287,25 +291,3 @@
             }
         }
     </script>
-            },
-        },
-        created() {
-            this.$api.get('games')
-                .then(response =>
-                {
-                    this.games = response.data.data
-                })
-            this.$api.get('platforms')
-                .then(response =>
-                {
-                    this.platforms = response.data.data
-                })
-
-            this.$api.get('disk-conditions')
-                .then(response =>
-                {
-                    this.diskConditions = response.data.data
-                })
-        }
-    }
-</script>

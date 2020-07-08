@@ -27,7 +27,6 @@
                                     <td>{{ rent.platform.data.name }}</td>
                                     <td v-if="rent.rented_user_id == null">N/A</td>
                                     <td v-else>{{ rent.rented_user_id }}</td>
-                                    <td v-else>{{ rent.rented_user_id }}</td>
                                     <td v-if="rent.status == 1">
                                         <button class="badge badge-primary" >Active</button>
                                     </td>
@@ -74,16 +73,17 @@
                                 }
                             }
                             // console.log(this.rents)
-                            this.$api.delete('rents/' + rent.id, config).then(response => {
+                            this.$api.delete('rents/' + rent.id, config)
+                                .then(response => {
                                 if (response.data) {
                                     this.rents.splice(this.rents.indexOf(rent), 1)
                                 }
+                                this.$swal ({
+                                    title: "Post Deleted!",
+                                    text: "Rent Post Delete Successful!",
+                                    timer: 1500
+                                });
                             })
-                            this.$swal ({
-                                title: "Post Deleted!",
-                                text: "Rent Post Delete Successful!",
-                                timer: 1500
-                            });
 
                         }
                         else {

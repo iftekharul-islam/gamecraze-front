@@ -186,6 +186,7 @@
                 {
                     this.platforms = response.data.data
                 })
+
             this.$api.get('disk-conditions')
                 .then(response =>
                 {

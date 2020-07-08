@@ -9,7 +9,7 @@
                             <div class="d-flex justify-content-between">
                                 <div class="current-balance">
                                     <h5>Current Balance</h5>
-                                    <span>${{ profile.wallet }}</span>
+                                    <span>${{ user.wallet }}</span>
                                 </div>
                                 <div class="rating">
                                     <h5>Player Rating</h5>
@@ -22,8 +22,8 @@
                   </span>
                                 </div>
                             </div>
-                            <div class="user-image">
-                                <a href="#"><img :src="$gamehubStorageApi+'users/'+profile.image" alt="user image"></a>
+                            <div class="user-image" v-if="user.image">
+                                <a href="#"><img :src="$gamehubStorageApi+'users/' + user.image" alt="user image"></a>
                             </div>
                             <div class="user-details">
                                 <!-- tabs -->
@@ -46,15 +46,15 @@
                                             <tbody>
                                             <tr>
                                                 <th scope="row">Name</th>
-                                                <td>{{ profile.name }}</td>
+                                                <td>{{ user.name }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Gender</th>
-                                                <td>{{ profile.gender }}</td>
+                                                <td>{{ user.gender }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Date of Birth</th>
-                                                <td>{{ profile.birth_date }}</td>
+                                                <td>{{ user.birth_date }}</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -65,15 +65,15 @@
                                             <tbody>
                                             <tr>
                                                 <th scope="row">Email</th>
-                                                <td>{{ profile.email }}</td>
+                                                <td>{{ user.email }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Mobile No</th>
-                                                <td>{{ profile.phone_number }}</td>
+                                                <td>{{ user.phone_number }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Address</th>
-                                                <td>{{ profile.address }}</td>
+                                                <td>{{ user.address }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">NID</th>
@@ -112,11 +112,11 @@
     export default {
         data() {
             return {
-                profile: {}
+                user: {}
             }
         },
         created() {
-            this.profile = this.$store.state.profile
+            this.user = this.$store.state.user
             // console.log(this.profile);
         }
     }

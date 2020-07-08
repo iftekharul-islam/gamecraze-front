@@ -17,47 +17,6 @@
                 <div class="collapse navbar-collapse" id="exCollapsingNavbar">
                     <!-- menu-list -->
                     <div class="menu-list">
-                        <!-- menu-list-top -->
-                        <!-- <ul class="navbar-nav menu-list-top">
-                            <li class="nav-item mr-2">
-                                <a class="nav-link" href="#">Platforms</a>
-                            </li>
-                            <li class="nav-item dropdown mr-3">
-                                <a class="nav-link dropdown-toggle" href="#" id="serviceDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Top Buyers/Sellers <i class="fas fa-chevron-down ml-1"></i>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="serviceDropdown">
-                                    <a class="dropdown-item" href="#">Game 1</a>
-                                    <a class="dropdown-item" href="#">Game 2</a>
-                                    <a class="dropdown-item" href="#">Game 3</a>
-                                    <a class="dropdown-item" href="#">Game 4</a>
-                                    <a class="dropdown-item" href="#">Game 5</a>
-                                    <a class="dropdown-item" href="#">Game 6</a>
-                                </div>
-                            </li>
-                            <li class="nav-item dropdown mr-3">
-                                <a class="nav-link dropdown-toggle" href="#" id="sitesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Trailer/Gameplay/Walkthrough <i class="fas fa-chevron-down ml-1"></i>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="sitesDropdown">
-                                    <a class="dropdown-item" href="#">Game 1</a>
-                                    <a class="dropdown-item" href="#">Game 2</a>
-                                    <a class="dropdown-item" href="#">Game 3</a>
-                                    <a class="dropdown-item" href="#">Game 4</a>
-                                    <a class="dropdown-item" href="#">Game 5</a>
-                                    <a class="dropdown-item" href="#">Game 6</a>
-                                </div>
-                            </li>
-                            <li class="nav-item mr-2">
-                                <a class="nav-link" href="#">Latest News</a>
-                            </li>
-                            <li class="nav-item mr-2">
-                                <a class="nav-link" href="#">Fourm</a>
-                            </li>
-                            <li class="nav-item ml-auto search">
-                            </li>
-                        </ul> -->
-                        <!-- menu-list-bottom -->
                         <ul class="navbar-nav menu-list-bottom">
                             <li class="nav-item mr-3 for-active">
                                 <router-link class="nav-link active router_link" to="/">Home</router-link>
@@ -86,9 +45,9 @@
                                     <i class="fa fa-search "></i>
                                 </button>
                             </div>
-                            <router-link v-if="!this.$store.state.profile" class="btn btn-danger ml-4 sign-in-btn" to="login" style="color: white;">Sign in</router-link>
+                            <router-link v-if="!auth" class="btn btn-danger ml-4 sign-in-btn" to="login" style="color: white;">Sign in</router-link>
                             <div class="sign-logout ml-4">
-                                <router-link v-if="this.$store.state.profile" class="btn btn-danger sign-in-btn" to="profile" style="color: white;">{{this.$store.state.profile.name}}</router-link>
+                                <router-link v-if="auth" class="btn btn-danger sign-in-btn" to="profile" style="color: white;">{{ this.$store.state.user.name }}</router-link>
                                 <div class="log-out">
                                     <button @click.prevent="onLogout" class="sign-out">
                                         <span class="mr-2">Sign Out</span>
@@ -107,10 +66,13 @@
 </template>
 
 <script>
+
     export default {
         data() {
             return {
-                gameName: ''
+                gameName: '',
+                userProfile: {},
+                token: ''
             }
         },
         methods: {
@@ -123,9 +85,24 @@
                 }
             },
             onLogout() {
-
+                this.$store.dispatch('logout')
             }
         },
+        computed: {
+            auth () {
+                return this.$store.getters.ifAuthenticated
+            }
+        },
+        created() {
+            this.userProfile = JSON.parse(localStorage.getItem('userProfile'))
+        },
+        mounted() {
+            this.$root.$on("loggedIn", () => {
+                this.token = localStorage.getItem('token')
+                console.log(localStorage.getItem('userProfile'));
+                this.userProfile = JSON.parse(localStorage.getItem('userProfile'))
+            })
+        }
     }
 </script>
 

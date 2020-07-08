@@ -34,6 +34,8 @@ import App from './App.vue'
 import vSelect from "vue-select";
 Vue.component("v-select", vSelect);
 
+//vue-router
+import router from "./router/routes";
 
 //global variable
 Vue.prototype.$gamehubStorageApi = process.env.VUE_APP_GAMEHUB_STORAGE_API
@@ -45,15 +47,6 @@ Vue.prototype.$baseApi = process.env.VUE_APP_BASE_API
 import VueSwal, {swal} from 'vue-swal'
 Vue.use(VueSwal);
 
-//vue-router
-import VueRouter from 'vue-router'
-Vue.use(VueRouter)
-
-import { routes } from './router/routes'
-const router = new VueRouter({
-  mode: 'history',
-  routes
-});
 
 //vue-suggesion
 

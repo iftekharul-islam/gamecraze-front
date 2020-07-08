@@ -71,7 +71,7 @@
                     email: '',
                     password: '',
                     confirmPassword: '',
-                    phone_number: this.$store.state.signup.phoneNumber
+                    phone_number: JSON.parse(localStorage.getItem('user')).phone_number
                 },
             }
         },

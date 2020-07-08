@@ -29,6 +29,9 @@ export default {
     adminNavbar,
     adminFooter,
     mainSidebar
+  },
+  created() {
+    this.$store.dispatch('AutoLogin')
   }
 }
 </script>

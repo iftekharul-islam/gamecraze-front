@@ -287,3 +287,25 @@
             }
         }
     </script>
+            },
+        },
+        created() {
+            this.$api.get('games')
+                .then(response =>
+                {
+                    this.games = response.data.data
+                })
+            this.$api.get('platforms')
+                .then(response =>
+                {
+                    this.platforms = response.data.data
+                })
+
+            this.$api.get('disk-conditions')
+                .then(response =>
+                {
+                    this.diskConditions = response.data.data
+                })
+        }
+    }
+</script>

@@ -1,3 +1,8 @@
+import Vue from 'vue'
+import Router from 'vue-router'
+Vue.use(Router)
+
+// components
 import Home from '../components/Home';
 import RentPost from '../components/RentPost';
 import Dashboard from '../components/Dashboard';
@@ -19,81 +24,134 @@ import Password from "../components/login_registration/Password";
 import ForgotPassword from "../components/forgot_password/ForgotPassword";
 
 
-export const routes = [
-    {
-        path: '',
-        component: Home
-    },
-    {
-        path: '/games',
-        component: Game
-    },
-    {
-        path: '/login',
-        component: Login
-    },
-    {
-        path: '/registration',
-        component: Registration
-    },
-    {
-        path: '/search',
-        name: 'Search',
-        component: Search,
-        props: true
-    },
-    {
-        path: '/game-details',
-        name: 'GameDetails',
-        component: GameDetails,
-        props: true
-    },
-    {
-        path: '/profile',
-        name: 'Profile',
-        component: Profile,
-    },
-    {
-        path: '/categories',
-        name: 'Category',
-        component: Categories,
-    },
-    {
-        path: '/contacts',
-        name: 'Contacts',
-        component: Contacts,
-    },
-    {
-        path: '/otp-verification',
-        name: 'OTP',
-        component: OTP,
-    },
-    {
-        path: '/game-list',
-        name: 'GameList',
-        component: GameList,
-    },
-    {
-        path: '/upload-game',
-        name: 'UploadGame',
-        component: UploadGame,
-    },
-    {
-        path: '/game-edit',
-        name: 'GameEdit',
-        component: GameEdit,
-    },
-    {
-        path: '/password-setup',
-        name: 'Password',
-        component: Password,
-    },
-    {
-        path: '/reset-password',
-        name: 'reset-password',
-        component: ForgotPassword,
-        meta: {
-            auth:false
+let router = new Router({
+    mode: 'history',
+    routes: [
+        {
+            path: '',
+            component: Home
+        },
+        {
+            path: '/games',
+            component: Game
+        },
+        {
+            path: '/login',
+            component: Login,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/registration',
+            component: Registration,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/search',
+            name: 'Search',
+            component: Search,
+            props: true
+        },
+        {
+            path: '/game-details',
+            name: 'GameDetails',
+            component: GameDetails,
+            props: true
+        },
+        {
+            path: '/profile',
+            name: 'Profile',
+            component: Profile,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/categories',
+            name: 'Category',
+            component: Categories,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/contacts',
+            name: 'Contacts',
+            component: Contacts,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/otp-verification',
+            name: 'OTP',
+            component: OTP,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/game-list',
+            name: 'GameList',
+            component: GameList,
+        },
+        {
+            path: '/upload-game',
+            name: 'UploadGame',
+            component: UploadGame,
+        },
+        {
+            path: '/game-edit',
+            name: 'GameEdit',
+            component: GameEdit,
+        },
+        {
+            path: '/password-setup',
+            name: 'Password',
+            component: Password,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/reset-password',
+            name: 'reset-password',
+            component: ForgotPassword,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/rent-post',
+            name: 'RentPost',
+            component: RentPost,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/rent-preview',
+            name: 'RentPreview',
+            component: RentPreview,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '*',
+            name: 'notFound',
+            component: RentPreview,
+        }
+    ]
+})
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (localStorage.getItem('token')) {
+            return next()
         }
     },
     {
@@ -106,4 +164,8 @@ export const routes = [
         name: 'Dashboard',
         component: Dashboard,
     }
-]
+
+    next();
+})
+
+export default router

@@ -15,8 +15,8 @@
                                         <!-- user anme -->
                                         <label for="username1" class="sr-only">Email</label>
                                         <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
-                                            <input type="text" class="form-control" id="username1" value="" placeholder="User Name or Email" v-model="form.email">
-                                            <span style="color: red;">{{ errors[0] }}</span>
+                                            <input @click="changeErrorMessage" type="text" class="form-control mb-2" id="username1" placeholder="User Email" v-model="form.email">
+                                            <span style="color: red; font-size: 14px;">{{ errors[0] }}</span>
                                         </ValidationProvider>
 
                                     </div>
@@ -24,11 +24,11 @@
                                     <div class="form-group mb-3">
                                         <label for="gamepassword1" class="sr-only">Password</label>
                                         <ValidationProvider name="password" rules="required|min:8" v-slot="{ errors }">
-                                            <input type="password" class="form-control" id="gamepassword1" placeholder="Password" v-model="form.password">
-                                            <span style="color: red;">{{ errors[0] }}</span>
+                                            <input @click="changeErrorMessage" type="password" class="form-control mb-2" id="gamepassword1" placeholder="Password" v-model="form.password">
+                                            <span style="color: red; font-size: 14px;">{{ errors[0] }}</span>
                                             <br v-if="errors[0]">
                                         </ValidationProvider>
-                                        <span style="color: red;" v-if="unauthorized">{{ unautorizedError }}<br></span>
+                                        <span style="color: red; font-size: 14px;" v-if="$store.state.notFoundEmail">Email or Password is not valid<br></span>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <div class="custom-control custom-checkbox">
@@ -44,7 +44,11 @@
                                     </div>
                                     <!-- sign in button -->
                                     <div class="text-center sign-btn pt-5">
-                                        <button type="submit" class="btn btn-primary mb-2">Sign in</button>
+                                        <button class="btn btn-primary mb-2" type="submit">
+                                            Sign in
+                                            <span v-if="isLoading && !$store.state.notFoundEmail" class="spinner-border spinner-border-sm"></span>
+                                        </button>
+<!--                                        <button type="submit" class="btn btn-primary mb-2">Sign in</button>-->
                                     </div>
                                 </form>
                             </ValidationObserver>
@@ -54,10 +58,10 @@
                                 <form @submit.prevent="handleSubmit(onLogin)" method="post">
                                     <div class="form-group">
                                         <div class="floating-label-group">
-                                            <ValidationProvider name="phone number" rules="required|max:14|min:11" v-slot="{ errors }">
-                                                <input type="tel" id="user-number" class="form-control country-number" autocomplete="off" v-model="phone_number"  placeholder="Mobile Number" autofocus required />
-                                                <span style="color: red;">{{ errors[0] }}</span>
-                                                <label class="floating-label">+88</label>
+                                            <ValidationProvider name="phone number" rules="required|max:10|min:10" v-slot="{ errors }">
+                                                <input type="tel" id="user-number" class="form-control country-number mb-2" autocomplete="off" v-model="phone_number"  placeholder="Mobile Number" autofocus />
+                                                <span style="color: red; font-size: 14px;">{{ errors[0] }}</span>
+                                                <label class="floating-label">+880</label>
                                             </ValidationProvider>
                                         </div>
                                     </div>
@@ -66,26 +70,36 @@
                                         <div class="form-group">
                                             <label for="user-otp" class="sr-only">otp</label>
                                             <ValidationProvider name="otp" rules="required|digits:6" v-slot="{ errors }">
-                                                <input type="text" class="form-control" id="user-otp" placeholder="Your OTP" v-model="otp">
-                                                <span style="color: red;">{{ errors[0] }}</span>
-                                                <br v-if="!resend">
-                                                <span style="color: green;" v-if="!resend">We've sent a 6-digit one time PIN in your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>
-                                                <br v-if="wrongOTP">
-                                                <span style="color: red;" v-if="wrongOTP">You entered wrong OTP or Timeout</span>
-                                                <br v-if="resend">
-                                                <span style="color: green;" v-if="resend">We've Resent a 6-digit one time PIN in your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>
+                                                <input @click="changeWrongOtp" type="text" class="form-control mb-2" id="user-otp" placeholder="Your OTP" v-model="otp">
+                                                <span style="color: red; font-size: 14px;">{{ errors[0] }}</span>
+                                                <br v-if="errors[0]">
+                                                <span style="color: green; font-size: 14px;" v-if="!resend && !$store.state.wrongOTP && !$store.state.timeout">We've sent a 6-digit one time PIN in your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>
+                                                <span style="color: red; font-size: 14px;" v-if="$store.state.wrongOTP && !resend">You entered wrong OTP</span>
+                                                <span style="color: red; font-size: 14px;" v-if="$store.state.timeout && !resend">This OTP is not valid for timeout</span>
+                                                <span style="color: green; font-size: 14px;" v-if="resend">We've Resent a 6-digit one time PIN in your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>
                                             </ValidationProvider>
                                         </div>
                                         <div class="otpbtn">
-                                            <button type="button" class="btn btn-success" @click.prevent="onResendOtp">Resend OTP</button>
-                                            <button type="button" class="btn btn-success" @click.prevent="handleSubmit(onOtpVerification)">Submit</button>
+                                            <button class="btn btn-success mb-2" type="button" @click.prevent="onResendOtp">
+                                                Resend OTP
+                                                <span v-if="isResendLoading" class="spinner-border spinner-border-sm"></span>
+                                            </button>
+                                            <button class="btn btn-success mb-2" type="button" @click.prevent="handleSubmit(onOtpVerification)">
+                                                Submit
+                                                <span v-if="$store.state.isSubmitLoading" class="spinner-border spinner-border-sm"></span>
+                                            </button>
+<!--                                            <button type="button" class="btn btn-success" @click.prevent="onResendOtp">Resend OTP</button>-->
+<!--                                            <button type="button" class="btn btn-success" @click.prevent="handleSubmit(onOtpVerification)">Submit</button>-->
                                         </div>
                                     </div>
 
                                     <!-- sign in button -->
                                     <div v-else>
                                         <div class="text-center sign-btn pt-2">
-                                            <button type="submit" class="btn btn-primary mb-2">Login / Sign up</button>
+                                            <button class="btn btn-primary mb-2" type="submit">
+                                                Login / Sign up
+                                                <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
+                                            </button>
                                         </div>
                                     </div>
 
@@ -117,6 +131,8 @@
                 showOTP: false,
                 resend: false,
                 wrongOTP: false,
+                isLoading: false,
+                isResendLoading: false
             }
         },
         methods: {
@@ -124,13 +140,20 @@
                 return roles.some(el => el.name === 'admin')
             },
             onLogin() {
+                this.isLoading = true
                 if (this.loginOption === "Email") {
-                    this.$store.dispatch('setPhoneNumber', this.form.phone_number)
-                    this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
+                    this.$store.dispatch('setPhoneNumber', '0' + this.phone_number)
+                    this.$api.post('send-otp', {phone_number: '0' + this.phone_number}).then(response => {
                         console.log(response);
                         if (response.data.error === false) {
+                            this.isLoading = false
+                            // this.status = true // or success
+                            setTimeout(() => { this.isLoading = false }, 4000) // to clear the status :)
                             this.showOTP = true
                         }
+                    }).catch(error => {
+                        console.error(error)
+                        this.isLoading = false
                     });
                 }
                 else {
@@ -146,44 +169,56 @@
                 }
             },
             onOtpVerification: function () {
+                this.isLoading = true
                 this.resend = false
-                this.$store.dispatch('verifyOtp', {phone_number: this.phone_number, otp: this.otp})
-                this.$api.post('verify-otp', this.form).then(response => {
-                    console.log(response);
-                    if (response.data.error === true) {
-                        this.wrongOTP = true
-                    }
-                    else {
-                        this.$store.dispatch('setToken', response.data.token)
-                        if (response.data.new_user === false) {
-                            let config = {
-                                headers: {
-                                    'Authorization': 'Bearer ' + response.data.token
-                                }
-                            }
-                            this.$api.get('profile', config).then(response => {
-                                this.$store.dispatch('setProfile', response.data.data)
-                                if (response.data.data.name) {
-                                    this.$router.push('/').catch(err => {});
-                                }
-                                else {
-                                    this.$router.push('/password-setup').catch(err => {});
-                                }
-                            });
-                        }
-                        else {
-                            this.$router.push('/password-setup').catch(err => {});
-                        }
-                    }
-
-                });
+                this.$store.dispatch('verifyOtp', {phone_number: '0' + this.phone_number, otp: this.otp})
+                // this.$api.post('verify-otp', {phone_number: '0' + this.phone_number, otp: this.otp}).then(response => {
+                //     console.log(response);
+                //     if (response.data.error === true) {
+                //         this.wrongOTP = true
+                //     }
+                //     else {
+                //         this.$store.dispatch('setToken', response.data.token)
+                //         if (response.data.new_user === false) {
+                //             let config = {
+                //                 headers: {
+                //                     'Authorization': 'Bearer ' + response.data.token
+                //                 }
+                //             }
+                //             this.$api.get('profile', config).then(response => {
+                //                 this.$store.dispatch('setProfile', response.data.data)
+                //                 if (response.data.data.name) {
+                //                     this.$router.push('/').catch(err => {});
+                //                 }
+                //                 else {
+                //                     this.$router.push('/password-setup').catch(err => {});
+                //                 }
+                //             });
+                //         }
+                //         else {
+                //             this.$router.push('/password-setup').catch(err => {});
+                //         }
+                //     }
+                //
+                // });
 
             },
             onResendOtp: function () {
-                this.$store.dispatch('setPhoneNumber', this.form.phone_number)
-                this.$api.post('send-otp', this.form).then(response => {
-                    this.resend = true
+                this.isResendLoading = true
+                this.$store.dispatch('setPhoneNumber', '0' + this.phone_number)
+                this.$api.post('send-otp', {phone_number: '0' + this.phone_number}).then(response => {
+                    if (response.data.error === false) {
+                        this.isResendLoading = false
+                        this.resend = true
+                    }
                 });
+            },
+            changeErrorMessage() {
+                this.$store.commit('setNotFoundEmail', false)
+                this.isLoading = false
+            },
+            changeWrongOtp() {
+                this.$store.commit('setWrongOTP', false)
             }
         }
     }

@@ -84,7 +84,7 @@
                 }
                 this.$api.put('users', this.form, config).then(response => {
                     this.$api.get('profile', config).then(response => {
-                        this.$store.dispatch('setProfile', response.data.data)
+                        this.$store.commit('setUser', response.data.data)
                         this.$router.push('/').catch(err => {});
                     });
                 });

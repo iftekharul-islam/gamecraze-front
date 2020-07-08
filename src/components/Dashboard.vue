@@ -28,10 +28,10 @@
                                     <td v-if="rent.rented_user_id == null">N/A</td>
                                     <td v-else>{{ rent.rented_user_id }}</td>
                                     <td v-if="rent.status == 1">
-                                        <button class="badge badge-primary" >Active</button>
+                                        <a class="badge-primary badge" >Active</a>
                                     </td>
                                     <td v-else>
-                                        <button class="badge badge-danger" >Inactive</button>
+                                        <a class="badge-danger badge" >Inactive</a>
                                     </td>
                                     <td>{{ rent.availability_from_date }}</td>
                                     <td>

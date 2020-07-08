@@ -45,14 +45,14 @@
                                     <i class="fa fa-search "></i>
                                 </button>
                             </div>
-                            <router-link v-if="!auth" class="btn btn-danger ml-4 sign-in-btn" to="login" style="color: white;">Sign in</router-link>
+                            <router-link v-if="!auth" class="btn btn-danger ml-4 sign-in-btn" to="login">Sign in</router-link>
                             <div class="sign-logout ml-4">
-                                <router-link v-if="auth" class="btn btn-danger sign-in-btn" to="profile" style="color: white;">{{ this.$store.state.user.name }}</router-link>
+                                <router-link v-if="auth" class="btn btn-danger sign-in-btn" to="profile"><span v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span><span v-else>{{ this.$store.state.user.phone_number }}</span></router-link>
                                 <div class="log-out">
-                                    <button @click.prevent="onLogout" class="sign-out">
+                                    <a @click.prevent="onLogout" class="sign-out">
                                         <span class="mr-2">Sign Out</span>
                                         <i class="fas fa-sign-out-alt"></i>
-                                    </button>
+                                    </a>
                                 </div>
                             </div>
 <!--                            <router-link v-if="this.$store.state.profile" class="btn btn-danger ml-4 sign-in-btn" to="profile" style="color: white;">{{this.$store.state.profile.name}}</router-link>-->

@@ -11062,6 +11062,7 @@ nav .nav-width .search form .input-group .sign-logout .sign-in-btn {
 nav .nav-width .search form .input-group .sign-logout .sign-in-btn:hover {
   background: #caa612;
   border-color: #caa612;
+  color: #000000;
 }
 
 nav .nav-width .search form .input-group .sign-logout .sign-in-btn:active {
@@ -11099,7 +11100,6 @@ nav .nav-width .search form .input-group .sign-logout .log-out .sign-out {
   padding: .3rem;
   -webkit-transition: all .3s ease-in;
   transition: all .3s ease-in;
-  cursor: pointer;
 }
 
 nav .nav-width .search form .input-group .sign-logout .log-out .sign-out:hover {
@@ -11123,6 +11123,7 @@ nav .nav-width .search form .input-group .sign-in-btn {
 nav .nav-width .search form .input-group .sign-in-btn:hover {
   background: #caa612;
   border-color: #caa612;
+  color: #000000;
 }
 
 nav .nav-width .search form .input-group .sign-in-btn:active {
@@ -12889,10 +12890,6 @@ footer .footer-width p span {
   background-size: 200% 200%;
 }
 
-.sign-in .sign-in-width .card button.sign-in-option-btn i {
-  margin-left: .5rem;
-}
-
 .sign-in .sign-in-width .card form {
   width: 50%;
   margin: auto;
@@ -12921,7 +12918,7 @@ footer .footer-width p span {
   padding-top: 6px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  width: 50px;
+  width: 45px;
   padding-left: 5px;
 }
 
@@ -12999,7 +12996,7 @@ footer .footer-width p span {
 }
 
 .sign-in .sign-in-width .card form .form-group input.country-number {
-  padding-left: 3.5rem;
+  padding-left: 3rem;
   font-size: 18px;
   font-weight: normal;
 }
@@ -13187,16 +13184,6 @@ footer .footer-width p span {
   margin-top: 6px;
   margin-left: 10px;
   font-size: 18px;
-}
-
-.sign-in .sign-in-width .card form .form-group .error-message {
-  color: red;
-  font-size: 14px;
-}
-
-.sign-in .sign-in-width .card form .form-group .success-message {
-  color: green;
-  font-size: 14px;
 }
 
 .sign-in .sign-in-width .card form .otpbtn {
@@ -14348,6 +14335,49 @@ footer .footer-width p span {
 .rented-page .rented-page-width .card form .rented-page-btn button:hover {
   background: #5583bd;
   border-color: #5583bd;
+}
+
+.rented-page .rented-page-width .card.no-post-found-card {
+  padding: 3rem;
+}
+
+/*======================
+    404 page
+=======================*/
+.page_404 {
+  padding: 40px 0;
+  background: #fff;
+  font-family: "Arvo", serif;
+}
+
+.page_404 img {
+  width: 100%;
+}
+
+.four_zero_four_bg {
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  height: 400px;
+  background-position: center;
+}
+
+.four_zero_four_bg h1 {
+  font-size: 80px;
+}
+
+.four_zero_four_bg h3 {
+  font-size: 80px;
+}
+
+.link_404 {
+  color: #fff !important;
+  padding: 10px 20px;
+  background: #39ac31;
+  margin: 20px 0;
+  display: inline-block;
+}
+
+.contant_box_404 {
+  margin-top: -50px;
 }
 
 @media (max-width: 1800px) {

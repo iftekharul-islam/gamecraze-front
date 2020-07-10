@@ -14131,6 +14131,7 @@ footer .footer-width p span {
 .rented-page .rented-page-width .card .card-title {
   color: #ffffff;
   font-family: 'Roboto Condensed', sans-serif;
+  font-size: 2rem;
 }
 
 .rented-page .rented-page-width .card form {
@@ -14352,6 +14353,23 @@ footer .footer-width p span {
 
 .rented-page .rented-page-width .card.no-post-found-card {
   padding: 3rem;
+}
+
+.rented-page .rented-page-width .card .rent-preview {
+  padding: 2rem;
+}
+
+.rented-page .rented-page-width .card .rent-preview h4 {
+  font-size: 1rem;
+  color: #ffffff;
+  margin-bottom: 1rem;
+}
+
+.rented-page .rented-page-width .card .rent-preview .disk img {
+  height: 300px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 /*======================

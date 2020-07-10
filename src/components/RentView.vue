@@ -9,64 +9,55 @@
                 <div class="row">
                     <div class="col-lg-6 offset-lg-3">
                         <div class="card" v-if="rent">
-                            <h3 class="card-title text-center">Rent Preview</h3>
-                            <!-- form -->
-                            <form>
-                                <div class="form-group">
-                                    <!-- Game name -->
-                                    <label class="mr-2 mt-5">Game Name:</label>
-                                    <label>{{ rent.game.data.name }}</label>
+                            <h2 class="card-title text-center mb-5">Rent Preview</h2>
+                            <div class="rent-preview">
+                                <div class="row">
+                                    <div class="col"><h4>Game Name:</h4></div>
+                                    <div class="col"><h4>{{ rent.game.data.name }}</h4></div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="mr-2">Disk Condition:</label>
-                                    <label class="mr-2">{{ rent.diskCondition.data.name_of_type }}</label>
-                                    <label class="mr-2">( {{ rent.diskCondition.data.description }} )</label>
+                                <div class="row">
+                                    <div class="col"><h4>Disk Condition:</h4></div>
+                                    <div class="col"><h4>{{ rent.diskCondition.data.name_of_type }} ( {{ rent.diskCondition.data.description }} )</h4></div>
                                 </div>
-                                <!-- date available -->
-                                <div class="form-group">
-                                    <label class="mr-2">Available from:</label>
-                                    <label>{{ rent.availability_from_date }}</label>
+                                <div class="row">
+                                    <div class="col"><h4>Available from:</h4></div>
+                                    <div class="col"><h4>{{ rent.availability_from_date }}</h4></div>
                                 </div>
-                                <!-- platform -->
-                                <div class="form-group">
-                                    <label class="mr-2">Platform:</label>
-                                    <label>{{ rent.platform.data.name }}</label>
+                                <div class="row">
+                                    <div class="col"><h4>Platform:</h4></div>
+                                    <div class="col"><h4>{{ rent.platform.data.name }}</h4></div>
                                 </div>
-                                <!-- Rent week -->
-                                <div class="form-group">
-                                    <label class="mr-2">Maximum rented week:</label>
-                                    <label>{{ rent.max_number_of_week }}</label>
+                                <div class="row">
+                                    <div class="col"><h4>Maximum rented week:</h4></div>
+                                    <div class="col"><h4>{{ rent.max_number_of_week }}</h4></div>
                                 </div>
-                                <!-- Status -->
-                                <div class="form-group">
-                                    <label class="mr-2">Status:</label>
-                                    <label v-if="rent.status == 1">Active</label>
-                                    <label v-else >Inactive</label>
+                                <div class="row">
+                                    <div class="col"><h4>Platform:</h4></div>
+                                    <div class="col"><h4>{{ rent.platform.data.name }}</h4></div>
+                                </div>
+                                <div class="row">
+                                    <div class="col"><h4>Status:</h4></div>
+                                    <div class="col" v-if="rent.status == 1"><h4>Active</h4></div>
+                                    <div class="col" v-else><h4>Inactive</h4></div>
                                 </div>
                                 <div class="row">
                                     <div class="col">
-                                        <!-- disk image -->
-                                        <div class="form-group">
-                                            <label >Disk Image</label>
-                                            <div class="disk-preview">
-                                                <img :src="rent.disk_image" id="disk-preview" class="img-thumbnail">
-                                            </div>
+                                        <h4>Disk image:</h4>
+                                        <div class="disk-preview disk">
+                                            <img :src="rent.disk_image" id="disk-preview" class="img-thumbnail">
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <!-- cover image -->
-                                        <div class="form-group">
-                                            <label>Cover Image</label>
-                                            <div class="cover-preview">
-                                                <img :src="rent.cover_image" class="img-thumbnail">
-                                            </div>
+                                        <h4>Cover image</h4>
+                                        <div class="cover-preview disk">
+                                            <img :src="rent.cover_image" class="img-thumbnail">
                                         </div>
                                     </div>
                                 </div>
-                            </form>
-                            <div class="text-center rented-page-btn">
-                                <button type="button" class="btn btn-primary mb-2" @click.prevent="onConform">Confirm</button>
                             </div>
+                                <div class="text-center rented-page-btn">
+                                    <button type="button" class="btn btn-primary mb-2" @click.prevent="onConform">Confirm</button>
+                                </div>
                         </div>
                     </div>
                 </div>
@@ -94,7 +85,3 @@
         }
     }
 </script>
-
-<style scoped>
-
-</style>

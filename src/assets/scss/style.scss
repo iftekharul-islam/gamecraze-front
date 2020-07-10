@@ -2462,10 +2462,63 @@
          a {
            img {
             border: 4px solid $sign-in-form;
+           
            }
          }
         }
       }
+      // avatar
+      .avatar-upload {
+        position: relative;
+        max-width: 205px;
+        .avatar-edit {
+            position: absolute;
+            right: 12px;
+            z-index: 1;
+            top: 10px;
+            input {
+                display: none;
+                + label {
+                    display: flex;
+                    align-items:center;
+                    justify-content:center;
+                    width: 34px;
+                    height: 34px;
+                    margin-bottom: 0;
+                    border-radius: 100%;
+                    background: $white-clr;
+                    border: 1px solid transparent;
+                    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.12);
+                    cursor: pointer;
+                    font-weight: normal;
+                    transition: all .2s ease-in-out;
+                    &:hover {
+                        background: #F1F1F1;
+                        border-color: #D6D6D6;
+                    }
+                }
+            }
+        }
+        .avatar-preview {
+            width: 192px;
+            height: 192px;
+            position: relative;
+            border-radius: 100%;
+            border: 4px solid $sign-in-form;
+            box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.1);
+            > div {
+                width: 100%;
+                height: 100%;
+                border-radius: 100%;
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            #edit-image-preview {
+              background-image: url(../img/profile_image4.png);
+            }
+        }
+    }
       .current-balance {
         margin-left: 3rem;
         h5 {
@@ -2491,49 +2544,36 @@
         }
       }
       .user-image {
-        position: absolute;
-        top: -85px;
-        left:300px;
+        text-align: center;
         a {
           img {
             border-radius: 50%;
             border: 4px dashed $sign-in-form;
             @include transition-3;
+            width: 200px;
+            height:200px;
+            margin-top: -84px;
             
           }
         }
-        
+        &.edit-user-image {
+          text-align: center;
+          display: flex;
+          justify-content: center;
+          margin-top: -84px;
+        }
+      }
+      // edit profile button
+      .editprofile-btn {
+        text-align: right;
+        margin-top:3rem;
       }
       .user-details {
-        padding-top: 5rem;
-        margin-bottom: 3rem;
-        .nav-tabs {
-          margin-bottom: 3rem;
-          padding-left: 3rem;
-          background: linear-gradient(90deg, rgba(65,44,119,1) 0%, rgba(19,80,50,1) 100%);
-          border-bottom: 0;
-          li {
-            a {
-              color: $white-clr;
-              &.active {
-                background: linear-gradient(90deg, rgba(94,80,133,1) 0%, rgba(61,114,180,1) 100%);
-                border: 0;
-                border-radius: 0;
-                border-left: 1px solid $white-clr;
-                border-right: 1px solid $white-clr;
-               
-              }
-              &:hover {
-                border: 0;
-                border-radius: 0;
-                border-left: 1px solid $white-clr;
-                border-right: 1px solid $white-clr;
-              }
-            }
-          }
+        padding-top: 2rem;
+        h3 {
+          margin-left: 3rem
         }
-        // tabs content
-        .tab-content {
+        .profile-view {
           table {
             margin-left: 3rem;
             tbody {
@@ -2541,9 +2581,117 @@
                 color:$white-clr;
                 th {
                   width: 200px;
+                  padding-left: 0 !important;
                 }
-                td {
-
+              }
+            }
+          }
+          // edit profile
+          form {
+            margin-left: 3rem;
+            margin-right:3rem;
+            .form-group {
+              margin-bottom:2rem;
+              label {
+                color: $description-clr;
+              }
+              input, textarea {
+                border-radius: 10px;
+                padding-left: 20px;
+                background: $sign-in-form;
+                border-color: $sign-in-form;
+                color: $white-clr;
+                @include transition-3;
+                &::placeholder {
+                  color: $white-clr;
+                  opacity: 1;
+                }
+                &:focus {
+                  background: $white-clr;
+                  border-color: $white-clr;
+                  color: $black-clr;
+                  box-shadow: none;
+                  &::placeholder {
+                    color: $black-clr;
+                    opacity: 1;
+                  }
+                }
+                &#datepicker {
+                  cursor:pointer;
+                 &:after {
+                  content:"";
+                  background: url(../img/calender.png) no-repeat;
+                  width: 30px;
+                  height: 30px;
+                  z-index:10;
+                  position:absolute;
+                  right:11px;
+                  cursor:pointer;
+                 }
+                 &:focus {
+                   &:after {
+                    background: url(../img/calender2.png) no-repeat;
+                    cursor:pointer;
+                   }
+                 }
+                }
+              }
+              
+            input::-webkit-calendar-picker-indicator {
+              opacity:0;
+              z-index:99;
+              cursor:pointer;
+            }
+              .gender {
+                label {
+                  user-select: none;
+                }
+                input[type="radio"] {
+                  display: none;
+                  &+label {
+                    z-index: 10;
+                    margin: 0 10px 10px 0;
+                    position: relative;
+                    color: $white-clr;
+                    font-weight: bold;
+                    background-color: transparent;
+                    border: 2px solid $sign-in-form;
+                    cursor: pointer;
+                    transition: all 200ms ease;
+                    border-radius: 10px;
+                  }
+                  &+#man {
+                    background:url(../img/fun-man-2.png);
+                    background-repeat:no-repeat;
+                    padding: .5rem 3rem .5rem 1.5rem;
+                    background-position: 68px 8px;
+                  }
+                  &+#women {
+                    background:url(../img/fun-women-2.png);
+                    background-repeat:no-repeat;
+                    padding: .5rem 3rem .5rem 1.5rem;
+                    background-position: 80px 8px;
+                  }
+                  &:checked {
+                    &+#man {
+                      color:$black-clr;
+                      border-color:$man-gender;
+                      background:$man-gender url(../img/fun-man.png);
+                      background-repeat:no-repeat;
+                      padding: .5rem 1.5rem .5rem 3rem;
+                      background-position: 17px 8px;
+                    }
+                  }
+                  &:checked {
+                    &+#women {
+                      color: $black-clr;
+                      border-color:$women-gender;
+                      background:$women-gender url(../img/fun-women.png);
+                      background-repeat:no-repeat;
+                      padding: .5rem 1.5rem .5rem 3rem;
+                      background-position: 17px 8px;
+                    }
+                  }
                 }
               }
             }
@@ -3223,15 +3371,15 @@
     }
   }
 // profile page
-.user-profile {
-  .user-profile-width {
-    .card {
-      .user-image {
-        left: 40%;
-      }
-    }
-  }
-}
+// .user-profile {
+//   .user-profile-width {
+//     .card {
+//       .user-image {
+//         left: 40%;
+//       }
+//     }
+//   }
+// }
 // category
 .category {
   .category-width {
@@ -4013,6 +4161,24 @@ padding: 0 !important;
       }
     }
   }
+  // user profile 
+  .user-profile {
+    .user-profile-width {
+      .card {
+        .edit-user-image {
+          .avatar-upload {
+            .avatar-preview {
+              width:150px;
+              height:150px;
+            }
+            // .avatar-edit {
+            //   top:-4px;
+            // }
+          }
+        }
+      }
+    }
+  }
 }
 // max 1200px
 @include for-large-device-only {
@@ -4417,9 +4583,6 @@ padding: 0 !important;
       width: 650px;
       margin:auto;
       margin-top: 7rem;
-      .user-image {
-        left: 40%;
-      }
     }
   }
 }
@@ -4919,11 +5082,6 @@ nav {
   .user-profile-width {
     .user-profile-width-padding{
       padding-right: 0;
-    .card {
-      .user-image {
-        left: 40%;
-      }
-    }
   }
   }
 }
@@ -5393,27 +5551,42 @@ nav {
 // user profile
 .user-profile {
   .user-profile-width {
-    .user-profile-width-padding{
-    .card {
+    .user-profile-width-padding {
+      .card {
         width: 500px;
-      .user-image {
-        top: -62px;
-        img {
-          width: 120px;
+        .user-image {
+          img {
+            width: 120px;
+          }
+          &.edit-user-image {
+            .avatar-upload {
+              .avatar-preview {
+                width:100px;
+                height:100px;
+              }
+              .avatar-edit {
+                top:-4px;
+                  label {
+                    img {
+                      width:initial;
+                    }
+                  }
+              }
+            }
+          }
         }
-      }
-      .current-balance {
-        h5 {
-          font-size: 16px;
+        .current-balance {
+          h5 {
+            font-size: 16px;
+          }
         }
-      }
-      .rating {
-        h5 {
-          font-size: 16px;
+        .rating {
+          h5 {
+            font-size: 16px;
+          }
         }
       }
     }
-  }
   }
 }
 // category
@@ -5996,8 +6169,6 @@ nav {
         margin: 1rem;
         margin-top: 5rem;
       .user-image {
-        top: -50px;
-        left: 38%;
         margin-bottom: 1rem;
         img {
           width: 100px;
@@ -6018,10 +6189,7 @@ nav {
         }
       }
       .user-details {
-       .nav-tabs {
-         padding-left: 1rem;
-       }
-        .tab-content {
+        .profile-view {
           table {
             margin-left: 0;
             tbody {

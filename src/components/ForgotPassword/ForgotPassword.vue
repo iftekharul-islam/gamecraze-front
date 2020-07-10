@@ -14,25 +14,32 @@
                                         <!-- user anme -->
                                         <label for="username1" class="sr-only">Email</label>
                                         <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
-                                            <input type="text" class="form-control" id="username1" value="" placeholder="User Email" v-model="form.email">
-                                            <span style="color: red;">{{ errors[0] }}</span>
+                                            <input type="text" class="form-control mb-2" id="username1" value="" placeholder="User Email" v-model="form.email">
+                                            <span class="error-message">{{ errors[0] }}</span>
                                             <br v-if="errors[0]">
                                         </ValidationProvider>
-                                        <span style="color: red;" v-if="invalidEmail">{{ invalidEmailMessage }}<br></span>
+                                        <span class="error-message" v-if="invalidEmail">{{ invalidEmailMessage }}<br></span>
                                     </div>
 
                                     <div v-if="codeSent">
                                         <div class="form-group">
                                             <label for="user-otp" class="sr-only">otp</label>
                                             <ValidationProvider name="otp" rules="required|digits:6" v-slot="{ errors }">
-                                                <input type="text" class="form-control" id="user-otp" placeholder="Your code" v-model="form.code">
-                                                <span style="color: red;">{{ errors[0] }}</span>
-                                                <br v-if="!resend">
-                                                <span style="color: green;" v-if="!resend">We've sent a 6-digit code in your {{ form.resetOption }} <strong style="color: white;">{{ media }}</strong> valid for 300 seconds</span>
-                                                <br v-if="wrongCode">
-                                                <span style="color: red;" v-if="wrongCode">You entered wrong code or Timeout</span>
-                                                <br v-if="resend">
-                                                <span style="color: green;" v-if="resend">We've Resent a 6-digit code in your phone <strong style="color: white;">{{ media }}</strong>&nbsp;which will be valid for 300 seconds</span>
+                                                <input @click="changeWrongOtp" type="text" class="form-control mb-2" id="user-otp" placeholder="Your code" v-model="form.otp">
+<!--                                                <span class="error-message">{{ errors[0] }}</span>-->
+<!--                                                <br v-if="!resend && errors[0]">-->
+<!--                                                <span class="success-message" v-if="!resend">6-digit code has been sent in your {{ form.resetOption }} <strong style="color: white;">{{ media }}</strong> which will be valid for 300 seconds</span>-->
+<!--                                                <br v-if="wrongCode">-->
+<!--                                                <span class="error-message" v-if="wrongCode">You entered wrong code or Timeout</span>-->
+<!--                                                <br v-if="resend && errors[0]">-->
+<!--                                                <span class="success-message" v-if="resend">We've Resent a 6-digit code in your {{ form.resetOption }} <strong style="color: white;">{{ media }}</strong>&nbsp;which will be valid for 300 seconds</span>-->
+
+                                                <span class="error-message">{{ errors[0] }}</span>
+                                                <br v-if="errors[0]">
+                                                <span class="success-message" v-if="!resend && !$store.state.wrongOTP && !$store.state.timeout">We've sent a 6-digit one time PIN in your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>
+                                                <span class="error-message" v-if="$store.state.wrongOTP && !resend">You entered wrong OTP</span>
+                                                <span class="error-message" v-if="$store.state.timeout && !resend">This OTP is not valid for timeout</span>
+                                                <span class="success-message" v-if="resend">We've Resent a 6-digit one time PIN in your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>
                                             </ValidationProvider>
                                         </div>
                                     </div>
@@ -45,21 +52,30 @@
                                                 <input class="form-check-input" type="radio" name="resetradio" id="emailreset" value="email" v-model="form.resetOption">
                                                 <label class="form-check-label" for="emailreset"> Email </label>
                                             </div>
-                                            <div class="form-check">
+                                            <div class="form-check mb-2">
                                                 <input class="form-check-input" type="radio" name="resetradio" id="phonereset" value="phone" v-model="form.resetOption">
                                                 <label class="form-check-label" for="phonereset"> Phone Number </label>
                                             </div>
-                                            <span style="color: red;">{{ errors[0] }}</span>
+                                            <span class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                         <div class="otpbtn mt-3" v-if="codeSent">
-                                            <button type="button" class="btn btn-success" @click.prevent="onResendOtp">Resend Code</button>
-                                            <button type="button" class="btn btn-success" @click.prevent="handleSubmit(onOtpVerification)">Submit</button>
+                                            <button class="btn btn-primary mb-2" type="button" :disabled="isResendLoading" @click.prevent="onResendOtp">
+                                                Resend Code
+                                                <span v-if="isResendLoading" class="spinner-border spinner-border-sm"></span>
+                                            </button>
+                                            <button class="btn btn-primary mb-2" type="button" :disabled="$store.state.isSubmitLoading" @click.prevent="handleSubmit(onVerifyPasswordResetCode)">
+                                                Submit
+                                                <span v-if="$store.state.isSubmitLoading" class="spinner-border spinner-border-sm"></span>
+                                            </button>
                                         </div>
                                     </div>
 
                                     <!-- sign in button -->
                                     <div class="text-center sign-btn pt-2" v-if="!codeSent">
-                                        <button type="submit" class="btn btn-primary mb-2">Send Reset Code</button>
+                                        <button class="btn btn-primary mb-2" type="submit" :disabled="isLoading">
+                                            Send Reset Code
+                                            <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
+                                        </button>
                                     </div>
                                 </form>
                             </ValidationObserver>
@@ -85,13 +101,16 @@
                 media: '',
                 form: {
                     email: "",
-                    code: "",
+                    otp: "",
                     resetOption: '',
-                }
+                },
+                isLoading: false,
+                isResendLoading: false
             }
         },
         methods: {
             onSendResetPasswordCode: function () {
+                this.isLoading = true
                 this.$api.post('send-reset-code', this.form).then(response => {
                     console.log(response)
                     if (response.data.error) {
@@ -104,42 +123,15 @@
                         this.invalidEmail = false
                         this.media = response.data.media
                     }
+                    this.isLoading = false
                 });
             },
-            onOtpVerification: function () {
+            onVerifyPasswordResetCode () {
                 this.resend = false
-                this.$api.post('verify-otp', this.form).then(response => {
-                    console.log(response);
-                    if (response.data.error === true) {
-                        this.wrongOTP = true
-                    }
-                    else {
-                        this.$store.dispatch('setToken', response.data.token)
-                        if (response.data.new_user === false) {
-                            let config = {
-                                headers: {
-                                    'Authorization': 'Bearer ' + response.data.token
-                                }
-                            }
-                            this.$api.get('profile', config).then(response => {
-                                this.$store.dispatch('setProfile', response.data.data)
-                                if (response.data.data.name) {
-                                    this.$router.push('/').catch(err => {});
-                                }
-                                else {
-                                    this.$router.push('/password-setup').catch(err => {});
-                                }
-                            });
-                        }
-                        else {
-                            this.$router.push('/password-setup').catch(err => {});
-                        }
-                    }
-
-                });
-
+                this.$store.dispatch('verifyPasswordResetCode', this.form)
             },
             onResendOtp: function () {
+                this.isResendLoading = true
                 this.$api.post('send-reset-code', this.form).then(response => {
                     console.log(response)
                     if (response.data.error) {
@@ -153,7 +145,11 @@
                         this.invalidEmail = false
                         this.media = response.data.media
                     }
+                    this.isResendLoading = false
                 });
+            },
+            changeWrongOtp() {
+                this.$store.commit('setWrongOTP', false)
             }
         }
     }

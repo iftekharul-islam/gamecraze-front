@@ -4,7 +4,7 @@
         <section class="sign-in sign-in-bg">
             <div class="container-fluid sign-in-width">
                 <div class="row">
-                    <div class="col-md-6 offset-md-3">
+                    <div class="col-md-6 offset-md-3 pb-4">
                         <div class="card">
                             <h3 class="card-title text-center">Sign in</h3>
                             <button class="btn btn-success mb-4 sign-in-option-btn button-style" style="margin: 0 auto;" @click="onChangeLoginOption">Login with {{ loginOption }} <i v-if="loginOption === 'Email'" class="far fa-envelope login-email"></i> <i v-if="loginOption === 'Phone Number'" class="fas fa-phone login-phone"></i> </button>
@@ -39,7 +39,7 @@
                                         </div>
                                         <!-- forget password -->
                                         <div class="forget">
-                                            <router-link to="reset-password">Forget Password ?</router-link>
+                                            <router-link to="forgot-password">Forget Password ?</router-link>
                                         </div>
                                     </div>
                                     <!-- sign in button -->
@@ -58,7 +58,7 @@
                                     <div class="form-group">
                                         <div class="floating-label-group">
                                             <ValidationProvider name="number" rules="required|digits:10" v-slot="{ errors }">
-                                                <input type="tel" id="user-number" class="form-control country-number mb-2" autocomplete="off" v-model="phone_number"  placeholder="Mobile Number" autofocus />
+                                                <input type="tel" id="user-number" class="form-control country-number mb-2" v-model="phone_number"  placeholder="Mobile Number" autofocus />
                                                 <span class="error-message">{{ errors[0] }}</span>
                                                 <label class="floating-label">+880</label>
                                             </ValidationProvider>

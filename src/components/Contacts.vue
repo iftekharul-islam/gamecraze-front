@@ -2,6 +2,7 @@
     <div>
         <div class="container mt-4">
             <div class="w-50 m-0 m-auto">
+                <h3 class="text-center">Contact Form</h3>
                 <script type="application/javascript">
                     hbspt.forms.create({
                         css: '',

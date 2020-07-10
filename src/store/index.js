@@ -1,6 +1,9 @@
 import axios from 'axios'
 import router from "../router/routes";
 
+import VueSwal, {swal} from 'vue-swal'
+
+
 export const storage = {
     state: {
         searchResult: [],
@@ -17,7 +20,7 @@ export const storage = {
         notFoundEmail: false,
         isSubmitLoading: false,
         wrongOTP: false,
-        timeout: false
+        timeout: false,
     },
     getters: {
         user (state) {
@@ -58,6 +61,7 @@ export const storage = {
             state.user = null
             state.wrongOTP = false
             state.timeout = false
+            state.isSubmitLoading = false
         },
         setNotFoundEmail (state, payload) {
             state.notFoundEmail = payload
@@ -148,7 +152,10 @@ export const storage = {
                     localStorage.setItem('user', JSON.stringify(response.data.user))
                     commit('setSubmitLoading', false)
                     if (response.data.newUser === false) {
-                        if (response.data.user.name) {
+                        if (payload.email) {
+                            router.push('/reset-password').catch(err => {});
+                        }
+                        else if (response.data.user.name) {
                             router.push('/').catch(err => {});
                         }
                         else {
@@ -160,16 +167,54 @@ export const storage = {
                     }
                 }
 
-                if (response.data.message === 'wrongOtp') {
-                    commit('setWrongOTP', true)
-                    commit('setTimeout', false)
-                }
-                else {
-                    commit('setWrongOTP', false)
-                    commit('setTimeout', true)
-                }
+                commit('setWrongOTP', response.data.message === 'wrongOtp')
+                commit('setTimeout', response.data.message === 'timeout')
                 commit('setSubmitLoading', false)
 
+            });
+        },
+        verifyPasswordResetCode ({commit, dispatch}, payload) {
+            if (payload.resetOption === 'email') {
+                commit('setSubmitLoading', true)
+                axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'verify-reset-code', payload).then(response => {
+                    if (response.data.error === false) {
+                        commit('authUser', {
+                            token: response.data.token,
+                            user: response.data.user
+                        })
+                        localStorage.setItem('token', response.data.token)
+                        localStorage.setItem('userId', JSON.stringify(response.data.user.id))
+                        localStorage.setItem('user', JSON.stringify(response.data.user))
+                        router.push('/reset-password').catch(err => {});
+                    }
+                    commit('setWrongOTP', response.data.message === 'wrongOtp')
+                    commit('setTimeout', response.data.message === 'timeout')
+                    commit('setSubmitLoading', false)
+                })
+            }
+            else {
+                dispatch('verifyOtp', payload)
+            }
+        },
+        updateUserDetails ({commit}, payload) {
+            var config = {
+                headers: {
+                    'Authorization': 'Bearer ' + this.state.token
+                }
+            }
+            axios.put(process.env.VUE_APP_GAMEHUB_BASE_API + 'users', payload, config).then(response => {
+                if (response.data) {
+                    commit('setUser', response.data)
+                    localStorage.setItem('user', JSON.stringify(response.data))
+                    if (payload.address) {
+                        swal("Profile Updated!", "Profile Update Successful!", "success")
+                        router.push('/profile').catch(err => {});
+                    }
+                    else {
+                        swal("Password Updated!", "Password Update Successful!", "success")
+                        router.push('/').catch(err => {});
+                    }
+                }
             });
         }
     },

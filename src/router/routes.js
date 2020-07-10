@@ -20,11 +20,13 @@ import UploadGame from "../components/admin/UploadGame";
 // import AdminLogin from "../components/admin/AdminLogin";
 import GameEdit from "../components/admin/GameEdit";
 // import Navbar from "../components/admin/partial/Navbar"
+
 import Password from "../components/Login/Password";
 import ForgotPassword from "../components/ForgotPassword/ForgotPassword";
 import ResetPassword from "../components/ForgotPassword/ResetPassword";
 import ProfileUpdate from "../components/ProfileUpdate";
 
+import NotFoundPage from "../components/NotFoundPage";
 
 let router = new Router({
     mode: 'history',
@@ -160,8 +162,8 @@ let router = new Router({
         },
         {
             path: '*',
-            name: 'notFound',
-            component: GameList,
+            name: 'NotFoundPage',
+            component: NotFoundPage,
         },
     ]
 })

@@ -74,9 +74,13 @@
                                     <!-- disk condition -->
                                     <div class="form-group">
                                         <label for="DiskCondition">Disk Conditiont</label>
-                                        <select class="form-control" id="DiskCondition" v-model="form.disk_condition_id">
-                                            <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition.id" selected>{{ diskCondition.name_of_type }}</option>
-                                        </select>
+                                        <ValidationProvider name="Disk Condition" rules="required" v-slot="{ errors }">
+                                            <select class="form-control" id="DiskCondition" v-model="form.disk_condition_id">
+                                                <option value="">Please Select Disk Condition...</option>
+                                                <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition.id">{{ diskCondition.name_of_type }}</option>
+                                            </select>
+                                            <span style="color: red;">{{ errors[0] }}</span>
+                                        </ValidationProvider>
                                     </div>
                                     <!-- disk image -->
                                     <div class="form-group">
@@ -115,10 +119,14 @@
                                     <!-- Status -->
                                     <div class="form-group">
                                         <label for="status">Status</label>
-                                        <select class="form-control" id="status" v-model="form.status">
-                                            <option :value="1" >Active</option>
-                                            <option :value="0" >Disable</option>
-                                        </select>
+                                        <ValidationProvider name="Status" rules="required" v-slot="{ errors }">
+                                            <select class="form-control" id="status" v-model="form.status">
+                                                <option value="">Please Select Status...</option>
+                                                <option :value="1" >Active</option>
+                                                <option :value="0" >Disable</option>
+                                            </select>
+                                            <span style="color: red;">{{ errors[0] }}</span>
+                                        </ValidationProvider>
                                     </div>
                                     <!-- Rent submit button -->
                                     <div class="text-center rented-page-btn pt-5">
@@ -260,7 +268,11 @@
                     }
                     this.$api.post('rents', this.form, config)
                         .then(response => {
-                            this.$swal("Rent Post Uploaded!", "Rent Post Successful!", "success")
+                            this.$swal({
+                                title: "Post Uploaded!",
+                                text: "Rent Post Successful!",
+                                timer: 1500
+                            });
                             this.$router.push('dashboard').catch(err => {});
                         });
                     console.log("Store successfully");
@@ -287,25 +299,3 @@
             }
         }
     </script>
-            },
-        },
-        created() {
-            this.$api.get('games')
-                .then(response =>
-                {
-                    this.games = response.data.data
-                })
-            this.$api.get('platforms')
-                .then(response =>
-                {
-                    this.platforms = response.data.data
-                })
-
-            this.$api.get('disk-conditions')
-                .then(response =>
-                {
-                    this.diskConditions = response.data.data
-                })
-        }
-    }
-</script>

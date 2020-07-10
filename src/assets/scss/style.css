@@ -11062,7 +11062,6 @@ nav .nav-width .search form .input-group .sign-logout .sign-in-btn {
 nav .nav-width .search form .input-group .sign-logout .sign-in-btn:hover {
   background: #caa612;
   border-color: #caa612;
-  color: #000000;
 }
 
 nav .nav-width .search form .input-group .sign-logout .sign-in-btn:active {
@@ -11100,6 +11099,7 @@ nav .nav-width .search form .input-group .sign-logout .log-out .sign-out {
   padding: .3rem;
   -webkit-transition: all .3s ease-in;
   transition: all .3s ease-in;
+  cursor: pointer;
 }
 
 nav .nav-width .search form .input-group .sign-logout .log-out .sign-out:hover {
@@ -11123,7 +11123,6 @@ nav .nav-width .search form .input-group .sign-in-btn {
 nav .nav-width .search form .input-group .sign-in-btn:hover {
   background: #caa612;
   border-color: #caa612;
-  color: #000000;
 }
 
 nav .nav-width .search form .input-group .sign-in-btn:active {
@@ -12890,6 +12889,10 @@ footer .footer-width p span {
   background-size: 200% 200%;
 }
 
+.sign-in .sign-in-width .card button.sign-in-option-btn i {
+  margin-left: .5rem;
+}
+
 .sign-in .sign-in-width .card form {
   width: 50%;
   margin: auto;
@@ -12918,7 +12921,7 @@ footer .footer-width p span {
   padding-top: 6px;
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  width: 45px;
+  width: 50px;
   padding-left: 5px;
 }
 
@@ -12996,7 +12999,7 @@ footer .footer-width p span {
 }
 
 .sign-in .sign-in-width .card form .form-group input.country-number {
-  padding-left: 3rem;
+  padding-left: 3.5rem;
   font-size: 18px;
   font-weight: normal;
 }
@@ -13184,6 +13187,16 @@ footer .footer-width p span {
   margin-top: 6px;
   margin-left: 10px;
   font-size: 18px;
+}
+
+.sign-in .sign-in-width .card form .form-group .error-message {
+  color: red;
+  font-size: 14px;
+}
+
+.sign-in .sign-in-width .card form .form-group .success-message {
+  color: green;
+  font-size: 14px;
 }
 
 .sign-in .sign-in-width .card form .otpbtn {

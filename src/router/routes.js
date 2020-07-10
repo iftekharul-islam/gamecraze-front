@@ -23,6 +23,7 @@ import GameEdit from "../components/admin/GameEdit";
 import Password from "../components/login_registration/Password";
 import ForgotPassword from "../components/forgot_password/ForgotPassword";
 import NotFoundPage from "../components/NotFoundPage";
+import RentView from "../components/RentView";
 
 
 let router = new Router({
@@ -139,6 +140,15 @@ let router = new Router({
             component: Dashboard,
             meta: {
                 requiresAuth: true
+            }
+        },
+        {
+            path: '/rent-view/:id/:slug',
+            name: 'RentView',
+            component: RentView,
+            props: true,
+            meta: {
+                requiresAuth: false
             }
         },
         {

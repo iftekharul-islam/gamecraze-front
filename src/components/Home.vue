@@ -144,8 +144,7 @@
 
                     <div class="item" v-for="(game,index) in popularGames" :key="index">
                         <div class="card" >
-                            <a href="#"><img class="card-img-top" :src="game.background_image" alt="doom"></a>
-
+                            <a href="#"><img class="card-img-top" url="game.background_image" alt="doom"></a>
                         </div>
                     </div>
                 </div>
@@ -178,47 +177,16 @@
                             <h2>More Rented</h2>
                         </div>
                         <div class="owl-carousel-four owl-carousel owl-theme">
-                            <div class="item">
+                            <div class="item" v-for="(rent,index) in rents" :key="index">
                                 <div class="card" >
-                                    <img class="card-img-top" src="../assets/img/rented/dark-soul.png" alt="wwe">
+                                    <img class="card-img-top" :src="rent.game.data.assets.data[0].url" alt="wwe" v-if="rent.game.data.assets.data.length">
+                                    <img class="card-img-top" src="../assets/img/rented/grid.png" alt="wwe" v-else>
                                     <div class="card-body">
-                                        <h4 class="mb-2 game-name text-center">Dark Souls ||| Fullsound track</h4>
+                                        <h4 class="mb-2 game-name text-center">{{ rent.game.data.name }}</h4>
                                     </div>
                                     <div class="view-more-btn text-center pb-4">
-                                        <a href="#" class="btn btn-dark">View More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="card" >
-                                    <img class="card-img-top" src="../assets/img/rented/empire.png" alt="wwe">
-                                    <div class="card-body">
-                                        <h4 class="mb-2 game-name text-center">Empire of Sin</h4>
-                                    </div>
-                                    <div class="view-more-btn text-center pb-4">
-                                        <a href="#" class="btn btn-dark">View More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="card" >
-                                    <img class="card-img-top" src="../assets/img/rented/fallout.png" alt="wwe">
-                                    <div class="card-body">
-                                        <h4 class="mb-2 game-name text-center">Fallout</h4>
-                                    </div>
-                                    <div class="view-more-btn text-center pb-4">
-                                        <a href="#" class="btn btn-dark">View More</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="card" >
-                                    <img class="card-img-top" src="../assets/img/rented/grid.png" alt="wwe">
-                                    <div class="card-body">
-                                        <h4 class="mb-2 game-name text-center">Greed Fall</h4>
-                                    </div>
-                                    <div class="view-more-btn text-center pb-4">
-                                        <a href="#" class="btn btn-dark">View More</a>
+<!--                                        <a href="#" class="btn btn-dark">View More</a>-->
+                                        <router-link :to="{ path: 'rent-view/' + rent.id + '/' + rent.game.data.slug}" v-bind:tooltip="rent.id" append><a class="btn btn-dark">Read more</a></router-link>
                                     </div>
                                 </div>
                             </div>
@@ -415,10 +383,10 @@
                 });
             },
             getRentGames: function () {
-                this.$api.get('rents?include=game.assets').then(response => {
+                this.$api.get('rent-posts?include=game.assets').then(response => {
                     var vm = this;
                     vm.rents = response.data.data;
-                    // console.log(vm.rents);
+                    console.log(vm.rents);
                     Vue.nextTick(function(){
                         vm.carouselFour();
                     }.bind(vm));

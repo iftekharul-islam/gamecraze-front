@@ -15,7 +15,7 @@
                                         <label class="">Game Name</label>
     <!--                                    <input type="text" class="form-control" id="gameName" value="" placeholder="Game Name" required>-->
                                     <ValidationProvider name="games" rules="required" v-slot="{ errors }">
-                                        <v-select label="name" :options="games" :reduce=" game => game.id" v-model="form.game_id"></v-select>
+                                        <v-select label="name" :options="games" :reduce="game => game" v-model="form.game"></v-select>
                                         <span style="color: red;">{{ errors[0] }}</span>
                                     </ValidationProvider>
                                     </div>
@@ -39,7 +39,7 @@
                                         <label>Platform</label><br>
                                     <ValidationProvider name="Platform" rules="required" v-slot="{ errors }">
                                         <div class="form-check form-check-inline" v-for="(platform, index) in platforms" :key="index">
-                                            <input class="form-check-input" name="platform" type="radio" :value="platform.id" v-model="form.platform_id" required>
+                                            <input class="form-check-input" name="platform" type="radio" :value="platform" v-model="form.platform" required>
                                             <label class="form-check-label" >{{ platform.name }}</label>
                                         </div>
                                         <span style="color: red;">{{ errors[0] }}</span>
@@ -75,9 +75,9 @@
                                     <div class="form-group">
                                         <label for="DiskCondition">Disk Conditiont</label>
                                         <ValidationProvider name="Disk Condition" rules="required" v-slot="{ errors }">
-                                            <select class="form-control" id="DiskCondition" v-model="form.disk_condition_id">
+                                            <select class="form-control" id="DiskCondition" v-model="form.disk_condition">
                                                 <option value="">Please Select Disk Condition...</option>
-                                                <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition.id">{{ diskCondition.name_of_type }}</option>
+                                                <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }}</option>
                                             </select>
                                             <span style="color: red;">{{ errors[0] }}</span>
                                         </ValidationProvider>
@@ -140,14 +140,14 @@
                                 <!-- form -->
                                 <form>
                                     <div class="form-group">
-                                        <!-- Game anme -->
+                                        <!-- Game name -->
                                         <label class="mr-2 mt-5">Game Name:</label>
-                                        <label>{{ gamesName.name }}</label>
+                                        <label>{{ form.game.name }}</label>
                                     </div>
                                     <div class="form-group">
                                         <label class="mr-2">Disk Condition:</label>
-                                        <label class="mr-2">{{ diskConditionsName.name_of_type }}</label>
-                                        <label class="mr-2">( {{ diskConditionsName.description }} )</label>
+                                        <label class="mr-2">{{ form.disk_condition.name_of_type }}</label>
+                                        <label class="mr-2">( {{ form.disk_condition.description }} )</label>
                                     </div>
                                     <!-- date available -->
                                     <div class="form-group">
@@ -157,7 +157,7 @@
                                     <!-- platform -->
                                     <div class="form-group">
                                         <label class="mr-2">Platform:</label>
-                                        <label>{{ platformsName.name }}</label>
+                                        <label>{{ form.platform.name }}</label>
                                     </div>
                                     <!-- Rent week -->
                                     <div class="form-group">
@@ -214,15 +214,25 @@
                     platformsName: {},
                     diskConditionsName: {},
                     form: {
-                        game_id: '',
+                        game: {},
                         availability: '',
                         max_week: '',
-                        platform_id: '',
-                        disk_condition_id: '',
+                        platform: {},
+                        disk_condition: {},
                         disk_image: '',
                         cover_image: '',
                         status: '1',
-                    }
+                    },
+                    // uploadInfo: {
+                    //     game_id: this.form.game.id,
+                    //     availability: '',
+                    //     max_week: '',
+                    //     platform_id: this.form.platform.id,
+                    //     disk_condition_id: this.form.disk_condition.id,
+                    //     disk_image: '',
+                    //     cover_image: '',
+                    //     status: '1',
+                    // }
                 }
             },
             methods: {
@@ -243,30 +253,25 @@
                 },
                 onSubmit () {
                     this.rentPost = false;
-                    this.$api.get('games/' + this.form.game_id)
-                        .then (response =>
-                        {
-                            this.gamesName = response.data.data
-                            console.log(this.gamesName)
-                        })
-                    this.$api.get('platforms/' + this.form.platform_id)
-                        .then (response =>
-                        {
-                            this.platformsName = response.data.data
-                        })
-                    this.$api.get('disk-conditions/' + this.form.disk_condition_id)
-                        .then (response =>
-                        {
-                            this.diskConditionsName = response.data.data
-                        })
+                    console.log(this.form)
                 },
                 onConform () {
+                    let  uploadInfo = {
+                        game_id: this.form.game.id,
+                        availability: this.form.availability,
+                        max_week: this.form.max_week,
+                        platform_id: this.form.platform.id,
+                        disk_condition_id: this.form.disk_condition.id,
+                        disk_image: this.form.disk_image,
+                        cover_image: this.form.cover_image,
+                        status: '1',
+                    }
                     let config = {
                         headers: {
                             'Authorization': 'Bearer ' + this.$store.state.token
                         }
                     }
-                    this.$api.post('rents', this.form, config)
+                    this.$api.post('rents', uploadInfo, config)
                         .then(response => {
                             this.$swal({
                                 title: "Post Uploaded!",

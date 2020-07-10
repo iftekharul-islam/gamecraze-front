@@ -83,19 +83,7 @@
         methods: {
             onSubmit: function () {
                 this.isLoading = true
-                var config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + this.$store.state.token
-                    }
-                }
-                this.$api.put('users', this.form, config).then(response => {
-                    this.$api.get('profile', config).then(response => {
-                        localStorage.setItem('user', JSON.stringify(response.data.data))
-                        this.$store.commit('setUser', response.data.data)
-                        this.isLoading = false
-                        this.$router.push('/').catch(err => {});
-                    });
-                });
+                this.$store.dispatch('updateUserDetails', this.form)
             }
         },
 

@@ -223,16 +223,6 @@
                         cover_image: '',
                         status: '1',
                     },
-                    // uploadInfo: {
-                    //     game_id: this.form.game.id,
-                    //     availability: '',
-                    //     max_week: '',
-                    //     platform_id: this.form.platform.id,
-                    //     disk_condition_id: this.form.disk_condition.id,
-                    //     disk_image: '',
-                    //     cover_image: '',
-                    //     status: '1',
-                    // }
                 }
             },
             methods: {

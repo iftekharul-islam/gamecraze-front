@@ -2981,6 +2981,7 @@
       .card-title {
         color: $white-clr;
         @include roboto-con;
+        font-size: 2rem;
       }
       form {
         width: 70%;
@@ -3172,6 +3173,22 @@
       }
       &.no-post-found-card {
         padding: 3rem;
+      }
+      .rent-preview {
+        padding: 2rem;
+        h4 {
+          font-size: 1rem;
+          color: $white-clr;
+          margin-bottom: 1rem;
+        }
+        .disk {
+          
+          img {
+            height: 300px;
+            width: 100%;
+            object-fit: cover;
+          }
+        }
       }
     }
   }

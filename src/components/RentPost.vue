@@ -15,15 +15,15 @@
                                         <label class="">Game Name</label>
     <!--                                    <input type="text" class="form-control" id="gameName" value="" placeholder="Game Name" required>-->
                                     <ValidationProvider name="games" rules="required" v-slot="{ errors }">
-                                        <v-select label="name" :options="games" :reduce=" game => game.id" v-model="form.game_id"></v-select>
-                                        <span style="color: red;">{{ errors[0] }}</span>
+                                        <v-select label="name" :options="games" :reduce="game => game" v-model="form.game"></v-select>
+                                        <span class="text-dang">{{ errors[0] }}</span>
                                     </ValidationProvider>
                                     </div>
                                     <div class="form-group">
                                         <label for="rentedWeek" class="">Maximum rented week</label>
                                     <ValidationProvider name="rented week" rules="required" v-slot="{ errors }">
                                         <input type="number" class="form-control" id="rentedWeek" placeholder="Maximum rented week" v-model="form.max_week" required>
-                                        <span style="color: red;">{{ errors[0] }}</span>
+                                        <span class="text-dang">{{ errors[0] }}</span>
                                     </ValidationProvider>
                                     </div>
                                     <!-- date available -->
@@ -31,7 +31,7 @@
                                         <label for="rentingWeek" class="">Available from</label>
                                     <ValidationProvider name="available date" rules="required" v-slot="{ errors }">
                                         <input type="date" class="form-control" id="rentingWeek" placeholder="Maximum renting week" v-model="form.availability" required>
-                                        <span style="color: red;">{{ errors[0] }}</span>
+                                        <span class="text-dang">{{ errors[0] }}</span>
                                     </ValidationProvider>
                                     </div>
                                     <!-- platform -->
@@ -39,10 +39,10 @@
                                         <label>Platform</label><br>
                                     <ValidationProvider name="Platform" rules="required" v-slot="{ errors }">
                                         <div class="form-check form-check-inline" v-for="(platform, index) in platforms" :key="index">
-                                            <input class="form-check-input" name="platform" type="radio" :value="platform.id" v-model="form.platform_id" required>
+                                            <input class="form-check-input" name="platform" type="radio" :value="platform" v-model="form.platform" required>
                                             <label class="form-check-label" >{{ platform.name }}</label>
                                         </div>
-                                        <span style="color: red;">{{ errors[0] }}</span>
+                                        <span class="text-dang">{{ errors[0] }}</span>
                                     </ValidationProvider>
                                     </div>
                                     <!-- earning amount -->
@@ -75,11 +75,11 @@
                                     <div class="form-group">
                                         <label for="DiskCondition">Disk Conditiont</label>
                                         <ValidationProvider name="Disk Condition" rules="required" v-slot="{ errors }">
-                                            <select class="form-control" id="DiskCondition" v-model="form.disk_condition_id">
+                                            <select class="form-control" id="DiskCondition" v-model="form.disk_condition">
                                                 <option value="">Please Select Disk Condition...</option>
-                                                <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition.id">{{ diskCondition.name_of_type }}</option>
+                                                <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }}</option>
                                             </select>
-                                            <span style="color: red;">{{ errors[0] }}</span>
+                                            <span class="text-dang">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                     </div>
                                     <!-- disk image -->
@@ -125,7 +125,7 @@
                                                 <option :value="1" >Active</option>
                                                 <option :value="0" >Disable</option>
                                             </select>
-                                            <span style="color: red;">{{ errors[0] }}</span>
+                                            <span class="text-dang">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                     </div>
                                     <!-- Rent submit button -->
@@ -137,60 +137,52 @@
                             </div>
                             <div class="card" v-if="rentPost === false">
                                 <h3 class="card-title text-center">Rent Preview</h3>
-                                <!-- form -->
-                                <form>
-                                    <div class="form-group">
-                                        <!-- Game anme -->
-                                        <label class="mr-2 mt-5">Game Name:</label>
-                                        <label>{{ gamesName.name }}</label>
+                                <hr>
+                                <div class="rent-preview">
+                                    <div class="row">
+                                        <div class="col"><h4>Game Name:</h4></div>
+                                        <div class="col"><h4>{{ form.game.name }}</h4></div>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="mr-2">Disk Condition:</label>
-                                        <label class="mr-2">{{ diskConditionsName.name_of_type }}</label>
-                                        <label class="mr-2">( {{ diskConditionsName.description }} )</label>
+                                    <div class="row">
+                                        <div class="col"><h4>Disk Condition:</h4></div>
+                                        <div class="col"><h4>{{ form.disk_condition.name_of_type }} ( {{ form.disk_condition.description }} )</h4></div>
                                     </div>
-                                    <!-- date available -->
-                                    <div class="form-group">
-                                        <label class="mr-2">Available from:</label>
-                                        <label>{{ form.availability }}</label>
+                                    <div class="row">
+                                        <div class="col"><h4>Available from:</h4></div>
+                                        <div class="col"><h4>{{ form.availability }}</h4></div>
                                     </div>
-                                    <!-- platform -->
-                                    <div class="form-group">
-                                        <label class="mr-2">Platform:</label>
-                                        <label>{{ platformsName.name }}</label>
+                                    <div class="row">
+                                        <div class="col"><h4>Platform:</h4></div>
+                                        <div class="col"><h4>{{ form.platform.name }}</h4></div>
                                     </div>
-                                    <!-- Rent week -->
-                                    <div class="form-group">
-                                        <label class="mr-2">Maximum rented week:</label>
-                                        <label>{{ form.max_week }}</label>
+                                    <div class="row">
+                                        <div class="col"><h4>Maximum rented week:</h4></div>
+                                        <div class="col"><h4>{{ form.max_week }}</h4></div>
                                     </div>
-                                    <!-- Status -->
-                                    <div class="form-group">
-                                        <label class="mr-2">Status:</label>
-                                        <label v-if="form.status == 1">Active</label>
-                                        <label v-else >Inactive</label>
+                                    <div class="row">
+                                        <div class="col"><h4>Platform:</h4></div>
+                                        <div class="col"><h4>{{ form.platform.name }}</h4></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col"><h4>Status:</h4></div>
+                                        <div class="col" v-if="form.status == 1"><h4>Active</h4></div>
+                                        <div class="col" v-else><h4>Inactive</h4></div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
-                                            <!-- disk image -->
-                                            <div class="form-group">
-                                                <label >Disk Image</label>
-                                                <div class="disk-preview">
-                                                    <img :src="form.disk_image" id="disk-preview" class="img-thumbnail">
-                                                </div>
+                                            <h4>Disk image:</h4>
+                                            <div class="disk-preview disk">
+                                                <img :src="form.disk_image" id="disk-preview" class="img-thumbnail">
                                             </div>
                                         </div>
                                         <div class="col">
-                                            <!-- cover image -->
-                                            <div class="form-group">
-                                                <label>Cover Image</label>
-                                                <div class="cover-preview">
-                                                    <img :src="form.cover_image" class="img-thumbnail">
-                                                </div>
+                                            <h4>Cover image</h4>
+                                            <div class="cover-preview disk">
+                                                <img :src="form.cover_image" class="img-thumbnail">
                                             </div>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
                                 <div class="text-center rented-page-btn">
                                     <button type="button" class="btn btn-primary mb-2" @click.prevent="onConform">Confirm</button>
                                 </div>
@@ -214,15 +206,15 @@
                     platformsName: {},
                     diskConditionsName: {},
                     form: {
-                        game_id: '',
+                        game: {},
                         availability: '',
                         max_week: '',
-                        platform_id: '',
-                        disk_condition_id: '',
+                        platform: {},
+                        disk_condition: {},
                         disk_image: '',
                         cover_image: '',
                         status: '1',
-                    }
+                    },
                 }
             },
             methods: {
@@ -243,30 +235,24 @@
                 },
                 onSubmit () {
                     this.rentPost = false;
-                    this.$api.get('games/' + this.form.game_id)
-                        .then (response =>
-                        {
-                            this.gamesName = response.data.data
-                            console.log(this.gamesName)
-                        })
-                    this.$api.get('platforms/' + this.form.platform_id)
-                        .then (response =>
-                        {
-                            this.platformsName = response.data.data
-                        })
-                    this.$api.get('disk-conditions/' + this.form.disk_condition_id)
-                        .then (response =>
-                        {
-                            this.diskConditionsName = response.data.data
-                        })
                 },
                 onConform () {
+                    let  uploadInfo = {
+                        game_id: this.form.game.id,
+                        availability: this.form.availability,
+                        max_week: this.form.max_week,
+                        platform_id: this.form.platform.id,
+                        disk_condition_id: this.form.disk_condition.id,
+                        disk_image: this.form.disk_image,
+                        cover_image: this.form.cover_image,
+                        status: '1',
+                    }
                     let config = {
                         headers: {
                             'Authorization': 'Bearer ' + this.$store.state.token
                         }
                     }
-                    this.$api.post('rents', this.form, config)
+                    this.$api.post('rents', uploadInfo, config)
                         .then(response => {
                             this.$swal({
                                 title: "Post Uploaded!",
@@ -299,3 +285,8 @@
             }
         }
     </script>
+    <style scoped>
+        .text-dang{
+            color: red;
+        }
+    </style>

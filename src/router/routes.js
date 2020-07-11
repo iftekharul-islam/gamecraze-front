@@ -7,14 +7,14 @@ import Home from '../components/Home';
 import RentPost from '../components/RentPost';
 import Dashboard from '../components/Dashboard';
 import Game from '../components/Games';
-import Login from "../components/login_registration/Login";
-import Registration from "../components/login_registration/Registration";
+import Login from "../components/Login/Login";
+import Registration from "../components/Login/Registration";
 import GameDetails from '../components/GameDetails';
 import Search from "../components/Search";
 import Profile from "../components/Profile";
 import Categories from "../components/Categories";
 import Contacts from "../components/Contacts";
-import OTP from "../components/login_registration/OTP";
+import OTP from "../components/Login/OTP";
 import GameList from "../components/admin/GameList";
 import UploadGame from "../components/admin/UploadGame";
 // import AdminLogin from "../components/admin/AdminLogin";
@@ -24,7 +24,12 @@ import Password from "../components/login_registration/Password";
 import ForgotPassword from "../components/forgot_password/ForgotPassword";
 import NotFoundPage from "../components/NotFoundPage";
 import RentView from "../components/RentView";
+import Password from "../components/Login/Password";
+import ForgotPassword from "../components/ForgotPassword/ForgotPassword";
+import ResetPassword from "../components/ForgotPassword/ResetPassword";
+import ProfileUpdate from "../components/ProfileUpdate";
 
+import NotFoundPage from "../components/NotFoundPage";
 
 let router = new Router({
     mode: 'history',
@@ -119,8 +124,8 @@ let router = new Router({
             }
         },
         {
-            path: '/reset-password',
-            name: 'reset-password',
+            path: '/forgot-password',
+            name: 'forgot-password',
             component: ForgotPassword,
             meta: {
                 requiresAuth: false
@@ -149,6 +154,22 @@ let router = new Router({
             props: true,
             meta: {
                 requiresAuth: false
+            }
+        },
+        {
+            path: '/reset-password',
+            name: 'ResetPassword',
+            component: ResetPassword,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/update-profile',
+            name: 'UpdateProfile',
+            component: ProfileUpdate,
+            meta: {
+                requiresAuth: true
             }
         },
         {

@@ -4,7 +4,7 @@
         <section class="user-profile sign-in-bg">
             <div class="conatainer-fluid user-profile-width">
                 <div class="row">
-                    <div class=" col-xl-6 offset-xl-3 user-profile-width-padding">
+                    <div class=" col-xl-6 offset-xl-3 user-profile-width-padding pb-5">
                         <div class="card">
                             <div class="d-flex justify-content-between">
                                 <div class="current-balance">
@@ -21,28 +21,21 @@
                                       <i class="fas fa-star-half-alt"></i>
                                      </span>
                                 </div>
-                                <button type="button" class="btn btn-primary mr-4" @click.prevent="onRentPost">Post for Rent</button>
+
                             </div>
-                            <div class="user-image" v-if="user.image">
-                                <a href="#"><img :src="$gamehubStorageApi+'users/' + user.image" alt="user image"></a>
+
+                            <div class="user-image">
+                                <a v-if="!$store.state.user.image" href="#"><img src="../assets/img/profile_image4.png" alt="user image"></a>
+                                <a v-else href="#"><img :src="$gamehubStorageApi + $store.state.user.image" alt="user image"></a>
+                            </div>
+                            <div class="editprofile-btn">
+                                <button type="button" class="btn btn-primary mr-4" @click.prevent="onRentPost">Post for Rent</button>
+                                <button type="button" class="btn btn-primary mr-4" @click.prevent="onUpdateProfile">Update Profile</button>
                             </div>
                             <div class="user-details">
-                                <!-- tabs -->
-                                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link active" id="about-tab" data-toggle="tab" href="#about" role="tab" aria-controls="about" aria-selected="true">About</a>
-                                    </li>
-<!--                                    <li class="nav-item" role="presentation">-->
-<!--                                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>-->
-<!--                                    </li>-->
-                                    <li class="nav-item" role="presentation">
-                                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                                    </li>
-                                </ul>
-                                <!-- end tabs -->
-                                <!-- tabs content -->
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="about" role="tabpanel" aria-labelledby="about-tab">
+                                <h3 class="mb-5 text-light">Profile Info</h3>
+                                <div class="profile-view" id="myTabContent">
+
                                         <table class="table table-borderless">
                                             <tbody>
                                             <tr>
@@ -57,13 +50,6 @@
                                                 <th scope="row">Date of Birth</th>
                                                 <td>{{ user.birth_date }}</td>
                                             </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-<!--                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>-->
-                                    <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                                        <table class="table table-borderless">
-                                            <tbody>
                                             <tr>
                                                 <th scope="row">Email</th>
                                                 <td>{{ user.email }}</td>
@@ -82,7 +68,9 @@
                                             </tr>
                                             </tbody>
                                         </table>
-                                    </div>
+
+<!--                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>-->
+
                                 </div>
                             </div>
                             <div class="recharge">
@@ -119,6 +107,9 @@
         methods: {
             onRentPost() {
                 this.$router.push('/rent-post').catch(err => {});
+            },
+            onUpdateProfile() {
+                this.$router.push('/update-profile').catch(err => {});
             }
         },
         created() {

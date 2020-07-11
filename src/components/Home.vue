@@ -144,7 +144,7 @@
 
                     <div class="item" v-for="(game,index) in popularGames" :key="index">
                         <div class="card" >
-                            <a href="#"><img class="card-img-top" url="game.background_image" alt="doom"></a>
+                            <a href="#"><img class="card-img-top" :src="game.background_image" alt="doom"></a>
                         </div>
                     </div>
                 </div>

@@ -74,7 +74,7 @@
             }
         },
         name: "RentView",
-        mounted() {
+        mounted () {
             console.log(this.$route.params.id)
             this.$api.get('rents/' + this.$route.params.id + '?include=diskCondition,game,platform')
                 .then (response =>
@@ -82,6 +82,11 @@
                     this.rent = response.data.data
                     console.log(this.rent);
                 })
+        },
+        methods: {
+            onConform () {
+                console.log('hi Koushik babu!!!!')
+            }
         }
     }
 </script>

@@ -12,7 +12,6 @@ import Registration from "../components/Login/Registration";
 import GameDetails from '../components/GameDetails';
 import Search from "../components/Search";
 import Profile from "../components/Profile";
-import Categories from "../components/Categories";
 import Contacts from "../components/Contacts";
 import OTP from "../components/Login/OTP";
 import GameList from "../components/admin/GameList";
@@ -27,6 +26,7 @@ import ResetPassword from "../components/ForgotPassword/ResetPassword";
 import ProfileUpdate from "../components/ProfileUpdate";
 
 import NotFoundPage from "../components/NotFoundPage";
+import AddToCart from "../components/AddToCart";
 
 let router = new Router({
     mode: 'history',
@@ -74,9 +74,9 @@ let router = new Router({
             }
         },
         {
-            path: '/categories',
-            name: 'Category',
-            component: Categories,
+            path: '/add-to-cart',
+            name: 'AddToCart',
+            component: AddToCart,
             meta: {
                 requiresAuth: false
             }

@@ -22,9 +22,6 @@
                                 <router-link class="nav-link active router_link" to="/">Home</router-link>
                             </li>
                             <li class="nav-item mr-3 for-active">
-                                <router-link class="router_link" to="/categories">Categories</router-link>
-                            </li>
-                            <li class="nav-item mr-3 for-active">
                                 <router-link class="router_link" to="games">Games</router-link>
                             </li>
                             <li class="nav-item mr-3 for-active">

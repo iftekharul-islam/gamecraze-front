@@ -2,9 +2,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 // variables
-@import "variables.scss";
+@import "_variables.scss";
 // media queries
-@import "mediaQueries.scss";
+@import "_mediaQueries.scss";
 // bootstrap
 @import "../../../node_modules/bootstrap-scss/bootstrap.scss";
 @mixin roboto {
@@ -3228,6 +3228,208 @@
 .contant_box_404 {
 	margin-top: -50px;
 }
+// Game page 
+.game-page {
+  .game-page-width {
+    width:85%;
+    form {
+      border: 1px solid $sign-in-form;
+      padding: 10px;
+      fieldset {
+        h4 {
+          color: $white-clr;
+          text-transform: capitalize;
+          font-size: 20px;
+          font-weight: 600;
+          
+        }
+        .checkbox {
+          // custom checkbox
+          &.custom-control {
+            margin-bottom: 10px;
+            color: $white-clr;
+            label {
+              color:$description-clr;
+              cursor: pointer;
+              &::before {
+                background: transparent;
+                border-radius: 0;
+                border: 2px solid $sign-in-form;
+                width: 20px;
+                height: 20px;
+                box-shadow: none !important;
+                &:focus {
+                  box-shadow: none;
+                  outline: none;
+                }
+              }
+              }
+            }
+            .custom-control-input {
+              cursor: pointer;
+              // z-index: 1;
+              // opacity: 1;
+              &:checked {
+                &~.custom-control-label {
+                  &::before {
+                    background-color:$white-clr !important;
+                    border-color: $white-clr;
+                  }
+                }
+              }
+            }
+            .custom-control-input {
+              &:checked {
+                &~.custom-control-label {
+                  &::after {
+                    background: url(../img/check.png);
+                    background-size: 14px 11px;
+                    background-repeat: no-repeat;
+                    background-position: 3px 4px;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .cate-reset {
+          background: $cate-reset-btn;
+          padding: 5px 15px;
+          color: $white-clr;
+          border: none;
+          &:focus {
+            outline: none;
+          }
+        }
+      }
+    // Game content
+.game-content {
+    text-align: justify;
+    position: relative;
+    height: 100%;
+    padding-bottom: 5rem;
+.game-show {
+ .card {
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 1rem;
+    background: transparent;
+    @include transition-3;
+    box-shadow: 0px 0px 10px 1px rgb(23, 162, 184);
+   
+   h4 {
+     color: $white-clr;
+     font-size: 13px;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-top: 1rem;
+    @include roboto-con;
+    text-align: initial;
+    font-size:1.2rem;
+   }
+   p {
+     color: $white-clr;
+     @include roboto-con;
+     &.game-brands {
+      color: $description-clr;
+      font-size: 14px;
+    }
+    &.pegi-ratings {
+     margin-bottom: 0;
+     font-size: 15px;
+     @include roboto-con;
+    }
+    &.star {
+      margin-top:5px;
+    }
+   }
+   .game-cart {
+     opacity: 0;
+     @include transition-3;
+     a {
+       padding: .5rem 2rem;
+       border-radius: 25px;
+     }
+   }
+   img {
+    border-radius: 10px;
+   }
+   &:hover {
+     background: $sign-in-form;
+     cursor: pointer;
+     box-shadow:none;
+     .game-cart {
+       opacity: 1;
+     }
+   }
+ }
+}
+.fail-message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: 150ms;
+  -moz-transition: 150ms;
+  transition: 150ms;
+  &:before {
+    content: '';
+    display: inline-block;
+    vertical-align: middle;
+    height: 100%;
+  }
+  span {
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 20px;
+    font-weight: 700;
+    color: $white-clr;
+  }
+}
+.category-pagi {
+  position: absolute;
+  bottom: 0;
+  right:0;
+  margin-bottom: 1rem;
+  ul {
+    li {
+      margin-right: 1rem;
+      &:last-child {
+        margin-right: 0;
+      }
+      a {
+        background:transparent;
+        border-radius: 0;
+        color: $white-clr;
+        border-color: $sign-in-form;
+        @include transition-3;
+        &:hover {
+          background: $white-clr;
+          color: $black-clr;
+          border-color: $white-clr;
+        }
+        span {
+          i {
+          }
+        }
+      }
+    }
+  }
+}
+}
+#category-content.fail {
+.fail-message {
+  opacity: 1;
+  pointer-events: auto;
+}
+}
+  }
+}
 
 // Media queries --->
 
@@ -3768,9 +3970,9 @@ padding: 0 !important;
       }
     }
   }
- // category
- .category {
-  .category-width {
+ // Game page
+ .game-page {
+  .game-page-width {
     width: 100%;
   }
 }
@@ -5607,8 +5809,8 @@ nav {
   }
 }
 // category
-.category {
-  .category-width {
+.game-page {
+  .game-page-width {
    form {
      .filter-category {
        display: grid;
@@ -6224,8 +6426,8 @@ nav {
   }
 }
 // category
-.category {
-  .category-width {
+.game-page {
+  .game-page-width {
     form {
       .filter-category {
         fieldset {
@@ -6247,6 +6449,9 @@ nav {
                 }
               }
             }
+          }
+          h4 {
+            font-size:16px;
           }
         }
       }

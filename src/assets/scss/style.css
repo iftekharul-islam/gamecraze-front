@@ -14626,6 +14626,214 @@ footer .footer-width p span {
   margin-top: -50px;
 }
 
+.game-page .game-page-width {
+  width: 85%;
+}
+
+.game-page .game-page-width form {
+  border: 1px solid #222f5e;
+  padding: 10px;
+}
+
+.game-page .game-page-width form fieldset h4 {
+  color: #ffffff;
+  text-transform: capitalize;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.game-page .game-page-width form fieldset .checkbox.custom-control {
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.game-page .game-page-width form fieldset .checkbox.custom-control label {
+  color: #cfced2;
+  cursor: pointer;
+}
+
+.game-page .game-page-width form fieldset .checkbox.custom-control label::before {
+  background: transparent;
+  border-radius: 0;
+  border: 2px solid #222f5e;
+  width: 20px;
+  height: 20px;
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.game-page .game-page-width form fieldset .checkbox.custom-control label::before:focus {
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  outline: none;
+}
+
+.game-page .game-page-width form fieldset .checkbox .custom-control-input {
+  cursor: pointer;
+}
+
+.game-page .game-page-width form fieldset .checkbox .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: #ffffff !important;
+  border-color: #ffffff;
+}
+
+.game-page .game-page-width form fieldset .checkbox .custom-control-input:checked ~ .custom-control-label::after {
+  background: url(../img/check.png);
+  background-size: 14px 11px;
+  background-repeat: no-repeat;
+  background-position: 3px 4px;
+}
+
+.game-page .game-page-width form .cate-reset {
+  background: #336671;
+  padding: 5px 15px;
+  color: #ffffff;
+  border: none;
+}
+
+.game-page .game-page-width form .cate-reset:focus {
+  outline: none;
+}
+
+.game-page .game-page-width .game-content {
+  text-align: justify;
+  position: relative;
+  height: 100%;
+  padding-bottom: 5rem;
+}
+
+.game-page .game-page-width .game-content .game-show .card {
+  height: 100%;
+  border: none;
+  border-radius: 10px;
+  padding: 1rem;
+  background: transparent;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+  -webkit-box-shadow: 0px 0px 10px 1px #17a2b8;
+          box-shadow: 0px 0px 10px 1px #17a2b8;
+}
+
+.game-page .game-page-width .game-content .game-show .card h4 {
+  color: #ffffff;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-top: 1rem;
+  font-family: 'Roboto Condensed', sans-serif;
+  text-align: initial;
+  font-size: 1.2rem;
+}
+
+.game-page .game-page-width .game-content .game-show .card p {
+  color: #ffffff;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.game-page .game-page-width .game-content .game-show .card p.game-brands {
+  color: #cfced2;
+  font-size: 14px;
+}
+
+.game-page .game-page-width .game-content .game-show .card p.pegi-ratings {
+  margin-bottom: 0;
+  font-size: 15px;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+
+.game-page .game-page-width .game-content .game-show .card p.star {
+  margin-top: 5px;
+}
+
+.game-page .game-page-width .game-content .game-show .card .game-cart {
+  opacity: 0;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
+.game-page .game-page-width .game-content .game-show .card .game-cart a {
+  padding: .5rem 2rem;
+  border-radius: 25px;
+}
+
+.game-page .game-page-width .game-content .game-show .card img {
+  border-radius: 10px;
+}
+
+.game-page .game-page-width .game-content .game-show .card:hover {
+  background: #222f5e;
+  cursor: pointer;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.game-page .game-page-width .game-content .game-show .card:hover .game-cart {
+  opacity: 1;
+}
+
+.game-page .game-page-width .game-content .fail-message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: 150ms;
+  transition: 150ms;
+}
+
+.game-page .game-page-width .game-content .fail-message:before {
+  content: '';
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+
+.game-page .game-page-width .game-content .fail-message span {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.game-page .game-page-width .game-content .category-pagi {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin-bottom: 1rem;
+}
+
+.game-page .game-page-width .game-content .category-pagi ul li {
+  margin-right: 1rem;
+}
+
+.game-page .game-page-width .game-content .category-pagi ul li:last-child {
+  margin-right: 0;
+}
+
+.game-page .game-page-width .game-content .category-pagi ul li a {
+  background: transparent;
+  border-radius: 0;
+  color: #ffffff;
+  border-color: #222f5e;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
+.game-page .game-page-width .game-content .category-pagi ul li a:hover {
+  background: #ffffff;
+  color: #000000;
+  border-color: #ffffff;
+}
+
+.game-page .game-page-width #category-content.fail .fail-message {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 @media (max-width: 1800px) {
   .exchange-section .exchange-width .card {
     margin-right: 0 !important;
@@ -14956,7 +15164,7 @@ footer .footer-width p span {
   .user-profile .user-profile-width .row {
     margin-right: 0;
   }
-  .category .category-width {
+  .game-page .game-page-width {
     width: 100%;
   }
   .rented-page .rented-page-width {
@@ -16118,7 +16326,7 @@ footer .footer-width p span {
   .user-profile .user-profile-width .user-profile-width-padding .card .rating h5 {
     font-size: 16px;
   }
-  .category .category-width form .filter-category {
+  .game-page .game-page-width form .filter-category {
     display: -ms-grid;
     display: grid;
     -ms-grid-columns: 1fr 1fr;
@@ -16559,16 +16767,19 @@ footer .footer-width p span {
   .user-profile .user-profile-width .user-profile-width-padding .card .user-details .profile-view table tbody tr th {
     width: 160px;
   }
-  .category .category-width form .filter-category fieldset .custom-control label {
+  .game-page .game-page-width form .filter-category fieldset .custom-control label {
     font-size: 12px;
   }
-  .category .category-width form .filter-category fieldset .custom-control label::before {
+  .game-page .game-page-width form .filter-category fieldset .custom-control label::before {
     width: 15px;
     height: 15px;
   }
-  .category .category-width form .filter-category fieldset .custom-control .custom-control-input:checked ~ .custom-control-label::after {
+  .game-page .game-page-width form .filter-category fieldset .custom-control .custom-control-input:checked ~ .custom-control-label::after {
     background-size: 11px 9px;
     background-position: 2px 1px;
+  }
+  .game-page .game-page-width form .filter-category fieldset h4 {
+    font-size: 16px;
   }
 }
 /*# sourceMappingURL=style.css.map */

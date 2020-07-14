@@ -1,486 +1,127 @@
 <template>
     <div>
         <!-- Category  -->
-        <section class="category sign-in-bg pt-4">
-            <div class="container-fluid category-width">
-                <div class="row m-0">
-                    <div class="col-lg-3 col-xl-2">
-                        <!-- new category -->
-                        <form class="controls" id="Filters">
-                            <div class="filter-category">
-                                <fieldset class="mb-4 category-1">
-                                    <h4>select category</h4>
-                                    <div v-for="(category, index) in categories" :key="index" class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" :id="category + '-game'" :value="category" v-model="checkedCategories"/>
-                                        <label class="custom-control-label" :for="category + '-game'">{{ category }}</label>
-                                    </div>
-<!--                                    <div class="checkbox custom-control custom-checkbox">-->
-<!--                                        <input type="checkbox" class="custom-control-input" id="adventure-game" value=".adventure"/>-->
-<!--                                        <label class="custom-control-label" for="adventure-game">Adventure</label>-->
-<!--                                    </div>-->
-<!--                                    <div class="checkbox custom-control custom-checkbox">-->
-<!--                                        <input type="checkbox" class="custom-control-input" id="arcade-game" value=".arcade"/>-->
-<!--                                        <label class="custom-control-label" for="arcade-game">Arcade</label>-->
-<!--                                    </div>-->
-<!--                                    <div class="checkbox custom-control custom-checkbox">-->
-<!--                                        <input type="checkbox" class="custom-control-input" id="music-game" value=".music"/>-->
-<!--                                        <label class="custom-control-label" for="music-game">Music & Dance</label>-->
-<!--                                    </div>-->
-<!--                                    <div class="checkbox custom-control custom-checkbox">-->
-<!--                                        <input type="checkbox" class="custom-control-input" id="racing-game" value=".racing"/>-->
-<!--                                        <label class="custom-control-label" for="racing-game">Racing</label>-->
-<!--                                    </div>-->
-<!--                                    <div class="checkbox custom-control custom-checkbox">-->
-<!--                                        <input type="checkbox" class="custom-control-input" id="role-playing-game" value=".role-playing"/>-->
-<!--                                        <label class="custom-control-label" for="role-playing-game">Role Playing</label>-->
-<!--                                    </div>-->
-<!--                                    <div class="checkbox custom-control custom-checkbox">-->
-<!--                                        <input type="checkbox" class="custom-control-input" id="simulation-game" value=".simulation"/>-->
-<!--                                        <label class="custom-control-label" for="simulation-game">Simulation</label>-->
-<!--                                    </div>-->
-<!--                                    <div class="checkbox custom-control custom-checkbox">-->
-<!--                                        <input type="checkbox" class="custom-control-input" id="sports-game" value=".sports"/>-->
-<!--                                        <label class="custom-control-label" for="sports-game">Sports</label>-->
-<!--                                    </div>-->
-<!--                                    <div class="checkbox custom-control custom-checkbox">-->
-<!--                                        <input type="checkbox" class="custom-control-input" id="strategy-game" value=".strategy"/>-->
-<!--                                        <label class="custom-control-label" for="strategy-game">Strategy</label>-->
-<!--                                    </div>-->
-                                </fieldset>
-
-                                <fieldset class="mb-4 category-2">
-                                    <h4>select brands</h4>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="sony-game" value=".sony"/>
-                                        <label class="custom-control-label" for="sony-game">Sony</label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="rockstar-game" value=".rockstar"/>
-                                        <label class="custom-control-label" for="rockstar-game">Rockstar Game</label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="ea-game" value=".ea"/>
-                                        <label class="custom-control-label" for="ea-game">EA</label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="2k-game" value=".2k"/>
-                                        <label class="custom-control-label" for="2k-game">2k Games</label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="electronic-game" value=".electronic"/>
-                                        <label class="custom-control-label" for="electronic-game">Electronic Arts</label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="activision-game" value=".activision"/>
-                                        <label class="custom-control-label" for="activision-game">Activision </label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="ubi-soft-game" value=".ubi-soft"/>
-                                        <label class="custom-control-label" for="ubi-soft-game">UBI Soft</label>
-                                    </div>
-                                </fieldset>
-
-                                <fieldset class="mb-4 category-3">
-                                    <h4>PEGI Rating</h4>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="3-yrs-game" value=".3-yrs"/>
-                                        <label class="custom-control-label" for="3-yrs-game">3 years and over</label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="7-yrs-game" value=".7-yrs"/>
-                                        <label class="custom-control-label" for="7-yrs-game">7 years and over</label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="16-yrs-game" value=".16-yrs"/>
-                                        <label class="custom-control-label" for="16-yrs-game">16 years and over</label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="18-yrs-game" value=".18-yrs"/>
-                                        <label class="custom-control-label" for="18-yrs-game">18 years and over</label>
-                                    </div>
-                                </fieldset>
-
-                                <fieldset class="mb-4 category-4">
-                                    <h4>Avg. Customer Review</h4>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="1str-game" value=".1str"/>
-                                        <label class="custom-control-label" for="1str-game">
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            & up
-                                        </label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="2str-game" value=".2str"/>
-                                        <label class="custom-control-label" for="2str-game">
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            & up
-                                        </label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="3str-game" value=".3str"/>
-                                        <label class="custom-control-label" for="3str-game">
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            & up
-                                        </label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="4str-game" value=".4str"/>
-                                        <label class="custom-control-label" for="4str-game">
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star"></i>
-                                            & up
-                                        </label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="5str-game" value=".5str"/>
-                                        <label class="custom-control-label" for="5str-game">
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            & up
-                                        </label>
-                                    </div>
-                                </fieldset>
-                            </div>
-                            <button class="cate-reset" id="Reset">Clear Filters</button>
-                        </form>
+         <!-- Cart  -->
+  <section class="cart sign-in-bg pt-4">
+    <div class="container-fluid cart-width">
+      <main class="pb-5">
+        <div class="basket">
+         
+          <div class="basket-labels">
+            <table class="table table-borderless">
+              <thead>
+                <tr>
+                  <th scope="col" class="item item-heading">Item</th>
+                  <th scope="col" class="price">Price</th>
+                  <th scope="col" class="quantity">Quantity</th>
+                  <th scope="col" class="subtotal">Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="basket-product">
+                  <th scope="row" class="item">
+                   <div class="item-product">
+                    <div class="product-image">
+                      <img src="../assets/img/selling/jedi-fallen.jpg" alt="Placholder Image 2" class="product-frame img-fluid">
                     </div>
-                    <div class="col-lg-9 col-xl-10">
-                        <div id="category-content" class="">
-                            <div class="fail-message"><span class="">No items were found matching the selected filters</span></div>
-
-                            <div class="category-show">
-                                <div v-for="(game,index) in filteredGames" :key="index">
-                                    <div class="card">
-                                        <router-link :to="{ name: 'GameDetails', params: {gameId: game.id }}">
-                                        <img :src="$gamehubStorageApi +'games/'+ game.assets.data[0].name" class="card-img-top" alt="Fifa-20">
-                                        <h4 class="game-name">{{ game.name }}</h4>
-                                        </router-link>
-                                        <p class="gamte-brands"><span v-for="(genre,index) in game.genres.data" :key="index">{{genre.name}}<span class="mr-1" v-if="index < game.genres.data.length-1">,</span></span></p>
-                                        <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>
-                                        <p class="star">
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star"></i>
-                                            <span class="star-color ml-3">178</span>
-                                        </p>
-                                        <div class="text-center category-cart">
-                                            <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>
-                                        </div>
-                                    </div>
-                                </div>
-<!--                                <div class="mix ea sports">-->
-<!--                                    <div class="card">-->
-<!--                                        <img src="../assets/img/friday.png" class="card-img-top" alt="friday">-->
-<!--                                        <h4 class="game-name">Friday The 13</h4>-->
-<!--                                        <p class="gamte-brands">Action</p>-->
-<!--                                        <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>-->
-<!--                                        <p class="star">-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star"></i>-->
-<!--                                            <span class="star-color">178</span>-->
-<!--                                        </p>-->
-<!--                                        <div class="text-center category-cart">-->
-<!--                                            <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="mix ea sports">-->
-<!--                                    <div class="card">-->
-<!--                                        <img src="../assets/img/friday.png" class="card-img-top" alt="friday">-->
-<!--                                        <h4 class="game-name">Friday The 13</h4>-->
-<!--                                        <p class="gamte-brands">Action</p>-->
-<!--                                        <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>-->
-<!--                                        <p class="star">-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star"></i>-->
-<!--                                            <span class="star-color">178</span>-->
-<!--                                        </p>-->
-<!--                                        <div class="text-center category-cart">-->
-<!--                                            <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="mix ea sports">-->
-<!--                                    <div class="card">-->
-<!--                                        <img src="../assets/img/friday.png" class="card-img-top" alt="friday">-->
-<!--                                        <h4 class="game-name">Friday The 13</h4>-->
-<!--                                        <p class="gamte-brands">Action</p>-->
-<!--                                        <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>-->
-<!--                                        <p class="star">-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-
-<!--                                            <i class="fas fa-star"></i>-->
-<!--                                            <span class="star-color">178</span>-->
-<!--                                        </p>-->
-<!--                                        <div class="text-center category-cart">-->
-<!--                                            <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="mix ea sports">-->
-<!--                                    <div class="card">-->
-<!--                                        <img src="../assets/img/friday.png" class="card-img-top" alt="friday">-->
-<!--                                        <h4 class="game-name">Friday The 13</h4>-->
-<!--                                        <p class="gamte-brands">Action</p>-->
-<!--                                        <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>-->
-<!--                                        <p class="star">-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star"></i>-->
-<!--                                            <span class="star-color">178</span>-->
-<!--                                        </p>-->
-<!--                                        <div class="text-center category-cart">-->
-<!--                                            <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="mix ea sports">-->
-<!--                                    <div class="card">-->
-<!--                                        <img src="../assets/img/friday.png" class="card-img-top" alt="friday">-->
-<!--                                        <h4 class="game-name">Friday The 13</h4>-->
-<!--                                        <p class="gamte-brands">Action</p>-->
-<!--                                        <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>-->
-<!--                                        <p class="star">-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star"></i>-->
-<!--                                            <span class="star-color">178</span>-->
-<!--                                        </p>-->
-<!--                                        <div class="text-center category-cart">-->
-<!--                                            <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="mix ea sports">-->
-<!--                                    <div class="card">-->
-<!--                                        <img src="../assets/img/friday.png" class="card-img-top" alt="friday">-->
-<!--                                        <h4 class="game-name">Friday The 13</h4>-->
-<!--                                        <p class="gamte-brands">Action</p>-->
-<!--                                        <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>-->
-<!--                                        <p class="star">-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star"></i>-->
-<!--                                            <span class="star-color">178</span>-->
-<!--                                        </p>-->
-<!--                                        <div class="text-center category-cart">-->
-<!--                                            <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="mix ea sports">-->
-<!--                                    <div class="card">-->
-<!--                                        <img src="../assets/img/friday.png" class="card-img-top" alt="friday">-->
-<!--                                        <h4 class="game-name">Friday The 13</h4>-->
-<!--                                        <p class="gamte-brands">Action</p>-->
-<!--                                        <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>-->
-<!--                                        <p class="star">-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star"></i>-->
-<!--                                            <span class="star-color">178</span>-->
-<!--                                        </p>-->
-<!--                                        <div class="text-center category-cart">-->
-<!--                                            <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="mix ea sports">-->
-<!--                                    <div class="card">-->
-<!--                                        <img src="../assets/img/friday.png" class="card-img-top" alt="friday">-->
-<!--                                        <h4 class="game-name">Friday The 13</h4>-->
-<!--                                        <p class="gamte-brands">Action</p>-->
-<!--                                        <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>-->
-<!--                                        <p class="star">-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star"></i>-->
-<!--                                            <span class="star-color">178</span>-->
-<!--                                        </p>-->
-<!--                                        <div class="text-center category-cart">-->
-<!--                                            <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="mix ea sports">-->
-<!--                                    <div class="card">-->
-<!--                                        <img src="../assets/img/friday.png" class="card-img-top" alt="friday">-->
-<!--                                        <h4 class="game-name">Friday The 13</h4>-->
-<!--                                        <p class="gamte-brands">Action</p>-->
-<!--                                        <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>-->
-<!--                                        <p class="star">-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star"></i>-->
-<!--                                            <span class="star-color">178</span>-->
-<!--                                        </p>-->
-<!--                                        <div class="text-center category-cart">-->
-<!--                                            <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="mix ea sports">-->
-<!--                                    <div class="card">-->
-<!--                                        <img src="../assets/img/friday.png" class="card-img-top" alt="friday">-->
-<!--                                        <h4 class="game-name">Friday The 13</h4>-->
-<!--                                        <p class="gamte-brands">Action</p>-->
-<!--                                        <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>-->
-<!--                                        <p class="star">-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star"></i>-->
-<!--                                            <span class="star-color">178</span>-->
-<!--                                        </p>-->
-<!--                                        <div class="text-center category-cart">-->
-<!--                                            <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="mix ea sports">-->
-<!--                                    <div class="card">-->
-<!--                                        <img src="../assets/img/friday.png" class="card-img-top" alt="friday">-->
-<!--                                        <h4 class="game-name">Friday The 13</h4>-->
-<!--                                        <p class="gamte-brands">Action</p>-->
-<!--                                        <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>-->
-<!--                                        <p class="star">-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star"></i>-->
-<!--                                            <span class="star-color">178</span>-->
-<!--                                        </p>-->
-<!--                                        <div class="text-center category-cart">-->
-<!--                                            <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="mix ea sports">-->
-<!--                                    <div class="card">-->
-<!--                                        <img src="../assets/img/friday.png" class="card-img-top" alt="friday">-->
-<!--                                        <h4 class="game-name">Friday The 13</h4>-->
-<!--                                        <p class="gamte-brands">Action</p>-->
-<!--                                        <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>-->
-<!--                                        <p class="star">-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star"></i>-->
-<!--                                            <span class="star-color">178</span>-->
-<!--                                        </p>-->
-<!--                                        <div class="text-center category-cart">-->
-<!--                                            <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="mix ea sports">-->
-<!--                                    <div class="card">-->
-<!--                                        <img src="../assets/img/friday.png" class="card-img-top" alt="friday">-->
-<!--                                        <h4 class="game-name">Friday The 13</h4>-->
-<!--                                        <p class="gamte-brands">Action</p>-->
-<!--                                        <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>-->
-<!--                                        <p class="star">-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star"></i>-->
-<!--                                            <span class="star-color">178</span>-->
-<!--                                        </p>-->
-<!--                                        <div class="text-center category-cart">-->
-<!--                                            <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                                <div class="mix ea sports">-->
-<!--                                    <div class="card">-->
-<!--                                        <img src="../assets/img/friday.png" class="card-img-top" alt="friday">-->
-<!--                                        <h4 class="game-name">Friday The 13</h4>-->
-<!--                                        <p class="gamte-brands">Action</p>-->
-<!--                                        <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>-->
-<!--                                        <p class="star">-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star star-color"></i>-->
-<!--                                            <i class="fas fa-star"></i>-->
-<!--                                            <span class="star-color">178</span>-->
-<!--                                        </p>-->
-<!--                                        <div class="text-center category-cart">-->
-<!--                                            <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-                            </div>
-                            <!-- pagination -->
-                            <nav aria-label="Page navigation example" class="category-pagi">
-                                <ul class="pagination">
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Previous">
-                                            <span aria-hidden="true"><i class="fas fa-arrow-left"></i></span>
-                                        </a>
-                                    </li>
-                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                    <li class="page-item">
-                                        <a class="page-link" href="#" aria-label="Next">
-                                            <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-
-                        </div>
+                    <div class="product-details">
+                      <h1><strong><span class="item-quantity">1</span> x Action</strong> jedi-fallen order</h1>
+                      <p>Product Code - 232321939</p>
                     </div>
-                </div>
-
+                   </div>
+                  </th>
+                  <td class="price">5000</td>
+                  <td class="quantity">
+                    <input type="number" value="1" min="1" class="quantity-field">
+                  
+                </td>
+                  <td class="subtotal">5000</td>
+                    <div class="remove-cart">
+                      <button>
+                        <i class="far fa-trash-alt"></i>
+                      </button>
+                  </div>
+                  <!-- <div class="border"></div> -->
+                </tr>
+                <tr class="basket-product">
+                  <th scope="row" class="item">
+                   <div class="item-product">
+                    <div class="product-image">
+                      <img src="../assets/img/selling/jedi-fallen.jpg" alt="Placholder Image 2" class="product-frame img-fluid">
+                    </div>
+                    <div class="product-details">
+                      <h1><strong><span class="item-quantity">1</span> x Action</strong> jedi-fallen order</h1>
+                      <p>Product Code - 232321939</p>
+                    </div>
+                   </div>
+                  </th>
+                  <td class="price">5000</td>
+                  <td class="quantity">
+                    <input type="number" value="1" min="1" class="quantity-field">                 
+                </td>
+                  <td class="subtotal">5000</td>
+                   <div class="remove-cart">
+                      <button>
+                        <i class="far fa-trash-alt"></i>
+                      </button>
+                  </div>
+                </tr>
+                 <tr class="basket-product">
+                  <th scope="row" class="item">
+                   <div class="item-product">
+                    <div class="product-image">
+                      <img src="../assets/img/selling/jedi-fallen.jpg" alt="Placholder Image 2" class="product-frame img-fluid">
+                    </div>
+                    <div class="product-details">
+                      <h1><strong><span class="item-quantity">1</span> x Action</strong> jedi-fallen order</h1>
+                      <p>Product Code - 232321939</p>
+                    </div>
+                   </div>
+                  </th>
+                  <td class="price">5000</td>
+                  <td class="quantity">
+                    <input type="number" value="1" min="1" class="quantity-field">
+                </td>
+                  <td class="subtotal">5000</td>
+                   <div class="remove-cart">
+                      <button>
+                        <i class="far fa-trash-alt"></i>
+                      </button>
+                  </div>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!--  -->
+        </div>
+        <aside>
+          <div class="summary">
+            <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
+            <div class="summary-subtotal">
+              <div class="subtotal-title">Subtotal</div>
+              <div class="subtotal-value final-value" id="basket-subtotal">5000</div>
+              <div class="summary-promo hide">
+                <div class="promo-title">Promotion</div>
+                <div class="promo-value final-value" id="basket-promo"></div>
+              </div>
             </div>
-        </section>
+            <div class="basket-module">
+              <label for="promo-code">Enter a promotional code</label>
+              <input id="promo-code" type="text" name="promo-code" maxlength="5" class="promo-code-field">
+              <button class="promo-code-cta">Apply</button>
+            </div>
+            <div class="summary-total">
+              <div class="total-title">Total</div>
+              <div class="total-value final-value" id="basket-total">5000</div>
+            </div>
+            <div class="summary-checkout">
+              <button class="checkout-cta btn btn-primary">Go to Secure Checkout</button>
+            </div>
+          </div>
+        </aside>
+      </main>
+    </div>
+  </section>
     </div>
 </template>
 

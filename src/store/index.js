@@ -6,6 +6,7 @@ import VueSwal, {swal} from 'vue-swal'
 
 export const storage = {
     state: {
+        lendWeek: null,
         searchResult: [],
         admin: null,
         signup: {
@@ -34,20 +35,23 @@ export const storage = {
         }
     },
     mutations: {
-        addToSearchResult(state, payload) {
+        setLendWeek (state, payload) {
+            state.lendWeek = payload
+        },
+        addToSearchResult (state, payload) {
             state.searchResult = payload
         },
-        setAdmin(state, payload) {
+        setAdmin (state, payload) {
             state.admin = payload
         },
-        setSignUp(state, payload) {
+        setSignUp (state, payload) {
             state.signup.name = payload.name
             state.signup.phoneNumber = payload.phone_number
         },
-        setPhoneNumber(state, payload) {
+        setPhoneNumber (state, payload) {
             state.signup.phoneNumber = payload
         },
-        setRentPostDetails(state, payload) {
+        setRentPostDetails (state, payload) {
             state.rentPostDetails = payload
         },
         authUser (state, userData) {
@@ -80,6 +84,9 @@ export const storage = {
         }
     },
     actions: {
+        setLendWeek (context, payload) {
+            context.commit('setLendWeek', payload)
+        },
         setAdmin(context, payload) {
             context.commit('setAdmin', payload)
         },

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <!-- Rented page  -->
+        <!-- Rent view page  -->
         <section class="rented-page sign-in-bg">
             <div class="game-cover-image">
                 <img width="100%" src="../assets/img/rented/rent-cover.png" alt="wwe">
@@ -8,7 +8,7 @@
             <div class="container-fluid rented-page-width">
                 <div class="row">
                     <div class="col-lg-6 offset-lg-3">
-                        <div class="card" v-if="rent">
+                        <div class="card" v-if="rentView">
                             <h2 class="card-title text-center mb-5">Rent Preview</h2>
                             <div class="rent-preview">
                                 <div class="row">
@@ -59,8 +59,36 @@
                                     <button type="button" class="btn btn-primary mb-2" @click.prevent="onConform">Confirm</button>
                                 </div>
                         </div>
+                        <div class="card" v-else>
+                            <div class="rent-preview">
+                            <div class="row">
+                                <div class="col">
+                                    <h4>Select Rent week</h4>
+                                </div>
+                                <div class="col">
+                                    <ValidationProvider name="Rent Week" rules="required" v-slot="{ errors }">
+                                        <select class="form-control" v-model="form.week">
+                                            <option value="" selected disabled>Please Select Rent Week...</option>
+                                            <option v-for="n in rent.max_number_of_week" :value="n">For {{n}} Week</option>
+                                        </select>
+                                        <span class="text-dang">{{ errors[0] }}</span>
+                                    </ValidationProvider>
+                                </div>
+                            </div>
+                            <div class="row mt-5">
+                                <div class="col">
+                                    <h4>Rent Available from</h4>
+                                </div>
+                                <div class="col"><h4>{{ rent.availability_from_date }}</h4></div>
+                            </div>
+                            <div class="text-center rented-page-btn mt-5">
+                                <router-link :to="{ path: '/add-to-cart'}" v-bind:tooltip="rent.id" append><a class="btn btn-primary mb-2 text-white" @click="onConform"> Add to Cart<i class="fas fa-cart-plus"></i></a></router-link>
+<!--                                <button type="button" class="btn btn-primary mb-2" @click.prevent="onConform">Add to Cart <i class="fas fa-cart-plus"></i></button>-->
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
             </div>
         </section>
     </div>
@@ -70,7 +98,11 @@
     export default {
         data () {
             return {
+                rentView: true,
                 rent: null,
+                form: {
+                    week: '',
+                },
             }
         },
         name: "RentView",
@@ -85,7 +117,11 @@
         },
         methods: {
             onConform () {
-                console.log('hi Koushik babu!!!!')
+                this.rentView = false,
+                    this.$store.dispatch('setLendWeek', this.form.week)
+                console.log(this.$store.state.lendWeek);
+
+
             }
         }
     }

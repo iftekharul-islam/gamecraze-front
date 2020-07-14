@@ -27,6 +27,7 @@ import ProfileUpdate from "../components/ProfileUpdate";
 
 import NotFoundPage from "../components/NotFoundPage";
 import AddToCart from "../components/AddToCart";
+import AllRentPost from "../components/AllRentPost";
 
 let router = new Router({
     mode: 'history',
@@ -167,6 +168,20 @@ let router = new Router({
             component: ProfileUpdate,
             meta: {
                 requiresAuth: true
+            }
+        },
+        {
+            path: '/all-rent-posts',
+            name: 'AllRentPost',
+            component: AllRentPost,
+        },
+        {
+            path: '/all-rent-posts/rent-view/:id/:slug',
+            name: 'RentView',
+            component: RentView,
+            props: true,
+            meta: {
+                requiresAuth: false
             }
         },
         {

@@ -120,10 +120,10 @@
                                 <div class="col-lg-7">
                                     <div class="card-body">
                                         <h2 class="card-title">Do you want </h2>
-                                        <h1 class="rent-1"><span>to</span>RENT</h1>
-                                        <h2 class="your-cd">Your CD</h2>
+                                        <h1 class="rent-1"><span>to</span>Lend</h1>
+                                        <h2 class="your-cd">Games</h2>
                                         <div class="text-center rent-btn">
-                                            <a href="#" class="btn btn-success text-center mt-5" type="button">Rent</a>
+                                            <router-link :to="{ path: '/all-rent-posts'}" class="btn btn-success text-center mt-2">Lend</router-link>
                                         </div>
                                     </div>
                                 </div>

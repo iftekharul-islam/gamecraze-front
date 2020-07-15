@@ -399,11 +399,9 @@ $(document).ready(function () {
           $(this).fadeIn(fadeTime);
         });
       });
-  
       productRow.find(".item-quantity").text(quantity);
       updateSumItems();
     }
-  
     function updateSumItems() {
       var sumItems = 0;
       $(".quantity input").each(function () {

@@ -11,25 +11,25 @@
             <table class="table table-borderless">
               <thead>
                 <tr>
-                  <th scope="col" class="item item-heading">Item</th>
-                  <th scope="col" class="price">Price</th>
-                  <th scope="col" class="quantity">Quantity</th>
-                  <th scope="col" class="subtotal">Subtotal</th>
+                  <td scope="col" class="item item-heading">Item</td>
+                  <td scope="col" class="price">Price</td>
+                  <td scope="col" class="quantity">Quantity</td>
+                  <td scope="col" class="subtotal">Subtotal</td>
                 </tr>
               </thead>
               <tbody>
                 <tr class="basket-product">
-                  <th scope="row" class="item">
+                  <td scope="row" class="item">
                    <div class="item-product">
                     <div class="product-image">
                       <img src="../assets/img/selling/jedi-fallen.jpg" alt="Placholder Image 2" class="product-frame img-fluid">
                     </div>
                     <div class="product-details">
                       <h1><strong><span class="item-quantity">1</span> x Action</strong> jedi-fallen order</h1>
-                      <p>Product Code - 232321939</p>
+                      <small>Product Code - 232321939</small>
                     </div>
                    </div>
-                  </th>
+                  </td>
                   <td class="price">5000</td>
                   <td class="quantity">
                     <input type="number" value="1" min="1" class="quantity-field">
@@ -44,20 +44,21 @@
                   <!-- <div class="border"></div> -->
                 </tr>
                 <tr class="basket-product">
-                  <th scope="row" class="item">
+                  <td scope="row" class="item">
                    <div class="item-product">
                     <div class="product-image">
                       <img src="../assets/img/selling/jedi-fallen.jpg" alt="Placholder Image 2" class="product-frame img-fluid">
                     </div>
                     <div class="product-details">
                       <h1><strong><span class="item-quantity">1</span> x Action</strong> jedi-fallen order</h1>
-                      <p>Product Code - 232321939</p>
+                      <small>Product Code - 232321939</small>
                     </div>
                    </div>
-                  </th>
+                  </td>
                   <td class="price">5000</td>
                   <td class="quantity">
-                    <input type="number" value="1" min="1" class="quantity-field">                 
+                    <input type="number" value="1" min="1" class="quantity-field"> 
+                   
                 </td>
                   <td class="subtotal">5000</td>
                    <div class="remove-cart">
@@ -67,17 +68,17 @@
                   </div>
                 </tr>
                  <tr class="basket-product">
-                  <th scope="row" class="item">
+                  <td scope="row" class="item">
                    <div class="item-product">
                     <div class="product-image">
                       <img src="../assets/img/selling/jedi-fallen.jpg" alt="Placholder Image 2" class="product-frame img-fluid">
                     </div>
                     <div class="product-details">
                       <h1><strong><span class="item-quantity">1</span> x Action</strong> jedi-fallen order</h1>
-                      <p>Product Code - 232321939</p>
+                      <small>Product Code - 232321939</small>
                     </div>
                    </div>
-                  </th>
+                  </td>
                   <td class="price">5000</td>
                   <td class="quantity">
                     <input type="number" value="1" min="1" class="quantity-field">

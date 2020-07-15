@@ -31,7 +31,9 @@ export default {
     mainSidebar
   },
   created() {
-    this.$store.dispatch('AutoLogin')
+    this.$store.dispatch('AutoLogin');
+    this.$store.dispatch('AddCartPostId');
+    this.$store.dispatch('setLendWeek');
   }
 }
 </script>

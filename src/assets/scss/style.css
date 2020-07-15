@@ -10822,16 +10822,6 @@ a.text-dark:hover, a.text-dark:focus {
   }
 }
 
-@font-face {
-  font-family: black-lives;
-  src: url(../../../node_modules/fonts/aBlackLives.otf);
-}
-
-@font-face {
-  font-family: snes;
-  src: url(../../../node_modules/fonts/SnesItalic-vmAPZ.ttf);
-}
-
 .star-color {
   color: #fcd700;
 }

@@ -82,7 +82,7 @@
                                 <div class="col"><h4>{{ rent.availability_from_date }}</h4></div>
                             </div>
                             <div class="text-center rented-page-btn mt-5">
-                                <router-link :to="{ path: '/add-to-cart'}" v-bind:tooltip="rent.id" append><a class="btn btn-primary mb-2 text-white" @click="onConform"> Add to Cart<i class="fas fa-cart-plus"></i></a></router-link>
+                                <router-link :to="{ path: '/add-to-cart'}" v-bind:tooltip="rent.id" append><a class="btn btn-primary mb-2 text-white" @click="onAddToCart"> Add to Cart<i class="fas fa-cart-plus"></i></a></router-link>
 <!--                                <button type="button" class="btn btn-primary mb-2" @click.prevent="onConform">Add to Cart <i class="fas fa-cart-plus"></i></button>-->
                             </div>
                         </div>
@@ -102,26 +102,29 @@
                 rent: null,
                 form: {
                     week: '',
+                    postId: this.$route.params.id,
                 },
             }
         },
         name: "RentView",
         mounted () {
-            console.log(this.$route.params.id)
+            // console.log(this.$route.params.id)
             this.$api.get('rents/' + this.$route.params.id + '?include=diskCondition,game,platform')
                 .then (response =>
                 {
                     this.rent = response.data.data
-                    console.log(this.rent);
+                    // console.log(this.rent);
                 })
         },
         methods: {
             onConform () {
-                this.rentView = false,
-                    this.$store.dispatch('setLendWeek', this.form.week)
-                console.log(this.$store.state.lendWeek);
-
-
+                this.rentView = false
+                // console.log(this.$store.state.lendWeek);
+            },
+            onAddToCart() {
+               console.log(this.form)
+                this.$store.dispatch('pushPostId', this.form.postId)
+                this.$store.dispatch('pushLendWeek', this.form.week)
             }
         }
     }

@@ -1,10 +1,9 @@
 <template>
     <div>
-        <!-- Category  -->
-         <!-- Cart  -->
+         <!-- Cart page-->
   <section class="cart sign-in-bg pt-4">
     <div class="container-fluid cart-width">
-      <main class="pb-5">
+      <main class="pb-5" v-if="!paymentStatus">
         <div class="basket">
          
           <div class="basket-labels">
@@ -18,76 +17,30 @@
                 </tr>
               </thead>
               <tbody>
-                <tr class="basket-product">
+                <tr class="basket-product" v-for="(item, index) in cart" :key="index">
                   <th scope="row" class="item">
                    <div class="item-product">
                     <div class="product-image">
-                      <img src="../assets/img/selling/jedi-fallen.jpg" alt="Placholder Image 2" class="product-frame img-fluid">
+                        <img :src="item.game.data.assets.data.url"  :alt="item.game.data.name" class="product-frame img-fluid" v-if="item.game.data.assets.data.length">
+                        <img class="card-img-top" src="../assets/img/rented/grid.png" alt="Grid" v-else>
                     </div>
                     <div class="product-details">
-                      <h1><strong><span class="item-quantity">1</span> x Action</strong> jedi-fallen order</h1>
+                      <h1><strong><span class="item-quantity">1</span> x Action</strong> {{ item.game.data.name }}</h1>
                       <p>Product Code - 232321939</p>
                     </div>
                    </div>
                   </th>
                   <td class="price">5000</td>
-                  <td class="quantity">
-                    <input type="number" value="1" min="1" class="quantity-field">
-                  
-                </td>
+                    <td class="quantity">
+                        <input type="number" value="1" min="1" class="quantity-field">
+                    </td>
                   <td class="subtotal">5000</td>
                     <div class="remove-cart">
-                      <button>
+                      <button @click="onRemoveCartItem(index)">
                         <i class="far fa-trash-alt"></i>
                       </button>
                   </div>
                   <!-- <div class="border"></div> -->
-                </tr>
-                <tr class="basket-product">
-                  <th scope="row" class="item">
-                   <div class="item-product">
-                    <div class="product-image">
-                      <img src="../assets/img/selling/jedi-fallen.jpg" alt="Placholder Image 2" class="product-frame img-fluid">
-                    </div>
-                    <div class="product-details">
-                      <h1><strong><span class="item-quantity">1</span> x Action</strong> jedi-fallen order</h1>
-                      <p>Product Code - 232321939</p>
-                    </div>
-                   </div>
-                  </th>
-                  <td class="price">5000</td>
-                  <td class="quantity">
-                    <input type="number" value="1" min="1" class="quantity-field">                 
-                </td>
-                  <td class="subtotal">5000</td>
-                   <div class="remove-cart">
-                      <button>
-                        <i class="far fa-trash-alt"></i>
-                      </button>
-                  </div>
-                </tr>
-                 <tr class="basket-product">
-                  <th scope="row" class="item">
-                   <div class="item-product">
-                    <div class="product-image">
-                      <img src="../assets/img/selling/jedi-fallen.jpg" alt="Placholder Image 2" class="product-frame img-fluid">
-                    </div>
-                    <div class="product-details">
-                      <h1><strong><span class="item-quantity">1</span> x Action</strong> jedi-fallen order</h1>
-                      <p>Product Code - 232321939</p>
-                    </div>
-                   </div>
-                  </th>
-                  <td class="price">5000</td>
-                  <td class="quantity">
-                    <input type="number" value="1" min="1" class="quantity-field">
-                </td>
-                  <td class="subtotal">5000</td>
-                   <div class="remove-cart">
-                      <button>
-                        <i class="far fa-trash-alt"></i>
-                      </button>
-                  </div>
                 </tr>
               </tbody>
             </table>
@@ -115,11 +68,20 @@
               <div class="total-value final-value" id="basket-total">5000</div>
             </div>
             <div class="summary-checkout">
-              <button class="checkout-cta btn btn-primary">Go to Secure Checkout</button>
+              <button class="checkout-cta btn btn-primary" @click.prevent="onCheckout" :disabled="!$store.state.postId.length">Go to Secure Checkout</button>
             </div>
           </div>
         </aside>
       </main>
+        <div class="text-white w-50 mx-auto pb-5" v-else>
+          <h1 class="mt-5 mb-4">Payment Method</h1>
+          <input type="radio" id="cod" name="delivery" value="cod" v-model="paymentMethod">
+          <label class="ml-2" for="cod">Cash On Delivery</label>
+          <br>
+          <input type="radio" id="bkash" name="delivery" value="bkash" v-model="paymentMethod">
+          <label class="ml-2" for="bkash">Bkash</label>
+          <button class="btn btn-primary d-block w-20 mt-3" @click="onConfirmOrder">Confirm Order</button>
+        </div>
     </div>
   </section>
     </div>
@@ -129,38 +91,80 @@
     export default {
         data() {
             return {
-                games: [],
+                games: null,
                 checkedGame: '',
-                categories: ['Action', 'Adventure', 'Arcade', 'Music & Dance', 'Racing', 'Role Playing', 'Simulation', 'Sports', 'Strategy'],
-                checkedCategories: [],
-            }
-        },
-        computed: {
-            filteredGames(){
-                if (!this.checkedCategories.length) {
-                    return this.games
-                }
-                // console.log(this.checkedCategories)
-                var checked = this.checkedCategories
+                lendWeek: null,
+                cart: [],
+                paymentStatus: false,
+                paymentMethod: ''
 
-                return this.games.filter(function (game) {
-                    var genres= []
-
-                    for (var genre of game.genres.data) {
-                        genres.push(genre.name)
-                    }
-                    return checked.some(r => genres.includes(r))
-                })
             }
         },
         methods: {
-
+            onCheckout() {
+                var token = this.$store.state.token;
+                var user = this.$store.state.user;
+                if (token) {
+                    if (user.name && user.phone_number && user.address) {
+                        this.paymentStatus = !this.paymentStatus;
+                    }
+                    else {
+                        this.$router.push('profile').catch(err => {});
+                    }
+                }
+                else {
+                    this.$router.push('login').catch(err => {});
+                }
+            },
+          onRemoveCartItem(index) {
+            this.$swal({
+              title: "Are you sure?",
+              text: "Once deleted, you will not be able to recover this imaginary file!",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+            })
+                    .then((willDelete) => {
+                      if (willDelete) {
+                        this.cart.splice(index, 1)
+                        this.$store.dispatch('removePostId', index)
+                        swal("Poof! Your imaginary file has been deleted!", {
+                          icon: "success",
+                        });
+                      } else {
+                        swal("Your imaginary file is safe!");
+                      }
+                    });
+          },
+          onConfirmOrder() {
+              var config = {
+                headers: {
+                  'Authorization': 'Bearer ' + this.$store.state.token
+                }
+              };
+              var data = {
+                postId: this.$store.state.postId,
+                week: this.$store.state.lendWeek,
+                paymentMethod: this.paymentMethod
+              };
+              this.$api.post('lend-game', data, config).then(response => {
+                if (response.data.error === false) {
+                   this.$store.dispatch('clearCart');
+                  this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
+                   this.$router.push('/').then(err => {});
+                }
+              });
+          }
         },
         created() {
-            this.$api.get('games?include=assets,genres,platforms').then(response => {
-                this.games = response.data.data
-                console.log(this.games);
-            });
+            this.lendWeek = this.$store.state.lendWeek;
+            this.$api.get('cart-items/?ids=' + this.$store.state.postId + '&include=game.assets')
+                .then (response =>
+                {
+                    console.log(response);
+                    this.cart = response.data.data
+                    // console.log(this.rent);
+                })
         }
     }
 </script>

@@ -47,10 +47,14 @@
                                 <router-link v-if="auth" class="btn btn-danger sign-in-btn" to="profile"><span v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span><span v-else>{{ this.$store.state.user.phone_number }}</span></router-link>
                                 <div class="log-out">
                                     <a @click.prevent="onLogout" class="sign-out">
-                                        <span class="mr-2">Sign Out</span>
+                                        <span class="mr-2 mt-2">Sign Out</span>
                                         <i class="fas fa-sign-out-alt"></i>
                                     </a>
                                 </div>
+                            </div>
+                            <div class="ml-2">
+                                <router-link to="add-to-cart"> <i class="material-icons"> shopping_cart </i>
+                                </router-link>
                             </div>
 <!--                            <router-link v-if="this.$store.state.profile" class="btn btn-danger ml-4 sign-in-btn" to="profile" style="color: white;">{{this.$store.state.profile.name}}</router-link>-->
 <!--                            <router-link v-else class="btn btn-danger ml-4 sign-in-btn" to="login" style="color: white;">Sign in</router-link>-->

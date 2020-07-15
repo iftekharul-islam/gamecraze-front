@@ -17,16 +17,6 @@
 @mixin righteous {
   font-family: "Righteous", cursive;
 }
-// My font- Black lives
-@font-face {
-  font-family: black-lives;
-  src: url(../../../node_modules/fonts/aBlackLives.otf);
-}
-@font-face {
-  font-family: snes;
-  src: url(../../../node_modules/fonts/SnesItalic-vmAPZ.ttf);
-}
-
 @mixin transition-3 {
   transition: all 0.3s ease-in;
 }

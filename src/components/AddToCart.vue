@@ -10,15 +10,16 @@
             <table class="table table-borderless">
               <thead>
                 <tr>
-                  <th scope="col" class="item item-heading">Item</th>
-                  <th scope="col" class="price">Price</th>
-                  <th scope="col" class="quantity">Quantity</th>
-                  <th scope="col" class="subtotal">Subtotal</th>
+                  <td scope="col" class="item item-heading">Item</td>
+                  <td scope="col" class="price">Price</td>
+                  <td scope="col" class="quantity">Quantity</td>
+                  <td scope="col" class="subtotal">Subtotal</td>
                 </tr>
               </thead>
               <tbody>
                 <tr class="basket-product" v-for="(item, index) in cart" :key="index">
                   <th scope="row" class="item">
+
                    <div class="item-product">
                     <div class="product-image">
                         <img :src="item.game.data.assets.data.url"  :alt="item.game.data.name" class="product-frame img-fluid" v-if="item.game.data.assets.data.length">
@@ -29,7 +30,7 @@
                       <p>Product Code - 232321939</p>
                     </div>
                    </div>
-                  </th>
+                  </td>
                   <td class="price">5000</td>
                     <td class="quantity">
                         <input type="number" value="1" min="1" class="quantity-field">

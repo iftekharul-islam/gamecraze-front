@@ -29,8 +29,9 @@
                                 <a v-else href="#"><img :src="$gamehubStorageApi + $store.state.user.image" alt="user image"></a>
                             </div>
                             <div class="editprofile-btn">
-                                <button type="button" class="btn btn-primary mr-4" @click.prevent="onRentPost">Post for Rent</button>
-                                <button type="button" class="btn btn-primary mr-4" @click.prevent="onUpdateProfile">Update Profile</button>
+                                <router-link to="dashboard" type="button" class="btn btn-primary mr-4">Dashboard</router-link>
+                                <router-link to="rent-post" type="button" class="btn btn-primary mr-4">Post for Rent</router-link>
+                                <router-link to="update-profile" type="button" class="btn btn-primary mr-4">Update Profile</router-link>
                             </div>
                             <div class="user-details">
                                 <h3 class="mb-5 text-light">Profile Info</h3>
@@ -105,12 +106,7 @@
             }
         },
         methods: {
-            onRentPost() {
-                this.$router.push('/rent-post').catch(err => {});
-            },
-            onUpdateProfile() {
-                this.$router.push('/update-profile').catch(err => {});
-            }
+
         },
         created() {
             this.user = this.$store.state.user

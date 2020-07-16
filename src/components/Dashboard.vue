@@ -5,7 +5,13 @@
                     <div class="dashbord mb-5">
                         <h2 class="text-center text-light">DASHBOARD</h2>
                     </div>
-                    <div class="table-responsive pb-5" v-if="rents.length">
+                    <div class="d-flex justify-content-center mb-3">
+                        <button class="btn btn-primary mr-3" @click.prevent="onOfferedGames">Offered Games</button>
+                        <button class="btn btn-primary ml-3" @click.prevent="onRentedGames">Rented Games</button>
+                    </div>
+                    <h2 v-if="rents.length && !show" class="text-white text-center">Your Offered Games</h2>
+                    <h2 v-else-if="lends.length && show" class="text-white text-center">Your Rented Games</h2>
+                    <div class="table-responsive pb-5" v-if="rents.length && !show">
                             <table class="table table-striped table-dark">
                                 <thead>
                                 <tr>
@@ -40,7 +46,35 @@
                                 </tr>
                                 </tbody>
                             </table>
-                        </div>
+                    </div>
+                    <div class="table-responsive pb-5" v-else-if="lends.length && show">
+                        <table class="table table-striped table-dark" v-if="lends">
+                            <thead>
+                            <tr>
+                                <th scope="col" >Serial No</th>
+                                <th scope="col">Game name</th>
+                                <th scope="col">Disk condition</th>
+                                <th scope="col">Platform</th>
+                                <th scope="col">Lend Week</th>
+                                <th scope="col">Lend Date</th>
+                                <th scope="col">Cost</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr v-for="(lend, index) in lends" :key="index">
+                                <td>{{ index+1 }}</td>
+                                <td>{{ lend.rent.game.name }}</td>
+                                <td>{{ lend.rent.disk_condition.name }}</td>
+                                <td>{{ lend.rent.platform.name }}</td>
+                                <td>{{ lend.lend_week }}</td>
+                                <td>{{ lend.lend_date }}</td>
+                                <td>{{ lend.lend_cost }}</td>
+                                <td><button class="btn btn-primary">Return Request</button></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="card no-post-found-card mb-0" v-else>
                         <h4 class="text-center text-light">No Post for Rent Found !!!</h4>
                     </div>
@@ -54,6 +88,8 @@
             data() {
                 return {
                     rents: [],
+                    lends: [],
+                    show: false
                 }
             },
             methods: {
@@ -91,6 +127,16 @@
                         }
                     });
 
+                },
+                onOfferedGames() {
+                    this.show = false
+                    console.log(this.show);
+                    console.log(this.rents.length);
+                },
+                onRentedGames() {
+                    this.show = true
+                    console.log(this.show);
+                    console.log(this.lends.length);
                 }
             },
             created() {
@@ -103,7 +149,14 @@
                     .then(response =>
                     {
                         this.rents = response.data.data
-                        console.log(this.rents)
+                        // console.log(this.rents)
+                    })
+
+                this.$api.get('lends', config)
+                    .then(response =>
+                    {
+                        this.lends = response.data
+                        console.log(this.lends)
                     })
             }
         }

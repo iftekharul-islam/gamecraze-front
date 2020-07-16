@@ -10,7 +10,7 @@
                     <div class="col-lg-6 offset-lg-3">
                         <div class="card" v-if="rentView">
                             <h2 class="card-title text-center mb-5">Rent Preview</h2>
-                            <div class="rent-preview">
+                            <div class="rent-preview" v-if="rent">
                                 <div class="row">
                                     <div class="col"><h4>Game Name:</h4></div>
                                     <div class="col"><h4>{{ rent.game.data.name }}</h4></div>

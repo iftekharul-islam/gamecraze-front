@@ -57,7 +57,7 @@
                                 <form @submit.prevent="handleSubmit(onLogin)" method="post">
                                     <div class="form-group">
                                         <div class="floating-label-group">
-                                            <ValidationProvider name="number" rules="required|digits:10" v-slot="{ errors }">
+                                            <ValidationProvider name="number" rules="required|digits:11" v-slot="{ errors }">
                                                 <input type="tel" id="user-number" class="form-control country-number mb-2" v-model="phone_number"  placeholder="Mobile Number" autofocus />
                                                 <span class="error-message">{{ errors[0] }}</span>
                                                 <label class="floating-label">+88</label>

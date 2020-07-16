@@ -18,7 +18,7 @@
               </thead>
               <tbody>
                 <tr class="basket-product" v-for="(item, index) in cart" :key="index">
-                  <th scope="row" class="item">
+                  <td scope="row" class="item">
 
                    <div class="item-product">
                     <div class="product-image">

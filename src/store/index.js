@@ -1,7 +1,7 @@
 import axios from 'axios'
 import router from "../router/routes";
 
-import VueSwal, {swal} from 'vue-swal'
+import {swal} from 'vue-swal'
 
 
 export const storage = {

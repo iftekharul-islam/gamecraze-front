@@ -60,7 +60,7 @@
                                             <ValidationProvider name="number" rules="required|digits:10" v-slot="{ errors }">
                                                 <input type="tel" id="user-number" class="form-control country-number mb-2" v-model="phone_number"  placeholder="Mobile Number" autofocus />
                                                 <span class="error-message">{{ errors[0] }}</span>
-                                                <label class="floating-label">+880</label>
+                                                <label class="floating-label">+88</label>
                                             </ValidationProvider>
                                         </div>
                                     </div>
@@ -139,8 +139,8 @@
             onLogin() {
                 this.isLoading = true
                 if (this.loginOption === "Email") {
-                    this.$store.dispatch('setPhoneNumber', '0' + this.phone_number)
-                    this.$api.post('send-otp', {phone_number: '0' + this.phone_number}).then(response => {
+                    this.$store.dispatch('setPhoneNumber', this.phone_number)
+                    this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
                         console.log(response);
                         if (response.data.error === false) {
                             this.isLoading = false
@@ -167,12 +167,12 @@
             onOtpVerification: function () {
                 this.isLoading = true
                 this.resend = false
-                this.$store.dispatch('verifyOtp', {phone_number: '0' + this.phone_number, otp: this.otp})
+                this.$store.dispatch('verifyOtp', {phone_number: this.phone_number, otp: this.otp})
             },
             onResendOtp: function () {
                 this.isResendLoading = true
-                this.$store.dispatch('setPhoneNumber', '0' + this.phone_number)
-                this.$api.post('send-otp', {phone_number: '0' + this.phone_number}).then(response => {
+                this.$store.dispatch('setPhoneNumber', this.phone_number)
+                this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
                     if (response.data.error === false) {
                         this.isResendLoading = false
                         this.resend = true

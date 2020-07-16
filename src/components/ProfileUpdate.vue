@@ -78,7 +78,7 @@
                                             <div class="form-group row">
                                                 <label for="address" class="col-sm-3 col-form-label">Address</label>
                                                 <div class="col-sm-9 pr-0">
-                                                    <textarea class="form-control" id="address" placeholder="Edit Your Email" v-model="form.address"></textarea>
+                                                    <textarea class="form-control" id="address" placeholder="Edit Your Address" v-model="form.address"></textarea>
                                                 </div>
                                             </div>
                                             <div class="form-group row">

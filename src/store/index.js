@@ -6,7 +6,7 @@ import VueSwal, {swal} from 'vue-swal'
 
 export const storage = {
     state: {
-        lendWeek: null,
+        lendWeek: [],
         searchResult: [],
         admin: null,
         signup: {
@@ -22,6 +22,8 @@ export const storage = {
         isSubmitLoading: false,
         wrongOTP: false,
         timeout: false,
+        postId: [],
+        cart: null
     },
     getters: {
         user (state) {
@@ -35,8 +37,34 @@ export const storage = {
         }
     },
     mutations: {
+        pushPostId (state, payload) {
+            if (state.postId.includes(payload)) {
+                return;
+            }
+            state.postId.push(payload)
+            localStorage.setItem('postId', JSON.stringify(state.postId))
+        },
+        pushLendWeek (state, payload) {
+            state.lendWeek.push(payload)
+            localStorage.setItem('lendWeek', JSON.stringify(state.lendWeek))
+        },
+        AddCartPostId (state, payload) {
+            state.postId = payload
+        },
         setLendWeek (state, payload) {
             state.lendWeek = payload
+        },
+        removePostId (state, payload) {
+            state.postId.splice(payload, 1)
+            state.lendWeek.splice(payload, 1)
+            localStorage.setItem('postId', JSON.stringify(state.postId))
+            localStorage.setItem('lendWeek', JSON.stringify(state.lendWeek))
+        },
+        clearCart (state) {
+            state.postId = []
+            state.lendWeek = []
+            localStorage.setItem('postId', JSON.stringify(state.postId))
+            localStorage.setItem('lendWeek', JSON.stringify(state.lendWeek))
         },
         addToSearchResult (state, payload) {
             state.searchResult = payload
@@ -81,11 +109,34 @@ export const storage = {
         },
         setUser (state, payload) {
             state.user = payload
-        }
+        },
     },
     actions: {
-        setLendWeek (context, payload) {
-            context.commit('setLendWeek', payload)
+        pushPostId (context, payload) {
+            context.commit('pushPostId', payload)
+        },
+        pushLendWeek (context, payload) {
+            context.commit('pushLendWeek', payload)
+        },
+        AddCartPostId (context) {
+            const postId = JSON.parse(localStorage.getItem('postId'))
+            if (!postId) {
+                return;
+            }
+            context.commit('AddCartPostId', postId)
+        },
+        setLendWeek (context) {
+            const lendWeek = JSON.parse(localStorage.getItem('lendWeek'))
+            if (!lendWeek) {
+                return;
+            }
+            context.commit('setLendWeek', lendWeek)
+        },
+        removePostId (context, payload) {
+            context.commit('removePostId', payload)
+        },
+        clearCart (context) {
+            context.commit('clearCart')
         },
         setAdmin(context, payload) {
             context.commit('setAdmin', payload)
@@ -211,14 +262,14 @@ export const storage = {
             }
             axios.put(process.env.VUE_APP_GAMEHUB_BASE_API + 'users', payload, config).then(response => {
                 if (response.data) {
-                    commit('setUser', response.data)
-                    localStorage.setItem('user', JSON.stringify(response.data))
+                    commit('setUser', response.data);
+                    localStorage.setItem('user', JSON.stringify(response.data));
                     if (payload.address) {
-                        swal("Profile Updated!", "Profile Update Successful!", "success")
+                        swal("Profile Updated!", "Profile Update Successful!", "success");
                         router.push('/profile').catch(err => {});
                     }
                     else {
-                        swal("Welcome to Gamehub", "Rent Your Game and Earn", "success")
+                        swal("Welcome to Gamehub", "Rent Your Game and Earn", "success");
                         router.push('/').catch(err => {});
                     }
                 }

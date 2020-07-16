@@ -261,7 +261,6 @@
                             });
                             this.$router.push('dashboard').catch(err => {});
                         });
-                    console.log("Store successfully");
                 },
             },
             created () {

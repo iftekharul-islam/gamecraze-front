@@ -81,7 +81,10 @@
           <br>
           <input type="radio" id="bkash" name="delivery" value="bkash" v-model="paymentMethod">
           <label class="ml-2" for="bkash">Bkash</label>
-          <button class="btn btn-primary d-block w-20 mt-3" @click="onConfirmOrder">Confirm Order</button>
+          <button class="btn btn-primary d-block w-20 mt-3" @click="onConfirmOrder" :disabled="isLoading">
+            Confirm Order
+            <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
+          </button>
         </div>
     </div>
   </section>
@@ -97,7 +100,8 @@
                 lendWeek: null,
                 cart: [],
                 paymentStatus: false,
-                paymentMethod: ''
+                paymentMethod: '',
+                isLoading: false
 
             }
         },
@@ -110,10 +114,12 @@
                         this.paymentStatus = !this.paymentStatus;
                     }
                     else {
-                        this.$router.push('profile').catch(err => {});
+                      this.$swal("Incomplete Profile", "Please Update Your Profile");
+                      this.$router.push('profile').catch(err => {});
                     }
                 }
                 else {
+                  this.$swal("Login First", "Please Login to Lend Games");
                     this.$router.push('login').catch(err => {});
                 }
             },
@@ -138,6 +144,7 @@
                     });
           },
           onConfirmOrder() {
+              this.isLoading = true
               var config = {
                 headers: {
                   'Authorization': 'Bearer ' + this.$store.state.token
@@ -151,8 +158,9 @@
               this.$api.post('lend-game', data, config).then(response => {
                 if (response.data.error === false) {
                    this.$store.dispatch('clearCart');
-                  this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
-                   this.$router.push('/').then(err => {});
+                   this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
+                   this.isLoading = false;
+                   this.$router.push('dashboard').then(err => {});
                 }
               });
           }

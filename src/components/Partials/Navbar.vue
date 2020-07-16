@@ -52,8 +52,8 @@
                                     </a>
                                 </div>
                             </div>
-                            <div class="ml-2">
-                                <router-link to="add-to-cart"> <i class="material-icons"> shopping_cart </i>
+                            <div class="ml-3 mt-1">
+                                <router-link to="add-to-cart"> <i class="material-icons text-yellow"> shopping_cart </i>
                                 </router-link>
                             </div>
 <!--                            <router-link v-if="this.$store.state.profile" class="btn btn-danger ml-4 sign-in-btn" to="profile" style="color: white;">{{this.$store.state.profile.name}}</router-link>-->

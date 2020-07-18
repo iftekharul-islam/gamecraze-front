@@ -269,20 +269,6 @@ nav {
             .input-group-append {
               height: 100%;
             }
-            .cart {
-              margin-left: 2rem;
-              height: 100%;
-              a {
-                i {
-                  font-size: 40px;
-                  color: $menu-active;
-                  @include transition-3;
-                  &:hover {
-                    color: $yellow-btn-hover;
-                  }
-                }
-              }
-            }
           }
         }
       }
@@ -324,7 +310,6 @@ nav {
               opacity: 0;
               z-index: 99;
               transition: all 0.5s ease-in;
-              left: -20px;
               .sign-out {
                 color: $white-clr;
                 background: $log-out;
@@ -410,6 +395,35 @@ nav {
                   color: $black-clr;
                 }
               }
+            }
+          }
+          .cart-icon {
+            margin-left: 2rem;
+            height: 38px;
+            position: relative;
+            a {
+              i {
+                font-size: 40px;
+                color: $menu-active;
+                @include transition-3;
+                &:hover {
+                  color: $yellow-btn-hover;
+                }
+              }
+            }
+            .badges {
+              width: 25px;
+              height: 25px;
+              background: $youtube;
+              border-radius: 50%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              color: $white-clr;
+              position: absolute;
+              top: -15px;
+              right: 0px;
+              font-weight:700;
             }
           }
         }
@@ -561,7 +575,6 @@ nav {
       .item {
         padding: 10px;
         .card {
-          height: 460px;
           border: none !important;
           border-radius: 13px !important;
           @include transition-3;
@@ -1739,10 +1752,13 @@ footer {
   background: $top-nav !important;
 }
 .sign-in {
+  background: url(../img/all-game.png) !important;
   .sign-in-width {
     width: 85%;
     .card {
       @include sign-regis-card;
+      background: $login-card-bg;
+      border-color: $menu-active;
       .card-title {
         @include sign-regis-card-title;
       }
@@ -3316,7 +3332,7 @@ footer {
                         @include roboto-con;
                       }
                       small {
-                        font-size: .8rem;
+                        font-size: 0.8rem;
                         @include roboto-con;
                         color: $description-clr;
                       }
@@ -3327,17 +3343,17 @@ footer {
                   color: $white-clr;
                   font-size: 1rem;
                   &:before {
-                    content:"BDT";
-                    margin-right:5px;
+                    content: "BDT";
+                    margin-right: 5px;
                   }
                 }
                 .subtotal {
                   color: $white-clr;
-                  text-align: right;
+                  text-align: center;
                   font-size: 1rem;
                   &:before {
-                    content:"BDT";
-                    margin-right:5px;
+                    content: "BDT";
+                    margin-right: 5px;
                   }
                 }
                 .quantity {
@@ -3356,14 +3372,14 @@ footer {
                 .remove-cart {
                   position: absolute;
                   right: 0;
-                  margin-top: 8rem;
+                  margin-top: 4.5rem;
                   margin-right: 1rem;
                   button {
                     border: none;
                     background: $youtube;
                     width: 30px;
                     height: 30px;
-                    border-radius:3px;
+                    border-radius: 3px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -3422,7 +3438,7 @@ footer {
               font-size: 1rem;
               &:before {
                 content: "BDT";
-                margin-right:5px;
+                margin-right: 5px;
               }
             }
             .summary-promo {
@@ -3439,7 +3455,7 @@ footer {
                 &:before {
                   content: "BDT";
                   color: $white-clr;
-                  margin-right:5px;
+                  margin-right: 5px;
                 }
               }
               &.hide {
@@ -3518,7 +3534,7 @@ footer {
               &:before {
                 content: "BDT";
                 color: $white-clr;
-                margin-right:5px;
+                margin-right: 5px;
               }
             }
           }
@@ -3712,7 +3728,6 @@ footer {
   //     }
   //   }
   // }
- 
 }
 // max 1600px
 @include for-desktop-up-device-only {
@@ -4115,13 +4130,6 @@ footer {
           .menu-list-top {
             li {
               &.cart-item {
-                .cart {
-                  a {
-                    i {
-                      font-size: 35px;
-                    }
-                  }
-                }
               }
             }
           }
@@ -4131,7 +4139,14 @@ footer {
         form {
           .input-group {
             .input-group-append {
-              width: 57%;
+              width: 52%;
+              .cart {
+                a {
+                  i {
+                    font-size: 35px;
+                  }
+                }
+              }
             }
           }
         }
@@ -4152,6 +4167,7 @@ footer {
                 padding-right: 15px;
                 margin-left: 1rem !important;
               }
+              
             }
           }
         }
@@ -4566,6 +4582,16 @@ footer {
         &.search-searchbar {
           left: 440px;
         }
+        form {
+          .input-group {
+            .input-group-append {
+             height: 38px;
+            }
+          }
+          .cart-icon {
+            margin-top:.4rem;
+          }
+        }
       }
       // responsive menu bar
     }
@@ -4882,7 +4908,7 @@ footer {
       }
     }
   }
- 
+
   // cart page
   .cart {
     .cart-width {
@@ -4894,15 +4920,15 @@ footer {
                 .basket-product {
                   .item {
                     .item-product {
-                      display:block;
+                      display: block;
                       .product-details {
-                       padding: 0;
-                       margin-top:10px;
+                        padding: 0;
+                        margin-top: 10px;
                       }
                     }
                   }
                   .remove-cart {
-                    margin-top: 12rem;
+                    margin-top: 10rem;
                   }
                 }
               }
@@ -5395,17 +5421,16 @@ footer {
   .cart {
     .cart-width {
       main {
-        display:block;
+        display: block;
         .basket {
           .basket-labels {
             table {
               tbody {
                 .basket-product {
                   .item {
-                    
                   }
                   .remove-cart {
-                    margin-top: 12rem;
+                    margin-top: 9rem;
                   }
                 }
               }
@@ -5413,7 +5438,7 @@ footer {
           }
         }
         aside {
-          float:initial;
+          float: initial;
           padding-left: 0;
         }
       }
@@ -5458,24 +5483,24 @@ footer {
         }
       }
       .search {
-        left: 28%;
+        left: 25%;
         margin-right: 60px;
         .input-group {
           width: 100%;
 
           .input-group-append {
-            width: 50% !important;
-            height: 35px;
+            width: 40% !important;
+            height: 38px;
             input {
               height: 100%;
             }
             .menu-search-icon {
-              height: 35px;
+              height: 38px;
               width: initial !important;
             }
           }
           .sign-in-btn {
-            height: 35px;
+            height: 38px;
             display: flex;
             align-items: center;
           }
@@ -5920,26 +5945,26 @@ footer {
   .cart {
     .cart-width {
       main {
-        width:100%;
-        display:block;
+        width: 100%;
+        display: block;
         .basket {
-          width:80%;
-          margin:auto;
+          width: 80%;
+          margin: auto;
           .basket-labels {
             table {
               tbody {
                 .basket-product {
                   .item {
                     .item-product {
-                      display:block;
+                      display: block;
                       .product-details {
-                       padding: 0;
-                       margin-top:10px;
+                        padding: 0;
+                        margin-top: 10px;
                       }
                     }
                   }
                   .remove-cart {
-                    margin-top: 12rem;
+                    margin-top: 10rem;
                   }
                 }
               }
@@ -5947,10 +5972,10 @@ footer {
           }
         }
         aside {
-          width:80%;
-          float:initial;
-          margin:auto;
-          padding:0;
+          width: 80%;
+          float: initial;
+          margin: auto;
+          padding: 0;
         }
       }
     }
@@ -6020,6 +6045,12 @@ footer {
               align-items: center;
               margin-left: 0 !important;
               margin-top: 10px;
+            }
+            .sign-logout {
+              margin-left:0 !important;
+            }
+            .cart-icon {
+              margin-top:1.3rem;
             }
           }
         }
@@ -6589,25 +6620,25 @@ footer {
   .cart {
     .cart-width {
       main {
-        width:100%;
-        display:block;
+        width: 100%;
+        display: block;
         .basket {
-          width:100%;
+          width: 100%;
           .basket-labels {
             table {
               tbody {
                 .basket-product {
                   .item {
                     .item-product {
-                      display:block;
+                      display: block;
                       .product-details {
-                       padding: 0;
-                       margin-top:10px;
+                        padding: 0;
+                        margin-top: 10px;
                       }
                     }
                   }
                   .remove-cart {
-                    margin-top: 12rem;
+                    margin-top: 10rem;
                   }
                 }
               }
@@ -6615,7 +6646,7 @@ footer {
           }
         }
         aside {
-          width:100%;
+          width: 100%;
         }
       }
     }

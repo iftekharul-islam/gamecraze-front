@@ -98,10 +98,9 @@
                                 </div>
                                 <div class="col-lg-7">
                                     <div class="card-body">
-                                        <h2 class="card-title">Would You Like to</h2>
-
-                                        <h1 class="exchange-1">EXCHANGE</h1>
-                                        <h2 class="text-right your-cd">Your CD</h2>
+                                        <h2 class="part-1">Would You like to</h2>
+                                        <h1 class="part-2">EXCHANGE</h1>
+                                        <h2 class="part-3"> Your CD</h2>
                                         <div class="text-center excng-btn">
                                             <a href="#" class="btn btn-success text-center mt-5" type="button">Exchange</a>
                                         </div>
@@ -119,11 +118,11 @@
                                 </div>
                                 <div class="col-lg-7">
                                     <div class="card-body">
-                                        <h2 class="card-title">Do you want </h2>
-                                        <h1 class="rent-1"><span>to</span>Lend</h1>
-                                        <h2 class="your-cd">Games</h2>
+                                        <h2 class="part-1">Do You Want to</h2>
+                                        <h1 class="part-2">LEND</h1>
+                                        <h2 class="part-3"> Games</h2>
                                         <div class="text-center rent-btn">
-                                            <router-link :to="{ path: '/all-rent-posts'}" class="btn btn-success text-center mt-2">Lend</router-link>
+                                            <router-link :to="{ path: '/all-rent-posts'}" class="btn btn-success text-center mt-5">Lend</router-link>
                                         </div>
                                     </div>
                                 </div>

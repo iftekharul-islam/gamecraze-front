@@ -11043,6 +11043,7 @@ nav .nav-width .search form .input-group .sign-logout .sign-in-btn {
   transition: all 0.3s ease-in;
   -webkit-box-shadow: none;
           box-shadow: none;
+  height: 38px;
 }
 
 nav .nav-width .search form .input-group .sign-logout .sign-in-btn:hover {
@@ -11481,7 +11482,7 @@ nav.searchbar-nav {
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 260px;
+  bottom: 271px;
   left: 0;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
@@ -11554,29 +11555,28 @@ nav.searchbar-nav {
   height: 100%;
 }
 
-.exchange-section .exchange-width .card.exchange .card-body h2 {
+.exchange-section .exchange-width .card.exchange .card-body .part-1 {
+  margin-right: 8rem;
+  font-size: 2rem;
+  font-family: "Roboto Condensed", sans-serif;
   margin-bottom: 0;
+  text-align: center;
+}
+
+.exchange-section .exchange-width .card.exchange .card-body .part-2 {
   color: #2e0093;
-}
-
-.exchange-section .exchange-width .card.exchange .card-body h2.card-title {
-  margin-top: 1rem;
-  font-size: 2.6rem;
-  font-weight: 300;
-  margin-bottom: -15px;
-}
-
-.exchange-section .exchange-width .card.exchange .card-body h2.your-cd {
-  font-size: 2.6rem;
-  font-weight: 300;
-  margin-top: -15px;
-  margin-right: 10px;
-}
-
-.exchange-section .exchange-width .card.exchange .card-body h1 {
-  font-size: 4.5rem;
+  font-size: 4rem;
+  font-family: "Roboto Condensed", sans-serif;
   margin-bottom: 0;
-  color: #2e0093;
+  text-align: center;
+}
+
+.exchange-section .exchange-width .card.exchange .card-body .part-3 {
+  margin-left: 12rem;
+  font-size: 2rem;
+  font-size: 2rem;
+  font-family: "Roboto Condensed", sans-serif;
+  text-align: center;
 }
 
 .exchange-section .exchange-width .card.exchange .card-body .excng-btn a {
@@ -11617,40 +11617,30 @@ nav.searchbar-nav {
   height: 100%;
 }
 
-.exchange-section .exchange-width .card.rent .card-body h2 {
-  margin-bottom: 0;
+.exchange-section .exchange-width .card.rent .card-body .part-1 {
+  margin-right: 10rem;
+  font-size: 2rem;
+  font-family: "Roboto Condensed", sans-serif;
   color: #ffffff;
+  margin-bottom: 0;
   text-align: center;
 }
 
-.exchange-section .exchange-width .card.rent .card-body h2.card-title {
-  margin-top: 1rem;
-  font-size: 2.6rem;
-  font-weight: 300;
+.exchange-section .exchange-width .card.rent .card-body .part-2 {
+  font-size: 4rem;
   font-family: "Roboto Condensed", sans-serif;
-  margin-bottom: -15px;
-}
-
-.exchange-section .exchange-width .card.rent .card-body h2.your-cd {
-  font-size: 2.6rem;
-  font-weight: 300;
-  font-family: "Roboto Condensed", sans-serif;
-  margin-top: -15px;
-}
-
-.exchange-section .exchange-width .card.rent .card-body h1 {
-  font-size: 4.5rem;
+  color: #ffffff;
   margin-bottom: 0;
+  text-align: center;
+}
+
+.exchange-section .exchange-width .card.rent .card-body .part-3 {
+  margin-left: 7rem;
+  font-size: 2rem;
+  font-size: 2rem;
+  font-family: "Roboto Condensed", sans-serif;
   color: #ffffff;
   text-align: center;
-  font-family: "Roboto Condensed", sans-serif;
-}
-
-.exchange-section .exchange-width .card.rent .card-body h1 span {
-  font-size: 3.6rem;
-  font-weight: 500;
-  font-family: "Roboto Condensed", sans-serif;
-  margin-right: 4px;
 }
 
 .exchange-section .exchange-width .card.rent .card-body .rent-btn a {
@@ -12402,13 +12392,83 @@ footer .footer-width p span {
   }
 }
 
+.item-details .item-details-width .item-description .back-to-home p {
+  color: #cfced2;
+}
+
+.item-details .item-details-width .item-description .back-to-home p a {
+  color: #cfced2;
+}
+
+.item-details .item-details-width .item-description .card {
+  background: #14002f;
+  color: #ffffff;
+  padding-bottom: 0.2rem;
+  border-radius: 10px;
+}
+
+.item-details .item-details-width .item-description .card .card-title {
+  float: initial;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.item-details .item-details-width .item-description .card .price {
+  color: #fcd700;
+}
+
+.item-details .item-details-width .item-description .card .price span {
+  border-right: 1px solid #5b5e5f;
+  font-size: 20px;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+
+.item-details .item-details-width .item-description .card .part-left h4 {
+  font-size: 20px;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.item-details .item-details-width .item-description .card .part-right {
+  margin-left: -3rem;
+}
+
+.item-details .item-details-width .item-description .card .part-right h6 {
+  color: #cfced2;
+  font-weight: 400;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 19px;
+}
+
+.item-details .item-details-width .item-description .card .part-right h6.seller-name {
+  color: #fcd700;
+}
+
+.item-details .item-details-width .item-description .card .part-right h6.seller-name .badge {
+  font-size: 14px;
+  color: #fcd700;
+  background: #271b5e;
+  border-radius: 20px;
+  padding: 3px 8px;
+  margin-left: .5rem;
+}
+
+.item-details .item-details-width .item-description .card .part-right h6.seller-name .badge span {
+  font-size: 13px;
+}
+
+.item-details .item-details-width .item-description .card.information .card-body h2 {
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.item-details .item-details-width .item-description .card.information .card-body .part-right select {
+  background: #222f5e;
+  border-color: #222f5e;
+  color: #ffffff;
+  cursor: pointer;
+}
+
 .item-details .item-details-width .item-btn {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  margin-left: 20px;
+  text-align: center;
 }
 
 .item-details .item-details-width .item-btn a {
@@ -12452,68 +12512,6 @@ footer .footer-width p span {
 .item-details .item-details-width .item-btn a.buy-now:hover {
   background: #caa612;
   border-color: #caa612;
-}
-
-.item-details .item-details-width .item-description .back-to-home p {
-  color: #cfced2;
-}
-
-.item-details .item-details-width .item-description .back-to-home p a {
-  color: #cfced2;
-}
-
-.item-details .item-details-width .item-description .card {
-  background: #14002f;
-  color: #ffffff;
-  padding-bottom: 0.2rem;
-  border-radius: 10px;
-}
-
-.item-details .item-details-width .item-description .card .card-title {
-  float: initial;
-}
-
-.item-details .item-details-width .item-description .card .price {
-  color: #fcd700;
-}
-
-.item-details .item-details-width .item-description .card .price span {
-  border-right: 1px solid #5b5e5f;
-  font-size: 20px;
-  margin-right: 10px;
-  margin-left: 5px;
-}
-
-.item-details .item-details-width .item-description .card .part-left h4 {
-  font-size: 20px;
-  font-family: "Roboto Condensed", sans-serif;
-}
-
-.item-details .item-details-width .item-description .card .part-right {
-  margin-left: -3rem;
-}
-
-.item-details .item-details-width .item-description .card .part-right h6 {
-  color: #cfced2;
-  font-weight: 400;
-  font-family: "Roboto Condensed", sans-serif;
-  font-size: 19px;
-}
-
-.item-details .item-details-width .item-description .card .part-right h6.seller-name {
-  color: #fcd700;
-}
-
-.item-details .item-details-width .item-description .card .part-right h6.seller-name .badge {
-  font-size: 14px;
-  color: #fcd700;
-  background: #271b5e;
-  border-radius: 20px;
-  padding: 3px 8px;
-}
-
-.item-details .item-details-width .item-description .card .part-right h6.seller-name .badge span {
-  font-size: 13px;
 }
 
 .games-main-details {
@@ -12669,8 +12667,8 @@ footer .footer-width p span {
   border-bottom-left-radius: 20px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  background: #2d2061;
-  border-color: #2d2061;
+  background: #222f5e;
+  border-color: #222f5e;
   color: #ffffff !important;
   padding-left: 20px;
   -webkit-transition: all 0.3s ease-in;
@@ -12868,7 +12866,7 @@ footer .footer-width p span {
 }
 
 .sign-in {
-  background: url(../img/all-game.png) !important;
+  background: url(../img/bg.png) !important;
 }
 
 .sign-in .sign-in-width {
@@ -12883,8 +12881,11 @@ footer .footer-width p span {
   border-radius: 10px;
   margin-bottom: 3rem;
   border: 3px solid #222f5e;
-  background: #4a4444d4;
+  background-color: rgba(0, 0, 0, 0.75);
   border-color: #fcd700;
+  width: 70%;
+  margin: auto;
+  margin-bottom: 5rem;
 }
 
 .sign-in .sign-in-width .card .card-title {
@@ -12897,7 +12898,7 @@ footer .footer-width p span {
 }
 
 .sign-in .sign-in-width .card button.button-style {
-  width: 50%;
+  width: 70%;
   border: none;
   -webkit-transition: all 0.5s ease-in;
   transition: all 0.5s ease-in;
@@ -12922,7 +12923,7 @@ footer .footer-width p span {
 }
 
 .sign-in .sign-in-width .card form {
-  width: 50%;
+  width: 70%;
   margin: auto;
 }
 
@@ -13030,6 +13031,7 @@ footer .footer-width p span {
   padding-left: 3.5rem;
   font-size: 18px;
   font-weight: normal;
+  height: 38px;
 }
 
 .sign-in .sign-in-width .card form .form-group .form-check input {
@@ -15063,20 +15065,8 @@ footer .footer-width p span {
   .exchange-section .exchange-width .card {
     margin-right: 0 !important;
   }
-  .exchange-section .exchange-width .card.exchange .card-body .card-title {
-    font-size: 2rem !important;
-    margin-bottom: -5px !important;
-    text-align: center;
-    float: initial;
-  }
-  .exchange-section .exchange-width .card.exchange .card-body h1 {
-    font-size: 4rem;
-    text-align: center;
-  }
-  .exchange-section .exchange-width .card.exchange .card-body .your-cd {
-    font-size: 2rem !important;
-    margin-top: -5px !important;
-    margin-right: 70px !important;
+  .exchange-section .exchange-width .card.exchange .card-body .part-1 {
+    margin-right: 6rem;
   }
   .exchange-section .exchange-width .card.exchange .card-body .excng-btn button {
     font-size: 25px !important;
@@ -15084,24 +15074,8 @@ footer .footer-width p span {
   .exchange-section .exchange-width .card.rent {
     height: initial !important;
   }
-  .exchange-section .exchange-width .card.rent .card-body .card-title {
-    font-size: 2rem !important;
-    margin-bottom: -5px !important;
-    text-align: center;
-    float: initial;
-  }
-  .exchange-section .exchange-width .card.rent .card-body h1 {
-    font-size: 4rem;
-    text-align: center;
-  }
-  .exchange-section .exchange-width .card.rent .card-body h1 span {
-    font-size: 3rem;
-  }
-  .exchange-section .exchange-width .card.rent .card-body .your-cd {
-    font-size: 2rem !important;
-    margin-top: -5px !important;
-    margin-right: 10px !important;
-    text-align: center;
+  .exchange-section .exchange-width .card.rent .card-body .part-1 {
+    margin-right: 6rem;
   }
   .jedi-menu .menu-list-top li a {
     font-size: 13px !important;
@@ -15483,19 +15457,11 @@ footer .footer-width p span {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
   }
-  .exchange-section .exchange-width .card.exchange .card-body .card-title {
-    font-size: 2rem !important;
-    margin-bottom: -5px !important;
-    text-align: center;
+  .exchange-section .exchange-width .card.exchange .card-body .part-1 {
+    margin-right: 4rem;
   }
-  .exchange-section .exchange-width .card.exchange .card-body h1.exchange-1 {
-    font-size: 3.5rem;
-    text-align: center;
-  }
-  .exchange-section .exchange-width .card.exchange .card-body .your-cd {
-    font-size: 2rem !important;
-    margin-top: -5px !important;
-    margin-right: 25px !important;
+  .exchange-section .exchange-width .card.exchange .card-body .part-3 {
+    margin-left: 10rem;
   }
   .exchange-section .exchange-width .card.exchange .card-body .excng-btn button {
     font-size: 25px !important;
@@ -15509,23 +15475,11 @@ footer .footer-width p span {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
   }
-  .exchange-section .exchange-width .card.rent .card-body .card-title {
-    font-size: 2rem !important;
-    margin-bottom: -5px !important;
-    text-align: center;
+  .exchange-section .exchange-width .card.rent .card-body .part-1 {
+    margin-right: 4rem;
   }
-  .exchange-section .exchange-width .card.rent .card-body h1.rent-1 {
-    font-size: 3.5rem;
-    text-align: center;
-  }
-  .exchange-section .exchange-width .card.rent .card-body h1.rent-1 span {
-    font-size: 2rem;
-  }
-  .exchange-section .exchange-width .card.rent .card-body .your-cd {
-    font-size: 2rem !important;
-    margin-top: -5px !important;
-    margin-right: 10px !important;
-    text-align: center;
+  .exchange-section .exchange-width .card.rent .card-body .part-3 {
+    margin-left: 10rem;
   }
   .exchange-section .exchange-width .card.rent .card-body .rent-btn button {
     font-size: 25px !important;
@@ -15620,7 +15574,7 @@ footer .footer-width p span {
     height: 150px;
   }
   .cart .cart-width main .basket .basket-labels table tbody .basket-product .remove-cart {
-    margin-top: 5.5rem;
+    margin-top: 4.5rem;
   }
 }
 
@@ -15736,18 +15690,14 @@ footer .footer-width p span {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
   }
-  .exchange-section .exchange-width .card.exchange .card-body .card-title {
-    font-size: 1.6rem !important;
-    margin-bottom: 0px !important;
-    text-align: center;
+  .exchange-section .exchange-width .card.exchange .card-body .part-1 {
+    margin-right: 0rem;
   }
-  .exchange-section .exchange-width .card.exchange .card-body h1.exchange-1 {
-    font-size: 2.7rem;
+  .exchange-section .exchange-width .card.exchange .card-body .part-2 {
+    font-size: 3rem;
   }
-  .exchange-section .exchange-width .card.exchange .card-body .your-cd {
-    font-size: 1.6rem !important;
-    margin-top: 0px !important;
-    text-align: center !important;
+  .exchange-section .exchange-width .card.exchange .card-body .part-3 {
+    margin-left: 0;
   }
   .exchange-section .exchange-width .card.exchange .card-body .excng-btn button {
     font-size: 25px !important;
@@ -15761,23 +15711,14 @@ footer .footer-width p span {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
   }
-  .exchange-section .exchange-width .card.rent .card-body .card-title {
-    font-size: 1.6rem !important;
-    margin-bottom: 0px !important;
-    text-align: center !important;
+  .exchange-section .exchange-width .card.rent .card-body .part-1 {
+    margin-right: 0rem;
   }
-  .exchange-section .exchange-width .card.rent .card-body h1.rent-1 {
-    font-size: 2.7rem;
-    text-align: center;
+  .exchange-section .exchange-width .card.rent .card-body .part-2 {
+    font-size: 3rem;
   }
-  .exchange-section .exchange-width .card.rent .card-body h1.rent-1 span {
-    font-size: 2.2rem !important;
-  }
-  .exchange-section .exchange-width .card.rent .card-body .your-cd {
-    font-size: 1.6rem !important;
-    margin-top: 0px !important;
-    margin-right: 10px !important;
-    text-align: center;
+  .exchange-section .exchange-width .card.rent .card-body .part-3 {
+    margin-left: 0;
   }
   .exchange-section .exchange-width .card.rent .card-body .rent-btn button {
     font-size: 25px !important;
@@ -15889,7 +15830,7 @@ footer .footer-width p span {
     margin-top: 10px;
   }
   .cart .cart-width main .basket .basket-labels table tbody .basket-product .remove-cart {
-    margin-top: 10rem;
+    margin-top: 8rem;
   }
 }
 
@@ -15982,20 +15923,14 @@ footer .footer-width p span {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 0 !important;
   }
-  .exchange-section .exchange-width .card.exchange .card-body .card-title {
-    font-size: 1.6rem !important;
-    margin-bottom: -5px !important;
-    text-align: center !important;
+  .exchange-section .exchange-width .card.exchange .card-body .part-1 {
+    margin-right: 6rem;
   }
-  .exchange-section .exchange-width .card.exchange .card-body h1.exchange-1 {
-    font-size: 3.5rem;
-    text-align: center;
+  .exchange-section .exchange-width .card.exchange .card-body .part-2 {
+    font-size: 4rem;
   }
-  .exchange-section .exchange-width .card.exchange .card-body .your-cd {
-    font-size: 1.6rem !important;
-    margin-top: -5px !important;
-    margin-right: 10px !important;
-    text-align: center !important;
+  .exchange-section .exchange-width .card.exchange .card-body .part-3 {
+    margin-left: 6rem;
   }
   .exchange-section .exchange-width .card.exchange .card-body .excng-btn button {
     font-size: 25px !important;
@@ -16009,23 +15944,14 @@ footer .footer-width p span {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 0 !important;
   }
-  .exchange-section .exchange-width .card.rent .card-body .card-title {
-    font-size: 1.6rem !important;
-    margin-bottom: -5px !important;
-    text-align: center;
+  .exchange-section .exchange-width .card.rent .card-body .part-1 {
+    margin-right: 6rem;
   }
-  .exchange-section .exchange-width .card.rent .card-body h1.rent-1 {
-    font-size: 3.5rem;
-    text-align: center;
+  .exchange-section .exchange-width .card.rent .card-body .part-2 {
+    font-size: 4rem;
   }
-  .exchange-section .exchange-width .card.rent .card-body h1.rent-1 span {
-    font-size: 2.6rem;
-  }
-  .exchange-section .exchange-width .card.rent .card-body .your-cd {
-    font-size: 1.6rem !important;
-    margin-top: -5px !important;
-    margin-right: 10px !important;
-    text-align: center;
+  .exchange-section .exchange-width .card.rent .card-body .part-3 {
+    margin-left: 6rem;
   }
   .exchange-section .exchange-width .card.rent .card-body .rent-btn button {
     font-size: 25px !important;
@@ -16190,6 +16116,7 @@ footer .footer-width p span {
   .sign-in .sign-in-width .card {
     margin-top: 3rem !important;
     margin-bottom: 0;
+    width: 100%;
   }
   .sign-in .sign-in-width .card button.sign-in-option-btn {
     width: 90%;
@@ -16222,7 +16149,7 @@ footer .footer-width p span {
     display: block;
   }
   .cart .cart-width main .basket .basket-labels table tbody .basket-product .remove-cart {
-    margin-top: 9rem;
+    margin-top: 8rem;
   }
   .cart .cart-width main aside {
     float: initial;
@@ -16363,20 +16290,14 @@ footer .footer-width p span {
     height: initial !important;
     height: 300px !important;
   }
-  .exchange-section .exchange-width .card.exchange .card-body .card-title {
-    font-size: 1.6rem !important;
-    margin-bottom: -5px !important;
-    text-align: center;
+  .exchange-section .exchange-width .card.exchange .card-body .part-1 {
+    margin-right: 0rem;
   }
-  .exchange-section .exchange-width .card.exchange .card-body h1 {
-    font-size: 2.5rem !important;
-    text-align: center;
+  .exchange-section .exchange-width .card.exchange .card-body .part-2 {
+    font-size: 3rem;
   }
-  .exchange-section .exchange-width .card.exchange .card-body .your-cd {
-    font-size: 1.6rem !important;
-    margin-top: -5px !important;
-    margin-right: 0 !important;
-    text-align: center !important;
+  .exchange-section .exchange-width .card.exchange .card-body .part-3 {
+    margin-left: 0rem;
   }
   .exchange-section .exchange-width .card.exchange .card-body .excng-btn button {
     font-size: 30px !important;
@@ -16391,23 +16312,14 @@ footer .footer-width p span {
     border-bottom-left-radius: 0;
     height: 300px !important;
   }
-  .exchange-section .exchange-width .card.rent .card-body .card-title {
-    font-size: 1.6rem !important;
-    margin-bottom: -5px !important;
-    text-align: center;
+  .exchange-section .exchange-width .card.rent .card-body .part-1 {
+    margin-right: 0rem;
   }
-  .exchange-section .exchange-width .card.rent .card-body h1 {
-    font-size: 2.5rem !important;
-    text-align: center;
+  .exchange-section .exchange-width .card.rent .card-body .part-2 {
+    font-size: 3rem;
   }
-  .exchange-section .exchange-width .card.rent .card-body h1 span {
-    font-size: 2.8rem !important;
-  }
-  .exchange-section .exchange-width .card.rent .card-body .your-cd {
-    font-size: 1.6rem !important;
-    margin-top: -5px !important;
-    margin-right: 0 !important;
-    text-align: center;
+  .exchange-section .exchange-width .card.rent .card-body .part-3 {
+    margin-left: 0rem;
   }
   .exchange-section .exchange-width .card.rent .card-body .rent-btn button {
     font-size: 30px !important;
@@ -16572,7 +16484,7 @@ footer .footer-width p span {
     margin-top: 10px;
   }
   .cart .cart-width main .basket .basket-labels table tbody .basket-product .remove-cart {
-    margin-top: 10rem;
+    margin-top: 8rem;
   }
   .cart .cart-width main aside {
     width: 80%;
@@ -17048,7 +16960,7 @@ footer .footer-width p span {
     margin-top: 10px;
   }
   .cart .cart-width main .basket .basket-labels table tbody .basket-product .remove-cart {
-    margin-top: 10rem;
+    margin-top: 9rem;
   }
   .cart .cart-width main aside {
     width: 100%;

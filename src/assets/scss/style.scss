@@ -294,6 +294,7 @@ nav {
               padding-right: 20px;
               @include transition-3;
               box-shadow: none;
+              height: 38px;
               &:hover {
                 background: $yellow-btn-hover;
                 border-color: $yellow-btn-hover;
@@ -635,7 +636,7 @@ nav {
             position: absolute;
             top: 0;
             right: 0;
-            bottom: 260px;
+            bottom: 271px;
             left: 0;
             border-top-right-radius: 10px;
             border-top-left-radius: 10px;
@@ -1339,10 +1340,83 @@ footer {
         z-index: 2;
       }
     }
+   
+    .item-description {
+      .back-to-home {
+        p {
+          color: $description-clr;
+          a {
+            color: $description-clr;
+          }
+        }
+      }
+      .card {
+        background: $thumbnail-bg;
+        color: $white-clr;
+        padding-bottom: 0.2rem;
+        border-radius: 10px;
+        .card-title {
+          float: initial;
+          @include roboto-con;
+        }
+        .price {
+          color: $menu-active;
+          span {
+            border-right: 1px solid #5b5e5f;
+            font-size: 20px;
+            margin-right: 10px;
+            margin-left: 5px;
+          }
+        }
+        .part-left {
+          h4 {
+            font-size: 20px;
+            @include roboto-con;
+          }
+        }
+        .part-right {
+          margin-left: -3rem;
+          h6 {
+            color: $description-clr;
+            font-weight: 400;
+            @include roboto-con;
+            font-size: 19px;
+            &.seller-name {
+              color: $menu-active;
+              .badge {
+                font-size: 14px;
+                color: $menu-active;
+                background: $item-bg;
+                border-radius: 20px;
+                padding: 3px 8px;
+                margin-left:.5rem;
+                span {
+                  font-size: 13px;
+                }
+              }
+            }
+          }
+        }
+        // information
+        &.information {
+          .card-body {
+            h2 {
+              @include roboto-con;
+            }
+            .part-right {
+              select {
+                background : $sign-in-form;
+                border-color: $sign-in-form;
+                color: $white-clr;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
     .item-btn {
-      display: flex;
-      justify-content: space-around;
-      margin-left: 20px;
+      text-align: center;
       a {
         background: $menu-active;
         padding: 12px 0px;
@@ -1375,62 +1449,6 @@ footer {
           &:hover {
             background: $yellow-btn-hover;
             border-color: $yellow-btn-hover;
-          }
-        }
-      }
-    }
-    .item-description {
-      .back-to-home {
-        p {
-          color: $description-clr;
-          a {
-            color: $description-clr;
-          }
-        }
-      }
-      .card {
-        background: $thumbnail-bg;
-        color: $white-clr;
-        padding-bottom: 0.2rem;
-        border-radius: 10px;
-        .card-title {
-          float: initial;
-        }
-        .price {
-          color: $menu-active;
-          span {
-            border-right: 1px solid #5b5e5f;
-            font-size: 20px;
-            margin-right: 10px;
-            margin-left: 5px;
-          }
-        }
-        .part-left {
-          h4 {
-            font-size: 20px;
-            @include roboto-con;
-          }
-        }
-        .part-right {
-          margin-left: -3rem;
-          h6 {
-            color: $description-clr;
-            font-weight: 400;
-            @include roboto-con;
-            font-size: 19px;
-            &.seller-name {
-              color: $menu-active;
-              .badge {
-                font-size: 14px;
-                color: $menu-active;
-                background: $item-bg;
-                border-radius: 20px;
-                padding: 3px 8px;
-                span {
-                  font-size: 13px;
-                }
-              }
-            }
           }
         }
       }
@@ -1580,8 +1598,8 @@ footer {
               border-bottom-left-radius: 20px;
               border-top-right-radius: 0;
               border-bottom-right-radius: 0;
-              background: $search;
-              border-color: $search;
+              background: $sign-in-form;
+              border-color: $sign-in-form;
               color: $white-clr !important;
               padding-left: 20px;
               @include transition-3;
@@ -1747,7 +1765,7 @@ footer {
     width: 85%;
     .card {
       @include sign-regis-card;
-      background: $login-card-bg;
+      background-color: rgba(0,0,0,.75);
       border-color: $menu-active;
       width: 70%;
       margin: auto;
@@ -1841,6 +1859,7 @@ footer {
               padding-left: 3.5rem;
               font-size: 18px;
               font-weight: normal;
+              height:38px;
             }
           }
           margin-bottom: 2rem;

@@ -13,37 +13,36 @@
                                     <div class="form-group">
                                         <!-- Game anme -->
                                         <label class="">Game Name</label>
-    <!--                                    <input type="text" class="form-control" id="gameName" value="" placeholder="Game Name" required>-->
-                                    <ValidationProvider name="games" rules="required" v-slot="{ errors }">
-                                        <v-select label="name" :options="games" :reduce="game => game" v-model="form.game"></v-select>
-                                        <span class="text-dang">{{ errors[0] }}</span>
-                                    </ValidationProvider>
+                                        <ValidationProvider name="games" rules="required" v-slot="{ errors }">
+                                            <v-select label="name" :options="games" :reduce="game => game" v-model="form.game"></v-select>
+                                            <span class="text-danger">{{ errors[0] }}</span>
+                                        </ValidationProvider>
                                     </div>
                                     <div class="form-group">
                                         <label for="rentedWeek" class="">Maximum rented week</label>
-                                    <ValidationProvider name="rented week" rules="required" v-slot="{ errors }">
-                                        <input type="number" class="form-control" id="rentedWeek" placeholder="Maximum rented week" v-model="form.max_week" required>
-                                        <span class="text-dang">{{ errors[0] }}</span>
-                                    </ValidationProvider>
+                                        <ValidationProvider name="rented week" rules="required" v-slot="{ errors }">
+                                            <input type="number" class="form-control" id="rentedWeek" placeholder="Maximum rented week" v-model="form.max_week" required>
+                                            <span class="text-danger">{{ errors[0] }}</span>
+                                        </ValidationProvider>
                                     </div>
                                     <!-- date available -->
                                     <div class="form-group">
                                         <label for="rentingWeek" class="">Available from</label>
-                                    <ValidationProvider name="available date" rules="required" v-slot="{ errors }">
-                                        <input type="date" class="form-control" id="rentingWeek" placeholder="Maximum renting week" v-model="form.availability" required>
-                                        <span class="text-dang">{{ errors[0] }}</span>
-                                    </ValidationProvider>
+                                        <ValidationProvider name="available date" rules="required" v-slot="{ errors }">
+                                            <input type="date" class="form-control" id="rentingWeek" placeholder="Maximum renting week" v-model="form.availability" required>
+                                            <span class="error-message">{{ errors[0] }}</span>
+                                        </ValidationProvider>
                                     </div>
                                     <!-- platform -->
                                     <div class="form-group">
                                         <label>Platform</label><br>
-                                    <ValidationProvider name="Platform" rules="required" v-slot="{ errors }">
-                                        <div class="form-check form-check-inline" v-for="(platform, index) in platforms" :key="index">
-                                            <input class="form-check-input" name="platform" type="radio" :value="platform" v-model="form.platform" required>
-                                            <label class="form-check-label" >{{ platform.name }}</label>
-                                        </div>
-                                        <span class="text-dang">{{ errors[0] }}</span>
-                                    </ValidationProvider>
+                                        <ValidationProvider name="Platform" rules="required" v-slot="{ errors }">
+                                            <div class="form-check form-check-inline" v-for="(platform, index) in platforms" :key="index">
+                                                <input class="form-check-input" name="platform" type="radio" :value="platform" v-model="form.platform" required>
+                                                <label class="form-check-label" >{{ platform.name }}</label>
+                                            </div>
+                                            <span class="error-message">{{ errors[0] }}</span>
+                                        </ValidationProvider>
                                     </div>
                                     <!-- earning amount -->
                                     <div class="form-group">
@@ -79,7 +78,7 @@
                                                 <option value="">Please Select Disk Condition...</option>
                                                 <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }}</option>
                                             </select>
-                                            <span class="text-dang">{{ errors[0] }}</span>
+                                            <span class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                     </div>
                                     <!-- disk image -->

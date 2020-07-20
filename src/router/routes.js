@@ -14,11 +14,6 @@ import Search from "../components/Search";
 import Profile from "../components/Profile";
 import Contacts from "../components/Contacts";
 import OTP from "../components/Login/OTP";
-import GameList from "../components/admin/GameList";
-import UploadGame from "../components/admin/UploadGame";
-// import AdminLogin from "../components/admin/AdminLogin";
-import GameEdit from "../components/admin/GameEdit";
-import Navbar from "../components/admin/partial/Navbar"
 import RentView from "../components/RentView";
 import Password from "../components/Login/Password";
 import ForgotPassword from "../components/ForgotPassword/ForgotPassword";
@@ -61,10 +56,13 @@ let router = new Router({
             props: true
         },
         {
-            path: '/game-details',
+            path: '/game-details/:id',
             name: 'GameDetails',
             component: GameDetails,
-            props: true
+            props: true,
+            meta: {
+                requiresAuth: false
+            }
         },
         {
             path: '/profile',
@@ -97,21 +95,6 @@ let router = new Router({
             meta: {
                 requiresAuth: false
             }
-        },
-        {
-            path: '/game-list',
-            name: 'GameList',
-            component: GameList,
-        },
-        {
-            path: '/upload-game',
-            name: 'UploadGame',
-            component: UploadGame,
-        },
-        {
-            path: '/game-edit',
-            name: 'GameEdit',
-            component: GameEdit,
         },
         {
             path: '/password-setup',

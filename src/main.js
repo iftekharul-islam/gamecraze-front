@@ -42,6 +42,7 @@ Vue.prototype.$gamehubStorageApi = process.env.VUE_APP_GAMEHUB_STORAGE_API
 Vue.prototype.$upcomingGamesApi = process.env.VUE_APP_UPCOMING_GAMES_API
 Vue.prototype.$popularGamesApi = process.env.VUE_APP_POPULAR_GAMES_API
 Vue.prototype.$baseApi = process.env.VUE_APP_BASE_API
+Vue.prototype.$gamehubApi = process.env.VUE_APP_GAMEHUB_BASE_API
 
 //vue swal
 import VueSwal, {swal} from 'vue-swal'

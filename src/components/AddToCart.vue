@@ -83,7 +83,7 @@
                       token="if you have any token validation"
                       postdata="your javascript arrays or objects which requires in backend"
                       order="If you already have the transaction generated for current order"
-                      endpoint="http://api.gamehub.test/pay"> Pay Now
+                      :endpoint="$gamehubApi + 'pay'"> Pay Now
               </button>
             </div>
           </div>

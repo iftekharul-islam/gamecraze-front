@@ -11043,6 +11043,7 @@ nav .nav-width .search form .input-group .sign-logout .sign-in-btn {
   transition: all 0.3s ease-in;
   -webkit-box-shadow: none;
           box-shadow: none;
+  height: 38px;
 }
 
 nav .nav-width .search form .input-group .sign-logout .sign-in-btn:hover {
@@ -11481,7 +11482,7 @@ nav.searchbar-nav {
   position: absolute;
   top: 0;
   right: 0;
-  bottom: 260px;
+  bottom: 271px;
   left: 0;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
@@ -12391,13 +12392,83 @@ footer .footer-width p span {
   }
 }
 
+.item-details .item-details-width .item-description .back-to-home p {
+  color: #cfced2;
+}
+
+.item-details .item-details-width .item-description .back-to-home p a {
+  color: #cfced2;
+}
+
+.item-details .item-details-width .item-description .card {
+  background: #14002f;
+  color: #ffffff;
+  padding-bottom: 0.2rem;
+  border-radius: 10px;
+}
+
+.item-details .item-details-width .item-description .card .card-title {
+  float: initial;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.item-details .item-details-width .item-description .card .price {
+  color: #fcd700;
+}
+
+.item-details .item-details-width .item-description .card .price span {
+  border-right: 1px solid #5b5e5f;
+  font-size: 20px;
+  margin-right: 10px;
+  margin-left: 5px;
+}
+
+.item-details .item-details-width .item-description .card .part-left h4 {
+  font-size: 20px;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.item-details .item-details-width .item-description .card .part-right {
+  margin-left: -3rem;
+}
+
+.item-details .item-details-width .item-description .card .part-right h6 {
+  color: #cfced2;
+  font-weight: 400;
+  font-family: "Roboto Condensed", sans-serif;
+  font-size: 19px;
+}
+
+.item-details .item-details-width .item-description .card .part-right h6.seller-name {
+  color: #fcd700;
+}
+
+.item-details .item-details-width .item-description .card .part-right h6.seller-name .badge {
+  font-size: 14px;
+  color: #fcd700;
+  background: #271b5e;
+  border-radius: 20px;
+  padding: 3px 8px;
+  margin-left: .5rem;
+}
+
+.item-details .item-details-width .item-description .card .part-right h6.seller-name .badge span {
+  font-size: 13px;
+}
+
+.item-details .item-details-width .item-description .card.information .card-body h2 {
+  font-family: "Roboto Condensed", sans-serif;
+}
+
+.item-details .item-details-width .item-description .card.information .card-body .part-right select {
+  background: #222f5e;
+  border-color: #222f5e;
+  color: #ffffff;
+  cursor: pointer;
+}
+
 .item-details .item-details-width .item-btn {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  margin-left: 20px;
+  text-align: center;
 }
 
 .item-details .item-details-width .item-btn a {
@@ -12441,68 +12512,6 @@ footer .footer-width p span {
 .item-details .item-details-width .item-btn a.buy-now:hover {
   background: #caa612;
   border-color: #caa612;
-}
-
-.item-details .item-details-width .item-description .back-to-home p {
-  color: #cfced2;
-}
-
-.item-details .item-details-width .item-description .back-to-home p a {
-  color: #cfced2;
-}
-
-.item-details .item-details-width .item-description .card {
-  background: #14002f;
-  color: #ffffff;
-  padding-bottom: 0.2rem;
-  border-radius: 10px;
-}
-
-.item-details .item-details-width .item-description .card .card-title {
-  float: initial;
-}
-
-.item-details .item-details-width .item-description .card .price {
-  color: #fcd700;
-}
-
-.item-details .item-details-width .item-description .card .price span {
-  border-right: 1px solid #5b5e5f;
-  font-size: 20px;
-  margin-right: 10px;
-  margin-left: 5px;
-}
-
-.item-details .item-details-width .item-description .card .part-left h4 {
-  font-size: 20px;
-  font-family: "Roboto Condensed", sans-serif;
-}
-
-.item-details .item-details-width .item-description .card .part-right {
-  margin-left: -3rem;
-}
-
-.item-details .item-details-width .item-description .card .part-right h6 {
-  color: #cfced2;
-  font-weight: 400;
-  font-family: "Roboto Condensed", sans-serif;
-  font-size: 19px;
-}
-
-.item-details .item-details-width .item-description .card .part-right h6.seller-name {
-  color: #fcd700;
-}
-
-.item-details .item-details-width .item-description .card .part-right h6.seller-name .badge {
-  font-size: 14px;
-  color: #fcd700;
-  background: #271b5e;
-  border-radius: 20px;
-  padding: 3px 8px;
-}
-
-.item-details .item-details-width .item-description .card .part-right h6.seller-name .badge span {
-  font-size: 13px;
 }
 
 .games-main-details {
@@ -12658,8 +12667,8 @@ footer .footer-width p span {
   border-bottom-left-radius: 20px;
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  background: #2d2061;
-  border-color: #2d2061;
+  background: #222f5e;
+  border-color: #222f5e;
   color: #ffffff !important;
   padding-left: 20px;
   -webkit-transition: all 0.3s ease-in;
@@ -12872,7 +12881,7 @@ footer .footer-width p span {
   border-radius: 10px;
   margin-bottom: 3rem;
   border: 3px solid #222f5e;
-  background: #171515bf;
+  background-color: rgba(0, 0, 0, 0.75);
   border-color: #fcd700;
   width: 70%;
   margin: auto;
@@ -13022,6 +13031,7 @@ footer .footer-width p span {
   padding-left: 3.5rem;
   font-size: 18px;
   font-weight: normal;
+  height: 38px;
 }
 
 .sign-in .sign-in-width .card form .form-group .form-check input {

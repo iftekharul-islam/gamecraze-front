@@ -54,7 +54,7 @@
                                 </div>
                             </div>
 
-                            <div class="ml-3 mt-1">
+                            <div class="cart-icon ml-3">
                                 <router-link to="/add-to-cart"> <i class="material-icons text-yellow"> shopping_cart </i>
 
                                 </router-link>

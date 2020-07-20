@@ -15,18 +15,7 @@
                                 <li v-for="(asset,index) in rent.game.data.assets.data" :key="index" :id="'slide'+index"><img :src="$gamehubStorageApi + 'assets/' + asset.name" alt="jedi fallen" class="img-fluid"/></li>
                             </ul>
                         </div>
-                        <div class="row">
-                            <div class="col-md-10 offset-md-2">
-                                <div class="item-btn">
-                                    <a v-if="show" @click.prevent="onRent" class="btn btn-success rent">
-                                        Rent Now
-                                    </a>
-                                    <a v-else @click.prevent="onRent" class="btn btn-success rent">
-                                        See Details
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                       
                     </div>
                     <div class="col-lg-6 col-xl-7">
                         <div class="item-description">
@@ -92,9 +81,9 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card w-100" v-else>
+                            <div class="card w-100 information" v-else>
                                 <div class="card-body" v-if="rent">
-                                    <h2 class="text-center mb-5">Provide Necessary Information</h2>
+                                    <h2 class="text-left mb-5">Provide Necessary Information</h2>
                                     <ValidationObserver v-slot="{ handleSubmit }">
                                         <div class="row">
                                             <div class="col-sm-4">
@@ -130,6 +119,18 @@
                             </div>
                         </div>
                     </div>
+          
+                            <div class="col">
+                                <div class="item-btn">
+                                    <a v-if="show" @click.prevent="onRent" class="btn btn-success rent">
+                                        Rent Now
+                                    </a>
+                                    <a v-else @click.prevent="onRent" class="btn btn-success rent">
+                                        See Details
+                                    </a>
+                                </div>
+                            </div>
+                        
                 </div>
             </div>
         </section>

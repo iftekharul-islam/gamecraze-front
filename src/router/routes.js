@@ -128,15 +128,15 @@ let router = new Router({
                 requiresAuth: true
             }
         },
-        {
-            path: '/rent-view/:id/:slug',
-            name: 'RentView',
-            component: RentView,
-            props: true,
-            meta: {
-                requiresAuth: false
-            }
-        },
+        // {
+        //     path: '/rent-view/:id/:slug',
+        //     name: 'RentView',
+        //     component: RentView,
+        //     props: true,
+        //     meta: {
+        //         requiresAuth: false
+        //     }
+        // },
         {
             path: '/reset-password',
             name: 'ResetPassword',

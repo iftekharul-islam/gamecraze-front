@@ -179,7 +179,7 @@
                         <div class="owl-carousel-four owl-carousel owl-theme">
                             <div class="item" v-for="(rent,index) in rents" :key="index">
                                 <div class="card" >
-                                    <img class="card-img-top" :src="rent.game.data.assets.data[0].url" :alt="rent.game.data.name " v-if="rent.game.data.assets.data.length">
+                                    <img class="card-img-top" :src="$gamehubStorageApi + 'assets/' + rent.game.data.assets.data[0].name" :alt="rent.game.data.name " v-if="rent.game.data.assets.data.length">
                                     <img class="card-img-top" src="../assets/img/rented/grid.png" alt="Grid" v-else>
                                     <div class="card-body">
                                         <h4 class="mb-2 game-name text-center">{{ rent.game.data.name }}</h4>

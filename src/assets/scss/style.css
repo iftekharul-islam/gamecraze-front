@@ -14664,6 +14664,10 @@ footer .footer-width p span {
   pointer-events: auto;
 }
 
+.cart {
+  min-height: 100vh;
+}
+
 .cart .cart-width {
   width: 85%;
 }

@@ -294,6 +294,7 @@ nav {
               padding-right: 20px;
               @include transition-3;
               box-shadow: none;
+              height: 38px;
               &:hover {
                 background: $yellow-btn-hover;
                 border-color: $yellow-btn-hover;
@@ -635,7 +636,7 @@ nav {
             position: absolute;
             top: 0;
             right: 0;
-            bottom: 260px;
+            bottom: 271px;
             left: 0;
             border-top-right-radius: 10px;
             border-top-left-radius: 10px;
@@ -697,27 +698,27 @@ nav {
         .card-body {
           height: 100%;
 
-          h2 {
-            margin-bottom: 0;
-            color: $exchange;
-            &.card-title {
-              margin-top: 1rem;
-              font-size: 2.6rem;
-              font-weight: 300;
-              margin-bottom: -15px;
+            .part-1 {
+              margin-right: 8rem;
+              font-size:2rem;
+              @include roboto-con;
+              margin-bottom: 0;
+              text-align: center;
             }
-            &.your-cd {
-              font-size: 2.6rem;
-              font-weight: 300;
-              margin-top: -15px;
-              margin-right: 10px;
+            .part-2 {
+              color: $exchange;
+              font-size: 4rem;
+              @include roboto-con;
+              margin-bottom: 0;
+              text-align: center;
             }
-          }
-          h1 {
-            font-size: 4.5rem;
-            margin-bottom: 0;
-            color: $exchange;
-          }
+            .part-3 {
+              margin-left: 12rem;
+              font-size:2rem;font-size:2rem;
+              @include roboto-con;
+              text-align: center;
+            }
+          
           .excng-btn {
             a {
               background: $menu-active;
@@ -753,38 +754,28 @@ nav {
         .card-body {
           height: 100%;
 
-          h2 {
-            margin-bottom: 0;
-            color: $white-clr;
-            text-align: center;
-
-            &.card-title {
-              margin-top: 1rem;
-              font-size: 2.6rem;
-              font-weight: 300;
+          .part-1 {
+              margin-right: 10rem;
+              font-size:2rem;
               @include roboto-con;
-              margin-bottom: -15px;
+              color:$white-clr;
+              margin-bottom: 0;
+              text-align: center;
             }
-            &.your-cd {
-              font-size: 2.6rem;
-              font-weight: 300;
+            .part-2 {
+              font-size: 4rem;
               @include roboto-con;
-              margin-top: -15px;
+              color:$white-clr;
+              margin-bottom: 0;
+              text-align: center;
             }
-          }
-          h1 {
-            font-size: 4.5rem;
-            margin-bottom: 0;
-            color: $white-clr;
-            text-align: center;
-            @include roboto-con;
-            span {
-              font-size: 3.6rem;
-              font-weight: 500;
+            .part-3 {
+              margin-left: 7rem;
+              font-size:2rem;font-size:2rem;
               @include roboto-con;
-              margin-right: 4px;
+              color:$white-clr;
+              text-align: center;
             }
-          }
           .rent-btn {
             a {
               background: $menu-active;
@@ -1349,10 +1340,83 @@ footer {
         z-index: 2;
       }
     }
+   
+    .item-description {
+      .back-to-home {
+        p {
+          color: $description-clr;
+          a {
+            color: $description-clr;
+          }
+        }
+      }
+      .card {
+        background: $thumbnail-bg;
+        color: $white-clr;
+        padding-bottom: 0.2rem;
+        border-radius: 10px;
+        .card-title {
+          float: initial;
+          @include roboto-con;
+        }
+        .price {
+          color: $menu-active;
+          span {
+            border-right: 1px solid #5b5e5f;
+            font-size: 20px;
+            margin-right: 10px;
+            margin-left: 5px;
+          }
+        }
+        .part-left {
+          h4 {
+            font-size: 20px;
+            @include roboto-con;
+          }
+        }
+        .part-right {
+          margin-left: -3rem;
+          h6 {
+            color: $description-clr;
+            font-weight: 400;
+            @include roboto-con;
+            font-size: 19px;
+            &.seller-name {
+              color: $menu-active;
+              .badge {
+                font-size: 14px;
+                color: $menu-active;
+                background: $item-bg;
+                border-radius: 20px;
+                padding: 3px 8px;
+                margin-left:.5rem;
+                span {
+                  font-size: 13px;
+                }
+              }
+            }
+          }
+        }
+        // information
+        &.information {
+          .card-body {
+            h2 {
+              @include roboto-con;
+            }
+            .part-right {
+              select {
+                background : $sign-in-form;
+                border-color: $sign-in-form;
+                color: $white-clr;
+                cursor: pointer;
+              }
+            }
+          }
+        }
+      }
+    }
     .item-btn {
-      display: flex;
-      justify-content: space-around;
-      margin-left: 20px;
+      text-align: center;
       a {
         background: $menu-active;
         padding: 12px 0px;
@@ -1385,62 +1449,6 @@ footer {
           &:hover {
             background: $yellow-btn-hover;
             border-color: $yellow-btn-hover;
-          }
-        }
-      }
-    }
-    .item-description {
-      .back-to-home {
-        p {
-          color: $description-clr;
-          a {
-            color: $description-clr;
-          }
-        }
-      }
-      .card {
-        background: $thumbnail-bg;
-        color: $white-clr;
-        padding-bottom: 0.2rem;
-        border-radius: 10px;
-        .card-title {
-          float: initial;
-        }
-        .price {
-          color: $menu-active;
-          span {
-            border-right: 1px solid #5b5e5f;
-            font-size: 20px;
-            margin-right: 10px;
-            margin-left: 5px;
-          }
-        }
-        .part-left {
-          h4 {
-            font-size: 20px;
-            @include roboto-con;
-          }
-        }
-        .part-right {
-          margin-left: -3rem;
-          h6 {
-            color: $description-clr;
-            font-weight: 400;
-            @include roboto-con;
-            font-size: 19px;
-            &.seller-name {
-              color: $menu-active;
-              .badge {
-                font-size: 14px;
-                color: $menu-active;
-                background: $item-bg;
-                border-radius: 20px;
-                padding: 3px 8px;
-                span {
-                  font-size: 13px;
-                }
-              }
-            }
           }
         }
       }
@@ -1590,8 +1598,8 @@ footer {
               border-bottom-left-radius: 20px;
               border-top-right-radius: 0;
               border-bottom-right-radius: 0;
-              background: $search;
-              border-color: $search;
+              background: $sign-in-form;
+              border-color: $sign-in-form;
               color: $white-clr !important;
               padding-left: 20px;
               @include transition-3;
@@ -1752,19 +1760,22 @@ footer {
   background: $top-nav !important;
 }
 .sign-in {
-  background: url(../img/all-game.png) !important;
+  background: url(../img/bg.png) !important;
   .sign-in-width {
     width: 85%;
     .card {
       @include sign-regis-card;
-      background: $login-card-bg;
+      background-color: rgba(0,0,0,.75);
       border-color: $menu-active;
+      width: 70%;
+      margin: auto;
+      margin-bottom: 5rem;
       .card-title {
         @include sign-regis-card-title;
       }
       button {
         &.button-style {
-          width: 50%;
+          width: 70%;
           border: none;
           transition: all 0.5s ease-in;
           &:hover {
@@ -1787,7 +1798,7 @@ footer {
         }
       }
       form {
-        width: 50%;
+        width: 70%;
         margin: auto;
         .form-group {
           .floating-label-group {
@@ -1848,6 +1859,7 @@ footer {
               padding-left: 3.5rem;
               font-size: 18px;
               font-weight: normal;
+              height:38px;
             }
           }
           margin-bottom: 2rem;
@@ -3240,6 +3252,7 @@ footer {
 
 // Cart Page
 .cart {
+  min-height: 100vh;
   .cart-width {
     width: 85%;
     // main start
@@ -3578,21 +3591,10 @@ footer {
         margin-right: 0 !important;
         &.exchange {
           .card-body {
-            .card-title {
-              font-size: 2rem !important;
-              margin-bottom: -5px !important;
-              text-align: center;
-              float: initial;
+            .part-1 {
+              margin-right: 6rem;
             }
-            h1 {
-              font-size: 4rem;
-              text-align: center;
-            }
-            .your-cd {
-              font-size: 2rem !important;
-              margin-top: -5px !important;
-              margin-right: 70px !important;
-            }
+            
             .excng-btn button {
               font-size: 25px !important;
             }
@@ -3601,24 +3603,8 @@ footer {
         &.rent {
           height: initial !important;
           .card-body {
-            .card-title {
-              font-size: 2rem !important;
-              margin-bottom: -5px !important;
-              text-align: center;
-              float: initial;
-            }
-            h1 {
-              font-size: 4rem;
-              text-align: center;
-              span {
-                font-size: 3rem;
-              }
-            }
-            .your-cd {
-              font-size: 2rem !important;
-              margin-top: -5px !important;
-              margin-right: 10px !important;
-              text-align: center;
+            .part-1 {
+              margin-right: 6rem;;
             }
           }
         }
@@ -4228,21 +4214,11 @@ footer {
             border-bottom-left-radius: 10px;
           }
           .card-body {
-            .card-title {
-              font-size: 2rem !important;
-              margin-bottom: -5px !important;
-              text-align: center;
+            .part-1 {
+              margin-right: 4rem;
             }
-            h1 {
-              &.exchange-1 {
-                font-size: 3.5rem;
-                text-align: center;
-              }
-            }
-            .your-cd {
-              font-size: 2rem !important;
-              margin-top: -5px !important;
-              margin-right: 25px !important;
+            .part-3 {
+              margin-left: 10rem;
             }
             .excng-btn button {
               font-size: 25px !important;
@@ -4258,25 +4234,11 @@ footer {
             border-bottom-left-radius: 10px;
           }
           .card-body {
-            .card-title {
-              font-size: 2rem !important;
-              margin-bottom: -5px !important;
-              text-align: center;
+            .part-1 {
+              margin-right: 4rem;
             }
-            h1 {
-              &.rent-1 {
-                font-size: 3.5rem;
-                text-align: center;
-                span {
-                  font-size: 2rem;
-                }
-              }
-            }
-            .your-cd {
-              font-size: 2rem !important;
-              margin-top: -5px !important;
-              margin-right: 10px !important;
-              text-align: center;
+            .part-3 {
+              margin-left: 10rem;
             }
             .rent-btn button {
               font-size: 25px !important;
@@ -4490,7 +4452,7 @@ footer {
               tbody {
                 .basket-product {
                   .remove-cart {
-                    margin-top: 5.5rem;
+                    margin-top: 4.5rem;
                   }
                 }
               }
@@ -4647,20 +4609,14 @@ footer {
             border-bottom-left-radius: 10px;
           }
           .card-body {
-            .card-title {
-              font-size: 1.6rem !important;
-              margin-bottom: 0px !important;
-              text-align: center;
+            .part-1 {
+              margin-right: 0rem;
             }
-            h1 {
-              &.exchange-1 {
-                font-size: 2.7rem;
-              }
+            .part-2 {
+              font-size: 3rem;
             }
-            .your-cd {
-              font-size: 1.6rem !important;
-              margin-top: 0px !important;
-              text-align: center !important;
+            .part-3 {
+              margin-left: 0;
             }
             .excng-btn button {
               font-size: 25px !important;
@@ -4676,25 +4632,14 @@ footer {
             border-bottom-left-radius: 10px;
           }
           .card-body {
-            .card-title {
-              font-size: 1.6rem !important;
-              margin-bottom: 0px !important;
-              text-align: center !important;
+            .part-1 {
+              margin-right: 0rem;
             }
-            h1 {
-              &.rent-1 {
-                font-size: 2.7rem;
-                text-align: center;
-                span {
-                  font-size: 2.2rem !important;
-                }
-              }
+            .part-2 {
+              font-size: 3rem;
             }
-            .your-cd {
-              font-size: 1.6rem !important;
-              margin-top: 0px !important;
-              margin-right: 10px !important;
-              text-align: center;
+            .part-3 {
+              margin-left: 0;
             }
             .rent-btn button {
               font-size: 25px !important;
@@ -4928,7 +4873,7 @@ footer {
                     }
                   }
                   .remove-cart {
-                    margin-top: 10rem;
+                    margin-top: 8rem;
                   }
                 }
               }
@@ -5047,22 +4992,14 @@ footer {
             border-bottom-left-radius: 0 !important;
           }
           .card-body {
-            .card-title {
-              font-size: 1.6rem !important;
-              margin-bottom: -5px !important;
-              text-align: center !important;
+            .part-1 {
+              margin-right: 6rem;
             }
-            h1 {
-              &.exchange-1 {
-                font-size: 3.5rem;
-                text-align: center;
-              }
+            .part-2 {
+              font-size: 4rem;
             }
-            .your-cd {
-              font-size: 1.6rem !important;
-              margin-top: -5px !important;
-              margin-right: 10px !important;
-              text-align: center !important;
+            .part-3 {
+              margin-left: 6rem;
             }
             .excng-btn button {
               font-size: 25px !important;
@@ -5078,25 +5015,14 @@ footer {
             border-bottom-left-radius: 0 !important;
           }
           .card-body {
-            .card-title {
-              font-size: 1.6rem !important;
-              margin-bottom: -5px !important;
-              text-align: center;
+            .part-1 {
+              margin-right: 6rem;
             }
-            h1 {
-              &.rent-1 {
-                font-size: 3.5rem;
-                text-align: center;
-                span {
-                  font-size: 2.6rem;
-                }
-              }
+            .part-2 {
+              font-size: 4rem;
             }
-            .your-cd {
-              font-size: 1.6rem !important;
-              margin-top: -5px !important;
-              margin-right: 10px !important;
-              text-align: center;
+            .part-3 {
+              margin-left: 6rem;
             }
             .rent-btn button {
               font-size: 25px !important;
@@ -5346,6 +5272,7 @@ footer {
       .card {
         margin-top: 3rem !important;
         margin-bottom: 0;
+        width:100%;
         button {
           &.sign-in-option-btn {
             width: 90%;
@@ -5430,7 +5357,7 @@ footer {
                   .item {
                   }
                   .remove-cart {
-                    margin-top: 9rem;
+                    margin-top: 8rem;
                   }
                 }
               }
@@ -5611,20 +5538,14 @@ footer {
             height: 300px !important;
           }
           .card-body {
-            .card-title {
-              font-size: 1.6rem !important;
-              margin-bottom: -5px !important;
-              text-align: center;
+            .part-1 {
+              margin-right: 0rem;
             }
-            h1 {
-              font-size: 2.5rem !important ;
-              text-align: center;
+            .part-2 {
+              font-size: 3rem;
             }
-            .your-cd {
-              font-size: 1.6rem !important;
-              margin-top: -5px !important;
-              margin-right: 0 !important;
-              text-align: center !important;
+            .part-3 {
+              margin-left: 0rem;
             }
             .excng-btn button {
               font-size: 30px !important;
@@ -5641,23 +5562,14 @@ footer {
             height: 300px !important;
           }
           .card-body {
-            .card-title {
-              font-size: 1.6rem !important;
-              margin-bottom: -5px !important;
-              text-align: center;
+            .part-1 {
+              margin-right: 0rem;
             }
-            h1 {
-              font-size: 2.5rem !important ;
-              text-align: center;
-              span {
-                font-size: 2.8rem !important;
-              }
+            .part-2 {
+              font-size: 3rem;
             }
-            .your-cd {
-              font-size: 1.6rem !important;
-              margin-top: -5px !important;
-              margin-right: 0 !important;
-              text-align: center;
+            .part-3 {
+              margin-left: 0rem;
             }
             .rent-btn button {
               font-size: 30px !important;
@@ -5964,7 +5876,7 @@ footer {
                     }
                   }
                   .remove-cart {
-                    margin-top: 10rem;
+                    margin-top: 8rem;
                   }
                 }
               }
@@ -6638,7 +6550,7 @@ footer {
                     }
                   }
                   .remove-cart {
-                    margin-top: 10rem;
+                    margin-top: 9rem;
                   }
                 }
               }

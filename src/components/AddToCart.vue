@@ -12,7 +12,7 @@
                 <tr>
                   <td scope="col" class="item item-heading">Item</td>
                   <td scope="col" class="price">Price</td>
-                  <td scope="col" class="quantity">Quantity</td>
+                  <!-- <td scope="col" class="quantity">Quantity</td> -->
                   <td scope="col" class="subtotal">Subtotal</td>
                 </tr>
               </thead>
@@ -27,14 +27,14 @@
                     </div>
                     <div class="product-details">
                       <h1><strong><span class="item-quantity">1</span> x Action</strong> {{ item.game.data.name }}</h1>
-                      <p>Product Code - 232321939</p>
+                      <small>Product Code - 232321939</small>
                     </div>
                    </div>
                   </td>
                   <td class="price">5000</td>
-                    <td class="quantity">
+                    <!-- <td class="quantity">
                         <input type="number" value="1" min="1" class="quantity-field">
-                    </td>
+                    </td> -->
                   <td class="subtotal">5000</td>
                     <div class="remove-cart">
                       <button @click="onRemoveCartItem(index)">

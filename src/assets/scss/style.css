@@ -11019,22 +11019,6 @@ nav .nav-width .search.jedi-search form .input-group .input-group-append {
   height: 100%;
 }
 
-nav .nav-width .search.jedi-search form .input-group .cart {
-  margin-left: 2rem;
-  height: 100%;
-}
-
-nav .nav-width .search.jedi-search form .input-group .cart a i {
-  font-size: 40px;
-  color: #fcd700;
-  -webkit-transition: all 0.3s ease-in;
-  transition: all 0.3s ease-in;
-}
-
-nav .nav-width .search.jedi-search form .input-group .cart a i:hover {
-  color: #caa612;
-}
-
 nav .nav-width .search.login-search {
   margin-left: -140px;
 }
@@ -11080,7 +11064,6 @@ nav .nav-width .search form .input-group .sign-logout .log-out {
   z-index: 99;
   -webkit-transition: all 0.5s ease-in;
   transition: all 0.5s ease-in;
-  left: -20px;
 }
 
 nav .nav-width .search form .input-group .sign-logout .log-out .sign-out {
@@ -11217,6 +11200,44 @@ nav .nav-width .search form .input-group .input-group-append .menu-search-icon:h
 
 nav .nav-width .search form .input-group .input-group-append .menu-search-icon:hover i {
   color: #000000;
+}
+
+nav .nav-width .search form .input-group .cart-icon {
+  margin-left: 2rem;
+  height: 38px;
+  position: relative;
+}
+
+nav .nav-width .search form .input-group .cart-icon a i {
+  font-size: 40px;
+  color: #fcd700;
+  -webkit-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+}
+
+nav .nav-width .search form .input-group .cart-icon a i:hover {
+  color: #caa612;
+}
+
+nav .nav-width .search form .input-group .cart-icon .badges {
+  width: 25px;
+  height: 25px;
+  background: red;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  color: #ffffff;
+  position: absolute;
+  top: -15px;
+  right: 0px;
+  font-weight: 700;
 }
 
 nav .nav-width .toggler-pos {
@@ -11379,7 +11400,6 @@ nav.searchbar-nav {
 }
 
 .new-release .release-width .owl-carousel-one .item .card {
-  height: 460px;
   border: none !important;
   border-radius: 13px !important;
   -webkit-transition: all 0.3s ease-in;
@@ -12847,6 +12867,10 @@ footer .footer-width p span {
   background: #0e0e30 !important;
 }
 
+.sign-in {
+  background: url(../img/all-game.png) !important;
+}
+
 .sign-in .sign-in-width {
   width: 85%;
 }
@@ -12859,6 +12883,8 @@ footer .footer-width p span {
   border-radius: 10px;
   margin-bottom: 3rem;
   border: 3px solid #222f5e;
+  background: #4a4444d4;
+  border-color: #fcd700;
 }
 
 .sign-in .sign-in-width .card .card-title {
@@ -14756,7 +14782,7 @@ footer .footer-width p span {
 }
 
 .cart .cart-width main .basket .basket-labels table tbody .basket-product .item .item-product .product-details small {
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-family: "Roboto Condensed", sans-serif;
   color: #cfced2;
 }
@@ -14773,7 +14799,7 @@ footer .footer-width p span {
 
 .cart .cart-width main .basket .basket-labels table tbody .basket-product .subtotal {
   color: #ffffff;
-  text-align: right;
+  text-align: center;
   font-size: 1rem;
 }
 
@@ -14797,7 +14823,7 @@ footer .footer-width p span {
 .cart .cart-width main .basket .basket-labels table tbody .basket-product .remove-cart {
   position: absolute;
   right: 0;
-  margin-top: 8rem;
+  margin-top: 4.5rem;
   margin-right: 1rem;
 }
 
@@ -15390,11 +15416,11 @@ footer .footer-width p span {
     width: 100%;
     bottom: 0;
   }
-  nav .nav-width .menu-list.jedi-menu .menu-list-top li.cart-item .cart a i {
-    font-size: 35px;
-  }
   nav .nav-width .search form .input-group .input-group-append {
-    width: 57%;
+    width: 52%;
+  }
+  nav .nav-width .search form .input-group .input-group-append .cart a i {
+    font-size: 35px;
   }
   nav .nav-width .search.jedi-search {
     margin-bottom: 38px !important;
@@ -15662,6 +15688,12 @@ footer .footer-width p span {
   nav .nav-width .search.search-searchbar {
     left: 440px;
   }
+  nav .nav-width .search form .input-group .input-group-append {
+    height: 38px;
+  }
+  nav .nav-width .search form .cart-icon {
+    margin-top: .4rem;
+  }
   .new-release .release-width {
     width: 100%;
   }
@@ -15853,7 +15885,7 @@ footer .footer-width p span {
     margin-top: 10px;
   }
   .cart .cart-width main .basket .basket-labels table tbody .basket-product .remove-cart {
-    margin-top: 12rem;
+    margin-top: 10rem;
   }
 }
 
@@ -16186,7 +16218,7 @@ footer .footer-width p span {
     display: block;
   }
   .cart .cart-width main .basket .basket-labels table tbody .basket-product .remove-cart {
-    margin-top: 12rem;
+    margin-top: 9rem;
   }
   .cart .cart-width main aside {
     float: initial;
@@ -16230,25 +16262,25 @@ footer .footer-width p span {
     width: 100%;
   }
   nav .nav-width .search {
-    left: 28%;
+    left: 25%;
     margin-right: 60px;
   }
   nav .nav-width .search .input-group {
     width: 100%;
   }
   nav .nav-width .search .input-group .input-group-append {
-    width: 50% !important;
-    height: 35px;
+    width: 40% !important;
+    height: 38px;
   }
   nav .nav-width .search .input-group .input-group-append input {
     height: 100%;
   }
   nav .nav-width .search .input-group .input-group-append .menu-search-icon {
-    height: 35px;
+    height: 38px;
     width: initial !important;
   }
   nav .nav-width .search .input-group .sign-in-btn {
-    height: 35px;
+    height: 38px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -16536,7 +16568,7 @@ footer .footer-width p span {
     margin-top: 10px;
   }
   .cart .cart-width main .basket .basket-labels table tbody .basket-product .remove-cart {
-    margin-top: 12rem;
+    margin-top: 10rem;
   }
   .cart .cart-width main aside {
     width: 80%;
@@ -16618,6 +16650,12 @@ footer .footer-width p span {
             align-items: center;
     margin-left: 0 !important;
     margin-top: 10px;
+  }
+  nav .nav-width .search form .input-group .sign-logout {
+    margin-left: 0 !important;
+  }
+  nav .nav-width .search form .input-group .cart-icon {
+    margin-top: 1.3rem;
   }
   nav .nav-width .search.jedi-search {
     position: initial;
@@ -17006,7 +17044,7 @@ footer .footer-width p span {
     margin-top: 10px;
   }
   .cart .cart-width main .basket .basket-labels table tbody .basket-product .remove-cart {
-    margin-top: 12rem;
+    margin-top: 10rem;
   }
   .cart .cart-width main aside {
     width: 100%;

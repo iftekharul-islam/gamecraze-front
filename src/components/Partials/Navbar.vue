@@ -22,13 +22,13 @@
                                 <router-link class="nav-link active router_link" to="/">Home</router-link>
                             </li>
                             <li class="nav-item mr-3 for-active">
-                                <router-link class="router_link" to="games">Games</router-link>
+                                <router-link class="router_link" to="/games">Games</router-link>
                             </li>
                             <li class="nav-item mr-3 for-active">
-                                <router-link class="router_link" to="supports">Supports</router-link>
+                                <router-link class="router_link" to="/supports">Supports</router-link>
                             </li>
                             <li class="nav-item mr-3 for-active">
-                                <router-link class="router_link" to="contacts">Contact us</router-link>
+                                <router-link class="router_link" to="/contacts">Contact us</router-link>
                             </li>
                         </ul>
                     </div>
@@ -42,11 +42,10 @@
                                     <i class="fa fa-search "></i>
                                 </button>
                             </div>
-                            
-                            <router-link v-if="!auth" class="btn btn-danger ml-4 sign-in-btn" to="login">Sign in</router-link>
-                            
+                            <router-link v-if="!auth" class="btn btn-danger ml-4 sign-in-btn" to="/login">Sign in</router-link>
+
                             <div class="sign-logout ml-4">
-                                <router-link v-if="auth" class="btn btn-danger sign-in-btn" to="profile"><span v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span><span v-else>{{ this.$store.state.user.phone_number }}</span></router-link>
+                                <router-link v-if="auth" class="btn btn-danger sign-in-btn" to="/profile"><span v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span><span v-else>{{ this.$store.state.user.phone_number }}</span></router-link>
                                 <div class="log-out">
                                     <a @click.prevent="onLogout" class="sign-out">
                                         <span class="mr-2">Sign Out</span>
@@ -54,8 +53,10 @@
                                     </a>
                                 </div>
                             </div>
-                             <div class="cart-icon ml-3">
-                                <router-link to="add-to-cart"> <i class="material-icons text-yellow"> shopping_cart </i>
+
+                            <div class="ml-3 mt-1">
+                                <router-link to="/add-to-cart"> <i class="material-icons text-yellow"> shopping_cart </i>
+
                                 </router-link>
                                 <div class="badges">0</div>
                             </div>

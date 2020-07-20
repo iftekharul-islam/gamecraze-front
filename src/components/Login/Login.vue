@@ -39,7 +39,7 @@
                                         </div>
                                         <!-- forget password -->
                                         <div class="forget">
-                                            <router-link to="forgot-password">Forget Password ?</router-link>
+                                            <router-link to="forgot-password">Forgot Password ?</router-link>
                                         </div>
                                     </div>
                                     <!-- sign in button -->

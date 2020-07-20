@@ -22,10 +22,6 @@
                             <div class="filter-category">
                                 <fieldset class="mb-4 category-1">
                                     <h4>select category</h4>
-                                    <div v-for="(category, index) in categories" :key="index" class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" :id="category + '-game'" :value="category" v-model="checkedCategories"/>
-                                        <label class="custom-control-label" :for="category + '-game'">{{ category }}</label>
-                                    </div>
                                     <div class="checkbox custom-control custom-checkbox">
                                         <input type="checkbox" class="custom-control-input" id="adventure-game" value=".adventure"/>
                                         <label class="custom-control-label" for="adventure-game">Adventure</label>
@@ -180,12 +176,12 @@
                             <div class="game-show">
                                 <!-- Game Content -->
                                 <div class="row">
-                                        <div class="col-sm-6 col-lg-4 col-xl-3 mb-4">
+                                        <div v-for="(rent, index) in rents" :key="index" class="col-sm-6 col-lg-4 col-xl-3 mb-4">
                                             <div class="card game-card">
                                                     <img src="../assets/img/release/fifa.jpg" class="card-img-top" alt="Fifa-20">
-                                                    <h4 class="game-name">EA  SPORTS <span></span> FIFA 20</h4>
+                                                    <h4 class="game-name">{{ rent.game.data.name }}</h4>
                                                     <p class="game-brands">Sports</p>
-                                                    <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>
+                                                    <p class="pegi-ratings">Rating: {{ rent.game.data.rating }}</p>
                                                     <p class="star">
                                                         <i class="fas fa-star star-color"></i>
                                                         <i class="fas fa-star star-color"></i>
@@ -195,67 +191,11 @@
                                                         <span class="star-color ml-2">178</span>
                                                     </p>
                                                     <div class="text-center game-cart">
-                                                        <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>
+                                                        <router-link :to="{ path: '/game-details/' + rent.id}" class="btn btn-info">Details<i class="fa fa-info-circle ml-2" aria-hidden="true"></i></router-link>
                                                     </div>
                                              </div>
                                         </div>
-                                        <div class="col-sm-6 col-lg-4 col-xl-3 mb-4">
-                                            <div class="card game-card">
-                                                    <img src="../assets/img/release/fifa.jpg" class="card-img-top" alt="Fifa-20">
-                                                    <h4 class="game-name">EA  SPORTS <span></span> FIFA 20</h4>
-                                                    <p class="game-brands">Sports</p>
-                                                    <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>
-                                                    <p class="star">
-                                                        <i class="fas fa-star star-color"></i>
-                                                        <i class="fas fa-star star-color"></i>
-                                                        <i class="fas fa-star star-color"></i>
-                                                        <i class="fas fa-star star-color"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <span class="star-color ml-2">178</span>
-                                                    </p>
-                                                    <div class="text-center game-cart">
-                                                        <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>
-                                                    </div>
-                                             </div>
-                                        </div>
-                                        <div class="col-sm-6 col-lg-4 col-xl-3 mb-4">
-                                            <div class="card game-card">
-                                                    <img src="../assets/img/release/fifa.jpg" class="card-img-top" alt="Fifa-20">
-                                                    <h4 class="game-name">EA  SPORTS <span></span> FIFA 20</h4>
-                                                    <p class="game-brands">Sports</p>
-                                                    <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>
-                                                    <p class="star">
-                                                        <i class="fas fa-star star-color"></i>
-                                                        <i class="fas fa-star star-color"></i>
-                                                        <i class="fas fa-star star-color"></i>
-                                                        <i class="fas fa-star star-color"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <span class="star-color ml-2">178</span>
-                                                    </p>
-                                                    <div class="text-center game-cart">
-                                                        <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>
-                                                    </div>
-                                             </div>
-                                        </div>
-                                        <div class="col-sm-6 col-lg-4 col-xl-3 mb-4">
-                                            <div class="card game-card">
-                                                    <img src="../assets/img/release/fifa.jpg" class="card-img-top" alt="Fifa-20">
-                                                    <h4 class="game-name">EA  SPORTS <span></span> FIFA 20</h4>
-                                                    <p class="game-brands">Sports</p>
-                                                    <p class="pegi-ratings">PEGI Rating: Ages 3 and Over</p>
-                                                    <p class="star">
-                                                        <i class="fas fa-star star-color"></i>
-                                                        <i class="fas fa-star star-color"></i>
-                                                        <i class="fas fa-star star-color"></i>
-                                                        <i class="fas fa-star star-color"></i>
-                                                        <i class="fas fa-star"></i>
-                                                        <span class="star-color ml-2">178</span>
-                                                    </p>
-                                                    <div class="text-center game-cart">
-                                                        <a href="#" class="btn btn-info">Add to Cart <i class="fas fa-cart-plus"></i></a>
-                                                    </div>
-                                             </div>
-                                        </div>
+
                                  </div>
                             </div>
                             <!-- pagination -->
@@ -288,14 +228,14 @@
     export default {
         data() {
             return {
-                games: []
+                rents: []
             }
         },
         created() {
-            this.$api.get('games?include=genres').then(response => {
-                this.games = response.data.data;
-                console.log(this.games);
-            })
+            this.$api.get('rent-posts?include=game.assets').then(response => {
+                this.rents = response.data.data;
+                console.log(this.rents)
+            });
         }
     }
 </script>

@@ -5,93 +5,25 @@
             <div class="container-fluid item-details-width">
                 <div class="row">
                     <div class="col-lg-6 col-xl-5">
-                        <div class="item-slide">
-                            <ul class="thumbnails" id="two" v-if="game.assets">
-                                <li class="thumbnail-active" v-for="(asset,index) in game.assets.data" :key="index">
-                                    <a :href="'#slide'+index" class="thumbnail-active-action"><img :src="$gamehubStorageApi+'games/'+asset.name" alt="jedi fallen" class="img-fluid"/></a>
+                        <div class="item-slide" v-if="rent">
+                            <ul class="thumbnails" id="two" v-if="rent.game">
+                                <li class="thumbnail-active" v-for="(asset,index) in rent.game.data.assets.data" :key="index">
+                                    <a :href="'#slide'+index" class="thumbnail-active-action"><img :src="$gamehubStorageApi + 'assets/' + asset.name" alt="jedi fallen" class="img-fluid"/></a>
                                 </li>
                             </ul>
-                            <ul class="slides" v-if="game.assets">
-                                <li v-for="(asset,index) in game.assets.data" :key="index" :id="'slide'+index"><img :src="$gamehubStorageApi+'games/'+asset.name" alt="jedi fallen" class="img-fluid"/></li>
+                            <ul class="slides" v-if="rent.game">
+                                <li v-for="(asset,index) in rent.game.data.assets.data" :key="index" :id="'slide'+index"><img :src="$gamehubStorageApi + 'assets/' + asset.name" alt="jedi fallen" class="img-fluid"/></li>
                             </ul>
                         </div>
                         <div class="row">
                             <div class="col-md-10 offset-md-2">
                                 <div class="item-btn">
-                                    <a href="#" class="btn btn-success buy-now cart-btn">Buy Now</a>
-<!--                                    <a href="#" class="btn btn-success rent">Rent</a>-->
-                                    <a class="btn btn-success rent" data-toggle="modal" data-target="#rentModal">
-                                        Rent
+                                    <a v-if="show" @click.prevent="onRent" class="btn btn-success rent">
+                                        Rent Now
                                     </a>
-<!--                                    <a href="#" class="btn btn-success exchange">Exchange</a>-->
-
-                                    <a class="btn btn-success exchange" data-toggle="modal" data-target="#exchangeModal">
-                                        Exchange
+                                    <a v-else @click.prevent="onRent" class="btn btn-success rent">
+                                        See Details
                                     </a>
-
-                                    <!-- Exchange Modal -->
-                                    <div class="modal fade" id="exchangeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Give Your Game Details</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form>
-                                                        <div class="form-group">
-                                                            <label for="gameName" class="d-block text-left">Your Game Name</label>
-                                                            <input type="text" class="form-control" id="gameName" placeholder="Enter game name">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="diskCondition" class="d-block text-left">Disk Condition</label>
-                                                            <input type="text" class="form-control" id="diskCondition" placeholder="Used, New ...">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="diskHealth" class="d-block text-left">Disk Health</label>
-                                                            <input type="text" class="form-control" id="diskHealth" placeholder="Disk Health Percentage">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="numberOfDays" class="d-block text-left">Number of Days</label>
-                                                            <input type="text" class="form-control" id="numberOfDays" placeholder="Enter number of days">
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Add to Cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Rent Modal -->
-                                    <div class="modal fade" id="rentModal" tabindex="-1" role="dialog" aria-labelledby="rentModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="rentModalLabel">Rent Details</h5>
-                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <form>
-                                                        <div class="form-group">
-                                                            <label for="rentDays" class="d-block text-left">Number of Days for rent</label>
-                                                            <input type="text" class="form-control" id="rentDays" placeholder="Enter number of days">
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                    <button type="button" class="btn btn-primary">Add to Cart</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -101,49 +33,99 @@
                             <div class="back-to-home">
                                 <p><a href="#">Home</a> > Best Selling > JEDI</p>
                             </div>
-                            <div class="card w-100">
-                                <div class="card-body">
-                                    <h5 class="card-title">{{game.name}}</h5>
-                                    <h5 class="pb-5 price">Buy: TK.5000 <span></span> Rent: TK.500</h5>
+                            <div class="card w-100" v-if="show">
+                                <div class="card-body" v-if="rent">
+                                    <h5 class="card-title">{{rent.game.data.name}}</h5>
+                                    <h5 class="pb-5 price">Rent: TK.500</h5>
                                     <div class="row">
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-4">
                                             <div class="part-left">
-                                                <h4>Highlights :</h4>
+                                                <h4>Platform :</h4>
                                             </div>
                                         </div>
-                                        <div class="col-sm-9 pb-5">
-                                            <div class="part-right" v-if="game.platforms && game.genres">
-                                                <h6>Platforms: <span v-for="(platform,index) in game.platforms.data" :key="index">
-                                                    {{platform.name}}<span v-if="index < game.platforms.data.length-1">, </span></span></h6>
-                                                <h6>Genre: <span v-for="(genre,index) in game.genres.data" :key="index">
-                                                    {{genre.name}}<span v-if="index < game.genres.data.length-1">, </span></span></h6>
-                                                <h6>Edition: Standard Edition</h6>
-                                                <h6>Game Modes: {{game.game_mode}}</h6>
+                                        <div class="col-sm-8 pb-4">
+                                            <div class="part-right" v-if="rent.platform">
+                                                <h6>{{rent.platform.data.name}}</h6>
                                             </div>
                                         </div>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-4">
                                             <div class="part-left">
-                                                <h4>Important Note :</h4>
+                                                <h4>Disk Condition :</h4>
                                             </div>
                                         </div>
-                                        <div class="col-sm-9 pb-5">
+                                        <div class="col-sm-8 pb-4">
                                             <div class="part-right">
-                                                <h6>Rated PEGI 16, this game features depiction of violence or sexual activity which look the same as would be expected in real life.It also features the use of tobacco,alcohol or illigal drugs, and the extreme usage of bad language. </h6>
-
+                                                <h6>{{rent.diskCondition.data.name_of_type}} ({{rent.diskCondition.data.description}})</h6>
                                             </div>
                                         </div>
-                                        <div class="col-sm-3">
+                                        <div class="col-sm-4">
                                             <div class="part-left">
-                                                <h4>Seller :</h4>
+                                                <h4>Available From :</h4>
                                             </div>
                                         </div>
-                                        <div class="col-sm-9 pb-5">
+                                        <div class="col-sm-8 pb-4">
                                             <div class="part-right">
-                                                <h6 class="seller-name">Khaled Hossain <span class="badge badge-primary">4<span class="material-icons">grade </span></span></h6>
+                                                <h6>{{rent.availability_from_date}}</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="part-left">
+                                                <h4>Maximum Rent For :</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8 pb-4">
+                                            <div class="part-right">
+                                                <h6>{{rent.max_number_of_week}} Week</h6>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="part-left">
+                                                <h4>Posted By :</h4>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-8 pb-4" v-if="rent.user">
+                                            <div class="part-right">
+                                                <h6 class="seller-name">{{ rent.user.data.name }}<span class="badge badge-primary">4<span class="material-icons">grade </span></span></h6>
 
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="card w-100" v-else>
+                                <div class="card-body" v-if="rent">
+                                    <h2 class="text-center mb-5">Provide Necessary Information</h2>
+                                    <ValidationObserver v-slot="{ handleSubmit }">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <div class="part-left">
+                                                    <h4>Select Rent week :</h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8 pb-5">
+                                                <div class="part-right" v-if="rent.platform">
+                                                    <ValidationProvider name="Rent Week" rules="required" v-slot="{ errors }">
+                                                        <select class="form-control w-50" v-model="week">
+                                                            <option value="" selected disabled>Please Select Rent Week...</option>
+                                                            <option v-for="n in rent.max_number_of_week" :value="n">For {{n}} Week</option>
+                                                        </select>
+                                                        <span class="text-danger">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <div class="part-left">
+                                                    <h4>Rent Available From: </h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8 pb-5">
+                                                <div class="part-right">
+                                                    <h6>{{ rent.availability_from_date }}</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <button class="btn btn-primary" @click.prevent="handleSubmit(onAddToCart)">Add to Cart<i class="fas fa-cart-plus ml-2"></i></button>
+                                    </ValidationObserver>
                                 </div>
                             </div>
                         </div>
@@ -183,16 +165,16 @@
                                         <div class="border mb-3">
                                         </div>
                                         <!-- game details -->
-                                        <table class="table table-borderless ">
+                                        <table class="table table-borderless" v-if="rent">
                                             <tbody>
                                             <tr>
                                                 <td class="general-titles">Title Name</td>
-                                                <td class="general-titles-details">{{game.name}}</td>
+                                                <td class="general-titles-details">{{rent.game.data.name}}</td>
                                             </tr>
-                                            <tr v-if="game.platforms">
+                                            <tr v-if="rent.platform">
                                                 <td class="general-titles">Platform</td>
-                                                <td class="general-titles-details"><span v-for="(platform,index) in game.platforms.data" :key="index">
-                                                    {{platform.name}}<span v-if="index < game.platforms.data.length-1">, </span></span></td>
+                                                <td class="general-titles-details"><span>
+                                                    {{rent.platform.data.name}}</span></td>
                                             </tr>
                                             <tr>
                                                 <td class="general-titles">Edition</td>
@@ -202,18 +184,18 @@
                                                 <td class="general-titles">Type</td>
                                                 <td class="general-titles-details">Full Game</td>
                                             </tr>
-                                            <tr v-if="game.genres">
+                                            <tr>
                                                 <td class="general-titles">Genre</td>
-                                                <td class="general-titles-details"><span v-for="(genre,index) in game.genres.data" :key="index">
-                                                    {{genre.name}}<span v-if="index < game.genres.data.length-1">, </span></span></td>
+                                                <td class="general-titles-details"><span>
+                                                    Action</span></td>
                                             </tr>
                                             <tr>
                                                 <td class="general-titles">Game Modes</td>
-                                                <td class="general-titles-details">{{game.game_mode}}</td>
+                                                <td class="general-titles-details">{{rent.game.data.game_mode}}</td>
                                             </tr>
                                             <tr>
                                                 <td class="general-titles">Publisher</td>
-                                                <td class="general-titles-details">{{game.publisher}}</td>
+                                                <td class="general-titles-details">{{rent.game.data.publisher}}</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -259,16 +241,16 @@
                             <!-- overview details -->
                             <div class="row pt-5">
                                 <div class="col-md-6">
-                                    <div class="title-1" v-if="game.genres">
-                                        <h2>{{game.name}}<span>TM</span></h2>
-                                        <p>{{game.description}}</p>
+                                    <div class="title-1" v-if="rent">
+                                        <h2>{{rent.game.data.name}}<span>TM</span></h2>
+                                        <p>{{rent.game.data.description}}</p>
                                         <br>
                                         <br>
-                                        <p class="release">Release Date: {{game.release_date}}</p>
+                                        <p class="release">Release Date: {{rent.game.data.release_date}}</p>
                                         <p>Devloper: Respawn Entertainment </p>
-                                        <p>Genre: <span v-for="(genre,index) in game.genres.data" :key="index">
-                                                    {{genre.name}}<span v-if="index < game.genres.length-1">, </span></span></p>
-                                        <p>Publisher: {{game.publisher}}</p>
+                                        <p>Genre: <span>
+                                                    Action</span></p>
+                                        <p>Publisher: {{rent.game.data.publisher}}</p>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
@@ -281,7 +263,7 @@
                                 <div class="col-12">
                                     <div class="scr-vdo">
                                         <h5>SCREENSHOTS & VIDEOS </h5>
-                                        <h2>See {{game.name}} in Action </h2>
+                                        <h2 v-if="rent">See {{rent.game.data.name}} in Action </h2>
                                     </div>
                                 </div>
                                 <!-- youtube video -->
@@ -605,17 +587,30 @@
 <script>
     export default {
         name: 'GameDetails',
-        props: ['gameId'],
+        props: ['id'],
         data() {
             return {
-                game: {},
+                rent: null,
+                show: true,
+                week: ''
+            }
+        },
+        methods: {
+            onRent() {
+                this.show = !this.show
+            },
+            onAddToCart() {
+                this.$store.dispatch('pushPostId', this.id)
+                this.$store.dispatch('pushLendWeek', this.week)
+                this.$router.push('/add-to-cart').then(err => {});
             }
         },
         created() {
-            this.$api.get('games/' + this.gameId + '?include=assets,genres,platforms').then(response => {
-                this.game = response.data.data;
-                console.log(this.game)
-            });
+            this.$api.get('rents/' + this.id + '?include=diskCondition,game.assets,platform,user')
+                .then (response =>
+                {
+                    this.rent = response.data.data
+                })
         }
 
     }

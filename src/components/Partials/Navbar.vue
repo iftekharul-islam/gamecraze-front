@@ -55,10 +55,10 @@
                             </div>
 
                             <div class="cart-icon ml-3">
-                                <router-link to="/add-to-cart"> <i class="material-icons text-yellow"> shopping_cart </i>
 
-                                </router-link>
-                                <div class="badges">0</div>
+                                <router-link to="/add-to-cart"> <i class="material-icons text-yellow"> shopping_cart </i></router-link>
+                                <div class="badges">{{ $store.state.postId.length }}</div>
+
                             </div>
                            
 <!--                            <router-link v-if="this.$store.state.profile" class="btn btn-danger ml-4 sign-in-btn" to="profile" style="color: white;">{{this.$store.state.profile.name}}</router-link>-->

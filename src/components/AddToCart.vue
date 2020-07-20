@@ -22,11 +22,11 @@
 
                    <div class="item-product">
                     <div class="product-image">
-                        <img :src="item.game.data.assets.data.url"  :alt="item.game.data.name" class="product-frame img-fluid" v-if="item.game.data.assets.data.length">
+                        <img :src="$gamehubStorageApi + 'assets/' + item.game.data.assets.data[0].name"  :alt="item.game.data.name" class="product-frame img-fluid" v-if="item.game.data.assets.data.length">
                         <img class="card-img-top" src="../assets/img/rented/grid.png" alt="Grid" v-else>
                     </div>
                     <div class="product-details">
-                      <h1><strong><span class="item-quantity">1</span> x Action</strong> {{ item.game.data.name }}</h1>
+                      <h1>{{ item.game.data.name }}</h1>
                       <small>Product Code - 232321939</small>
                     </div>
                    </div>
@@ -68,24 +68,27 @@
               <div class="total-title">Total</div>
               <div class="total-value final-value" id="basket-total">5000</div>
             </div>
+            <div class="summary-total">
+              <div class="total-title">Payment Method</div>
+              <input class="mt-1" type="radio" id="cod" name="delivery" value="cod" v-model="paymentMethod">
+              <label class="ml-2 text-white" for="cod">Cash On Delivery</label>
+              <br>
+              <input class="mt-1" type="radio" id="bkash" name="delivery" value="online" v-model="paymentMethod">
+              <label class="ml-2 text-white" for="bkash">Online Payment</label>
+            </div>
             <div class="summary-checkout">
-              <button class="checkout-cta btn btn-primary" @click.prevent="onCheckout" :disabled="!$store.state.postId.length">Go to Secure Checkout</button>
+              <button class="checkout-cta btn btn-primary" @click.prevent="onCheckout" :disabled="!$store.state.postId.length" v-show="paymentMethod === 'cod'">Go to Secure Checkout</button>
+<!--              <button class="checkout-cta btn btn-primary" @click.prevent="onPayNow" :disabled="!$store.state.postId.length" v-else>Pay Now</button>-->
+              <button class="btn btn-primary btn-lg btn-block" id="sslczPayBtn" :disabled="!$store.state.postId.length" v-show="paymentMethod === 'online'"
+                      token="if you have any token validation"
+                      postdata="your javascript arrays or objects which requires in backend"
+                      order="If you already have the transaction generated for current order"
+                      endpoint="http://api.gamehub.test/pay"> Pay Now
+              </button>
             </div>
           </div>
         </aside>
       </main>
-        <div class="text-white w-50 mx-auto pb-5" v-else>
-          <h1 class="mt-5 mb-4">Payment Method</h1>
-          <input type="radio" id="cod" name="delivery" value="cod" v-model="paymentMethod">
-          <label class="ml-2" for="cod">Cash On Delivery</label>
-          <br>
-          <input type="radio" id="bkash" name="delivery" value="bkash" v-model="paymentMethod">
-          <label class="ml-2" for="bkash">Bkash</label>
-          <button class="btn btn-primary d-block w-20 mt-3" @click="onConfirmOrder" :disabled="isLoading">
-            Confirm Order
-            <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
-          </button>
-        </div>
     </div>
   </section>
     </div>
@@ -100,7 +103,7 @@
                 lendWeek: null,
                 cart: [],
                 paymentStatus: false,
-                paymentMethod: '',
+                paymentMethod: 'cod',
                 isLoading: false
 
             }
@@ -123,47 +126,47 @@
                     this.$router.push('login').catch(err => {});
                 }
             },
-          onRemoveCartItem(index) {
-            this.$swal({
-              title: "Are you sure?",
-              text: "Once deleted, you will not be able to recover this imaginary file!",
-              icon: "warning",
-              buttons: true,
-              dangerMode: true,
-            })
-                    .then((willDelete) => {
-                      if (willDelete) {
-                        this.cart.splice(index, 1)
-                        this.$store.dispatch('removePostId', index)
-                        swal("Poof! Your imaginary file has been deleted!", {
-                          icon: "success",
-                        });
-                      } else {
-                        swal("Your imaginary file is safe!");
-                      }
-                    });
-          },
-          onConfirmOrder() {
-              this.isLoading = true
-              var config = {
-                headers: {
-                  'Authorization': 'Bearer ' + this.$store.state.token
-                }
-              };
-              var data = {
-                postId: this.$store.state.postId,
-                week: this.$store.state.lendWeek,
-                paymentMethod: this.paymentMethod
-              };
-              this.$api.post('lend-game', data, config).then(response => {
-                if (response.data.error === false) {
-                   this.$store.dispatch('clearCart');
-                   this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
-                   this.isLoading = false;
-                   this.$router.push('dashboard').then(err => {});
-                }
-              });
-          }
+            onRemoveCartItem(index) {
+              this.$swal({
+                title: "Are you sure?",
+                text: "Once deleted, you will not be able to recover this imaginary file!",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              })
+                      .then((willDelete) => {
+                        if (willDelete) {
+                          this.cart.splice(index, 1)
+                          this.$store.dispatch('removePostId', index)
+                          swal("Poof! Your imaginary file has been deleted!", {
+                            icon: "success",
+                          });
+                        } else {
+                          swal("Your imaginary file is safe!");
+                        }
+                      });
+            },
+            onConfirmOrder() {
+                this.isLoading = true
+                var config = {
+                  headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                  }
+                };
+                var data = {
+                  postId: this.$store.state.postId,
+                  week: this.$store.state.lendWeek,
+                  paymentMethod: this.paymentMethod
+                };
+                this.$api.post('lend-game', data, config).then(response => {
+                  if (response.data.error === false) {
+                     this.$store.dispatch('clearCart');
+                     this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
+                     this.isLoading = false;
+                     this.$router.push('dashboard').then(err => {});
+                  }
+                });
+            }
         },
         created() {
             this.lendWeek = this.$store.state.lendWeek;
@@ -176,4 +179,5 @@
                 })
         }
     }
+
 </script>

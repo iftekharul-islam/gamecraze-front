@@ -37,7 +37,7 @@
                     </td> -->
                   <td class="subtotal">5000</td>
                     <div class="remove-cart">
-                      <button @click="onRemoveCartItem(index)">
+                      <button @click="onRemoveCartItem(index)" class="tooltips" tooltip="Click Here to Remove Game!">
                         <i class="far fa-trash-alt"></i>
                       </button>
                   </div>
@@ -68,14 +68,19 @@
               <div class="total-title">Total</div>
               <div class="total-value final-value" id="basket-total">5000</div>
             </div>
-            <div class="summary-total">
-              <div class="total-title">Payment Method</div>
-              <input class="mt-1" type="radio" id="cod" name="delivery" value="cod" v-model="paymentMethod">
-              <label class="ml-2 text-white" for="cod">Cash On Delivery</label>
-              <br>
-              <input class="mt-1" type="radio" id="bkash" name="delivery" value="online" v-model="paymentMethod">
-              <label class="ml-2 text-white" for="bkash">Online Payment</label>
+            <div class="summary-payment">
+              <div class="method">Payment Method</div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" id="cod" name="delivery" value="cod" v-model="paymentMethod">
+                <label class="ml-1 text-white form-check-label" for="cod">Cash On Delivery</label>
+              </div>
+              
+              <div class="form-check">
+                <input class="form-check-input" type="radio" id="bkash" name="delivery" value="online" v-model="paymentMethod">
+              <label class="ml-1 text-white form-check-label" for="bkash">Online Payment</label>
+              </div>
             </div>
+
             <div class="summary-checkout">
               <button class="checkout-cta btn btn-primary" @click.prevent="onCheckout" :disabled="!$store.state.postId.length" v-show="paymentMethod === 'cod'">Go to Secure Checkout</button>
 <!--              <button class="checkout-cta btn btn-primary" @click.prevent="onPayNow" :disabled="!$store.state.postId.length" v-else>Pay Now</button>-->

@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap');
 // variables
 @import "_variables.scss";
 // media queries
@@ -16,6 +17,9 @@
 }
 @mixin righteous {
   font-family: "Righteous", cursive;
+}
+@mixin fingerpaint {
+  font-family: "Finger Paint", cursive;
 }
 
 @mixin transition-3 {
@@ -75,6 +79,9 @@
 .star-color {
   color: #fcd700;
 }
+// Tooltip
+
+// End Tooltip
 
 * {
   margin: 0;
@@ -1760,7 +1767,7 @@ footer {
   background: $top-nav !important;
 }
 .sign-in {
-  background: url(../img/bg.png) !important;
+  background:url(../img/bg.png) !important;
   .sign-in-width {
     width: 85%;
     .card {
@@ -3013,6 +3020,33 @@ footer {
         }
       }
     }
+    .no-post-found-card {
+      .wavy {
+        position: relative;
+        -webkit-box-reflect: below -12px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+        text-align: center;
+        span {
+          position: relative;
+          display: inline-block;
+          color: #fff;
+          font-size: 2em;
+          animation: animate 1.5s ease-in-out infinite;
+          animation-delay: calc(.1s * var(--i));
+         @include fingerpaint;
+        }
+      }
+      @keyframes animate {
+        0%, 100% {
+          transform: translateY(0px);
+        }
+        20% {
+          transform: translateY(-20px);
+        }
+        40% {
+          transform: translateY(0px);
+        }
+      }
+    }
   }
 }
 
@@ -3405,6 +3439,33 @@ footer {
                     &:hover {
                       background: $remove-btn-hvr;
                     }
+                    &.tooltips {
+                      position: relative;
+                      transition: all .5s ease-in;
+                      &:hover {
+                        &:after {
+                          background: $tooltip;
+                          border-radius: 10px;
+                          color: #fff;
+                          content: attr(tooltip);
+                          padding: 10px;
+                          z-index: 100;
+                          position: absolute;
+                          min-width: 200px;
+                          margin-top: -89px;
+                          top: 40px;
+                        }
+                        &:before {
+                          border: solid;
+                          border-color: $tooltip transparent;
+                          border-width: 12px 6px 0 6px;
+                          content: "";
+                          left: 45%;
+                          bottom: 30px;
+                          position: absolute;
+                        }
+                    }
+                    }
                   }
                 }
               }
@@ -3551,6 +3612,33 @@ footer {
               }
             }
           }
+          .summary-payment {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-auto-rows: 30px;
+            border-bottom: 1px solid $promo-border;
+            border-top: 1px solid $promo-border;
+            margin-bottom: 1rem;
+            padding: .5rem 0;
+            font-weight: bold;
+            .method {
+              grid-column : 1/-1;
+              color: $white-clr;
+              font-size: 1.1rem;
+              font-weight: bold;
+
+            }
+            .form-check {
+              input {
+                cursor: pointer;
+              }
+              label {
+                font-size: 1rem;
+                color: $description-clr !important;
+                cursor: pointer;
+              }
+            }
+          }
           .summary-checkout {
             display: block;
             .checkout-cta {
@@ -3568,6 +3656,9 @@ footer {
                 background: $checkout-cta-hvr;
                 border-color: $checkout-cta-hvr;
               }
+            }
+            #sslczPayBtn {
+              width: 100%;
             }
           }
         }

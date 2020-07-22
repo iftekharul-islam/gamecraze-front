@@ -37,7 +37,7 @@
                     </td> -->
                   <td class="subtotal">5000</td>
                     <div class="remove-cart">
-                      <button @click="onRemoveCartItem(index)">
+                      <button @click="onRemoveCartItem(index)" class="tooltips" tooltip="Click Here to Remove Game!">
                         <i class="far fa-trash-alt"></i>
                       </button>
                   </div>

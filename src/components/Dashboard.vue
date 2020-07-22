@@ -76,7 +76,30 @@
                         </table>
                     </div>
                     <div class="card no-post-found-card mb-0" v-else>
-                        <h4 class="text-center text-light">No Post for Rent Found !!!</h4>
+                        <div class="wavy">
+                            <span style="--i:1;">N</span>
+                            <span style="--i:2;">o</span>&nbsp; &nbsp;
+                            <span style="--i:3;">P</span>
+                            <span style="--i:4;">o</span>
+                            <span style="--i:5;">s</span>
+                            <span style="--i:6;">t</span>&nbsp; &nbsp;
+                            <span style="--i:7;">F</span>
+                            <span style="--i:8;">o</span>
+                            <span style="--i:9;">r</span>&nbsp; &nbsp;
+                            <span style="--i:10;">R</span>
+                            <span style="--i:11;">e</span>
+                            <span style="--i:12;">n</span>
+                            <span style="--i:13;">t</span>&nbsp; &nbsp;
+                            <span style="--i:14;">F</span>
+                            <span style="--i:15;">o</span>
+                            <span style="--i:16;">u</span>
+                            <span style="--i:17;">n</span>
+                            <span style="--i:18;">d</span>&nbsp; &nbsp;
+                            <span style="--i:19;">!</span>
+                            <span style="--i:20;">!</span>
+                            <span style="--i:21;">!</span>
+                            <span style="--i:22;">!</span>
+                         </div>
                     </div>
                 </div>
             </section>

@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Finger+Paint&display=swap");
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -14419,6 +14420,54 @@ footer .footer-width p span {
      object-fit: cover;
 }
 
+.rented-page .rented-page-width .no-post-found-card .wavy {
+  position: relative;
+  -webkit-box-reflect: below -12px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+  text-align: center;
+}
+
+.rented-page .rented-page-width .no-post-found-card .wavy span {
+  position: relative;
+  display: inline-block;
+  color: #fff;
+  font-size: 2em;
+  -webkit-animation: animate 1.5s ease-in-out infinite;
+          animation: animate 1.5s ease-in-out infinite;
+  -webkit-animation-delay: calc(.1s * var(--i));
+          animation-delay: calc(.1s * var(--i));
+  font-family: "Finger Paint", cursive;
+}
+
+@-webkit-keyframes animate {
+  0%, 100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  20% {
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+  }
+  40% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
+@keyframes animate {
+  0%, 100% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+  20% {
+    -webkit-transform: translateY(-20px);
+            transform: translateY(-20px);
+  }
+  40% {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+  }
+}
+
 /*======================
     404 page
 =======================*/
@@ -14862,6 +14911,35 @@ footer .footer-width p span {
   background: #D03C6E;
 }
 
+.cart .cart-width main .basket .basket-labels table tbody .basket-product .remove-cart button.tooltips {
+  position: relative;
+  -webkit-transition: all .5s ease-in;
+  transition: all .5s ease-in;
+}
+
+.cart .cart-width main .basket .basket-labels table tbody .basket-product .remove-cart button.tooltips:hover:after {
+  background: #1b355d;
+  border-radius: 10px;
+  color: #fff;
+  content: attr(tooltip);
+  padding: 10px;
+  z-index: 100;
+  position: absolute;
+  min-width: 200px;
+  margin-top: -89px;
+  top: 40px;
+}
+
+.cart .cart-width main .basket .basket-labels table tbody .basket-product .remove-cart button.tooltips:hover:before {
+  border: solid;
+  border-color: #1b355d transparent;
+  border-width: 12px 6px 0 6px;
+  content: "";
+  left: 45%;
+  bottom: 30px;
+  position: absolute;
+}
+
 .cart .cart-width main aside {
   padding: 0 1rem;
   -webkit-box-sizing: border-box;
@@ -15038,6 +15116,36 @@ footer .footer-width p span {
   margin-right: 5px;
 }
 
+.cart .cart-width main aside .summary .summary-payment {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 30px;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  margin-bottom: 1rem;
+  padding: .5rem 0;
+  font-weight: bold;
+}
+
+.cart .cart-width main aside .summary .summary-payment .method {
+  grid-column: 1/-1;
+  color: #ffffff;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.cart .cart-width main aside .summary .summary-payment .form-check input {
+  cursor: pointer;
+}
+
+.cart .cart-width main aside .summary .summary-payment .form-check label {
+  font-size: 1rem;
+  color: #cfced2 !important;
+  cursor: pointer;
+}
+
 .cart .cart-width main aside .summary .summary-checkout {
   display: block;
 }
@@ -15059,6 +15167,10 @@ footer .footer-width p span {
 .cart .cart-width main aside .summary .summary-checkout .checkout-cta:hover {
   background: #4fb6cc;
   border-color: #4fb6cc;
+}
+
+.cart .cart-width main aside .summary .summary-checkout #sslczPayBtn {
+  width: 100%;
 }
 
 @media (max-width: 1800px) {

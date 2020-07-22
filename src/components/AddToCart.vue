@@ -3,7 +3,7 @@
          <!-- Cart page-->
   <section class="cart sign-in-bg pt-4">
     <div class="container-fluid cart-width">
-      <main class="pb-5" v-if="!paymentStatus">
+      <main class="pb-5">
         <div class="basket">
          
           <div class="basket-labels">
@@ -68,28 +68,17 @@
               <div class="total-title">Total</div>
               <div class="total-value final-value" id="basket-total">5000</div>
             </div>
-            <div class="summary-payment">
-              <div class="method">Payment Method</div>
-              <div class="form-check">
-                <input class="form-check-input" type="radio" id="cod" name="delivery" value="cod" v-model="paymentMethod">
-                <label class="ml-1 text-white form-check-label" for="cod">Cash On Delivery</label>
-              </div>
-              
-              <div class="form-check">
-                <input class="form-check-input" type="radio" id="bkash" name="delivery" value="online" v-model="paymentMethod">
-              <label class="ml-1 text-white form-check-label" for="bkash">Online Payment</label>
-              </div>
-            </div>
 
             <div class="summary-checkout">
-              <button class="checkout-cta btn btn-primary" @click.prevent="onCheckout" :disabled="!$store.state.postId.length" v-show="paymentMethod === 'cod'">Go to Secure Checkout</button>
+              <button class="checkout-cta btn btn-primary" @click.prevent="onCheckout" :disabled="!$store.state.postId.length">Go to Secure Checkout</button>
 <!--              <button class="checkout-cta btn btn-primary" @click.prevent="onPayNow" :disabled="!$store.state.postId.length" v-else>Pay Now</button>-->
-              <button class="btn btn-primary btn-lg btn-block" id="sslczPayBtn" :disabled="!$store.state.postId.length" v-show="paymentMethod === 'online'"
-                      token="if you have any token validation"
-                      postdata="your javascript arrays or objects which requires in backend"
-                      order="If you already have the transaction generated for current order"
-                      :endpoint="$gamehubApi + 'pay'"> Pay Now
-              </button>
+<!--              <button class="btn btn-primary btn-lg btn-block" id="sslczPayBtn" :disabled="!$store.state.postId.length" v-show="paymentMethod === 'online'"-->
+<!--                      token=""-->
+<!--                      postdata=""-->
+<!--                      order="If you already have the transaction generated for current order"-->
+<!--                      :endpoint="$gamehubApi + 'pay'" @click="loadData"> Pay Now-->
+<!--              </button>-->
+<!--                  <PayButton :postData="postData" v-show="paymentMethod === 'online'"></PayButton>-->
             </div>
           </div>
         </aside>
@@ -100,89 +89,128 @@
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                games: null,
-                checkedGame: '',
-                lendWeek: null,
-                cart: [],
-                paymentStatus: false,
-                paymentMethod: 'cod',
-                isLoading: false
 
+  import PayButton from "./PayButton";
+  export default {
+    data() {
+        return {
+            games: null,
+            checkedGame: '',
+            lendWeek: null,
+            cart: [],
+            paymentMethod: 'cod',
+            isLoading: false,
+            postData: {
+              amount: '500',
             }
-        },
-        methods: {
-            onCheckout() {
-                var token = this.$store.state.token;
-                var user = this.$store.state.user;
-                if (token) {
-                    if (user.name && user.phone_number && user.address) {
-                        this.paymentStatus = !this.paymentStatus;
-                    }
-                    else {
-                      this.$swal("Incomplete Profile", "Please Update Your Profile");
-                      this.$router.push('profile').catch(err => {});
-                    }
+
+        }
+    },
+    components: {
+      PayButton
+    },
+    methods: {
+        onCheckout() {
+            var token = this.$store.state.token;
+            var user = this.$store.state.user;
+            if (token) {
+                if (user.name && user.phone_number && user.address) {
+                  // this.isLoading = true
+                  // var config = {
+                  //   headers: {
+                  //     'Authorization': 'Bearer ' + this.$store.state.token
+                  //   }
+                  // };
+                  // var data = {
+                  //   postId: this.$store.state.postId,
+                  //   week: this.$store.state.lendWeek,
+                  //   paymentMethod: this.paymentMethod
+                  // };
+                  // this.$api.post('lend-game', data, config).then(response => {
+                  //   if (response.data.error === false) {
+                  //     this.$store.dispatch('clearCart');
+                  //     this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
+                  //     this.isLoading = false;
+                  //     this.$router.push('dashboard').then(err => {});
+                  //   }
+                  // });
+                  this.$router.push('/payment').catch(err => {});
                 }
                 else {
-                  this.$swal("Login First", "Please Login to Lend Games");
-                    this.$router.push('login').catch(err => {});
+                  this.$swal("Incomplete Profile", "Please Update Your Profile");
+                  this.$router.push('/profile').catch(err => {});
                 }
-            },
-            onRemoveCartItem(index) {
-              this.$swal({
-                title: "Are you sure?",
-                text: "Once deleted, you will not be able to recover this imaginary file!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-              })
-                      .then((willDelete) => {
-                        if (willDelete) {
-                          this.cart.splice(index, 1)
-                          this.$store.dispatch('removePostId', index)
-                          swal("Poof! Your imaginary file has been deleted!", {
-                            icon: "success",
-                          });
-                        } else {
-                          swal("Your imaginary file is safe!");
-                        }
-                      });
-            },
-            onConfirmOrder() {
-                this.isLoading = true
-                var config = {
-                  headers: {
-                    'Authorization': 'Bearer ' + this.$store.state.token
-                  }
-                };
-                var data = {
-                  postId: this.$store.state.postId,
-                  week: this.$store.state.lendWeek,
-                  paymentMethod: this.paymentMethod
-                };
-                this.$api.post('lend-game', data, config).then(response => {
-                  if (response.data.error === false) {
-                     this.$store.dispatch('clearCart');
-                     this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
-                     this.isLoading = false;
-                     this.$router.push('dashboard').then(err => {});
-                  }
-                });
+            }
+            else {
+              this.$swal("Login First", "Please Login to Lend Games");
+                this.$router.push('/login').catch(err => {});
             }
         },
-        created() {
-            this.lendWeek = this.$store.state.lendWeek;
-            this.$api.get('cart-items/?ids=' + this.$store.state.postId + '&include=game.assets')
-                .then (response =>
-                {
-                    console.log(response);
-                    this.cart = response.data.data
-                    // console.log(this.rent);
-                })
-        }
-    }
+        onRemoveCartItem(index) {
+          this.$swal({
+            title: "Are you sure?",
+            text: "Once deleted, you will not be able to recover this imaginary file!",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+                  .then((willDelete) => {
+                    if (willDelete) {
+                      this.cart.splice(index, 1)
+                      this.$store.dispatch('removePostId', index)
+                      swal("Poof! Your imaginary file has been deleted!", {
+                        icon: "success",
+                      });
+                    } else {
+                      swal("Your imaginary file is safe!");
+                    }
+                  });
+        },
+        onConfirmOrder() {
+            // this.isLoading = true
+            // var config = {
+            //   headers: {
+            //     'Authorization': 'Bearer ' + this.$store.state.token
+            //   }
+            // };
+            // var data = {
+            //   postId: this.$store.state.postId,
+            //   week: this.$store.state.lendWeek,
+            //   paymentMethod: this.paymentMethod
+            // };
+            // this.$api.post('lend-game', data, config).then(response => {
+            //   if (response.data.error === false) {
+            //      this.$store.dispatch('clearCart');
+            //      this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
+            //      this.isLoading = false;
+            //      this.$router.push('dashboard').then(err => {});
+            //   }
+            // });
+        },
+      loadPaymentScript() {
+        (function (window, document) {
+          var loader = function () {
+            var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
+            script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
+            tag.parentNode.insertBefore(script, tag);
+          };
+
+          window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+        })(window, document);
+      }
+    },
+    created() {
+      this.lendWeek = this.$store.state.lendWeek;
+      this.$api.get('cart-items/?ids=' + this.$store.state.postId + '&include=game.assets')
+          .then (response =>
+          {
+              console.log(response);
+              this.cart = response.data.data
+              // console.log(this.rent);
+          })
+
+      this.loadPaymentScript();
+    },
+  }
 
 </script>

@@ -102,6 +102,16 @@
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
+                                            <div class="col-sm-4" v-if="week">
+                                                <div class="part-left">
+                                                    <h4>Return Date :</h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8 pb-5"  v-if="week">
+                                                <div class="part-right">
+                                                    <h6>{{returnDate}}</h6>
+                                                </div>
+                                            </div>
                                             <div class="col-sm-4">
                                                 <div class="part-left">
                                                     <h4>Rent Available From: </h4>
@@ -604,6 +614,14 @@
                 this.$store.dispatch('pushPostId', this.id)
                 this.$store.dispatch('pushLendWeek', this.week)
                 this.$router.push('/add-to-cart').then(err => {});
+            }
+        },
+        computed: {
+            returnDate() {
+                let availableDate = new Date(this.rent.availability_from_date);
+                availableDate.setDate(availableDate.getDate() + this.week*7);
+                let formatted_date = availableDate.getFullYear() + "-" + (availableDate.getMonth() + 1) + "-" + availableDate.getDate()
+                return formatted_date;
             }
         },
         created() {

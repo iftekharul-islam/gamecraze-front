@@ -3666,6 +3666,24 @@ footer {
       // end aside
     }
     // end main
+    .payment-method {
+      width: 600px;
+      border: 3px solid $sign-in-form;
+      padding: 2rem;
+      margin-top: 4rem !important;
+      .payment-option {
+        display: flex;
+        justify-content: space-evenly;
+        input {
+          cursor: pointer;
+        }
+        label {
+          color: $white-clr;
+          cursor: pointer;
+          @include roboto-con;
+        }
+      }
+    }
   }
 }
 

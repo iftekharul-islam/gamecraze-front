@@ -20,7 +20,7 @@
                                     <th scope="col">Disk condition</th>
                                     <th scope="col">Platform</th>
                                     <th scope="col">Renter name</th>
-                                    <th scope="col">Status</th>
+                                    <th scope="col">Approvement</th>
                                     <th scope="col">Available From</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -33,11 +33,14 @@
                                     <td>{{ rent.platform.data.name }}</td>
                                     <td v-if="rent.rented_user_id == null">N/A</td>
                                     <td v-else>{{ rent.rented_user_id }}</td>
-                                    <td v-if="rent.status == 1">
-                                        <a class="badge-primary badge" >Active</a>
+                                    <td v-if="rent.status === 0">
+                                        <a class="badge-danger badge" >Rejected</a>
+                                    </td>
+                                    <td v-else-if="rent.status === 1">
+                                        <a class="badge-success badge" >Approved</a>
                                     </td>
                                     <td v-else>
-                                        <a class="badge-danger badge" >Inactive</a>
+                                        <a class="badge-info badge" >Pending</a>
                                     </td>
                                     <td>{{ rent.availability_from_date }}</td>
                                     <td>

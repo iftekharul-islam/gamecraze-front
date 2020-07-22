@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class="btn btn-primary btn-lg btn-block" id="sslczPayBtn" :disabled="!$store.state.postId.length"
+        <button class="btn btn-primary btn-lg btn-block m-auto" id="sslczPayBtn" :disabled="!$store.state.postId.length"
                 token=""
                 postdata=""
                 order="If you already have the transaction generated for current order"

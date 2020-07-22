@@ -301,6 +301,3 @@ $(document).on("click", ".browse-2", function () {
     readertwo.readAsDataURL(this.files[0]);
   });
 });
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
-  });

@@ -15173,6 +15173,32 @@ footer .footer-width p span {
   width: 100%;
 }
 
+.cart .cart-width .payment-method {
+  width: 600px;
+  border: 3px solid #222f5e;
+  padding: 2rem;
+  margin-top: 4rem !important;
+}
+
+.cart .cart-width .payment-method .payment-option {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.cart .cart-width .payment-method .payment-option input {
+  cursor: pointer;
+}
+
+.cart .cart-width .payment-method .payment-option label {
+  color: #ffffff;
+  cursor: pointer;
+  font-family: "Roboto Condensed", sans-serif;
+}
+
 @media (max-width: 1800px) {
   .exchange-section .exchange-width .card {
     margin-right: 0 !important;

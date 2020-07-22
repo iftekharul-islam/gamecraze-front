@@ -115,18 +115,6 @@
                                             <img src="../assets/img/rent/cover.png" id="preview-2" class="img-thumbnail">
                                         </div>
                                     </div>
-                                    <!-- Status -->
-                                    <div class="form-group">
-                                        <label for="status">Status</label>
-                                        <ValidationProvider name="Status" rules="required" v-slot="{ errors }">
-                                            <select class="form-control" id="status" v-model="form.status">
-                                                <option value="">Please Select Status...</option>
-                                                <option :value="1" >Active</option>
-                                                <option :value="0" >Disable</option>
-                                            </select>
-                                            <span class="text-dang">{{ errors[0] }}</span>
-                                        </ValidationProvider>
-                                    </div>
                                     <!-- Rent submit button -->
                                     <div class="text-center rented-page-btn pt-5">
                                         <button type="submit" class="btn btn-primary mb-2">Submit</button>
@@ -161,11 +149,6 @@
                                     <div class="row">
                                         <div class="col"><h4>Platform:</h4></div>
                                         <div class="col"><h4>{{ form.platform.name }}</h4></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col"><h4>Status:</h4></div>
-                                        <div class="col" v-if="form.status == 1"><h4>Active</h4></div>
-                                        <div class="col" v-else><h4>Inactive</h4></div>
                                     </div>
                                     <div class="row">
                                         <div class="col">
@@ -212,7 +195,6 @@
                         disk_condition: {},
                         disk_image: '',
                         cover_image: '',
-                        status: '1',
                     },
                 }
             },
@@ -244,7 +226,6 @@
                         disk_condition_id: this.form.disk_condition.id,
                         disk_image: this.form.disk_image,
                         cover_image: this.form.cover_image,
-                        status: '1',
                     }
                     let config = {
                         headers: {

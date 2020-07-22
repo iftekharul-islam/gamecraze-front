@@ -23,6 +23,7 @@ import ProfileUpdate from "../components/ProfileUpdate";
 import NotFoundPage from "../components/NotFoundPage";
 import AddToCart from "../components/AddToCart";
 import AllRentPost from "../components/AllRentPost";
+import Payment from "../components/Payment";
 
 let router = new Router({
     mode: 'history',
@@ -149,6 +150,14 @@ let router = new Router({
             path: '/update-profile',
             name: 'UpdateProfile',
             component: ProfileUpdate,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/payment',
+            name: 'Payment',
+            component: Payment,
             meta: {
                 requiresAuth: true
             }

@@ -6,11 +6,12 @@
                         <h2 class="text-center text-light">DASHBOARD</h2>
                     </div>
                     <div class="d-flex justify-content-center mb-3">
-                        <button class="btn btn-primary mr-3" @click.prevent="onOfferedGames">Offered Games</button>
-                        <button class="btn btn-primary ml-3" @click.prevent="onRentedGames">Rented Games</button>
+                        <button class="btn btn-primary mr-3" @click.prevent="onOfferedGames" :disabled="!show">Offered Games</button>
+                        <button class="btn btn-primary ml-3" @click.prevent="onRentedGames" :disabled="show">Rented Games</button>
                     </div>
                     <h2 v-if="rents.length && !show" class="text-white text-center">Your Offered Games</h2>
                     <h2 v-else-if="lends.length && show" class="text-white text-center">Your Rented Games</h2>
+                    <div style="background: #fff url('../assets/loader.gif') no-repeat center center;"></div>
                     <div class="table-responsive pb-5" v-if="rents.length && !show">
                             <table class="table table-striped table-dark">
                                 <thead>
@@ -60,6 +61,7 @@
                                 <th scope="col">Platform</th>
                                 <th scope="col">Lend Week</th>
                                 <th scope="col">Lend Date</th>
+                                <th scope="col">Return Date</th>
                                 <th scope="col">Cost</th>
                                 <th scope="col">Action</th>
                             </tr>
@@ -72,6 +74,7 @@
                                 <td>{{ lend.rent.platform.name }}</td>
                                 <td>{{ lend.lend_week }}</td>
                                 <td>{{ lend.lend_date }}</td>
+                                <td>{{ returnDate(lend.lend_date, lend.lend_week) }}</td>
                                 <td>{{ lend.lend_cost }}</td>
                                 <td><button class="btn btn-primary">Return Request</button></td>
                             </tr>
@@ -120,7 +123,6 @@
             },
             methods: {
                 onDelete(rent) {
-                    console.log(rent.id);
                     this.$swal({
                         title: "Rent Post Delete!",
                         text: "Do you want to delete the Rent Post?",
@@ -134,7 +136,6 @@
                                     'Authorization': 'Bearer ' + this.$store.state.token
                                 }
                             }
-                            // console.log(this.rents)
                             this.$api.delete('rents/' + rent.id, config)
                                 .then(response => {
                                 if (response.data) {
@@ -156,13 +157,15 @@
                 },
                 onOfferedGames() {
                     this.show = false
-                    console.log(this.show);
-                    console.log(this.rents.length);
                 },
                 onRentedGames() {
                     this.show = true
-                    console.log(this.show);
-                    console.log(this.lends.length);
+                },
+                returnDate(lendDate, week) {
+                    let date = new Date(lendDate);
+                    date.setDate(date.getDate() + week * 7);
+                    let formatted_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
+                    return formatted_date;
                 }
             },
             created() {
@@ -175,14 +178,12 @@
                     .then(response =>
                     {
                         this.rents = response.data.data
-                        // console.log(this.rents)
                     })
 
                 this.$api.get('lends', config)
                     .then(response =>
                     {
                         this.lends = response.data
-                        console.log(this.lends)
                     })
             }
         }

@@ -122,7 +122,7 @@
                                         <h1 class="part-2">LEND</h1>
                                         <h2 class="part-3"> Games</h2>
                                         <div class="text-center rent-btn">
-                                            <router-link :to="{ path: '/all-rent-posts'}" class="btn btn-success text-center mt-5">Lend</router-link>
+                                            <router-link to="/games" class="btn btn-success text-center mt-5">Lend</router-link>
                                         </div>
                                     </div>
                                 </div>
@@ -185,7 +185,7 @@
                                     </div>
                                     <div class="view-more-btn text-center pb-4">
 <!--                                        <a href="#" class="btn btn-dark">View More</a>-->
-                                        <router-link :to="{ path: 'rent-view/' + rent.id + '/' + rent.game.data.slug}" v-bind:tooltip="rent.id" append><a class="btn btn-dark">Read more</a></router-link>
+                                        <router-link :to="{ path: '/game-details/' + rent.id}"><a class="btn btn-dark">Read more</a></router-link>
                                     </div>
                                 </div>
                             </div>

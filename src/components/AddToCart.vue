@@ -12,7 +12,7 @@
                 <tr>
                   <td scope="col" class="item item-heading">Item</td>
                   <td scope="col" class="price">Price</td>
-                  <!-- <td scope="col" class="quantity">Quantity</td> -->
+                  <td scope="col" class="quantity">Rent Week</td>
                   <td scope="col" class="subtotal">Subtotal</td>
                 </tr>
               </thead>
@@ -31,11 +31,17 @@
                     </div>
                    </div>
                   </td>
-                  <td class="price">5000</td>
-                    <!-- <td class="quantity">
-                        <input type="number" value="1" min="1" class="quantity-field">
-                    </td> -->
-                  <td class="subtotal">5000</td>
+                  <td class="price">{{ price }}</td>
+                  <td>
+                    <div class="quantity">
+                      <select class="form-control w-75" v-model="$store.state.lendWeek[index]" @change="updateRentWeek(index)">
+<!--                        <option value="" selected disabled>Rent Week</option>-->
+                        <option v-for="n in item.max_number_of_week" :value="n">{{n}}</option>
+                      </select>
+                    </div>
+                  </td>
+
+                  <td class="subtotal">{{ price * $store.state.lendWeek[index] }}</td>
                     <div class="remove-cart">
                       <button @click="onRemoveCartItem(index)" class="tooltips" tooltip="Click Here to Remove Game!">
                         <i class="far fa-trash-alt"></i>
@@ -71,14 +77,6 @@
 
             <div class="summary-checkout">
               <button class="checkout-cta btn btn-primary" @click.prevent="onCheckout" :disabled="!$store.state.postId.length">Go to Secure Checkout</button>
-<!--              <button class="checkout-cta btn btn-primary" @click.prevent="onPayNow" :disabled="!$store.state.postId.length" v-else>Pay Now</button>-->
-<!--              <button class="btn btn-primary btn-lg btn-block" id="sslczPayBtn" :disabled="!$store.state.postId.length" v-show="paymentMethod === 'online'"-->
-<!--                      token=""-->
-<!--                      postdata=""-->
-<!--                      order="If you already have the transaction generated for current order"-->
-<!--                      :endpoint="$gamehubApi + 'pay'" @click="loadData"> Pay Now-->
-<!--              </button>-->
-<!--                  <PayButton :postData="postData" v-show="paymentMethod === 'online'"></PayButton>-->
             </div>
           </div>
         </aside>
@@ -89,8 +87,6 @@
 </template>
 
 <script>
-
-  import PayButton from "./PayButton";
   export default {
     data() {
         return {
@@ -100,41 +96,20 @@
             cart: [],
             paymentMethod: 'cod',
             isLoading: false,
-            postData: {
-              amount: '500',
-            }
-
+            totalAmount: 200,
+            price: 299,
         }
     },
-    components: {
-      PayButton
-    },
     methods: {
+        updateRentWeek(index) {
+            localStorage.setItem('lendWeek', JSON.stringify(this.$store.state.lendWeek));
+        },
         onCheckout() {
             var token = this.$store.state.token;
             var user = this.$store.state.user;
             if (token) {
-                if (user.name && user.phone_number && user.address) {
-                  // this.isLoading = true
-                  // var config = {
-                  //   headers: {
-                  //     'Authorization': 'Bearer ' + this.$store.state.token
-                  //   }
-                  // };
-                  // var data = {
-                  //   postId: this.$store.state.postId,
-                  //   week: this.$store.state.lendWeek,
-                  //   paymentMethod: this.paymentMethod
-                  // };
-                  // this.$api.post('lend-game', data, config).then(response => {
-                  //   if (response.data.error === false) {
-                  //     this.$store.dispatch('clearCart');
-                  //     this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
-                  //     this.isLoading = false;
-                  //     this.$router.push('dashboard').then(err => {});
-                  //   }
-                  // });
-                  this.$router.push('/payment').catch(err => {});
+                if (user.name && user.phone_number && user.address.address && user.identification_number && user.birth_date) {
+                  this.$router.push('/payment/' + this.totalAmount).catch(err => {});
                 }
                 else {
                   this.$swal("Incomplete Profile", "Please Update Your Profile");
@@ -166,36 +141,13 @@
                     }
                   });
         },
-        onConfirmOrder() {
-            // this.isLoading = true
-            // var config = {
-            //   headers: {
-            //     'Authorization': 'Bearer ' + this.$store.state.token
-            //   }
-            // };
-            // var data = {
-            //   postId: this.$store.state.postId,
-            //   week: this.$store.state.lendWeek,
-            //   paymentMethod: this.paymentMethod
-            // };
-            // this.$api.post('lend-game', data, config).then(response => {
-            //   if (response.data.error === false) {
-            //      this.$store.dispatch('clearCart');
-            //      this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
-            //      this.isLoading = false;
-            //      this.$router.push('dashboard').then(err => {});
-            //   }
-            // });
-        },
     },
     created() {
       this.lendWeek = this.$store.state.lendWeek;
       this.$api.get('cart-items/?ids=' + this.$store.state.postId + '&include=game.assets')
           .then (response =>
           {
-              console.log(response);
               this.cart = response.data.data
-              // console.log(this.rent);
           })
     },
   }

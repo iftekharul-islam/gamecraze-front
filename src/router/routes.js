@@ -24,17 +24,25 @@ import NotFoundPage from "../components/NotFoundPage";
 import AddToCart from "../components/AddToCart";
 import AllRentPost from "../components/AllRentPost";
 import Payment from "../components/Payment";
+import Success from "../components/payment/Success";
+import Fail from "../components/payment/Fail";
 
 let router = new Router({
     mode: 'history',
     routes: [
         {
             path: '',
-            component: Home
+            component: Home,
+            meta: {
+                requiresAuth: false
+            }
         },
         {
             path: '/games',
-            component: Game
+            component: Game,
+            meta: {
+                requiresAuth: false
+            }
         },
         {
             path: '/login',
@@ -155,9 +163,10 @@ let router = new Router({
             }
         },
         {
-            path: '/payment',
+            path: '/payment/:amount',
             name: 'Payment',
             component: Payment,
+            props: true,
             meta: {
                 requiresAuth: true
             }
@@ -174,6 +183,22 @@ let router = new Router({
             props: true,
             meta: {
                 requiresAuth: false
+            }
+        },
+        {
+            path: '/success',
+            name: 'Success',
+            component: Success,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/fail',
+            name: 'Fail',
+            component: Fail,
+            meta: {
+                requiresAuth: true
             }
         },
         {

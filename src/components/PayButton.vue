@@ -11,18 +11,20 @@
 
 <script>
     export default {
-        props: ['postData'],
+        props: ['amount'],
         methods: {
             loadData() {
-                var obj = {};
-                obj.cus_name = this.$store.state.user.name
-                obj.cus_phone = this.$store.state.user.phone_number
-                obj.cus_email = this.$store.state.user.email
-                obj.cus_addr1 = this.$store.state.user.address
-                obj.amount = this.postData.amount
+                var data = {
+                    cus_name: this.$store.state.user.name,
+                    cus_phone: this.$store.state.user.phone_number,
+                    cus_email: this.$store.state.user.email,
+                    cus_addr1: this.$store.state.user.address.address,
+                    amount: this.amount
+                };
 
-                $('#sslczPayBtn').prop('postdata', obj);
-            }
+                $('#sslczPayBtn').prop('postdata', data);
+            },
         }
+
     }
 </script>

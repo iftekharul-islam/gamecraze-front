@@ -23,7 +23,8 @@ export const storage = {
         wrongOTP: false,
         timeout: false,
         postId: [],
-        cart: null
+        cart: null,
+        totalAmount: ''
     },
     getters: {
         user (state) {
@@ -264,7 +265,7 @@ export const storage = {
                 if (response.data) {
                     commit('setUser', response.data);
                     localStorage.setItem('user', JSON.stringify(response.data));
-                    if (payload.address) {
+                    if (payload.gender || payload.birth_date || payload.id_number) {
                         swal("Profile Updated!", "Profile Update Successful!", "success");
                         router.push('/profile').catch(err => {});
                     }

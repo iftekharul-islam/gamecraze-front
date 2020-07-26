@@ -618,9 +618,9 @@
         },
         computed: {
             returnDate() {
-                let availableDate = new Date(this.rent.availability_from_date);
-                availableDate.setDate(availableDate.getDate() + this.week*7);
-                let formatted_date = availableDate.getFullYear() + "-" + (availableDate.getMonth() + 1) + "-" + availableDate.getDate()
+                let today = new Date();
+                today.setDate(today.getDate() + this.week * 7);
+                let formatted_date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()
                 return formatted_date;
             }
         },

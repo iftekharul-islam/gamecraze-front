@@ -7,19 +7,16 @@
                     <div class="menu-1">
                         <ul class="rented-menu-part-1">
                             <li class="">
-                                <a class="" href="#">Home</a>
+                                <router-link to="/">Home</router-link>
                             </li>
                             <li class="">
-                                <a class="" href="#">Categories</a>
+                                <router-link to="/games">Games</router-link>
                             </li>
                             <li class="">
-                                <a class="" href="#">Games</a>
+                                <router-link to="">Supports</router-link>
                             </li>
                             <li class="">
-                                <a class="" href="#">Supports</a>
-                            </li>
-                            <li class="">
-                                <a class="" href="#">Contact us</a>
+                                <router-link to="/contacts">Contact us</router-link>
                             </li>
                         </ul>
                     </div>

@@ -79,7 +79,7 @@
                         </table>
                     </div>
                     <div class="card no-post-found-card mb-0" v-else>
-                        <div class="wavy">
+                        <!-- <div class="wavy">
                             <span style="--i:1;">N</span>
                             <span style="--i:2;">o</span>&nbsp; &nbsp;
                             <span style="--i:3;">P</span>
@@ -102,6 +102,12 @@
                             <span style="--i:20;">!</span>
                             <span style="--i:21;">!</span>
                             <span style="--i:22;">!</span>
+                         </div> -->
+                         <div class="loading text-center">
+                            <div id="loading-wrapper">
+                            <div id="loading-text">LOADING</div>
+                            <div id="loading-content"></div>
+                            </div>
                          </div>
                     </div>
                 </div>

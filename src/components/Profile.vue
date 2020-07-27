@@ -61,11 +61,27 @@
                                             </tr>
                                             <tr>
                                                 <th scope="row">Address</th>
-                                                <td>{{ user.address }}</td>
+                                                <td>{{ user.address.address }}</td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">NID</th>
-                                                <td>783447838220</td>
+                                                <th scope="row">Address Line 1</th>
+                                                <td>{{ user.address.address_line_1 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Address Line 2</th>
+                                                <td>{{ user.address.address_line_2 }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">City</th>
+                                                <td>{{ user.address.city }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Post Code</th>
+                                                <td>{{ user.address.post_code }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">NID / Birth Id</th>
+                                                <td>{{ user.identification_number }}</td>
                                             </tr>
                                             </tbody>
                                         </table>

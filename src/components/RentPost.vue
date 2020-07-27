@@ -72,7 +72,7 @@
                                     </div>
                                     <!-- disk condition -->
                                     <div class="form-group">
-                                        <label for="DiskCondition">Disk Conditiont</label>
+                                        <label for="DiskCondition">Disk Condition</label>
                                         <ValidationProvider name="Disk Condition" rules="required" v-slot="{ errors }">
                                             <select class="form-control" id="DiskCondition" v-model="form.disk_condition">
                                                 <option value="">Please Select Disk Condition...</option>

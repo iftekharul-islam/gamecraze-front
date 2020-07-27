@@ -76,9 +76,46 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
+                                                <label for="idNumber" class="col-sm-3 col-form-label">National / Birth Id</label>
+                                                <div class="col-sm-9 pr-0">
+                                                    <input type="text" class="form-control" id="idNumber" placeholder="Edit Your National / Birth Id Number" v-model="form.id_number">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="idImage" class="col-sm-3 col-form-label">National / Birth Id Image</label>
+                                                <div class="col-sm-9 pr-0">
+<!--                                                    <input type="file" class="form-control" id="idImage" placeholder="Select Image">-->
+                                                    <input @change="onIdChange" id="idImage" type='file' accept=".png, .jpg, .jpeg"/>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
                                                 <label for="address" class="col-sm-3 col-form-label">Address</label>
                                                 <div class="col-sm-9 pr-0">
-                                                    <textarea class="form-control" id="address" placeholder="Edit Your Address" v-model="form.address"></textarea>
+                                                    <input type="text" class="form-control" id="address" placeholder="Edit Your Address" v-model="form.address">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="addressLine1" class="col-sm-3 col-form-label">Address Line 1</label>
+                                                <div class="col-sm-9 pr-0">
+                                                    <input type="text" class="form-control" id="addressLine1" placeholder="Edit Your Address Line 1" v-model="form.addressLine1">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="addressLine2" class="col-sm-3 col-form-label">Address Line 2</label>
+                                                <div class="col-sm-9 pr-0">
+                                                    <input type="text" class="form-control" id="addressLine2" placeholder="Edit Your Address Line 2" v-model="form.addressLine2">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="city" class="col-sm-3 col-form-label">City</label>
+                                                <div class="col-sm-9 pr-0">
+                                                    <input type="text" class="form-control" id="city" placeholder="Edit Your City" v-model="form.city"></input>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="postCode" class="col-sm-3 col-form-label">Post Code</label>
+                                                <div class="col-sm-9 pr-0">
+                                                    <input type="text" class="form-control" id="postCode" placeholder="Edit Your Post Code" v-model="form.postCode"></input>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -110,7 +147,13 @@
                     birth_date: this.$store.state.user.birth_date,
                     email: this.$store.state.user.email,
                     phone_number: this.$store.state.user.phone_number,
-                    address: this.$store.state.user.address,
+                    id_number: this.$store.state.user.identification_number,
+                    id_image: this.$store.state.user.identification_image,
+                    address: this.$store.state.user.address.address,
+                    addressLine1: this.$store.state.user.address.address_line_1,
+                    addressLine2: this.$store.state.user.address.address_line_2,
+                    city: this.$store.state.user.address.city,
+                    postCode: this.$store.state.user.address.post_code,
                     image: ""
                 }
             }
@@ -143,6 +186,13 @@
                 let fileReader = new FileReader();
                 fileReader.onload = (e) => {
                     this.form.image = e.target.result;
+                }
+                fileReader.readAsDataURL(event.target.files[0]);
+            },
+            onIdChange(event) {
+                let fileReader = new FileReader();
+                fileReader.onload = (e) => {
+                    this.form.id_image = e.target.result;
                 }
                 fileReader.readAsDataURL(event.target.files[0]);
             },

@@ -19,8 +19,12 @@
                         </div>
                     </div>
                     <div class="payment-btn text-center mt-5">
-                        <button class="btn btn-primary" v-show="paymentMethod === 'cod'">Place Order</button>
-                        <PayButton :postData="postData" v-show="paymentMethod === 'online'"></PayButton>
+                        <button class="btn btn-primary" v-show="paymentMethod === 'cod'" @click.prevent="placeOrder">
+                            Place Order
+                            <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
+                        </button>
+
+                        <PayButton :amount="amount" v-show="paymentMethod === 'online'"></PayButton>
                     </div>
                 </div>
             </div>
@@ -34,9 +38,7 @@
             return {
                 paymentMethod: 'cod',
                 isLoading: false,
-                postData: {
-                    amount: '500',
-                }
+                amount: this.$route.params.amount
             }
         },
         components: {
@@ -53,6 +55,27 @@
 
                     window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
                 })(window, document);
+            },
+            placeOrder() {
+                this.isLoading = true
+                var config = {
+                  headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                  }
+                };
+                var data = {
+                  postId: this.$store.state.postId,
+                  week: this.$store.state.lendWeek,
+                  paymentMethod: this.paymentMethod
+                };
+                this.$api.post('lend-game', data, config).then(response => {
+                  if (response.data.error === false) {
+                    this.$store.dispatch('clearCart');
+                    this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
+                    this.isLoading = false;
+                    this.$router.push('dashboard').then(err => {});
+                  }
+                });
             }
         },
         created() {

@@ -24,17 +24,26 @@ import NotFoundPage from "../components/NotFoundPage";
 import AddToCart from "../components/AddToCart";
 import AllRentPost from "../components/AllRentPost";
 import Payment from "../components/Payment";
+import Success from "../components/payment/Success";
+import Fail from "../components/payment/Fail";
+import RentDetails from "../components/RentDetails";
 
 let router = new Router({
     mode: 'history',
     routes: [
         {
             path: '',
-            component: Home
+            component: Home,
+            meta: {
+                requiresAuth: false
+            }
         },
         {
             path: '/games',
-            component: Game
+            component: Game,
+            meta: {
+                requiresAuth: false
+            }
         },
         {
             path: '/login',
@@ -129,15 +138,6 @@ let router = new Router({
                 requiresAuth: true
             }
         },
-        // {
-        //     path: '/rent-view/:id/:slug',
-        //     name: 'RentView',
-        //     component: RentView,
-        //     props: true,
-        //     meta: {
-        //         requiresAuth: false
-        //     }
-        // },
         {
             path: '/reset-password',
             name: 'ResetPassword',
@@ -155,9 +155,10 @@ let router = new Router({
             }
         },
         {
-            path: '/payment',
+            path: '/payment/:amount',
             name: 'Payment',
             component: Payment,
+            props: true,
             meta: {
                 requiresAuth: true
             }
@@ -171,6 +172,31 @@ let router = new Router({
             path: '/all-rent-posts/rent-view/:id/:slug',
             name: 'RentView',
             component: RentView,
+            props: true,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/success',
+            name: 'Success',
+            component: Success,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/fail',
+            name: 'Fail',
+            component: Fail,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/rent-details/:id',
+            name: 'RentDetails',
+            component: RentDetails,
             props: true,
             meta: {
                 requiresAuth: false

@@ -8,11 +8,11 @@
                         <div class="item-slide" v-if="rent">
                             <ul class="thumbnails" id="two" v-if="rent.game">
                                 <li class="thumbnail-active" v-for="(asset,index) in rent.game.data.assets.data" :key="index">
-                                    <a :href="'#slide'+index" class="thumbnail-active-action"><img :src="$gamehubStorageApi + 'assets/' + asset.name" alt="jedi fallen" class="img-fluid"/></a>
+                                    <a :href="'#slide'+index" class="thumbnail-active-action"><img :src="asset.url" alt="jedi fallen" class="img-fluid"/></a>
                                 </li>
                             </ul>
                             <ul class="slides" v-if="rent.game">
-                                <li v-for="(asset,index) in rent.game.data.assets.data" :key="index" :id="'slide'+index"><img :src="$gamehubStorageApi + 'assets/' + asset.name" alt="jedi fallen" class="img-fluid"/></li>
+                                <li v-for="(asset,index) in rent.game.data.assets.data" :key="index" :id="'slide'+index"><img :src="asset.url" alt="jedi fallen" class="img-fluid"/></li>
                             </ul>
                         </div>
 

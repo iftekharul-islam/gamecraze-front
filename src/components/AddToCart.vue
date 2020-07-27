@@ -22,7 +22,7 @@
 
                    <div class="item-product">
                     <div class="product-image">
-                        <img :src="$gamehubStorageApi + 'assets/' + item.game.data.assets.data[0].name"  :alt="item.game.data.name" class="product-frame img-fluid" v-if="item.game.data.assets.data.length">
+                        <img :src="item.game.data.assets.data[0].url"  :alt="item.game.data.name" class="product-frame img-fluid" v-if="item.game.data.assets.data.length">
                         <img class="card-img-top" src="../assets/img/rented/grid.png" alt="Grid" v-else>
                     </div>
                     <div class="product-details">

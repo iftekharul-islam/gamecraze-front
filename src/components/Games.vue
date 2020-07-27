@@ -115,7 +115,7 @@
                                             <div class="card game-card">
                                                     <img src="../assets/img/release/fifa.jpg" class="card-img-top" alt="Fifa-20">
                                                     <h4 class="game-name">{{ rent.game.data.name }}</h4>
-                                                    <p class="game-brands">Sports</p>
+                                                    <p class="game-brands"><span v-for="(genre,index) in rent.game.data.genres.data" :key="index" >{{ genre.name }}<span v-if="index < rent.game.data.genres.data.length-1">, </span></span></p>
                                                     <p class="pegi-ratings">Rating: {{ rent.game.data.rating }}</p>
                                                     <p class="star">
                                                         <i class="fas fa-star star-color"></i>

@@ -60,7 +60,7 @@
                 <div class="owl-carousel-one owl-carousel owl-theme">
                     <div class="item" v-for="(game, index) in latestGames" :key="index">
                         <div class="card">
-                            <a href="#"> <img class="card-img-top" :src="$gamehubStorageApi + 'assets/' + game.assets.data[0].name" alt="Code vein"></a>
+                            <a href="#"> <img class="card-img-top" :src="game.assets.data[0].url" alt="Code vein"></a>
                             <div class="card-body">
                                 <h4 class="mb-3 game-name">{{ game.name }}</h4>
                                 <p class="card-text">{{ game.description }}</p>
@@ -201,7 +201,7 @@
                         <div class="owl-carousel-four owl-carousel owl-theme">
                             <div class="item" v-for="(rent,index) in rents" :key="index">
                                 <div class="card" >
-                                    <img class="card-img-top" :src="$gamehubStorageApi + 'assets/' + rent.game.data.assets.data[0].name" :alt="rent.game.data.name " v-if="rent.game.data.assets.data.length">
+                                    <img class="card-img-top" :src="rent.game.data.assets.data[0].url" :alt="rent.game.data.name " v-if="rent.game.data.assets.data.length">
                                     <img class="card-img-top" src="../assets/img/rented/grid.png" alt="Grid" v-else>
                                     <div class="card-body">
                                         <h4 class="mb-2 game-name text-center">{{ rent.game.data.name }}</h4>

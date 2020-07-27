@@ -113,7 +113,7 @@
                                 <div class="row">
                                         <div v-for="(rent, index) in filteredCategory" :key="index" class="col-sm-6 col-lg-4 col-xl-3 mb-4">
                                             <div class="card game-card">
-                                                    <img class="card-img-top" :src="$gamehubStorageApi + 'assets/' + rent.game.data.assets.data[0].name" :alt="rent.game.data.name " v-if="rent.game.data.assets.data.length">
+                                                    <img class="card-img-top" :src="rent.game.data.assets.data[0].url" :alt="rent.game.data.name " v-if="rent.game.data.assets.data.length">
                                                     <img src="../assets/img/release/fifa.jpg" class="card-img-top" alt="Fifa-20" v-else>
                                                     <h4 class="game-name">{{ rent.game.data.name }}</h4>
                                                     <p class="game-brands"><span v-for="(genre,index) in rent.game.data.genres.data" :key="index" >{{ genre.name }}<span v-if="index < rent.game.data.genres.data.length-1">, </span></span></p>

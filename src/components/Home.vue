@@ -60,7 +60,7 @@
                 <div class="owl-carousel-one owl-carousel owl-theme">
                     <div class="item" v-for="(game, index) in latestGames" :key="index">
                         <div class="card">
-                            <a href="#"> <img class="card-img-top" src="../assets/img/release/codevein.jpg" alt="Code vein"></a>
+                            <a href="#"> <img class="card-img-top" :src="$gamehubStorageApi + 'assets/' + game.assets.data[0].name" alt="Code vein"></a>
                             <div class="card-body">
                                 <h4 class="mb-3 game-name">{{ game.name }}</h4>
                                 <p class="card-text">{{ game.description }}</p>
@@ -208,7 +208,7 @@
                                     </div>
                                     <div class="view-more-btn text-center pb-4">
 <!--                                        <a href="#" class="btn btn-dark">View More</a>-->
-                                        <router-link :to="{ path: '/game-details/' + rent.id}"><a class="btn btn-dark">Read more</a></router-link>
+                                        <router-link :to="{ path: '/rent-details/' + rent.id}"><a class="btn btn-dark">Read more</a></router-link>
                                     </div>
                                 </div>
                             </div>

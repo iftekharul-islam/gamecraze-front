@@ -59,7 +59,7 @@
             <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
             <div class="summary-subtotal">
               <div class="subtotal-title">Subtotal</div>
-              <div class="subtotal-value final-value" id="basket-subtotal">5000</div>
+              <div class="subtotal-value final-value" id="basket-subtotal">{{$store.state.totalAmount}}</div>
               <div class="summary-promo hide">
                 <div class="promo-title">Promotion</div>
                 <div class="promo-value final-value" id="basket-promo"></div>
@@ -72,7 +72,7 @@
             </div>
             <div class="summary-total">
               <div class="total-title">Total</div>
-              <div class="total-value final-value" id="basket-total">5000</div>
+              <div class="total-value final-value" id="basket-total">{{$store.state.totalAmount}}</div>
             </div>
 
             <div class="summary-checkout">
@@ -96,20 +96,32 @@
             cart: [],
             paymentMethod: 'cod',
             isLoading: false,
-            totalAmount: 200,
+            // totalAmount: 200,
             price: 299,
         }
     },
     methods: {
+        subTotal() {
+            console.log(this.cart.length)
+            for (let i=0;i<this.cart.length;i++) {
+                this.$store.state.totalAmount = this.$store.state.totalAmount + this.price * this.$store.state.lendWeek[i];;
+            }
+            // console.log(this.$store.state.totalAmount)
+            return this.$store.state.totalAmount;
+        },
         updateRentWeek(index) {
             localStorage.setItem('lendWeek', JSON.stringify(this.$store.state.lendWeek));
+            this.$store.state.totalAmount = 0;
+            for (let i=0;i<this.cart.length;i++) {
+                this.$store.state.totalAmount = this.$store.state.totalAmount + this.price * this.$store.state.lendWeek[i];;
+            }
         },
         onCheckout() {
             var token = this.$store.state.token;
             var user = this.$store.state.user;
             if (token) {
                 if (user.name && user.phone_number && user.address.address && user.identification_number && user.birth_date) {
-                  this.$router.push('/payment/' + this.totalAmount).catch(err => {});
+                  this.$router.push('/payment/' + this.$store.state.totalAmount).catch(err => {});
                 }
                 else {
                   this.$swal("Incomplete Profile", "Please Update Your Profile");
@@ -133,6 +145,10 @@
                     if (willDelete) {
                       this.cart.splice(index, 1)
                       this.$store.dispatch('removePostId', index)
+                        this.$store.state.totalAmount = 0;
+                        for (let i=0;i<this.cart.length;i++) {
+                            this.$store.state.totalAmount = this.$store.state.totalAmount + this.price * this.$store.state.lendWeek[i];;
+                        }
                       swal("Poof! Your imaginary file has been deleted!", {
                         icon: "success",
                       });
@@ -148,6 +164,11 @@
           .then (response =>
           {
               this.cart = response.data.data
+              this.$store.state.totalAmount = 0;
+              for (let i=0;i<this.cart.length;i++) {
+                  this.$store.state.totalAmount = this.$store.state.totalAmount + this.price * this.$store.state.lendWeek[i];;
+              }
+              console.log(this.cart)
           })
     },
   }

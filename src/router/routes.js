@@ -26,6 +26,7 @@ import AllRentPost from "../components/AllRentPost";
 import Payment from "../components/Payment";
 import Success from "../components/payment/Success";
 import Fail from "../components/payment/Fail";
+import RentDetails from "../components/RentDetails";
 
 let router = new Router({
     mode: 'history',
@@ -137,15 +138,6 @@ let router = new Router({
                 requiresAuth: true
             }
         },
-        // {
-        //     path: '/rent-view/:id/:slug',
-        //     name: 'RentView',
-        //     component: RentView,
-        //     props: true,
-        //     meta: {
-        //         requiresAuth: false
-        //     }
-        // },
         {
             path: '/reset-password',
             name: 'ResetPassword',
@@ -199,6 +191,15 @@ let router = new Router({
             component: Fail,
             meta: {
                 requiresAuth: true
+            }
+        },
+        {
+            path: '/rent-details/:id',
+            name: 'RentDetails',
+            component: RentDetails,
+            props: true,
+            meta: {
+                requiresAuth: false
             }
         },
         {

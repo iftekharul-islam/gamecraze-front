@@ -29,60 +29,83 @@
         </section>
 
         <!-- New release Section -->
+<!--        <section class="new-release pt-5 sign-in-bg">-->
+<!--            <div class="container-fluid release-width">-->
+<!--                <div class="release-header">-->
+<!--                    <h2>New Release</h2>-->
+<!--                </div>-->
+<!--                <div class="owl-carousel-one owl-carousel owl-theme" v-if="latestGames.length">-->
+<!--                    <div class="item" v-for="(game, index) in latestGames" :key="index">-->
+<!--                        <div class="card">-->
+<!--                            <a href="#"> <img class="card-img-top" src="" alt="Code vein"></a>-->
+<!--                            <div class="card-body">-->
+<!--                                <h4 class="mb-3 game-name">{{game.name}}</h4>-->
+<!--                                <p class="card-text">{{game.description}}</p>-->
+<!--                            </div>-->
+<!--                            <div class="more-read text-right pb-3 pr-2">-->
+<!--                                <a href="#"><router-link :to="{ name: 'GameDetails', params: {gameId: game.id }}">View More <span class="material-icons">arrow_forward_ios</span></router-link></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </section>-->
+
+        <!-- New release Section -->
         <section class="new-release pt-5 sign-in-bg">
             <div class="container-fluid release-width">
                 <div class="release-header">
                     <h2>New Release</h2>
                 </div>
                 <div class="owl-carousel-one owl-carousel owl-theme">
-                    <div class="item">
+                    <div class="item" v-for="(game, index) in latestGames" :key="index">
                         <div class="card">
                             <a href="#"> <img class="card-img-top" src="../assets/img/release/codevein.jpg" alt="Code vein"></a>
                             <div class="card-body">
-                                <h4 class="mb-3 game-name">Code Vein</h4>
-                                <p class="card-text">The Jedi are leaders and peacekeepers in the Star Wars universe. The Jedi Order are depicted as an ancient monastic, academic, meritocratic and quasi-militaristic organization whose origin dates back approximately 25,000 years before the events of the first film released in the franchise</p>
+                                <h4 class="mb-3 game-name">{{ game.name }}</h4>
+                                <p class="card-text">{{ game.description }}</p>
                             </div>
                             <div class="more-read text-right pb-3 pr-2">
-                                <a href="#">View More <span class="material-icons">arrow_forward_ios</span></a>
+                                <router-link :to="{ path: '/game-details/' + game.id}">View More <span class="material-icons">arrow_forward_ios</span></router-link>
                             </div>
                         </div>
                     </div>
-                    <div class="item">
-                        <div class="card">
-                            <a href="#"> <img class="card-img-top" src="../assets/img/release/monkey.jpg" alt="Code vein"></a>
-                            <div class="card-body">
-                                <h4 class="mb-3 game-name">Monkey</h4>
-                                <p class="card-text">The Jedi are leaders and peacekeepers in the Star Wars universe. The Jedi Order are depicted as an ancient monastic, academic, meritocratic and quasi-militaristic organization whose origin dates back approximately 25,000 years before the events of the first film released in the franchise</p>
-                            </div>
-                            <div class="more-read text-right pb-3 pr-2">
-                                <a href="#">View More <span class="material-icons">arrow_forward_ios</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="card">
-                            <a href="#"> <img class="card-img-top" src="../assets/img/release/call.jpg" alt="Code vein"></a>
-                            <div class="card-body">
-                                <h4 class="mb-3 game-name">Call of Duty</h4>
-                                <p class="card-text">The Jedi are leaders and peacekeepers in the Star Wars universe. The Jedi Order are depicted as an ancient monastic, academic, meritocratic and quasi-militaristic organization whose origin dates back approximately 25,000 years before the events of the first film released in the franchise</p>
-                            </div>
-                            <div class="more-read text-right pb-3 pr-2">
-                                <a href="#">View More <span class="material-icons">arrow_forward_ios</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="card">
-                            <a href="#"> <img class="card-img-top" src="../assets/img/release/fifa.jpg" alt="Code vein"></a>
-                            <div class="card-body">
-                                <h4 class="mb-3 game-name">FIFA</h4>
-                                <p class="card-text">The Jedi are leaders and peacekeepers in the Star Wars universe. The Jedi Order are depicted as an ancient monastic, academic, meritocratic and quasi-militaristic organization whose origin dates back approximately 25,000 years before the events of the first film released in the franchise</p>
-                            </div>
-                            <div class="more-read text-right pb-3 pr-2">
-                                <a href="#">View More <span class="material-icons">arrow_forward_ios</span></a>
-                            </div>
-                        </div>
-                    </div>
+<!--                    <div class="item">-->
+<!--                        <div class="card">-->
+<!--                            <a href="#"> <img class="card-img-top" src="../assets/img/release/monkey.jpg" alt="Code vein"></a>-->
+<!--                            <div class="card-body">-->
+<!--                                <h4 class="mb-3 game-name">Monkey</h4>-->
+<!--                                <p class="card-text">The Jedi are leaders and peacekeepers in the Star Wars universe. The Jedi Order are depicted as an ancient monastic, academic, meritocratic and quasi-militaristic organization whose origin dates back approximately 25,000 years before the events of the first film released in the franchise</p>-->
+<!--                            </div>-->
+<!--                            <div class="more-read text-right pb-3 pr-2">-->
+<!--                                <a href="#">View More <span class="material-icons">arrow_forward_ios</span></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="item">-->
+<!--                        <div class="card">-->
+<!--                            <a href="#"> <img class="card-img-top" src="../assets/img/release/call.jpg" alt="Code vein"></a>-->
+<!--                            <div class="card-body">-->
+<!--                                <h4 class="mb-3 game-name">Call of Duty</h4>-->
+<!--                                <p class="card-text">The Jedi are leaders and peacekeepers in the Star Wars universe. The Jedi Order are depicted as an ancient monastic, academic, meritocratic and quasi-militaristic organization whose origin dates back approximately 25,000 years before the events of the first film released in the franchise</p>-->
+<!--                            </div>-->
+<!--                            <div class="more-read text-right pb-3 pr-2">-->
+<!--                                <a href="#">View More <span class="material-icons">arrow_forward_ios</span></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div class="item">-->
+<!--                        <div class="card">-->
+<!--                            <a href="#"> <img class="card-img-top" src="../assets/img/release/fifa.jpg" alt="Code vein"></a>-->
+<!--                            <div class="card-body">-->
+<!--                                <h4 class="mb-3 game-name">FIFA</h4>-->
+<!--                                <p class="card-text">The Jedi are leaders and peacekeepers in the Star Wars universe. The Jedi Order are depicted as an ancient monastic, academic, meritocratic and quasi-militaristic organization whose origin dates back approximately 25,000 years before the events of the first film released in the franchise</p>-->
+<!--                            </div>-->
+<!--                            <div class="more-read text-right pb-3 pr-2">-->
+<!--                                <a href="#">View More <span class="material-icons">arrow_forward_ios</span></a>-->
+<!--                            </div>-->
+<!--                        </div>-->
+<!--                    </div>-->
                 </div>
             </div>
         </section>
@@ -358,6 +381,7 @@
                 this.$api.get('games/latest?include=assets').then(response => {
                     var vm = this;
                     vm.latestGames = response.data.data;
+                    console.log(vm.latestGames)
                     Vue.nextTick(function(){
                         vm.carouselOne();
                     }.bind(vm));

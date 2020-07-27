@@ -24,7 +24,7 @@ export const storage = {
         timeout: false,
         postId: [],
         cart: null,
-        totalAmount: ''
+        totalAmount: 0
     },
     getters: {
         user (state) {

@@ -11,7 +11,6 @@
                     </div>
                     <h2 v-if="rents.length && !show" class="text-white text-center">Your Offered Games</h2>
                     <h2 v-else-if="lends.length && show" class="text-white text-center">Your Rented Games</h2>
-                    <div style="background: #fff url('../assets/loader.gif') no-repeat center center;"></div>
                     <div class="table-responsive pb-5" v-if="rents.length && !show">
                             <table class="table table-striped table-dark">
                                 <thead>
@@ -82,7 +81,7 @@
                         </table>
                     </div>
                     <div class="card no-post-found-card mb-0" v-else>
-                        <!-- <div class="wavy">
+                        <div class="wavy">
                             <span style="--i:1;">N</span>
                             <span style="--i:2;">o</span>&nbsp; &nbsp;
                             <span style="--i:3;">P</span>
@@ -105,13 +104,13 @@
                             <span style="--i:20;">!</span>
                             <span style="--i:21;">!</span>
                             <span style="--i:22;">!</span>
-                         </div> -->
-                         <div class="loading text-center">
-                            <div id="loading-wrapper">
-                            <div id="loading-text">LOADING</div>
-                            <div id="loading-content"></div>
-                            </div>
                          </div>
+<!--                         <div class="loading text-center">-->
+<!--                            <div id="loading-wrapper">-->
+<!--                            <div id="loading-text">LOADING</div>-->
+<!--                            <div id="loading-content"></div>-->
+<!--                            </div>-->
+<!--                         </div>-->
                     </div>
                 </div>
             </section>
@@ -124,7 +123,7 @@
                 return {
                     rents: [],
                     lends: [],
-                    show: false
+                    show: false,
                 }
             },
             methods: {
@@ -191,6 +190,7 @@
                     {
                         this.lends = response.data
                     })
+                this.timer = setInterval(this.fetchEventsList, 300000)
             }
         }
     </script>

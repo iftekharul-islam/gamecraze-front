@@ -61,23 +61,23 @@
                                             </tr>
                                             <tr>
                                                 <th scope="row">Address</th>
-                                                <td>{{ user.address.address }}</td>
+                                                <td v-if="user.address">{{ user.address.address }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Address Line 1</th>
-                                                <td>{{ user.address.address_line_1 }}</td>
+                                                <td v-if="user.address">{{ user.address.address_line_1 }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Address Line 2</th>
-                                                <td>{{ user.address.address_line_2 }}</td>
+                                                <td v-if="user.address">{{ user.address.address_line_2 }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">City</th>
-                                                <td>{{ user.address.city }}</td>
+                                                <td v-if="user.address">{{ user.address.city }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Post Code</th>
-                                                <td>{{ user.address.post_code }}</td>
+                                                <td v-if="user.address">{{ user.address.post_code }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">NID / Birth Id</th>

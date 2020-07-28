@@ -1,88 +1,197 @@
 <template>
     <div>
-        <!-- search results -->
-        <section class="search-results">
-            <div class="container-fluid search-results-width">
-                <div class="row mb-4">
-                    <div class="col-md-6 offset-md-3">
-                        <form action="#" class="searchbar-big">
-                            <!-- search bar big -->
-                            <div class="input-group-append">
-                                <input type="search" class="form-control menu-search-input" placeholder="Search Game Name...">
-                                <button class="btn btn-secondary menu-search-icon" type="button">
-                                    <i class="fa fa-search "></i>
-                                </button>
+        <div class="game-page sign-in-bg pt-3">
+            <div class="container-fluid game-page-width pb-5">
+                <div class="row m-0">
+                    <div class="col-md-3 col-xl-2 mb-3">
+                        <!-- new category -->
+                        <form class="controls" id="Filters">
+                            <div class="filter-category">
+                                <fieldset class="mb-4 category-1">
+                                    <h4>select category</h4>
+                                    <div v-for="(category, index) in categories" :key="index" class="checkbox custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" :id="category.name + '-game'" :value="category.name" v-model="checkedCategories"/>
+                                        <label class="custom-control-label" :for="category.name + '-game'">{{ category.name }}</label>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="mb-4 category-2">
+                                    <h4>select platforms</h4>
+                                    <div v-for="(platform, index) in platforms" :key="index" class="checkbox custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" :id="platform + '-game'" :value="platform" v-model="checkedPlatforms"/>
+                                        <label class="custom-control-label" :for="platform + '-game'">{{ platform }}</label>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="mb-4 category-3">
+                                    <h4>PEGI Rating</h4>
+                                    <div class="checkbox custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="3-yrs-game" value=".3-yrs"/>
+                                        <label class="custom-control-label" for="3-yrs-game">3 years and over</label>
+                                    </div>
+                                    <div class="checkbox custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="7-yrs-game" value=".7-yrs"/>
+                                        <label class="custom-control-label" for="7-yrs-game">7 years and over</label>
+                                    </div>
+                                    <div class="checkbox custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="16-yrs-game" value=".16-yrs"/>
+                                        <label class="custom-control-label" for="16-yrs-game">16 years and over</label>
+                                    </div>
+                                    <div class="checkbox custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="18-yrs-game" value=".18-yrs"/>
+                                        <label class="custom-control-label" for="18-yrs-game">18 years and over</label>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="mb-4 category-4">
+                                    <h4>Avg. Customer Review</h4>
+                                    <div class="checkbox custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="1str-game" value=".1str"/>
+                                        <label class="custom-control-label" for="1str-game">
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            & up
+                                        </label>
+                                    </div>
+                                    <div class="checkbox custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="2str-game" value=".2str"/>
+                                        <label class="custom-control-label" for="2str-game">
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            & up
+                                        </label>
+                                    </div>
+                                    <div class="checkbox custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="3str-game" value=".3str"/>
+                                        <label class="custom-control-label" for="3str-game">
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            & up
+                                        </label>
+                                    </div>
+                                    <div class="checkbox custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="4str-game" value=".4str"/>
+                                        <label class="custom-control-label" for="4str-game">
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star"></i>
+                                            & up
+                                        </label>
+                                    </div>
+                                    <div class="checkbox custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="5str-game" value=".5str"/>
+                                        <label class="custom-control-label" for="5str-game">
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            <i class="fas fa-star star-color"></i>
+                                            & up
+                                        </label>
+                                    </div>
+                                </fieldset>
                             </div>
-                            <!-- ens search bar -->
+                            <button class="cate-reset" id="Reset">Clear Filters</button>
                         </form>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm">
-                        <div class="search-title">
-                            <h3>Your search Results</h3>
-                        </div>
-                        <div class="search-list">
-                            <p><small>You have {{searchResult.length}} results found...</small></p>
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <div class="game-filter">
-                            <h3>Search by Filter</h3>
-                            <!-- filter option -->
-                            <div class="dropdown" data-control="checkbox-dropdown">
-                                <label class="dropdown-label" data-toggle="tooltip" data-placement="top" title="click to filter"></label>
-                                <div class="dropdown-list">
-                                    <a href="#" data-toggle="check-all" class="dropdown-option">
-                                        Check All
-                                    </a>
-                                    <ul id="filter-options">
-                                        <li><input class="filter-check" type="checkbox" value="filter_rented selection 1" data-filter_id="rented"> Rented</li>
-                                        <li><input class="filter-check" type="checkbox" value="filter_selling" data-filter_id="selling"> Selling</li>
-                                        <li><input class="filter-check" type="checkbox" value="filter_release" data-filter_id="release"> New Realese</li>
-                                        <li><input class="filter-check" type="checkbox" value="filter_upcoming" data-filter_id="upcoming"> Up Coming</li>
-                                    </ul>
+                    <div class="col-md-9 col-xl-10">
+                        <div class="game-content">
+                            <!-- <div class="fail-message"><span class="">No items were found matching the selected filters</span></div> -->
+                            <div class="game-show">
+                                <!-- Game Content -->
+                                <div class="row">
+                                    <div v-for="(rent, index) in searchResult" :key="index" class="col-sm-6 col-lg-4 col-xl-3 mb-4">
+                                        <div class="card game-card">
+                                            <img class="card-img-top" :src="rent.game.data.assets.data[0].url" :alt="rent.game.data.name " v-if="rent.game.data.assets.data.length">
+                                            <img src="../assets/img/release/fifa.jpg" class="card-img-top" alt="Fifa-20" v-else>
+                                            <h4 class="game-name">{{ rent.game.data.name }}</h4>
+                                            <p class="game-brands"><span v-for="(genre,index) in rent.game.data.genres.data" :key="index" >{{ genre.name }}<span v-if="index < rent.game.data.genres.data.length-1">, </span></span></p>
+                                            <p class="pegi-ratings">Rating: {{ rent.game.data.rating }}</p>
+                                            <p class="star">
+                                                <star-rating :rating="parseFloat(rent.game.data.rating)" :read-only="true" :increment="0.01" :show-rating="false" :star-size="30"></star-rating>
+                                            </p>
+                                            <div class="text-center game-cart">
+                                                <router-link :to="{ path: '/rent-details/' + rent.id}" class="btn btn-info">Details<i class="fa fa-info-circle ml-2" aria-hidden="true"></i></router-link>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            <!-- end filter option -->
+                            <!-- pagination -->
+                            <nav aria-label="Page navigation example" class="category-pagi">
+                                <ul class="pagination">
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Previous">
+                                            <span aria-hidden="true"><i class="fas fa-arrow-left"></i></span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                    <li class="page-item">
+                                        <a class="page-link" href="#" aria-label="Next">
+                                            <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- end search results -->
-        <!-- search  -->
-        <section class="search-ing sign-in-bg">
-            <div class="container-fluid search-width" id="">
-                <div class="row">
-                    <div class="col-12">
-                        <ul id="product-list" class="row">
-                            <li class="col-sm-6 col-md-3 filter_rented mb-4" v-for="(game,index) in searchResult" :key="index">
-                                <div class="card">
-                                    <a href="#"><img v-if="game.assets.data" :src="$gamehubStorageApi+'games/'+game.assets.data[0].name" alt="doom" class="img-fluid img-effect">
-                                    </a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
     </div>
 </template>
 
 <script>
+    import StarRating from 'vue-star-rating'
     export default {
         name: 'Search',
         data() {
             return {
-
+                categories: [],
+                checkedCategories: [],
+                checkedPlatforms: [],
+                platforms: ['PS3', 'PS4', 'XBOX', 'PC'],
+                rents: this.$store.getters.getSearchResult
             }
+        },
+        components: {
+            StarRating
         },
         computed: {
             searchResult() {
+                if (this.checkedCategories.length) {
+                    if (!this.checkedCategories.length) {
+                        return this.rents
+                    }
+                    var checked = this.checkedCategories
+                    return this.rents.filter(function (rent) {
+                        var genres= []
+                        for (var genre of rent.game.data.genres.data) {
+                            genres.push(genre.name)
+                        }
+                        return checked.some(r => genres.includes(r))
+                    })
+                }
                 return this.$store.getters.getSearchResult
-            }
+            },
+        },
+        created() {
+            this.$api.get('genres').then(response => {
+                this.categories = response.data.data;
+            });
         }
     }
 </script>

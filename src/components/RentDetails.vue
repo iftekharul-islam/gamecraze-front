@@ -19,8 +19,8 @@
                     </div>
                     <div class="col-lg-6 col-xl-7">
                         <div class="item-description">
-                            <div class="back-to-home">
-                                <p><a href="#">Home</a> > Best Selling > JEDI</p>
+                            <div class="back-to-home" v-if="rent">
+                                <p><router-link to="/">Home</router-link> > <router-link to="/games">Games</router-link> > {{ rent.game.data.name }}</p>
                             </div>
                             <div class="card w-100" v-if="show">
                                 <div class="card-body" v-if="rent">
@@ -54,7 +54,7 @@
                                         </div>
                                         <div class="col-sm-8 pb-4">
                                             <div class="part-right">
-                                                <h6>{{rent.availability_from_date}}</h6>
+                                                <h6>{{ formattedDate(rent.availability_from_date) }}</h6>
                                             </div>
                                         </div>
                                         <div class="col-sm-4">
@@ -74,7 +74,7 @@
                                         </div>
                                         <div class="col-sm-8 pb-4" v-if="rent.user">
                                             <div class="part-right">
-                                                <h6 class="seller-name">{{ rent.user.data.name }}<span class="badge badge-primary">4<span class="material-icons">grade </span></span></h6>
+                                                <h6 class="seller-name">{{ rent.user.data.name }}</span></h6>
 
                                             </div>
                                         </div>
@@ -102,6 +102,16 @@
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
+                                            <div class="col-sm-4">
+                                                <div class="part-left">
+                                                    <h4>Rent Available From: </h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8 pb-5">
+                                                <div class="part-right">
+                                                    <h6>{{ formattedDate(rent.availability_from_date) }}</h6>
+                                                </div>
+                                            </div>
                                             <div class="col-sm-4" v-if="week">
                                                 <div class="part-left">
                                                     <h4>Return Date :</h4>
@@ -110,16 +120,6 @@
                                             <div class="col-sm-8 pb-5"  v-if="week">
                                                 <div class="part-right">
                                                     <h6>{{returnDate}}</h6>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <div class="part-left">
-                                                    <h4>Rent Available From: </h4>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-8 pb-5">
-                                                <div class="part-right">
-                                                    <h6>{{ rent.availability_from_date }}</h6>
                                                 </div>
                                             </div>
                                         </div>
@@ -614,14 +614,19 @@
                 this.$store.dispatch('pushPostId', this.id)
                 this.$store.dispatch('pushLendWeek', this.week)
                 this.$router.push('/add-to-cart').then(err => {});
+            },
+            formattedDate(date) {
+                const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+                let formattedDate = new Date(date)
+                return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
             }
         },
         computed: {
             returnDate() {
                 let today = new Date();
                 today.setDate(today.getDate() + this.week * 7);
-                let formatted_date = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate()
-                return formatted_date;
+                const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+                return today.getDate() + " " + months[today.getMonth()] + " " + today.getFullYear()
             }
         },
         created() {

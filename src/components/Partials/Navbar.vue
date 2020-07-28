@@ -55,14 +55,10 @@
                             </div>
 
                             <div class="cart-icon ml-3">
-
                                 <router-link to="/add-to-cart"> <i class="material-icons text-yellow"> shopping_cart </i></router-link>
                                 <div class="badges">{{ $store.state.postId.length }}</div>
-
                             </div>
-                           
-<!--                            <router-link v-if="this.$store.state.profile" class="btn btn-danger ml-4 sign-in-btn" to="profile" style="color: white;">{{this.$store.state.profile.name}}</router-link>-->
-<!--                            <router-link v-else class="btn btn-danger ml-4 sign-in-btn" to="login" style="color: white;">Sign in</router-link>-->
+
                         </div>
                     </form>
                 </div>
@@ -84,8 +80,14 @@
         methods: {
             searchGame() {
                 if(this.gameName !== '') {
-                    this.$api.get('search/'+ this.gameName+'?include=assets').then(response => {
-                        this.$store.commit('addToSearchResult', response.data.data);
+                    this.$api.get('/rent-posts'+ '?include=game.assets,game.genres').then(response => {
+                        let rents = response.data.data;
+                        console.log(rents);
+                        var gameName = this.gameName;
+                        let filtered = rents.filter(function (rent) {
+                            return rent.game.data.name.toLowerCase().includes(gameName.toLowerCase())
+                        })
+                        this.$store.commit('addToSearchResult', filtered);
                         this.$router.push('/search').catch(err => {});
                     });
                 }
@@ -100,12 +102,11 @@
             }
         },
         created() {
-            this.userProfile = JSON.parse(localStorage.getItem('userProfile'))
+            this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
         },
         mounted() {
             this.$root.$on("loggedIn", () => {
                 this.token = localStorage.getItem('token')
-                console.log(localStorage.getItem('userProfile'));
                 this.userProfile = JSON.parse(localStorage.getItem('userProfile'))
             })
         }

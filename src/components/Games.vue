@@ -10,8 +10,8 @@
                                 <fieldset class="mb-4 category-1">
                                     <h4>select category</h4>
                                     <div v-for="(category, index) in categories" :key="index" class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" :id="category + '-game'" :value="category" v-model="checkedCategories"/>
-                                        <label class="custom-control-label" :for="category + '-game'">{{ category }}</label>
+                                        <input type="checkbox" class="custom-control-input" :id="category.name + '-game'" :value="category.name" v-model="checkedCategories"/>
+                                        <label class="custom-control-label" :for="category.name + '-game'">{{ category.name }}</label>
                                     </div>
                                 </fieldset>
 
@@ -119,12 +119,7 @@
                                                     <p class="game-brands"><span v-for="(genre,index) in rent.game.data.genres.data" :key="index" >{{ genre.name }}<span v-if="index < rent.game.data.genres.data.length-1">, </span></span></p>
                                                     <p class="pegi-ratings">Rating: {{ rent.game.data.rating }}</p>
                                                     <p class="star">
-                                                        <i class="fas fa-star star-color"></i>
-                                                        <i class="fas fa-star star-color"></i>
-                                                        <i class="fas fa-star star-color"></i>
-                                                        <i class="fas fa-star star-color"></i>
-                                                        <i class="fas fa-star"></i> 
-                                                        <span class="star-color ml-2">178</span>
+                                                        <star-rating :rating="parseFloat(rent.game.data.rating)" :read-only="true" :increment="0.01" :show-rating="false" :star-size="30"></star-rating>
                                                     </p>
                                                     <div class="text-center game-cart">
                                                         <router-link :to="{ path: '/rent-details/' + rent.id}" class="btn btn-info">Details<i class="fa fa-info-circle ml-2" aria-hidden="true"></i></router-link>
@@ -161,16 +156,20 @@
 </template>
 
 <script>
+    import StarRating from 'vue-star-rating'
     export default {
         data() {
             return {
                 rents: [],
                 checkedGame: '',
-                categories: ['Action', 'Adventure', 'Arcade', 'Music & Dance', 'Racing', 'Role Playing', 'Simulation', 'Sports', 'Strategy'],
+                categories: [],
                 platforms: ['PS3', 'PS4', 'XBOX', 'PC'],
                 checkedPlatforms: [],
                 checkedCategories: [],
             }
+        },
+        components: {
+            StarRating
         },
         computed: {
             filteredCategory(){
@@ -190,7 +189,9 @@
         created() {
             this.$api.get('rent-posts?include=game.assets,game.genres').then(response => {
                 this.rents = response.data.data;
-                console.log(this.rents)
+            });
+            this.$api.get('genres').then(response => {
+                this.categories = response.data.data;
             });
         }
     }

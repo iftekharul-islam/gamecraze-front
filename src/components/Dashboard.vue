@@ -42,7 +42,7 @@
                                     <td v-else>
                                         <a class="badge-info badge" >Pending</a>
                                     </td>
-                                    <td>{{ rent.availability_from_date }}</td>
+                                    <td>{{ formattedDate(rent.availability_from_date) }}</td>
                                     <td>
                                         <button type="button" class="btn btn-danger mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button>
                                     </td>
@@ -72,7 +72,7 @@
                                 <td>{{ lend.rent.disk_condition.name }}</td>
                                 <td>{{ lend.rent.platform.name }}</td>
                                 <td>{{ lend.lend_week }}</td>
-                                <td>{{ lend.lend_date }}</td>
+                                <td>{{ formattedDate(lend.lend_date) }}</td>
                                 <td>{{ returnDate(lend.lend_date, lend.lend_week) }}</td>
                                 <td>{{ lend.lend_cost }}</td>
                                 <td><button class="btn btn-primary">Return Request</button></td>
@@ -169,8 +169,13 @@
                 returnDate(lendDate, week) {
                     let date = new Date(lendDate);
                     date.setDate(date.getDate() + week * 7);
-                    let formatted_date = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
-                    return formatted_date;
+                    const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+                    return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
+                },
+                formattedDate(date) {
+                    const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+                    let formattedDate = new Date(date)
+                    return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
                 }
             },
             created() {
@@ -190,7 +195,6 @@
                     {
                         this.lends = response.data
                     })
-                this.timer = setInterval(this.fetchEventsList, 300000)
             }
         }
     </script>

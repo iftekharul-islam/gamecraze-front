@@ -19,7 +19,7 @@
                         </div>
                     </div>
                     <div class="payment-btn text-center mt-5">
-                        <button class="btn btn-primary" v-show="paymentMethod === 'cod'" @click.prevent="placeOrder">
+                        <button class="btn btn-primary" v-show="paymentMethod === 'cod'" @click.prevent="placeOrder" :disabled="isLoading">
                             Place Order
                             <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
                         </button>
@@ -73,7 +73,7 @@
                     this.$store.dispatch('clearCart');
                     this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
                     this.isLoading = false;
-                    this.$router.push('dashboard').then(err => {});
+                    this.$router.push('/dashboard').then(err => {});
                   }
                 });
             }

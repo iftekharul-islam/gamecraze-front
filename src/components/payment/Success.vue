@@ -38,12 +38,10 @@
                     this.$api.post('lend-game', data, config).then(resp => {
                         if (resp.data.error === false) {
                             this.$store.dispatch('clearCart');
-                            // this.$router.push('/dashboard').then(err => {});
+                            this.$router.push('/dashboard').then(err => {});
                             this.$swal("Payment Successful!", "Your Order is Confirmed. Your Transaction id " + response.data.order.transaction_id, "success");
                         }
                     });
-                    this.$router.push('/dashboard').then(err => {});
-                    this.$swal("Payment Successful", "Your Transaction id " + response.data.order.transaction_id, "success");
                 }
             })
         }

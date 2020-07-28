@@ -49,7 +49,7 @@
                                             </tr>
                                             <tr>
                                                 <th scope="row">Date of Birth</th>
-                                                <td>{{ user.birth_date }}</td>
+                                                <td>{{ formattedDate(user.birth_date) }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Email</th>
@@ -122,7 +122,12 @@
             }
         },
         methods: {
+            formattedDate(date) {
+                const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+                let birthDate = new Date(date)
+                return birthDate.getDate() + " " + months[birthDate.getMonth()] + " " + birthDate.getFullYear()
 
+            }
         },
         created() {
             this.user = this.$store.state.user

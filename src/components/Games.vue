@@ -111,22 +111,20 @@
                             <div class="game-show">
                                 <!-- Game Content -->
                                 <div class="row">
-                                        <div v-for="(rent, index) in filteredCategory" :key="index" class="col-sm-6 col-lg-4 col-xl-3 mb-4">
-                                            <div class="card game-card">
-                                                    <img class="card-img-top" :src="rent.game.data.assets.data[0].url" :alt="rent.game.data.name " v-if="rent.game.data.assets.data.length">
-                                                    <img src="../assets/img/release/fifa.jpg" class="card-img-top" alt="Fifa-20" v-else>
-                                                    <h4 class="game-name">{{ rent.game.data.name }}</h4>
-                                                    <p class="game-brands"><span v-for="(genre,index) in rent.game.data.genres.data" :key="index" >{{ genre.name }}<span v-if="index < rent.game.data.genres.data.length-1">, </span></span></p>
-                                                    <p class="pegi-ratings">Rating: {{ rent.game.data.rating }}</p>
-                                                    <p class="star">
-                                                        <star-rating :rating="parseFloat(rent.game.data.rating)" :read-only="true" :increment="0.01" :show-rating="false" :star-size="30"></star-rating>
-                                                    </p>
-                                                    <div class="text-center game-cart">
-                                                        <router-link :to="{ path: '/rent-details/' + rent.id}" class="btn btn-info">Details<i class="fa fa-info-circle ml-2" aria-hidden="true"></i></router-link>
-                                                    </div>
-                                             </div>
-                                        </div>
-
+                                    <div v-for="(rent, index) in filteredCategory" :key="index" class="col-sm-6 col-lg-4 col-xl-3 mb-4">
+                                      <router-link :to="{ path: '/rent-posted-users/' + rent.game_id}">
+                                        <div class="card game-card">
+                                            <img class="card-img-top" :src="rent.game.data.assets.data[0].url" :alt="rent.game.data.name " v-if="rent.game.data.assets.data.length">
+                                            <img src="../assets/img/release/fifa.jpg" class="card-img-top" alt="Fifa-20" v-else>
+                                            <h4 class="game-name">{{ rent.game.data.name }}</h4>
+                                            <p class="game-brands"><span v-for="(genre,index) in rent.game.data.genres.data" :key="index" >{{ genre.name }}<span v-if="index < rent.game.data.genres.data.length-1">, </span></span></p>
+                                            <p class="pegi-ratings">Rating: {{ rent.game.data.rating }}</p>
+                                            <p class="star">
+                                                <star-rating :rating="parseFloat(rent.game.data.rating)" :read-only="true" :increment="0.01" :show-rating="false" :star-size="30"></star-rating>
+                                            </p>
+                                         </div>
+                                      </router-link>
+                                    </div>
                                  </div>
                             </div>
                             <!-- pagination -->
@@ -189,6 +187,7 @@
         created() {
             this.$api.get('rent-posts?include=game.assets,game.genres').then(response => {
                 this.rents = response.data.data;
+                console.log(this.rents)
             });
             this.$api.get('genres').then(response => {
                 this.categories = response.data.data;

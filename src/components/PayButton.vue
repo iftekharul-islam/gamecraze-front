@@ -10,21 +10,37 @@
 </template>
 
 <script>
+    import Vue from 'vue';
     export default {
         props: ['amount'],
-        methods: {
-            loadData() {
-                var data = {
-                    cus_name: this.$store.state.user.name,
-                    cus_phone: this.$store.state.user.phone_number,
-                    cus_email: this.$store.state.user.email,
-                    cus_addr1: this.$store.state.user.address.address,
-                    amount: this.amount
-                };
 
-                $('#sslczPayBtn').prop('postdata', data);
-            },
-        }
+      created() {
+        console.log('url', this.$gamehubApi);
+        $(document).ready(function(){
+          (function (window, document) {
+            var loader = function () {
+              var script = document.createElement("script"), tag = document.getElementsByTagName("script")[0];
+              script.src = "https://sandbox.sslcommerz.com/embed.min.js?" + Math.random().toString(36).substring(7);
+              tag.parentNode.insertBefore(script, tag);
+            };
 
+            window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
+          })(window, document);
+        });
+      },
+      methods: {
+        loadData() {
+            var data = {
+                cus_name: this.$store.state.user.name,
+                cus_phone: this.$store.state.user.phone_number,
+                cus_email: this.$store.state.user.email,
+                cus_addr1: this.$store.state.user.address.address,
+                amount: this.amount
+            };
+
+            $('#sslczPayBtn').prop('postdata', data);
+
+        },
+      },
     }
 </script>

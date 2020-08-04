@@ -27,6 +27,7 @@ import Payment from "../components/Payment";
 import Success from "../components/payment/Success";
 import Fail from "../components/payment/Fail";
 import RentDetails from "../components/RentDetails";
+import RentPostedUser from "@/components/RentPostedUser";
 
 let router = new Router({
     mode: 'history',
@@ -197,6 +198,15 @@ let router = new Router({
             path: '/rent-details/:id',
             name: 'RentDetails',
             component: RentDetails,
+            props: true,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/rent-posted-users/:id',
+            name: 'RentPostedUser',
+            component: RentPostedUser,
             props: true,
             meta: {
                 requiresAuth: false

@@ -112,6 +112,7 @@
                                 <!-- Game Content -->
                                 <div class="row">
                                     <div v-for="(rent, index) in searchResult" :key="index" class="col-sm-6 col-lg-4 col-xl-3 mb-4">
+                                      <router-link :to="{ path: '/rent-posted-users/' + rent.game_id}">
                                         <div class="card game-card">
                                             <img class="card-img-top" :src="rent.game.data.assets.data[0].url" :alt="rent.game.data.name " v-if="rent.game.data.assets.data.length">
                                             <img src="../assets/img/release/fifa.jpg" class="card-img-top" alt="Fifa-20" v-else>
@@ -121,10 +122,8 @@
                                             <p class="star">
                                                 <star-rating :rating="parseFloat(rent.game.data.rating)" :read-only="true" :increment="0.01" :show-rating="false" :star-size="30"></star-rating>
                                             </p>
-                                            <div class="text-center game-cart">
-                                                <router-link :to="{ path: '/rent-details/' + rent.id}" class="btn btn-info">Details<i class="fa fa-info-circle ml-2" aria-hidden="true"></i></router-link>
-                                            </div>
                                         </div>
+                                      </router-link>
                                     </div>
                                 </div>
                             </div>

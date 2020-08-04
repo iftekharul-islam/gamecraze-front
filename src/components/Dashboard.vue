@@ -1,6 +1,6 @@
     <template>
         <div>
-            <section class="rented-page sign-in-bg">
+            <section class="cart rented-page sign-in-bg">
                 <div class="container rented-page-width pb-5">
                     <div class="dashbord mb-5">
                         <h2 class="text-center text-light">DASHBOARD</h2>
@@ -81,30 +81,31 @@
                         </table>
                     </div>
                     <div class="card no-post-found-card mb-0" v-else>
-                        <div class="wavy">
-                            <span style="--i:1;">N</span>
-                            <span style="--i:2;">o</span>&nbsp; &nbsp;
-                            <span style="--i:3;">P</span>
-                            <span style="--i:4;">o</span>
-                            <span style="--i:5;">s</span>
-                            <span style="--i:6;">t</span>&nbsp; &nbsp;
-                            <span style="--i:7;">F</span>
-                            <span style="--i:8;">o</span>
-                            <span style="--i:9;">r</span>&nbsp; &nbsp;
-                            <span style="--i:10;">R</span>
-                            <span style="--i:11;">e</span>
-                            <span style="--i:12;">n</span>
-                            <span style="--i:13;">t</span>&nbsp; &nbsp;
-                            <span style="--i:14;">F</span>
-                            <span style="--i:15;">o</span>
-                            <span style="--i:16;">u</span>
-                            <span style="--i:17;">n</span>
-                            <span style="--i:18;">d</span>&nbsp; &nbsp;
-                            <span style="--i:19;">!</span>
-                            <span style="--i:20;">!</span>
-                            <span style="--i:21;">!</span>
-                            <span style="--i:22;">!</span>
-                         </div>
+                      <h5 class="text-white text-center">Nothing to Show</h5>
+<!--                        <div class="wavy">-->
+<!--                            <span style="&#45;&#45;i:1;">N</span>-->
+<!--                            <span style="&#45;&#45;i:2;">o</span>&nbsp; &nbsp;-->
+<!--                            <span style="&#45;&#45;i:3;">P</span>-->
+<!--                            <span style="&#45;&#45;i:4;">o</span>-->
+<!--                            <span style="&#45;&#45;i:5;">s</span>-->
+<!--                            <span style="&#45;&#45;i:6;">t</span>&nbsp; &nbsp;-->
+<!--                            <span style="&#45;&#45;i:7;">F</span>-->
+<!--                            <span style="&#45;&#45;i:8;">o</span>-->
+<!--                            <span style="&#45;&#45;i:9;">r</span>&nbsp; &nbsp;-->
+<!--                            <span style="&#45;&#45;i:10;">R</span>-->
+<!--                            <span style="&#45;&#45;i:11;">e</span>-->
+<!--                            <span style="&#45;&#45;i:12;">n</span>-->
+<!--                            <span style="&#45;&#45;i:13;">t</span>&nbsp; &nbsp;-->
+<!--                            <span style="&#45;&#45;i:14;">F</span>-->
+<!--                            <span style="&#45;&#45;i:15;">o</span>-->
+<!--                            <span style="&#45;&#45;i:16;">u</span>-->
+<!--                            <span style="&#45;&#45;i:17;">n</span>-->
+<!--                            <span style="&#45;&#45;i:18;">d</span>&nbsp; &nbsp;-->
+<!--                            <span style="&#45;&#45;i:19;">!</span>-->
+<!--                            <span style="&#45;&#45;i:20;">!</span>-->
+<!--                            <span style="&#45;&#45;i:21;">!</span>-->
+<!--                            <span style="&#45;&#45;i:22;">!</span>-->
+<!--                         </div>-->
 <!--                         <div class="loading text-center">-->
 <!--                            <div id="loading-wrapper">-->
 <!--                            <div id="loading-text">LOADING</div>-->

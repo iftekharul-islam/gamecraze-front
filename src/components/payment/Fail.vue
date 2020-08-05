@@ -2,13 +2,15 @@
     <div>
         <section class="rented-page sign-in-bg">
             <div class="container rented-page-width pb-5">
-                <div class="card no-post-found-card mb-0">
+                <div class="pt-5 pt-5">
+                  <div class="card no-post-found-card mb-0 mt-0">
                     <div class="loading text-center">
-                        <div id="loading-wrapper">
-                            <div id="loading-text">LOADING</div>
-                            <div id="loading-content"></div>
-                        </div>
+                      <div id="loading-wrapper">
+                        <div id="loading-text">LOADING</div>
+                        <div id="loading-content"></div>
+                      </div>
                     </div>
+                  </div>
                 </div>
             </div>
         </section>

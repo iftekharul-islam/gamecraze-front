@@ -175,17 +175,29 @@
                     return this.rents
                 }
                 var checked = this.checkedCategories
-                return this.rents.filter(function (rent) {
+                var categoryFiltered = this.rents.filter(function (rent) {
                     var genres= []
                     for (var genre of rent.game.data.genres.data) {
                         genres.push(genre.name)
                     }
                     return checked.some(r => genres.includes(r))
                 })
+
+                if (!this.checkedPlatforms.length) {
+                  return categoryFiltered;
+                }
+
+              var categoryFiltered = this.rents.filter(function (rent) {
+                var genres= []
+                for (var genre of rent.game.data.genres.data) {
+                  genres.push(genre.name)
+                }
+                return checked.some(r => genres.includes(r))
+              })
             }
         },
         created() {
-            this.$api.get('rent-posts?include=game.assets,game.genres').then(response => {
+            this.$api.get('rent-posts?include=game.assets,game.genres, game.platforms').then(response => {
                 this.rents = response.data.data;
                 console.log(this.rents)
             });

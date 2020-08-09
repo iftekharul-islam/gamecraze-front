@@ -15,8 +15,9 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(rent, index) in rents" :key="index">
-                  <th scope="row" class="h5"> <router-link :to="{ path: '/rent-details/' + rent.id}">{{ rent.user.data.name }}</router-link></th>
+                <tr v-for="(rent, index) in filteredRents" :key="index">
+                  <th scope="row" class="h5 text-gray" v-if="$store.state.user && rent.user_id === $store.state.user.id">{{ rent.user.data.name }}</th>
+                  <th scope="row" class="h5" v-else> <router-link :to="{ path: '/rent-details/' + rent.id}">{{ rent.user.data.name }}</router-link></th>
                   <td>#</td>
                   <td>{{ formattedDate(rent.availability_from_date) }}</td>
                   <td>{{ rent.max_number_of_week }} week(s)</td>
@@ -38,6 +39,17 @@
         rents: []
       }
     },
+    computed: {
+      filteredRents() {
+        return this.rents.filter(function (rent) {
+          const today = new Date();
+          const available = new Date(rent.availability_from_date);
+          const diffTime = available - today;
+          const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+          return diffDays <= 2;
+        });
+      }
+    },
     methods: {
       formattedDate(date) {
         const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
@@ -48,7 +60,7 @@
     created() {
       this.$api.get('rent-posted-users/' + this.id + '?include=user').then(response => {
         this.rents = response.data.data;
-        console.log(this.rents);
+        console.log(this.rents)
       });
     }
   }

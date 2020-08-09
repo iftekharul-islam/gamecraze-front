@@ -26,14 +26,6 @@
                                             <label for="user-otp" class="sr-only">otp</label>
                                             <ValidationProvider name="otp" rules="required|digits:6" v-slot="{ errors }">
                                                 <input @click="changeWrongOtp" type="text" class="form-control mb-2" id="user-otp" placeholder="Your code" v-model="form.otp">
-<!--                                                <span class="error-message">{{ errors[0] }}</span>-->
-<!--                                                <br v-if="!resend && errors[0]">-->
-<!--                                                <span class="success-message" v-if="!resend">6-digit code has been sent in your {{ form.resetOption }} <strong style="color: white;">{{ media }}</strong> which will be valid for 300 seconds</span>-->
-<!--                                                <br v-if="wrongCode">-->
-<!--                                                <span class="error-message" v-if="wrongCode">You entered wrong code or Timeout</span>-->
-<!--                                                <br v-if="resend && errors[0]">-->
-<!--                                                <span class="success-message" v-if="resend">We've Resent a 6-digit code in your {{ form.resetOption }} <strong style="color: white;">{{ media }}</strong>&nbsp;which will be valid for 300 seconds</span>-->
-
                                                 <span class="error-message">{{ errors[0] }}</span>
                                                 <br v-if="errors[0]">
                                                 <span class="success-message" v-if="!resend && !$store.state.wrongOTP && !$store.state.timeout">We've sent a 6-digit one time PIN in your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>

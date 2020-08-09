@@ -64,14 +64,6 @@
                                                 <td v-if="user.address">{{ user.address.address }}</td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">Address Line 1</th>
-                                                <td v-if="user.address">{{ user.address.address_line_1 }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Address Line 2</th>
-                                                <td v-if="user.address">{{ user.address.address_line_2 }}</td>
-                                            </tr>
-                                            <tr>
                                                 <th scope="row">City</th>
                                                 <td v-if="user.address">{{ user.address.city }}</td>
                                             </tr>
@@ -80,8 +72,12 @@
                                                 <td v-if="user.address">{{ user.address.post_code }}</td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">NID / Birth Id</th>
+                                                <th scope="row">NID Id</th>
                                                 <td>{{ user.identification_number }}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row" class="d-block">NID Image</th>
+                                                <td><img class="w-50" :src="$gamehubStorageApi + $store.state.user.identification_image" alt="nid image"></td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -126,7 +122,6 @@
                 const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
                 let birthDate = new Date(date)
                 return birthDate.getDate() + " " + months[birthDate.getMonth()] + " " + birthDate.getFullYear()
-
             }
         },
         created() {

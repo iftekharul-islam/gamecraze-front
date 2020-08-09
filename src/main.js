@@ -34,6 +34,10 @@ import App from './App.vue'
 import vSelect from "vue-select";
 Vue.component("v-select", vSelect);
 
+// Vue auto suggest
+import VueAutosuggest from "vue-autosuggest";
+Vue.use(VueAutosuggest);
+
 //vue-router
 import router from "./router/routes";
 
@@ -87,5 +91,12 @@ Vue.config.productionTip = false
 new Vue({
   render: h => h(App),
   router,
-  store
+  store,
+  watch: {
+    '$route'(to) {
+      if (to.name == 'Payment') {
+        location.reload();
+      }
+    }
+  }
 }).$mount('#app')

@@ -2835,6 +2835,9 @@ footer {
                 opacity: 1;
               }
             }
+            &.platform {
+              width: initial;
+            }
           }
           input[type="date"] {
             position: relative;

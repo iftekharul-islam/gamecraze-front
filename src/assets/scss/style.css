@@ -14250,6 +14250,10 @@ footer .footer-width p span {
   opacity: 1;
 }
 
+.rented-page .rented-page-width .card form .form-group input.platform {
+  width: initial;
+}
+
 .rented-page .rented-page-width .card form .form-group input[type="date"] {
   position: relative;
   cursor: pointer;

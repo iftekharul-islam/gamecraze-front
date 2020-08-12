@@ -47,9 +47,8 @@
                                     </ValidationProvider>
                                 </div>
                                 <!-- platform -->
-                                <div class="form-group">
+                                <div class="form-group" v-if="gamePlatform">
                                     <label>Platform</label><br>
-                                    <div v-if="gamePlatform">
                                       <ValidationProvider name="Platform" rules="required" v-slot="{ errors }" class="d-flex">
                                         <div class="form-check form-check-inline" v-for="(platform, index) in form.game.platforms.data" :key="index">
                                           <input class="form-check-input platform" :id="'platform-' + index" name="platform" type="radio" :value="platform" v-model="form.platform">
@@ -57,32 +56,34 @@
                                         </div>
                                         <span class="error-message">{{ errors[0] }}</span>
                                       </ValidationProvider>
-                                    </div>
                                 </div>
                                 <!-- earning amount -->
-                                <div class="form-group">
+                                <div class="form-group" v-if="basePrices">
                                     <label>Earning Amount</label>
                                     <div class="earning-amount">
                                         <table class="table table-borderless">
                                             <tbody>
                                             <tr class="">
                                                 <td>Your Estimated earning for 1 week</td>
-                                                <td>BDT 550</td>
+                                                <td>BDT {{ basePrices[1] }}</td>
                                             </tr>
                                             <tr class="">
                                                 <td>Your Estimated earning for 2 week</td>
-                                                <td>BDT 990</td>
+                                                <td>BDT {{ basePrices[1] + basePrices[2] }}</td>
                                             </tr>
                                             <tr class="">
                                                 <td>Your Estimated earning for 3 week</td>
-                                                <td>BDT 1500</td>
-                                            </tr>
-                                            <tr class="">
-                                                <td>Your Estimated earning for 1 month</td>
-                                                <td>BDT 1600</td>
+                                                <td>BDT {{ basePrices[1] + basePrices[2] + basePrices[3] }}</td>
                                             </tr>
                                             </tbody>
                                         </table>
+                                    </div>
+                                    <div class="alert alert-info alert-dismissible mt-2">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                        <p>Note:</p><br>
+                                        <p>
+                                            If you want to Borrow for more weeks.Then renting price will be cyclic like the given price table.So its start from 1st week.
+                                        </p>
                                     </div>
                                 </div>
                                 <!-- disk condition -->
@@ -197,6 +198,7 @@
                 platforms: [],
                 gamesName: {},
                 platformsName: {},
+                basePrices: false,
                 diskConditionsName: {},
                 gameName: '',
                 gamePlatform: false,
@@ -273,6 +275,13 @@
               this.form.game = item.item;
               this.gamePlatform = true;
               console.log(this.form)
+                this.$api.get('base-price/calculate/' + this.form.game.id)
+                    .then (response =>
+                    {
+                        this.basePrices = response.data;
+                        console.log(response);
+                        console.log(this.basePrices);
+                    })
             },
             onInputChange(text) {
               // event fired when the input changes
@@ -329,6 +338,7 @@
                 {
                     this.diskConditions = response.data.data
                 })
+
 
         }
     }

@@ -40,7 +40,7 @@
                             <a href="#"> <img class="card-img-top" :src="game.assets.data[0].url" alt="Code vein"></a>
                             <div class="card-body">
                                 <h4 class="mb-3 game-name">{{ game.name }}</h4>
-                                <p class="card-text">{{ game.description }}</p>
+                                <div class="card-text text-white"><span v-html="game.description"></span></div>
                             </div>
                             <div class="more-read text-right pb-3 pr-2">
                                 <router-link :to="{ path: '/game-details/' + game.id}">View More <span class="material-icons">arrow_forward_ios</span></router-link>

@@ -190,7 +190,7 @@
                                 <div class="col-md-6">
                                     <div class="title-1" v-if="game.genres">
                                         <h2>{{game.name}}<span>TM</span></h2>
-                                        <p>{{game.description}}</p>
+                                        <span v-html="game.description"></span>
                                         <br>
                                         <br>
                                         <p class="release">Release Date: {{game.release_date}}</p>

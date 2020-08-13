@@ -37,7 +37,8 @@
                 <div class="owl-carousel-one owl-carousel owl-theme">
                     <div class="item" v-for="(game, index) in latestGames" :key="index">
                         <div class="card">
-                            <a href="#"> <img class="card-img-top" :src="game.assets.data[0].url" alt="Code vein"></a>
+                            <a href="#"> <img class="card-img-top" :src="game.assets.data[0].url" alt="Code vein"  v-if="rent.game.data.assets.data.length">
+                                <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else></a>
                             <div class="card-body">
                                 <h4 class="mb-3 game-name">{{ game.name }}</h4>
                                 <div class="card-text text-white"><span v-html="game.description"></span></div>
@@ -143,7 +144,7 @@
                             <div class="item" v-for="(rent,index) in rents" :key="index">
                                 <div class="card" >
                                     <img class="card-img-top" :src="rent.game.data.assets.data[0].url" :alt="rent.game.data.name " v-if="rent.game.data.assets.data.length">
-                                    <img class="card-img-top" src="../assets/img/rented/grid.png" alt="Grid" v-else>
+                                    <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
                                     <div class="card-body">
                                         <h4 class="mb-2 game-name text-center">{{ rent.game.data.name }}</h4>
                                     </div>

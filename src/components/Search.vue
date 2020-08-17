@@ -18,89 +18,89 @@
                                 <fieldset class="mb-4 category-2">
                                     <h4>select platforms</h4>
                                     <div v-for="(platform, index) in platforms" :key="index" class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" :id="platform + '-game'" :value="platform" v-model="checkedPlatforms"/>
-                                        <label class="custom-control-label" :for="platform + '-game'">{{ platform }}</label>
+                                        <input type="checkbox" class="custom-control-input" :id="platform.name + '-game'" :value="platform.name" v-model="checkedPlatforms"/>
+                                        <label class="custom-control-label" :for="platform.name + '-game'">{{ platform.name }}</label>
                                     </div>
                                 </fieldset>
 
-                                <fieldset class="mb-4 category-3">
-                                    <h4>PEGI Rating</h4>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="3-yrs-game" value=".3-yrs"/>
-                                        <label class="custom-control-label" for="3-yrs-game">3 years and over</label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="7-yrs-game" value=".7-yrs"/>
-                                        <label class="custom-control-label" for="7-yrs-game">7 years and over</label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="16-yrs-game" value=".16-yrs"/>
-                                        <label class="custom-control-label" for="16-yrs-game">16 years and over</label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="18-yrs-game" value=".18-yrs"/>
-                                        <label class="custom-control-label" for="18-yrs-game">18 years and over</label>
-                                    </div>
-                                </fieldset>
+<!--                                <fieldset class="mb-4 category-3">-->
+<!--                                    <h4>PEGI Rating</h4>-->
+<!--                                    <div class="checkbox custom-control custom-checkbox">-->
+<!--                                        <input type="checkbox" class="custom-control-input" id="3-yrs-game" value=".3-yrs"/>-->
+<!--                                        <label class="custom-control-label" for="3-yrs-game">3 years and over</label>-->
+<!--                                    </div>-->
+<!--                                    <div class="checkbox custom-control custom-checkbox">-->
+<!--                                        <input type="checkbox" class="custom-control-input" id="7-yrs-game" value=".7-yrs"/>-->
+<!--                                        <label class="custom-control-label" for="7-yrs-game">7 years and over</label>-->
+<!--                                    </div>-->
+<!--                                    <div class="checkbox custom-control custom-checkbox">-->
+<!--                                        <input type="checkbox" class="custom-control-input" id="16-yrs-game" value=".16-yrs"/>-->
+<!--                                        <label class="custom-control-label" for="16-yrs-game">16 years and over</label>-->
+<!--                                    </div>-->
+<!--                                    <div class="checkbox custom-control custom-checkbox">-->
+<!--                                        <input type="checkbox" class="custom-control-input" id="18-yrs-game" value=".18-yrs"/>-->
+<!--                                        <label class="custom-control-label" for="18-yrs-game">18 years and over</label>-->
+<!--                                    </div>-->
+<!--                                </fieldset>-->
 
-                                <fieldset class="mb-4 category-4">
-                                    <h4>Avg. Customer Review</h4>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="1str-game" value=".1str"/>
-                                        <label class="custom-control-label" for="1str-game">
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            & up
-                                        </label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="2str-game" value=".2str"/>
-                                        <label class="custom-control-label" for="2str-game">
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            & up
-                                        </label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="3str-game" value=".3str"/>
-                                        <label class="custom-control-label" for="3str-game">
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            & up
-                                        </label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="4str-game" value=".4str"/>
-                                        <label class="custom-control-label" for="4str-game">
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star"></i>
-                                            & up
-                                        </label>
-                                    </div>
-                                    <div class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="5str-game" value=".5str"/>
-                                        <label class="custom-control-label" for="5str-game">
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            <i class="fas fa-star star-color"></i>
-                                            & up
-                                        </label>
-                                    </div>
-                                </fieldset>
+<!--                                <fieldset class="mb-4 category-4">-->
+<!--                                    <h4>Avg. Customer Review</h4>-->
+<!--                                    <div class="checkbox custom-control custom-checkbox">-->
+<!--                                        <input type="checkbox" class="custom-control-input" id="1str-game" value=".1str"/>-->
+<!--                                        <label class="custom-control-label" for="1str-game">-->
+<!--                                            <i class="fas fa-star star-color"></i>-->
+<!--                                            <i class="fas fa-star"></i>-->
+<!--                                            <i class="fas fa-star"></i>-->
+<!--                                            <i class="fas fa-star"></i>-->
+<!--                                            <i class="fas fa-star"></i>-->
+<!--                                            & up-->
+<!--                                        </label>-->
+<!--                                    </div>-->
+<!--                                    <div class="checkbox custom-control custom-checkbox">-->
+<!--                                        <input type="checkbox" class="custom-control-input" id="2str-game" value=".2str"/>-->
+<!--                                        <label class="custom-control-label" for="2str-game">-->
+<!--                                            <i class="fas fa-star star-color"></i>-->
+<!--                                            <i class="fas fa-star star-color"></i>-->
+<!--                                            <i class="fas fa-star"></i>-->
+<!--                                            <i class="fas fa-star"></i>-->
+<!--                                            <i class="fas fa-star"></i>-->
+<!--                                            & up-->
+<!--                                        </label>-->
+<!--                                    </div>-->
+<!--                                    <div class="checkbox custom-control custom-checkbox">-->
+<!--                                        <input type="checkbox" class="custom-control-input" id="3str-game" value=".3str"/>-->
+<!--                                        <label class="custom-control-label" for="3str-game">-->
+<!--                                            <i class="fas fa-star star-color"></i>-->
+<!--                                            <i class="fas fa-star star-color"></i>-->
+<!--                                            <i class="fas fa-star star-color"></i>-->
+<!--                                            <i class="fas fa-star"></i>-->
+<!--                                            <i class="fas fa-star"></i>-->
+<!--                                            & up-->
+<!--                                        </label>-->
+<!--                                    </div>-->
+<!--                                    <div class="checkbox custom-control custom-checkbox">-->
+<!--                                        <input type="checkbox" class="custom-control-input" id="4str-game" value=".4str"/>-->
+<!--                                        <label class="custom-control-label" for="4str-game">-->
+<!--                                            <i class="fas fa-star star-color"></i>-->
+<!--                                            <i class="fas fa-star star-color"></i>-->
+<!--                                            <i class="fas fa-star star-color"></i>-->
+<!--                                            <i class="fas fa-star star-color"></i>-->
+<!--                                            <i class="fas fa-star"></i>-->
+<!--                                            & up-->
+<!--                                        </label>-->
+<!--                                    </div>-->
+<!--                                    <div class="checkbox custom-control custom-checkbox">-->
+<!--                                        <input type="checkbox" class="custom-control-input" id="5str-game" value=".5str"/>-->
+<!--                                        <label class="custom-control-label" for="5str-game">-->
+<!--                                            <i class="fas fa-star star-color"></i>-->
+<!--                                            <i class="fas fa-star star-color"></i>-->
+<!--                                            <i class="fas fa-star star-color"></i>-->
+<!--                                            <i class="fas fa-star star-color"></i>-->
+<!--                                            <i class="fas fa-star star-color"></i>-->
+<!--                                            & up-->
+<!--                                        </label>-->
+<!--                                    </div>-->
+<!--                                </fieldset>-->
                             </div>
                             <button class="cate-reset" id="Reset">Clear Filters</button>
                         </form>
@@ -111,8 +111,8 @@
                             <div class="game-show">
                                 <!-- Game Content -->
                                 <div class="row">
-                                    <div v-for="(rent, index) in searchResult" :key="index" class="col-sm-6 col-lg-4 col-xl-3 mb-4">
-                                      <router-link :to="{ path: '/rent-posted-users/' + rent.game_id}">
+                                    <div v-for="(rent, index) in filteredCategory" :key="index" class="col-sm-6 col-lg-4 col-xl-3 mb-4">
+                                      <router-link :to="{ path: '/rent-posted-users/' + rent.game.data.id}">
                                         <div class="card game-card">
                                             <img class="card-img-top" :src="rent.game.data.assets.data[0].url" :alt="rent.game.data.name " v-if="rent.game.data.assets.data.length">
                                             <img src="../assets/img/release/fifa.jpg" class="card-img-top" alt="Fifa-20" v-else>
@@ -162,35 +162,87 @@
                 categories: [],
                 checkedCategories: [],
                 checkedPlatforms: [],
-                platforms: ['PS3', 'PS4', 'XBOX', 'PC'],
-                rents: this.$store.getters.getSearchResult
+                platforms: [],
+                rents: this.$store.getters.getSearchResult,
+                games: []
             }
         },
         components: {
             StarRating
         },
         computed: {
-            searchResult() {
-                if (this.checkedCategories.length) {
-                    if (!this.checkedCategories.length) {
-                        return this.rents
-                    }
-                    var checked = this.checkedCategories
-                    return this.rents.filter(function (rent) {
-                        var genres= []
-                        for (var genre of rent.game.data.genres.data) {
-                            genres.push(genre.name)
-                        }
-                        return checked.some(r => genres.includes(r))
-                    })
+          filteredCategory(){
+            if (this.checkedCategories.length) {
+              let newRents = [];
+
+              this.rents.forEach( rent => {
+                let existing = newRents.find(item => item.game_id == rent.game_id);
+
+                if(!existing) {
+                  newRents.push(rent);
                 }
-                return this.$store.getters.getSearchResult
-            },
+
+              });
+
+              var checkedCat = this.checkedCategories
+              var categoryByGenre = newRents.filter(function (rent) {
+                var genres= []
+                for (var genre of rent.game.data.genres.data) {
+                  genres.push(genre.name)
+                }
+                return checkedCat.some(r => genres.includes(r))
+              })
+
+              if (this.checkedPlatforms.length) {
+                var checkedPlat = this.checkedPlatforms
+                var rents = this.rents
+                return categoryByGenre.filter(function (rent) {
+                  var platforms= []
+                  platforms.push(rent.platform.data.name)
+                  return checkedPlat.some(r => platforms.includes(r))
+                })
+              }
+              return categoryByGenre;
+            }
+            if (this.checkedPlatforms.length) {
+              checkedPlat = this.checkedPlatforms
+              console.log(this.rents)
+              rents = this.rents
+              return this.rents.filter(function (rent) {
+                var platforms= []
+                platforms.push(rent.platform.data.name)
+                return checkedPlat.some(r => platforms.includes(r))
+              })
+            }
+
+            let newRents = [];
+
+            this.rents.forEach( rent => {
+              let existing = newRents.find(item => item.game_id == rent.game_id);
+
+              if(!existing) {
+                newRents.push(rent);
+              }
+
+            });
+
+            return newRents;
+          }
         },
         created() {
             this.$api.get('genres').then(response => {
                 this.categories = response.data.data;
             });
+
+            this.$api.get('platforms').then(response => {
+              this.platforms = response.data.data;
+            });
+
+            const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
+            this.$api.get('rent-games/?ids=' + uniqueArr + '&include=assets,genres,platforms').then(resp => {
+              this.games = resp.data.data;
+              console.log(this.games)
+            })
         }
     }
 </script>

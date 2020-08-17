@@ -102,13 +102,13 @@
                                                 <div class="form-group row">
                                                     <label for="city" class="col-sm-3 col-form-label">City</label>
                                                     <div class="col-sm-9 pr-0">
-                                                        <input type="text" class="form-control" id="city" placeholder="Edit Your City" v-model="form.city"></input>
+                                                        <input type="text" class="form-control" id="city" placeholder="Edit Your City" v-model="form.city">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
                                                     <label for="postCode" class="col-sm-3 col-form-label">Post Code</label>
                                                     <div class="col-sm-9 pr-0">
-                                                        <input type="text" class="form-control" id="postCode" placeholder="Edit Your Post Code" v-model="form.postCode"></input>
+                                                        <input type="text" class="form-control" id="postCode" placeholder="Edit Your Post Code" v-model="form.postCode">
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
@@ -190,8 +190,8 @@
             },
             onUpdateProfile() {
                 this.$store.dispatch('updateUserDetails', this.form)
-              console.log(this.form)
+                console.log(this.form)
             }
-        }
+        },
     }
 </script>

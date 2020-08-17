@@ -37,7 +37,7 @@
                 <div class="owl-carousel-one owl-carousel owl-theme">
                     <div class="item" v-for="(game, index) in latestGames" :key="index">
                         <div class="card">
-                            <a href="#"> <img class="card-img-top" :src="game.assets.data[0].url" alt="Code vein"  v-if="rent.game.data.assets.data.length">
+                            <a href="#"> <img class="card-img-top" :src="game.assets.data[0].url" alt="Code vein"  v-if="game.assets.data.length">
                                 <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else></a>
                             <div class="card-body">
                                 <h4 class="mb-3 game-name">{{ game.name }}</h4>

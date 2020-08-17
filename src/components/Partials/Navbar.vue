@@ -80,7 +80,7 @@
         methods: {
             searchGame() {
                 if(this.gameName !== '') {
-                    this.$api.get('/rent-posts'+ '?include=game.assets,game.genres').then(response => {
+                    this.$api.get('/rent-posts'+ '?include=game.assets,game.genres,platform').then(response => {
                         let rents = response.data.data;
                         console.log(rents);
                         var gameName = this.gameName;

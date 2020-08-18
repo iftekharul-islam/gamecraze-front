@@ -14562,6 +14562,10 @@ footer .footer-width p span {
   }
 }
 
+.rented-page .rented-page-width table .countersize .flip-clock .lip-clock__card .flip-card__top {
+  font-size: 1rem;
+}
+
 /*======================
     404 page
 =======================*/

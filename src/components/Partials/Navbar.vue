@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- navbar -->
-        <nav class="navbar navbar-expand-xl navbar-light sign-in-bg ">
+        <nav class="navbar navbar-expand-xl navbar-light sign-in-bg">
             <div class="container-fluid nav-width">
                 <router-link class="navbar-brand mr-5" to="/"><img src="../../assets/img/logo/logo.jpg" alt="Game-logo"></router-link>
                 <div class="toggler-pos">

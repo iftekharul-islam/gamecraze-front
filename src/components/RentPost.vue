@@ -80,7 +80,6 @@
                                     </div>
                                     <div class="alert alert-info alert-dismissible mt-2">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <p>Note:</p><br>
                                         <p>
                                             If you want to Borrow for more weeks.Then renting price will be cyclic like the given price table.So its start from 1st week.
                                         </p>
@@ -274,7 +273,6 @@
             onSelected(item) {
               this.form.game = item.item;
               this.gamePlatform = true;
-              console.log(this.form)
                 this.$api.get('base-price/calculate/' + this.form.game.id)
                     .then (response =>
                     {

@@ -19,6 +19,9 @@ window.fn = owl_carousel;
 let bootstrap_select_js = require('./assets/js/bootstrap-select.min.js')
 window.fn = bootstrap_select_js;
 
+let countdown_js = require('./assets/js/jquery.countdown.min')
+window.fn = countdown_js;
+
 let main = require('./assets/js/main')
 window.fn = main;
 

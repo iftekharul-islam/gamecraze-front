@@ -49,7 +49,7 @@
                                             </tr>
                                             <tr>
                                                 <th scope="row">Date of Birth</th>
-                                                <td>{{ formattedDate(user.birth_date) }}</td>
+                                                <td>{{ user.birth_date != null ? formattedDate(user.birth_date) : ''}}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Email</th>

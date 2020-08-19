@@ -32,13 +32,14 @@
                    </div>
                   </td>
                   <td class="price">{{ price }}</td>
-                  <td>
-                    <div class="quantity">
-                      <select class="form-control w-75" v-model="$store.state.lendWeek[index]" @change="updateRentWeek(index)">
-<!--                        <option value="" selected disabled>Rent Week</option>-->
-                        <option v-for="n in item.max_number_of_week" :value="n">{{n}}</option>
-                      </select>
-                    </div>
+                  <td class="text-white">
+                    <h5>{{ item.max_number_of_week }}</h5>
+<!--                          <div class="quantity">-->
+<!--                            <select class="form-control w-75" v-model="$store.state.lendWeek[index]" @change="updateRentWeek(index)">-->
+<!--                              <option value="" selected disabled>Rent Week</option>-->
+<!--                              <option v-for="n in item.max_number_of_week" :value="n">{{n}}</option>-->
+<!--                            </select>-->
+<!--                          </div>-->
                   </td>
 
                   <td class="subtotal">{{ price * $store.state.lendWeek[index] }}</td>
@@ -124,7 +125,7 @@
                   this.$router.push('/payment/' + this.$store.state.totalAmount).catch(err => {});
                 }
                 else {
-                  this.$swal("Incomplete Profile", "Please Update Your Profile");
+                  this.$swal("Incomplete Profile", "Please Update Your Profile with all information ");
                   this.$router.push('/profile').catch(err => {});
                 }
             }

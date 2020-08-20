@@ -624,6 +624,15 @@
         computed: {
             returnDate() {
                 let today = new Date();
+                let available = new Date(this.rent.availability_from_date);
+                console.log(available);
+                console.log(today);
+                if (today < available)
+                {
+                    available.setDate(available.getDate()+ 1 + this.week * 7);
+                    const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+                    return available.getDate() + " " + months[available.getMonth()] + " " + available.getFullYear()
+                }
                 today.setDate(today.getDate() + this.week * 7);
                 const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
                 return today.getDate() + " " + months[today.getMonth()] + " " + today.getFullYear()

@@ -3,7 +3,6 @@ import router from "../router/routes";
 
 import {swal} from 'vue-swal'
 
-
 export const storage = {
     state: {
         lendWeek: [],
@@ -270,7 +269,6 @@ export const storage = {
                         router.push('/profile').catch(err => {});
                     }
                     else {
-                        swal("Welcome to Gamehub", "Rent Your Game and Earn", "success");
                         router.push('/').catch(err => {});
                     }
                 }

@@ -12241,7 +12241,7 @@ footer {
 }
 
 footer .footer-width {
-  width: 92%;
+  width: 85%;
 }
 
 footer .footer-width p {
@@ -14714,9 +14714,23 @@ footer .footer-width p span {
   font-size: 14px;
 }
 
-.game-page .game-page-width .game-content .game-show .card p.pegi-ratings {
+.game-page .game-page-width .game-content .game-show .card p.metacritic-rating {
+  font-weight: bold;
+  font-size: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   margin-bottom: 0;
-  font-size: 15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+  background: green;
   font-family: "Roboto Condensed", sans-serif;
 }
 

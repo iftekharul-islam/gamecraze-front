@@ -86,6 +86,9 @@
                 this.$store.dispatch('updateUserDetails', this.form)
             }
         },
+        created () {
+            this.$toaster.success('Welcome to Game Hub');
+        }
 
     }
 </script>

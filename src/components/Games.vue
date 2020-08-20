@@ -118,10 +118,10 @@
                                             <img src="../assets/img/release/fifa.jpg" class="card-img-top" alt="Fifa-20" v-else>
                                             <h4 class="game-name">{{ rent.game.data.name }}</h4>
                                             <p class="game-brands"><span v-for="(genre,index) in rent.game.data.genres.data" :key="index" >{{ genre.name }}<span v-if="index < rent.game.data.genres.data.length-1">, </span></span></p>
-                                            <p class="pegi-ratings">Rating: {{ rent.game.data.rating }}</p>
-                                            <p class="star">
-                                                <star-rating :rating="parseFloat(rent.game.data.rating)" :read-only="true" :increment="0.01" :show-rating="false" :star-size="30"></star-rating>
-                                            </p>
+                                            <p class="metacritic-rating">{{ rent.game.data.rating }}</p>
+<!--                                            <p class="star">-->
+<!--                                                <star-rating :rating="parseFloat(rent.game.data.rating)" :read-only="true" :increment="0.01" :show-rating="false" :star-size="30"></star-rating>-->
+<!--                                            </p>-->
                                          </div>
                                       </router-link>
                                     </div>
@@ -235,7 +235,6 @@
                 const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
                 this.$api.get('rent-games/?ids=' + uniqueArr + '&include=assets,genres,platforms').then(resp => {
                   this.games = resp.data.data;
-                  // console.log(this.games)
                 })
                 console.log(uniqueArr)
             });

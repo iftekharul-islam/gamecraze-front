@@ -235,7 +235,6 @@
                 const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
                 this.$api.get('rent-games/?ids=' + uniqueArr + '&include=assets,genres,platforms').then(resp => {
                   this.games = resp.data.data;
-                  // console.log(this.games)
                 })
                 console.log(uniqueArr)
             });

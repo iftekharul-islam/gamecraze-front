@@ -2,6 +2,7 @@ import axios from 'axios'
 import router from "../router/routes";
 
 import {swal} from 'vue-swal'
+import {toaster} from 'v-toaster'
 
 
 export const storage = {
@@ -270,7 +271,6 @@ export const storage = {
                         router.push('/profile').catch(err => {});
                     }
                     else {
-                        swal("Welcome to Gamehub", "Rent Your Game and Earn", "success");
                         router.push('/').catch(err => {});
                     }
                 }

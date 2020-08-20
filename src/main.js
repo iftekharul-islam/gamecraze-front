@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/scss/style.css'
 import './assets/admin/dist/css/adminlte.css'
 import "vue-select/dist/vue-select.css";
+import 'v-toaster/dist/v-toaster.css'
 
 
 global.jQuery = require('jquery/dist/jquery.min');
@@ -38,6 +39,7 @@ Vue.component("v-select", vSelect);
 import VueAutosuggest from "vue-autosuggest";
 Vue.use(VueAutosuggest);
 
+
 //vue-router
 import router from "./router/routes";
 
@@ -52,6 +54,10 @@ Vue.prototype.$gamehubApi = process.env.VUE_APP_GAMEHUB_BASE_API
 import VueSwal, {swal} from 'vue-swal'
 Vue.use(VueSwal);
 
+
+// // for v-toaster
+import Toaster from 'v-toaster'
+Vue.use(Toaster, {timeout: 5000});
 
 //vue-suggesion
 

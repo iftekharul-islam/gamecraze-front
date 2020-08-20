@@ -2,8 +2,6 @@ import axios from 'axios'
 import router from "../router/routes";
 
 import {swal} from 'vue-swal'
-import {toaster} from 'v-toaster'
-
 
 export const storage = {
     state: {

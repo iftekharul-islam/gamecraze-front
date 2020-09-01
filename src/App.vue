@@ -25,6 +25,7 @@ export default {
     this.$store.dispatch('AutoLogin');
     this.$store.dispatch('AddCartPostId');
     this.$store.dispatch('setLendWeek');
+    this.$store.dispatch('setCheckpointId');
   }
 }
 </script>

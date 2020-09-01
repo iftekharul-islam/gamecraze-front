@@ -74,7 +74,7 @@
                                         </div>
                                         <div class="col-sm-8 pb-4" v-if="rent.user">
                                             <div class="part-right">
-                                                <h6 class="seller-name">{{ rent.user.data.name }}</span></h6>
+                                                <h6 class="seller-name"><span>{{ rent.user.data.name }}</span></h6>
 
                                             </div>
                                         </div>
@@ -112,15 +112,45 @@
                                                     <h6>{{ formattedDate(rent.availability_from_date) }}</h6>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-4" v-if="week">
+                                            <div class="col-sm-4 pb-5" v-if="week">
                                                 <div class="part-left">
                                                     <h4>Return Date :</h4>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-8 pb-5"  v-if="week">
+                                            <div class="col-sm-8"  v-if="week">
                                                 <div class="part-right">
                                                     <h6>{{returnDate}}</h6>
                                                 </div>
+                                            </div>
+                                            <div class="col-sm-4 pb-5" v-if="week">
+                                                <div class="part-left">
+                                                    <h4>Delivery :</h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8"  v-if="week">
+                                                <div class="part-right">
+                                                    <select class="form-control w-50" @change="onChange($event)" v-model="x">
+                                                        <option value="" selected disabled>Please Select delivery ...</option>
+                                                        <option value="1">Checkpoint</option>
+                                                        <option value="2">Cash on delivery</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4 pb-5" v-if="x =='1'" >
+                                                <div class="part-left">
+                                                    <h4>Select Checkpoint :</h4>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-8">
+                                                <div class="part-right" v-if="x =='1'">
+                                                    <select class="form-control w-50" id="checkpoint" v-model="form.checkpoint">
+                                                        <option value="" disabled>Please Select Near Checkpoint</option>
+                                                        <option v-for="(checkpoint, index) in checkpoints" :key="index" :value="checkpoint">{{ checkpoint.name }}, Area: {{ checkpoint.area.data.name }}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="pb-5 ml-2" v-if="x =='2'">
+                                                <h5 >Cash delivery will be charged 60 tk</h5>
                                             </div>
                                         </div>
                                         <button class="btn btn-primary" @click.prevent="handleSubmit(onAddToCart)">Add to Cart<i class="fas fa-cart-plus ml-2"></i></button>
@@ -129,7 +159,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="col">
                         <div class="item-btn">
                             <a v-if="show" @click.prevent="onRent" class="btn btn-success rent">
@@ -601,32 +630,43 @@
         props: ['id'],
         data() {
             return {
+                checkpoints: [],
                 rent: null,
                 show: true,
-                week: ''
+                week: '',
+                x: '',
+                form: {
+                    checkpoint: {},
+                }
             }
         },
         methods: {
             onRent() {
                 this.show = !this.show
             },
+            onChange (event) {
+                if (event.target.value == 2) {
+                    this.form.checkpoint = '';
+                }
+            },
             onAddToCart() {
+                console.log(this.week);
                 this.$store.dispatch('pushPostId', this.id)
                 this.$store.dispatch('pushLendWeek', this.week)
+                this.$store.dispatch('pushCheckpointId', this.form.checkpoint.id)
+                localStorage.setItem('checkpointId', this.form.checkpoint.id)
                 this.$router.push('/add-to-cart').then(err => {});
             },
             formattedDate(date) {
                 const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
                 let formattedDate = new Date(date)
                 return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
-            }
+            },
         },
         computed: {
             returnDate() {
                 let today = new Date();
                 let available = new Date(this.rent.availability_from_date);
-                console.log(available);
-                console.log(today);
                 if (today < available)
                 {
                     available.setDate(available.getDate()+ 1 + this.week * 7);
@@ -643,6 +683,11 @@
                 .then (response =>
                 {
                     this.rent = response.data.data
+                })
+            this.$api.get('checkpoints?include=area')
+                .then (response =>
+                {
+                    this.checkpoints = response.data.data
                 })
         }
 

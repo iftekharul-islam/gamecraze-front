@@ -15,9 +15,9 @@
                 </tr>
               </thead>
               <tbody>
-                <tr v-for="(rent, index) in filteredRents" :key="index">
-                  <th scope="row" class="h5 text-gray" v-if="$store.state.user && rent.user_id === $store.state.user.id">{{ rent.user.data.name }}</th>
-                  <th scope="row" class="h5" v-else> <router-link :to="{ path: '/rent-details/' + rent.id}">{{ rent.user.data.name }}</router-link></th>
+                <tr v-for="(rent, index) in rents" :key="index">
+                  <th scope="row" class="h5 text-gray" v-if="$store.state.user && rent.user_id === $store.state.user.id">{{ rent.user.data.name ? rent.user.data.name : rent.user.data.phone_number}}</th>
+                  <th scope="row" class="h5" v-else> <router-link :to="{ path: '/rent-details/' + rent.id}">{{ rent.user.data.name ? rent.user.data.name : rent.user.data.phone_number }}</router-link></th>
                   <td>#</td>
                   <td>{{ formattedDate(rent.availability_from_date) }}</td>
                   <td>{{ rent.max_number_of_week }} week(s)</td>

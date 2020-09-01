@@ -13,11 +13,11 @@
                             <table class="table table-striped table-dark">
                                 <thead>
                                 <tr>
-                                    <th scope="col" >Serial No</th>
                                     <th scope="col">Game name</th>
                                     <th scope="col">Disk condition</th>
                                     <th scope="col">Platform</th>
                                     <th scope="col">Renter name</th>
+                                    <th scope="col">Pick Point</th>
                                     <th scope="col">Approvement</th>
                                     <th scope="col">Available From</th>
                                     <th scope="col">Action</th>
@@ -25,12 +25,11 @@
                                 </thead>
                                 <tbody>
                                 <tr v-for="(rent, index) in rents" :key="index">
-                                    <td>{{ index+1 }}</td>
                                     <td>{{ rent.game.data.name }}</td>
                                     <td>{{ rent.diskCondition.data.name_of_type }}</td>
                                     <td>{{ rent.platform.data.name }}</td>
-                                    <td v-if="rent.rented_user_id == null">N/A</td>
-                                    <td v-else>{{ rent.rented_user_id }}</td>
+                                    <td>{{ rent.rented_user_id ? rent.rented_user_id : 'N/A' }}</td>
+                                    <td>{{ rent.checkpoint_id ? rent.checkpoint_id : 'Home Delivery' }}</td>
                                     <td v-if="rent.status === 0">
                                         <a class="badge-danger badge" >Rejected</a>
                                     </td>

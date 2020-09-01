@@ -56,8 +56,10 @@
                 var data = {
                   postId: this.$store.state.postId,
                   week: this.$store.state.lendWeek,
+                  checkpointId: this.$store.state.checkpointId,
                   paymentMethod: this.paymentMethod
                 };
+                console.log(data);
                 this.$api.post('lend-game', data, config).then(response => {
                   if (response.data.error === false) {
                     this.$store.dispatch('clearCart');

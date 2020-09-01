@@ -5,7 +5,7 @@
             <div class="container-fluid sign-in-width">
                 <div class="row">
                     <div class="col-md-6 offset-md-3 pb-4">
-                        <div class="card">
+                        <div class="card mt-5">
                             <h3 class="card-title text-center">Sign in</h3>
                             <button class="btn btn-success mb-4 sign-in-option-btn button-style" style="margin: 0 auto;" @click="onChangeLoginOption">Login with {{ loginOption }} <i v-if="loginOption === 'Email'" class="far fa-envelope login-email"></i> <i v-if="loginOption === 'Phone Number'" class="fas fa-phone login-phone"></i> </button>
                             <!-- form -->

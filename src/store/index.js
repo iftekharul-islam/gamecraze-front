@@ -6,6 +6,7 @@ import {swal} from 'vue-swal'
 export const storage = {
     state: {
         lendWeek: [],
+        checkpointId: '',
         searchResult: [],
         admin: null,
         signup: {
@@ -47,6 +48,14 @@ export const storage = {
         pushLendWeek (state, payload) {
             state.lendWeek.push(payload)
             localStorage.setItem('lendWeek', JSON.stringify(state.lendWeek))
+        },
+        pushCheckpointId (state, payload) {
+            state.checkpointId = payload
+        },
+        //get data from local to global storage
+        setCheckpointId (state) {
+            let checkpoint_id = localStorage.getItem('checkpointId')
+            state.checkpointId = checkpoint_id;
         },
         AddCartPostId (state, payload) {
             state.postId = payload
@@ -118,12 +127,18 @@ export const storage = {
         pushLendWeek (context, payload) {
             context.commit('pushLendWeek', payload)
         },
+        setCheckpointId (context) {
+            context.commit('setCheckpointId')
+        },
         AddCartPostId (context) {
             const postId = JSON.parse(localStorage.getItem('postId'))
             if (!postId) {
                 return;
             }
             context.commit('AddCartPostId', postId)
+        },
+        pushCheckpointId (context, payload) {
+            context.commit('pushCheckpointId', payload)
         },
         setLendWeek (context) {
             const lendWeek = JSON.parse(localStorage.getItem('lendWeek'))

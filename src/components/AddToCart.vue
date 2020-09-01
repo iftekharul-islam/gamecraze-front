@@ -32,8 +32,9 @@
                    </div>
                   </td>
                   <td class="price">{{ price }}</td>
+<!--                  <td class="price">{{ this.gameId }}</td>-->
                   <td class="text-white">
-                    <h5>{{ item.max_number_of_week }}</h5>
+                    <h5>{{ lendWeek[index] }}</h5>
 <!--                          <div class="quantity">-->
 <!--                            <select class="form-control w-75" v-model="$store.state.lendWeek[index]" @change="updateRentWeek(index)">-->
 <!--                              <option value="" selected disabled>Rent Week</option>-->
@@ -42,7 +43,7 @@
 <!--                          </div>-->
                   </td>
 
-                  <td class="subtotal">{{ price * $store.state.lendWeek[index] }}</td>
+                  <td class="subtotal">{{ price }}</td>
                     <div class="remove-cart">
                       <button @click="onRemoveCartItem(index)" class="tooltips" tooltip="Click Here to Remove Game!">
                         <i class="far fa-trash-alt"></i>
@@ -93,19 +94,19 @@
         return {
             games: null,
             checkedGame: '',
-            lendWeek: null,
+            lendWeek: '',
             cart: [],
             paymentMethod: 'cod',
             isLoading: false,
             // totalAmount: 200,
-            price: 299,
+            price: '',
         }
     },
     methods: {
         subTotal() {
             console.log(this.cart.length)
             for (let i=0;i<this.cart.length;i++) {
-                this.$store.state.totalAmount = this.$store.state.totalAmount + this.price * this.$store.state.lendWeek[i];;
+                this.$store.state.totalAmount = this.$store.state.totalAmount + this.price;;
             }
             // console.log(this.$store.state.totalAmount)
             return this.$store.state.totalAmount;
@@ -114,7 +115,7 @@
             localStorage.setItem('lendWeek', JSON.stringify(this.$store.state.lendWeek));
             this.$store.state.totalAmount = 0;
             for (let i=0;i<this.cart.length;i++) {
-                this.$store.state.totalAmount = this.$store.state.totalAmount + this.price * this.$store.state.lendWeek[i];;
+                this.$store.state.totalAmount = this.$store.state.totalAmount + this.price;;
             }
         },
         onCheckout() {
@@ -148,7 +149,7 @@
                       this.$store.dispatch('removePostId', index)
                         this.$store.state.totalAmount = 0;
                         for (let i=0;i<this.cart.length;i++) {
-                            this.$store.state.totalAmount = this.$store.state.totalAmount + this.price * this.$store.state.lendWeek[i];;
+                            this.$store.state.totalAmount = this.$store.state.totalAmount + this.price ;;
                         }
                       swal("Poof! Your imaginary file has been deleted!", {
                         icon: "success",
@@ -161,15 +162,21 @@
     },
     created() {
       this.lendWeek = this.$store.state.lendWeek;
+      console.log(this.lendWeek, 'hi');
       this.$api.get('cart-items/?ids=' + this.$store.state.postId + '&include=game.assets')
           .then (response =>
           {
               this.cart = response.data.data
               this.$store.state.totalAmount = 0;
               for (let i=0;i<this.cart.length;i++) {
-                  this.$store.state.totalAmount = this.$store.state.totalAmount + this.price * this.$store.state.lendWeek[i];;
+                  this.$store.state.totalAmount = this.$store.state.totalAmount + this.price;;
               }
-              console.log(this.cart)
+              console.log(this.cart[0].game.data.id)
+              this.$api.get('base-price/game-calculation/' + this.cart[0].game.data.id + '/' + this.lendWeek )
+                      .then (response => {
+                        this.price = response.data
+                        console.log(this.price)
+                      })
           })
     },
   }

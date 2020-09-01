@@ -5,7 +5,7 @@
             <div class="container-fluid sign-in-width">
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
-                        <div class="card">
+                        <div class="card mt-5">
                             <h3 class="card-title text-center">Email and Password Setup</h3>
                             <!-- form -->
                             <ValidationObserver v-slot="{ handleSubmit }">

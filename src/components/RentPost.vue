@@ -5,13 +5,13 @@
             <div class="container-fluid rented-page-width">
                 <div class="row">
                     <div class="col-lg-6 offset-lg-3">
-                        <div class="card" v-if="rentPost === true">
+                        <div class="card" v-if="rentPost === true && rentView === false">
                             <h3 class="card-title text-center">Rent</h3>
                             <ValidationObserver v-slot="{ handleSubmit }">
                             <!-- form -->
                             <form @submit.prevent="handleSubmit(onSubmit)" method="post" >
                                 <div class="form-group text-white">
-                                    <!-- Game anme -->
+                                    <!-- Game name -->
                                     <label class="">Game Name</label>
                                     <ValidationProvider name="game" rules="" v-slot="{ errors }">
                                       <vue-autosuggest
@@ -137,7 +137,7 @@
                             </form>
                             </ValidationObserver>
                         </div>
-                        <div class="card" v-if="rentPost === false">
+                        <div class="card" v-if="rentPost === false && rentView === false">
                             <h3 class="card-title text-center">Rent Preview</h3>
                             <hr>
                             <div class="rent-preview">
@@ -180,6 +180,39 @@
                                 <button type="button" class="btn btn-primary mb-2" @click.prevent="onConform">Confirm</button>
                             </div>
                         </div>
+                        <div class="card text-white" v-if="rentView === true">
+                            <div class="p-4">
+                                <div class="row">
+                                    <div class="col-lg-5">
+                                        <label>How do you want to Deliver ?</label>
+                                    </div>
+                                    <div class="col-lg-1 ">
+                                            <label for="checkpoint_true">Checkpoint</label>
+                                    </div>
+                                    <div class="col-lg-3">
+                                        <input type="radio" v-model="x" value="1" name="checkpoint_id" id="checkpoint_true">
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <label for="cod">COD</label>
+                                    </div>
+                                    <div class="col-lg-1">
+                                        <input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod">
+                                    </div>
+                                    <div class="col-lg-12 mt-3" v-show="x === '1'">
+                                        <div class="form-group">
+                                            <label for="checkpoint">Checkpoint </label>
+                                            <select class="form-control" id="checkpoint" v-model="form.checkpoint">
+                                                <option value="" disabled>Please Select Near Checkpoint</option>
+                                                <option v-for="(checkpoint, index) in checkpoints" :key="index" :value="checkpoint">{{ checkpoint.name }}, Area: {{ checkpoint.area.data.name }}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center rented-page-btn mt-5">
+                                    <button type="button" class="btn btn-primary mb-2" @click.prevent="onFinal">Confirm</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -191,8 +224,11 @@
     export default {
         data() {
             return {
+                x: '',
                 rentPost: true,
+                rentView: false,
                 diskConditions: [],
+                checkpoints: [],
                 games: [],
                 platforms: [],
                 gamesName: {},
@@ -209,6 +245,7 @@
                     disk_condition: {},
                     disk_image: '',
                     cover_image: '',
+                    checkpoint: {},
                 },
             }
         },
@@ -243,6 +280,14 @@
                 this.rentPost = false;
             },
             onConform () {
+                this.rentView = true;
+            },
+            onEmpty () {
+                this.form.checkpoint = '';
+            },
+            onFinal () {
+                this.rentView = false;
+                this.rentPost = true;
                 let  uploadInfo = {
                     game_id: this.form.game.id,
                     availability: this.form.availability,
@@ -251,12 +296,14 @@
                     disk_condition_id: this.form.disk_condition.id,
                     disk_image: this.form.disk_image,
                     cover_image: this.form.cover_image,
+                    checkpoint_id: this.form.checkpoint.id,
                 }
                 let config = {
                     headers: {
                         'Authorization': 'Bearer ' + this.$store.state.token
                     }
                 }
+                console.log(uploadInfo);
                 this.$api.post('rents', uploadInfo, config)
                     .then(response => {
                         this.$swal({
@@ -336,8 +383,11 @@
                 {
                     this.diskConditions = response.data.data
                 })
-
-
+            this.$api.get('checkpoints?include=area')
+                .then (response =>
+                {
+                    this.checkpoints = response.data.data
+                })
         }
     }
 </script>

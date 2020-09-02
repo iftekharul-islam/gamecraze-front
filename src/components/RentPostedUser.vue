@@ -10,6 +10,7 @@
                 <tr>
                   <th scope="col">Game Owner</th>
                   <th scope="col">Rating</th>
+                  <th scope="col">Checkpoint</th>
                   <th scope="col">Available From</th>
                   <th scope="col">Available For</th>
                 </tr>
@@ -19,6 +20,7 @@
                   <th scope="row" class="h5 text-gray" v-if="$store.state.user && rent.user_id === $store.state.user.id">{{ rent.user.data.name ? rent.user.data.name : rent.user.data.phone_number}}</th>
                   <th scope="row" class="h5" v-else> <router-link :to="{ path: '/rent-details/' + rent.id}">{{ rent.user.data.name ? rent.user.data.name : rent.user.data.phone_number }}</router-link></th>
                   <td>#</td>
+                  <td>{{ rent.checkpoint.data.area.data.name }}</td>
                   <td>{{ formattedDate(rent.availability_from_date) }}</td>
                   <td>{{ rent.max_number_of_week }} week(s)</td>
                 </tr>
@@ -58,7 +60,7 @@
       }
     },
     created() {
-      this.$api.get('rent-posted-users/' + this.id + '?include=user').then(response => {
+      this.$api.get('rent-posted-users/' + this.id + '?include=user,checkpoint.area').then(response => {
         this.rents = response.data.data;
         console.log(this.rents)
       });

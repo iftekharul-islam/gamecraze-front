@@ -58,7 +58,7 @@
                                 <th scope="col">Return Date</th>
                                 <th scope="col" class="text-center">Remaining Days</th>
                                 <th scope="col">Cost</th>
-<!--                                <th scope="col">Action</th>-->
+                                <th scope="col">Action</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -72,7 +72,7 @@
                                     <flip-countdown :deadline="endDate(lend.lend_date, lend.lend_week)"></flip-countdown>
                                 </td>
                                 <td>{{ lend.lend_cost }}</td>
-<!--                                <td><button class="btn btn-primary">Return Request</button></td>-->
+                                <td><button class="btn btn-primary" @click.prevent="extend">Extent Date</button></td>
                             </tr>
                             </tbody>
                         </table>
@@ -127,6 +127,22 @@
                         else {
                             this.$swal("Your information is safe!");
                         }
+                    });
+
+                },
+                extend () {
+                    this.$swal({
+                        title: "Please Contact",
+                        text: "Phone no: 017773278387",
+                        icon: "warning",
+                    }).then(() => {
+                            this.$swal({
+                                text: "thank you",
+                                icon: 'success',
+                                timer: 1500,
+                                button: false,
+                            });
+
                     });
 
                 },

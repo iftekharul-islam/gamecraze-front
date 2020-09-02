@@ -34,7 +34,8 @@
                                         </div>
                                         <div class="col-sm-8 pb-4">
                                             <div class="part-right" v-if="rent.platform">
-                                                <h6>{{rent.platform.data.name}}</h6>
+                                                <img width="35px" height="30px" :src="rent.platform.data.url" alt="doom">
+<!--                                                <h6>{{rent.platform.data.url}}</h6>-->
                                             </div>
                                         </div>
                                         <div class="col-sm-4">

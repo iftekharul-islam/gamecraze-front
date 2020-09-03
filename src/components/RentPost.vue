@@ -34,7 +34,7 @@
                                 <div class="form-group">
                                     <label for="rentedWeek" class="">Maximum rented week</label>
                                     <ValidationProvider name="rented week" rules="required|min_value:1" v-slot="{ errors }">
-                                        <input type="number" class="form-control" id="rentedWeek" placeholder="Maximum rented week" v-model="form.max_week">
+                                        <input type="number" class="form-control" id="rentedWeek" placeholder="Maximum rented week" min="1" v-model="form.max_week">
                                         <span class="text-danger">{{ errors[0] }}</span>
                                     </ValidationProvider>
                                 </div>

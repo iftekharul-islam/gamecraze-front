@@ -3,7 +3,7 @@
     <section class="cart sign-in-bg pt-5">
       <div class="container-fluid game-page-width pb-5">
         <h1 class="text-white text-center">Available Right Now!</h1>
-        <div class="w-50 m-auto pt-3">
+        <div class="w-70 m-auto pt-3">
           <div class="table-responsive pb-5">
             <table class="table table-striped table-dark">
               <thead>
@@ -17,7 +17,8 @@
               </thead>
               <tbody>
                 <tr v-for="(rent, index) in rents" :key="index">
-                  <th scope="row" class="h5 text-gray" v-if="$store.state.user && rent.user_id === $store.state.user.id">{{ rent.user.data.name ? rent.user.data.name : rent.user.data.phone_number}}</th>
+                  <th scope="row" class="h5 text-gray" v-if="rent.rented_user_id != null">{{ rent.user.data.name ? rent.user.data.name : rent.user.data.phone_number}} (Rented)</th>
+                  <th scope="row" class="h5 text-gray" v-else-if="$store.state.user && rent.user_id === $store.state.user.id">{{ rent.user.data.name ? rent.user.data.name : rent.user.data.phone_number}} (Myself)</th>
                   <th scope="row" class="h5" v-else> <router-link :to="{ path: '/rent-details/' + rent.id}">{{ rent.user.data.name ? rent.user.data.name : rent.user.data.phone_number }}</router-link></th>
                   <td>#</td>
                   <td>{{ rent.checkpoint.data.area.data.name }}</td>

@@ -651,11 +651,11 @@
                 }
             },
             onAddToCart() {
-                console.log(this.week);
+                console.log(this.form);
                 this.$store.dispatch('pushPostId', this.id)
                 this.$store.dispatch('pushLendWeek', this.week)
                 this.$store.dispatch('pushCheckpointId', this.form.checkpoint.id)
-                localStorage.setItem('checkpointId', this.form.checkpoint.id)
+                // localStorage.setItem('checkpointId', this.form.checkpoint.id)
                 this.$router.push('/add-to-cart').then(err => {});
             },
             formattedDate(date) {

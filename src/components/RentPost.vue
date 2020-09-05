@@ -330,7 +330,7 @@
             },
             onInputChange(text) {
               // event fired when the input changes
-              console.log(text)
+              // console.log(text)
             },
             /**
              * This is what the <input/> value is set to when you are selecting a suggestion.

@@ -6,7 +6,7 @@ import {swal} from 'vue-swal'
 export const storage = {
     state: {
         lendWeek: [],
-        checkpointId: '',
+        checkpointId: [],
         searchResult: [],
         admin: null,
         signup: {
@@ -50,12 +50,12 @@ export const storage = {
             localStorage.setItem('lendWeek', JSON.stringify(state.lendWeek))
         },
         pushCheckpointId (state, payload) {
-            state.checkpointId = payload
+            state.checkpointId.push(payload)
+            localStorage.setItem('checkpointId', JSON.stringify(state.checkpointId))
         },
         //get data from local to global storage
-        setCheckpointId (state) {
-            let checkpoint_id = localStorage.getItem('checkpointId')
-            state.checkpointId = checkpoint_id;
+        setCheckpointId (state, payload) {
+            state.checkpointId = payload;
         },
         AddCartPostId (state, payload) {
             state.postId = payload
@@ -66,14 +66,19 @@ export const storage = {
         removePostId (state, payload) {
             state.postId.splice(payload, 1)
             state.lendWeek.splice(payload, 1)
+            state.checkpointId.splice(payload, 1)
             localStorage.setItem('postId', JSON.stringify(state.postId))
             localStorage.setItem('lendWeek', JSON.stringify(state.lendWeek))
+            localStorage.setItem('checkpointId', JSON.stringify(state.lendWeek))
         },
         clearCart (state) {
             state.postId = []
             state.lendWeek = []
+            state.checkpointId = []
             localStorage.setItem('postId', JSON.stringify(state.postId))
             localStorage.setItem('lendWeek', JSON.stringify(state.lendWeek))
+            localStorage.setItem('checkpointId', JSON.stringify(state.lendWeek))
+
         },
         addToSearchResult (state, payload) {
             state.searchResult = payload
@@ -128,7 +133,11 @@ export const storage = {
             context.commit('pushLendWeek', payload)
         },
         setCheckpointId (context) {
-            context.commit('setCheckpointId')
+            const checkpointId = JSON.parse(localStorage.getItem('checkpointId'))
+            if (!checkpointId) {
+                return;
+            }
+            context.commit('setCheckpointId', checkpointId)
         },
         AddCartPostId (context) {
             const postId = JSON.parse(localStorage.getItem('postId'))

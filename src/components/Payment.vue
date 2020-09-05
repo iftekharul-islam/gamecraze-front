@@ -57,7 +57,8 @@
                   postId: this.$store.state.postId,
                   week: this.$store.state.lendWeek,
                   checkpointId: this.$store.state.checkpointId,
-                  paymentMethod: this.paymentMethod
+                  paymentMethod: this.paymentMethod,
+                  totalPrice: this.amount
                 };
                 console.log(data);
                 this.$api.post('lend-game', data, config).then(response => {

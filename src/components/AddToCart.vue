@@ -31,7 +31,7 @@
                     </div>
                    </div>
                   </td>
-                  <td class="price">{{ price }}</td>
+                  <td class="price">{{ price[index] }}</td>
 <!--                  <td class="price">{{ this.gameId }}</td>-->
                   <td class="text-white">
                     <h5>{{ lendWeek[index] }}</h5>
@@ -43,7 +43,7 @@
 <!--                          </div>-->
                   </td>
 
-                  <td class="subtotal">{{ price }}</td>
+                  <td class="subtotal">{{ price[index] }}</td>
                     <div class="remove-cart">
                       <button @click="onRemoveCartItem(index)" class="tooltips" tooltip="Click Here to Remove Game!">
                         <i class="far fa-trash-alt"></i>
@@ -61,7 +61,7 @@
             <div class="summary-total-items"><span class="total-items"></span> Items in your Bag</div>
             <div class="summary-subtotal">
               <div class="subtotal-title">Subtotal</div>
-              <div class="subtotal-value final-value" id="basket-subtotal">{{$store.state.totalAmount}}</div>
+              <div class="subtotal-value final-value" id="basket-subtotal">{{totalPrice}}</div>
               <div class="summary-promo hide">
                 <div class="promo-title">Promotion</div>
                 <div class="promo-value final-value" id="basket-promo"></div>
@@ -74,7 +74,7 @@
             </div>
             <div class="summary-total">
               <div class="total-title">Total</div>
-              <div class="total-value final-value" id="basket-total">{{$store.state.totalAmount}}</div>
+              <div class="total-value final-value" id="basket-total">{{totalPrice}}</div>
             </div>
 
             <div class="summary-checkout">
@@ -98,15 +98,23 @@
             cart: [],
             paymentMethod: 'cod',
             isLoading: false,
-            // totalAmount: 200,
-            price: '',
+            price: [],
         }
+    },
+    computed: {
+      totalPrice() {
+        var total = 0;
+        for (let i=0; i<this.cart.length; i++) {
+          total += this.price[i];
+        }
+        return total;
+      }
     },
     methods: {
         subTotal() {
             console.log(this.cart.length)
             for (let i=0;i<this.cart.length;i++) {
-                this.$store.state.totalAmount = this.$store.state.totalAmount + this.price;;
+                this.$store.state.totalAmount = this.$store.state.totalAmount + this.price;
             }
             // console.log(this.$store.state.totalAmount)
             return this.$store.state.totalAmount;
@@ -115,7 +123,7 @@
             localStorage.setItem('lendWeek', JSON.stringify(this.$store.state.lendWeek));
             this.$store.state.totalAmount = 0;
             for (let i=0;i<this.cart.length;i++) {
-                this.$store.state.totalAmount = this.$store.state.totalAmount + this.price;;
+                this.$store.state.totalAmount = this.$store.state.totalAmount + this.price;
             }
         },
         onCheckout() {
@@ -123,7 +131,7 @@
             var user = this.$store.state.user;
             if (token) {
                 if (user.name && user.phone_number && user.address.address && user.identification_number && user.birth_date) {
-                  this.$router.push('/payment/' + this.$store.state.totalAmount).catch(err => {});
+                  this.$router.push('/payment/' + this.totalPrice).catch(err => {});
                 }
                 else {
                   this.$swal("Incomplete Profile", "Please Update Your Profile with all information ");
@@ -162,22 +170,19 @@
     },
     created() {
       this.lendWeek = this.$store.state.lendWeek;
-      console.log(this.lendWeek, 'hi');
       this.$api.get('cart-items/?ids=' + this.$store.state.postId + '&include=game.assets')
           .then (response =>
           {
               this.cart = response.data.data
-              this.$store.state.totalAmount = 0;
+            console.log(this.cart);
               for (let i=0;i<this.cart.length;i++) {
-                  this.$store.state.totalAmount = this.$store.state.totalAmount + this.price;;
+                this.$api.get('base-price/game-calculation/' + this.cart[i].game.data.id + '/' + this.lendWeek )
+                    .then (response => {
+                      this.price.push(parseFloat(response.data));
+                    });
               }
-              console.log(this.cart[0].game.data.id)
-              this.$api.get('base-price/game-calculation/' + this.cart[0].game.data.id + '/' + this.lendWeek )
-                      .then (response => {
-                        this.price = response.data
-                        console.log(this.price)
-                      })
-          })
+            console.log(this.price)
+          });
     },
   }
 

@@ -6,22 +6,22 @@
                     <div class="col-md-3 col-xl-2 mb-3">
                         <!-- new category -->
                         <form class="controls" id="Filters">
-                            <div class="filter-category">
-                                <fieldset class="mb-4 category-1">
-                                    <h4>select category</h4>
-                                    <div v-for="(category, index) in categories" :key="index" class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" :id="category.name + '-game'" :value="category.name" v-model="checkedCategories"/>
-                                        <label class="custom-control-label" :for="category.name + '-game'">{{ category.name }}</label>
-                                    </div>
-                                </fieldset>
+<!--                            <div class="filter-category">-->
+<!--                                <fieldset class="mb-4 category-1">-->
+<!--                                    <h4>select category</h4>-->
+<!--                                    <div v-for="(category, index) in categories" :key="index" class="checkbox custom-control custom-checkbox">-->
+<!--                                        <input type="checkbox" class="custom-control-input" :id="category.name + '-game'" :value="category.name" v-model="checkedCategories"/>-->
+<!--                                        <label class="custom-control-label" :for="category.name + '-game'">{{ category.name }}</label>-->
+<!--                                    </div>-->
+<!--                                </fieldset>-->
 
-                                <fieldset class="mb-4 category-2">
-                                    <h4>select platforms</h4>
-                                    <div v-for="(platform, index) in platforms" :key="index" class="checkbox custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" :id="platform.name + '-game'" :value="platform.name" v-model="checkedPlatforms"/>
-                                        <label class="custom-control-label" :for="platform.name + '-game'">{{ platform.name }}</label>
-                                    </div>
-                                </fieldset>
+<!--                                <fieldset class="mb-4 category-2">-->
+<!--                                    <h4>select platforms</h4>-->
+<!--                                    <div v-for="(platform, index) in platforms" :key="index" class="checkbox custom-control custom-checkbox">-->
+<!--                                        <input type="checkbox" class="custom-control-input" :id="platform.name + '-game'" :value="platform.name" v-model="checkedPlatforms"/>-->
+<!--                                        <label class="custom-control-label" :for="platform.name + '-game'">{{ platform.name }}</label>-->
+<!--                                    </div>-->
+<!--                                </fieldset>-->
 
 <!--                                <fieldset class="mb-4 category-3">-->
 <!--                                    <h4>PEGI Rating</h4>-->
@@ -101,8 +101,8 @@
 <!--                                        </label>-->
 <!--                                    </div>-->
 <!--                                </fieldset>-->
-                            </div>
-                            <button class="cate-reset" id="Reset">Clear Filters</button>
+<!--                            </div>-->
+<!--                            <button class="cate-reset" id="Reset">Clear Filters</button>-->
                         </form>
                     </div>
                     <div class="col-md-9 col-xl-10">

@@ -1,5 +1,6 @@
 <template>
     <div>
+<!--        <div class="my-postion" @click="modal = false"></div>-->
         <!-- navbar -->
         <nav class="navbar navbar-expand-xl navbar-light sign-in-bg">
             <div class="container-fluid nav-width">
@@ -36,11 +37,17 @@
                 <div class="search">
                     <form class="my-2 my-lg-0 menu-search">
                         <div class="input-group">
-                            <div class="input-group-append">
-                                <input type="search" class="form-control menu-search-input" placeholder="Search Game Name" v-model="gameName">
+                            <div class="about">
+                                <input type="text" class="form-control main-search-bar" autocomplete="off" v-model="result" @input="filterResults" @focus="modal = true">
                                 <button class="btn btn-secondary menu-search-icon" type="button" @click.prevent="searchGame">
                                     <i class="fa fa-search "></i>
                                 </button>
+                            </div>
+                            <div v-if="filteredResults && modal" class=" z-10">
+                                <ul class="my-list">
+                                    <li v-for="filteredResult in filteredResults" @click="setResult(filteredResult.name)" class="text-black">{{ filteredResult.name }}
+                                        <hr></li>
+                                </ul>
                             </div>
                             <router-link v-if="!auth" class="btn btn-danger ml-4 sign-in-btn" to="/login">Sign in</router-link>
 
@@ -74,23 +81,37 @@
             return {
                 gameName: '',
                 userProfile: {},
-                token: ''
+                token: '',
+                result: '',
+                modal: false,
+                rents: [],
+                games: [],
+                results: [],
+                filteredResults: [],
             }
         },
         methods: {
             searchGame() {
-                if(this.gameName !== '') {
+                console.log(this.result)
+                if(this.result !== '') {
                     this.$api.get('/rent-posts'+ '?include=game.assets,game.genres,platform').then(response => {
-                        let rents = response.data.data;
-                        console.log(rents);
-                        var gameName = this.gameName;
-                        let filtered = rents.filter(function (rent) {
-                            return rent.game.data.name.toLowerCase().includes(gameName.toLowerCase())
+                        let games = response.data.data;
+                        console.log(games);
+                        var gameName = this.result;
+                        let filtered = games.filter(function (data) {
+                            return data.game.data.name.toLowerCase().includes(gameName.toLowerCase())
                         })
                         this.$store.commit('addToSearchResult', filtered);
                         this.$router.push('/search').catch(err => {});
                     });
                 }
+            },filterResults() {
+                 this.filteredResults = this.results.filter(result => {
+                     return result.name.toLowerCase().startsWith(this.result.toLowerCase())
+                });
+            },setResult(result) {
+                this.result = result;
+                this.modal = false;
             },
             onLogout() {
                 this.$store.dispatch('logout')
@@ -103,6 +124,16 @@
         },
         created() {
             this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
+            this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {
+                this.rents = response.data.data;
+                console.log(this.rents, 'rents')
+                const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
+                this.$api.get('rent-games/?ids=' + uniqueArr + '&include=assets,genres,platforms').then(resp => {
+                    this.results = resp.data.data;
+                    console.log(this.results, 'results');
+                })
+                console.log(uniqueArr)
+            });
         },
         mounted() {
             this.$root.$on("loggedIn", () => {
@@ -116,5 +147,49 @@
 <style scoped>
     .router_link {
         color: white;
+    }
+    .about {
+        display: flex;
+    }
+    .main-search-bar {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        background: #2d2061;
+        border-color: #2d2061;
+        color: #ffffff !important;
+        padding-left: 20px;
+        -webkit-transition: all 0.3s ease-in;
+        transition: all 0.3s ease-in;
+    }
+    .menu-search-icon {
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        background: #fcd700;
+        border-color: #fcd700;
+        width: 20%;
+        -webkit-transition: all 0.3s ease-in;
+        transition: all 0.3s ease-in;
+    }
+    .my-postion {
+        position: absolute;
+        z-index: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+    .my-list {
+        position: absolute;
+        left: 0;
+        background: #fcd700;
+        top: 44px;
+        z-index: 10;
+        width: 244px;
+        padding: 0;
+
     }
 </style>

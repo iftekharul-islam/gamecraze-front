@@ -15,7 +15,7 @@
                         <!--/end span-->
                     </button>
                 </div>
-                <div class="collapse navbar-collapse" id="exCollapsingNavbar">
+                <div class="collapse navbar-collapse" id="exCollapsingNavbar" @click="modal = false">
                     <!-- menu-list -->
                     <div class="menu-list">
                         <ul class="navbar-nav menu-list-bottom">

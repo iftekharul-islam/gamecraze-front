@@ -75,7 +75,7 @@
                                         </div>
                                         <div class="col-sm-8 pb-4" v-if="rent.user">
                                             <div class="part-right">
-                                                <h6 class="seller-name"><span>{{ rent.user.data.name }}</span></h6>
+                                                <h6 class="seller-name"><span>{{ rent.user.data.name ? rent.user.data.name : rent.user.data.phone_number }}</span></h6>
 
                                             </div>
                                         </div>
@@ -128,7 +128,7 @@
                                                     <h4>Delivery :</h4>
                                                 </div>
                                             </div>
-                                            <div class="col-sm-8"  v-if="week">
+                                            <div class="col-sm-8" v-if="week">
                                                 <div class="part-right">
                                                     <select class="form-control w-50" @change="onChange($event)" v-model="x">
                                                         <option value="" selected disabled>Please Select delivery ...</option>
@@ -139,15 +139,23 @@
                                             </div>
                                             <div class="col-sm-4 pb-5" v-if="x =='1'" >
                                                 <div class="part-left">
-                                                    <h4>Select Checkpoint :</h4>
+                                                    <h4>Checkpoint details:</h4>
                                                 </div>
                                             </div>
                                             <div class="col-sm-8">
                                                 <div class="part-right" v-if="x =='1'">
-                                                    <select class="form-control w-50" id="checkpoint" v-model="form.checkpoint">
-                                                        <option value="" disabled>Please Select Near Checkpoint</option>
-                                                        <option v-for="(checkpoint, index) in checkpoints" :key="index" :value="checkpoint">{{ checkpoint.name }}, Area: {{ checkpoint.area.data.name }}</option>
-                                                    </select>
+                                                    <div class="my-checkpoint">
+                                                        <strong>Name: CP1</strong>
+                                                        <ul class="ml-4 mb-0 fa-ul text-muted">
+                                                            <li class="small"><span class="fa-li"><i class="fas fa-lg fa-building"></i></span>
+                                                                {{ rent.checkpoint.data.flat_no }}/{{ rent.checkpoint.data.road_no }} Block {{ rent.checkpoint.data.block_no }},
+                                                                <br> Area: {{ rent.checkpoint.data.area.data.name }}
+                                                                <br> Thana: {{ rent.checkpoint.data.area.data.thana.data.name }},
+                                                                <br> District: {{ rent.checkpoint.data.area.data.thana.data.district.data.name }},
+                                                                <br> Division: {{ rent.checkpoint.data.area.data.thana.data.district.data.division.data.name }}.
+                                                            </li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="pb-5 ml-2" v-if="x =='2'">
@@ -637,7 +645,7 @@
                 week: '',
                 x: '',
                 form: {
-                    checkpoint: {},
+                    checkpoint: '',
                 }
             }
         },
@@ -646,8 +654,13 @@
                 this.show = !this.show
             },
             onChange (event) {
+                if(event.target.value == 1) {
+                    this.form.checkpoint = this.rent.checkpoint_id;
+                    console.log(this.form.checkpoint);
+                }
                 if (event.target.value == 2) {
                     this.form.checkpoint = '';
+                    console.log(this.form.checkpoint);
                 }
             },
             onAddToCart() {
@@ -680,10 +693,11 @@
             }
         },
         created() {
-            this.$api.get('rents/' + this.id + '?include=diskCondition,game.assets,platform,user')
+            this.$api.get('rents/' + this.id + '?include=diskCondition,game.assets,platform,user,checkpoint,checkpoint.area,checkpoint.area.thana,checkpoint.area.thana.district,checkpoint.area.thana.district.division')
                 .then (response =>
                 {
                     this.rent = response.data.data
+                    console.log(this.rent, 'rent-details');
                 })
             this.$api.get('checkpoints?include=area')
                 .then (response =>
@@ -694,3 +708,11 @@
 
     }
 </script>
+<style>
+    .my-checkpoint {
+        border: 3px solid #222f5e;
+        padding: 1.5rem;
+        width: fit-content;
+        border-radius: 10px;
+    }
+</style>

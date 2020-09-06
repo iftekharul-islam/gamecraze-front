@@ -29,7 +29,7 @@
                                     <td>{{ rent.diskCondition.data.name_of_type }}</td>
                                     <td>{{ rent.platform.data.name }}</td>
                                     <td>{{ rent.rented_user_id ? rent.rented_user_id : 'N/A' }}</td>
-                                    <td>{{ rent.checkpoint_id ? rent.checkpoint_id : 'Home Delivery' }}</td>
+                                    <td>{{ rent.checkpoint_id ? rent.checkpoint.data.name : 'Home Delivery' }}</td>
                                     <td v-if="rent.status === 0">
                                         <a class="badge-danger badge" >Rejected</a>
                                     </td>
@@ -175,7 +175,7 @@
                         'Authorization': 'Bearer ' + this.$store.state.token
                     }
                 }
-                this.$api.get('rents?include=game,platform,diskCondition', config)
+                this.$api.get('rents?include=game,platform,diskCondition,checkpoint', config)
                     .then(response =>
                     {
                         this.rents = response.data.data

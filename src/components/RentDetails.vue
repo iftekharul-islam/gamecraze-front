@@ -132,7 +132,7 @@
                                                 <div class="part-right">
                                                     <select class="form-control w-50" @change="onChange($event)" v-model="x">
                                                         <option value="" selected disabled>Please Select delivery ...</option>
-                                                        <option value="1">Checkpoint</option>
+                                                        <option value="1" :disabled="rent.checkpoint_id == null ">Checkpoint</option>
                                                         <option value="2">Cash on delivery</option>
                                                     </select>
                                                 </div>

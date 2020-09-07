@@ -18,10 +18,10 @@
               <tbody>
                 <tr v-for="(rent, index) in rents" :key="index">
                   <th scope="row" class="h5 text-gray" v-if="rent.rented_user_id != null">{{ rent.user.data.name ? rent.user.data.name : rent.user.data.phone_number}} (Rented)</th>
-                  <th scope="row" class="h5 text-gray" v-else-if="$store.state.user && rent.user_id === $store.state.user.id">{{ rent.user.data.name ? rent.user.data.name : rent.user.data.phone_number}} (Myself)</th>
+                  <th scope="row" class="h5 text-gray" v-else-if="$store.state.user && rent.user_id === $store.state.user.id">{{ rent.user.data.name ? rent.user.data.name : rent.user.data.phone_number}} (me)</th>
                   <th scope="row" class="h5" v-else> <router-link :to="{ path: '/rent-details/' + rent.id}">{{ rent.user.data.name ? rent.user.data.name : rent.user.data.phone_number }}</router-link></th>
                   <td>#</td>
-                  <td>{{ rent.checkpoint.data.area.data.name }}</td>
+                  <td>{{ rent.checkpoint_id == null ? 'N/A' : rent.checkpoint.data.area.data.name }}</td>
                   <td>{{ formattedDate(rent.availability_from_date) }}</td>
                   <td>{{ rent.max_number_of_week }} week(s)</td>
                 </tr>

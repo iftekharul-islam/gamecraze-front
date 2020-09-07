@@ -31,7 +31,7 @@
                                     <!-- password -->
                                     <div class="form-group">
                                         <label for="gamepassword1" class="sr-only">Password</label>
-                                        <ValidationProvider name="password" rules="min:8|password:@confirm" v-slot="{ errors }">
+                                        <ValidationProvider name="password" rules="min:8" v-slot="{ errors }">
                                             <input type="password" class="form-control" id="gamepassword1" placeholder="Password" v-model="form.password">
                                             <span class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
@@ -40,7 +40,7 @@
                                     <!-- confirm password -->
                                     <div class="form-group">
                                         <label for="gamepassword2" class="sr-only">Confirm Password</label>
-                                        <ValidationProvider name="confirm" rules="min:8" v-slot="{ errors }">
+                                        <ValidationProvider name="confirm" rules="min:8|password:@password" v-slot="{ errors }">
                                             <input type="password" class="form-control" id="gamepassword2" placeholder="Confirm Password" v-model="form.confirmPassword">
                                             <span class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>

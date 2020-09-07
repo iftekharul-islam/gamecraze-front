@@ -644,6 +644,7 @@
                 show: true,
                 week: '',
                 x: '',
+                userDetails: {},
                 form: {
                     checkpoint: '',
                 }
@@ -664,12 +665,19 @@
                 }
             },
             onAddToCart() {
-                console.log(this.form);
-                this.$store.dispatch('pushPostId', this.id)
-                this.$store.dispatch('pushLendWeek', this.week)
-                this.$store.dispatch('pushCheckpointId', this.form.checkpoint.id)
-                // localStorage.setItem('checkpointId', this.form.checkpoint.id)
-                this.$router.push('/add-to-cart').then(err => {});
+                if ( this.userDetails.rent_limit > this.$store.state.postId.length ) {
+                    this.$store.dispatch('pushPostId', this.id)
+                    this.$store.dispatch('pushLendWeek', this.week)
+                    this.$store.dispatch('pushCheckpointId', this.form.checkpoint.id)
+                    // localStorage.setItem('checkpointId', this.form.checkpoint.id)
+                    this.$router.push('/add-to-cart').then(err => {});
+                } else {
+                    this.$swal({
+                        title: "Rent is Limited",
+                        text: "For more Rent, Please Contact to helpline of GameHub",
+                        icon: "warning",
+                        });
+                }
             },
             formattedDate(date) {
                 const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
@@ -693,17 +701,30 @@
             }
         },
         created() {
+            let config = {
+                headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                }
+            };
             this.$api.get('rents/' + this.id + '?include=diskCondition,game.assets,platform,user,checkpoint,checkpoint.area,checkpoint.area.thana,checkpoint.area.thana.district,checkpoint.area.thana.district.division')
                 .then (response =>
                 {
                     this.rent = response.data.data
                     console.log(this.rent, 'rent-details');
-                })
+                }),
             this.$api.get('checkpoints?include=area')
                 .then (response =>
                 {
                     this.checkpoints = response.data.data
+                }),
+
+            this.$api.get('user/details', config)
+                .then (response =>
+                {
+                    this.userDetails = response.data.data;
+                    console.log(this.userDetails, 'User details');
                 })
+
         }
 
     }

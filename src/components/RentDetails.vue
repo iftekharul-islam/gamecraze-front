@@ -25,7 +25,7 @@
                             <div class="card w-100" v-if="show">
                                 <div class="card-body" v-if="rent">
                                     <h5 class="card-title">{{rent.game.data.name}}</h5>
-                                    <h5 class="pb-5 price">Rent: TK.500</h5>
+                                    <br>
                                     <div class="row">
                                         <div class="col-sm-4">
                                             <div class="part-left">

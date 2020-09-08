@@ -33,7 +33,7 @@
                             <div class="card w-100">
                                 <div class="card-body">
                                     <h5 class="card-title">{{game.name}}</h5>
-                                    <h5 class="pb-5 price">Buy: TK.5000 <span></span> Rent: TK.500</h5>
+                                    <br>
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <div class="part-left">

@@ -60,7 +60,6 @@
                   paymentMethod: this.paymentMethod,
                   totalPrice: this.amount
                 };
-                console.log(data);
                 this.$api.post('lend-game', data, config).then(response => {
                   if (response.data.error === false) {
                     this.$store.dispatch('clearCart');

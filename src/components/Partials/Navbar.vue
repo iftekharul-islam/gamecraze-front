@@ -114,7 +114,11 @@
                 this.modal = false;
             },
             onLogout() {
-                this.$store.dispatch('logout')
+                // this.$store.dispatch('clearCart');
+                this.$store.dispatch('logout');
+                this.$store.state.postId = [];
+                console.log(this.$store.state.postId, 'postId');
+
             }
         },
         computed: {

@@ -217,6 +217,7 @@ export const storage = {
             localStorage.removeItem('token')
             localStorage.removeItem('userId')
             localStorage.removeItem('user')
+            localStorage.removeItem('postId')
 
             router.push('/login').catch(err => {});
         },

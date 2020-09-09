@@ -126,7 +126,7 @@
         },
         created() {
             this.user = this.$store.state.user
-            // console.log(this.profile);
+            console.log(this.user, 'user');
         }
     }
 </script>

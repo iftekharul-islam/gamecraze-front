@@ -57,8 +57,10 @@
                                 <form @submit.prevent="handleSubmit(onLogin)" method="post">
                                     <div class="form-group">
                                         <div class="floating-label-group">
-                                            <ValidationProvider name="number" rules="required|digits:11" v-slot="{ errors }">
-                                                <input type="tel" id="user-number" class="form-control country-number mb-2" v-model="phone_number"  placeholder="Mobile Number" autofocus />
+                                            <ValidationProvider name="number" :rules="`required|user-number:${phone_number}`" v-slot="{ errors }">
+<!--                                            <ValidationProvider name="number" rules="{ required: true, digits:11, regex:^(?=\d{10,11}$)(01)\d+ }" v-slot="{ errors }">-->
+<!--                                                <input type="tel" v-validate="{ regex: /^(?=\d{10,11}$)(01)\d+/ }" id="user-number" class="form-control country-number mb-2" v-model="phone_number"  placeholder="Mobile Number" autofocus />-->
+                                                <input type="tel" id="user-number" class="form-control country-number mb-2" v-model="phone_number" name="user-number"  placeholder="Mobile Number" autofocus />
                                                 <span class="error-message">{{ errors[0] }}</span>
                                                 <label class="floating-label">+88</label>
                                             </ValidationProvider>
@@ -133,6 +135,11 @@
             }
         },
         methods: {
+            handler(val){
+                if(val != '0' ){
+                    this.phone_number = null;
+                }
+            },
             checkAdminRole(roles) {
                 return roles.some(el => el.name === 'admin')
             },

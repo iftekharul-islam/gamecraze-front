@@ -17,3 +17,14 @@ extend('password', {
     },
     message: 'Password confirmation does not match'
 });
+
+extend('user-number', {
+    params: ['phone_number'],
+    validate(value, { phone_number }) {
+        if (phone_number[0] === '0' && phone_number[1] ==='1' && phone_number.length == 11) {
+            return true;
+        }
+    },
+    message: 'Please starts your digits with 01 and minimum digit should be 11'
+});
+

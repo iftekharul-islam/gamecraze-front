@@ -165,7 +165,7 @@
                 },
                 endDate(data, week) {
                     let date = new Date(data);
-                    date.setDate(date.getDate() + week * 7);
+                    date.setDate(date.getDate() + 1 + week * 7);
                     return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear()
                 }
             },
@@ -185,6 +185,7 @@
                     .then(response =>
                     {
                         this.lends = response.data
+                        console.log(this.lends, 'lends');
                     })
             }
         }

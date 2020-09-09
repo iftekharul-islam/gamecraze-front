@@ -665,19 +665,33 @@
                 }
             },
             onAddToCart() {
-                if ( this.userDetails.rent_limit > this.$store.state.postId.length ) {
-                    this.$store.dispatch('pushPostId', this.id)
-                    this.$store.dispatch('pushLendWeek', this.week)
-                    this.$store.dispatch('pushCheckpointId', this.form.checkpoint.id)
-                    // localStorage.setItem('checkpointId', this.form.checkpoint.id)
-                    this.$router.push('/add-to-cart').then(err => {});
-                } else {
+                console.log(this.$store.state.userId, 'user id');
+                console.log(this.$store.state.postId.length, 'post length');
+                if (this.$store.state.userId != null) {
+                    if ( this.userDetails.rent_limit > this.$store.state.postId.length ) {
+                        this.$store.dispatch('pushPostId', this.id)
+                        this.$store.dispatch('pushLendWeek', this.week)
+                        this.$store.dispatch('pushCheckpointId', this.form.checkpoint.id)
+                        return this.$router.push('/add-to-cart').then(err => {});
+                    }
                     this.$swal({
                         title: "Rent is Limited",
                         text: "For more Rent, Please Contact to helpline of GameHub",
                         icon: "warning",
-                        });
+                    });
                 }
+                if (this.$store.state.postId.length == 0) {
+                    this.$store.dispatch('pushPostId', this.id)
+                    this.$store.dispatch('pushLendWeek', this.week)
+                    this.$store.dispatch('pushCheckpointId', this.form.checkpoint.id)
+                    return this.$router.push('/add-to-cart').then(err => {});
+                }
+                this.$swal({
+                    title: "Rent is Limited",
+                    text: "For Rent, Please login to GameHub",
+                    icon: "warning",
+                });
+
             },
             formattedDate(date) {
                 const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
@@ -706,6 +720,14 @@
                     'Authorization': 'Bearer ' + this.$store.state.token
                 }
             };
+            if (this.$store.state.userId != null) {
+                this.$api.get('user/details', config)
+                    .then (response =>
+                    {
+                        this.userDetails = response.data.data;
+                        console.log(this.userDetails, 'User details');
+                    })
+            }
             this.$api.get('rents/' + this.id + '?include=diskCondition,game.assets,platform,user,checkpoint,checkpoint.area,checkpoint.area.thana,checkpoint.area.thana.district,checkpoint.area.thana.district.division')
                 .then (response =>
                 {
@@ -716,17 +738,9 @@
                 .then (response =>
                 {
                     this.checkpoints = response.data.data
-                }),
-
-            this.$api.get('user/details', config)
-                .then (response =>
-                {
-                    this.userDetails = response.data.data;
-                    console.log(this.userDetails, 'User details');
                 })
 
         }
-
     }
 </script>
 <style>

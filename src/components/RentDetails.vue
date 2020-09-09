@@ -641,6 +641,7 @@
             return {
                 checkpoints: [],
                 rent: null,
+                lends: [],
                 show: true,
                 week: '',
                 x: '',
@@ -667,8 +668,22 @@
             onAddToCart() {
                 console.log(this.$store.state.userId, 'user id');
                 console.log(this.$store.state.postId.length, 'post length');
-                if (this.$store.state.userId != null) {
-                    if ( this.userDetails.rent_limit > this.$store.state.postId.length ) {
+                console.log(this.lends.length, 'lends');
+                console.log(this.userDetails.rent_limit, 'rent limit');
+                if ( this.$store.state.userId !== null) {
+                    if (this.userDetails.rent_limit > this.$store.state.postId.length && this.userDetails.rent_limit > this.lends.length) {
+                        this.$store.dispatch('pushPostId', this.id)
+                        this.$store.dispatch('pushLendWeek', this.week)
+                        this.$store.dispatch('pushCheckpointId', this.form.checkpoint.id)
+                        return this.$router.push('/add-to-cart').then(err => {});
+                    }
+                    return this.$swal({
+                        title: "Rent is Limited",
+                        text: "For more Rent, Please Contact to helpline of GameHub",
+                        icon: "warning",
+                    });
+                }
+                    if (this.$store.state.postId.length == 0) {
                         this.$store.dispatch('pushPostId', this.id)
                         this.$store.dispatch('pushLendWeek', this.week)
                         this.$store.dispatch('pushCheckpointId', this.form.checkpoint.id)
@@ -676,22 +691,9 @@
                     }
                     this.$swal({
                         title: "Rent is Limited",
-                        text: "For more Rent, Please Contact to helpline of GameHub",
+                        text: "For Rent, Please login to GameHub",
                         icon: "warning",
                     });
-                }
-                if (this.$store.state.postId.length == 0) {
-                    this.$store.dispatch('pushPostId', this.id)
-                    this.$store.dispatch('pushLendWeek', this.week)
-                    this.$store.dispatch('pushCheckpointId', this.form.checkpoint.id)
-                    return this.$router.push('/add-to-cart').then(err => {});
-                }
-                this.$swal({
-                    title: "Rent is Limited",
-                    text: "For Rent, Please login to GameHub",
-                    icon: "warning",
-                });
-
             },
             formattedDate(date) {
                 const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
@@ -738,6 +740,12 @@
                 .then (response =>
                 {
                     this.checkpoints = response.data.data
+                }),
+            this.$api.get('lends', config)
+                .then (response =>
+                {
+                    this.lends = response.data.data
+                    console.log(this.lends, 'lends')
                 })
 
         }

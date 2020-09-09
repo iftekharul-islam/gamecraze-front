@@ -744,7 +744,7 @@
             this.$api.get('lends', config)
                 .then (response =>
                 {
-                    this.lends = response.data.data
+                    this.lends = response.data
                     console.log(this.lends, 'lends')
                 })
 

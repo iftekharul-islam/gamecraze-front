@@ -28,7 +28,8 @@
                                             <span class="error-message">{{ errors[0] }}</span>
                                             <br v-if="errors[0]">
                                         </ValidationProvider>
-                                        <span class="error-message" v-if="$store.state.notFoundEmail">Email or Password is not valid<br></span>
+                                        <span class="error-message" v-if="$store.state.notFoundEmail && !$store.state.inactiveUser">Email or Password is not valid<br></span>
+                                        <span class="error-message" v-if="$store.state.inactiveUser">This User is inactive, please contact to helpline</span>
                                     </div>
                                     <div class="d-flex justify-content-between">
                                         <div class="custom-control custom-checkbox">
@@ -74,9 +75,10 @@
                                                 <input @click="changeWrongOtp" type="text" class="form-control mb-2" id="user-otp" placeholder="Your OTP" v-model="otp">
                                                 <span class="error-message">{{ errors[0] }}</span>
                                                 <br v-if="errors[0]">
-                                                <span class="success-message" v-if="!resend && !$store.state.wrongOTP && !$store.state.timeout">We've sent a 6-digit one time PIN in your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>
+                                                <span class="success-message" v-if="!resend && !$store.state.wrongOTP && !$store.state.timeout && !$store.state.inactiveUser">We've sent a 6-digit one time PIN in your phone <strong style="color: white;">{{ form.phone_number }}</strong></span><br>
                                                 <span class="error-message" v-if="$store.state.wrongOTP && !resend">You entered wrong OTP</span>
                                                 <span class="error-message" v-if="$store.state.timeout && !resend">This OTP is not valid for timeout</span>
+                                                <span class="error-message" v-if="$store.state.inactiveUser && !resend">This User is inactive, please contact to helpline</span>
                                                 <span class="success-message" v-if="resend">We've Resent a 6-digit one time PIN in your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>
                                             </ValidationProvider>
                                         </div>
@@ -144,6 +146,7 @@
                 return roles.some(el => el.name === 'admin')
             },
             onLogin() {
+                console.log(this.$store.state.inactiveUser, 'hello email')
                 this.isLoading = true
                 if (this.loginOption === "Email") {
                     this.$store.dispatch('setPhoneNumber', this.phone_number)
@@ -172,6 +175,7 @@
                 }
             },
             onOtpVerification: function () {
+                console.log('hello')
                 this.isLoading = true
                 this.resend = false
                 this.$store.dispatch('verifyOtp', {phone_number: this.phone_number, otp: this.otp})
@@ -193,6 +197,9 @@
             changeWrongOtp() {
                 this.$store.commit('setWrongOTP', false)
             }
+        },
+        created() {
+            console.log(this.$store.state.inactiveUser, 'inactive user 1')
         }
     }
 </script>

@@ -21,6 +21,7 @@ export const storage = {
         notFoundEmail: false,
         isSubmitLoading: false,
         wrongOTP: false,
+        inactiveUser: false,
         timeout: false,
         postId: [],
         cart: null,
@@ -118,6 +119,9 @@ export const storage = {
         setWrongOTP (state, payload) {
             state.wrongOTP = payload
         },
+        setInactiveUser (state, payload) {
+            state.inactiveUser = payload
+        },
         setTimeout (state, payload) {
             state.timeout = payload
         },
@@ -181,8 +185,9 @@ export const storage = {
                 returnSecureToken: true
         })
         .then(res => {
-            console.log(res)
+            console.log(res, 'response')
             if (!res.data.error) {
+                commit('setInactiveUser', false)
                 commit('setNotFoundEmail', false)
                 commit('authUser', {
                     token: res.data.token,
@@ -194,6 +199,7 @@ export const storage = {
                 router.push('/').catch(err => {});
             }
             else {
+                commit('setInactiveUser', res.data.message === 'inactiveUser')
                 commit('setNotFoundEmail', true)
             }
         })
@@ -234,6 +240,7 @@ export const storage = {
                     localStorage.setItem('userId', JSON.stringify(response.data.user.id))
                     localStorage.setItem('user', JSON.stringify(response.data.user))
                     commit('setSubmitLoading', false)
+                    commit('setInactiveUser', false)
                     if (response.data.newUser === false) {
                         if (payload.email) {
                             router.push('/reset-password').catch(err => {});
@@ -249,7 +256,7 @@ export const storage = {
                         router.push('/password-setup').catch(err => {});
                     }
                 }
-
+                commit('setInactiveUser', response.data.message === 'inactiveUser')
                 commit('setWrongOTP', response.data.message === 'wrongOtp')
                 commit('setTimeout', response.data.message === 'timeout')
                 commit('setSubmitLoading', false)

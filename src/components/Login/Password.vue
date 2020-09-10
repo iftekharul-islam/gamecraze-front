@@ -40,7 +40,7 @@
                                     <!-- confirm password -->
                                     <div class="form-group">
                                         <label for="gamepassword2" class="sr-only">Confirm Password</label>
-                                        <ValidationProvider name="confirm" rules="min:8|password:@password" v-slot="{ errors }">
+                                        <ValidationProvider name="confirm" rules="password:@password" v-slot="{ errors }">
                                             <input type="password" class="form-control" id="gamepassword2" placeholder="Confirm Password" v-model="form.confirmPassword">
                                             <span class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>

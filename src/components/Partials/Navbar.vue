@@ -18,19 +18,19 @@
                         <span></span>
                     </button>
                 </div>
-                <div class="collapse navbar-collapse custom-collapse gamehub-menu-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse custom-collapse gamehub-menu-collapse" id="navbarSupportedContent" @click="modal = false">
                     <ul class="">
                         <li class="active">
-                            <a href="index.html">Home <span class="sr-only">(current)</span></a>
+                            <router-link class="nav-link active router_link" to="/">Home<span class="sr-only">(current)</span></router-link>
                         </li>
                         <li>
-                            <a href="#">Games</a>
+                            <router-link class="router_link" to="/games">Games</router-link>
                         </li>
                         <li>
-                            <a href="#">Support</a>
+                            <router-link class="router_link" to="/supports">Supports</router-link>
                         </li>
                         <li>
-                            <a href="contact.html">Contact us</a>
+                            <router-link class="router_link" to="/contacts">Contact us</router-link>
                         </li>
                     </ul>
                     <div class="gamehub-input-group">

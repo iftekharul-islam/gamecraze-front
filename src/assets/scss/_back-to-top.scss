@@ -1,0 +1,50 @@
+// back to top
+.back-to-top {
+    position: fixed;
+    right: 1%;
+    bottom: -7.5%;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    padding: 3px 5px;
+    opacity: 0.5;
+    visibility: hidden;
+    text-transform: uppercase;
+    transition: all 0.5s ease-out;
+    background-color: #3F6B8F;
+    z-index: 100;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover,
+    &:focus {
+      opacity: 1;
+      text-decoration: none;
+      color: #212223;   
+      .arrow-top {
+        opacity: 1;
+      }
+  }
+  .arrow-top {
+    overflow: hidden;
+    transition: all .5s ease-in;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    i {
+      font-size : 25px;
+    }
+    &:hover {
+      color: orange;
+      opacity: .7;
+    }
+  }
+}
+  .show-back-to-top {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 1.25%;
+    visibility: visible;
+  }

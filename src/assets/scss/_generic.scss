@@ -1,0 +1,12 @@
+.owl-dot {
+    &.active {
+        span {
+            background: $secondery !important;
+            opacity: 1 !important;
+        }
+    }
+    span {
+        background: $secondery !important;
+        opacity: .3 !important;
+    }
+}

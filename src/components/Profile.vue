@@ -1,7 +1,8 @@
 <template>
     <div>
         <!-- user profile -->
-        <section class="user-profile sign-in-bg">
+          <h1>hello</h1>
+        <!-- <section class="user-profile sign-in-bg">
             <div class="conatainer-fluid user-profile-width">
                 <div class="row">
                     <div class=" col-xl-6 offset-xl-3 user-profile-width-padding pb-5">
@@ -82,8 +83,6 @@
                                             </tbody>
                                         </table>
 
-<!--                                    <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>-->
-
                                 </div>
                             </div>
                             <div class="recharge">
@@ -106,27 +105,28 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
+     
     </div>
 </template>
 
 <script>
-    export default {
-        data() {
-            return {
-                user: {}
-            }
-        },
-        methods: {
-            formattedDate(date) {
-                const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-                let birthDate = new Date(date)
-                return birthDate.getDate() + " " + months[birthDate.getMonth()] + " " + birthDate.getFullYear()
-            }
-        },
-        created() {
-            this.user = this.$store.state.user
-            console.log(this.user, 'user');
-        }
-    }
+    // export default {
+    //     data() {
+    //         return {
+    //             user: {}
+    //         }
+    //     },
+    //     methods: {
+    //         formattedDate(date) {
+    //             const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    //             let birthDate = new Date(date)
+    //             return birthDate.getDate() + " " + months[birthDate.getMonth()] + " " + birthDate.getFullYear()
+    //         }
+    //     },
+    //     created() {
+    //         this.user = this.$store.state.user
+    //         console.log(this.user, 'user');
+    //     }
+    // }
 </script>

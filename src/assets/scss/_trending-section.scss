@@ -1,0 +1,119 @@
+.trending-section {
+    padding-bottom: 150px;
+    @include for-max-992 {
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 70px;
+    }
+    @include for-max-575 {
+        padding-left: 15px;
+        padding-right: 15px;
+       
+    }
+    .item {
+        margin-left: -55px;
+        @include for-max-1800 {
+            margin-left: -50px;
+        }
+        @include for-max-1600 {
+            margin-left: -45px;
+        }
+        @include for-max-1200 {
+            margin-left: -52px;
+        }
+        @include for-max-992 {
+            margin-left: -43px;
+        }
+        @include for-max-900 {
+            margin-left: 0;
+        }
+        a {
+            img {
+                clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+                @include for-max-900 {
+                    clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+                }
+            }
+        }
+    }
+    .owl-nav {
+        position: relative;
+        button {
+            position: absolute;
+            top: -220px;
+            width: 50px;
+            height: 50px;
+            transform: skewX(-13deg);
+            border: 1px solid $secondery !important;
+            border-radius: 0 !important;
+            transition: all .3s ease-in !important;
+            @include for-max-900 {
+
+            }
+            @include for-max-590 {
+                top: 0;
+                width: 35px;
+                 height: 35px;
+            }
+            &:hover {
+                background: $secondery !important;
+                i {
+                    color: black;
+                }
+            }
+            i {
+                transition: all .3s ease-in;
+            }
+            &:focus {
+                outline: none !important;
+                box-shadow: none !important;
+            }
+        }
+        .owl-prev {
+            left: 20px;
+            @include for-max-590 {
+                left: 35%;
+            }
+        }
+        .owl-next {
+            right: 20px;
+            @include for-max-590 {
+                right: 35%;
+            }
+        }
+    }
+}
+.owl-item {
+    opacity: .3;
+    &.active {
+        opacity: 1;
+    }
+}
+.trending-game--name-price,
+.trending-game--categories {
+    margin-left: 2rem;
+    margin-right: 6rem;
+    @include for-max-900 {
+        margin-left: 1rem;
+         margin-right: 1rem;
+    }
+}
+
+.trending-game--name-price {
+    margin-top: 20px;
+    a,span {
+        font-size: 20px;
+    }
+}
+
+.trending-game--categories {
+    border-top: 1px solid #fff;
+    opacity: .5;
+    padding-top: 10px;
+    margin-top: 10px;
+    > div {
+        a {
+            margin-left: 5px;
+        }
+    }
+}

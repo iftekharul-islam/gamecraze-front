@@ -1,0 +1,46 @@
+.slider-section {
+    background: url(../img/Juggernaut.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    height: 820px;
+    @include for-max-992 {
+        height: 550px;
+    }
+    @include for-max-768 {
+        height:400px;
+    }
+    @include for-max-575 {
+        background-position: center;
+        margin-top: -80px;
+        height:550px;
+    }
+    h1 {
+        margin-bottom: 25px;
+        @include for-max-768 {
+            width: 370px;
+        }
+        @include for-max-575 {
+            width: 75%;
+            margin-top: 40px;
+        }
+    }
+    h6 {
+        margin-bottom: 40px;
+        @include for-max-575 {
+            font-family: sans-serif;
+            font-weight: 400;
+            font-size: 16px;
+        }
+    }
+}
+.gamehub-heading {
+    color: #fff;
+    text-transform: uppercase;
+    font-style: italic;
+    font-weight: bold;
+    span {
+        color: $secondery;
+    }
+}

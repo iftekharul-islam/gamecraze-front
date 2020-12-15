@@ -1,0 +1,48 @@
+.title-section {
+    background: url(../img/title-bg.png);
+    background-repeat: no-repeat;
+    height: 300px;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contact-title {
+    h2 {
+        font-size: 22px;
+        font-family: 'Roboto Condensed', sans-serif;
+        @include for-min-992 {
+            font-size: 40px;
+        }
+    }
+}
+.support-input-design {
+    width: 500px;
+    clip-path: polygon(5% 0, 100% 0%, 97% 100%, 0% 100%);
+    @include for-max-575 {
+        width: 250px;
+    }
+    input {
+        width: 500px;
+        clip-path: polygon(23px 0, 100% 0%, 97% 100%, 0% 100%);
+        background: $text-light;
+        color: $text-dark;
+        left: 5px;
+        padding-left: 30px;
+        padding-right: 30px;
+        &::placeholder  {
+            text-align: center;
+        }
+        @include for-max-575 {
+            width: 250px;
+            left: 3px;
+            clip-path: polygon(12px 0, 100% 0%, 97% 100%, 0% 100%);
+        }
+    }
+}
+.support-search-btn {
+    i {
+        color: $text-dark !important;
+        font-size: 16px !important;
+    }
+}

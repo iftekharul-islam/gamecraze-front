@@ -28,6 +28,7 @@ import Success from "../components/payment/Success";
 import Fail from "../components/payment/Fail";
 import RentDetails from "../components/RentDetails";
 import RentPostedUser from "@/components/RentPostedUser";
+import Support from "../components/Support";
 
 let router = new Router({
     mode: 'history',
@@ -80,13 +81,21 @@ let router = new Router({
             name: 'Profile',
             component: Profile,
             meta: {
-                requiresAuth: true
+                requiresAuth: false
             }
         },
         {
             path: '/add-to-cart',
             name: 'AddToCart',
             component: AddToCart,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/support',
+            name: 'support',
+            component: Support,
             meta: {
                 requiresAuth: false
             }
@@ -136,7 +145,7 @@ let router = new Router({
             name: 'Dashboard',
             component: Dashboard,
             meta: {
-                requiresAuth: true
+                requiresAuth: false
             }
         },
         {

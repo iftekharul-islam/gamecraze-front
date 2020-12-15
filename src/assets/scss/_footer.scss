@@ -1,0 +1,133 @@
+.footer-section {
+    padding-bottom: 50px;
+    @include for-max-575 {
+        padding-bottom: 0px;
+    }
+}
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+        @include for-max-768 {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        @include for-max-575 {
+            flex-direction: column-reverse;
+            text-align: center;
+        }
+    &--right-input-group {
+        display: flex;
+        @include for-max-575 {
+            justify-content: center;
+        }
+        .gamehub-search-btn {
+            @include for-max-575 {
+                clip-path: initial;
+            }
+        }
+    }
+    &--right {
+        @include for-max-575 {
+            width: 100%;
+        }
+        span {
+            margin-bottom: 20px;
+            display: block;
+            @include for-max-768 {
+                margin-bottom: 0px;
+                margin-top: 20px;
+            }
+            @include for-max-575 {
+                margin-top: 0px;
+                margin-bottom: 20px;
+            }
+        }
+    }
+}
+.footer-top--right-input {
+    input {
+        height: 100%;
+        background: $game-details;
+        border-color: $game-details;
+        border: none;
+        clip-path: polygon(9% 0, 100% 0%, 100% 100%, 0% 100%);
+        padding-left: 30px;
+        color: #fff;
+        &:focus {
+            outline: none;
+            box-shadow: none;
+        }
+        @include for-max-575 {
+            clip-path : initial;
+        }
+    }
+    
+}
+.footer-middle {
+    background: $game-details;
+    padding: 60px 90px;
+    margin-top: 50px;
+    clip-path: polygon(10% 0, 100% -65%, 89% 100%, 0% 100%);
+    @include for-max-768 {
+        clip-path: initial; 
+        padding: 10px;
+    }
+    @include for-max-575 {
+        padding-bottom: 100px;
+        padding-top: 100px;
+    }
+}
+
+.footer-logo {
+    margin-left: 6rem;
+    @include for-max-768 {
+        margin-left: 0;
+    }
+    @include for-max-575 {
+        position: relative;
+        top: 115px;
+    }
+}
+.footer-menu-content {
+    ul {
+        li {
+            &:first-child {
+                a {
+                    color: $secondery;
+                }
+            }
+            margin-bottom: 15px;
+        }
+    }
+}
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    @include for-max-575 {
+        flex-direction: column-reverse;
+        margin-top: 0;
+    }
+    &--social {
+        margin-right: 6rem;
+        @include for-max-575 {
+            margin-right: 0;
+            position: relative;
+            top: -65px;
+        }
+        a {
+            margin-left: 10px;
+            &:first-of-type {
+                @include for-max-400 {
+                    margin-left: 0;
+                }
+            }
+        }
+    }
+    p {
+        @include for-max-575 {
+            text-align: center;
+        }
+    }
+}

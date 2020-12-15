@@ -1,0 +1,232 @@
+.gamehub-menu {
+    background: $primary;
+    padding: 20px 0;
+    &.gamehub-menu-active {
+        background: $game-details;
+    }
+    @include for-max-575 {
+        background: transparent;
+    }
+}
+.navbar-brand {
+    @include for-max-575 {
+        padding-left: 15px;
+    }
+    img {
+        @include for-max-1200 {
+            width: 100px;
+        }
+    }
+}
+
+.gamehub-menu-collapse {
+    @include for-max-992 {
+        padding-top: 20px;
+    }
+    @include for-max-575 {
+        background: $game-details;
+        padding-bottom: 20px;
+    }
+    ul {
+        margin: auto;
+        display: flex;
+        @include for-max-992 {
+            display: block;
+        }
+        li {
+            padding: 0 20px;
+            @include for-max-992 {
+                margin-bottom: 20px;
+                width: fit-content;
+            }
+            @include for-max-575 {
+                margin-left: 15px;
+            }
+            &:last-child {
+                margin-right: 0;
+            }
+            &.active {
+                position: relative;
+                &::after {
+                    content: "";
+                    width: 83px;
+                    height: 4px;
+                    position: absolute;
+                    background: $secondery;
+                    top: 49px;
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    clip-path: polygon(7px 0, 100% 0%, 77px 100%, 0% 100%);
+                    @include for-max-992 {
+                        top: 28px;
+                    }
+                }
+            }
+        }
+    }
+}
+.gamehub--logo {
+    margin-right: 10px;
+}
+// toogler button
+.toggler-position {
+    position: absolute;
+    right: 0;
+    top: 15px;
+    padding-right: 1rem;
+    @include for-max-992 {
+        right: 50px;
+        top: 23px;
+    }
+    @include for-max-575 {
+        right: 0;
+    }
+    .custom-toggler {
+      cursor: pointer;
+      position: relative;
+      width: 2.5rem;
+      height: 2rem;
+      padding: 0.5rem 0.75rem;
+      font-size: 1.25rem;
+      line-height: 1rem;
+      border-radius: 0.25rem;
+      span {
+        display: block;
+        position: absolute;
+        height: 3px;
+        width: 50%;
+        background: #fff;
+        border-radius: 10px;
+        opacity: 1;
+        left: 25%;
+        transform: rotate(0deg);
+        transition: all .3s ease-in;
+
+        &:nth-child(1) {
+          top: 34.5%;
+        }
+        &:nth-child(2),
+        &:nth-child(3) {
+          top: 50%;
+        }
+        &:nth-child(4) {
+          top: 65.5%;
+        }
+      }
+      &.open {
+        span {
+          &:nth-child(1) {
+            top: 18px;
+            width: 0%;
+            left: 50%;
+          }
+          &:nth-child(2) {
+            transform: rotate(45deg);
+          }
+          &:nth-child(3) {
+            transform: rotate(-45deg);
+          }
+          &:nth-child(4) {
+            top: 18px;
+            width: 0%;
+            left: 50%;
+          }
+        }
+      }
+      &:focus {
+        outline: none;
+      }
+    }
+  }
+
+.gamehub-input-group {
+    display: flex;
+    align-items: center;
+    @include for-max-575 {
+        margin-left: 15px;
+    }
+    &--content {
+            margin-right: 0px;
+        
+        &:last-child {
+            margin-right: 0;
+                margin-left: 20px;
+            
+            i {
+                color: $secondery;
+                font-size: 35px;
+            }
+        }
+        &:first-child {
+            display: flex;
+        }
+        &:nth-child(2) {
+            width: 116px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: $secondery;
+            box-sizing: border-box;
+            clip-path: polygon(9% 0, 100% 0%, 91% 100%, 0% 100%);
+            &:after {
+                position: absolute;
+                background: $primary;
+                top: 2px;
+                left: 2px;
+                width: 111px;
+                height: 36px;
+                clip-path: polygon(9% 0, 100% 0%, 92% 100%, 0% 100%);
+                content: "";
+            }
+            a {
+                position: relative;
+                z-index: 9;
+            }
+        }
+    }
+}
+
+.search-input-design {
+    background: $secondery;
+    clip-path: polygon(10% 0, 100% 0%, 91% 100%, 0% 100%);
+    border: none;
+    position: relative;
+    width: 140px;
+    height: 40px;
+    input {
+        height: 36px;
+        border: none;
+        clip-path: polygon(9% 0, 100% 0%, 91% 100%, 0% 100%);
+        width: 135px;
+        margin: auto;
+        position: relative;
+        left: 3px;
+        top: 2px;
+        background: $primary;
+        color: #fff;
+        padding-left: 15px;
+        padding-right: 8px;
+        &:focus {
+            outline: none;
+            border: none;
+            box-shadow: none;
+        }
+    }
+}
+.gamehub-search-btn {
+    width: 60px;
+    height: 40px;
+    background: $secondery;
+    clip-path: polygon(13px 0, 100% 0%, 46px 100%, 0% 100%);
+    border-radius: 0;
+    position: relative;
+    left: -15px;
+    &:focus {
+        outline: none;
+        border: none;
+        box-shadow: none;
+    }
+}

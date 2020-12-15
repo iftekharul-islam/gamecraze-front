@@ -1,0 +1,33 @@
+.login-section {
+    padding-top: 40px;
+}
+.login-form {
+    ul {
+        li {
+            a {
+                font-size: 32px;
+                font-style: italic;
+                padding: 0;
+                &.active {
+                    color: $secondery !important;
+                    background: none !important;
+                    font-size: 24px;
+                }
+            }
+        }
+    }
+    .form-group {
+        input {
+            border-radius: 0;
+            border: none;
+        }
+    }
+}
+.remember-me {
+    input,label {
+        cursor: pointer;
+    }
+}
+.login-logo {
+    margin-bottom: 100px;
+}

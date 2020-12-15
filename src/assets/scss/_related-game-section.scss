@@ -1,0 +1,25 @@
+.related-game-section {
+    padding-bottom: 150px;
+    h6 {
+        margin-bottom: 30px;
+    }
+    .owl-nav {
+        position: absolute;
+        top: -90px;
+        right: 0;
+        button {
+            width: 50px;
+            height: 50px;
+            -webkit-transform: skewX(-13deg);
+            transform: skewX(-13deg);
+            border: 1px solid #FFD715 !important;
+            border-radius: 0 !important;
+            -webkit-transition: all .3s ease-in !important;
+            transition: all .3s ease-in !important;
+            &:focus {
+                outline: none !important;
+
+            }
+        }
+    }
+}

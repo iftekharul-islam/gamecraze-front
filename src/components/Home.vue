@@ -1,164 +1,591 @@
 <template>
     <div>
-        <!-- Hunter section slider -->
-        <section class="hunter-section">
-            <div id="mainslider" class="carousel slide" data-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <a href="#"><img data-u="image" src="../assets/img/slider/blood.png" class="img-fluid d-block w-100" alt="hunter"/></a>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="#"><img data-u="image" src="../assets/img/slider/god-war.png" class="img-fluid d-block w-100" alt="hunter"/></a>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="#"><img data-u="image" src="../assets/img/slider/hunter.jpg" class="img-fluid d-block w-100" alt="hunter"/></a>
-                    </div>
-                    <div class="carousel-item">
-                        <a href="#"><img data-u="image" src="../assets/img/slider/the.png" class="img-fluid d-block w-100" alt="hunter"/></a>
-                    </div>
-                </div>
-                <a class="carousel-control-prev slider-icon" href="#mainslider" role="button" data-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Previous</span>
-                </a>
-                <a class="carousel-control-next slider-icon" href="#mainslider" role="button" data-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </div>
-        </section>
-
-        <!-- New release Section -->
-        <section class="new-release pt-5 sign-in-bg">
-            <div class="container-fluid release-width">
-                <div class="release-header">
-                    <h2>New Release</h2>
-                </div>
-                <div class="owl-carousel-one owl-carousel owl-theme">
-                    <div class="item" v-for="(game, index) in latestGames" :key="index">
-                        <div class="card">
-                            <a href="#"> <img class="card-img-top" :src="game.assets.data[0].url" alt="Code vein"  v-if="game.assets.data.length">
-                                <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else></a>
-                            <div class="card-body">
-                                <h4 class="mb-3 game-name">{{ game.name }}</h4>
-                                <div class="card-text text-white"><span v-html="game.description"></span></div>
-                            </div>
-                            <div class="more-read text-right pb-3 pr-2">
-                                <router-link :to="{ path: '/game-details/' + game.id}">View More <span class="material-icons">arrow_forward_ios</span></router-link>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="exchange-section">
-            <div class="container-fluid exchange-width">
+        <!-- slider section -->
+        <section class="slider-section">
+            <div class="container">
                 <div class="row">
-                    <div class="col-sm-6">
-                        <div class="card mb-3 exchange">
-                            <div class="row no-gutters">
-                                <div class="col-lg-5">
-                                    <img src="../assets/img/exchange/watch-dog.jpeg" class="card-img" alt="watch dog ">
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="card-body">
-                                        <h2 class="part-1">Would You like to</h2>
-                                        <h1 class="part-2">EXCHANGE</h1>
-                                        <h2 class="part-3"> Your CD</h2>
-                                        <div class="text-center excng-btn">
-                                            <a href="#" class="btn btn-success text-center mt-5" type="button" @click.prevent="onExchange">Exchange</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="card mb-3 rent">
-                            <div class="row no-gutters">
-                                <div class="col-lg-5">
-                                    <a href="#"><router-link to="game-details"><img src="../assets/img/exchange/jedi.png" class="card-img" alt="jedi fallen order "></router-link></a>
-                                </div>
-                                <div class="col-lg-7">
-                                    <div class="card-body">
-                                        <h2 class="part-1">Do You Want to</h2>
-                                        <h1 class="part-2">LEND</h1>
-                                        <h2 class="part-3"> Games</h2>
-                                        <div class="text-center rent-btn">
-                                            <router-link to="/games" class="btn btn-success text-center mt-5">Lend</router-link>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-md-7">
+                        <h1 class="gamehub-heading">Largest <span>Game</span>
+                            <span>Exchanging</span> AND
+                            <span>Renting</span> Platform</h1>
+                        <h6>Play with over 15 million+ gamers in leagues,<br> tournaments & ladders.</h6>
+                        <a href="#" class="btn--secondery">BEGIN JOURNEY</a>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- Best selling -->
-        <section class="best-selling sign-in-bg">
-            <div class="container-fluid selling-width">
-                <div class="release-header">
-                    <h2>Best Selling</h2>
-                </div>
-                <div class="owl-carousel-two owl-carousel owl-theme">
-
-                    <div class="item" v-for="(game,index) in popularGames" :key="index">
-                        <div class="card" >
-                            <a href="#"><img class="card-img-top" :src="game.background_image" alt="doom"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Up Coming -->
-        <section class="up-coming">
-            <div class="container-fluid up-coming-width">
-                <div class="upcoming-header">
-                    <h2>UP Coming</h2>
-                </div>
-                <div class="owl-carousel-three owl-carousel owl-theme">
-                    <div class="item" v-for="(game,index) in upcomingGames" :key="index">
-                        <div class="card" >
-                            <a href="#"><img class="card-img-top" :src="game.background_image" alt="nioh2"></a>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- rented -->
-        <section class="more-rented sign-in-bg">
-            <div class="container-fluid rented-width">
+        <!-- exchange and lend sectio -->
+        <section class="exchange-lend-section">
+            <div class="container">
                 <div class="row">
-                    <div class="col-sm">
-                        <div class="rented-header">
-                            <h2>More Rented</h2>
+                    <div class="col-md-6">
+                        <div class="exchange-lend-section--exchange">
+                            <h3>Would you like to
+                                <span>Exchange</span> your CD?</h3>
+                            <a href="#" class="btn--secondery exchange-lend-section--exchange-btn">exchange</a>
                         </div>
-                        <div class="owl-carousel-four owl-carousel owl-theme">
-                            <div class="item" v-for="(rent,index) in rents" :key="index">
-                                <div class="card" >
-                                    <img class="card-img-top" :src="rent.game.data.assets.data[0].url" :alt="rent.game.data.name " v-if="rent.game.data.assets.data.length">
-                                    <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
-                                    <div class="card-body">
-                                        <h4 class="mb-2 game-name text-center">{{ rent.game.data.name }}</h4>
-                                    </div>
-                                    <div class="view-more-btn text-center pb-4">
-<!--                                        <a href="#" class="btn btn-dark">View More</a>-->
-                                        <router-link :to="{ path: '/rent-details/' + rent.id}"><a class="btn btn-dark">Read more</a></router-link>
-                                    </div>
-                                </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="exchange-lend-section--lend">
+                            <h3>DO YOU WANT TO
+                                <span>LEND</span> GAMES?</h3>
+                            <a href="#" class="btn--secondery exchange-lend-section--exchange-btn">lend</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- TRENDING GAMES -->
+        <section class="trending-section">
+            <div class="text-center">
+                <h2 class="section-heading">TRENDING GAMES</h2>
+            </div>
+            <div id="owl-trending" class="owl-carousel owl-theme">
+                <div class="item">
+                    <a href="#">
+                        <img src="../assets/img/trending.png" alt="trending">
+                    </a>
+                    <div class="trending-game--name-price d-flex justify-content-between">
+                        <a href="#">Fortnite</a>
+                        <span>$19.99</span>
+                    </div>
+                    <div class="trending-game--categories d-flex justify-content-between">
+                        <div class="home-categories">
+                            <a href="#">Action </a>,
+                            <a href="#">Fun</a>
+                        </div>
+
+                        <div class="d-flex">
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <img src="../assets/img/trending2.png" alt="trending">
+                    </a>
+                    <div class="trending-game--name-price d-flex justify-content-between">
+                        <a href="#">Fortnite</a>
+                        <span>$19.99</span>
+                    </div>
+                    <div class="trending-game--categories d-flex justify-content-between">
+                        <div class="home-categories">
+                            <a href="#">Action </a>,
+                            <a href="#">Fun</a>
+                        </div>
+
+                        <div class="d-flex">
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <img src="../assets/img/trending.png" alt="trending">
+                    </a>
+                    <div class="trending-game--name-price d-flex justify-content-between">
+                        <a href="#">Fortnite</a>
+                        <span>$19.99</span>
+                    </div>
+                    <div class="trending-game--categories d-flex justify-content-between">
+                        <div class="home-categories">
+                            <a href="#">Action </a>,
+                            <a href="#">Fun</a>
+                        </div>
+
+                        <div class="d-flex">
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <img src="../assets/img/trending2.png" alt="trending">
+                    </a>
+                    <div class="trending-game--name-price d-flex justify-content-between">
+                        <a href="#">Fortnite</a>
+                        <span>$19.99</span>
+                    </div>
+                    <div class="trending-game--categories d-flex justify-content-between">
+                        <div class="home-categories">
+                            <a href="#">Action </a>,
+                            <a href="#">Fun</a>
+                        </div>
+
+                        <div class="d-flex">
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <img src="../assets/img/trending.png" alt="trending">
+                    </a>
+                    <div class="trending-game--name-price d-flex justify-content-between">
+                        <a href="#">Fortnite</a>
+                        <span>$19.99</span>
+                    </div>
+                    <div class="trending-game--categories d-flex justify-content-between">
+                        <div class="home-categories">
+                            <a href="#">Action </a>,
+                            <a href="#">Fun</a>
+                        </div>
+
+                        <div class="d-flex">
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <a href="#">
+                        <img src="../assets/img/trending2.png" alt="trending">
+                    </a>
+                    <div class="trending-game--name-price d-flex justify-content-between">
+                        <a href="#">Fortnite</a>
+                        <span>$19.99</span>
+                    </div>
+                    <div class="trending-game--categories d-flex justify-content-between">
+                        <div>
+                            <a href="#">Action </a>
+                            <a href="#">Fun</a>
+                        </div>
+
+                        <div class="d-flex">
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- favorite-section -->
+        <section class="favorite-section">
+            <div class="text-center">
+                <h2 class="section-heading">BUY YOUR FAVORITE GAMES</h2>
+            </div>
+            <div id="owl-favorite" class="owl-carousel owl-theme">
+                <div class="item">
+                    <div class="favorite-games">
+                        <a href="#"><img src="../assets/img/favorite.png" alt="favorite"></a>
+                        <div class="favorite-games-categories d-flex justify-content-between align-items-center">
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="favorite-games">
+                        <a href="#"><img src="../assets/img/favorite.png" alt="favorite"></a>
+                        <div class="favorite-games-categories d-flex justify-content-between align-items-center">
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="favorite-games">
+                        <a href="#"><img src="../assets/img/favorite.png" alt="favorite"></a>
+                        <div class="favorite-games-categories d-flex justify-content-between align-items-center">
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="favorite-games">
+                        <a href="#"><img src="../assets/img/favorite.png" alt="favorite"></a>
+                        <div class="favorite-games-categories d-flex justify-content-between align-items-center">
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="favorite-games">
+                        <a href="#"><img src="../assets/img/favorite.png" alt="favorite"></a>
+                        <div class="favorite-games-categories d-flex justify-content-between align-items-center">
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="favorite-games">
+                        <a href="#"><img src="../assets/img/favorite.png" alt="favorite"></a>
+                        <div class="favorite-games-categories d-flex justify-content-between align-items-center">
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                            <a href="#"><img src="../assets/img/fav-1.png" alt="fav" class="img-fluid"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="upcoming-section">
+            <div class="text-center">
+                <h2 class="section-heading">UPCOMING GAMES</h2>
+            </div>
+            <div id="owl-upcoming" class="owl-carousel owl-theme">
+                <div class="item">
+
+                    <div class="owl-upcoming--item">
+                        <a href="#">
+                            <img src="../assets/img/trending.png" alt="trending">
+                        </a>
+                        <div class="d-flex upcoming-order">
+                            <a href="#">View Details</a>
+                            <a href="#">Pre-Order</a>
+                        </div>
+                    </div>
+                    <div class="upcoming-game--name-price d-flex justify-content-between">
+                        <a href="#">Fortnite</a>
+                        <span>$19.99</span>
+                    </div>
+                    <div class="upcoming-game--categories d-flex justify-content-between">
+                        <div class="home-categories">
+                            <a href="#">Action </a>,
+                            <a href="#">Fun</a>
+                        </div>
+
+                        <div class="d-flex">
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="owl-upcoming--item">
+                        <a href="#">
+                            <img src="../assets/img/trending2.png" alt="trending">
+                        </a>
+                        <div class="d-flex upcoming-order">
+                            <a href="#">View Details</a>
+                            <a href="#">Pre-Order</a>
+                        </div>
+                    </div>
+                    <div class="upcoming-game--name-price d-flex justify-content-between">
+                        <a href="#">Fortnite</a>
+                        <span>$19.99</span>
+                    </div>
+                    <div class="upcoming-game--categories d-flex justify-content-between">
+                        <div class="home-categories">
+                            <a href="#">Action </a>,
+                            <a href="#">Fun</a>
+                        </div>
+
+                        <div class="d-flex">
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="owl-upcoming--item">
+                        <a href="#">
+                            <img src="../assets/img/trending.png" alt="trending">
+                        </a>
+                        <div class="d-flex upcoming-order">
+                            <a href="#">View Details</a>
+                            <a href="#">Pre-Order</a>
+                        </div>
+                    </div>
+                    <div class="upcoming-game--name-price d-flex justify-content-between">
+                        <a href="#">Fortnite</a>
+                        <span>$19.99</span>
+                    </div>
+                    <div class="upcoming-game--categories d-flex justify-content-between">
+                        <div class="home-categories">
+                            <a href="#">Action </a>,
+                            <a href="#">Fun</a>
+                        </div>
+
+                        <div class="d-flex">
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="owl-upcoming--item">
+                        <a href="#">
+                            <img src="../assets/img/trending2.png" alt="trending">
+                        </a>
+                        <div class="d-flex upcoming-order">
+                            <a href="#">View Details</a>
+                            <a href="#">Pre-Order</a>
+                        </div>
+                    </div>
+                    <div class="upcoming-game--name-price d-flex justify-content-between">
+                        <a href="#">Fortnite</a>
+                        <span>$19.99</span>
+                    </div>
+                    <div class="upcoming-game--categories d-flex justify-content-between">
+                        <div class="home-categories">
+                            <a href="#">Action </a>,
+                            <a href="#">Fun</a>
+                        </div>
+
+                        <div class="d-flex">
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="owl-upcoming--item">
+                        <a href="#">
+                            <img src="../assets/img/trending.png" alt="trending">
+                        </a>
+                        <div class="d-flex upcoming-order">
+                            <a href="#">View Details</a>
+                            <a href="#">Pre-Order</a>
+                        </div>
+                    </div>
+                    <div class="upcoming-game--name-price d-flex justify-content-between">
+                        <a href="#">Fortnite</a>
+                        <span>$19.99</span>
+                    </div>
+                    <div class="upcoming-game--categories d-flex justify-content-between">
+                        <div class="home-categories">
+                            <a href="#">Action </a>,
+                            <a href="#">Fun</a>
+                        </div>
+
+                        <div class="d-flex">
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="owl-upcoming--item">
+                        <a href="#">
+                            <img src="../assets/img/trending2.png" alt="trending">
+                        </a>
+                        <div class="d-flex upcoming-order">
+                            <a href="#">View Details</a>
+                            <a href="#">Pre-Order</a>
+                        </div>
+                    </div>
+                    <div class="upcoming-game--name-price d-flex justify-content-between">
+                        <a href="#">Fortnite</a>
+                        <span>$19.99</span>
+                    </div>
+                    <div class="upcoming-game--categories d-flex justify-content-between">
+                        <div class="home-categories">
+                            <a href="#">Action </a>,
+                            <a href="#">Fun</a>
+                        </div>
+
+                        <div class="d-flex">
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="../assets/img/ps4.png" alt="ps4"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- notice board -->
+        <section class="noticed-board-section">
+            <div class="text-center">
+                <h2 class="section-heading">NEWS & NOTICE BOARD</h2>
+            </div>
+            <div class="container">
+                <div class="noticed-grid">
+                    <div class="notice-box">
+                        <img src="../assets/img/noticed1.png" alt="Noticed 1">
+                        <div class="noticed-details">
+                            <h6>Team up with Friends</h6>
+                            <p>Team up with your real-life mates in co-op mode to explore dedicated online content and missions.</p>
+                            <a href="#"><span>View More <i class="fas fa-arrow-right ml-2"></i></span></a>
+                        </div>
+                    </div>
+                    <div class="notice-box">
+                        <img src="../assets/img/noticed2.png" alt="noticed">
+                        <div class="noticed-details">
+                            <a href="#"><span>View More <i class="fas fa-arrow-right ml-2"></i></span></a>
+                        </div>
+                    </div>
+                    <div class="notice-box">
+                        <img src="../assets/img/noticed2.png" alt="noticed">
+                        <div class="noticed-details">
+                            <a href="#"><span>View More <i class="fas fa-arrow-right ml-2"></i></span></a>
+                        </div>
+                    </div>
+                    <div class="notice-box">
+                        <img src="../assets/img/noticed2.png" alt="noticed">
+                        <div class="noticed-details">
+                            <a href="#"><span>View More <i class="fas fa-arrow-right ml-2"></i></span></a>
+                        </div>
+                    </div>
+                    <div class="notice-box">
+                        <img src="../assets/img/noticed2.png" alt="noticed">
+                        <div class="noticed-details">
+                            <a href="#"><span>View More <i class="fas fa-arrow-right ml-2"></i></span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- featured section -->
+        <section class="featured-section">
+            <div class="text-center">
+                <h2 class="section-heading">FEATURED VIDEOS</h2>
+            </div>
+            <div class="container">
+                <div class="col-12">
+                    <div id="owl-video" class="owl-carousel owl-theme">
+                        <div class="item">
+                            <div class="featured-videos">
+                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="featured-videos">
+                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="featured-videos">
+                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="featured-videos">
+                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="featured-videos">
+                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="featured-videos">
+                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+        <!-- footer -->
+        <footer class="footer-section">
+            <div class="container">
+                <div class="footer-top">
+                    <a href="#" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
+                    <div class="footer-top--right">
+                        <span>Sign up for our newsletter.</span>
+                        <div class="footer-top--right-input-group">
+                            <div class="footer-top--right-input">
+                                <input type="text" class="" placeholder="E-mail address">
+                            </div>
+                            <button class="btn gamehub-search-btn" type="search">
+                                <i class="far fa-envelope"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row footer-middle">
+                    <div class="col-6 col-md-3">
+                        <div class="footer-menu-content">
+                            <ul>
+                                <li><a href="#">Company</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Join Us</a></li>
+                                <li><a href="#">Sponsors</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="footer-menu-content">
+                            <ul>
+                                <li><a href="#">Company</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Join Us</a></li>
+                                <li><a href="#">Sponsors</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="footer-menu-content">
+                            <ul>
+                                <li><a href="#">Company</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Join Us</a></li>
+                                <li><a href="#">Sponsors</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="footer-menu-content">
+                            <ul>
+                                <li><a href="#">Company</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Join Us</a></li>
+                                <li><a href="#">Sponsors</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <p>©2020 Game Hub Inc.</p>
+                    <div class="footer-bottom--social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </template>
 

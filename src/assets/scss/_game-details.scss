@@ -1,0 +1,39 @@
+.games-header-section {
+    background:  linear-gradient(90deg, rgba(0, 0, 0, 0.85) 18.75%, rgba(0, 0, 0, 0) 100%), url(../img/game-details.png);
+    height: 600px;
+    background-size: cover;
+    padding-top: 150px;
+    padding-bottom: 110px;
+    @include for-max-575 {
+        background-position: center;
+        height: initial;
+        padding-top: 60px;
+        padding-bottom: 50px;
+    }
+    &--content {
+        p {
+            font-weight: normal;
+            margin-bottom: 0;
+            font-family: circular-book;
+        }
+        .read-more {
+            color: $secondery;
+        }
+        .rent-now {
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+    }
+    &--platforms {
+        p {
+            margin-right: 10px;
+            font-family: circular-book;
+        }
+        a {
+            margin-right: 10px;
+        }
+    }
+}
+.game-name-img {
+    margin-bottom: 20px;
+}

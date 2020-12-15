@@ -1,0 +1,18 @@
+.title-section {
+    background: url(../img/title-bg.png);
+    background-repeat: no-repeat;
+    height: 300px;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.contact-title {
+    h2 {
+        font-size: 22px;
+        font-family: 'Roboto Condensed', sans-serif;
+        @include for-min-992 {
+            font-size: 40px;
+        }
+    }
+}

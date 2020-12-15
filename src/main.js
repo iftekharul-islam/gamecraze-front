@@ -1,8 +1,9 @@
+// import './assets/scss/owl/owl.carousel.min.css'
 import './assets/scss/owl/owl.carousel.min.css'
 import './assets/scss/owl/owl.theme.default.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/scss/style.css'
-import './assets/admin/dist/css/adminlte.css'
+// import './assets/admin/dist/css/adminlte.css'
 import "vue-select/dist/vue-select.css";
 import 'v-toaster/dist/v-toaster.css'
 

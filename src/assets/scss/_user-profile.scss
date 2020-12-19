@@ -67,4 +67,40 @@
             }
         }
     }
+    .tab-content {
+        margin-left: 3rem;
+    }
+}
+
+.over-view {
+    table {
+        tr {
+            td {
+                color: $text-light;
+                &:nth-child(1) {
+                    width: 200px;
+                }
+                img {
+                    width: 260px;
+                    height: 150px;
+                }
+            }
+        }
+    }
+}
+
+.post-rent {
+    .form-group {
+        margin-bottom: 25px;
+    }
+    .custom-file {
+        margin-bottom: 25px;
+    }
+}
+.img-prev {
+    img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+    }
 }

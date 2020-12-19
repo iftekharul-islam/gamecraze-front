@@ -3518,6 +3518,38 @@ html {
   color: #fff;
 }
 
+.user-profile-details .tab-content {
+  margin-left: 3rem;
+}
+
+.over-view table tr td {
+  color: #fff;
+}
+
+.over-view table tr td:nth-child(1) {
+  width: 200px;
+}
+
+.over-view table tr td img {
+  width: 260px;
+  height: 150px;
+}
+
+.post-rent .form-group {
+  margin-bottom: 25px;
+}
+
+.post-rent .custom-file {
+  margin-bottom: 25px;
+}
+
+.img-prev img {
+  width: 100%;
+  height: 400px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .btn:focus {
   outline: none;
 }

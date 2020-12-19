@@ -5,7 +5,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-7">
-                        <h1 class="gamehub-heading">Largest <span>Game</span>
+                        <h1 class="gamehub-heading">Largest <span>Game</span><br>
                             <span>Exchanging</span> AND
                             <span>Renting</span> Platform</h1>
                         <h6>Play with over 15 million+ gamers in leagues,<br> tournaments & ladders.</h6>

@@ -51,7 +51,8 @@ let router = new Router({
             path: '/login',
             component: Login,
             meta: {
-                requiresAuth: false
+                requiresAuth: false,
+                bodyClass: 'bg-light'
             }
         },
         {

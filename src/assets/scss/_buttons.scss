@@ -32,6 +32,17 @@
       background: $secondery;
     }
   }
+  &--registration {
+    background: $secondery;
+    border: 1px solid $secondery;
+    border-radius: 0;
+    color: $text-dark;
+    &:hover {
+      color: $text-light;
+      background: $secondery;
+      border-color: $secondery;
+    }
+  }
 }
 // owl dots
  

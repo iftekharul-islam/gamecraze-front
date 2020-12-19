@@ -27,7 +27,7 @@
                             <router-link class="router_link" to="/games">Games</router-link>
                         </li>
                         <li>
-                            <router-link class="router_link" to="/supports">Supports</router-link>
+                            <router-link class="router_link" to="/support">Supports</router-link>
                         </li>
                         <li>
                             <router-link class="router_link" to="/contacts">Contact us</router-link>

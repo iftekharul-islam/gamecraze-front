@@ -30,11 +30,12 @@
     ul {
         margin: auto;
         display: flex;
+        justify-content: center;
         @include for-max-992 {
             display: block;
         }
         li {
-            padding: 0 20px;
+           
             @include for-max-992 {
                 margin-bottom: 20px;
                 width: fit-content;
@@ -45,22 +46,29 @@
             &:last-child {
                 margin-right: 0;
             }
-            &.active {
-                position: relative;
-                &::after {
-                    content: "";
-                    width: 83px;
-                    height: 4px;
-                    position: absolute;
-                    background: $secondery;
-                    top: 49px;
-                    left: 0;
-                    right: 0;
-                    margin: auto;
-                    clip-path: polygon(7px 0, 100% 0%, 77px 100%, 0% 100%);
-                    @include for-max-992 {
-                        top: 28px;
-                    }
+           
+            a {
+                padding: 0 20px;
+                &.router-link-exact-active {
+                            position: relative;
+                            &::after {
+                                content: "";
+                                width: 83px;
+                                height: 4px;
+                                position: absolute;
+                                background: $secondery;
+                                top: 60px;
+                                left: 0;
+                                right: 0;
+                                margin: auto;
+                                clip-path: polygon(7px 0, 100% 0%, 77px 100%, 0% 100%);
+                                @include for-max-992 {
+                                    top: 28px;
+                                }
+                            }
+                }
+                &:hover {
+                    color: $secondery;
                 }
             }
         }
@@ -145,10 +153,11 @@
     align-items: center;
     @include for-max-575 {
         margin-left: 15px;
+        flex-wrap: wrap;
     }
     &--content {
             margin-right: 0px;
-        
+            
         &:last-child {
             margin-right: 0;
                 margin-left: 20px;
@@ -160,6 +169,10 @@
         }
         &:first-child {
             display: flex;
+            @include for-max-575 {
+                flex-basis: 100%;
+                margin-bottom: 20px;
+            }
         }
         &:nth-child(2) {
             width: 116px;

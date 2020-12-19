@@ -1,17 +1,62 @@
-.login-section {
-    padding-top: 40px;
+
+.body-position {
+    position: relative;
+    height: 100vh !important;
+    .copyright-section {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+    }
 }
+.login-section,
+.registration-section {
+    padding-top: 40px;
+    padding-bottom: 150px;
+    // .form-check {
+    //     padding-left: 0;
+    // }
+}
+.registration-form {
+    margin-top: 100px;
+    ul {
+        li {
+                 font-size: 24px;
+                font-style: italic;
+                padding: 0;
+                color: $secondery;
+                margin-top: 100px;
+        }
+    }
+    .form-group {
+        input {
+            border-radius: 0;
+            border: none;
+        }
+    }
+}
+
 .login-form {
+    margin-top: 50px;
     ul {
         li {
             a {
                 font-size: 32px;
                 font-style: italic;
                 padding: 0;
+                color: $text-light !important;
+                @include for-max-1500 {
+                    font-size: 20px;
+                }
                 &.active {
                     color: $secondery !important;
-                    background: none !important;
+                    background: none;
                     font-size: 24px;
+                    @include for-max-1500 {
+                        font-size: 16px;
+                    }
+                }
+                &:hover {
+                    color: $secondery !important;
                 }
             }
         }
@@ -27,7 +72,37 @@
     input,label {
         cursor: pointer;
     }
+    input {
+        width: initial;
+    }
 }
 .login-logo {
     margin-bottom: 100px;
+}
+.floating-label-group {
+    position: relative;
+    .floating-label {
+        position: absolute;
+        top: 0;
+        color: $text-dark;
+        left: 0;
+        background: $secondery;
+        height: 38px;
+        width: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    input {
+        padding-left: 48px;
+    }
+}
+.error-message {
+    color: red;
+}
+.custom-checkbox {
+    input,
+    label {
+        cursor: pointer;
+    }
 }

@@ -5,7 +5,7 @@
         <nav class="navbar navbar-expand-lg gamehub-menu fixed-top">
             <div class="container">
                 <!-- logo -->
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/">
                     <img src="../../assets/img/logo/gamehublogo.svg" class="img-fluid gamehub--logo" alt="Gamehub Logo logo">
                 </a>
 

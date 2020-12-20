@@ -1358,6 +1358,12 @@ html {
   padding: 0 20px;
 }
 
+@media (max-width: 1200px) {
+  .gamehub-menu-collapse ul li a {
+    padding: 0 15px;
+  }
+}
+
 .gamehub-menu-collapse ul li a.router-link-exact-active {
   position: relative;
 }
@@ -1783,30 +1789,42 @@ html {
 }
 
 .trending-section .item {
-  margin-left: -55px;
+  margin-left: -69px;
 }
 
 @media (max-width: 1800px) {
   .trending-section .item {
-    margin-left: -50px;
+    margin-left: -77px;
   }
 }
 
 @media (max-width: 1600px) {
   .trending-section .item {
-    margin-left: -45px;
+    margin-left: -69px;
+  }
+}
+
+@media (max-width: 1500px) {
+  .trending-section .item {
+    margin-left: -82px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .trending-section .item {
+    margin-left: -69px;
   }
 }
 
 @media (max-width: 1200px) {
   .trending-section .item {
-    margin-left: -52px;
+    margin-left: -91px;
   }
 }
 
 @media (max-width: 992px) {
   .trending-section .item {
-    margin-left: -43px;
+    margin-left: -69px;
   }
 }
 
@@ -1816,13 +1834,16 @@ html {
   }
 }
 
-.trending-section .item a img {
-  -webkit-clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
-          clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+.trending-section .item .trending-image img {
+  -webkit-clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
+          clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
+  height: 238px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 @media (max-width: 900px) {
-  .trending-section .item a img {
+  .trending-section .item .trending-image img {
     -webkit-clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
             clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
   }
@@ -1832,9 +1853,19 @@ html {
   position: relative;
 }
 
+.trending-section .owl-nav.disabled {
+  display: block !important;
+}
+
+@media (max-width: 575px) {
+  .trending-section .owl-nav.disabled {
+    display: none !important;
+  }
+}
+
 .trending-section .owl-nav button {
   position: absolute;
-  top: -220px;
+  top: -270px;
   width: 50px;
   height: 50px;
   -webkit-transform: skewX(-13deg);
@@ -1918,6 +1949,10 @@ html {
   margin-top: 20px;
 }
 
+.trending-game--name-price a {
+  height: 60px;
+}
+
 .trending-game--name-price a, .trending-game--name-price span {
   font-size: 20px;
 }
@@ -1931,6 +1966,23 @@ html {
 
 .trending-game--categories > div a {
   margin-left: 5px;
+}
+
+.home-categories {
+  width: 60%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.home-platform a {
+  margin-right: 10px;
+}
+
+.home-platform a:last-of-type {
+  margin-right: 0;
 }
 
 .favorite-section {
@@ -2097,6 +2149,17 @@ html {
   }
 }
 
+.favorite-games-categories a img {
+  height: initial;
+}
+
+.favorite-games img {
+  height: 350px;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .upcoming-section {
   padding-bottom: 150px;
 }
@@ -2156,13 +2219,16 @@ html {
   opacity: 1;
 }
 
-.upcoming-section .item a img {
+.upcoming-section .item .upcoming-image img {
   -webkit-clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
           clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+  height: 270px;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 @media (max-width: 900px) {
-  .upcoming-section .item a img {
+  .upcoming-section .item .upcoming-image img {
     -webkit-clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
             clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
   }
@@ -2172,9 +2238,13 @@ html {
   position: relative;
 }
 
+.upcoming-section .owl-nav.disabled {
+  display: block !important;
+}
+
 .upcoming-section .owl-nav button {
   position: absolute;
-  top: -220px;
+  top: -270px;
   width: 50px;
   height: 50px;
   -webkit-transform: skewX(-13deg);

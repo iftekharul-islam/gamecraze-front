@@ -19,6 +19,7 @@
             }
 
             .item {
+               
                 @include for-max-575 {
                     height: 100%;
                     margin-top: 0;
@@ -30,6 +31,7 @@
                         height: 100%;
                     }
                   img {
+                       
                     @include for-max-575 {
                         height: 100%;
                     }
@@ -121,6 +123,16 @@
         @include for-max-575 {
             display: none !important;
         }
+        a {
+            img {
+                height: initial;
+            }
+        }
         
+    }
+    img {
+        height: 350px;
+        width: 100%;
+        object-fit: cover;
     }
 }

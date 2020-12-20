@@ -44,22 +44,25 @@
             </div>
             <div id="owl-trending" class="owl-carousel owl-theme">
 
-                <div class="item" v-for="(game, index) in latestGames" :key="index">
+
+                <div class="item" v-for="(trending, index) in trendingGames" :key="index">
                     <a class="trending-image" href="#">
-                        <img :src="game.assets.data[0].url" alt="Code vein"  v-if="game.assets.data.length">
+                        <img :src="trending.game.data.assets.data[0].url" alt="Code vein"  v-if="trending.game.data.assets.data.length">
                         <img src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
                     </a>
                     <div class="trending-game--name-price d-flex justify-content-between">
-                        <a href="#">{{ game.name }}</a>
-<!--                      <span>$19.99</span>-->
+                        <a href="#">{{ trending.game.data.name }}</a>
+<!--                        <span>$19.99</span>-->
                     </div>
                     <div class="trending-game--categories d-flex justify-content-between">
                         <div class="home-categories">
-                            <a href="#" v-for="(genre) in game.genres.data">{{ genre.name }}</a>
+                            <a href="#" v-for="(genre) in trending.game.data.genres.data">{{ genre.name }}</a>
                         </div>
 
+
                         <div class="d-flex home-platform">
-                            <a href="#" v-for="(platform) in game.platforms.data"><img :src=platform.url :alt="platform.name"></a>
+                            <a href="#" v-for="(platform) in trending.game.data.platforms.data"><img :src=platform.url :alt="platform.name"></a>
+
                         </div>
                     </div>
                 </div>
@@ -68,15 +71,16 @@
         <!-- favorite-section -->
         <section class="favorite-section">
             <div class="text-center">
-                <h2 class="section-heading">BUY YOUR FAVORITE GAMES</h2>
+                <h2 class="section-heading">UPCOMING GAMES</h2>
             </div>
             <div id="owl-favorite" class="owl-carousel owl-theme">
-                <div class="item" v-for="(rent,index) in rents" :key="index">
+                <div class="item" v-for="(game, index) in popularGames" :key="index">
+<!--                <div class="item" v-for="(rent,index) in rents" :key="index">-->
                     <div class="favorite-games">
-                        <img class="card-img-top" :src="rent.game.data.assets.data[0].url" :alt="rent.game.data.name " v-if="rent.game.data.assets.data.length">
-                        <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
+                        <img :src="game.assets.data[0].url" alt="Code vein"  v-if="game.assets.data.length">
+                        <img src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
                         <div class="favorite-games-categories d-flex justify-content-between align-items-center">
-                            <a href="#"><img :src="rent.platform.data.url" :alt="rent.platform.data.name" class="img-fluid"></a>
+                            <a href="#" v-for="(platform) in game.platforms.data"><img :src=platform.url :alt="platform.name" class="img-fluid"></a>
                         </div>
                     </div>
                 </div>
@@ -84,24 +88,25 @@
         </section>
         <section class="upcoming-section">
             <div class="text-center">
-                <h2 class="section-heading">UPCOMING GAMES</h2>
+                <h2 class="section-heading">RENT YOUR FAVORITE GAMES</h2>
             </div>
             <div id="owl-upcoming" class="owl-carousel owl-theme">
-                <div class="item" v-for="(game, index) in popularGames" :key="index">
+                <div class="item" v-for="(rent,index) in rents" :key="index">
 
                     <div class="owl-upcoming--item">
+
                         <a class="upcoming-image" href="#">
-                            <img :src="game.assets.data[0].url" alt="Code vein"  v-if="game.assets.data.length">
-                            <img src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
+                            <img class="card-img-top" :src="rent.game.data.assets.data[0].url" :alt="rent.game.data.name " v-if="rent.game.data.assets.data.length">
+                            <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
                         </a>
                         <div class="d-flex upcoming-order">
-                            <a href="#">View Details</a>
-                            <a href="#">Pre-Order</a>
+                            <router-link :to="{ path: '/rent-details/' + rent.id}">View Details</router-link>
+                            <a href="#">Rent</a>
                         </div>
                     </div>
                     <div class="upcoming-game--name-price d-flex justify-content-between">
-                        <a href="#">{{ game.name }}</a>
-<!--                        <span>$19.99</span>-->
+                        <a href="#">{{ rent.name }}</a>
+                        <!--                        <span>$19.99</span>-->
                     </div>
                     <div class="upcoming-game--categories d-flex justify-content-between">
                         <div class="home-categories">
@@ -110,7 +115,7 @@
                         </div>
 
                         <div class="d-flex">
-                            <a href="#" v-for="(platform) in game.platforms.data"><img :src=platform.url alt="ps4"></a>
+                            <a href="#"><img :src="rent.platform.data.url" :alt="rent.platform.data.name" class="img-fluid"></a>
                         </div>
                     </div>
                 </div>
@@ -284,7 +289,7 @@
     export default {
         data() {
             return {
-                latestGames: [],
+                trendingGames: [],
                 upcomingGames: [],
                 rents: [],
                 popularGames: [],
@@ -558,12 +563,12 @@
                 //     }
                 // })
             },
-            getLatestGames: function () {
-                this.$api.get('games/latest?include=assets,genres,platforms').then(response => {
+            getTrendingGames: function () {
+                this.$api.get('games/trending?include=game,game.assets,game.genres,game.platforms').then(response => {
                     var vm = this;
-                    vm.latestGames = response.data.data;
-                    console.log('latestGames')
-                    console.log(vm.latestGames)
+                    vm.trendingGames = response.data.data;
+                    console.log('trendingGames')
+                    console.log(vm.trendingGames)
                     Vue.nextTick(function(){
                         vm.carouselOne();
                     }.bind(vm));
@@ -583,7 +588,7 @@
                     var vm = this;
                     vm.popularGames = response.data.data;
                     Vue.nextTick(function(){
-                        vm.carouselTwo();
+                        vm.carouselFour();
                     }.bind(vm));
                 });
             },
@@ -592,7 +597,7 @@
                     var vm = this;
                     vm.rents = response.data.data;
                     Vue.nextTick(function(){
-                        vm.carouselFour();
+                        vm.carouselTwo();
                     }.bind(vm));
                 });
             },
@@ -601,7 +606,7 @@
             }
         },
         created() {
-            this.getLatestGames();
+            this.getTrendingGames();
             this.getUpcomingGames();
             this.getPopularGames();
             this.getRentGames();

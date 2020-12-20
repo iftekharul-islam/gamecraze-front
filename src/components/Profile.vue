@@ -142,11 +142,119 @@
                         <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-overview" role="tabpanel" aria-labelledby="v-pills-overview-tab">
                             <div class="over-view">
-
+                                <table class="table table-borderless">
+                                    <tbody>
+                                        <tr>
+                                            <td scope="row">Name:</td>
+                                            <td>Minhaj</td>
+                                        </tr>
+                                        <tr>
+                                           <td scope="row">Username:</td>
+                                            <td>sabertooth_wolf</td>
+                                        </tr>
+                                        <tr>
+                                           <td scope="row">Gender:</td>
+                                            <td>Male</td>
+                                        </tr>
+                                        <tr>
+                                           <td scope="row">Date of Birth:</td>
+                                            <td>Male</td>
+                                        </tr>
+                                        <tr>
+                                           <td scope="row">Email:</td>
+                                            <td>Male</td>
+                                        </tr>
+                                        <tr>
+                                           <td scope="row">Mobile No:</td>
+                                            <td>Male</td>
+                                        </tr>
+                                        <tr>
+                                           <td scope="row">Address:</td>
+                                            <td>Male</td>
+                                        </tr>
+                                        <tr>
+                                           <td scope="row">City:</td>
+                                            <td>Male</td>
+                                        </tr>
+                                        <tr>
+                                           <td scope="row">Post Code:</td>
+                                            <td>Male</td>
+                                        </tr>
+                                         <tr>
+                                           <td scope="row">NID No:</td>
+                                            <td>Male</td>
+                                        </tr>
+                                         <tr>
+                                           <td scope="row">NID Image:</td>
+                                            <td><img src="../assets/img/nid.png" alt="nid" class="img-fluid"></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                         <div class="tab-pane fade" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">...</div>
-                        <div class="tab-pane fade" id="v-pills-post-rent" role="tabpanel" aria-labelledby="v-pills-post-rent-tab">...</div>
+                        <div class="tab-pane fade" id="v-pills-post-rent" role="tabpanel" aria-labelledby="v-pills-post-rent-tab">
+                            <div class="post-rent">
+                                <form action="#">
+                                     <div class="form-group row">
+                                        <label for="gamename" class="col-sm-3 col-form-label">Game Name:</label>
+                                        <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="gamename">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="gamenumber" class="col-sm-3 col-form-label">Max Rented Week:</label>
+                                        <div class="col-sm-9">
+                                        <input type="number" class="form-control" id="gamenumber">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="gamendate" class="col-sm-3 col-form-label">Available from:</label>
+                                        <div class="col-sm-9">
+                                        <input type="date" class="form-control" id="gamendate">
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label for="gamedisk" class="col-sm-3 col-form-label">Disk Condition:</label>
+                                        <div class="col-sm-9">
+                                        <select id="gamedisk" class="form-control">
+                                            <option selected>Please Select Disk Condition</option>
+                                            <option>...</option>
+                                        </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Disk Image:</label>
+                                        <div class="col-sm-9">
+                                            <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="customFile">
+                                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                                </div>
+                                                <div class="img-prev">
+                                                    <img src="../assets/img/disk.png" alt="img previes">
+                                                </div>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label">Cover Image:</label>
+                                        <div class="col-sm-9">
+                                            <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="customFile2">
+                                                    <label class="custom-file-label" for="customFile2">Choose file</label>
+                                                </div>
+                                                <div class="img-prev">
+                                                    <img src="../assets/img/disk.png" alt="img previes">
+                                                </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="offset-md-3 col-md-9">
+                                            <button class="btn--secondery w-100">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
                         <div class="tab-pane fade" id="v-pills-edit-profile" role="tabpanel" aria-labelledby="v-pills-edit-profile-tab">...</div>
                         </div>
                     </div>

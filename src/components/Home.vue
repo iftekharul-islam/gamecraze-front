@@ -44,8 +44,9 @@
             </div>
             <div id="owl-trending" class="owl-carousel owl-theme">
 
+
                 <div class="item" v-for="(trending, index) in trendingGames" :key="index">
-                    <a href="#">
+                    <a class="trending-image" href="#">
                         <img :src="trending.game.data.assets.data[0].url" alt="Code vein"  v-if="trending.game.data.assets.data.length">
                         <img src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
                     </a>
@@ -58,8 +59,10 @@
                             <a href="#" v-for="(genre) in trending.game.data.genres.data">{{ genre.name }}</a>
                         </div>
 
-                        <div class="d-flex">
+
+                        <div class="d-flex home-platform">
                             <a href="#" v-for="(platform) in trending.game.data.platforms.data"><img :src=platform.url :alt="platform.name"></a>
+
                         </div>
                     </div>
                 </div>
@@ -91,7 +94,8 @@
                 <div class="item" v-for="(rent,index) in rents" :key="index">
 
                     <div class="owl-upcoming--item">
-                        <a href="#">
+
+                        <a class="upcoming-image" href="#">
                             <img class="card-img-top" :src="rent.game.data.assets.data[0].url" :alt="rent.game.data.name " v-if="rent.game.data.assets.data.length">
                             <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
                         </a>
@@ -316,6 +320,12 @@
                             dots:false,
                             nav: true,
                         },
+                        768:{
+                            stagePadding: 0,
+                            items: 3,
+                            dots:false,
+                            nav: true,
+                        },
                         900:{
                             items: 2,
                             stagePadding: 150,
@@ -324,7 +334,10 @@
                             items: 3,
                         },
                         1500:{
-                            items: 4
+                            items: 4,
+                        },
+                        1800:{
+                            items: 5
                         }
                     }
                 });
@@ -394,7 +407,7 @@
                             items: 3,
                         },
                         1500:{
-                            items: 4
+                            items: 5
                         }
                     }
                 });
@@ -500,15 +513,17 @@
                             items: 3,
                             stagePadding: 100,
                         },
-                        1200:{
-                            items: 3,
-                            stagePadding: 150,
-                        },
-                        1500:{
+                        1100:{
                             items: 4,
+                            stagePadding: 100,
+                        },
+                          1300:{
+                            items: 5,
+                            stagePadding: 100,
                         },
                         1800:{
-                            items: 5
+                            items: 6,
+                             stagePadding: 100,
                         }
                     }
                 });

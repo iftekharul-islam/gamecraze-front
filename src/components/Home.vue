@@ -45,20 +45,20 @@
             <div id="owl-trending" class="owl-carousel owl-theme">
 
                 <div class="item" v-for="(game, index) in latestGames" :key="index">
-                    <a href="#">
+                    <a class="trending-image" href="#">
                         <img :src="game.assets.data[0].url" alt="Code vein"  v-if="game.assets.data.length">
                         <img src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
                     </a>
                     <div class="trending-game--name-price d-flex justify-content-between">
                         <a href="#">{{ game.name }}</a>
-<!--                        <span>$19.99</span>-->
+<!--                      <span>$19.99</span>-->
                     </div>
                     <div class="trending-game--categories d-flex justify-content-between">
                         <div class="home-categories">
                             <a href="#" v-for="(genre) in game.genres.data">{{ genre.name }}</a>
                         </div>
 
-                        <div class="d-flex">
+                        <div class="d-flex home-platform">
                             <a href="#" v-for="(platform) in game.platforms.data"><img :src=platform.url :alt="platform.name"></a>
                         </div>
                     </div>
@@ -90,7 +90,7 @@
                 <div class="item" v-for="(game, index) in popularGames" :key="index">
 
                     <div class="owl-upcoming--item">
-                        <a href="#">
+                        <a class="upcoming-image" href="#">
                             <img :src="game.assets.data[0].url" alt="Code vein"  v-if="game.assets.data.length">
                             <img src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
                         </a>
@@ -315,6 +315,12 @@
                             dots:false,
                             nav: true,
                         },
+                        768:{
+                            stagePadding: 0,
+                            items: 3,
+                            dots:false,
+                            nav: true,
+                        },
                         900:{
                             items: 2,
                             stagePadding: 150,
@@ -323,7 +329,10 @@
                             items: 3,
                         },
                         1500:{
-                            items: 4
+                            items: 4,
+                        },
+                        1800:{
+                            items: 5
                         }
                     }
                 });
@@ -393,7 +402,7 @@
                             items: 3,
                         },
                         1500:{
-                            items: 4
+                            items: 5
                         }
                     }
                 });
@@ -499,15 +508,17 @@
                             items: 3,
                             stagePadding: 100,
                         },
-                        1200:{
-                            items: 3,
-                            stagePadding: 150,
-                        },
-                        1500:{
+                        1100:{
                             items: 4,
+                            stagePadding: 100,
+                        },
+                          1300:{
+                            items: 5,
+                            stagePadding: 100,
                         },
                         1800:{
-                            items: 5
+                            items: 6,
+                             stagePadding: 100,
                         }
                     }
                 });

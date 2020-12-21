@@ -52,7 +52,7 @@
                     </a>
                     <div class="trending-game--name-price d-flex justify-content-between">
                         <a href="#">{{ trending.game.data.name }}</a>
-<!--                        <span>$19.99</span>-->
+                        <!-- <span>$19.99</span>-->
                     </div>
                     <div class="trending-game--categories d-flex justify-content-between">
                         <div class="home-categories">

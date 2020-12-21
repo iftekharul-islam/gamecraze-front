@@ -1637,6 +1637,10 @@ html {
           box-shadow: none;
 }
 
+.body-home .copyright-section {
+  display: none;
+}
+
 .slider-section {
   background: url(../img/Juggernaut.png);
   background-repeat: no-repeat;

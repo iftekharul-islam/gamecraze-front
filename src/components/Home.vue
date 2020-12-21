@@ -475,6 +475,12 @@
             this.getTrendingGames();
             this.getNewGames();
             this.getRentGames();
+        },
+        mounted () {
+        document.body.classList.add('body-home')
+        },
+        destroyed () {
+        document.body.classList.remove('body-home')
         }
     }
 </script>

@@ -66,44 +66,22 @@
                         </div>
                     </div>
                 </div>
-                <!-- <div class="item">
-                    <a href="#">
-                        <img src="img/trending.png" alt="trending">
-                    </a>
-                    <div class="trending-game--name-price d-flex justify-content-between">
-                        <a href="#">Fortnite</a>
-                        <span>$19.99</span>
-                    </div>
-                    <div class="trending-game--categories d-flex justify-content-between">
-                        <div class="home-categories">
-                            <a href="#">Action </a>,
-                            <a href="#">Fun</a>
-                        </div>
-
-                        <div class="d-flex">
-                            <a href="#"><img src="img/ps4.png" alt="ps4"></a>
-                            <a href="#"><img src="img/ps4.png" alt="ps4"></a>
-                            <a href="#"><img src="img/ps4.png" alt="ps4"></a>
-                            <a href="#"><img src="img/ps4.png" alt="ps4"></a>
-                        </div>
-                    </div>
-                </div> -->
                 </div>
         </section>
         <!-- favorite-section -->
         <section class="favorite-section">
             <div class="text-center">
                  <h2 class="section-heading">RENT YOUR FAVORITE GAMES</h2>
-               
+
             </div>
             <div id="owl-favorite" class="owl-carousel owl-theme">
-                <div class="item" v-for="(game, index) in popularGames" :key="index">
-<!--                <div class="item" v-for="(rent,index) in rents" :key="index">-->
+<!--                <div class="item" v-for="(game, index) in popularGames" :key="index">-->
+                <div class="item" v-for="(rent, index) in rents" :key="index">
                     <div class="favorite-games">
-                        <a href="#" v-if="game.assets.data.length"><img :src="game.assets.data[0].url" alt="Code vein"  ></a>
-                       <a href="#" v-else> <img src="../assets/img/rented/dummy-image.jpg" alt="no-image" ></a>
+                        <a href="#" v-if="rent.game.data.assets.data.length"><img :src="rent.game.data.assets.data[0].url" alt="Code vein"  ></a>
+                       <a href="#" v-else> <img src="../assets/img/rented/dummy-image.jpg" alt="no-image"></a>
                         <div class="favorite-games-categories d-flex justify-content-center align-items-center">
-                            <a href="#" v-for="(platform) in game.platforms.data"><img :src=platform.url :alt="platform.name" class="img-fluid"></a>
+                            <a href="#"><img :src="rent.platform.data.url" :alt="rent.platform.data.name" class="img-fluid"></a>
                         </div>
                     </div>
                 </div>
@@ -114,31 +92,30 @@
                 <h2 class="section-heading">UPCOMING GAMES</h2>
             </div>
             <div id="owl-upcoming" class="owl-carousel owl-theme">
-                <div class="item" v-for="(rent,index) in rents" :key="index">
+                <div class="item" v-for="(game, index) in upcomingGames" :key="index">
+<!--                <div class="item" v-for="(rent,index) in rents" :key="index">-->
 
                     <div class="owl-upcoming--item">
 
                         <a class="upcoming-image" href="#">
-                            <img class="card-img-top" :src="rent.game.data.assets.data[0].url" :alt="rent.game.data.name " v-if="rent.game.data.assets.data.length">
+                            <img class="card-img-top" :src="game.assets.data[0].url" alt="Code vein"  v-if="game.assets.data.length">
                             <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
                         </a>
                         <div class="d-flex upcoming-order">
-                            <router-link :to="{ path: '/rent-details/' + rent.id}">View Details</router-link>
+                            <router-link :to="{ path: '/game-details/' + game.id}">View Details</router-link>
                             <a href="#">Rent</a>
                         </div>
                     </div>
                     <div class="upcoming-game--name-price d-flex justify-content-between">
-                        <a href="#">{{ rent.name }}</a>
-                        <!--                        <span>$19.99</span>-->
+                        <a href="#">{{ game.name }}</a>
                     </div>
                     <div class="upcoming-game--categories d-flex justify-content-between">
                         <div class="home-categories">
-                            <a href="#">Action </a>,
-                            <a href="#">Fun</a>
+                            <a href="#" v-for="(genre) in game.genres.data">{{ genre.name }}</a>
                         </div>
 
                         <div class="d-flex">
-                            <a href="#"><img :src="rent.platform.data.url" :alt="rent.platform.data.name" class="img-fluid"></a>
+                            <a href="#" v-for="(platform) in game.platforms.data"><img :src=platform.url :alt="platform.name"></a>
                         </div>
                     </div>
                 </div>
@@ -315,7 +292,6 @@
                 trendingGames: [],
                 upcomingGames: [],
                 rents: [],
-                popularGames: [],
             }
         },
         methods: {
@@ -364,39 +340,6 @@
                         }
                     }
                 });
-                // $('.owl-carousel-one').owlCarousel({
-                //     loop: true,
-                //     margin: 10,
-                //     autoplay: false,
-                //     nav: true,
-                //     navText: [
-                //         '<img src="' + this.$baseApi + 'img/icon/left-arrow.png' + '">',
-                //         '<img src="' + this.$baseApi + 'img/icon/right-arrow.png' + '">'
-                //     ],
-                //     dots: false,
-                //     responsive: {
-                //         0: {
-                //             items: 1
-                //         },
-                //         575: {
-                //             items: 2
-                //         },
-                //         768: {
-                //             items: 2
-                //         },
-                //         992: {
-                //             items: 3
-                //         },
-                //         1200: {
-                //             items: 3,
-                //             nav: true
-                //         },
-                //         1400: {
-                //             items: 4,
-                //             nav: true
-                //         }
-                //     }
-                // });
             },
             carouselTwo: function() {
                 $('#owl-upcoming').owlCarousel({
@@ -422,6 +365,12 @@
                             dots:false,
                             nav: true,
                         },
+                        768:{
+                            stagePadding: 0,
+                            items: 3,
+                            dots:false,
+                            nav: true,
+                        },
                         900:{
                             items: 2,
                             stagePadding: 150,
@@ -430,81 +379,13 @@
                             items: 3,
                         },
                         1500:{
+                            items: 4,
+                        },
+                        1800:{
                             items: 5
                         }
                     }
                 });
-                // $('.owl-carousel-two').owlCarousel({
-                //     loop:true,
-                //     margin:10,
-                //     nav: true,
-                //     autoplay: true,
-                //     navText: [
-                //         '<img src="' + this.$baseApi + 'img/icon/left-arrow.png' + '">',
-                //         '<img src="' + this.$baseApi + 'img/icon/right-arrow.png' + '">'
-                //     ],
-                //     dots: false,
-                //     responsive:{
-                //         0:{
-                //             items:1
-                //         },
-                //         575:{
-                //             items:2
-                //         },
-                //         768:{
-                //             items:3
-                //         },
-                //         992:{
-                //             items:4,
-                //             nav: true
-                //         },
-                //         1200:{
-                //             items:4,
-                //             nav: true
-                //         },
-                //         1400:{
-                //             items:4,
-                //             nav: true
-                //         }
-                //     }
-                // });
-            },
-            carouselThree: function() {
-                $('.owl-carousel-three').owlCarousel({
-                    loop:true,
-                    margin:10,
-                    nav: true,
-                    autoplay: true,
-                    navText: [
-                        '<img src="' + this.$baseApi + 'img/icon/left-arrow.png' + '">',
-                        '<img src="' + this.$baseApi + 'img/icon/right-arrow.png' + '">'
-                    ],
-                    dots: false,
-                    responsive:{
-                        0:{
-                            items:1
-                        },
-                        575:{
-                            items:2
-                        },
-                        768:{
-                            items:3,
-                            nav: true
-                        },
-                        992:{
-                            items:3,
-                            nav: true
-                        },
-                        1200:{
-                            items:3,
-                            nav: true
-                        },
-                        1400:{
-                            items:3,
-                            nav: true
-                        }
-                    }
-                })
             },
             carouselFour: function () {
                 $('#owl-favorite').owlCarousel({
@@ -554,68 +435,15 @@
                         }
                     }
                 });
-                // $('.owl-carousel-four').owlCarousel({
-                //     loop:true,
-                //     margin:10,
-                //     nav: true,
-                //     autoplay: true,
-                //     navText: [
-                //         '<img src="' + this.$baseApi + 'img/icon/left-arrow.png' + '">',
-                //         '<img src="' + this.$baseApi + 'img/icon/right-arrow.png' + '">'
-                //     ],
-                //     dots: false,
-                //     responsive:{
-                //         0:{
-                //             items:1
-                //         },
-                //         575:{
-                //             items:2
-                //         },
-                //         768:{
-                //             items:4,
-                //             nav: true
-                //         },
-                //         992:{
-                //             items:5,
-                //             nav: true
-                //         },
-                //         1200:{
-                //             items:5,
-                //             nav: true
-                //         },
-                //         1400:{
-                //             items:6,
-                //             nav: true
-                //         }
-                //     }
-                // })
             },
             getTrendingGames: function () {
                 this.$api.get('games/trending?include=game,game.assets,game.genres,game.platforms').then(response => {
                     var vm = this;
                     vm.trendingGames = response.data.data;
-                    console.log('trendingGames')
-                    console.log(vm.trendingGames)
+                    // console.log('trendingGames')
+                    // console.log(vm.trendingGames)
                     Vue.nextTick(function(){
                         vm.carouselOne();
-                    }.bind(vm));
-                });
-            },
-            getUpcomingGames: function () {
-                this.$api.get(this.$upcomingGamesApi).then(response => {
-                    var vm = this;
-                    vm.upcomingGames = response.data.results;
-                    Vue.nextTick(function() {
-                        vm.carouselThree();
-                    }.bind(vm));
-                });
-            },
-            getPopularGames: function () {
-                this.$api.get('games/latest?include=assets,genres,platforms').then(response => {
-                    var vm = this;
-                    vm.popularGames = response.data.data;
-                    Vue.nextTick(function(){
-                        vm.carouselFour();
                     }.bind(vm));
                 });
             },
@@ -623,6 +451,17 @@
                 this.$api.get('rent-posts?include=game.assets,platform').then(response => {
                     var vm = this;
                     vm.rents = response.data.data;
+                    Vue.nextTick(function(){
+                        vm.carouselFour();
+                    }.bind(vm));
+                });
+            },
+            getNewGames: function () {
+                this.$api.get('games/upcoming-games?include=assets,genres,platforms').then(response => {
+                    var vm = this;
+                    vm.upcomingGames = response.data.data;
+                    console.log('up')
+                    console.log(vm.upcomingGames)
                     Vue.nextTick(function(){
                         vm.carouselTwo();
                     }.bind(vm));
@@ -634,8 +473,7 @@
         },
         created() {
             this.getTrendingGames();
-            this.getUpcomingGames();
-            this.getPopularGames();
+            this.getNewGames();
             this.getRentGames();
         }
     }

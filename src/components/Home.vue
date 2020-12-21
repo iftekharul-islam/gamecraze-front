@@ -66,20 +66,43 @@
                         </div>
                     </div>
                 </div>
+                <!-- <div class="item">
+                    <a href="#">
+                        <img src="img/trending.png" alt="trending">
+                    </a>
+                    <div class="trending-game--name-price d-flex justify-content-between">
+                        <a href="#">Fortnite</a>
+                        <span>$19.99</span>
+                    </div>
+                    <div class="trending-game--categories d-flex justify-content-between">
+                        <div class="home-categories">
+                            <a href="#">Action </a>,
+                            <a href="#">Fun</a>
+                        </div>
+
+                        <div class="d-flex">
+                            <a href="#"><img src="img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="img/ps4.png" alt="ps4"></a>
+                            <a href="#"><img src="img/ps4.png" alt="ps4"></a>
+                        </div>
+                    </div>
+                </div> -->
                 </div>
         </section>
         <!-- favorite-section -->
         <section class="favorite-section">
             <div class="text-center">
-                <h2 class="section-heading">UPCOMING GAMES</h2>
+                 <h2 class="section-heading">RENT YOUR FAVORITE GAMES</h2>
+               
             </div>
             <div id="owl-favorite" class="owl-carousel owl-theme">
                 <div class="item" v-for="(game, index) in popularGames" :key="index">
 <!--                <div class="item" v-for="(rent,index) in rents" :key="index">-->
                     <div class="favorite-games">
-                        <img :src="game.assets.data[0].url" alt="Code vein"  v-if="game.assets.data.length">
-                        <img src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
-                        <div class="favorite-games-categories d-flex justify-content-between align-items-center">
+                        <a href="#" v-if="game.assets.data.length"><img :src="game.assets.data[0].url" alt="Code vein"  ></a>
+                       <a href="#" v-else> <img src="../assets/img/rented/dummy-image.jpg" alt="no-image" ></a>
+                        <div class="favorite-games-categories d-flex justify-content-center align-items-center">
                             <a href="#" v-for="(platform) in game.platforms.data"><img :src=platform.url :alt="platform.name" class="img-fluid"></a>
                         </div>
                     </div>
@@ -88,7 +111,7 @@
         </section>
         <section class="upcoming-section">
             <div class="text-center">
-                <h2 class="section-heading">RENT YOUR FAVORITE GAMES</h2>
+                <h2 class="section-heading">UPCOMING GAMES</h2>
             </div>
             <div id="owl-upcoming" class="owl-carousel owl-theme">
                 <div class="item" v-for="(rent,index) in rents" :key="index">
@@ -513,16 +536,20 @@
                             items: 3,
                             stagePadding: 100,
                         },
-                        1100:{
+                        1026:{
                             items: 4,
                             stagePadding: 100,
                         },
-                          1300:{
+                        1100:{
                             items: 5,
                             stagePadding: 100,
                         },
-                        1800:{
+                          1300:{
                             items: 6,
+                            stagePadding: 100,
+                        },
+                        1800:{
+                            items: 8,
                              stagePadding: 100,
                         }
                     }

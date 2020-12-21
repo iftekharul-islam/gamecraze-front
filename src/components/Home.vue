@@ -52,7 +52,7 @@
                     </a>
                     <div class="trending-game--name-price d-flex justify-content-between">
                         <a href="#">{{ trending.game.data.name }}</a>
-<!--                        <span>$19.99</span>-->
+                        <!-- <span>$19.99</span>-->
                     </div>
                     <div class="trending-game--categories d-flex justify-content-between">
                         <div class="home-categories">
@@ -129,7 +129,7 @@
                     </div>
                     <div class="upcoming-game--name-price d-flex justify-content-between">
                         <a href="#">{{ rent.name }}</a>
-                        <!--                        <span>$19.99</span>-->
+                        <!-- <span>$19.99</span>-->
                     </div>
                     <div class="upcoming-game--categories d-flex justify-content-between">
                         <div class="home-categories">
@@ -422,6 +422,12 @@
                             dots:false,
                             nav: true,
                         },
+                        768:{
+                            stagePadding: 0,
+                            items: 3,
+                            dots:false,
+                            nav: true,
+                        },
                         900:{
                             items: 2,
                             stagePadding: 150,
@@ -430,6 +436,9 @@
                             items: 3,
                         },
                         1500:{
+                            items: 4,
+                        },
+                        1800:{
                             items: 5
                         }
                     }

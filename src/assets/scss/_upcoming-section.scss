@@ -22,11 +22,14 @@
         @include for-max-1500 {
             margin-left: -82px;
         }
+        @include for-max-1400 {
+            margin-left: -74px;
+        }
         @include for-max-1300 {
             margin-left: -69px;
         }
         @include for-max-1200 {
-            margin-left: -91px;
+            margin-left: -90px;
         }
         @include for-max-992 {
             margin-left: -69px;
@@ -187,7 +190,7 @@
         padding: 15px 0;
         text-transform: uppercase;
         clip-path: polygon(7% 0, 100% 0, 92% 100%, 0% 100%);
-        @include for-max-768 {
+        @include for-max-900 {
             clip-path: initial;
         }
         &:first-of-type {
@@ -197,14 +200,11 @@
             @include for-max-1700 {
                 margin-left: -1px;
             }
-            @include for-max-1600 {
-                margin-left: 0px;
-            }
             @include for-max-1200 {
                 margin-left: -1px;
                 margin-right: -6px;
             }
-            @include for-max-768 {
+            @include for-max-900 {
                 margin-right: 0;
                 margin-left: 0;
             }
@@ -217,20 +217,24 @@
             &:hover {
                 color: black;
             }
-            @include for-max-1700 {
-                margin-right: 31px;
+            @include for-max-1500 {
+                margin-right: 53px;
+                margin-left: -12px;
             }
-            @include for-max-1600 {
-                margin-right: 25px;
+            @include for-max-1400 {
+                margin-right: 49px;
+            }
+            @include for-max-1300 {
+                margin-right: 45px;
             }
             @include for-max-1200 {
-                margin-right: 32px;
-                margin-left: -6px;
+                margin-right: 65px;
+                margin-left: -12px;
             }
             @include for-max-992 {
-                margin-right: 26px;
+                margin-right: 46px;
             }
-            @include for-max-768 {
+            @include for-max-900 {
                 margin-right: 0;
                 margin-left: 0;
             }

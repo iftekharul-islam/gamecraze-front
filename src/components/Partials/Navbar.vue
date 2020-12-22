@@ -43,14 +43,22 @@
                             </button>
                         </div>
                         <div class="gamehub-input-group--content">
-                            <router-link v-if="!auth" class="" to="/login">Sign in</router-link>
-                                <router-link v-if="auth" class="" to="/profile"><span v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span><span v-else>{{ this.$store.state.user.phone_number }}</span></router-link>
+                            <router-link v-if="!auth" class="sign-in" to="/login"><span>Sign in</span></router-link>
+                                <div v-if="auth" class="dropdown-toggle complete-sign-in" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span><span v-else>{{ this.$store.state.user.phone_number }}</span>
+                                 <img src="../../assets/img/sss.jpg" alt="profile" class="img-fluid">
+                                            <div class="dropdown-menu">
+                                                <router-link to="/profile" class="dropdown-item" href="#">Profile</router-link>
+                                                <router-link to="/profile" class="dropdown-item" href="#">Another action</router-link>
+                                                <router-link to="/profile" class="dropdown-item" href="#">Something else here</router-link>
+                                            </div>
+                                </div>
 <!--                                <div class="log-out">-->
 <!--                                    <a @click.prevent="onLogout" class="sign-out">-->
 <!--                                        <span class="mr-2">Sign Out</span>-->
 <!--                                        <i class="fas fa-sign-out-alt"></i>-->
 <!--                                    </a>-->
 <!--                                </div>-->
+                                        
                         </div>
                         <div class="gamehub-input-group--content">
                             <a href="#"><i class="fas fa-shopping-cart"></i></a>

@@ -1,7 +1,9 @@
-
+html {
+    height: 100% !important;
+}
 .body-position {
     position: relative;
-    height: 100vh !important;
+    min-height: 100% !important;
     .copyright-section {
         position: absolute;
         width: 100%;
@@ -31,6 +33,7 @@
         input {
             border-radius: 0;
             border: none;
+            font-size: 20px;
         }
     }
 }
@@ -38,33 +41,34 @@
 .login-form {
     margin-top: 50px;
     ul {
+        margin-bottom: 30px;
         li {
-            a {
-                font-size: 32px;
+
                 font-style: italic;
                 padding: 0;
-                color: $text-light !important;
+                color: $secondery;
+                background: none;
+                font-size: 24px;
+                cursor: text;
                 @include for-max-1500 {
                     font-size: 20px;
                 }
-                &.active {
-                    color: $secondery !important;
-                    background: none;
-                    font-size: 24px;
+                    
                     @include for-max-1500 {
                         font-size: 16px;
                     }
-                }
-                &:hover {
-                    color: $secondery !important;
-                }
-            }
+            
         }
     }
     .form-group {
+        margin-bottom: 0;
         input {
             border-radius: 0;
             border: none;
+            height: 50px;
+        }
+        label {
+            font-size: 20px;
         }
     }
 }
@@ -77,7 +81,10 @@
     }
 }
 .login-logo {
-    margin-bottom: 100px;
+    margin-bottom: 90px;
+    img {
+        width: 182px;
+    }
 }
 .floating-label-group {
     position: relative;
@@ -86,15 +93,17 @@
         top: 0;
         color: $text-dark;
         left: 0;
+        font-size: 20px;
+        margin: 0;
         background: $secondery;
-        height: 38px;
-        width: 40px;
+        height: 50px;
+        width: 50px;
         display: flex;
         align-items: center;
         justify-content: center;
     }
     input {
-        padding-left: 48px;
+        padding-left: 55px;
     }
 }
 .error-message {
@@ -106,3 +115,56 @@
         cursor: pointer;
     }
 }
+
+.sign-btn {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+.or {
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+.form-group {
+    input {
+        font-size: 20px;
+    }
+}
+// otp button
+.otpbtn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    .resend-code {
+        font-size: 14px;
+        padding-left: 0;
+        color: $secondery;
+        text-decoration: none;
+        &:hover {
+            text-decoration: initial;
+        }
+    }
+    .btn--otp {
+        margin-top: 45px;
+    }
+}
+
+// .otp-outer{
+//     // width: 190px; 
+//     overflow: hidden;
+//     .otp-inner{
+//         left: 0;
+//         position: sticky;
+        
+//       }
+//   }
+//   .otp-input {
+//     padding-left: 32px;
+//     letter-spacing: 99px;
+//     border: 0;
+//     background-image: linear-gradient(to left, black 70%, rgba(255, 255, 255, 0) 0%);
+//     background-position: bottom;
+//     background-size: 107px 60px;
+//     background-repeat: repeat-x;
+//     background-position-x: 75px;
+//     color: $text-light;
+// }

@@ -27,6 +27,7 @@
     border: 1px solid $secondery;
     border-radius: 0;
     color: $secondery;
+    height: 50px;
     &:hover {
       color: #000;
       background: $secondery;
@@ -37,11 +38,32 @@
     border: 1px solid $secondery;
     border-radius: 0;
     color: $text-dark;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    transition: all .3s ease-in;
+    padding: 0 30px;
+    span {
+      text-align: center;
+      margin: auto;
+    }
     &:hover {
       color: $text-light;
-      background: $secondery;
-      border-color: $secondery;
+      background: $game-details;
+      border-color: $game-details;
     }
+  }
+  &--otp {
+      background: transparent;
+      border: 1px solid $secondery;
+      border-radius: 0;
+      height: 50px;
+      color: $secondery;
+      transition: all .3s ease-in;
+      &:hover {
+        background: $secondery;
+      }
   }
 }
 // owl dots

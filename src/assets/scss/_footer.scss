@@ -46,12 +46,15 @@
     }
 }
 .footer-top--right-input {
+    transform: skew(-21deg);
+    background: $game-details;
     input {
         height: 100%;
-        background: $game-details;
+        background: transparent;
         border-color: $game-details;
         border: none;
-        clip-path: polygon(9% 0, 100% 0%, 100% 100%, 0% 100%);
+        // clip-path: polygon(9% 0, 100% 0%, 100% 100%, 0% 100%);
+        transform: skew(21deg);
         padding-left: 30px;
         color: #fff;
         &:focus {

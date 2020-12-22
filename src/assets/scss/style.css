@@ -3799,6 +3799,36 @@ html {
      object-fit: cover;
 }
 
+.set-password {
+  padding-bottom: 120px;
+  padding-top: 120px;
+}
+
+.set-password .card {
+  background: transparent;
+}
+
+.set-password .card .card-title {
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-style: italic;
+  color: #FFD715;
+}
+
+.set-password form .form-group input {
+  height: 50px;
+  border-radius: 0;
+  color: #000;
+}
+
+.set-password form .form-group input.gray {
+  color: #808080;
+}
+
+.set-password form .form-group label {
+  font-size: 20px;
+}
+
 .btn:focus {
   outline: none;
 }
@@ -4066,13 +4096,19 @@ html {
   }
 }
 
+.footer-top--right-input {
+  -webkit-transform: skew(-21deg);
+          transform: skew(-21deg);
+  background: #141A27;
+}
+
 .footer-top--right-input input {
   height: 100%;
-  background: #141A27;
+  background: transparent;
   border-color: #141A27;
   border: none;
-  -webkit-clip-path: polygon(9% 0, 100% 0%, 100% 100%, 0% 100%);
-          clip-path: polygon(9% 0, 100% 0%, 100% 100%, 0% 100%);
+  -webkit-transform: skew(21deg);
+          transform: skew(21deg);
   padding-left: 30px;
   color: #fff;
 }

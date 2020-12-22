@@ -1,12 +1,18 @@
 <template>
     <div>
         <!-- Registration  -->
-        <section class="registration sign-in-bg">
+        <section class="registration">
             <div class="container-fluid registration-width">
                 <div class="row">
-                    <div class="col-md-6 offset-md-3">
-                        <div class="card">
-                            <h4 class="card-title text-center">Your Information</h4>
+                    <div class="col-md-6 col-xl-4 mx-auto">
+                        <div class="registration-form">
+                            <div class="text-center registration-logo">
+                            <img src="../../assets/img/logo/gamehublogo.svg" alt="gamehublogo" class="text-center">
+                        </div>
+
+                         <ul class="mb-3 d-flex justify-content-center align-items-center">
+                            <li>CREATE YOUR ACCOUNT</li>
+                        </ul>
                             <ValidationObserver v-slot="{ handleSubmit }">
                                 <form id="regForm" @submit.prevent="handleSubmit(onNext)" method="post">
                                     <div class="form-group">
@@ -24,8 +30,8 @@
                                         </ValidationProvider>
 
                                     </div>
-                                    <div class="regbtn">
-                                        <button type="submit" class="btn btn-success">Next</button>
+                                    <div class="regbtn mt-4">
+                                        <button type="submit" class="btn btn--registration w-100 ">Next</button>
                                     </div>
                                 </form>
                             </ValidationObserver>
@@ -34,6 +40,52 @@
                 </div>
             </div>
         </section>
+
+         <!-- <section class="registration-section">
+            <div class="container">
+                <div class="col-md-6 mx-auto">
+                    <div class="registration-form">
+                        <div class="text-center registration-logo">
+                            <img src="../../assets/img/logo/gamehublogo.svg" alt="gamehublogo" class="text-center">
+                        </div>
+                        <ul class="mb-3 d-flex justify-content-center align-items-center">
+                            <li>CREATE YOUR ACCOUNT</li>
+                        </ul>
+
+                            registration
+                                <form action="#">
+                                     <div class="form-group">
+                                        <label for="regisName">Name</label>
+                                        <input type="text" class="form-control" id="regisName" aria-describedby="emailHelp" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="regismail">Phone/Email Address</label>
+                                        <input type="text" class="form-control" id="regismail" aria-describedby="emailHelp" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="regispass">Password</label>
+                                        <input type="text" class="form-control" id="regispass" aria-describedby="emailHelp" required>
+                                    </div>
+                                    <div class="form-group form-check ">
+                                        <div class="remember-me">
+                                            <input type="checkbox" class="form-check-input" id="regischeck">
+                                            <label class="form-check-label" for="regischeck">
+                                                Creating an account means you’re okay with our Terms of Service, Privacy Policy, and our default Notification Settings.
+                                            </label>
+                                        </div>
+                                        
+                                    </div>
+                                    <button type="submit" class="btn btn-primary w-100 btn--registration mt-4">CREATE ACCOUNT</button>
+
+
+                                </form>
+
+                    </div>
+                </div>
+            </div>
+        </section> -->
+
+
     </div>
 </template>
 
@@ -55,6 +107,12 @@
                 });
             },
         },
+         mounted () {
+        document.body.classList.add('body-position')
+        },
+        destroyed () {
+        document.body.classList.remove('body-position')
+        }
     }
 
 </script>

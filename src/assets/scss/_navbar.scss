@@ -30,11 +30,12 @@
     ul {
         margin: auto;
         display: flex;
+        justify-content: center;
         @include for-max-992 {
             display: block;
         }
         li {
-            padding: 0 20px;
+           
             @include for-max-992 {
                 margin-bottom: 20px;
                 width: fit-content;
@@ -45,22 +46,32 @@
             &:last-child {
                 margin-right: 0;
             }
-            &.active {
-                position: relative;
-                &::after {
-                    content: "";
-                    width: 83px;
-                    height: 4px;
-                    position: absolute;
-                    background: $secondery;
-                    top: 49px;
-                    left: 0;
-                    right: 0;
-                    margin: auto;
-                    clip-path: polygon(7px 0, 100% 0%, 77px 100%, 0% 100%);
-                    @include for-max-992 {
-                        top: 28px;
-                    }
+           
+            a {
+                padding: 0 20px;
+                @include for-max-1200 {
+                    padding: 0 15px;
+                }
+                &.router-link-exact-active {
+                            position: relative;
+                            &::after {
+                                content: "";
+                                width: 83px;
+                                height: 4px;
+                                position: absolute;
+                                background: $secondery;
+                                top: 60px;
+                                left: 0;
+                                right: 0;
+                                margin: auto;
+                                clip-path: polygon(7px 0, 100% 0%, 77px 100%, 0% 100%);
+                                @include for-max-992 {
+                                    top: 28px;
+                                }
+                            }
+                }
+                &:hover {
+                    color: $secondery;
                 }
             }
         }
@@ -145,10 +156,11 @@
     align-items: center;
     @include for-max-575 {
         margin-left: 15px;
+        flex-wrap: wrap;
     }
     &--content {
             margin-right: 0px;
-        
+            
         &:last-child {
             margin-right: 0;
                 margin-left: 20px;
@@ -160,55 +172,79 @@
         }
         &:first-child {
             display: flex;
+            @include for-max-575 {
+                flex-basis: 100%;
+                margin-bottom: 20px;
+            }
         }
         &:nth-child(2) {
-            width: 116px;
+            margin-left: 20px;
+            margin-right: 20px;
             height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background: $secondery;
-            box-sizing: border-box;
-            clip-path: polygon(9% 0, 100% 0%, 91% 100%, 0% 100%);
-            &:after {
-                position: absolute;
-                background: $primary;
-                top: 2px;
-                left: 2px;
-                width: 111px;
-                height: 36px;
-                clip-path: polygon(9% 0, 100% 0%, 92% 100%, 0% 100%);
-                content: "";
+          
+            .sign-in {
+                color: #fff;
+                font-weight: 700;
+                text-align: center;
+                border: 1px solid $secondery;
+                width: 116px;
+                height: 40px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transform: skew(-21deg);
+                span {
+                    display: inline-block; 
+                    transform: skew(21deg);
+                }
             }
-            a {
+            .complete-sign-in {
+                margin-right: 20px;
+                cursor: pointer;
                 position: relative;
-                z-index: 9;
+                img {
+                    // transform: skew(21deg);
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    margin-left: 15px;
+                }
+                &::after {
+                    display: none !important;
+                }
+            }
+            &:hover {
+                a {
+                    color: $text-dark;
+                    background: $secondery;
+                }
             }
         }
     }
 }
 
 .search-input-design {
-    background: $secondery;
-    clip-path: polygon(10% 0, 100% 0%, 91% 100%, 0% 100%);
-    border: none;
+    border: 1px solid $secondery;
+    transform: skew(-21deg);
+    // clip-path: polygon(10% 0, 100% 0%, 91% 100%, 0% 100%);
+    // border: none;
     position: relative;
     width: 140px;
     height: 40px;
     input {
         height: 36px;
         border: none;
-        clip-path: polygon(9% 0, 100% 0%, 91% 100%, 0% 100%);
+        // clip-path: polygon(9% 0, 100% 0%, 91% 100%, 0% 100%);
         width: 135px;
         margin: auto;
         position: relative;
         left: 3px;
         top: 2px;
-        background: $primary;
+        background: transparent;
         color: #fff;
         padding-left: 15px;
         padding-right: 8px;
+        transform: skew(21deg);
         &:focus {
             outline: none;
             border: none;
@@ -217,16 +253,25 @@
     }
 }
 .gamehub-search-btn {
-    width: 60px;
+    width: 45px;
     height: 40px;
     background: $secondery;
-    clip-path: polygon(13px 0, 100% 0%, 46px 100%, 0% 100%);
+    transform: skew(-21deg);
     border-radius: 0;
     position: relative;
-    left: -15px;
+    left: -3px;
     &:focus {
         outline: none;
         border: none;
         box-shadow: none;
+    }
+    i {
+        transform: skew(21deg);
+    }
+}
+
+.body-home {
+    .copyright-section {
+        display: none;
     }
 }

@@ -5,7 +5,7 @@
         <nav class="navbar navbar-expand-lg gamehub-menu fixed-top">
             <div class="container">
                 <!-- logo -->
-                <a class="navbar-brand" href="#">
+                <a class="navbar-brand" href="/">
                     <img src="../../assets/img/logo/gamehublogo.svg" class="img-fluid gamehub--logo" alt="Gamehub Logo logo">
                 </a>
 
@@ -18,19 +18,19 @@
                         <span></span>
                     </button>
                 </div>
-                <div class="collapse navbar-collapse custom-collapse gamehub-menu-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse custom-collapse gamehub-menu-collapse" id="navbarSupportedContent" @click="modal = false">
                     <ul class="">
                         <li class="active">
-                            <a href="index.html">Home <span class="sr-only">(current)</span></a>
+                            <router-link class="nav-link active router_link" to="/">Home<span class="sr-only">(current)</span></router-link>
                         </li>
                         <li>
-                            <a href="#">Games</a>
+                            <router-link class="router_link" to="/games">Games</router-link>
                         </li>
                         <li>
-                            <a href="#">Support</a>
+                            <router-link class="router_link" to="/support">Supports</router-link>
                         </li>
                         <li>
-                            <a href="contact.html">Contact us</a>
+                            <router-link class="router_link" to="/contacts">Contact us</router-link>
                         </li>
                     </ul>
                     <div class="gamehub-input-group">
@@ -43,7 +43,22 @@
                             </button>
                         </div>
                         <div class="gamehub-input-group--content">
-                            <a href="#">Sign in</a>
+                            <router-link v-if="!auth" class="sign-in" to="/login"><span>Sign in</span></router-link>
+                                <div v-if="auth" class="dropdown-toggle complete-sign-in" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span><span v-else>{{ this.$store.state.user.phone_number }}</span>
+                                 <img src="../../assets/img/sss.jpg" alt="profile" class="img-fluid">
+                                            <div class="dropdown-menu">
+                                                <router-link to="/profile" class="dropdown-item" href="#">Profile</router-link>
+                                                <router-link to="/profile" class="dropdown-item" href="#">Another action</router-link>
+                                                <router-link to="/profile" class="dropdown-item" href="#">Something else here</router-link>
+                                            </div>
+                                </div>
+<!--                                <div class="log-out">-->
+<!--                                    <a @click.prevent="onLogout" class="sign-out">-->
+<!--                                        <span class="mr-2">Sign Out</span>-->
+<!--                                        <i class="fas fa-sign-out-alt"></i>-->
+<!--                                    </a>-->
+<!--                                </div>-->
+                                        
                         </div>
                         <div class="gamehub-input-group--content">
                             <a href="#"><i class="fas fa-shopping-cart"></i></a>

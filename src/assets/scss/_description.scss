@@ -20,6 +20,8 @@
             font-size: 16px;
             position: relative;
             color: $text-light;
+            display: block;
+            padding-left: 0;
             &::first-line {
                 text-indent: 10px;
             }

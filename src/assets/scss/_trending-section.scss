@@ -11,25 +11,34 @@
        
     }
     .item {
-        margin-left: -55px;
+        margin-left: -69px;
         @include for-max-1800 {
-            margin-left: -50px;
+            margin-left: -77px;
         }
         @include for-max-1600 {
-            margin-left: -45px;
+            margin-left: -69px;
+        }
+        @include for-max-1500 {
+            margin-left: -82px;
+        }
+        @include for-max-1300 {
+            margin-left: -69px;
         }
         @include for-max-1200 {
-            margin-left: -52px;
+            margin-left: -91px;
         }
         @include for-max-992 {
-            margin-left: -43px;
+            margin-left: -69px;
         }
         @include for-max-900 {
             margin-left: 0;
         }
-        a {
+        .trending-image {
             img {
-                clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
+                clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
+                height: 238px;
+                object-fit: cover;
+               
                 @include for-max-900 {
                     clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
                 }
@@ -38,9 +47,16 @@
     }
     .owl-nav {
         position: relative;
+        &.disabled {
+            display: block !important;
+            @include for-max-575 {
+                display: none !important;
+            }
+        }
+
         button {
             position: absolute;
-            top: -220px;
+            top: -270px;
             width: 50px;
             height: 50px;
             transform: skewX(-13deg);
@@ -101,6 +117,9 @@
 
 .trending-game--name-price {
     margin-top: 20px;
+    a {
+        height: 60px;
+    }
     a,span {
         font-size: 20px;
     }
@@ -114,6 +133,20 @@
     > div {
         a {
             margin-left: 5px;
+        }
+    }
+}
+.home-categories {
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.home-platform {
+    // flex-wrap: wrap;
+    a {
+        margin-right: 10px;
+        &:last-of-type {
+            margin-right: 0;
         }
     }
 }

@@ -1,0 +1,106 @@
+.user-profile-heading {
+    position: relative;
+    height: 370px;
+    display: flex;
+    align-items: flex-end;
+    
+    .user-profile-bg {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+
+    }
+    &--name {
+        display: flex;
+        align-items: center;
+        img {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            border: 1px solid $text-light;
+            object-fit: cover;
+            
+        }
+    }
+}
+.users-name {
+    margin-left: 20px;
+    h3 {
+        font-size: 32px;
+        font-style: italic;
+    }
+    h6 {
+        font-size: 20px;
+    }
+}
+.user-rating {
+    margin-top: -40px;
+    margin-left: 3rem;
+    i {
+        color: $secondery;
+    }
+}
+
+.user-profile-details {
+    padding-top: 50px;
+    padding-bottom: 150px;
+    &--nav {
+        a {
+            color: $gray;
+            font-size: 24px;
+            border-bottom: 1px solid $gray;
+            border-radius: 0 !important;
+            &:last-of-type {
+                border-bottom: 0;
+            }
+            i {
+                font-size: 40px;
+                width: 45px;
+                margin-right: 20px;
+            }
+            &.active {
+                background: transparent !important;
+                color: $text-light;
+            }
+        }
+    }
+    .tab-content {
+        margin-left: 3rem;
+    }
+}
+
+.over-view {
+    table {
+        tr {
+            td {
+                color: $text-light;
+                &:nth-child(1) {
+                    width: 200px;
+                }
+                img {
+                    width: 260px;
+                    height: 150px;
+                }
+            }
+        }
+    }
+}
+
+.post-rent {
+    .form-group {
+        margin-bottom: 25px;
+    }
+    .custom-file {
+        margin-bottom: 25px;
+    }
+}
+.img-prev {
+    img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+    }
+}

@@ -17,7 +17,7 @@
                                             <div class="form-group">
                                                 <label for="Phone">Phone number</label>
                                                 <ValidationProvider name="Phone" rules="required" v-slot="{ errors }">
-                                                    <input type="text" class="form-control gray" id="Phone" value="" v-model="form.Phone">
+                                                    <input type="text" class="form-control gray cursor-none" id="Phone" value="" v-model="form.phone_number" readonly>
                                                     <span class="error-message">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
@@ -36,7 +36,7 @@
                                             
                                                 <label for="LastName">Last name</label>
                                                 <ValidationProvider name="LastName" rules="required" v-slot="{ errors }">
-                                                    <input type="text" class="form-control" id="LastName" value="" v-model="form.LastName">
+                                                    <input type="text" class="form-control" id="LastName" value="" v-model="form.lastName">
                                                     <span class="error-message">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
@@ -98,9 +98,10 @@
             return {
                 form: {
                     name: '',
+                    lastName: '',
                     email: '',
-                    password: '',
-                    confirmPassword: '',
+                    // password: '',
+                    // confirmPassword: '',
                     phone_number: JSON.parse(localStorage.getItem('user')).phone_number
                 },
                 isLoading: false

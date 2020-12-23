@@ -9,9 +9,8 @@
                             <div class="text-center registration-logo">
                             <img src="../../assets/img/logo/gamehublogo.svg" alt="gamehublogo" class="text-center">
                         </div>
-
                          <ul class="mb-3 d-flex justify-content-center align-items-center">
-                            <li>CREATE YOUR ACCOUNT</li>
+                            <li>SIGN UP</li>
                         </ul>
                             <ValidationObserver v-slot="{ handleSubmit }">
                                 <form id="regForm" @submit.prevent="handleSubmit(onNext)" method="post">

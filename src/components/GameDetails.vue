@@ -2,6 +2,9 @@
     <div>
         <!-- games header section -->
         <section class="games-header-section">
+            <div class="games-header-section--display-image">
+                <img src="../assets/img/game-details.png" alt="game details">
+            </div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">

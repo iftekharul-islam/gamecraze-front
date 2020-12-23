@@ -2960,14 +2960,17 @@ html {
 }
 
 .otp-input-group {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.otp-input-group > div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-top: 15px;
-  margin-bottom: 15px;
 }
 
 .otp-input-group input {
@@ -2976,6 +2979,10 @@ html {
   text-align: center;
   color: #000;
   font-size: 40px;
+}
+
+.cursor-none {
+  cursor: not-allowed;
 }
 
 .title-section {

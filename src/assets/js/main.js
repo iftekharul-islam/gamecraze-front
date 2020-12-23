@@ -92,3 +92,15 @@ $(document).ready(function() {
 	});
 
 });
+
+function isNumber(evt)
+	{
+    evt = (evt) ? evt : window.event;
+    var charCode = (evt.which) ? evt.which : evt.keyCode;
+    if (charCode == 13 || (charCode >= 48 && charCode <= 57))
+    {
+        return true;
+    }
+    return false;
+}
+// text input change to number only

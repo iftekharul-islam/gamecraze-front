@@ -2904,6 +2904,10 @@ html {
   padding-left: 55px;
 }
 
+.success-message {
+  font-size: 20px;
+}
+
 .error-message {
   color: red;
 }
@@ -2953,6 +2957,25 @@ html {
 
 .otpbtn .btn--otp {
   margin-top: 45px;
+}
+
+.otp-input-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.otp-input-group input {
+  width: 60px;
+  height: 60px !important;
+  text-align: center;
+  color: #000;
+  font-size: 40px;
 }
 
 .title-section {
@@ -3208,12 +3231,11 @@ html {
 }
 
 .games-header-section {
-  background: -webkit-gradient(linear, left top, right top, color-stop(18.75%, rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0))), url(../img/game-details.png);
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.85) 18.75%, rgba(0, 0, 0, 0) 100%), url(../img/game-details.png);
   height: 600px;
   background-size: cover;
   padding-top: 150px;
   padding-bottom: 110px;
+  position: relative;
 }
 
 @media (max-width: 575px) {
@@ -3247,6 +3269,31 @@ html {
 
 .games-header-section--platforms a {
   margin-right: 10px;
+}
+
+.games-header-section--display-image {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.games-header-section--display-image img {
+  width: 100%;
+}
+
+.games-header-section--display-image::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: -webkit-gradient(linear, left top, right top, color-stop(18.75%, rgba(0, 0, 0, 0.85)), to(rgba(0, 0, 0, 0)));
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.85) 18.75%, rgba(0, 0, 0, 0) 100%);
 }
 
 .game-name-img {

@@ -106,6 +106,9 @@ html {
         padding-left: 55px;
     }
 }
+.success-message {
+    font-size: 20px;
+}
 .error-message {
     color: red;
 }
@@ -168,3 +171,16 @@ html {
 //     background-position-x: 75px;
 //     color: $text-light;
 // }
+.otp-input-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    input {
+        width: 60px;
+        height: 60px !important;
+        text-align: center;
+        color: $text-dark;
+        font-size: 40px;
+    }
+}

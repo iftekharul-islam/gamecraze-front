@@ -31,6 +31,9 @@ window.fn = adminLte;
 
 import Vue from 'vue'
 import App from './App.vue'
+//vue-otp-input
+import OtpInput from "@bachdgvn/vue-otp-input";
+Vue.component("v-otp-input", OtpInput);
 
 //For Vue select
 import vSelect from "vue-select";

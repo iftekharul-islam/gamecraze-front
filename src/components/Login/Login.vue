@@ -120,19 +120,34 @@
                                     </div>
                                     <div v-if="showOTP">
                                         <div class="form-group">
-                                            <label for="user-otp" class="sr-only">otp</label>
-                                            <ValidationProvider name="OTP" rules="required|digits:6" v-slot="{ errors }">
-                                                 <span class="success-message" v-if="resend">Insert 6 digits code sent to your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>
-                                                  <span class="success-message" v-if="!resend && !$store.state.wrongOTP && !$store.state.timeout && !$store.state.inactiveUser">Insert 6 digits code sent to your phone <strong style="color: white;">{{ form.phone_number }}</strong></span><br>
-                                                <input @click="changeWrongOtp" type="text" class="form-control mb-2 otp-input" id="user-otp" placeholder="Your OTP" v-model="otp">
-                                                <span class="error-message">{{ errors[0] }}</span>
-                                                <br v-if="errors[0]">
-                                               
+                                            <span class="success-message" v-if="resend">Insert 6 digits code sent to your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>
+                                            <span class="success-message" v-if="!resend && !$store.state.wrongOTP && !$store.state.timeout && !$store.state.inactiveUser">Insert 6 digits code sent to your phone <strong style="color: white;">{{ form.phone_number }}</strong></span><br>
+                                                <div style="display: flex; flex-direction: row;">
+                                                    <v-otp-input
+                                                            ref="otpInput"
+                                                            input-classes="otp-input"
+                                                            separator="-"
+                                                            :num-inputs="6"
+                                                            :should-auto-focus="true"
+                                                            :is-input-num="true"
+                                                            @on-change="handleOnChange"
+                                                            @on-complete="handleOnComplete"
+                                                    />
+                                                </div>
+<!--                                            <label for="user-otp" class="sr-only">otp</label>-->
+<!--                                            <ValidationProvider name="OTP" rules="required|digits:6" v-slot="{ errors }">-->
+<!--                                                 <span class="success-message" v-if="resend">Insert 6 digits code sent to your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>-->
+<!--                                                  <span class="success-message" v-if="!resend && !$store.state.wrongOTP && !$store.state.timeout && !$store.state.inactiveUser">Insert 6 digits code sent to your phone <strong style="color: white;">{{ form.phone_number }}</strong></span><br>-->
+<!--                                                <input @click="changeWrongOtp" type="text" class="form-control mb-2 otp-input" id="user-otp" placeholder="Your OTP" v-model="otp">-->
+
+<!--                                                <span class="error-message">{{ errors[0] }}</span>-->
+                                                <br v-if="error">
+
                                                 <span class="error-message" v-if="$store.state.wrongOTP && !resend">You entered wrong OTP</span>
                                                 <span class="error-message" v-if="$store.state.timeout && !resend">This OTP is not valid for timeout</span>
                                                 <span class="error-message" v-if="$store.state.inactiveUser && !resend">This User is inactive, please contact to helpline</span>
                                                
-                                            </ValidationProvider>
+<!--                                            </ValidationProvider>-->
                                         </div>
                                         <div class="otpbtn">
                                             <button class="btn btn-link mb-2 resend-code" type="button" @click.prevent="onResendOtp" :disabled="isResendLoading">
@@ -187,6 +202,13 @@
             }
         },
         methods: {
+            handleOnComplete(value) {
+                this.otp = value;
+                console.log('OTP completed: ', value);
+            },
+            handleOnChange(value) {
+                console.log('OTP changed: ', value);
+            },
             handler(val){
                 if(val != '0' ){
                     this.phone_number = null;

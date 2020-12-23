@@ -112,7 +112,10 @@
                                             <ValidationProvider name="number" :rules="`required|user-number:${phone_number}`" v-slot="{ errors }">
 <!--                                            <ValidationProvider name="number" rules="{ required: true, digits:11, regex:^(?=\d{10,11}$)(01)\d+ }" v-slot="{ errors }">-->
 <!--                                                <input type="tel" v-validate="{ regex: /^(?=\d{10,11}$)(01)\d+/ }" id="user-number" class="form-control country-number mb-2" v-model="phone_number"  placeholder="Mobile Number" autofocus />-->
-                                                <input type="tel" id="user-number" class="form-control country-number mb-2" v-model="phone_number" name="user-number"  placeholder="Mobile Number" />
+                                                <!-- <input type="tel" id="user-number" class="form-control country-number mb-2" v-model="phone_number" name="user-number"  placeholder="Mobile Number" /> -->
+                                                <input type="tel" class="form-control country-number mb-2 cursor-none" v-model="phone_number" name="user-number" v-if="showOTP === true" disabled/>
+                                                <input type="tel" id="user-number" class="form-control country-number mb-2" v-model="phone_number" name="user-number"  placeholder="Mobile Number" v-else/>
+
                                                 <span class="error-message">{{ errors[0] }}</span>
                                                 <label class="floating-label">+88</label>
                                             </ValidationProvider>
@@ -122,11 +125,11 @@
                                         <div class="form-group">
                                             <span class="success-message" v-if="resend">Insert 6 digits code sent to your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>
                                             <span class="success-message" v-if="!resend && !$store.state.wrongOTP && !$store.state.timeout && !$store.state.inactiveUser">Insert 6 digits code sent to your phone <strong style="color: white;">{{ form.phone_number }}</strong></span><br>
-                                                <div style="display: flex; flex-direction: row;">
+                                                <div class="otp-input-group">
                                                     <v-otp-input
                                                             ref="otpInput"
                                                             input-classes="otp-input"
-                                                            separator="-"
+                                                            separator=""
                                                             :num-inputs="6"
                                                             :should-auto-focus="true"
                                                             :is-input-num="true"
@@ -185,6 +188,7 @@
     export default {
         data() {
             return {
+                error: false,
                 form: {
                     email: "",
                     password: "",
@@ -260,6 +264,7 @@
                         this.isResendLoading = false
                         this.resend = true
                     }
+                    console.log(response.data);
                 });
             },
             changeErrorMessage() {

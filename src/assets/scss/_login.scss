@@ -172,10 +172,13 @@ html {
 //     color: $text-light;
 // }
 .otp-input-group {
-    display: flex;
-    justify-content: space-between;
+  
     margin-top: 15px;
     margin-bottom: 15px;
+    > div {
+        display: flex;
+        justify-content: space-between;
+    }
     input {
         width: 60px;
         height: 60px !important;
@@ -183,4 +186,7 @@ html {
         color: $text-dark;
         font-size: 40px;
     }
+}
+.cursor-none {
+    cursor: not-allowed;
 }

@@ -13,6 +13,7 @@ import GameDetails from '../components/GameDetails';
 import Search from "../components/Search";
 import Profile from "../components/Profile";
 import Contacts from "../components/Contacts";
+import NoticeBoard from "../components/NoticeBoard";
 import OTP from "../components/Login/OTP";
 import RentView from "../components/RentView";
 import Password from "../components/Login/Password";
@@ -105,6 +106,14 @@ let router = new Router({
             path: '/contacts',
             name: 'Contacts',
             component: Contacts,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/notice-board',
+            name: 'NoticeBoard',
+            component: NoticeBoard,
             meta: {
                 requiresAuth: false
             }

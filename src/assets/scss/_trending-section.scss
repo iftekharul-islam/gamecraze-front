@@ -11,36 +11,36 @@
        
     }
     .item {
-        margin-left: -69px;
-        @include for-max-1800 {
-            margin-left: -77px;
-        }
-        @include for-max-1600 {
-            margin-left: -69px;
-        }
-        @include for-max-1500 {
-            margin-left: -82px;
-        }
-        @include for-max-1300 {
-            margin-left: -69px;
-        }
-        @include for-max-1200 {
-            margin-left: -91px;
-        }
-        @include for-max-992 {
-            margin-left: -69px;
-        }
-        @include for-max-900 {
+        margin-left: -11px;
+        // @include for-max-1800 {
+        //     margin-left: -77px;
+        // }
+        // @include for-max-1600 {
+        //     margin-left: -69px;
+        // }
+        // @include for-max-1500 {
+        //     margin-left: -82px;
+        // }
+        // @include for-max-1300 {
+        //     margin-left: -69px;
+        // }
+        // @include for-max-1200 {
+        //     margin-left: -91px;
+        // }
+        // @include for-max-992 {
+        //     margin-left: -69px;
+        // }
+        @include for-max-768 {
             margin-left: 0;
         }
         .trending-image {
             img {
-                clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
                 height: 238px;
                 object-fit: cover;
+                transform: skew(-21deg);
                
-                @include for-max-900 {
-                    clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+                @include for-max-768 {
+                    transform: skew(0);
                 }
             }
         }

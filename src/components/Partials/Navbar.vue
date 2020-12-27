@@ -32,6 +32,9 @@
                         <li>
                             <router-link class="router_link" to="/contacts">Contact us</router-link>
                         </li>
+                        <li>
+                            <router-link class="router_link" to="/notice-board">Notice Board</router-link>
+                        </li>
                     </ul>
                     <div class="gamehub-input-group">
                         <div class="gamehub-input-group--content">

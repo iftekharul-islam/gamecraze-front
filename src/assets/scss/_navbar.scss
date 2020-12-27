@@ -7,6 +7,15 @@
     @include for-max-575 {
         background: transparent;
     }
+    .container {
+        
+        @include for-min-1200 {
+            max-width: 1180px;
+        }
+        @include for-min-1400 {
+            max-width: 1220px;
+        }
+    }
 }
 .navbar-brand {
     @include for-max-575 {
@@ -79,6 +88,9 @@
 }
 .gamehub--logo {
     margin-right: 10px;
+    @include for-min-992 {
+        width: 120px;
+    }
 }
 // toogler button
 .toggler-position {

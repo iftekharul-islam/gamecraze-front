@@ -164,120 +164,130 @@
             </div>
         </section>
         <!-- featured section -->
-<!--        <section class="featured-section">-->
-<!--            <div class="text-center">-->
-<!--                <h2 class="section-heading">FEATURED VIDEOS</h2>-->
-<!--            </div>-->
-<!--            <div class="container">-->
-<!--                <div class="col-12">-->
-<!--                    <div id="owl-video" class="owl-carousel owl-theme">-->
-<!--                        <div class="item">-->
-<!--                            <div class="featured-videos">-->
-<!--                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="item">-->
-<!--                            <div class="featured-videos">-->
-<!--                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="item">-->
-<!--                            <div class="featured-videos">-->
-<!--                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="item">-->
-<!--                            <div class="featured-videos">-->
-<!--                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="item">-->
-<!--                            <div class="featured-videos">-->
-<!--                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="item">-->
-<!--                            <div class="featured-videos">-->
-<!--                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </section>-->
+        <section class="featured-section">
+            <div class="text-center">
+                <h2 class="section-heading">FEATURED VIDEOS</h2>
+            </div>
+            <div class="container">
+                <div class="col-12">
+                    <div id="owl-video" class="owl-carousel owl-theme">
+                        <div class="item">
+                            <div class="featured-videos">
+                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
+                            </div>
+                       </div>
+                        <div class="item">
+                            <div class="featured-videos">
+                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="featured-videos">
+                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="featured-videos">
+                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="featured-videos">
+                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="featured-videos">
+                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>                            </div>
+                        </div>
+                    </div>
+                </div> 
+            </div> 
+        </section> 
         <!-- footer -->
         <footer class="footer-section">
-            <div class="container">
-                <div class="footer-top">
-                    <a href="#" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
-                    <div class="footer-top--right">
-                        <span>Sign up for our newsletter.</span>
-                        <div class="footer-top--right-input-group">
-                            <div class="footer-top--right-input">
-                                <input type="text" class="" placeholder="E-mail address">
+             <div class="footer-section--content">
+                    <div class="container">
+                        <div class="footer-top">
+                            <a href="#" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
+                            <div class="footer-top--right">
+                                <span>Sign up for our newsletter.</span>
+                                <div class="footer-top--right-input-group">
+                                    <div class="footer-top--right-input">
+                                        <input type="text" class="" placeholder="E-mail address">
+                                    </div>
+                                    <button class="btn gamehub-search-btn" type="search">
+                                        <i class="far fa-envelope"></i>
+                                    </button>
+                                </div>
                             </div>
-                            <button class="btn gamehub-search-btn" type="search">
-                                <i class="far fa-envelope"></i>
-                            </button>
+                        </div>
+                    </div>
+            </div>
+
+        <div class="footer-middle">
+            <div class="container">
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <div class="footer-menu-content">
+                            <ul>
+                                <li><a href="#">Company</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Join Us</a></li>
+                                <li><a href="#">Sponsors</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="footer-menu-content">
+                            <ul>
+                                <li><a href="#">Company</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Join Us</a></li>
+                                <li><a href="#">Sponsors</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="footer-menu-content">
+                            <ul>
+                                <li><a href="#">Company</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Join Us</a></li>
+                                <li><a href="#">Sponsors</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <div class="footer-menu-content">
+                            <ul>
+                                <li><a href="#">Company</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Join Us</a></li>
+                                <li><a href="#">Sponsors</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="row footer-middle">
-                    <div class="col-6 col-md-3">
-                        <div class="footer-menu-content">
-                            <ul>
-                                <li><a href="#">Company</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Join Us</a></li>
-                                <li><a href="#">Sponsors</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="footer-menu-content">
-                            <ul>
-                                <li><a href="#">Company</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Join Us</a></li>
-                                <li><a href="#">Sponsors</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="footer-menu-content">
-                            <ul>
-                                <li><a href="#">Company</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Join Us</a></li>
-                                <li><a href="#">Sponsors</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="footer-menu-content">
-                            <ul>
-                                <li><a href="#">Company</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Join Us</a></li>
-                                <li><a href="#">Sponsors</a></li>
-                                <li><a href="#">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="footer-bottom">
-                    <p>©2020 Game Hub Inc.</p>
-                    <div class="footer-bottom--social">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
-                    </div>
+            <div class="footer-section--content">
+                <div class="container">
+                     <div class="footer-bottom">
+                        <p>©2020 Game Hub Inc.</p>
+                        <div class="footer-bottom--social">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                        </div>
+                     </div>
                 </div>
             </div>
         </footer>

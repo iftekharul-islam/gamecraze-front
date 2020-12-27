@@ -3014,8 +3014,13 @@ html {
 
 .support-input-design {
   width: 500px;
-  -webkit-clip-path: polygon(5% 0, 100% 0%, 97% 100%, 0% 100%);
-          clip-path: polygon(5% 0, 100% 0%, 97% 100%, 0% 100%);
+  -webkit-transform: skew(-21deg);
+          transform: skew(-21deg);
+  background: #fff;
+  border: 1px solid #FFD715;
+  padding-left: 5px;
+  height: 50px;
+  overflow: hidden;
 }
 
 @media (max-width: 575px) {
@@ -3026,38 +3031,55 @@ html {
 
 .support-input-design input {
   width: 500px;
-  -webkit-clip-path: polygon(23px 0, 100% 0%, 97% 100%, 0% 100%);
-          clip-path: polygon(23px 0, 100% 0%, 97% 100%, 0% 100%);
+  -webkit-transform: skew(21deg);
+          transform: skew(21deg);
   background: #fff;
   color: #000;
   left: 5px;
-  padding-left: 30px;
+  height: 50px;
   padding-right: 30px;
+  margin-top: -2px;
+  font-size: 24px;
 }
 
 .support-input-design input::-webkit-input-placeholder {
   text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  font-style: italic;
 }
 
 .support-input-design input:-ms-input-placeholder {
   text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  font-style: italic;
 }
 
 .support-input-design input::-ms-input-placeholder {
   text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  font-style: italic;
 }
 
 .support-input-design input::placeholder {
   text-align: center;
+  text-transform: uppercase;
+  vertical-align: middle;
+  font-style: italic;
 }
 
 @media (max-width: 575px) {
   .support-input-design input {
     width: 250px;
     left: 3px;
-    -webkit-clip-path: polygon(12px 0, 100% 0%, 97% 100%, 0% 100%);
-            clip-path: polygon(12px 0, 100% 0%, 97% 100%, 0% 100%);
   }
+}
+
+.support-search-btn {
+  height: 50px;
+  width: 55px;
 }
 
 .support-search-btn i {
@@ -3102,7 +3124,6 @@ html {
 
 .copyright-section {
   background: #141A27;
-  padding: 20px 0;
 }
 
 .copyright-section .footer-bottom {
@@ -4060,10 +4081,6 @@ html {
   visibility: visible;
 }
 
-.footer-section {
-  padding-bottom: 50px;
-}
-
 @media (max-width: 575px) {
   .footer-section {
     padding-bottom: 0px;
@@ -4118,6 +4135,16 @@ html {
   }
 }
 
+.footer-top--right-input-group .gamehub-search-btn {
+  -webkit-transform: initial;
+          transform: initial;
+}
+
+.footer-top--right-input-group .gamehub-search-btn i {
+  -webkit-transform: initial;
+          transform: initial;
+}
+
 @media (max-width: 575px) {
   .footer-top--right-input-group .gamehub-search-btn {
     -webkit-clip-path: initial;
@@ -4151,19 +4178,14 @@ html {
 }
 
 .footer-top--right-input {
-  -webkit-transform: skew(-21deg);
-          transform: skew(-21deg);
   background: #141A27;
 }
 
 .footer-top--right-input input {
   height: 100%;
   background: transparent;
-  border-color: #141A27;
-  border: none;
-  -webkit-transform: skew(21deg);
-          transform: skew(21deg);
-  padding-left: 30px;
+  border: 1px solid #FFD715;
+  padding-left: 20px;
   color: #fff;
 }
 
@@ -4180,12 +4202,26 @@ html {
   }
 }
 
+.footer-top--right-input input::-webkit-input-placeholder {
+  color: #fff;
+}
+
+.footer-top--right-input input:-ms-input-placeholder {
+  color: #fff;
+}
+
+.footer-top--right-input input::-ms-input-placeholder {
+  color: #fff;
+}
+
+.footer-top--right-input input::placeholder {
+  color: #fff;
+}
+
 .footer-middle {
   background: #141A27;
   padding: 60px 90px;
   margin-top: 50px;
-  -webkit-clip-path: polygon(10% 0, 100% -65%, 89% 100%, 0% 100%);
-          clip-path: polygon(10% 0, 100% -65%, 89% 100%, 0% 100%);
 }
 
 @media (max-width: 768px) {
@@ -4221,6 +4257,7 @@ html {
 }
 
 .footer-menu-content ul li {
+  padding: 0;
   margin-bottom: 15px;
 }
 
@@ -4235,7 +4272,7 @@ html {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  margin-top: 50px;
+  padding: 25px 0;
 }
 
 @media (max-width: 575px) {
@@ -4268,6 +4305,10 @@ html {
   .footer-bottom--social a:first-of-type {
     margin-left: 0;
   }
+}
+
+.footer-bottom p {
+  margin-bottom: 0;
 }
 
 @media (max-width: 575px) {

@@ -102,8 +102,8 @@
                             <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
                         </a>
                         <div class="d-flex upcoming-order">
-                            <router-link :to="{ path: '/game-details/' + game.id}">View Details</router-link>
-                            <a href="#">Rent</a>
+                            <router-link :to="{ path: '/game-details/' + game.id}"><span>View Details</span></router-link>
+                            <a href="#"><span>Rent</span></a>
                         </div>
                     </div>
                     <div class="upcoming-game--name-price d-flex justify-content-between">

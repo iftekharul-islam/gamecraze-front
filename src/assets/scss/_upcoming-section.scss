@@ -12,29 +12,8 @@
     }
 
     .item {
-        margin-left: -69px;
-        @include for-max-1800 {
-            margin-left: -77px;
-        }
-        @include for-max-1600 {
-            margin-left: -69px;
-        }
-        @include for-max-1500 {
-            margin-left: -82px;
-        }
-        @include for-max-1400 {
-            margin-left: -74px;
-        }
-        @include for-max-1300 {
-            margin-left: -69px;
-        }
-        @include for-max-1200 {
-            margin-left: -90px;
-        }
-        @include for-max-992 {
-            margin-left: -69px;
-        }
-        @include for-max-900 {
+        margin-left: -11px;
+        @include for-max-768 {
             margin-left: 0;
         }
         &:hover {
@@ -45,12 +24,13 @@
         }
         .upcoming-image {
             img {
-                clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
+                // clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
                 height: 238px;
                 object-fit: cover;
+                border-radius: 0;
                
                 @include for-max-900 {
-                    clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+                    // clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
                 }
             }
         }
@@ -148,6 +128,11 @@
 }
 .owl-upcoming--item {
     position: relative;
+    transform: skew(-21deg);
+    @include for-max-768 {
+        transform: skew(0deg);
+    }
+    
 }
 .upcoming-order {
     bottom: -1px;
@@ -156,53 +141,25 @@
     visibility: hidden;
     opacity: 0;
     transition: all .3s ease-in;
-    // @include for-max-1700 {
-    //     top: 128px;
-    // }
-    // @include for-max-1600 {
-    //     top: 110px;
-    // }
-    // @include for-max-1500 {
-    //     top: 146px;
-    // }
-    // @include for-max-1400 {
-    //     top: 139px;
-    // }
-    // @include for-max-1300 {
-    //     top: 121px;
-    // }
-    // @include for-max-1200 {
-    //     top: 174px;
-    // }
-    // @include for-max-1100 {
-    //     top: 140px;
-    // }
-    // @include for-max-992 {
-    //     top: 110px;
-    // }
-    // @include for-max-768 {
-    //     top: initial;
-    //     bottom: 94px;
-    // }
     a {
         width: 100%;
         text-align: center;
         padding: 15px 0;
         text-transform: uppercase;
-        clip-path: polygon(7% 0, 100% 0, 92% 100%, 0% 100%);
+        // clip-path: polygon(7% 0, 100% 0, 92% 100%, 0% 100%);
         @include for-max-900 {
             clip-path: initial;
         }
         &:first-of-type {
             background: $game-details;
-            margin-left: -1px;
-            margin-right: -7px;
+            // margin-left: -1px;
+            // margin-right: -7px;
             @include for-max-1700 {
-                margin-left: -1px;
+                // margin-left: -1px;
             }
             @include for-max-1200 {
-                margin-left: -1px;
-                margin-right: -6px;
+                // margin-left: -1px;
+                // margin-right: -6px;
             }
             @include for-max-900 {
                 margin-right: 0;
@@ -211,32 +168,22 @@
         }
         &:last-of-type {
             background: $secondery;
-            margin-right: 45px;
-            margin-left: -7px;
+            // margin-right: 45px;
+            // margin-left: -7px;
             transition: all .3s ease-in;
             &:hover {
                 color: black;
             }
-            @include for-max-1500 {
-                margin-right: 53px;
-                margin-left: -12px;
-            }
-            @include for-max-1400 {
-                margin-right: 49px;
-            }
-            @include for-max-1300 {
-                margin-right: 45px;
-            }
-            @include for-max-1200 {
-                margin-right: 65px;
-                margin-left: -12px;
-            }
-            @include for-max-992 {
-                margin-right: 46px;
-            }
             @include for-max-900 {
                 margin-right: 0;
                 margin-left: 0;
+            }
+        }
+        span {
+            transform: skew(21deg);
+            display: block;
+            @include for-max-768 {
+                transform: skew(0deg);
             }
         }
     }

@@ -1307,6 +1307,12 @@ html {
   }
 }
 
+@media (max-width: 1200px) {
+  .navbar-brand {
+    margin-right: 0;
+  }
+}
+
 @media (max-width: 575px) {
   .navbar-brand {
     padding-left: 15px;
@@ -1373,7 +1379,8 @@ html {
 
 @media (max-width: 1200px) {
   .gamehub-menu-collapse ul li a {
-    padding: 0 15px;
+    padding: 0 5px;
+    font-size: 14px;
   }
 }
 
@@ -1576,6 +1583,12 @@ html {
           transform: skew(21deg);
 }
 
+@media (max-width: 1200px) {
+  .gamehub-input-group--content:nth-child(2) .sign-in {
+    width: 100px;
+  }
+}
+
 .gamehub-input-group--content:nth-child(2) .complete-sign-in {
   margin-right: 20px;
   cursor: pointer;
@@ -1607,6 +1620,12 @@ html {
   height: 40px;
 }
 
+@media (max-width: 1200px) {
+  .search-input-design {
+    width: 120px;
+  }
+}
+
 .search-input-design input {
   height: 36px;
   border: none;
@@ -1630,6 +1649,12 @@ html {
           box-shadow: none;
 }
 
+@media (max-width: 1200px) {
+  .search-input-design input {
+    width: 115px;
+  }
+}
+
 .gamehub-search-btn {
   width: 45px;
   height: 40px;
@@ -1651,6 +1676,23 @@ html {
 .gamehub-search-btn i {
   -webkit-transform: skew(21deg);
           transform: skew(21deg);
+}
+
+.gamehub-dropdown-menu {
+  border-radius: 5px;
+  background: #141A27;
+  border: 1px solid #FFD715;
+  padding: 0px;
+}
+
+.gamehub-dropdown-menu a {
+  color: #fff;
+  padding: 5px 10px;
+  margin-bottom: 15px;
+}
+
+.gamehub-dropdown-menu a:hover {
+  background: #000 !important;
 }
 
 .body-home .copyright-section {
@@ -1844,8 +1886,6 @@ html {
 
 .trending-section .item .trending-image img {
   height: 238px;
-  -o-object-fit: cover;
-     object-fit: cover;
   -webkit-transform: skew(-21deg);
           transform: skew(-21deg);
 }
@@ -1912,7 +1952,7 @@ html {
 }
 
 .trending-section .owl-nav .owl-prev {
-  left: 20px;
+  left: 45px;
 }
 
 @media (max-width: 590px) {
@@ -1922,7 +1962,7 @@ html {
 }
 
 .trending-section .owl-nav .owl-next {
-  right: 20px;
+  right: 45px;
 }
 
 @media (max-width: 590px) {
@@ -2271,8 +2311,6 @@ html {
 
 .upcoming-section .item .upcoming-image img {
   height: 238px;
-  -o-object-fit: cover;
-     object-fit: cover;
   border-radius: 0;
 }
 
@@ -2331,7 +2369,7 @@ html {
 }
 
 .upcoming-section .owl-nav .owl-prev {
-  left: 20px;
+  left: 45px;
 }
 
 @media (max-width: 590px) {
@@ -2341,7 +2379,7 @@ html {
 }
 
 .upcoming-section .owl-nav .owl-next {
-  right: 20px;
+  right: 45px;
 }
 
 @media (max-width: 590px) {
@@ -3804,6 +3842,175 @@ html {
 }
 
 .set-password form .form-group label {
+  font-size: 20px;
+}
+
+.inbox-section {
+  padding: 150px 0;
+}
+
+@media (max-width: 992px) {
+  .inbox-section {
+    padding: 90px 0;
+  }
+}
+
+.inbox-section--content {
+  border: 1px solid #FFD715;
+}
+
+.inbox-section--content--heading {
+  background: #FFD715;
+  padding: 15px 0;
+}
+
+.inbox-section--content--heading h6 {
+  margin: 0;
+  color: #000;
+}
+
+.inbox-section--content .inbox-according {
+  padding: 30px 20px;
+}
+
+.inbox-section--content .inbox-according .card {
+  background: #141A27;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #FFD715;
+  border-radius: 10px;
+}
+
+.inbox-section--content .inbox-according .card-header {
+  padding: 0;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
+.inbox-section--content .inbox-according .card-header button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.inbox-section--content .inbox-according .card-header button.collapsed::after {
+  content: "\2228";
+  right: 27px;
+  left: initial;
+  top: 20px;
+  color: #FFD715;
+}
+
+.inbox-section--content .inbox-according .card-header button::after {
+  content: "\2227";
+  right: 27px;
+  left: initial;
+  top: initial;
+  bottom: 10px;
+  color: #FFD715;
+}
+
+.inbox-section--content .inbox-according .card .collapse:not(.show) {
+  height: 60px;
+  display: block;
+}
+
+.inbox-section--content .inbox-according .card .collapse:not(.show) .card-body {
+  line-height: 55px;
+  margin-top: -15px;
+}
+
+.inbox-section--content .inbox-according .card .collapse span {
+  position: relative;
+  top: 23px;
+  left: 15px;
+}
+
+.inbox-section--content .inbox-according .card .collapse span i {
+  color: #FFD715;
+}
+
+.inbox-section--content .inbox-according .card .collapse .card-body {
+  text-overflow: ellipsis;
+  padding: 0 50px;
+  padding-bottom: 30px;
+}
+
+.event-results--img {
+  margin-bottom: 25px;
+}
+
+.event-results--content {
+  margin-bottom: 150px;
+}
+
+.event-results--content--heading {
+  margin-bottom: 60px;
+  text-align: center;
+}
+
+.event-results--content--heading h2 {
+  font-size: 40px;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.event-results--content--row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.event-results--content--row--box {
+  margin-right: 60px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 575px) {
+  .event-results--content--row--box {
+    margin-right: 30px;
+  }
+}
+
+.event-results--content--row--box:last-of-type {
+  margin-right: 0;
+}
+
+@media (max-width: 575px) {
+  .event-results--content--row--box:last-of-type {
+    margin-right: 30px;
+  }
+}
+
+.event-results--content--row--box img {
+  border-radius: 50%;
+  width: 165px;
+  height: 165px;
+  border: 2px solid #FFD715;
+}
+
+@media (max-width: 575px) {
+  .event-results--content--row--box img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+.event-results--content--row--box p {
+  margin-bottom: 0;
+  margin-top: 30px;
   font-size: 20px;
 }
 

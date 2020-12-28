@@ -18,6 +18,9 @@
     }
 }
 .navbar-brand {
+    @include for-max-1200 {
+        margin-right: 0;
+    }
     @include for-max-575 {
         padding-left: 15px;
     }
@@ -59,7 +62,8 @@
             a {
                 padding: 0 20px;
                 @include for-max-1200 {
-                    padding: 0 15px;
+                    padding: 0 5px;
+                    font-size: 14px;
                 }
                 &.router-link-exact-active {
                             position: relative;
@@ -209,6 +213,9 @@
                     display: inline-block; 
                     transform: skew(21deg);
                 }
+                @include for-max-1200 {
+                    width: 100px;
+                }
             }
             .complete-sign-in {
                 margin-right: 20px;
@@ -232,6 +239,14 @@
                 }
             }
         }
+        &:hover {
+            .complete-sign-in {
+                .gamehub-dropdown-menu {
+                    
+                }
+            }
+        }
+        
     }
 }
 
@@ -243,6 +258,9 @@
     position: relative;
     width: 140px;
     height: 40px;
+    @include for-max-1200 {
+        width: 120px;
+    }
     input {
         height: 36px;
         border: none;
@@ -261,6 +279,9 @@
             outline: none;
             border: none;
             box-shadow: none;
+        }
+        @include for-max-1200 {
+            width: 115px;
         }
     }
 }
@@ -281,6 +302,28 @@
         transform: skew(21deg);
     }
 }
+.gamehub-dropdown-menu {
+    border-radius: 5px;
+    background: $game-details;
+    border: 1px solid $secondery;
+    padding: 0px;
+    a {
+        color: $text-light;
+        padding: 5px 10px;
+        margin-bottom: 15px;
+        &:hover {
+            background: $text-dark !important;
+        }
+    }
+    // &:hover {
+    //     a {
+    //         background: $game-details !important;
+    //     }
+    // }
+}
+
+
+
 
 .body-home {
     .copyright-section {

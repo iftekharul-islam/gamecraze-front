@@ -12,31 +12,13 @@
     }
     .item {
         margin-left: -11px;
-        // @include for-max-1800 {
-        //     margin-left: -77px;
-        // }
-        // @include for-max-1600 {
-        //     margin-left: -69px;
-        // }
-        // @include for-max-1500 {
-        //     margin-left: -82px;
-        // }
-        // @include for-max-1300 {
-        //     margin-left: -69px;
-        // }
-        // @include for-max-1200 {
-        //     margin-left: -91px;
-        // }
-        // @include for-max-992 {
-        //     margin-left: -69px;
-        // }
         @include for-max-768 {
             margin-left: 0;
         }
         .trending-image {
             img {
                 height: 238px;
-                object-fit: cover;
+                // object-fit: cover;
                 transform: skew(-21deg);
                
                 @include for-max-768 {
@@ -86,13 +68,13 @@
             }
         }
         .owl-prev {
-            left: 20px;
+            left: 45px;
             @include for-max-590 {
                 left: 35%;
             }
         }
         .owl-next {
-            right: 20px;
+            right: 45px;
             @include for-max-590 {
                 right: 35%;
             }

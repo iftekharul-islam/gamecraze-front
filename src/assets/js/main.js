@@ -20,21 +20,22 @@ $(document).ready(function() {
 		center: true,
 		loop: true,
 		margin: 10,
-		nav: false,
+		nav: true,
 		// autoplay:true,
 		dots:false,
+		navText: [
+			'<i class="fas fa-arrow-left"></i>',
+			'<i class="fas fa-arrow-right"></i>'
+		],
 		responsive:{
 			0:{
 				items: 1,
 				dots:true,
 				nav: false,
 			},
-			600:{
+			768:{
 				items: 2,
 
-			},
-			1000:{
-				items: 2
 			}
 		}
 	});
@@ -91,6 +92,10 @@ $(document).ready(function() {
 		}
 	});
 
+	//
+
+
+
 });
 
 function isNumber(evt)
@@ -104,3 +109,4 @@ function isNumber(evt)
     return false;
 }
 // text input change to number only
+

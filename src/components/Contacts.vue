@@ -41,7 +41,7 @@
                                     <label for="contactmessage">Message</label>
                                     <textarea class="form-control" id="contactmessage" rows="3"></textarea>
                                 </div>
-                                <button class="btn--secondery submit-btn">Submit</button>
+                                <button class="btn--secondery submit-btn"><span>Submit</span></button>
                             </form>
                         </div>
                     </div>

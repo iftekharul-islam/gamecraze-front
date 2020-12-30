@@ -69,7 +69,7 @@
                                         </table>
                                     </div>
                                     <div class="modal-footer justify-content-center">
-                                        <a href="#" class="btn--secondery" data-toggle="modal" data-target="#rennow1">RENT NOW</a>
+                                        <a href="#" class="btn--secondery" data-toggle="modal" data-target="#rennow1"><span>RENT NOW</span></a>
                                     </div>
                                 </div>
                             </div>
@@ -169,7 +169,7 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer justify-content-center">
-                                        <a href="#" class="btn--secondery"><i class="fas fa-shopping-cart"></i> ADD TO CART</a>
+                                        <a href="#" class="btn--secondery"><span><i class="fas fa-shopping-cart"></i> ADD TO CART</span></a>
                                     </div>
                                 </div>
                             </div>
@@ -214,7 +214,7 @@
                                         </table>
                                     </div>
                                     <div class="modal-footer justify-content-center">
-                                        <a href="#" class="btn--secondery">RENT NOW</a>
+                                        <a href="#" class="btn--secondery"><span>RENT NOW</span></a>
                                     </div>
                                 </div>
                             </div>

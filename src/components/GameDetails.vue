@@ -16,7 +16,7 @@
                                 all-out multiplayer with your squad in modes like the vast Grand
                                 Operations and the cooperative Combined Arms.</p>
                             <a href="#" class="read-more">Read More</a>
-                            <a href="#" class="btn--secondery rent-now">RENT NOW</a>
+                            <a href="#" class="btn--secondery rent-now"><span>RENT NOW</span></a>
                             <div class="d-flex games-header-section--platforms">
                                 <p>PLATFORM:</p>
                                 <a href="#"><img src="../assets/img/windows.png" alt="windowa"></a>

@@ -51,8 +51,8 @@
                                  <img src="../../assets/img/sss.jpg" alt="profile" class="img-fluid">
                                             <div class="dropdown-menu gamehub-dropdown-menu">
                                                 <router-link to="/profile" class="dropdown-item" href="#">Profile</router-link>
-                                                <router-link to="/profile" class="dropdown-item" href="#">Another action</router-link>
-                                                <router-link to="/profile" class="dropdown-item" href="#">Something else here</router-link>
+                                                <router-link to="/profile" class="dropdown-item" href="#">My Account</router-link>
+                                                <router-link to="/profile" class="dropdown-item" href="#">Log out</router-link>
                                             </div>
                                 </div>
 <!--                                <div class="log-out">-->

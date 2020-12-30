@@ -18,7 +18,9 @@ export const storage = {
         token: null,
         userId: null,
         user: null,
+        notSetPassword: true,
         notFoundEmail: false,
+        setPasswordPopUp: false,
         isSubmitLoading: false,
         wrongOTP: false,
         inactiveUser: false,
@@ -112,6 +114,12 @@ export const storage = {
         },
         setNotFoundEmail (state, payload) {
             state.notFoundEmail = payload
+        },
+        setNotSetPassword (state, payload) {
+            state.notSetPassword = payload
+        },
+        setPasswordPopUp (state, payload) {
+            state.setPasswordPopUp = payload
         },
         setSubmitLoading (state, payload) {
             state.isSubmitLoading = payload
@@ -305,6 +313,17 @@ export const storage = {
                     }
                 }
             });
+        },
+        checkPassword ({commit, dispatch}, payload) {
+            axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'check-password', payload).then(response => {
+                if (response.data.error === true) {
+                    commit('setNotSetPassword', false);
+                }
+                else {
+                    commit('setPasswordPopUp', true);
+                }
+
+            })
         }
     },
 }

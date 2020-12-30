@@ -59,8 +59,10 @@
                         </ul>
 
                       <div class="password-setup-popup" v-if="$store.state.setPasswordPopUp">
-                          <p>Hello</p>
-                        <router-link to="/registration" >OK</router-link>
+                        <div class="password-setup-popup--content">
+                            <p>Please check your mail and set your password</p>
+                            <router-link to="/registration" >ok</router-link>
+                        </div>
                       </div>
                           
                             <!-- form -->
@@ -300,10 +302,5 @@
 
 
 <style scoped>
-  .password-setup-popup {
-    width: 100%;
-    height: 300px;
-    background: red;
-    position: absolute;
-  }
+
 </style>

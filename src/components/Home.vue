@@ -9,7 +9,7 @@
                             <span>Exchanging</span> AND
                             <span>Renting</span> Platform</h1>
                         <h6>Play with over 15 million+ gamers in leagues,<br> tournaments & ladders.</h6>
-                        <a href="#" class="btn--secondery">BEGIN JOURNEY</a>
+                        <a href="#" class="btn--secondery"><span>BEGIN JOURNEY</span></a>
                     </div>
                 </div>
             </div>
@@ -22,7 +22,7 @@
                         <div class="exchange-lend-section--exchange">
                             <h3>Would you like to
                                 <span>Exchange</span> your CD?</h3>
-                            <a href="#" class="btn--secondery exchange-lend-section--exchange-btn" @click.prevent="onExchange">exchange</a>
+                            <a href="#" class="btn--secondery exchange-lend-section--exchange-btn" @click.prevent="onExchange"><span>exchange</span></a>
                         </div>
                     </div>
 
@@ -31,7 +31,7 @@
                             <h3>DO YOU WANT TO
                                 <span>LEND</span> GAMES?</h3>
 <!--                            <a href="#" class="btn&#45;&#45;secondery exchange-lend-section&#45;&#45;exchange-btn">lend</a>-->
-                                <router-link to="/games" class="btn--secondery exchange-lend-section--exchange-btn">Lend</router-link>
+                                <router-link to="/games" class="btn--secondery exchange-lend-section--exchange-btn"><span>Lend</span></router-link>
                         </div>
                     </div>
                 </div>

@@ -7,9 +7,40 @@
         <div class="container">
             <div class="inbox-section--content">
                 <div class="inbox-section--content--heading text-center">
-                         <h6>Inbox</h6>
+                    <h6>Inbox</h6>
+                </div>
+
+                     <div class="inbox-section--content--according">
+                         <div class="card" v-for="index in 5" :key="index">
+                             <div class="inbox-click" @click="changeToggle()">Click me</div>
+                             <i class="fas fa-envelope mail-icon"></i>
+                            <p :class="{peraToggle: isToggle}">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus 
+                                venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum 
+                                facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis 
+                                scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris 
+                                sit amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio tempor orci dapibus ultrices in iaculis nunc sed augue lacus
+                            </p>
+                         </div>
+                         <!-- card 2 -->
+                          <div class="card">
+                            <div class="inbox-click" @click="changeToggle()">Click me</div>
+                             <i class="fas fa-envelope mail-icon"></i>
+                              <p :class="{peraToggle: isToggle}">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus 
+                                venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum 
+                                facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis 
+                                scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris 
+                                sit amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio tempor orci dapibus ultrices in iaculis nunc sed augue lacus
+                            </p>
+                         </div>
                      </div>
-                 <div class="accordion inbox-according" id="mailbox">
+
+
+
+
+            
+                 <!-- <div class="accordion inbox-according" id="mailbox">
                     <div class="card">
                         <div class="card-header" id="headingTwo">
                         <h2 class="mb-0">
@@ -43,7 +74,7 @@
                         </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </section>
@@ -141,22 +172,33 @@
 </template>
 
 <script>
-    // export default {
-    //     data() {
-    //         return {
-    //             user: {}
-    //         }
-    //     },
-    //     methods: {
-    //         formattedDate(date) {
-    //             const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-    //             let birthDate = new Date(date)
-    //             return birthDate.getDate() + " " + months[birthDate.getMonth()] + " " + birthDate.getFullYear()
-    //         }
-    //     },
-    //     created() {
-    //         this.user = this.$store.state.user
-    //         console.log(this.user, 'user');
-    //     }
-    // }
+    export default {
+        data() {
+            return {
+                user: {},
+                isToggle: false
+            }
+        },
+        methods: {
+            formattedDate(date) {
+                const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+                let birthDate = new Date(date)
+                return birthDate.getDate() + " " + months[birthDate.getMonth()] + " " + birthDate.getFullYear()
+            },
+            changeToggle() {
+                if (this.isToggle) {
+                    this.isToggle = false;
+                }
+                else {
+                    this.isToggle = true;
+                }
+            }
+        },
+        created() {
+            this.user = this.$store.state.user
+            console.log(this.user, 'user');
+        }
+    }
+		
+
 </script>

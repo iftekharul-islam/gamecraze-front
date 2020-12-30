@@ -6,11 +6,12 @@
     width: 196px;
     height: 50px;
     background: $secondery;
-    clip-path: polygon(10% 0, 100% 0%, 90% 100%, 0% 100%);
+    // clip-path: polygon(10% 0, 100% 0%, 90% 100%, 0% 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all .3s ease-in;
+    transform: skew(-21deg);
 
     color: #000;
     &:hover {
@@ -20,6 +21,12 @@
     @include for-max-992 {
       width: 160px;
       height: 40px;
+    }
+    span {
+      transform: skew(21deg);
+    }
+    &:focus {
+      outline: none;
     }
   }
   &--login {

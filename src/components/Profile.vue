@@ -228,7 +228,7 @@
                                         <div class="col-sm-9">
                                             <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="customFile">
-                                                    <label class="custom-file-label" for="customFile">Choose file</label>
+                                                    <label class="custom-file-label text-light" for="customFile">Disk Image</label>
                                                 </div>
                                                 <div class="img-prev">
                                                     <img src="../assets/img/disk.png" alt="img previes">
@@ -240,7 +240,7 @@
                                         <div class="col-sm-9">
                                             <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="customFile2">
-                                                    <label class="custom-file-label" for="customFile2">Choose file</label>
+                                                    <label class="custom-file-label text-light" for="customFile2">Cover Image</label>
                                                 </div>
                                                 <div class="img-prev">
                                                     <img src="../assets/img/disk.png" alt="img previes">
@@ -248,8 +248,8 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="offset-md-3 col-md-9">
-                                            <button class="btn--secondery w-100">Submit</button>
+                                        <div class="offset-md-3 col-md-9 mt-4">
+                                            <button class="btn--secondery w-100 border-0"><span>Submit</span></button>
                                         </div>
                                     </div>
                                 </form>

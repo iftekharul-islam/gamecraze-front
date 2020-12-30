@@ -57,11 +57,16 @@
                                 SIGN IN
                             </li>
                         </ul>
+
+                      <div class="password-setup-popup" v-if="$store.state.setPasswordPopUp">
+                          <p>Hello</p>
+                        <router-link to="/registration" >OK</router-link>
+                      </div>
                           
                             <!-- form -->
                             <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption==='Phone Number'">
                                 <form @submit.prevent="handleSubmit(onLogin)" method="post">
-                                    <div class="form-group">
+                                    <div class="form-group" v-if="$store.state.notSetPassword">
                                         <!-- user name -->
                                         <label for="username1" class="">Email address</label>
                                         <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
@@ -70,8 +75,8 @@
                                         </ValidationProvider>
                                     </div>
                                     <!-- password -->
-                                    <!-- <div class="form-group mb-3">
-                                        <label for="gamepassword1" class="sr-only">Password</label>
+                                    <div class="form-group mb-3" v-if="!$store.state.notSetPassword">
+                                        <label for="gamepassword1" class="">Password</label>
                                         <ValidationProvider name="password" rules="required|min:8" v-slot="{ errors }">
                                             <input @click="changeErrorMessage" type="password" class="form-control mb-2" id="gamepassword1"  v-model="form.password">
                                             <span class="error-message">{{ errors[0] }}</span>
@@ -79,8 +84,8 @@
                                         </ValidationProvider>
                                         <span class="error-message" v-if="$store.state.notFoundEmail && !$store.state.inactiveUser">Email or Password is not valid<br></span>
                                         <span class="error-message" v-if="$store.state.inactiveUser">This User is inactive, please contact to helpline</span>
-                                    </div> -->
-                                    <!-- <div class="d-flex justify-content-between">
+                                    </div>
+                                    <div class="d-flex justify-content-between" v-if="!$store.state.notSetPassword">
                                         <div class="custom-control custom-checkbox">
                                             <input class="custom-control-input" type="checkbox" id="gamecheck1">
                                             <label class="custom-control-label" for="gamecheck1">
@@ -91,12 +96,12 @@
                                         <div class="forget">
                                             <router-link to="forgot-password"><u>Forgot Password ?</u></router-link>
                                         </div>
-                                    </div> -->
+                                    </div>
                                     <!-- sign in button -->
                                     <div class="text-center sign-btn">
-                                        <button class="btn mb-2 btn--login w-100" type="submit" :disabled="isLoading && !$store.state.notFoundEmail">
+                                        <button class="btn mb-2 btn--login w-100" type="submit" :disabled="isLoading && $store.state.notSetPassword && !$store.state.notFoundEmail">
                                             PROCEED
-                                            <span v-if="isLoading && !$store.state.notFoundEmail" class="spinner-border spinner-border-sm"></span>
+                                            <span v-if="isLoading && $store.state.notSetPassword && !$store.state.notFoundEmail" class="spinner-border spinner-border-sm"></span>
                                         </button>
                                     </div>
                                 </form>
@@ -239,7 +244,13 @@
                     });
                 }
                 else {
+                  if (this.$store.state.notSetPassword) {
+                    this.$store.dispatch('checkPassword', this.form)
+                  }
+                  else {
                     this.$store.dispatch('login', this.form)
+                  }
+
                 }
             },
             onChangeLoginOption: function () {
@@ -268,7 +279,7 @@
                 });
             },
             changeErrorMessage() {
-                this.$store.commit('setNotFoundEmail', false)
+              this.$store.commit('setNotFoundEmail', false)
                 this.isLoading = false
             },
             changeWrongOtp() {
@@ -286,3 +297,13 @@
         }
     }
 </script>
+
+
+<style scoped>
+  .password-setup-popup {
+    width: 100%;
+    height: 300px;
+    background: red;
+    position: absolute;
+  }
+</style>

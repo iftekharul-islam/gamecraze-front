@@ -1,7 +1,7 @@
 <template>
     <div>
          <!-- Cart page-->
-  <section class="cart sign-in-bg pt-4">
+  <!-- <section class="cart sign-in-bg pt-4">
     <div class="container-fluid cart-width">
       <main class="pb-5">
         <div class="basket">
@@ -32,15 +32,15 @@
                    </div>
                   </td>
                   <td class="price">{{ price[index] }}</td>
-<!--                  <td class="price">{{ this.gameId }}</td>-->
+                  <td class="price">{{ this.gameId }}</td>
                   <td class="text-white">
                     <h5>{{ lendWeek[index] }}</h5>
-<!--                          <div class="quantity">-->
-<!--                            <select class="form-control w-75" v-model="$store.state.lendWeek[index]" @change="updateRentWeek(index)">-->
-<!--                              <option value="" selected disabled>Rent Week</option>-->
-<!--                              <option v-for="n in item.max_number_of_week" :value="n">{{n}}</option>-->
-<!--                            </select>-->
-<!--                          </div>-->
+                          <div class="quantity">
+                            <select class="form-control w-75" v-model="$store.state.lendWeek[index]" @change="updateRentWeek(index)">
+                              <option value="" selected disabled>Rent Week</option>
+                              <option v-for="n in item.max_number_of_week" :value="n">{{n}}</option>
+                           </select>
+                          </div> 
                   </td>
 
                   <td class="subtotal">{{ price[index] }}</td>
@@ -49,12 +49,10 @@
                         <i class="far fa-trash-alt"></i>
                       </button>
                   </div>
-                  <!-- <div class="border"></div> -->
                 </tr>
               </tbody>
             </table>
           </div>
-          <!--  -->
         </div>
         <aside>
           <div class="summary">
@@ -84,7 +82,78 @@
         </aside>
       </main>
     </div>
-  </section>
+  </section> -->
+
+        <section class="cart-section">
+          <div class="container">
+            <div class="cart-heading">
+              <h2>YOUR CART</h2>
+            </div>
+            <div class="row">
+              <div class="col-md-8">
+                <div class="cart-section--item-details">
+                  <table class="table table-borderless cart-section--item-details--table">
+                            <thead>
+                            <tr>
+                                <td scope="col">Item</td>
+                                <td scope="col">Price</td>
+                                <td scope="col">Rent Week</td>
+                                <td scope="col">Subtotal</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td scope="col">Call of Duty</td>
+                                <td scope="col">৳80</td>
+                                <td scope="col">1 week</td>
+                                <td scope="col">৳80</td>
+                            </tr>
+                             <tr>
+                                <td scope="col">Call of Duty</td>
+                                <td scope="col">৳80</td>
+                                <td scope="col">1 week</td>
+                                <td scope="col">৳80</td>
+                            </tr>
+                             <tr>
+                                <td scope="col">Call of Duty</td>
+                                <td scope="col">৳80</td>
+                                <td scope="col">1 week</td>
+                                <td scope="col">৳80</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                </div>
+              </div>
+              <div class="col-md-4">
+                  <div class="cart-section--item-price-box">
+                      <form action="">
+                        <div class="cart-section--item-price-box--heading text-center">
+                        <span>Items in your Bag</span>
+                      </div>
+                      <div class="subtotal d-flex align-items-center justify-content-between">
+                        <p>Subtotal</p>
+                        <span class="subtotal-price">৳1480</span>
+                      </div>
+                      <div class="promotional-code">
+                        <p class="mb-2">Enter a promotional code</p>
+                        <div class="promotional-code--input-group d-flex">
+                          <input type="text" class="form-control mr-3">
+                          <button class="btn--cart-btn">APPLY</button>
+                        </div>
+                      </div>
+                      <div class="total d-flex align-items-center justify-content-between">
+                        <p>Total</p>
+                        <span class="total-price">৳1480</span>
+                      </div>
+                      <div class="checkout-btn">
+                          <button class="btn--cart-btn w-100">GO TO SECURE CHECKOUT</button>
+                      </div>
+                      </form>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </section>
     </div>
 </template>
 

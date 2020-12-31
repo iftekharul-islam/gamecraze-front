@@ -90,7 +90,7 @@
               <h2>YOUR CART</h2>
             </div>
             <div class="row">
-              <div class="col-md-8">
+              <div class="col-md-7">
                 <div class="cart-section--item-details">
                   <table class="table table-borderless cart-section--item-details--table">
                             <thead>
@@ -124,7 +124,7 @@
                         </table>
                 </div>
               </div>
-              <div class="col-md-4">
+              <div class="col-md-5">
                   <div class="cart-section--item-price-box">
                       <form action="">
                         <div class="cart-section--item-price-box--heading text-center">

@@ -72,6 +72,16 @@
         background: $secondery;
       }
   }
+  &--cart-btn {
+    background: $secondery;
+    color: $text-dark;
+    padding: 10px 30px;
+    text-align: center;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+  }
 }
 // owl dots
  

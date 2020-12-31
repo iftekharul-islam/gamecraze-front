@@ -26,6 +26,7 @@ export default {
     this.$store.dispatch('AddCartPostId');
     this.$store.dispatch('setLendWeek');
     this.$store.dispatch('setCheckpointId');
+    this.$store.dispatch('setSetupPasswordUserFromStorage');
   }
 }
 </script>

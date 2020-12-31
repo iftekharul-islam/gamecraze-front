@@ -17,7 +17,7 @@
                                      <div class="form-group">
                                         <label >Email address</label>
                                         <ValidationProvider name="name" rules="required" v-slot="{ errors }">
-                                            <input type="email" class="form-control"  v-model="form.name">
+                                            <input type="email" class="form-control"  v-model="form.email" readonly>
                                             <span style="color: red;">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                     </div>
@@ -46,7 +46,7 @@
                                     <div class="form-group">
                                         <label for="user-number">Phone number</label>
                                         <ValidationProvider name="phone number" rules="required|max:11|min:11" v-slot="{ errors }">
-                                            <input type="tel" class="form-control" id="user-number" v-model="form.phone_number">
+                                            <input type="tel" class="form-control" id="user-number" v-model="form.phone_number" readonly>
                                             <span style="color: red;">{{ errors[0] }}</span>
                                         </ValidationProvider>
 
@@ -54,8 +54,8 @@
                                     <!-- password -->
                                     <div class="form-group">
                                         <label>Set your password</label>
-                                        <ValidationProvider name="name" rules="required" v-slot="{ errors }">
-                                            <input type="text" class="form-control" v-model="form.name">
+                                        <ValidationProvider name="password" rules="required" v-slot="{ errors }">
+                                            <input type="password" class="form-control" v-model="form.password">
                                             <span style="color: red;">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                     </div>
@@ -123,24 +123,31 @@
         data() {
             return {
                 form: {
-                    name: "",
-                    phone_number: "",
-                }
+                    email: this.$store.state.setupPasswordUser.email,
+                    name: this.$store.state.setupPasswordUser.name,
+                    lastName: this.$store.state.setupPasswordUser.last_name,
+                    phone_number: this.$store.state.setupPasswordUser.phone_number,
+                    password: ""
+                },
+                // user: this.$store.state.setupPasswordUser
             }
         },
         methods: {
             onNext() {
-                this.$store.dispatch('setSignUp', this.form)
-                this.$api.post('sendOtp', this.form).then(response => {
-                    this.$router.push('/otp-verification').catch(err => {});
+                // this.$store.dispatch('setSignUp', this.form)
+                this.$api.put('users', this.form).then(response => {
+                  if (response.data.error === false) {
+                    this.$store.dispatch('login', this.form)
+                  }
                 });
             },
         },
-         mounted () {
-        document.body.classList.add('body-position')
+        mounted () {
+          console.log(this.user)
+          document.body.classList.add('body-position')
         },
         destroyed () {
-        document.body.classList.remove('body-position')
+          document.body.classList.remove('body-position')
         }
     }
 

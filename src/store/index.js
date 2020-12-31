@@ -27,7 +27,8 @@ export const storage = {
         timeout: false,
         postId: [],
         cart: null,
-        totalAmount: 0
+        totalAmount: 0,
+        setupPasswordUser: null
     },
     getters: {
         user (state) {
@@ -136,6 +137,12 @@ export const storage = {
         setUser (state, payload) {
             state.user = payload
         },
+        setSetupPasswordUser (state, payload) {
+            state.setupPasswordUser = payload
+        },
+        setSetupPasswordUserFromStorage (state, payload) {
+            state.setupPasswordUser = payload
+        }
     },
     actions: {
         pushPostId (context, payload) {
@@ -204,6 +211,7 @@ export const storage = {
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('userId', JSON.stringify(res.data.user.id))
                 localStorage.setItem('user', JSON.stringify(res.data.user))
+                localStorage.removeItem('setupPasswordUser')
                 router.push('/').catch(err => {});
             }
             else {
@@ -232,6 +240,7 @@ export const storage = {
             localStorage.removeItem('userId')
             localStorage.removeItem('user')
             localStorage.removeItem('postId')
+            localStorage.removeItem('setupPasswordUser')
 
             router.push('/login').catch(err => {});
         },
@@ -315,15 +324,33 @@ export const storage = {
             });
         },
         checkPassword ({commit, dispatch}, payload) {
-            axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'check-password', payload).then(response => {
-                if (response.data.error === true) {
-                    commit('setNotSetPassword', false);
+            axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'check-email-exist', payload).then(response => {
+                if (response.data.error === false) {
+                    axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'check-password', payload).then(response => {
+                        if (response.data.error === true) {
+                            commit('setNotSetPassword', false);
+                        }
+                        else {
+                            commit('setSetupPasswordUser', response.data.user);
+                            localStorage.setItem('setupPasswordUser', JSON.stringify(response.data.user))
+                            commit('setPasswordPopUp', true);
+                        }
+
+                    })
                 }
                 else {
-                    commit('setPasswordPopUp', true);
+                    console.log("Email is not registered")
                 }
 
             })
+
+        },
+        setSetupPasswordUserFromStorage (context) {
+            const user = JSON.parse(localStorage.getItem('setupPasswordUser'))
+            if (!user) {
+                return;
+            }
+            context.commit('setSetupPasswordUserFromStorage', user)
         }
     },
 }

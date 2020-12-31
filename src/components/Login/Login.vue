@@ -66,7 +66,7 @@
                       </div>
                           
                             <!-- form -->
-                            <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption==='Phone Number'">
+                            <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption==='Phone Number' && !$store.state.setPasswordPopUp">
                                 <form @submit.prevent="handleSubmit(onLogin)" method="post">
                                     <div class="form-group" v-if="$store.state.notSetPassword">
                                         <!-- user name -->
@@ -182,7 +182,7 @@
                                 </form>
                             </ValidationObserver>
                                 <span class="or text-center w-100 d-block">OR</span>
-                              <button class="btn mb-4 btn--registration button-style w-100" style="margin: 0 auto;" @click="onChangeLoginOption"><i v-if="loginOption === 'Email'" class="far fa-envelope login-email"></i> <i v-if="loginOption === 'Phone Number'" class="fas fa-mobile-alt login-phone"></i> <span>Continue with  {{ loginOption }} </span>  </button>
+                              <button v-if="!$store.state.setPasswordPopUp" class="btn mb-4 btn--registration button-style w-100" style="margin: 0 auto;" @click="onChangeLoginOption"><i v-if="loginOption === 'Email'" class="far fa-envelope login-email"></i> <i v-if="loginOption === 'Phone Number'" class="fas fa-mobile-alt login-phone"></i> <span>Continue with  {{ loginOption }} </span>  </button>
                     </div>
                 </div>
             </div>
@@ -289,7 +289,7 @@
             }
         },
         created() {
-            console.log(this.$store.state.inactiveUser, 'inactive user 1')
+          this.$store.state.setPasswordPopUp = false;
         },
        mounted () {
         document.body.classList.add('body-position')

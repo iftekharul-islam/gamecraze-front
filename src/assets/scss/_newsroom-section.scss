@@ -1,0 +1,83 @@
+.newsroom-section {
+    padding-top: 150px;
+    padding-bottom: 150px;
+    &--heading {
+        margin-bottom: 60px;
+        h2 {
+            font-style: italic;
+            font-size: 40px;
+        }
+    }
+    &--content-box {
+        display: block;
+        width: 100%;
+        height: 100%;
+        &:hover {
+            color: inherit;
+            img {
+                transform: scale(1.1);
+            }
+        }
+       &--text {
+        background: $game-details;
+        padding: 10px 30px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+       
+        p {
+            margin-bottom: 10px;
+            font-size: 14px;
+            &:last-of-type{
+                color: $silver;
+            }
+        }
+        h6 {
+            font-size: 20px;
+        }
+       }
+       &--img {
+           overflow: hidden;
+           img {
+               transition: all .3s ease-in;
+               border-top-left-radius: 10px;
+               border-top-right-radius: 10px;
+           }
+       }
+    }
+}
+.trending-news {
+    height: 420px;
+    border-radius: 10px;
+    img {
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: -1;
+    }
+    &::after {
+        content: "";
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: linear-gradient(360deg, #FFD715 27.7%, rgba(20, 26, 39, 0.2) 58.4%);
+        border-radius: 10px;
+        z-index: -1;
+    }
+    a {
+        padding: 30px;
+    }
+    &--text-content {
+        position: relative;
+        z-index: 99;
+        color: $text-dark;
+        p {
+            margin-bottom: 10px;
+        }
+        h2 {
+            font-size: 40px;
+            font-family: circular-medium;
+        }
+    }
+}

@@ -15,6 +15,8 @@ import Search from "../components/Search";
 import Profile from "../components/Profile";
 import Contacts from "../components/Contacts";
 import NoticeBoard from "../components/NoticeBoard";
+import NewsRoom from "../components/Newsroom";
+import NewsStory from "../components/NewsStory";
 import OTP from "../components/Login/OTP";
 import RentView from "../components/RentView";
 import Password from "../components/Login/Password";
@@ -122,6 +124,22 @@ let router = new Router({
             path: '/notice-board',
             name: 'NoticeBoard',
             component: NoticeBoard,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/news-room',
+            name: 'Newsroom',
+            component: NewsRoom,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/news-story',
+            name: 'NewsStory',
+            component: NewsStory,
             meta: {
                 requiresAuth: false
             }

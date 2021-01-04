@@ -15,7 +15,7 @@
                             <img src="../assets/img/map.png" alt="map" class="img-fluid">
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 mt-4 mt-md-0">
                         <div class="contact-form">
                             <h2>CONTACT US</h2>
                             <form action="#">

@@ -94,7 +94,7 @@
                                                 Remember Me
                                             </label>
                                         </div>
-                                        forget password
+                                        <!-- forget password -->
                                         <div class="forget">
                                             <router-link to="forgot-password"><u>Forgot Password ?</u></router-link>
                                         </div>

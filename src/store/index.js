@@ -13,6 +13,7 @@ export const storage = {
             name: '',
             phoneNumber: ''
         },
+        email:'',
         rentPostDetails: {},
         //auth user info
         token: null,
@@ -96,6 +97,9 @@ export const storage = {
         },
         setPhoneNumber (state, payload) {
             state.signup.phoneNumber = payload
+        },
+        setEmail (state, payload) {
+            state.email = payload
         },
         setRentPostDetails (state, payload) {
             state.rentPostDetails = payload
@@ -189,6 +193,9 @@ export const storage = {
         },
         setPhoneNumber (context, payload) {
             context.commit('setPhoneNumber', payload)
+        },
+        setEmail (context, payload) {
+            context.commit('setEmail', payload)
         },
         setRentPostDetails(context, payload) {
             context.commit('setRentPostDetails', payload)
@@ -340,6 +347,7 @@ export const storage = {
                 }
                 else {
                     console.log("Email is not registered")
+                    router.push('/email-registration')
                 }
 
             })

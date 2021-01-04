@@ -9,6 +9,7 @@ import Dashboard from '../components/Dashboard';
 import Game from '../components/Games';
 import Login from "../components/Login/Login";
 import Registration from "../components/Login/Registration";
+import EmailRegistration from "../components/Login/EmailRegistration";
 import GameDetails from '../components/GameDetails';
 import Search from "../components/Search";
 import Profile from "../components/Profile";
@@ -59,6 +60,13 @@ let router = new Router({
         {
             path: '/registration',
             component: Registration,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/email-registration',
+            component: EmailRegistration,
             meta: {
                 requiresAuth: false
             }

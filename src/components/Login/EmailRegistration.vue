@@ -46,7 +46,8 @@
                                         <label for="Phone">Phone number</label>
                                         <ValidationProvider name="Phone" rules="required" v-slot="{ errors }">
                                             <input type="text" class="form-control" id="Phone" value="" v-model="form.phone_number">
-                                            <span class="error-message">{{ errors[0] }}</span>
+                                            <span class="error-message">{{ errors[0] }}</span><br>
+                                            <span class="error-message" v-if="$store.state.numberExists">Phone number already exists</span>
                                         </ValidationProvider>
                                     </div>
                                     <!-- password -->
@@ -100,13 +101,12 @@
                     phone_number: '',
                     password: ""
 ,                },
-                isLoading: false
+                isLoading: false,
             }
         },
         methods: {
             onSubmit: function () {
-                this.isLoading = true
-                this.$store.dispatch('updateUserDetails', this.form)
+                this.$store.dispatch('emailVerify', this.form)
             }
         },
         created () {

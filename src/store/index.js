@@ -23,6 +23,7 @@ export const storage = {
         notFoundEmail: false,
         setPasswordPopUp: false,
         isSubmitLoading: false,
+        numberExists: false,
         wrongOTP: false,
         inactiveUser: false,
         timeout: false,
@@ -116,6 +117,7 @@ export const storage = {
             state.wrongOTP = false
             state.timeout = false
             state.isSubmitLoading = false
+            state.numberExists = false
         },
         setNotFoundEmail (state, payload) {
             state.notFoundEmail = payload
@@ -128,6 +130,9 @@ export const storage = {
         },
         setSubmitLoading (state, payload) {
             state.isSubmitLoading = payload
+        },
+        setNumberExist (state, payload) {
+            state.numberExists = payload
         },
         setWrongOTP (state, payload) {
             state.wrongOTP = payload
@@ -193,6 +198,9 @@ export const storage = {
         },
         setPhoneNumber (context, payload) {
             context.commit('setPhoneNumber', payload)
+        },
+        setNumberExist (context, payload) {
+            context.commit('setNumberExist', payload)
         },
         setEmail (context, payload) {
             context.commit('setEmail', payload)
@@ -287,6 +295,29 @@ export const storage = {
 
             });
         },
+        emailVerify({commit}, payload) {
+            commit('setSubmitLoading', true)
+            commit('setNumberExist', false)
+            axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'verify-email', payload).then(response => {
+                console.log(response);
+                if (response.data.error === false) {
+                    commit('authUser', {
+                        token: response.data.token,
+                        user: response.data.user
+                    })
+                    localStorage.setItem('token', response.data.token)
+                    localStorage.setItem('userId', JSON.stringify(response.data.user.id))
+                    localStorage.setItem('user', JSON.stringify(response.data.user))
+                    commit('setSubmitLoading', false)
+                    commit('setInactiveUser', false)
+                    router.push('/').catch(err => {});
+                } else {
+                    console.log(response.data.message);
+                    commit('setNumberExist', true)
+                    commit('setSubmitLoading', false)
+                }
+            });
+        },
         verifyPasswordResetCode ({commit, dispatch}, payload) {
             if (payload.resetOption === 'email') {
                 commit('setSubmitLoading', true)
@@ -299,7 +330,7 @@ export const storage = {
                         localStorage.setItem('token', response.data.token)
                         localStorage.setItem('userId', JSON.stringify(response.data.user.id))
                         localStorage.setItem('user', JSON.stringify(response.data.user))
-                        router.push('/reset-password').catch(err => {});
+                        router.push('/').catch(err => {});
                     }
                     commit('setWrongOTP', response.data.message === 'wrongOtp')
                     commit('setTimeout', response.data.message === 'timeout')

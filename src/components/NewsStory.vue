@@ -2,167 +2,115 @@
     <div>
        
      
-    <!-- Inbox Section -->
-    <section class="inbox-section">
+    <!-- News-story Section -->
+    <section class="news-story-section">
         <div class="container">
-            <div class="inbox-section--content">
-                <div class="inbox-section--content--heading text-center">
-                    <h6>Inbox</h6>
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="news-story-section--heading">
+                        <p>Update</p>
+                        <p>January  15, 2021</p>
+                        <h2>Get PUBG Royal Pass free every month and play like a rockster</h2>
+                        <div class="news-story-section--heading--icon">
+                            <a href="#"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
                 </div>
-
-                     <div class="inbox-section--content--according">
-                         <div class="card" v-for="index in 5" :key="index">
-                             <div class="inbox-click" @click="changeToggle()">Click me</div>
-                             <i class="fas fa-envelope mail-icon"></i>
-                            <p :class="{peraToggle: isToggle}">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus 
-                                venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum 
-                                facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis 
-                                scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris 
-                                sit amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio tempor orci dapibus ultrices in iaculis nunc sed augue lacus
-                            </p>
-                         </div>
-                         <!-- card 2 -->
-                          <div class="card">
-                            <div class="inbox-click" @click="changeToggle()">Click me</div>
-                             <i class="fas fa-envelope mail-icon"></i>
-                              <p :class="{peraToggle: isToggle}">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus 
-                                venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum 
-                                facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis 
-                                scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris 
-                                sit amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio tempor orci dapibus ultrices in iaculis nunc sed augue lacus
-                            </p>
-                         </div>
-                     </div>
-
-
-
-
-            
-                 <!-- <div class="accordion inbox-according" id="mailbox">
-                    <div class="card">
-                        <div class="card-header" id="headingTwo">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            
-                            </button>
-                        </h2>
+            </div>
+            <div class="row">
+                <div class="col-md-10 mx-auto">
+                    <div class="news-story-section--article">
+                        <img src="../assets/img/newsroom.png" alt="news story" class="img-fluid w-100">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictum at rutrum non egestas 
+                            tempus volutpat enim sodales tempus. In tincidunt est, elementum facilisis sit ipsum. 
+                            In metus dolor, aliquet et ac, senectus fames. Aenean maecenas purus, at aliquet ut tortor. 
+                            Tempus vitae non praesent vitae quisque ac. Mauris platea lacus, lobortis imperdiet. Elementum 
+                            malesuada lacus duis ac. Nibh justo, ac sit quam faucibus. Posuere in a amet pulvinar. Amet, 
+                            sed dolor pellentesque neque volutpat tristique pharetra, auctor. Pellentesque purus enim donec amet 
+                            consectetur lobortis. Erat tortor proin ut elementum eget sed fermentum, arcu. Nulla mauris convallis pellentesque 
+                            faucibus. Molestie sit ut cras metus, sollicitudin orci ac arcu turpis.
+                        </p>
+                        <h6 class="news-story-section--article--heading">PUBG Royal Pass</h6>
+                        <div class="news-story-section--article--display-img">
+                            <img src="../assets/img/royalpass.png" alt="royal pass" class="img-fluid w-100">
+                            <img src="../assets/img/royalpass.png" alt="royal pass" class="img-fluid w-100">
                         </div>
-                        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#mailbox">
-                            <span><i class="fas fa-envelope"></i></span>
-                        <div class="card-body">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus 
-                            venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum 
-                            facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis 
-                            scelerisque fermentum dui faucibus in ornare quam viverra orci sagittis eu volutpat odio facilisis mauris 
-                            sit amet massa vitae tortor condimentum lacinia quis vel eros donec ac odio tempor orci dapibus ultrices in iaculis nunc sed augue lacus
-                        </div>
-                        </div>
+                         <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictum at rutrum non egestas 
+                            tempus volutpat enim sodales tempus. In tincidunt est, elementum facilisis sit ipsum. 
+                            In metus dolor, aliquet et ac, senectus fames. Aenean maecenas purus, at aliquet ut tortor. 
+                            Tempus vitae non praesent vitae quisque ac. Mauris platea lacus, lobortis imperdiet. Elementum 
+                            malesuada lacus duis ac. Nibh justo, ac sit quam faucibus. Posuere in a amet pulvinar. Amet, 
+                            sed dolor pellentesque neque volutpat tristique pharetra, auctor. Pellentesque purus enim donec amet 
+                            consectetur lobortis. Erat tortor proin ut elementum eget sed fermentum, arcu. Nulla mauris convallis pellentesque 
+                            faucibus. Molestie sit ut cras metus, sollicitudin orci ac arcu turpis.
+                        </p>
+                        <img src="../assets/img/royal.png" alt="royal pass" class="img-fluid w-100">
+                          <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Dictum at rutrum non egestas 
+                            tempus volutpat enim sodales tempus. In tincidunt est, elementum facilisis sit ipsum. 
+                            In metus dolor, aliquet et ac, senectus fames. Aenean maecenas purus, at aliquet ut tortor. 
+                            Tempus vitae non praesent vitae quisque ac. Mauris platea lacus, lobortis imperdiet. Elementum 
+                            malesuada lacus duis ac. Nibh justo, ac sit quam faucibus. Posuere in a amet pulvinar. Amet, 
+                            sed dolor pellentesque neque volutpat tristique pharetra, auctor. Pellentesque purus enim donec amet 
+                            consectetur lobortis. Erat tortor proin ut elementum eget sed fermentum, arcu. Nulla mauris convallis pellentesque 
+                            faucibus. Molestie sit ut cras metus, sollicitudin orci ac arcu turpis.
+                        </p>
                     </div>
-                    <div class="card">
-                        <div class="card-header" id="headingThree">
-                        <h2 class="mb-0">
-                            <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            </button>
-                        </h2>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- related setion -->
+    <section class="related-article-section">
+        <div class="container">
+            <div class="text-center">
+                <h2>Related Articles</h2>
+            </div>
+            <div class="row">
+                 <div class="col-md-4 mb-4">
+                    <a href="#" class="newsroom-section--content-box">
+                        <div class="newsroom-section--content-box--img">
+                            <img src="../assets/img/newsroom-box.png" alt="News box" class="w-100 img-fluid">
                         </div>
-                        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#mailbox">
-                            <span><i class="fas fa-envelope"></i></span>
-                        <div class="card-body">
-                            Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                        <div class="newsroom-section--content-box--text">
+                            <p>Update</p>
+                            <h6>Get PUBG Royal Pass free every month and Play like a Rockster</h6>
+                            <p>January  15, 2021</p>
                         </div>
+                    </a>
+                </div>
+                 <div class="col-md-4 mb-4">
+                    <a href="#" class="newsroom-section--content-box">
+                        <div class="newsroom-section--content-box--img">
+                            <img src="../assets/img/newsroom-box.png" alt="News box" class="w-100 img-fluid">
                         </div>
-                    </div>
-                </div> -->
+                        <div class="newsroom-section--content-box--text">
+                            <p>Update</p>
+                            <h6>Get PUBG Royal Pass free every month and Play like a Rockster</h6>
+                            <p>January  15, 2021</p>
+                        </div>
+                    </a>
+                </div>
+                 <div class="col-md-4 mb-4">
+                    <a href="#" class="newsroom-section--content-box">
+                        <div class="newsroom-section--content-box--img">
+                            <img src="../assets/img/newsroom-box.png" alt="News box" class="w-100 img-fluid">
+                        </div>
+                        <div class="newsroom-section--content-box--text">
+                            <p>Update</p>
+                            <h6>Get PUBG Royal Pass free every month and Play like a Rockster</h6>
+                            <p>January  15, 2021</p>
+                        </div>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- event results -->
-    <section class="event-results">
-        <div class="container">
-                <div class="event-results--img text-center">
-                    <img src="../assets/img/pubg.png" alt="pubg">
-                 </div>
-                 <!-- event-results--content -->
-                 <div class="event-results--content">
-                        <div class="event-results--content--heading">
-                        <h2>ROYAL PASS WINNERS</h2>
-                    </div>
-                    <div class="event-results--content--row">
-                        <div class="event-results--content--row--box">
-                            <img src="../assets/img/sss.jpg" alt="player">
-                            <p>Arlene McCoy</p>
-                        </div>
-                        <div class="event-results--content--row--box">
-                            <img src="../assets/img/sss.jpg" alt="player">
-                            <p>Arlene McCoy</p>
-                        </div>
-                        <div class="event-results--content--row--box">
-                            <img src="../assets/img/sss.jpg" alt="player">
-                            <p>Arlene McCoy</p>
-                        </div>
-                    </div>
-                 </div>
-                  <!-- event-results--content -->
-                 <div class="event-results--content">
-                        <div class="event-results--content--heading">
-                        <h2>MONTHLY TOP BUYERS</h2>
-                    </div>
-                    <div class="event-results--content--row">
-                        <div class="event-results--content--row--box">
-                            <img src="../assets/img/sss.jpg" alt="player">
-                            <p>Arlene McCoy</p>
-                        </div>
-                        <div class="event-results--content--row--box">
-                            <img src="../assets/img/sss.jpg" alt="player">
-                            <p>Arlene McCoy</p>
-                        </div>
-                        <div class="event-results--content--row--box">
-                            <img src="../assets/img/sss.jpg" alt="player">
-                            <p>Arlene McCoy</p>
-                        </div>
-                        <div class="event-results--content--row--box">
-                            <img src="../assets/img/sss.jpg" alt="player">
-                            <p>Arlene McCoy</p>
-                        </div>
-                          <div class="event-results--content--row--box">
-                            <img src="../assets/img/sss.jpg" alt="player">
-                            <p>Arlene McCoy</p>
-                        </div>
-                    </div>
-                 </div>
-                  <!-- event-results--content -->
-                 <div class="event-results--content">
-                        <div class="event-results--content--heading">
-                        <h2>MONTHLY TOP SELLERS</h2>
-                    </div>
-                    <div class="event-results--content--row">
-                        <div class="event-results--content--row--box">
-                            <img src="../assets/img/sss.jpg" alt="player">
-                            <p>Arlene McCoy</p>
-                        </div>
-                        <div class="event-results--content--row--box">
-                            <img src="../assets/img/sss.jpg" alt="player">
-                            <p>Arlene McCoy</p>
-                        </div>
-                        <div class="event-results--content--row--box">
-                            <img src="../assets/img/sss.jpg" alt="player">
-                            <p>Arlene McCoy</p>
-                        </div>
-                        <div class="event-results--content--row--box">
-                            <img src="../assets/img/sss.jpg" alt="player">
-                            <p>Arlene McCoy</p>
-                        </div>
-                          <div class="event-results--content--row--box">
-                            <img src="../assets/img/sss.jpg" alt="player">
-                            <p>Arlene McCoy</p>
-                        </div>
-                    </div>
-                 </div>
-        </div>
-    </section>
        
 
 

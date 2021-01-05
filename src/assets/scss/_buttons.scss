@@ -82,6 +82,24 @@
     &:focus {
       outline: none;
     }
+    
+  }
+  &--filter {
+    width: 100%;
+    background: transparent;
+    border: 1px solid $secondery;
+    height: 50px;
+    margin-bottom: 20px;
+    span {
+      color: $text-light;
+      font-size: 20px;
+    }
+    &:focus {
+      outline: none;
+    }
+    @include for-min-768 {
+      display: none;
+    }
   }
 }
 // owl dots

@@ -4,6 +4,9 @@
      @include for-max-992 {
          padding-bottom: 0;
      }
+     @include for-max-768 {
+        padding-top: 15px;
+     }
     &--categories {
         background: $game-details;
         border-radius: 10px;
@@ -51,8 +54,19 @@
             background: $secondery;
             color: black;
         }
+        @include for-max-575 {
+            padding: 15px;
+          }
     }
     margin-top: 30px;
+    @include for-max-768 {
+        display: flex;
+        a {
+            &:first-of-type {
+                margin-right: 15px;
+            }
+        }
+    }
 }
 
 // games
@@ -73,9 +87,10 @@
             display: block;
             text-align: center;
         }
-        @include for-max-575 {
-            display: block;
-            text-align: left;
+        img {
+            @include for-max-768 {
+                width: 100%;
+            }
         }
     }
 }

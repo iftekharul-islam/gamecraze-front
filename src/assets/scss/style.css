@@ -3267,6 +3267,12 @@ html {
   }
 }
 
+@media (max-width: 768px) {
+  .games-categories-section {
+    padding-top: 15px;
+  }
+}
+
 .games-categories-section--categories {
   background: #141A27;
   border-radius: 10px;
@@ -3314,6 +3320,23 @@ html {
   color: black;
 }
 
+@media (max-width: 575px) {
+  .clear-filters {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 768px) {
+  .clear {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .clear a:first-of-type {
+    margin-right: 15px;
+  }
+}
+
 .game-card {
   border: 7px solid #141A27;
   padding: 30px;
@@ -3336,10 +3359,9 @@ html {
   }
 }
 
-@media (max-width: 575px) {
-  .game-card .display-image {
-    display: block;
-    text-align: left;
+@media (max-width: 768px) {
+  .game-card .display-image img {
+    width: 100%;
   }
 }
 
@@ -4658,6 +4680,29 @@ html {
 
 .btn--cart-btn:focus {
   outline: none;
+}
+
+.btn--filter {
+  width: 100%;
+  background: transparent;
+  border: 1px solid #FFD715;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.btn--filter span {
+  color: #fff;
+  font-size: 20px;
+}
+
+.btn--filter:focus {
+  outline: none;
+}
+
+@media (min-width: 768px) {
+  .btn--filter {
+    display: none;
+  }
 }
 
 .owl-dot.active span {

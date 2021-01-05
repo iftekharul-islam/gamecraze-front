@@ -44,8 +44,8 @@
                                     <!-- Mobile No. -->
                                     <div class="form-group">
                                         <label for="Phone">Phone number</label>
-                                        <ValidationProvider name="Phone" rules="required" v-slot="{ errors }">
-                                            <input type="text" class="form-control" id="Phone" value="" v-model="form.phone_number">
+                                        <ValidationProvider name="Phone Number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
+                                            <input @keypress="isNumber($event)" type="text" class="form-control" id="Phone" value="" v-model="form.phone_number">
                                             <span class="error-message">{{ errors[0] }}</span><br>
                                             <span class="error-message" v-if="$store.state.numberExists">Phone number already exists</span>
                                         </ValidationProvider>
@@ -105,6 +105,15 @@
             }
         },
         methods: {
+          isNumber: function(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46) {
+              evt.preventDefault();;
+            } else {
+              return true;
+            }
+          },
             onSubmit: function () {
                 this.$store.dispatch('emailVerify', this.form)
             }

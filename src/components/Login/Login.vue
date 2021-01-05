@@ -131,7 +131,7 @@
                                             <input type="tel" class="form-control country-number mb-2 cursor-none"
                                                    v-model="phone_number" name="user-number" v-if="showOTP === true"
                                                    disabled/>
-                                            <input type="tel" id="user-number" class="form-control country-number mb-2"
+                                            <input @keypress="isNumber($event)" type="tel" id="user-number" class="form-control country-number mb-2"
                                                    v-model="phone_number" name="user-number" placeholder="Mobile Number"
                                                    v-else/>
 
@@ -238,6 +238,15 @@
             }
         },
         methods: {
+            isNumber: function(evt) {
+              evt = (evt) ? evt : window.event;
+              var charCode = (evt.which) ? evt.which : evt.keyCode;
+              if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46) {
+                evt.preventDefault();;
+              } else {
+                return true;
+              }
+            },
             handleOnComplete(value) {
                 this.otp = value;
                 console.log('OTP completed: ', value);

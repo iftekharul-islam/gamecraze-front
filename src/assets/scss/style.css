@@ -4903,10 +4903,6 @@ html {
   }
 }
 
-.footer-logo {
-  margin-left: 6rem;
-}
-
 @media (max-width: 768px) {
   .footer-logo {
     margin-left: 0;

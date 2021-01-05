@@ -132,7 +132,7 @@
                                                    v-model="phone_number" name="user-number" v-if="showOTP === true"
                                                    disabled/>
                                             <input @keypress="isNumber($event)" type="tel" id="user-number" class="form-control country-number mb-2"
-                                                   v-model="phone_number" name="user-number" placeholder="Mobile Number"
+                                                   v-model="phone_number" name="user-number" placeholder="01xxxxxxxxx"
                                                    v-else/>
 
                                             <span class="error-message">{{ errors[0] }}</span>

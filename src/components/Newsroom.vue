@@ -121,6 +121,4 @@
             this.getNews(this.perPage, 'DESC');
         }
     }
-		
-
 </script>

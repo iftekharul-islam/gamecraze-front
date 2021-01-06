@@ -1,10 +1,14 @@
 .cart-section {
     padding-top: 150px;
     padding-bottom: 150px;
+    @include for-max-992 {
+        padding: 50px 0;
+    }
     &--item-details {
         padding: 0 20px;
         border: 1px solid $secondery;
         position: relative;
+        overflow: auto;
         &::after {
             content: "";
             height: 54px;
@@ -14,11 +18,17 @@
             left: 0;
             z-index: -1;
             background: $secondery;
+            @include for-max-768 {
+                width: 590px;
+            }
         }
         &--table {
             border-collapse: separate;
             border-spacing: 0px 20px;
             margin-top: -20px;
+            @include for-max-768 {
+                width: 550px;
+            }
             tr {
                 td {
                     &:not(:first-of-type) {

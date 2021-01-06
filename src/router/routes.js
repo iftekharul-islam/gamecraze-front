@@ -129,7 +129,7 @@ let router = new Router({
             }
         },
         {
-            path: '/news-room',
+            path: '/news',
             name: 'Newsroom',
             component: NewsRoom,
             meta: {
@@ -137,9 +137,10 @@ let router = new Router({
             }
         },
         {
-            path: '/news-story',
+            path: '/news/:id',
             name: 'NewsStory',
             component: NewsStory,
+            props: true,
             meta: {
                 requiresAuth: false
             }

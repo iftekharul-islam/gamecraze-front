@@ -4655,6 +4655,29 @@ html {
   font-family: circular-medium;
 }
 
+.newsroom-pagination ul {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.newsroom-pagination ul li a {
+  background: transparent;
+  border: 1px solid #FFD715;
+  color: #fff;
+}
+
+.newsroom-pagination ul li a.active {
+  background: #FFD715;
+  color: #000;
+}
+
+.newsroom-pagination ul li a:hover {
+  background: #FFD715;
+  color: #000;
+  border: 1px solid #FFD715;
+}
+
 .news-story-section {
   padding-top: 150px;
   padding-bottom: 80px;

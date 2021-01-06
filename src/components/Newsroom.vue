@@ -39,6 +39,26 @@
                     <a href="#" class="btn--secondery m-auto"><span>VIEW ALL</span></a>
                 </div>
             </div>
+            <div class="view-all-btn newsroom-pagination mt-5">
+                <!-- <a href="#" class="btn--secondery m-auto"><span>VIEW ALL</span></a> -->
+                <nav aria-label="Page navigation example">
+                    <ul class="pagination">
+                        <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Previous">
+                            <span aria-hidden="true"><i class="fas fa-arrow-left"></i></span>
+                        </a>
+                        </li>
+                        <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                        <a class="page-link" href="#" aria-label="Next">
+                            <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                        </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
         </section>
     </div>
 </template>

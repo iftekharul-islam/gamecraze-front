@@ -28,9 +28,9 @@
             &:checked {
                 &~label {
                     &:before {
-                        border-color: $secondery !important;
+                        border: none;
                         background: url(../img/check.png)!important;
-                        background-size: 10px 10px !important;
+                        background-size: 16px 16px !important;
                         background-repeat: no-repeat !important;
                         background-position: center !important;
                     

@@ -35,26 +35,23 @@
                         </router-link>
                     </div>
                 </div>
-                <div class="view-all-btn mt-5">
-                    <a href="#" class="btn--secondery m-auto"><span>VIEW ALL</span></a>
-                </div>
             </div>
-            <div class="view-all-btn newsroom-pagination mt-5">
-                <!-- <a href="#" class="btn--secondery m-auto"><span>VIEW ALL</span></a> -->
+            <div class="view-all-btn newsroom-pagination mt-5" v-if="totalPage > 1">
                 <nav aria-label="Page navigation example">
                     <ul class="pagination">
-                        <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true"><i class="fas fa-arrow-left"></i></span>
-                        </a>
+                        <li v-if="currentPage > 1" class="page-item">
+                            <a class="page-link" href="javascript:void()" @click="prevPage" aria-label="Previous">
+                                <span aria-hidden="true"><i class="fas fa-arrow-left"></i></span>
+                            </a>
                         </li>
-                        <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
-                        </a>
+                        <li class="page-item" v-for="index in totalPage" :key="index">
+                            <a :class="{ 'page-link active': currentPage == index , 'page-link': currentPage != index }" href="javascript:void(0)" @click="setPage(index)">{{ index }}</a>
+                        </li>
+                       
+                        <li  v-if="currentPage < totalPage" class="page-item">
+                            <a class="page-link" href="javascript:void(0)" @click="nextPage" aria-label="Next">
+                                <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -69,14 +66,21 @@
             return {
                 user: {},
                 isToggle: false,
-                news: []
+                news: [],
+                perPage: 5,
+                currentPage: 1,
+                totalPage: 1
             }
         },
         methods: {
             getNews: function(perPage, order = 'DESC') {
-                this.$api.get('articles?perPage=' + perPage + '&order=' + order).then(response => {
+                this.$api.get('articles?perPage=' + perPage + '&order=' + order + '&page=' + this.currentPage).then(response => {
+                    console.log(response.data);
                     if (response.status == 200) {
                         this.news = response.data.data;
+                        this.currentPage = response.data.meta.pagination.current_page;
+                        this.totalPage = response.data.meta.pagination.total_pages;
+                        console.log(response.data.meta);
                         return;
                     }
 
@@ -84,9 +88,37 @@
                     console.log('status: ', response.status);
                 });
             },
+            prevPage: function() {
+                if (this.currentPage > 1) {
+                    this.currentPage = this.currentPage - 1;
+                    this.getNews(this.perPage, 'DESC');
+                    this.addParamsToLocation({page: this.currentPage});
+                }
+            },
+            nextPage: function() {
+                if (this.currentPage < this.totalPage) {
+                    this.currentPage = this.currentPage + 1;
+                    this.getNews(this.perPage, 'DESC');
+                    this.addParamsToLocation({page: this.currentPage});
+                }
+            },
+            addParamsToLocation: function(params) {
+                history.pushState({}, null, this.$route.path + '?' +
+                    Object.keys(params).map(key => {
+                        return (
+                            encodeURIComponent(key) + '=' + encodeURIComponent(params[key])
+                        )
+                    }).join('&')
+                )
+            },
+            setPage: function(page) {
+                this.currentPage = page;
+                this.getNews(this.perPage, 'DESC');
+                this.addParamsToLocation({page: this.currentPage});
+            }
         },
         created() {
-            this.getNews(5, 'DESC');
+            this.getNews(this.perPage, 'DESC');
         }
     }
 		

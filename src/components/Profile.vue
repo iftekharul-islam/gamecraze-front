@@ -130,15 +130,15 @@
         <section class="user-profile-details">
             <div class="container">
                 <div class="row">
-                    <div class="col-3">
-                        <div class="nav flex-column nav-pills user-profile-details--nav" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link active" id="v-pills-overview-tab" data-toggle="pill" href="#v-pills-overview" role="tab" aria-controls="v-pills-overview" aria-selected="true"><i class="fas fa-user"></i> Overview</a>
-                        <a class="nav-link" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="false"><i class="fas fa-gamepad"></i> Dashboard</a>
-                        <a class="nav-link" id="v-pills-post-rent-tab" data-toggle="pill" href="#v-pills-post-rent" role="tab" aria-controls="v-pills-post-rent" aria-selected="false"><i class="fab fa-telegram-plane"></i> Post for Rent</a>
-                        <a class="nav-link" id="v-pills-edit-profile-tab" data-toggle="pill" href="#v-pills-edit-profile" role="tab" aria-controls="v-pills-edit-profile" aria-selected="false"><i class="fas fa-edit"></i> Edit Profile</a>
+                    <div class="col-md-4 col-lg-3">
+                        <div class="nav nav-pills user-profile-details--nav" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-overview-tab" data-toggle="pill" href="#v-pills-overview" role="tab" aria-controls="v-pills-overview" aria-selected="true"><i class="fas fa-user"></i> <span>Overview</span></a>
+                        <a class="nav-link" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="false"><i class="fas fa-gamepad"></i> <span>Dashboard</span></a>
+                        <a class="nav-link" id="v-pills-post-rent-tab" data-toggle="pill" href="#v-pills-post-rent" role="tab" aria-controls="v-pills-post-rent" aria-selected="false"><i class="fab fa-telegram-plane"></i> <span>Post for Rent</span></a>
+                        <a class="nav-link" id="v-pills-edit-profile-tab" data-toggle="pill" href="#v-pills-edit-profile" role="tab" aria-controls="v-pills-edit-profile" aria-selected="false"><i class="fas fa-edit"></i> <span>Edit Profile</span></a>
                         </div>
                     </div>
-                    <div class="col-9">
+                    <div class="col-md-8 col-lg-9">
                         <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-overview" role="tabpanel" aria-labelledby="v-pills-overview-tab">
                             <div class="over-view">

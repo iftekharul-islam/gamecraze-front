@@ -3,13 +3,17 @@
         <!-- footer -->
         <section class="copyright-section">
             <div class="container">
-                <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-10 mx-auto">
+                        <div class="footer-bottom">
                     <p>©2020 Game Hub Inc.</p>
                     <div class="footer-bottom--social">
                         <a href="#"><i class="fab fa-facebook-f"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
                         <a href="#"><i class="fab fa-instagram"></i></a>
                         <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
                     </div>
                 </div>
             </div>

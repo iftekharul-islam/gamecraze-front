@@ -1,30 +1,21 @@
 .gamehub-menu {
     background: $primary;
-    padding: 20px 0;
+    padding: 8px 0;
     &.gamehub-menu-active {
         background: $game-details;
     }
     @include for-max-575 {
         background: transparent;
     }
-    .container {
-        
-        @include for-min-1200 {
-            max-width: 1180px;
-        }
-        @include for-min-1400 {
-            max-width: 1230px;
-        }
-    }
+    
 }
 .navbar-brand {
-    @include for-max-1200 {
         margin-right: 0;
-    }
     @include for-max-575 {
         padding-left: 15px;
     }
     img {
+        width: 120px;
         @include for-max-1200 {
             width: 100px;
         }
@@ -42,7 +33,7 @@
     ul {
         margin: auto;
         display: flex;
-        justify-content: center;
+        margin-left: 100px;
         @include for-max-992 {
             display: block;
         }
@@ -73,11 +64,11 @@
                                 height: 4px;
                                 position: absolute;
                                 background: $secondery;
-                                top: 60px;
+                                top: 48px;
                                 left: 0;
                                 right: 0;
                                 margin: auto;
-                                clip-path: polygon(7px 0, 100% 0%, 77px 100%, 0% 100%);
+                                transform: skew(-50deg);
                                 @include for-max-992 {
                                     top: 28px;
                                 }
@@ -90,12 +81,7 @@
         }
     }
 }
-.gamehub--logo {
-    margin-right: 10px;
-    @include for-min-992 {
-        width: 120px;
-    }
-}
+
 // toogler button
 .toggler-position {
     position: absolute;
@@ -325,11 +311,18 @@
     // }
 }
 
-
-
-
 .body-home {
     .copyright-section {
         display: none;
+    }
+}
+.gamehub-body {
+    .container {
+        @include for-min-1200 {
+            max-width: 1180px;
+        }
+        @include for-min-1400 {
+            max-width: 1230px;
+        }
     }
 }

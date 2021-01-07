@@ -1289,7 +1289,7 @@ html {
 
 .gamehub-menu {
   background: #0B0F18;
-  padding: 20px 0;
+  padding: 8px 0;
 }
 
 .gamehub-menu.gamehub-menu-active {
@@ -1302,28 +1302,18 @@ html {
   }
 }
 
-@media (min-width: 1200px) {
-  .gamehub-menu .container {
-    max-width: 1180px;
-  }
-}
-
-@media (min-width: 1400px) {
-  .gamehub-menu .container {
-    max-width: 1230px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .navbar-brand {
-    margin-right: 0;
-  }
+.navbar-brand {
+  margin-right: 0;
 }
 
 @media (max-width: 575px) {
   .navbar-brand {
     padding-left: 15px;
   }
+}
+
+.navbar-brand img {
+  width: 120px;
 }
 
 @media (max-width: 1200px) {
@@ -1350,9 +1340,7 @@ html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  margin-left: 100px;
 }
 
 @media (max-width: 992px) {
@@ -1405,12 +1393,12 @@ html {
   height: 4px;
   position: absolute;
   background: #FFD715;
-  top: 60px;
+  top: 48px;
   left: 0;
   right: 0;
   margin: auto;
-  -webkit-clip-path: polygon(7px 0, 100% 0%, 77px 100%, 0% 100%);
-          clip-path: polygon(7px 0, 100% 0%, 77px 100%, 0% 100%);
+  -webkit-transform: skew(-50deg);
+          transform: skew(-50deg);
 }
 
 @media (max-width: 992px) {
@@ -1421,16 +1409,6 @@ html {
 
 .gamehub-menu-collapse ul li a:hover {
   color: #FFD715;
-}
-
-.gamehub--logo {
-  margin-right: 10px;
-}
-
-@media (min-width: 992px) {
-  .gamehub--logo {
-    width: 120px;
-  }
 }
 
 .toggler-position {
@@ -1715,6 +1693,18 @@ html {
   display: none;
 }
 
+@media (min-width: 1200px) {
+  .gamehub-body .container {
+    max-width: 1180px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .gamehub-body .container {
+    max-width: 1230px;
+  }
+}
+
 .slider-section {
   background: url(../img/Juggernaut.png);
   background-repeat: no-repeat;
@@ -1900,16 +1890,56 @@ html {
   }
 }
 
-.trending-section .item .trending-image img {
+.trending-section .item .trending-image {
+  position: relative;
+  -webkit-transform: skew(-30deg, 0deg);
+          transform: skew(-30deg, 0deg);
   height: 238px;
-  -webkit-transform: skew(-21deg);
-          transform: skew(-21deg);
+  overflow: hidden;
+  display: block;
+  border-radius: 0;
+}
+
+@media (max-width: 768px) {
+  .trending-section .item .trending-image {
+    -webkit-transform: skew(0deg, 0deg);
+            transform: skew(0deg, 0deg);
+  }
+}
+
+.trending-section .item .trending-image img {
+  position: absolute;
+  left: -75px;
+  width: 520px;
+  height: 238px;
+  -webkit-transform: skew(30deg, 0deg);
+          transform: skew(30deg, 0deg);
+}
+
+@media (max-width: 1500px) {
+  .trending-section .item .trending-image img {
+    left: -55px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .trending-section .item .trending-image img {
+    left: -70px;
+    width: 600px;
+  }
+}
+
+@media (max-width: 992px) {
+  .trending-section .item .trending-image img {
+    left: -60px;
+    width: 506px;
+  }
 }
 
 @media (max-width: 768px) {
   .trending-section .item .trending-image img {
-    -webkit-transform: skew(0);
-            transform: skew(0);
+    -webkit-transform: skew(0deg, 0deg);
+            transform: skew(0deg, 0deg);
   }
 }
 
@@ -2325,9 +2355,48 @@ html {
   opacity: 1;
 }
 
-.upcoming-section .item .upcoming-image img {
+.upcoming-section .item .upcoming-image {
+  position: relative;
   height: 238px;
+  overflow: hidden;
+  display: block;
   border-radius: 0;
+}
+
+.upcoming-section .item .upcoming-image img {
+  position: absolute;
+  left: -75px;
+  width: 520px;
+  height: 238px;
+  -webkit-transform: skew(30deg, 0deg);
+          transform: skew(30deg, 0deg);
+}
+
+@media (max-width: 1500px) {
+  .upcoming-section .item .upcoming-image img {
+    left: -55px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .upcoming-section .item .upcoming-image img {
+    left: -70px;
+    width: 600px;
+  }
+}
+
+@media (max-width: 992px) {
+  .upcoming-section .item .upcoming-image img {
+    left: -60px;
+    width: 506px;
+  }
+}
+
+@media (max-width: 768px) {
+  .upcoming-section .item .upcoming-image img {
+    -webkit-transform: skew(0deg, 0deg);
+            transform: skew(0deg, 0deg);
+  }
 }
 
 .upcoming-section .owl-nav {
@@ -2451,8 +2520,8 @@ html {
 
 .owl-upcoming--item {
   position: relative;
-  -webkit-transform: skew(-21deg);
-          transform: skew(-21deg);
+  -webkit-transform: skew(-30deg);
+          transform: skew(-30deg);
 }
 
 @media (max-width: 768px) {
@@ -4016,6 +4085,12 @@ html {
           flex-direction: column;
 }
 
+@media (min-width: 1200px) {
+  .user-profile-details--nav {
+    margin-right: 27px;
+  }
+}
+
 @media (max-width: 768px) {
   .user-profile-details--nav {
     -webkit-box-orient: horizontal;
@@ -4094,7 +4169,7 @@ html {
 }
 
 .user-profile-details .tab-content {
-  margin-left: 3rem;
+  margin-left: 57px;
 }
 
 @media (max-width: 768px) {
@@ -4147,6 +4222,19 @@ html {
   border: 1px solid #FFD715;
   background: #141A27;
   color: #fff;
+  height: 40px;
+}
+
+.post-rent .form-group select {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  background: #141A27 url(../img/down-arw.png);
+  background-repeat: no-repeat;
+  background-position: 96% center;
+  background-size: 15px;
 }
 
 .post-rent .form-group [type="date"]::-webkit-inner-spin-button {
@@ -4161,8 +4249,27 @@ html {
   background: #141A27 url(../img/calendar.png) 97% 50% no-repeat;
 }
 
+.post-rent .form-group label {
+  height: 50px;
+  font-size: 20px;
+}
+
 .post-rent .custom-file {
   margin-bottom: 25px;
+}
+
+.post-rent .custom-file label {
+  height: initial;
+}
+
+.post-rent .custom-file input {
+  cursor: pointer;
+}
+
+@media (min-width: 1200px) {
+  .post-rent--input {
+    padding-right: 26px;
+  }
 }
 
 .img-prev img {

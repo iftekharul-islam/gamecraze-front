@@ -16,13 +16,38 @@
             margin-left: 0;
         }
         .trending-image {
+            position: relative;
+            transform: skew(-30deg, 0deg);
+            // width: 350px;
+            height: 238px;
+            overflow: hidden;
+            display: block;
+            border-radius: 0;
+            @include for-max-768 {
+                transform: skew(0deg, 0deg);
+            }
             img {
+                position: absolute;
+                left: -75px;
+                width: 520px;
                 height: 238px;
-                // object-fit: cover;
-                transform: skew(-21deg);
+                transform: skew(30deg, 0deg);
                
+                @include for-max-1500 {
+                    left: -55px;
+                }
+                @include for-max-1200 {
+                    left: -70px;
+                    width: 600px;
+                }
+               
+                @include for-max-992 {
+                        left: -60px;
+                        width: 506px;
+                    
+                }
                 @include for-max-768 {
-                    transform: skew(0);
+                    transform: skew(0deg, 0deg);
                 }
             }
         }

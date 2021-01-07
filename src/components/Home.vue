@@ -46,22 +46,22 @@
 
 
                 <div class="item" v-for="(trending, index) in trendingGames" :key="index">
-                    <a class="trending-image" href="#">
-                        <img :src="trending.game.data.assets.data[0].url" alt="Code vein"  v-if="trending.game.data.assets.data.length">
+                    <router-link :to="{ path: '/game-details/' + trending.game.data.id}" class="trending-image">
+                        <img :src="trending.game.data.trending_url" alt="trending.game.data.name" v-if="trending.game.data.assets.data.length">
                         <img src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
-                    </a>
+                    </router-link>
                     <div class="trending-game--name-price d-flex justify-content-between">
-                        <a href="#">{{ trending.game.data.name }}</a>
+                         <router-link :to="{ path: '/game-details/' + trending.game.data.id}" class="trending-image">{{ trending.game.data.name }}</router-link>
                         <!-- <span>$19.99</span>-->
                     </div>
                     <div class="trending-game--categories d-flex justify-content-between">
                         <div class="home-categories">
-                            <a href="#" v-for="(genre) in trending.game.data.genres.data">{{ genre.name }}</a>
+                            <a href="#" v-for="(genre) in trending.game.data.genres.data" :key="genre.id">{{ genre.name }}</a>
                         </div>
 
 
                         <div class="d-flex home-platform">
-                            <a href="#" v-for="(platform) in trending.game.data.platforms.data"><img :src=platform.url :alt="platform.name"></a>
+                            <a href="#" v-for="(platform) in trending.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>
 
                         </div>
                     </div>
@@ -97,16 +97,16 @@
                     <div class="owl-upcoming--item">
 
                         <a class="upcoming-image" href="#">
-                            <img class="card-img-top" :src="game.assets.data[0].url" alt="Code vein"  v-if="game.assets.data.length">
+                            <img class="card-img-top" :src="game.poster_url" :alt="game.name"  v-if="game.poster_url">
                             <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
                         </a>
                         <div class="d-flex upcoming-order">
                             <router-link :to="{ path: '/game-details/' + game.id}"><span>View Details</span></router-link>
-                            <a href="#"><span>Rent</span></a>
+                            <a href="#" @click.prevent="setReminder(game.id)"><span>Rent</span></a>
                         </div>
                     </div>
                     <div class="upcoming-game--name-price d-flex justify-content-between">
-                        <a href="#">{{ game.name }}</a>
+                        <router-link :to="{ path: '/game-details/' + game.id}">{{ game.name }}</router-link>
                     </div>
                     <div class="upcoming-game--categories d-flex justify-content-between">
                         <div class="home-categories">
@@ -114,7 +114,9 @@
                         </div>
 
                         <div class="d-flex">
-                            <a href="#" v-for="(platform) in game.platforms.data"><img :src=platform.url :alt="platform.name"></a>
+                            <a href="#" v-for="(platform) in game.platforms.data">
+                                <img :src=platform.url :alt="platform.name">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -427,6 +429,7 @@
                 this.$api.get('games/trending?include=game,game.assets,game.genres,game.platforms').then(response => {
                     var vm = this;
                     vm.trendingGames = response.data.data;
+                    console.log('trending: ', response.data.data);
                     Vue.nextTick(function(){
                         vm.carouselOne();
                     }.bind(vm));
@@ -445,7 +448,7 @@
                 this.$api.get('games/upcoming-games?include=assets,genres,platforms').then(response => {
                     var vm = this;
                     vm.upcomingGames = response.data.data;
-                    console.log(vm.upcomingGames)
+                    console.log('up: ', response.data.data);
                     Vue.nextTick(function(){
                         vm.carouselTwo();
                     }.bind(vm));
@@ -460,6 +463,13 @@
                         this.articles = response.data.data;
                     }
                 });
+            },
+
+            setReminder: function(gameId) {
+                 this.$toaster.success('Added to reminder : ' + gameId);
+                // this.$api.get('set-reminder/' + gameId).then(response => {
+                //     console.log(response)
+                // });
             }
         },
         created() {

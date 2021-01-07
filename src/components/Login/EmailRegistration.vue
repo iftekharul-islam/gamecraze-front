@@ -115,6 +115,7 @@
             }
           },
             onSubmit: function () {
+                console.log('submit');
                 this.$store.dispatch('emailVerify', this.form)
             }
         },

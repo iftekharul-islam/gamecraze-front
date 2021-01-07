@@ -6,14 +6,14 @@
                 <div class="row">
                     <div class="col-12 mb-4">
                         <div class="trending-news position-relative">
-                            <a href="#" class="w-100 h-100 d-flex align-items-end">
-                                <img src="../assets/img/newsroom.png" alt="newsroom" class="img-fluid w-100 position-absolute">
+                            <router-link :to="{ name: 'NewsStory', params: { id: featured.id }}" class="w-100 h-100 d-flex align-items-end">
+                                <img :src="featured.thumbnail" alt="newsroom" class="img-fluid w-100 position-absolute">
                                 <div class="trending-news--text-content">
                                     <p>Feature</p>
-                                    <h2>Get PUBG Royal Pass free every month</h2>
-                                    <p class="newsroom-date">January  15, 2021</p>
+                                    <h2>{{ featured.title }}</h2>
+                                    <p class="newsroom-date">{{ featured.created }}</p>
                                 </div>
-                            </a>
+                            </router-link>
                         </div>
                     </div>
                 </div>
@@ -66,6 +66,7 @@
             return {
                 user: {},
                 isToggle: false,
+                featured: '',
                 news: [],
                 perPage: 5,
                 currentPage: 1,
@@ -75,12 +76,21 @@
         methods: {
             getNews: function(perPage, order = 'DESC') {
                 this.$api.get('articles?perPage=' + perPage + '&order=' + order + '&page=' + this.currentPage).then(response => {
-                    console.log(response.data);
                     if (response.status == 200) {
                         this.news = response.data.data;
                         this.currentPage = response.data.meta.pagination.current_page;
                         this.totalPage = response.data.meta.pagination.total_pages;
-                        console.log(response.data.meta);
+                        return;
+                    }
+
+                    this.$toaster.error('Something went wrong.');
+                    console.log('status: ', response.status);
+                });
+            },
+            getFeaturedNews: function(number) {
+                this.$api.get('featured-article?number=' + number).then(response => {
+                    if (response.status == 200) {
+                        this.featured = response.data.data[0];
                         return;
                     }
 
@@ -119,6 +129,7 @@
         },
         created() {
             this.getNews(this.perPage, 'DESC');
+            this.getFeaturedNews(1);
         }
     }
 </script>

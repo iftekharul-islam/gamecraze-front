@@ -102,7 +102,8 @@
                         </a>
                         <div class="d-flex upcoming-order">
                             <router-link :to="{ path: '/game-details/' + game.id}"><span>View Details</span></router-link>
-                            <a href="#" @click.prevent="setReminder(game.id)"><span>Rent</span></a>
+                            <a href="javascript:void(0)" @click.prevent="setReminder(game.id)"><span>Rent</span></a>
+                            <!-- <button @click="setReminder"><span>Rent</span></button> -->
                         </div>
                     </div>
                     <div class="upcoming-game--name-price d-flex justify-content-between">
@@ -121,6 +122,7 @@
                     </div>
                 </div>
             </div>
+            <button @click="setReminder(9)">set reminder</button>
         </section>
         <!-- notice board -->
         <section class="noticed-board-section">
@@ -129,7 +131,7 @@
             </div>
             <div class="container">
                 <div class="noticed-grid">
-                    <div class="notice-box" v-for="(article, index) in articles" :key="index"> 
+                    <div class="notice-box" v-for="(article, index) in articles" :key="index">
                         <img :src=article.thumbnail :alt="article.title">
                         <div class="noticed-details">
                             <h6 v-if="index == 0">{{ article.title }}</h6>
@@ -178,9 +180,9 @@
                                 <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>                            </div>
                         </div>
                     </div>
-                </div> 
-            </div> 
-        </section> 
+                </div>
+            </div>
+        </section>
         <!-- footer -->
         <footer class="footer-section">
              <div class="footer-section--content">
@@ -280,7 +282,8 @@
                 trendingGames: [],
                 upcomingGames: [],
                 rents: [],
-                articles: []
+                articles: [],
+                isLoggedIn: false
             }
         },
         methods: {
@@ -464,12 +467,30 @@
                     }
                 });
             },
-
             setReminder: function(gameId) {
-                 this.$toaster.success('Added to reminder : ' + gameId);
-                // this.$api.get('set-reminder/' + gameId).then(response => {
-                //     console.log(response)
-                // });
+                if (!this.isLoggedIn) {
+                    this.$toaster.warning('Please login to set reminder');
+                    return;
+                }
+
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                }
+
+                this.$api.post('set-reminder/' + gameId, {game_id: gameId}, config).then(response => {
+                    if (response.status == 200) {
+                        this.$toaster.success(response.data.message);
+                        return
+                    }
+                    this.$toaster.warning(response.data.message);
+                })
+            }
+        },
+        computed: {
+            auth () {
+                return this.$store.getters.ifAuthenticated;
             }
         },
         created() {
@@ -477,6 +498,9 @@
             this.getNewGames();
             this.getRentGames();
             this.getArticles();
+            if (this.$store.getters.ifAuthenticated) {
+                this.isLoggedIn = true;
+            }
         },
         mounted () {
             document.body.classList.add('body-home')
@@ -486,7 +510,7 @@
         },
         filters: {
             strippedContent: function(string) {
-                return string.replace(/<\/?[^>]+>/ig, " "); 
+                return string.replace(/<\/?[^>]+>/ig, " ");
             }
         }
     }

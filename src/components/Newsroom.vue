@@ -29,7 +29,7 @@
                                 <h6 v-if="index == 0 || index == 1">{{ item.title && item.title.length > 53 ? item.title.substring(0, 53) + ".." : item.title }} </h6>
                                 <h6 v-else>{{ item.title && item.title.length > 28 ? item.title.substring(0, 28) + ".." : item.title }} </h6>
 
-                                
+
                                 <p>{{ item.created }}</p>
                             </div>
                         </router-link>
@@ -47,7 +47,7 @@
                         <li class="page-item" v-for="index in totalPage" :key="index">
                             <a :class="{ 'page-link active': currentPage == index , 'page-link': currentPage != index }" href="javascript:void(0)" @click="setPage(index)">{{ index }}</a>
                         </li>
-                       
+
                         <li  v-if="currentPage < totalPage" class="page-item">
                             <a class="page-link" href="javascript:void(0)" @click="nextPage" aria-label="Next">
                                 <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>

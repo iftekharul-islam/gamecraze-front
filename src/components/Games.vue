@@ -189,8 +189,7 @@
                 filteredGames: [],
                 searchKey: '',
                 queryCategories: [],
-                queryPlatforms: []
-
+                queryPlatforms: [],
                 isHidden: false
 
             }

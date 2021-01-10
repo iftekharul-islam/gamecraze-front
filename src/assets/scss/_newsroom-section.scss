@@ -81,3 +81,24 @@
         }
     }
 }
+.newsroom-pagination {
+    ul {
+        justify-content: center;
+        li {
+            a {
+                background: transparent;
+                border: 1px solid $secondery;
+                color: $text-light;
+                &.active {
+                    background: $secondery;
+                    color: $text-dark;
+                }
+                &:hover {
+                    background: $secondery;
+                    color: $text-dark;
+                    border: 1px solid $secondery;
+                }
+            }
+        }
+    }
+}

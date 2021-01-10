@@ -132,7 +132,7 @@
                                                    v-model="phone_number" name="user-number" v-if="showOTP === true"
                                                    disabled/>
                                             <input @keypress="isNumber($event)" type="tel" id="user-number" class="form-control country-number mb-2"
-                                                   v-model="phone_number" name="user-number" placeholder="Mobile Number"
+                                                   v-model="phone_number" name="user-number" placeholder="01xxxxxxxxx"
                                                    v-else/>
 
                                             <span class="error-message">{{ errors[0] }}</span>
@@ -204,9 +204,8 @@
                         <span class="or text-center w-100 d-block">OR</span>
                         <button v-if="!$store.state.setPasswordPopUp"
                                 class="btn mb-4 btn--registration button-style w-100" style="margin: 0 auto;"
-                                @click="onChangeLoginOption"><i v-if="loginOption === 'Email'"
-                                                                class="far fa-envelope login-email"></i> <i
-                                v-if="loginOption === 'Phone Number'" class="fas fa-mobile-alt login-phone"></i> <span>Continue with  {{ loginOption }} </span>
+                                @click="onChangeLoginOption"><i v-if="loginOption === 'Email'" class="fas fa-envelope login-email"></i> 
+                                <i v-if="loginOption === 'Phone Number'" class="fas fa-mobile-alt login-phone"></i> <span>Continue with  {{ loginOption }} </span>
                         </button>
                     </div>
                 </div>

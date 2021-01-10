@@ -23,14 +23,34 @@
             }
         }
         .upcoming-image {
+            position: relative;
+            // transform: skew(-30deg, 0deg);
+            // width: 350px;
+            height: 238px;
+            overflow: hidden;
+            display: block;
+            border-radius: 0;
             img {
-                // clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
+                position: absolute;
+                left: -75px;
+                width: 520px;
                 height: 238px;
-                // object-fit: cover;
-                border-radius: 0;
+                transform: skew(30deg, 0deg);
+                @include for-max-1500 {
+                    left: -55px;
+                }
+                @include for-max-1200 {
+                    left: -70px;
+                    width: 600px;
+                }
                
-                @include for-max-900 {
-                    // clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+                @include for-max-992 {
+                        left: -60px;
+                        width: 506px;
+                    
+                }
+                @include for-max-768 {
+                    transform: skew(0deg, 0deg);
                 }
             }
         }
@@ -128,7 +148,7 @@
 }
 .owl-upcoming--item {
     position: relative;
-    transform: skew(-21deg);
+    transform: skew(-30deg);
     @include for-max-768 {
         transform: skew(0deg);
     }

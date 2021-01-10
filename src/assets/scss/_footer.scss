@@ -38,8 +38,9 @@
             width: 100%;
         }
         span {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             display: block;
+            font-family: circular-medium;
             @include for-max-768 {
                 margin-bottom: 0px;
                 margin-top: 20px;
@@ -63,6 +64,7 @@
         // transform: skew(21deg);
         padding-left: 20px;
         color: #fff;
+        opacity: .75;
         &:focus {
             outline: none;
             box-shadow: none;
@@ -92,7 +94,7 @@
 }
 
 .footer-logo {
-    margin-left: 6rem;
+    // margin-left: 6rem;
     @include for-max-768 {
         margin-left: 0;
     }
@@ -132,7 +134,7 @@
             top: -65px;
         }
         a {
-            margin-left: 10px;
+            margin-left: 25px;
             &:first-of-type {
                 @include for-max-400 {
                     margin-left: 0;

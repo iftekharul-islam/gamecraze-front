@@ -63,6 +63,8 @@
 @import "../scss/add-cart-section";
 // newsroom section
 @import "../scss/newsroom-section";
+// news story section
+@import "../scss/news-story-section";
 
 // button
 @import "../scss/buttons";
@@ -86,6 +88,9 @@ body {
   color: $text-light;
   padding-top: 80px;
   font-family: circular-medium;
+  @include for-max-991 {
+    padding-top: 56px;
+  }
 }
 h1,h2,h3,h4,h5 {
   font-family: 'Roboto Condensed', sans-serif;

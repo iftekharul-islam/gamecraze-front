@@ -20,9 +20,9 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="exchange-lend-section--exchange">
-                            <h3>Would you like to
-                                <span>Exchange</span> your CD?</h3>
-                            <a href="#" class="btn--secondery exchange-lend-section--exchange-btn" @click.prevent="onExchange"><span>exchange</span></a>
+                            <h3>Do you want to
+                                <span>Rent</span> your CD?</h3>
+                            <a href="#" class="btn--secondery exchange-lend-section--exchange-btn" @click.prevent="onExchange"><span>rent</span></a>
                         </div>
                     </div>
 
@@ -93,7 +93,6 @@
             </div>
             <div id="owl-upcoming" class="owl-carousel owl-theme">
                 <div class="item" v-for="(game, index) in upcomingGames" :key="index">
-<!--                <div class="item" v-for="(rent,index) in rents" :key="index">-->
 
                     <div class="owl-upcoming--item">
 
@@ -127,39 +126,22 @@
                 <h2 class="section-heading">NEWS & NOTICE BOARD</h2>
             </div>
             <div class="container">
-                <div class="noticed-grid">
-                    <div class="notice-box">
-                        <img src="../assets/img/noticed1.png" alt="Noticed 1">
+                <div class="row">
+                    <div class="col-md-10 mx-auto">
+                        <div class="noticed-grid">
+                    <div class="notice-box" v-for="(article, index) in articles" :key="index"> 
+                        <img :src=article.thumbnail :alt="article.title" class="w-100">
                         <div class="noticed-details">
-                            <h6>Team up with Friends</h6>
-                            <p>Team up with your real-life mates in co-op mode to explore dedicated online content and missions.</p>
-                            <a href="#"><span>View More <i class="fas fa-arrow-right ml-2"></i></span></a>
+                            <h6 v-if="index == 0">{{ article.title }}</h6>
+                            <p v-if="index == 0"> {{ article.description.substring(0, 100) | strippedContent }}</p>
+                            <router-link :to="{ name: 'NewsStory', params: { id: article.id }}" ><span>View More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
                         </div>
                     </div>
-                    <div class="notice-box">
-                        <img src="../assets/img/noticed2.png" alt="noticed">
-                        <div class="noticed-details">
-                            <a href="#"><span>View More <i class="fas fa-arrow-right ml-2"></i></span></a>
-                        </div>
+                </div>
+                    <div class="text-center mt-5">
+                        <a href="#" class="btn--secondery m-auto"><span>View All</span></a>
                     </div>
-                    <div class="notice-box">
-                        <img src="../assets/img/noticed2.png" alt="noticed">
-                        <div class="noticed-details">
-                            <a href="#"><span>View More <i class="fas fa-arrow-right ml-2"></i></span></a>
-                        </div>
-                    </div>
-                    <div class="notice-box">
-                        <img src="../assets/img/noticed2.png" alt="noticed">
-                        <div class="noticed-details">
-                            <a href="#"><span>View More <i class="fas fa-arrow-right ml-2"></i></span></a>
-                        </div>
-                    </div>
-                    <div class="notice-box">
-                        <img src="../assets/img/noticed2.png" alt="noticed">
-                        <div class="noticed-details">
-                            <a href="#"><span>View More <i class="fas fa-arrow-right ml-2"></i></span></a>
-                        </div>
-                    </div>
+                </div>
                 </div>
             </div>
         </section>
@@ -208,18 +190,22 @@
         <footer class="footer-section">
              <div class="footer-section--content">
                     <div class="container">
-                        <div class="footer-top">
-                            <a href="#" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
-                            <div class="footer-top--right">
-                                <span>Sign up for our newsletter.</span>
-                                <div class="footer-top--right-input-group">
-                                    <div class="footer-top--right-input">
-                                        <input type="text" class="" placeholder="E-mail address">
+                        <div class="row">
+                            <div class="col-md-10 mx-auto">
+                                <div class="footer-top">
+                                <a href="#" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
+                                <div class="footer-top--right">
+                                    <span>Sign up for our newsletter.</span>
+                                    <div class="footer-top--right-input-group">
+                                        <div class="footer-top--right-input">
+                                            <input type="text" class="" placeholder="E-mail address">
+                                        </div>
+                                        <button class="btn gamehub-search-btn" type="search">
+                                            <i class="far fa-envelope"></i>
+                                        </button>
                                     </div>
-                                    <button class="btn gamehub-search-btn" type="search">
-                                        <i class="far fa-envelope"></i>
-                                    </button>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -228,7 +214,9 @@
         <div class="footer-middle">
             <div class="container">
                 <div class="row">
-                    <div class="col-6 col-md-3">
+                    <div class="col-md-10 mx-auto">
+                        <div class="row">
+                            <div class="col-6 col-md-3">
                         <div class="footer-menu-content">
                             <ul>
                                 <li><a href="#">Company</a></li>
@@ -270,6 +258,8 @@
                                 <li><a href="#">Sponsors</a></li>
                                 <li><a href="#">Contact</a></li>
                             </ul>
+                        </div>
+                    </div>
                         </div>
                     </div>
                 </div>
@@ -279,14 +269,18 @@
 
             <div class="footer-section--content">
                 <div class="container">
-                     <div class="footer-bottom">
-                        <p>©2020 Game Hub Inc.</p>
-                        <div class="footer-bottom--social">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
-                        </div>
+                     <div class="row">
+                         <div class="col-md-10 mx-auto">
+                             <div class="footer-bottom">
+                                <p>©2020 Game Hub Inc.</p>
+                                <div class="footer-bottom--social">
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                    <a href="#"><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                         </div>
                      </div>
                 </div>
             </div>
@@ -296,12 +290,14 @@
 
 <script>
     import Vue from 'vue';
+
     export default {
         data() {
             return {
                 trendingGames: [],
                 upcomingGames: [],
                 rents: [],
+                articles: []
             }
         },
         methods: {
@@ -383,7 +379,7 @@
                         },
                         900:{
                             items: 2,
-                            stagePadding: 150,
+                            stagePadding: 100,
                         },
                         1200:{
                             items: 3,
@@ -450,8 +446,6 @@
                 this.$api.get('games/trending?include=game,game.assets,game.genres,game.platforms').then(response => {
                     var vm = this;
                     vm.trendingGames = response.data.data;
-                    // console.log('trendingGames')
-                    // console.log(vm.trendingGames)
                     Vue.nextTick(function(){
                         vm.carouselOne();
                     }.bind(vm));
@@ -470,7 +464,6 @@
                 this.$api.get('games/upcoming-games?include=assets,genres,platforms').then(response => {
                     var vm = this;
                     vm.upcomingGames = response.data.data;
-                    console.log('up')
                     console.log(vm.upcomingGames)
                     Vue.nextTick(function(){
                         vm.carouselTwo();
@@ -478,19 +471,32 @@
                 });
             },
             onExchange () {
-                this.$swal("Exchange is now unavailable!", "We will provide exchange facility very soon!")
+                this.$swal("Rent is now unavailable!", "We will provide rent facility very soon!")
+            },
+            getArticles: function () {
+                this.$api.get('top-articles?number=5').then(response => {
+                    if (response.status == 200) {
+                        this.articles = response.data.data;
+                    }
+                });
             }
         },
         created() {
             this.getTrendingGames();
             this.getNewGames();
             this.getRentGames();
+            this.getArticles();
         },
         mounted () {
-        document.body.classList.add('body-home')
+            document.body.classList.add('body-home')
         },
         destroyed () {
-        document.body.classList.remove('body-home')
+            document.body.classList.remove('body-home')
+        },
+        filters: {
+            strippedContent: function(string) {
+                return string.replace(/<\/?[^>]+>/ig, " "); 
+            }
         }
     }
 </script>

@@ -130,15 +130,15 @@
         <section class="user-profile-details">
             <div class="container">
                 <div class="row">
-                    <div class="col-3">
-                        <div class="nav flex-column nav-pills user-profile-details--nav" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link active" id="v-pills-overview-tab" data-toggle="pill" href="#v-pills-overview" role="tab" aria-controls="v-pills-overview" aria-selected="true"><i class="fas fa-user"></i> Overview</a>
-                        <a class="nav-link" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="false"><i class="fas fa-gamepad"></i> Dashboard</a>
-                        <a class="nav-link" id="v-pills-post-rent-tab" data-toggle="pill" href="#v-pills-post-rent" role="tab" aria-controls="v-pills-post-rent" aria-selected="false"><i class="fab fa-telegram-plane"></i> Post for Rent</a>
-                        <a class="nav-link" id="v-pills-edit-profile-tab" data-toggle="pill" href="#v-pills-edit-profile" role="tab" aria-controls="v-pills-edit-profile" aria-selected="false"><i class="fas fa-edit"></i> Edit Profile</a>
+                    <div class="col-md-4">
+                        <div class="nav nav-pills user-profile-details--nav" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <a class="nav-link active" id="v-pills-overview-tab" data-toggle="pill" href="#v-pills-overview" role="tab" aria-controls="v-pills-overview" aria-selected="true"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon1.png" alt="profile icon"> <img src="../assets/img/active-profile-icon1.png" class="img-active" alt="profile icon"></div> <span>Overview</span></a>
+                        <a class="nav-link" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon2.png" alt="profile icon"> <img src="../assets/img/active-profile-icon2.png" class="img-active" alt="profile icon"></div> <span>Dashboard</span></a>
+                        <a class="nav-link" id="v-pills-post-rent-tab" data-toggle="pill" href="#v-pills-post-rent" role="tab" aria-controls="v-pills-post-rent" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon3.png" alt="profile icon"> <img src="../assets/img/active-profile-icon3.png" class="img-active" alt="profile icon"></div> <span>Post for Rent</span></a>
+                        <a class="nav-link" id="v-pills-edit-profile-tab" data-toggle="pill" href="#v-pills-edit-profile" role="tab" aria-controls="v-pills-edit-profile" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon4.png" alt="profile icon"> <img src="../assets/img/active-profile-icon4.png" class="img-active" alt="profile icon"></div> <span>Edit Profile</span></a>
                         </div>
                     </div>
-                    <div class="col-9">
+                    <div class="col-md-8">
                         <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-overview" role="tabpanel" aria-labelledby="v-pills-overview-tab">
                             <div class="over-view">
@@ -198,25 +198,27 @@
                                 <form action="#">
                                      <div class="form-group row">
                                         <label for="gamename" class="col-sm-3 col-form-label">Game Name:</label>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-8 post-rent--input">
                                         <input type="text" class="form-control" id="gamename">
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="gamenumber" class="col-sm-3 col-form-label">Max Rented Week:</label>
-                                        <div class="col-sm-9">
-                                        <input type="number" class="form-control" id="gamenumber">
+                                        <div class="col-sm-8 post-rent--input">
+                                        <input type="number" class="form-control renten-input" id="gamenumber">
+                                         <i class="fa fa-angle-up rented-plus"></i>
+                                        <i class="fa fa-angle-down rented-minus"></i>
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <label for="gamendate" class="col-sm-3 col-form-label">Available from:</label>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-8 post-rent--input">
                                         <input type="date" class="form-control" id="gamendate">
                                         </div>
                                     </div>
                                      <div class="form-group row">
                                         <label for="gamedisk" class="col-sm-3 col-form-label">Disk Condition:</label>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-8 post-rent--input">
                                         <select id="gamedisk" class="form-control">
                                             <option selected>Please Select Disk Condition</option>
                                             <option>...</option>
@@ -225,7 +227,7 @@
                                     </div>
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Disk Image:</label>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-8 post-rent--input">
                                             <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="customFile">
                                                     <label class="custom-file-label text-light" for="customFile">Disk Image</label>
@@ -237,7 +239,7 @@
                                     </div>
                                      <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Cover Image:</label>
-                                        <div class="col-sm-9">
+                                        <div class="col-sm-8 post-rent--input">
                                             <div class="custom-file">
                                                     <input type="file" class="custom-file-input" id="customFile2">
                                                     <label class="custom-file-label text-light" for="customFile2">Cover Image</label>
@@ -248,7 +250,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <div class="offset-md-3 col-md-9 mt-4">
+                                        <div class="offset-md-3 col-md-8 mt-4">
                                             <button class="btn--secondery w-100 border-0"><span>Submit</span></button>
                                         </div>
                                     </div>

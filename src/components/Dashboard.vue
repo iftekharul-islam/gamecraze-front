@@ -409,7 +409,14 @@
                         this.lends = response.data
                         console.log(this.lends, 'lends');
                     })
-            }
+            },
+            
+        mounted() {
+            document.body.classList.add('body-position')
+        },
+        destroyed() {
+            document.body.classList.remove('body-position')
+        }
         }
     </script>
 

@@ -74,12 +74,15 @@
                  <h2 class="section-heading">RENT YOUR FAVORITE GAMES</h2>
 
             </div>
-            <div id="owl-favorite" class="owl-carousel owl-theme">
-<!--                <div class="item" v-for="(game, index) in popularGames" :key="index">-->
-                <div class="item" v-for="(rent, index) in rents" :key="index">
+            <div id="owl-favorite" class="owl-carousel owl-theme" v-if="rents.length">
+                <div class="item" v-for="(rent, index) in rents" :key="index" >
                     <div class="favorite-games">
-                        <a href="#" v-if="rent.game.data.assets.data.length"><img :src="rent.game.data.assets.data[0].url" alt="Code vein"  ></a>
-                       <a href="#" v-else> <img src="../assets/img/rented/dummy-image.jpg" alt="no-image"></a>
+                        <router-link :to="{ path: '/game-details/' + rent.game.data.id}" v-if="rent.game.data.trending_url">
+                            <img :src="rent.game.data.trending_url" :alt="rent.game.data.name"  >
+                        </router-link>
+                        <router-link :to="{ path: '/game-details/' + rent.game.data.id}" v-else> 
+                                <img src="../assets/img/rented/dummy-image.jpg" alt="no-image">
+                        </router-link>
                         <div class="favorite-games-categories d-flex justify-content-center align-items-center">
                             <a href="#"><img :src="rent.platform.data.url" :alt="rent.platform.data.name" class="img-fluid"></a>
                         </div>

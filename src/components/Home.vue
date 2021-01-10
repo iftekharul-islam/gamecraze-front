@@ -138,7 +138,10 @@
                         </div>
                     </div>
                 </div>
+                    <div class="text-center mt-5">
+                        <a href="#" class="btn--secondery m-auto"><span>View All</span></a>
                     </div>
+                </div>
                 </div>
             </div>
         </section>

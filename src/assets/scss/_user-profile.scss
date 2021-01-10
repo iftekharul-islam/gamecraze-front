@@ -257,3 +257,100 @@
         // object-fit: cover;
     }
 }
+
+.dashboard-content {
+    &--rented {
+        border: 1px solid $secondery;
+        padding: 0 20px;
+        position: relative;
+        overflow-x: auto;
+        width: 837px;
+        &::after {
+            content: "";
+            height: 80px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: $secondery;
+        }
+        table {
+            border-collapse: separate;
+            border-spacing: 0px 20px;
+            margin-top: -20px;
+            thead {
+                tr {
+                    height: 80px;
+                   
+                    td {
+                        border: none;
+                        color: $text-dark;
+                        vertical-align: top;
+                        background: $secondery;
+                        border-radius: 0;
+                        
+                    }
+                }
+            }
+            tr {
+                td {
+                    background: $game-details;
+                    color: $text-light;
+                    border-top: 1px solid $secondery;
+                    border-bottom: 1px solid $secondery;
+                    padding: 16px 9px;
+                    &:first-of-type {
+                        min-width: 145px;
+                        border-left: 1px solid $secondery;
+                        border-top-left-radius: 10px;
+                        border-bottom-left-radius: 10px;
+                    }
+                    &:nth-of-type(6) {
+                        min-width: 200px;
+                    }
+                    &:last-of-type {
+                        border-right: 1px solid $secondery;
+                        border-top-right-radius: 10px;
+                        border-bottom-right-radius: 10px;
+                    }
+                    button {
+                        width: 60px;
+                        height: 60px;
+                        font-size: 12px;
+                        background: $secondery;
+                        border: none;
+                        color: $text-dark;
+                    }
+                }
+            }
+        }
+    }
+    .flip-clock {
+        display: grid;
+        grid-template: wrap;
+        /* align-items: center; */
+        /* justify-content: center; */
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 55px;
+        grid-auto-rows: 55px;
+        justify-items: center;
+        justify-content: center;
+        background: $timer;
+        padding: 5px;
+        width: 198px;
+        height: 120px;
+        > span {
+            &:last-of-type {
+                grid-column-start: 2;
+                grid-column-end: 3;
+            }
+            > span {
+                font-size: 1.6rem;
+            }
+        }
+        .flip-clock__slot {
+            font-size: 10px;
+        }
+    }
+}

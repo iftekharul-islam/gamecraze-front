@@ -72,7 +72,6 @@
         <section class="favorite-section">
             <div class="text-center">
                  <h2 class="section-heading">RENT YOUR FAVORITE GAMES</h2>
-
             </div>
             <div id="owl-favorite" class="owl-carousel owl-theme" v-if="rents.length">
                 <div class="item" v-for="(rent, index) in rents" :key="index" >

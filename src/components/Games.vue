@@ -85,84 +85,6 @@
                                   </router-link>
                                 </div>
 
-                                <div class="col-md-6 col-lg-4 mb-5">
-                                    <div class="game-card">
-                                        <a class="display-image" href="#">
-                                            <img src="../assets/img/fifa19.png" alt="fifa" class="img-fluid">
-                                        </a>
-                                        <a href="#"> <h6>REALM ROYALE</h6></a>
-                                        <div class="d-flex">
-                                            <a href="#">Action</a><span class="mr-2">,</span>
-                                            <a href="#">Adventure</a>
-                                        </div>
-                                        <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                                            <a href="#"><img src="../assets/img/ps4-white.png" alt="ps4"></a>
-                                            <a href="#"><img src="../assets/img/fav-1.png" alt="ps4"></a>
-                                            <a href="#"><img src="../assets/img/windows.png" alt="ps4"></a>
-                                            <span class="game-rating">71</span>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <!--  -->
-                                <div class="col-md-6 col-lg-4 mb-5">
-                                    <div class="game-card">
-                                        <a class="display-image" href="#">
-                                            <img src="../assets/img/fifa19.png" alt="fifa" class="img-fluid">
-                                        </a>
-                                        <a href="#"> <h6>REALM ROYALE</h6></a>
-                                        <div class="d-flex">
-                                            <a href="#">Action</a><span class="mr-2">,</span>
-                                            <a href="#">Adventure</a>
-                                        </div>
-                                        <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                                            <a href="#"><img src="../assets/img/ps4-white.png" alt="ps4"></a>
-                                            <a href="#"><img src="../assets/img/fav-1.png" alt="ps4"></a>
-                                            <a href="#"><img src="../assets/img/windows.png" alt="ps4"></a>
-                                            <span class="game-rating">71</span>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 mb-5">
-                                    <div class="game-card">
-                                        <a class="display-image" href="#">
-                                            <img src="../assets/img/fifa19.png" alt="fifa" class="img-fluid">
-                                        </a>
-                                        <a href="#"> <h6>REALM ROYALE</h6></a>
-                                        <div class="d-flex">
-                                            <a href="#">Action</a><span class="mr-2">,</span>
-                                            <a href="#">Adventure</a>
-                                        </div>
-                                        <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                                            <a href="#"><img src="../assets/img/ps4-white.png" alt="ps4"></a>
-                                            <a href="#"><img src="../assets/img/fav-1.png" alt="ps4"></a>
-                                            <a href="#"><img src="../assets/img/windows.png" alt="ps4"></a>
-                                            <span class="game-rating">71</span>
-                                        </div>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 mb-5">
-                                    <div class="game-card">
-                                        <a class="display-image" href="#">
-                                            <img src="../assets/img/fifa19.png" alt="fifa" class="img-fluid">
-                                        </a>
-                                        <a href="#"> <h6>REALM ROYALE</h6></a>
-                                        <div class="d-flex">
-                                            <a href="#">Action</a><span class="mr-2">,</span>
-                                            <a href="#">Adventure</a>
-                                        </div>
-                                        <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                                            <a href="#"><img src="../assets/img/ps4-white.png" alt="ps4"></a>
-                                            <a href="#"><img src="../assets/img/fav-1.png" alt="ps4"></a>
-                                            <a href="#"><img src="../assets/img/windows.png" alt="ps4"></a>
-                                            <span class="game-rating">71</span>
-                                        </div>
-
-                                    </div>
-                                </div>
-
                             </div>
                         </div>
                     </div>
@@ -229,6 +151,11 @@
               console.log(this.filteredGames);
             })
 
+        },
+        toggleMenu: function (event) {
+          if (window.innerWidth < 768) {
+            this.isHidden = !this.isHidden;
+          }
         }
       },
       watch: {
@@ -334,36 +261,14 @@
             this.fetchFilteredGames();
           })
 
-        },
-      // mounted() {
-      //   this.$root.$on('searchEvent', () => {
-      //     this.fetchFilteredGames();
-      //   })
-      // }
+          if (window.innerWidth < 768) {
+            this.isHidden = false;
+          }
+          else {
+            this.isHidden = true;
+          }
 
-            if (window.innerWidth < 768) {
-                    this.isHidden = false;
-            }
-            else {
-                this.isHidden = true;
-            }
-        },
-         methods: {
-            toggleMenu: function (event) {
-                if (window.innerWidth < 768) {
-                    this.isHidden = !this.isHidden;
-                }
-                
-                // var x = document.getElementById("games-categories-list");
-
-                // if (x.style.display  === "none") {
-                //     x.style.display = "block";
-                // } else {
-                //     x.style.display =  "none";
-                // }
-            }
         }
-
     }
 
 

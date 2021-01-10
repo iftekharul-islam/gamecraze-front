@@ -94,19 +94,15 @@
              
             <div id="owl-upcoming" class="owl-carousel owl-theme">
                 <div class="item" v-for="(game, index) in upcomingGames" :key="index">
-
                     <div class="owl-upcoming--item">
-
-                        <!-- <a class="upcoming-image" href="#"> -->
                         <router-link :to="{ path: '/game-details/' + game.id}" class="upcoming-image">
                             <img class="card-img-top" :src="game.poster_url" :alt="game.name"  v-if="game.poster_url">
                             <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
                             <button class="set-reminder" @click.prevent="setReminder(game.id)" style="position: absolute; z-index: 2; top: 0;">Reminder</button>
                         </router-link>
-                        <!-- </a> -->
                         <div class="d-flex upcoming-order">
                             <router-link :to="{ path: '/game-details/' + game.id}"><span>View Details</span></router-link>
-                            <a href="javascript:void(0)" @click.prevent="setReminder(game.id)"><span>Rent</span></a>
+                            <a href="javascript:void(0)"><span>Rent</span></a>
                         </div>
                     </div>
                     <div class="upcoming-game--name-price d-flex justify-content-between">

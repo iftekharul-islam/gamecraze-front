@@ -1343,7 +1343,19 @@ html {
   margin-left: 100px;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1400px) {
+  .gamehub-menu-collapse ul {
+    margin-left: 60px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .gamehub-menu-collapse ul {
+    margin-left: 50px;
+  }
+}
+
+@media (max-width: 991px) {
   .gamehub-menu-collapse ul {
     display: block;
   }
@@ -1378,7 +1390,7 @@ html {
 
 @media (max-width: 1200px) {
   .gamehub-menu-collapse ul li a {
-    padding: 0 5px;
+    padding: 0 10px;
     font-size: 14px;
   }
 }
@@ -1401,6 +1413,12 @@ html {
           transform: skew(-50deg);
 }
 
+@media (max-width: 1200px) {
+  .gamehub-menu-collapse ul li a.router-link-exact-active::after {
+    width: 50px;
+  }
+}
+
 @media (max-width: 992px) {
   .gamehub-menu-collapse ul li a.router-link-exact-active::after {
     top: 28px;
@@ -1421,7 +1439,7 @@ html {
 @media (max-width: 992px) {
   .toggler-position {
     right: 50px;
-    top: 23px;
+    top: 12px;
   }
 }
 
@@ -3555,14 +3573,45 @@ html {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media (max-width: 575px) {
+  .game-details-menu ul {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
 }
 
 .game-details-menu ul li {
   padding: 20px 0;
   position: relative;
+  margin-right: 104px;
+}
+
+@media (max-width: 992px) {
+  .game-details-menu ul li {
+    margin-right: 60px;
+  }
+}
+
+@media (max-width: 768px) {
+  .game-details-menu ul li {
+    margin-right: 25px;
+  }
+}
+
+@media (max-width: 575px) {
+  .game-details-menu ul li {
+    margin-right: 0px;
+  }
+}
+
+.game-details-menu ul li:last-of-type {
+  margin-right: 0;
 }
 
 .game-details-menu ul li::before {
@@ -3636,6 +3685,10 @@ html {
 
 .screenshot-video .owl-dots button:focus {
   outline: none !important;
+}
+
+.screenshot-video .owl-item .item {
+  margin-right: 10px;
 }
 
 .overview {
@@ -4296,6 +4349,29 @@ html {
   .post-rent--input {
     padding-right: 26px;
   }
+}
+
+.post-rent--input input[type=number]::-webkit-inner-spin-button,
+.post-rent--input input[type=number]::-webkit-outer-spin-button {
+  opacity: 0;
+}
+
+.post-rent--input .rented-plus {
+  position: absolute;
+  top: 5px;
+  right: 44px;
+  cursor: pointer;
+}
+
+.post-rent--input .rented-minus {
+  position: absolute;
+  bottom: 15px;
+  right: 44px;
+  cursor: pointer;
+}
+
+.post-rent--input i {
+  color: #FFD715;
 }
 
 .img-prev img {
@@ -5351,6 +5427,12 @@ body {
   color: #fff;
   padding-top: 80px;
   font-family: circular-medium;
+}
+
+@media (max-width: 991px) {
+  body {
+    padding-top: 56px;
+  }
 }
 
 h1, h2, h3, h4, h5 {

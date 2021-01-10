@@ -34,7 +34,13 @@
         margin: auto;
         display: flex;
         margin-left: 100px;
-        @include for-max-992 {
+        @include for-max-1400 {
+            margin-left: 60px;
+        }
+        @include for-max-1200 {
+            margin-left: 50px;
+        }
+        @include for-max-991 {
             display: block;
         }
         li {
@@ -53,7 +59,7 @@
             a {
                 padding: 0 20px;
                 @include for-max-1200 {
-                    padding: 0 5px;
+                    padding: 0 10px;
                     font-size: 14px;
                 }
                 &.router-link-exact-active {
@@ -69,6 +75,9 @@
                                 right: 0;
                                 margin: auto;
                                 transform: skew(-50deg);
+                                @include for-max-1200 {
+                                    width: 50px;
+                                }
                                 @include for-max-992 {
                                     top: 28px;
                                 }
@@ -90,7 +99,7 @@
     padding-right: 1rem;
     @include for-max-992 {
         right: 50px;
-        top: 23px;
+        top: 12px;
     }
     @include for-max-575 {
         right: 0;

@@ -205,7 +205,9 @@
                                     <div class="form-group row">
                                         <label for="gamenumber" class="col-sm-3 col-form-label">Max Rented Week:</label>
                                         <div class="col-sm-8 post-rent--input">
-                                        <input type="number" class="form-control" id="gamenumber">
+                                        <input type="number" class="form-control renten-input" id="gamenumber">
+                                         <i class="fa fa-angle-up rented-plus"></i>
+                                        <i class="fa fa-angle-down rented-minus"></i>
                                         </div>
                                     </div>
                                     <div class="form-group row">

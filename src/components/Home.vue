@@ -46,22 +46,22 @@
 
 
                 <div class="item" v-for="(trending, index) in trendingGames" :key="index">
-                    <a class="trending-image" href="#">
-                        <img :src="trending.game.data.assets.data[0].url" alt="Code vein"  v-if="trending.game.data.assets.data.length">
+                    <router-link :to="{ path: '/game-details/' + trending.game.data.id}" class="trending-image">
+                        <img :src="trending.game.data.trending_url" alt="trending.game.data.name" v-if="trending.game.data.assets.data.length">
                         <img src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
-                    </a>
+                    </router-link>
                     <div class="trending-game--name-price d-flex justify-content-between">
-                        <a href="#">{{ trending.game.data.name }}</a>
+                         <router-link :to="{ path: '/game-details/' + trending.game.data.id}" class="trending-image">{{ trending.game.data.name }}</router-link>
                         <!-- <span>$19.99</span>-->
                     </div>
                     <div class="trending-game--categories d-flex justify-content-between">
                         <div class="home-categories">
-                            <a href="#" v-for="(genre) in trending.game.data.genres.data">{{ genre.name }}</a>
+                            <a href="#" v-for="(genre) in trending.game.data.genres.data" :key="genre.id">{{ genre.name }}</a>
                         </div>
 
 
                         <div class="d-flex home-platform">
-                            <a href="#" v-for="(platform) in trending.game.data.platforms.data"><img :src=platform.url :alt="platform.name"></a>
+                            <a href="#" v-for="(platform) in trending.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>
 
                         </div>
                     </div>
@@ -91,22 +91,22 @@
             <div class="text-center">
                 <h2 class="section-heading">UPCOMING GAMES</h2>
             </div>
+             
             <div id="owl-upcoming" class="owl-carousel owl-theme">
                 <div class="item" v-for="(game, index) in upcomingGames" :key="index">
-
                     <div class="owl-upcoming--item">
-
-                        <a class="upcoming-image" href="#">
-                            <img class="card-img-top" :src="game.assets.data[0].url" alt="Code vein"  v-if="game.assets.data.length">
+                        <router-link :to="{ path: '/game-details/' + game.id}" class="upcoming-image">
+                            <img class="card-img-top" :src="game.poster_url" :alt="game.name"  v-if="game.poster_url">
                             <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
-                        </a>
+                            <button class="set-reminder" @click.prevent="setReminder(game.id)" style="position: absolute; z-index: 2; top: 0;">Reminder</button>
+                        </router-link>
                         <div class="d-flex upcoming-order">
                             <router-link :to="{ path: '/game-details/' + game.id}"><span>View Details</span></router-link>
-                            <a href="#"><span>Rent</span></a>
+                            <a href="javascript:void(0)"><span>Rent</span></a>
                         </div>
                     </div>
                     <div class="upcoming-game--name-price d-flex justify-content-between">
-                        <a href="#">{{ game.name }}</a>
+                        <router-link :to="{ path: '/game-details/' + game.id}">{{ game.name }}</router-link>
                     </div>
                     <div class="upcoming-game--categories d-flex justify-content-between">
                         <div class="home-categories">
@@ -114,7 +114,9 @@
                         </div>
 
                         <div class="d-flex">
-                            <a href="#" v-for="(platform) in game.platforms.data"><img :src=platform.url :alt="platform.name"></a>
+                            <a href="#" v-for="(platform) in game.platforms.data">
+                                <img :src=platform.url :alt="platform.name">
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -128,20 +130,20 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-10 mx-auto">
-                        <div class="noticed-grid">
-                    <div class="notice-box" v-for="(article, index) in articles" :key="index"> 
-                        <img :src=article.thumbnail :alt="article.title" class="w-100">
-                        <div class="noticed-details">
-                            <h6 v-if="index == 0">{{ article.title }}</h6>
-                            <p v-if="index == 0"> {{ article.description.substring(0, 100) | strippedContent }}</p>
-                            <router-link :to="{ name: 'NewsStory', params: { id: article.id }}" ><span>View More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
+                            <div class="noticed-grid">
+                            <div class="notice-box" v-for="(article, index) in articles" :key="index"> 
+                                <img :src=article.thumbnail :alt="article.title" class="w-100">
+                                <div class="noticed-details">
+                                    <h6 v-if="index == 0">{{ article.title }}</h6>
+                                    <p v-if="index == 0"> {{ article.description.substring(0, 100) | strippedContent }}</p>
+                                    <router-link :to="{ name: 'NewsStory', params: { id: article.id }}" ><span>View More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-5">
+                            <a href="#" class="btn--secondery m-auto"><span>View All</span></a>
                         </div>
                     </div>
-                </div>
-                    <div class="text-center mt-5">
-                        <a href="#" class="btn--secondery m-auto"><span>View All</span></a>
-                    </div>
-                </div>
                 </div>
             </div>
         </section>
@@ -183,9 +185,9 @@
                                 <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>                            </div>
                         </div>
                     </div>
-                </div> 
-            </div> 
-        </section> 
+                </div>
+            </div>
+        </section>
         <!-- footer -->
         <footer class="footer-section">
              <div class="footer-section--content">
@@ -297,7 +299,8 @@
                 trendingGames: [],
                 upcomingGames: [],
                 rents: [],
-                articles: []
+                articles: [],
+                isLoggedIn: false
             }
         },
         methods: {
@@ -464,7 +467,6 @@
                 this.$api.get('games/upcoming-games?include=assets,genres,platforms').then(response => {
                     var vm = this;
                     vm.upcomingGames = response.data.data;
-                    console.log(vm.upcomingGames)
                     Vue.nextTick(function(){
                         vm.carouselTwo();
                     }.bind(vm));
@@ -479,6 +481,31 @@
                         this.articles = response.data.data;
                     }
                 });
+            },
+            setReminder: function(gameId) {
+                if (!this.isLoggedIn) {
+                    this.$toaster.warning('Please login to set reminder');
+                    return;
+                }
+
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                }
+
+                this.$api.post('set-reminder/' + gameId, {game_id: gameId}, config).then(response => {
+                    if (response.status == 200) {
+                        this.$toaster.success(response.data.message);
+                        return
+                    }
+                    this.$toaster.warning(response.data.message);
+                })
+            }
+        },
+        computed: {
+            auth () {
+                return this.$store.getters.ifAuthenticated;
             }
         },
         created() {
@@ -486,6 +513,9 @@
             this.getNewGames();
             this.getRentGames();
             this.getArticles();
+            if (this.$store.getters.ifAuthenticated) {
+                this.isLoggedIn = true;
+            }
         },
         mounted () {
             document.body.classList.add('body-home')
@@ -495,7 +525,7 @@
         },
         filters: {
             strippedContent: function(string) {
-                return string.replace(/<\/?[^>]+>/ig, " "); 
+                return string.replace(/<\/?[^>]+>/ig, " ");
             }
         }
     }

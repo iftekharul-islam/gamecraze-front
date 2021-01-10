@@ -68,7 +68,7 @@
                                         </a>
                                         <a href="#"> <h6>REALM ROYALE</h6></a>
                                         <div class="d-flex">
-                                            <a href="#">Action</a>,
+                                            <a href="#">Action</a><span class="mr-2">,</span>
                                             <a href="#">Adventure</a>
                                         </div>
                                         <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
@@ -87,7 +87,7 @@
                                         </a>
                                         <a href="#"> <h6>REALM ROYALE</h6></a>
                                         <div class="d-flex">
-                                            <a href="#">Action</a>,
+                                            <a href="#">Action</a><span class="mr-2">,</span>
                                             <a href="#">Adventure</a>
                                         </div>
                                         <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
@@ -106,7 +106,7 @@
                                         </a>
                                         <a href="#"> <h6>REALM ROYALE</h6></a>
                                         <div class="d-flex">
-                                            <a href="#">Action</a>,
+                                            <a href="#">Action</a><span class="mr-2">,</span>
                                             <a href="#">Adventure</a>
                                         </div>
                                         <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
@@ -126,7 +126,7 @@
                                         </a>
                                         <a href="#"> <h6>REALM ROYALE</h6></a>
                                         <div class="d-flex">
-                                            <a href="#">Action</a>,
+                                            <a href="#">Action</a><span class="mr-2">,</span>
                                             <a href="#">Adventure</a>
                                         </div>
                                         <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
@@ -145,7 +145,7 @@
                                         </a>
                                         <a href="#"> <h6>REALM ROYALE</h6></a>
                                         <div class="d-flex">
-                                            <a href="#">Action</a>,
+                                            <a href="#">Action</a><span class="mr-2">,</span>
                                             <a href="#">Adventure</a>
                                         </div>
                                         <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
@@ -164,7 +164,7 @@
                                         </a>
                                         <a href="#"> <h6>REALM ROYALE</h6></a>
                                         <div class="d-flex">
-                                            <a href="#">Action</a>,
+                                            <a href="#">Action</a><span class="mr-2">,</span>
                                             <a href="#">Adventure</a>
                                         </div>
                                         <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">

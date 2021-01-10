@@ -20,9 +20,9 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="exchange-lend-section--exchange">
-                            <h3>Would you like to
-                                <span>Exchange</span> your CD?</h3>
-                            <a href="#" class="btn--secondery exchange-lend-section--exchange-btn" @click.prevent="onExchange"><span>exchange</span></a>
+                            <h3>Do you want to
+                                <span>Rent</span> your CD?</h3>
+                            <a href="#" class="btn--secondery exchange-lend-section--exchange-btn" @click.prevent="onExchange"><span>rent</span></a>
                         </div>
                     </div>
 
@@ -471,7 +471,7 @@
                 });
             },
             onExchange () {
-                this.$swal("Exchange is now unavailable!", "We will provide exchange facility very soon!")
+                this.$swal("Rent is now unavailable!", "We will provide rent facility very soon!")
             },
             getArticles: function () {
                 this.$api.get('top-articles?number=5').then(response => {

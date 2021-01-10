@@ -229,6 +229,25 @@
         @include for-min-1200 {
             padding-right: 26px;
         }
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+            opacity: 0
+        }
+        .rented-plus {
+            position: absolute;
+            top: 5px;
+            right: 44px;
+            cursor: pointer;
+        }
+        .rented-minus {
+            position: absolute;
+            bottom: 15px;
+            right: 44px;
+            cursor: pointer;
+        }
+        i {
+            color: $secondery;
+        }
     }
 }
 .img-prev {

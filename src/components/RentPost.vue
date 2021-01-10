@@ -303,7 +303,7 @@
                         'Authorization': 'Bearer ' + this.$store.state.token
                     }
                 }
-                console.log(uploadInfo);
+                // console.log(uploadInfo);
                 this.$api.post('rents', uploadInfo, config)
                     .then(response => {
                         this.$swal({
@@ -324,8 +324,8 @@
                     .then (response =>
                     {
                         this.basePrices = response.data;
-                        console.log(response);
-                        console.log(this.basePrices);
+                        // console.log(response);
+                        // console.log(this.basePrices);
                     })
             },
             onInputChange(text) {
@@ -339,7 +339,7 @@
               return suggestion.item.name;
             },
             focusMe(e) {
-              console.log(e) // FocusEvent
+              // console.log(e) // FocusEvent
             },
             formattedDate(date) {
               const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];

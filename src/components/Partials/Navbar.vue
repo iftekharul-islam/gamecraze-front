@@ -38,10 +38,36 @@
                     </ul>
                     <div class="gamehub-input-group">
                         <div class="gamehub-input-group--content">
+
                             <div class="search-input-design">
-                                <input type="search" class="">
+                              <vue-autosuggest
+                                  v-model="query"
+                                  :suggestions="filteredOptions"
+                                  @focus="focusMe"
+                                  @click="clickHandler"
+                                  @input="onInputChange"
+                                  @selected="onSelected"
+                                  :get-suggestion-value="getSuggestionValue"
+                                  :input-props="{id:'autosuggest__input', placeholder:'Game Name'}">
+                                <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
+                                  <div style="{ display: 'flex', color: 'white'}">{{suggestion.item.name}}</div>
+                                </div>
+                              </vue-autosuggest>
+<!--                              <vue-autosuggest-->
+<!--                                  :v-model="gameName"-->
+<!--                                  :suggestions="suggestions"-->
+<!--                                  @focus="focusMe"-->
+<!--                                  @click="clickHandler"-->
+<!--                                  @input="onInputChange"-->
+<!--                                  @selected="onSelected"-->
+<!--                                  :get-suggestion-value="getSuggestionValue"-->
+<!--                                  :input-props="{id:'autosuggest__input', placeholder:'Enter game name'}">-->
+<!--                                <div slot-scope="{suggestion}" style="display: flex; align-items: center;">-->
+<!--                                  <div style=" color: white;">{{suggestion.item.name}}</div>-->
+<!--                                </div>-->
+<!--                              </vue-autosuggest>-->
                             </div>
-                            <button class="btn gamehub-search-btn" type="search">
+                            <button class="btn gamehub-search-btn" type="search" @click.prevent="searchGame">
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>
@@ -143,7 +169,6 @@
 </template>
 
 <script>
-
     export default {
         data() {
             return {
@@ -156,22 +181,30 @@
                 games: [],
                 results: [],
                 filteredResults: [],
+              query: "",
+              selected: "",
             }
         },
         methods: {
             searchGame() {
                 console.log(this.result)
-                if(this.result !== '') {
-                    this.$api.get('/rent-posts'+ '?include=game.assets,game.genres,platform').then(response => {
-                        let games = response.data.data;
-                        console.log(games);
-                        var gameName = this.result;
-                        let filtered = games.filter(function (data) {
-                            return data.game.data.name.toLowerCase().includes(gameName.toLowerCase())
-                        })
-                        this.$store.commit('addToSearchResult', filtered);
-                        this.$router.push('/search').catch(err => {});
-                    });
+                if(this.query !== '') {
+                    // this.$api.get('/rent-posts'+ '?include=game.assets,game.genres,platform').then(response => {
+                    //     let games = response.data.data;
+                    //     console.log(games);
+                    //     var gameName = this.result;
+                    //     let filtered = games.filter(function (data) {
+                    //         return data.game.data.name.toLowerCase().includes(gameName.toLowerCase())
+                    //     })
+                    //     this.$store.commit('addToSearchResult', filtered);
+                    //     this.$router.push('/search').catch(err => {});
+                    // });
+                  this.$router.push({name: 'games', query: {categories: this.$route.query.categories, platforms: this.$route.query.platforms, search: this.query}})
+                  this.$root.$emit('searchEvent')
+                }
+                else {
+                  this.$router.push({name: 'games', query: {categories: this.$route.query.categories, platforms: this.$route.query.platforms}})
+                  this.$root.$emit('searchEvent')
                 }
             },filterResults() {
                  this.filteredResults = this.results.filter(result => {
@@ -187,12 +220,40 @@
                 this.$store.state.postId = [];
                 console.log(this.$store.state.postId, 'postId');
 
-            }
+            },
+          clickHandler(item) {
+            // event fired when clicking on the input
+          },
+          onSelected(item) {
+            this.selected = item.item;
+          },
+          onInputChange(text) {
+            // event fired when the input changes
+            console.log(text)
+          },
+          /**
+           * This is what the <input/> value is set to when you are selecting a suggestion.
+           */
+          getSuggestionValue(suggestion) {
+            return suggestion.item.name;
+          },
+          focusMe(e) {
+            console.log(e) // FocusEvent
+          }
         },
         computed: {
             auth () {
                 return this.$store.getters.ifAuthenticated
-            }
+            },
+          filteredOptions() {
+            return [
+              {
+                data: this.games.filter(option => {
+                  return option.name.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
+                })
+              }
+            ];
+          }
         },
         created() {
             this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
@@ -206,13 +267,19 @@
                 })
                 console.log(uniqueArr)
             });
+          this.$api.get('games?include=platforms')
+              .then(response =>
+              {
+                this.games = response.data.data;
+              })
         },
         mounted() {
             this.$root.$on("loggedIn", () => {
                 this.token = localStorage.getItem('token')
                 this.userProfile = JSON.parse(localStorage.getItem('userProfile'))
             })
-        }
+        },
+
     }
 </script>
 
@@ -263,5 +330,42 @@
         width: 244px;
         padding: 0;
 
+    }
+    .demo {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    input {
+      width: 260px;
+      padding: 0.5rem;
+    }
+
+    ul {
+      width: 100%;
+      color: rgba(30, 39, 46,1.0);
+      list-style: none;
+      margin: 0;
+      padding: 0.5rem 0 .5rem 0;
+    }
+    li {
+      margin: 0 0 0 0;
+      border-radius: 5px;
+      padding: 0.75rem 0 0.75rem 0.75rem;
+      display: flex;
+      align-items: center;
+    }
+    li:hover {
+      cursor: pointer;
+    }
+
+    .autosuggest-container {
+      display: block;
+      justify-content: center;
+      width: 280px;
+    }
+
+    #autosuggest { width: 100%; display: block;}
+    .autosuggest__results-item--highlighted {
+      background-color: rgba(51, 217, 178,0.2);
     }
 </style>

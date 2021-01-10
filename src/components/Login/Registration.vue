@@ -45,8 +45,8 @@
 
                                     <div class="form-group">
                                         <label for="user-number">Phone number</label>
-                                        <ValidationProvider name="phone number" rules="required|max:11|min:11" v-slot="{ errors }">
-                                            <input type="tel" class="form-control" id="user-number" v-model="form.phone_number" readonly>
+                                        <ValidationProvider name="phone number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
+                                            <input @keypress="isNumber($event)" type="tel" class="form-control" id="user-number" v-model="form.phone_number" readonly>
                                             <span style="color: red;">{{ errors[0] }}</span>
                                         </ValidationProvider>
 
@@ -133,6 +133,15 @@
             }
         },
         methods: {
+          isNumber: function(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.form.phone_number.length > 10) {
+              evt.preventDefault();
+            } else {
+              return true;
+            }
+          },
             onNext() {
                 // this.$store.dispatch('setSignUp', this.form)
                 this.$api.put('users', this.form).then(response => {

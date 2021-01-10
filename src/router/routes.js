@@ -45,8 +45,10 @@ let router = new Router({
             }
         },
         {
+            name: 'games',
             path: '/games',
             component: Game,
+            props: true,
             meta: {
                 requiresAuth: false
             }

@@ -204,9 +204,8 @@
                         <span class="or text-center w-100 d-block">OR</span>
                         <button v-if="!$store.state.setPasswordPopUp"
                                 class="btn mb-4 btn--registration button-style w-100" style="margin: 0 auto;"
-                                @click="onChangeLoginOption"><i v-if="loginOption === 'Email'"
-                                                                class="far fa-envelope login-email"></i> <i
-                                v-if="loginOption === 'Phone Number'" class="fas fa-mobile-alt login-phone"></i> <span>Continue with  {{ loginOption }} </span>
+                                @click="onChangeLoginOption"><i v-if="loginOption === 'Email'" class="fas fa-envelope login-email"></i> 
+                                <i v-if="loginOption === 'Phone Number'" class="fas fa-mobile-alt login-phone"></i> <span>Continue with  {{ loginOption }} </span>
                         </button>
                     </div>
                 </div>
@@ -241,8 +240,8 @@
             isNumber: function(evt) {
               evt = (evt) ? evt : window.event;
               var charCode = (evt.which) ? evt.which : evt.keyCode;
-              if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46) {
-                evt.preventDefault();;
+              if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.phone_number.length > 10) {
+                evt.preventDefault();
               } else {
                 return true;
               }

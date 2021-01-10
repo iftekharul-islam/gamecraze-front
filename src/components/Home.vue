@@ -20,9 +20,9 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="exchange-lend-section--exchange">
-                            <h3>Would you like to
-                                <span>Exchange</span> your CD?</h3>
-                            <a href="#" class="btn--secondery exchange-lend-section--exchange-btn" @click.prevent="onExchange"><span>exchange</span></a>
+                            <h3>Do you want to
+                                <span>Rent</span> your CD?</h3>
+                            <a href="#" class="btn--secondery exchange-lend-section--exchange-btn" @click.prevent="onExchange"><span>rent</span></a>
                         </div>
                     </div>
 
@@ -128,13 +128,20 @@
                 <h2 class="section-heading">NEWS & NOTICE BOARD</h2>
             </div>
             <div class="container">
-                <div class="noticed-grid">
-                    <div class="notice-box" v-for="(article, index) in articles" :key="index">
-                        <img :src=article.thumbnail :alt="article.title">
-                        <div class="noticed-details">
-                            <h6 v-if="index == 0">{{ article.title }}</h6>
-                            <p v-if="index == 0"> {{ article.description.substring(0, 100) | strippedContent }}</p>
-                            <router-link :to="{ name: 'NewsStory', params: { id: article.id }}" ><span>View More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
+                <div class="row">
+                    <div class="col-md-10 mx-auto">
+                            <div class="noticed-grid">
+                            <div class="notice-box" v-for="(article, index) in articles" :key="index"> 
+                                <img :src=article.thumbnail :alt="article.title" class="w-100">
+                                <div class="noticed-details">
+                                    <h6 v-if="index == 0">{{ article.title }}</h6>
+                                    <p v-if="index == 0"> {{ article.description.substring(0, 100) | strippedContent }}</p>
+                                    <router-link :to="{ name: 'NewsStory', params: { id: article.id }}" ><span>View More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-5">
+                            <a href="#" class="btn--secondery m-auto"><span>View All</span></a>
                         </div>
                     </div>
                 </div>
@@ -185,18 +192,22 @@
         <footer class="footer-section">
              <div class="footer-section--content">
                     <div class="container">
-                        <div class="footer-top">
-                            <a href="#" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
-                            <div class="footer-top--right">
-                                <span>Sign up for our newsletter.</span>
-                                <div class="footer-top--right-input-group">
-                                    <div class="footer-top--right-input">
-                                        <input type="text" class="" placeholder="E-mail address">
+                        <div class="row">
+                            <div class="col-md-10 mx-auto">
+                                <div class="footer-top">
+                                <a href="#" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
+                                <div class="footer-top--right">
+                                    <span>Sign up for our newsletter.</span>
+                                    <div class="footer-top--right-input-group">
+                                        <div class="footer-top--right-input">
+                                            <input type="text" class="" placeholder="E-mail address">
+                                        </div>
+                                        <button class="btn gamehub-search-btn" type="search">
+                                            <i class="far fa-envelope"></i>
+                                        </button>
                                     </div>
-                                    <button class="btn gamehub-search-btn" type="search">
-                                        <i class="far fa-envelope"></i>
-                                    </button>
                                 </div>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -205,7 +216,9 @@
         <div class="footer-middle">
             <div class="container">
                 <div class="row">
-                    <div class="col-6 col-md-3">
+                    <div class="col-md-10 mx-auto">
+                        <div class="row">
+                            <div class="col-6 col-md-3">
                         <div class="footer-menu-content">
                             <ul>
                                 <li><a href="#">Company</a></li>
@@ -247,6 +260,8 @@
                                 <li><a href="#">Sponsors</a></li>
                                 <li><a href="#">Contact</a></li>
                             </ul>
+                        </div>
+                    </div>
                         </div>
                     </div>
                 </div>
@@ -256,14 +271,18 @@
 
             <div class="footer-section--content">
                 <div class="container">
-                     <div class="footer-bottom">
-                        <p>©2020 Game Hub Inc.</p>
-                        <div class="footer-bottom--social">
-                            <a href="#"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#"><i class="fab fa-twitter"></i></a>
-                            <a href="#"><i class="fab fa-instagram"></i></a>
-                            <a href="#"><i class="fab fa-youtube"></i></a>
-                        </div>
+                     <div class="row">
+                         <div class="col-md-10 mx-auto">
+                             <div class="footer-bottom">
+                                <p>©2020 Game Hub Inc.</p>
+                                <div class="footer-bottom--social">
+                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="#"><i class="fab fa-twitter"></i></a>
+                                    <a href="#"><i class="fab fa-instagram"></i></a>
+                                    <a href="#"><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                         </div>
                      </div>
                 </div>
             </div>
@@ -363,7 +382,7 @@
                         },
                         900:{
                             items: 2,
-                            stagePadding: 150,
+                            stagePadding: 100,
                         },
                         1200:{
                             items: 3,
@@ -454,7 +473,7 @@
                 });
             },
             onExchange () {
-                this.$swal("Exchange is now unavailable!", "We will provide exchange facility very soon!")
+                this.$swal("Rent is now unavailable!", "We will provide rent facility very soon!")
             },
             getArticles: function () {
                 this.$api.get('top-articles?number=5').then(response => {

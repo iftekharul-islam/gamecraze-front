@@ -1,7 +1,6 @@
 import axios from 'axios'
 import router from "../router/routes";
-
-import {swal} from 'vue-swal'
+import {swal} from 'vue-swal';
 
 export const storage = {
     state: {
@@ -30,7 +29,8 @@ export const storage = {
         postId: [],
         cart: null,
         totalAmount: 0,
-        setupPasswordUser: null
+        setupPasswordUser: null,
+        otpNotFound: ''
     },
     getters: {
         user (state) {
@@ -151,6 +151,9 @@ export const storage = {
         },
         setSetupPasswordUserFromStorage (state, payload) {
             state.setupPasswordUser = payload
+        },
+        setOTPNotFound (state, payload) {
+            state.otpNotFound = payload
         }
     },
     actions: {
@@ -263,6 +266,7 @@ export const storage = {
             commit('setSubmitLoading', true)
             axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'verify-otp', payload).then(response => {
                 console.log(response);
+
                 if (response.data.error === false) {
                     commit('authUser', {
                         token: response.data.token,
@@ -291,7 +295,8 @@ export const storage = {
                 commit('setInactiveUser', response.data.message === 'inactiveUser')
                 commit('setWrongOTP', response.data.message === 'wrongOtp')
                 commit('setTimeout', response.data.message === 'timeout')
-                commit('setSubmitLoading', false)
+                commit('setOTPNotFound', response.data.message === 'otpNotFound')
+                commit('setSubmitLoading', response.data.message === 'timeout')
 
             });
         },
@@ -348,6 +353,7 @@ export const storage = {
                 }
             }
             axios.put(process.env.VUE_APP_GAMEHUB_BASE_API + 'users', payload, config).then(response => {
+                console.log('update: ', response.data);
                 if (response.data) {
                     commit('setUser', response.data);
                     localStorage.setItem('user', JSON.stringify(response.data));
@@ -359,21 +365,27 @@ export const storage = {
                         router.push('/').catch(err => {});
                     }
                 }
+
             });
         },
         checkPassword ({commit, dispatch}, payload) {
             axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'check-email-exist', payload).then(response => {
                 if (response.data.error === false) {
                     axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'check-password', payload).then(response => {
+                        console.log('check if password exists: ', response.data);
                         if (response.data.error === true) {
                             commit('setNotSetPassword', false);
                         }
                         else {
+                            // this.$root.$emit('stopLoader');
                             commit('setSetupPasswordUser', response.data.user);
                             localStorage.setItem('setupPasswordUser', JSON.stringify(response.data.user))
-                            commit('setPasswordPopUp', true);
+                            // commit('setPasswordPopUp', true);
+                            // commit('setSubmitLoading', false);
+                            if (response.data.isPaswordEmpty) {
+                                swal('Reset Password', 'A verification email has been sent. Please check your email.', 'success');
+                            }
                         }
-
                     })
                 }
                 else {

@@ -152,7 +152,7 @@
             },
         },
         mounted () {
-          console.log(this.user)
+          console.log(this.$store.state.setupPasswordUser)
           document.body.classList.add('body-position')
         },
         destroyed () {

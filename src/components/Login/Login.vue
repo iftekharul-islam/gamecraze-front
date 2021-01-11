@@ -58,12 +58,12 @@
                             </li>
                         </ul>
 
-                        <div class="password-setup-popup" v-if="$store.state.setPasswordPopUp">
+                        <!-- <div class="password-setup-popup" v-if="$store.state.setPasswordPopUp">
                             <div class="password-setup-popup--content">
                                 <p>Please Click this link and set your password</p>
                                 <router-link to="/registration">ok</router-link>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- form -->
                         <ValidationObserver v-slot="{ handleSubmit }"
@@ -171,6 +171,7 @@
                                         <span class="error-message" v-if="$store.state.wrongOTP && !resend">You entered wrong OTP</span>
                                         <span class="error-message" v-if="$store.state.timeout && !resend">This OTP is not valid for timeout</span>
                                         <span class="error-message" v-if="$store.state.inactiveUser && !resend">This User is inactive, please contact to helpline</span>
+                                        <span class="error-message" v-if="$store.state.otpNotFound && !resend">The OTP no found. Please recheck.</span>
 
                                         <!--                                            </ValidationProvider>-->
                                     </div>
@@ -297,7 +298,7 @@
                 }
             },
             onOtpVerification: function () {
-                console.log('hello')
+                console.log('verify otp')
                 this.isLoading = true
                 this.resend = false
                 this.$store.dispatch('verifyOtp', {phone_number: this.phone_number, otp: this.otp})
@@ -319,10 +320,16 @@
             },
             changeWrongOtp() {
                 this.$store.commit('setWrongOTP', false)
+            },
+            sendPasswordResetEmail() {
+                
             }
         },
         created() {
             this.$store.state.setPasswordPopUp = false;
+            this.$root.$on('stopLoader', () => {
+                this.isLoading = false;
+            })
         },
         mounted() {
             document.body.classList.add('body-position')

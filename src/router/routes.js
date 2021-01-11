@@ -23,6 +23,7 @@ import Password from "../components/Login/Password";
 import ForgotPassword from "../components/ForgotPassword/ForgotPassword";
 import ResetPassword from "../components/ForgotPassword/ResetPassword";
 import ProfileUpdate from "../components/ProfileUpdate";
+import UpdatePassword from '../components/Login/UpdatePassword';
 
 import NotFoundPage from "../components/NotFoundPage";
 import AddToCart from "../components/AddToCart";
@@ -161,6 +162,15 @@ let router = new Router({
             component: Password,
             meta: {
                 requiresAuth: true
+            }
+        },
+        {
+            path: '/update-password/:token',
+            name: 'UpdatePassword',
+            component: UpdatePassword,
+            props: true,
+            meta: {
+                requiresAuth: false
             }
         },
         {

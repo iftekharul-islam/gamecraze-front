@@ -15,71 +15,64 @@
                             </tr>
                             </thead>
                             <tbody>
-                            <tr data-toggle="modal" data-target="#rentmodal1">
-                                <td scope="col"><img src="../assets/img/renter.png" alt="renter"> Iftekharul Islam</td>
+                            <tr v-for="(rent, index) in rentPosts" :key="index" data-toggle="modal" data-target="#rennow1" @click="setModalData(rent)">
+                                <td scope="col"><img src="../assets/img/renter.png" alt="renter">{{ rent.user.data.name }}</td>
                                 <td scope="col">5/5</td>
                                 <td scope="col">ECB Chattar</td>
-                                <td scope="col">24 SEP 2020</td>
-                                <td scope="col">5 week(s)</td>
-                            </tr>
-                            <tr data-toggle="modal" data-target="#rentmodal2">
-                                <td scope="col"><img src="../assets/img/renter.png" alt="renter"> Iftekharul Islam</td>
-                                <td scope="col">5/5</td>
-                                <td scope="col">ECB Chattar</td>
-                                <td scope="col">24 SEP 2020</td>
-                                <td scope="col">5 week(s)</td>
+                                <td scope="col">{{ formattedDate(rent.availability_from_date) }}</td>
+                                <td scope="col">{{ rent.max_number_of_week}} week(s)</td>
                             </tr>
                             </tbody>
                         </table>
                         <!-- 1st modal -->
-                        <div class="modal fade" id="rentmodal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header text-center">
-                                        <h2 class="modal-title m-auto" id="exampleModalLabel">Battlefield V</h2>
-                                        <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <table class="table table-borderless">
-                                            <tbody>
-                                            <tr>
-                                                <td>Platform:</td>
-                                                <td>PS5,PS4</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Disk Condition:</td>
-                                                <td>Super (Its look like new)</td>
+<!--                        <div class="modal fade" id="rentmodal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--                            <div class="modal-dialog modal-dialog-centered">-->
+<!--                                <div class="modal-content">-->
+<!--                                    <div class="modal-header text-center">-->
+<!--                                        <h2 class="modal-title m-auto" id="exampleModalLabel">Battlefield V</h2>-->
+<!--                                        <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">-->
+<!--                                            <span aria-hidden="true">&times;</span>-->
+<!--                                        </button>-->
+<!--                                    </div>-->
+<!--                                    <div class="modal-body">-->
+<!--                                        <table class="table table-borderless">-->
+<!--                                            <tbody>-->
+<!--                                            <tr>-->
+<!--                                                <td>Platform:</td>-->
+<!--                                                <td>PS5,PS4</td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td>Disk Condition:</td>-->
+<!--                                                <td>Super (Its look like new)</td>-->
 
-                                            </tr>
-                                            <tr>
-                                                <td>Available From:</td>
-                                                <td>18 SEP 2020</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Maximum Rent For:</td>
-                                                <td>3 week(s)</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Posted By:</td>
-                                                <td>Rakibul H. Rocky</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="modal-footer justify-content-center">
-                                        <a href="#" class="btn--secondery" data-toggle="modal" data-target="#rennow1"><span>RENT NOW</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td>Available From:</td>-->
+<!--                                                <td>18 SEP 2020</td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td>Maximum Rent For:</td>-->
+<!--                                                <td>3 week(s)</td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td>Posted By:</td>-->
+<!--                                                <td>Rakibul H. Rocky</td>-->
+<!--                                            </tr>-->
+<!--                                            </tbody>-->
+<!--                                        </table>-->
+<!--                                    </div>-->
+<!--                                    <div class="modal-footer justify-content-center">-->
+<!--                                        <a href="#" class="btn&#45;&#45;secondery" data-toggle="modal" data-target="#rennow1"><span>RENT NOW</span></a>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                         <!-- 1st modal baby -->
                         <div class="modal fade seller-information-modal" id="rennow1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
                                     <div class="modal-header text-center">
-                                        <h2 class="modal-title m-auto" id="exampleModalLabel">Battlefield V</h2>
+                                        <h2 class="modal-title m-auto" id="exampleModalLabel" v-if="modalData">{{ modalData.game.data.name }}</h2>
                                         <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
@@ -97,20 +90,20 @@
                                             </tr>
                                             <tr>
                                                 <td>Disk Condition:</td>
-                                                <td>Super (Its look like new)</td>
+                                                <td v-if="modalData">{{ modalData.diskCondition.data.name_of_type }} ({{ modalData.diskCondition.data.description }})</td>
 
                                             </tr>
                                             <tr>
                                                 <td>Available From:</td>
-                                                <td>18 SEP 2020</td>
+                                                <td v-if="modalData">{{ formattedDate(modalData.availability_from_date) }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Maximum Rent For:</td>
-                                                <td>3 week(s)</td>
+                                                <td v-if="modalData">{{ modalData.max_number_of_week}} week(s)</td>
                                             </tr>
                                             <tr>
                                                 <td>Posted By:</td>
-                                                <td>Rakibul H. Rocky</td>
+                                                <td v-if="modalData">{{ modalData.user.data.name }}</td>
                                             </tr>
                                             </tbody>
                                         </table>
@@ -123,20 +116,17 @@
                                                 <tr>
                                                     <td>Select Rent Week:</td>
                                                     <td>
-                                                        <select class="form-control" id="exampleFormControlSelect1">
+                                                        <select class="form-control" id="exampleFormControlSelect1" v-if="modalData">
                                                             <option selected>Please select rent week</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
+                                                            <option v-for="n in modalData.max_number_of_week" :value="n">For {{n}} Week</option>
                                                         </select>
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <td>Rent Available From:</td>
-                                                    <td>18 SEP 2020</td>
+<!--                                                <tr>-->
+<!--                                                    <td>Rent Available From:</td>-->
+<!--                                                    <td>18 SEP 2020</td>-->
 
-                                                </tr>
+<!--                                                </tr>-->
                                                 <tr>
                                                     <td>Return Date:</td>
                                                     <td>1 NOV 2020</td>
@@ -177,48 +167,48 @@
 
 
                         <!-- 2nd modal -->
-                        <div class="modal fade" id="rentmodal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header text-center">
-                                        <h2 class="modal-title m-auto" id="exampleModalLabel">Battlefield V</h2>
-                                        <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <table class="table table-borderless">
-                                            <tbody>
-                                            <tr>
-                                                <td>Platform:</td>
-                                                <td>PS5,PS4</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Disk Condition:</td>
-                                                <td>Super (Its look like new)</td>
+<!--                        <div class="modal fade" id="rentmodal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--                            <div class="modal-dialog modal-dialog-centered">-->
+<!--                                <div class="modal-content">-->
+<!--                                    <div class="modal-header text-center">-->
+<!--                                        <h2 class="modal-title m-auto" id="exampleModalLabel">Battlefield V</h2>-->
+<!--                                        <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">-->
+<!--                                            <span aria-hidden="true">&times;</span>-->
+<!--                                        </button>-->
+<!--                                    </div>-->
+<!--                                    <div class="modal-body">-->
+<!--                                        <table class="table table-borderless">-->
+<!--                                            <tbody>-->
+<!--                                            <tr>-->
+<!--                                                <td>Platform:</td>-->
+<!--                                                <td>PS5,PS4</td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td>Disk Condition:</td>-->
+<!--                                                <td>Super (Its look like new)</td>-->
 
-                                            </tr>
-                                            <tr>
-                                                <td>Available From:</td>
-                                                <td>18 SEP 2020</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Maximum Rent For:</td>
-                                                <td>3 week(s)</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Posted By:</td>
-                                                <td>Rakibul H. Rocky</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                    <div class="modal-footer justify-content-center">
-                                        <a href="#" class="btn--secondery"><span>RENT NOW</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td>Available From:</td>-->
+<!--                                                <td>18 SEP 2020</td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td>Maximum Rent For:</td>-->
+<!--                                                <td>3 week(s)</td>-->
+<!--                                            </tr>-->
+<!--                                            <tr>-->
+<!--                                                <td>Posted By:</td>-->
+<!--                                                <td>Rakibul H. Rocky</td>-->
+<!--                                            </tr>-->
+<!--                                            </tbody>-->
+<!--                                        </table>-->
+<!--                                    </div>-->
+<!--                                    <div class="modal-footer justify-content-center">-->
+<!--                                        <a href="#" class="btn&#45;&#45;secondery"><span>RENT NOW</span></a>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
                     </div>
                 </div>
             </section>
@@ -313,14 +303,20 @@
         import FlipCountdown from 'vue2-flip-countdown'
         export default {
             components: { FlipCountdown },
+            props: ['id'],
             data() {
                 return {
+                    rentPosts: [],
                     rents: [],
                     lends: [],
                     show: false,
+                    modalData: null
                 }
             },
             methods: {
+                setModalData(rent) {
+                  this.modalData = rent;
+                },
                 onDelete(rent) {
                     this.$swal({
                         title: "Rent Post Delete!",
@@ -394,23 +390,27 @@
                 }
             },
             created() {
-                let config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + this.$store.state.token
-                    }
-                }
-                this.$api.get('rents?include=game,platform,diskCondition,checkpoint', config)
-                    .then(response =>
-                    {
-                        this.rents = response.data.data
-                    })
-
-                this.$api.get('lends', config)
-                    .then(response =>
-                    {
-                        this.lends = response.data
-                        console.log(this.lends, 'lends');
-                    })
+                // let config = {
+                //     headers: {
+                //         'Authorization': 'Bearer ' + this.$store.state.token
+                //     }
+                // }
+                // this.$api.get('rents?include=game,platform,diskCondition,checkpoint', config)
+                //     .then(response =>
+                //     {
+                //         this.rents = response.data.data
+                //     })
+                //
+                // this.$api.get('lends', config)
+                //     .then(response =>
+                //     {
+                //         this.lends = response.data
+                //         console.log(this.lends, 'lends');
+                //     })
+                this.$api.get('rent-posted-users/' + this.id + '?include=game,diskCondition,user,checkpoint.area').then(response => {
+                  this.rentPosts = response.data.data;
+                  console.log(this.rentPosts)
+                });
             },
             
         mounted() {

@@ -9,14 +9,10 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="games-header-section--content">
-                            <a href="#" class="d-block game-name-img"><img src="../assets/img/battle.png" alt="battle" class="img-fluid"></a>
-                            <p>Enter mankind’s greatest conflict with Battlefield™ V.
-                                The Battlefield series goes back to its roots in a
-                                never-before-seen portrayal of World War 2. Take on physical,
-                                all-out multiplayer with your squad in modes like the vast Grand
-                                Operations and the cooperative Combined Arms.</p>
+                            <a href="#" class="d-block game-name-img"><h2>{{game.name}}</h2></a>
+                            <p>{{game.description}}</p>
                             <a href="#" class="read-more">Read More</a>
-                            <a href="#" class="btn--secondery rent-now"><span>RENT NOW</span></a>
+                            <router-link :to="{ path: '/rent-posted-users/' + game.id}" class="btn--secondery rent-now"><span>RENT NOW</span></router-link>
                             <div class="d-flex games-header-section--platforms">
                                 <p>PLATFORM:</p>
                                 <a href="#"><img src="../assets/img/windows.png" alt="windowa"></a>
@@ -80,13 +76,14 @@
                 <div class="overview-content">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="overview-content--text">
+                            <div class="overview-content--text mb-3">
                                 <p>Genre</p>
-                                <p>Action, Adventure, First person, Shooter</p>
+<!--                                <p>Action, Adventure, First person, Shooter</p>-->
+                              <span v-for="(genre, index) in game.genres.data" :key="index" >{{ genre.name }}<span class="mr-1" v-if="index < game.genres.data.length-1">, </span></span>
                             </div>
                             <div class="overview-content--text">
                                 <p>Publisher</p>
-                                <p>Electronic Arts</p>
+                                <p>{{game.publisher}}</p>
                             </div>
                             <div class="overview-content--text">
                                 <p>Developer</p>
@@ -96,7 +93,8 @@
                         <div class="col-md-6">
                             <div class="overview-content--text">
                                 <p>Release Date</p>
-                                <p>November 19, 2018</p>
+<!--                                <p>November 19, 2018</p>-->
+                                <p>{{ formattedDate (game.release_date)}}</p>
                             </div>
                             <div class="overview-content--text">
                                 <p>Supported languages</p>
@@ -870,9 +868,17 @@
                 game: {},
             }
         },
+        methods: {
+          formattedDate(date) {
+            const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+            let formattedDate = new Date(date)
+            return  months[formattedDate.getMonth()] + " " + formattedDate.getDate() + ", " + formattedDate.getFullYear()
+          },
+        },
         created() {
             this.$api.get('games/' + this.id + '?include=assets,genres,platforms').then(response => {
                 this.game = response.data.data;
+                console.log(this.game);
             });
         }
     }

@@ -16,41 +16,18 @@
                             <div class="select-categories">
                                 <h6>Select Category</h6>
                                 <div class="form-group form-check" v-for="(category, index) in categories" :key="index">
-                                    <input type="checkbox" class="custom-control-input" :id="category.name + '-game'" :value="category.slug" v-model="checkedCategories">
+                                    <input type="checkbox" class="custom-control-input" :id="category.name + '-game'" :checked="checkedCategories.includes(category.slug)" @change="changeCheckedCategories(category.slug)">
                                     <label class="custom-control-label" :for="category.name + '-game'">{{category.name}}</label>
                                 </div>
-<!--                                <div class="form-group form-check">-->
-<!--                                    <input type="checkbox" class="custom-control-input" id="categories2">-->
-<!--                                    <label class="custom-control-label" for="categories2">Adventure</label>-->
-<!--                                </div>-->
-<!--                                <div class="form-group form-check">-->
-<!--                                    <input type="checkbox" class="custom-control-input" id="categories3">-->
-<!--                                    <label class="custom-control-label" for="categories3">Strategy</label>-->
-<!--                                </div>-->
-<!--                                <div class="form-group form-check">-->
-<!--                                    <input type="checkbox" class="custom-control-input" id="categories4">-->
-<!--                                    <label class="custom-control-label" for="categories4">RPG</label>-->
-<!--                                </div>-->
+
                             </div>
                             <!-- platform -->
                             <div class="select-platforms">
                                 <h6>Select Platforms</h6>
                                 <div class="form-group form-check" v-for="(platform, index) in platforms" :key="index">
-                                    <input type="checkbox" class="custom-control-input" :id="platform.name + '-game'" :value="platform.slug" v-model="checkedPlatforms">
+                                    <input type="checkbox" class="custom-control-input" :id="platform.name + '-game'" :checked="checkedPlatforms.includes(platform.slug)" @change="changeCheckedPlatforms(platform.slug)">
                                     <label class="custom-control-label" :for="platform.name + '-game'">{{platform.name}}</label>
                                 </div>
-<!--                                <div class="form-group form-check">-->
-<!--                                    <input type="checkbox" class="custom-control-input" id="platform2">-->
-<!--                                    <label class="custom-control-label" for="platform2">PS3</label>-->
-<!--                                </div>-->
-<!--                                <div class="form-group form-check">-->
-<!--                                    <input type="checkbox" class="custom-control-input" id="platform3">-->
-<!--                                    <label class="custom-control-label" for="platform3">Nintendo</label>-->
-<!--                                </div>-->
-<!--                                <div class="form-group form-check">-->
-<!--                                    <input type="checkbox" class="custom-control-input" id="platform4">-->
-<!--                                    <label class="custom-control-label" for="platform4">Xbox</label>-->
-<!--                                </div>-->
                             </div>
                             <div class="clear">
                                 <a href="#" class="clear-filters" id="clear-filters">Clear Filters</a>
@@ -120,6 +97,24 @@
             StarRating
         },
       methods: {
+        changeCheckedCategories(value) {
+          const index = this.checkedCategories.indexOf(value);
+          if ( index> -1) {
+            this.checkedCategories.splice(index, 1);
+          }
+          else {
+            this.checkedCategories.push(value);
+          }
+        },
+        changeCheckedPlatforms(value) {
+          const index = this.checkedPlatforms.indexOf(value);
+          if ( index> -1) {
+            this.checkedPlatforms.splice(index, 1);
+          }
+          else {
+            this.checkedPlatforms.push(value);
+          }
+        },
         fetchFilteredGames() {
           console.log(this.$route.query.search);
             if (this.$route.query.search) {
@@ -242,7 +237,8 @@
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {
                 this.rents = response.data.data;
                 this.fetchFilteredGames();
-                console.log(this.rents)
+                this.checkedCategories = this.queryCategories.split(',');
+                this.checkedPlatforms = this.queryPlatforms.split(',');
                 const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
                 this.$api.get('rent-games/?ids=' + uniqueArr + '&include=assets,genres,platforms').then(resp => {
                   this.games = resp.data.data;

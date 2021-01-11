@@ -42,6 +42,7 @@
         }
         @include for-max-991 {
             display: block;
+            margin-left: 0px;
         }
         li {
             padding-left: 0;
@@ -348,6 +349,10 @@
         background: $game-details;
         color: $text-light;
         padding: 15px;
+        @include for-max-575 {
+            position: relative;
+            z-index: 9;
+        }
         li {
             transition: all .3s ease-in;
             &:hover {

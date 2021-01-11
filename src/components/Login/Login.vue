@@ -16,7 +16,7 @@
                                 <a>CREATE AN ACCOUNT</a>
                             </li>
                         </ul>
-                         
+
                                 <form action="index.html">
 
                                     <div class="form-group">
@@ -108,7 +108,7 @@
                                     <button class="btn mb-2 btn--login w-100" type="submit"
                                             :disabled="isLoading && $store.state.notSetPassword && !$store.state.notFoundEmail">
                                         PROCEED
-                                        <span v-if="isLoading && $store.state.notSetPassword && !$store.state.notFoundEmail"
+                                        <span v-if="isLoading && $store.state.notSetPassword && !$store.state.notFoundEmail && $store.state.isEmailLoading"
                                               class="spinner-border spinner-border-sm"></span>
                                     </button>
                                 </div>
@@ -194,7 +194,7 @@
                                 <!-- sign in button -->
                                 <div v-else>
                                     <div class="text-center sign-btn">
-                                        <button class="btn mb-2 w-100 btn--login" type="submit" :disabled="isLoading">
+                                        <button class="btn mb-2 w-100 btn--login" type="submit" :disabled="isLoading | $.">
                                             PROCEED
                                             <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
                                         </button>
@@ -205,7 +205,7 @@
                         <span class="or text-center w-100 d-block">OR</span>
                         <button v-if="!$store.state.setPasswordPopUp"
                                 class="btn mb-4 btn--registration button-style w-100" style="margin: 0 auto;"
-                                @click="onChangeLoginOption"><i v-if="loginOption === 'Email'" class="fas fa-envelope login-email"></i> 
+                                @click="onChangeLoginOption"><i v-if="loginOption === 'Email'" class="fas fa-envelope login-email"></i>
                                 <i v-if="loginOption === 'Phone Number'" class="fas fa-mobile-alt login-phone"></i> <span>Continue with  {{ loginOption }} </span>
                         </button>
                     </div>
@@ -263,7 +263,7 @@
                 return roles.some(el => el.name === 'admin')
             },
             onLogin() {
-                console.log(this.$store.state.inactiveUser, 'hello email')
+                this.$store.dispatch('setEmailLoader', true);
                 this.isLoading = true
                 if (this.loginOption === "Email") {
                     this.$store.dispatch('setPhoneNumber', this.phone_number)
@@ -320,9 +320,6 @@
             },
             changeWrongOtp() {
                 this.$store.commit('setWrongOTP', false)
-            },
-            sendPasswordResetEmail() {
-                
             }
         },
         created() {

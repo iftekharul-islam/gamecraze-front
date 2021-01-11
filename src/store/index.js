@@ -22,6 +22,7 @@ export const storage = {
         notFoundEmail: false,
         setPasswordPopUp: false,
         isSubmitLoading: false,
+        isEmailLoading: false,
         numberExists: false,
         wrongOTP: false,
         inactiveUser: false,
@@ -131,6 +132,9 @@ export const storage = {
         setSubmitLoading (state, payload) {
             state.isSubmitLoading = payload
         },
+        setEmailLoader (state, payload) {
+            state.isEmailLoading = payload
+        },
         setNumberExist (state, payload) {
             state.numberExists = payload
         },
@@ -210,6 +214,9 @@ export const storage = {
         },
         setRentPostDetails(context, payload) {
             context.commit('setRentPostDetails', payload)
+        },
+        setEmailLoader(context, payload) {
+            context.commit('setEmailLoader', payload)
         },
         login ({commit}, authData) {
             axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'login', {
@@ -377,11 +384,11 @@ export const storage = {
                             commit('setNotSetPassword', false);
                         }
                         else {
-                            // this.$root.$emit('stopLoader');
+                            // this.$emit('stopLoader');
                             commit('setSetupPasswordUser', response.data.user);
                             localStorage.setItem('setupPasswordUser', JSON.stringify(response.data.user))
                             // commit('setPasswordPopUp', true);
-                            // commit('setSubmitLoading', false);
+                            commit('setEmailLoader', false);
                             if (response.data.isPaswordEmpty) {
                                 swal('Reset Password', 'A verification email has been sent. Please check your email.', 'success');
                             }
@@ -402,6 +409,17 @@ export const storage = {
                 return;
             }
             context.commit('setSetupPasswordUserFromStorage', user)
+        },
+        loginUserAfterVerification ({ commit }, authData) {
+            commit('authUser', {
+                token: authData.token,
+                user: authData.user
+            })
+            localStorage.setItem('token', authData.token)
+            localStorage.setItem('userId', JSON.stringify(authData.user.id))
+            localStorage.setItem('user', JSON.stringify(authData.user))
+            localStorage.removeItem('setupPasswordUser')
+            router.push('/').catch(err => { });
         }
     },
 }

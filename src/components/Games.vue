@@ -30,7 +30,7 @@
                                 </div>
                             </div>
                             <div class="clear">
-                                <a href="#" class="clear-filters" id="clear-filters">Clear Filters</a>
+                                <a href="javascript:void(0)" class="clear-filters" id="clear-filters" @click="clearFilter()">Clear Filters</a>
                                 <a href="#" class="clear-filters d-block d-sm-none" id="filter-apply">Apply</a>
                             </div>
                         </div>
@@ -101,6 +101,12 @@
             StarRating
         },
       methods: {
+        clearFilter() {
+          this.$router.push({query: {}});
+          this.checkedPlatforms = [];
+          this.checkedCategories = [];
+          this.fetchFilteredGames();
+        },
         changeCheckedCategories(value) {
           const index = this.checkedCategories.indexOf(value);
           if ( index> -1) {

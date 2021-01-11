@@ -36,6 +36,10 @@
                         </div>
                     </div>
                     <div class="col-md-8 col-lg-9 mb-5">
+                      <div class="games-categories-section--tag">
+                        <span>Action <i class="fas fa-times"></i></span>
+                        <span>Adventure <i class="fas fa-times"></i></span>
+                      </div>
                         <div class="games-categories-section--games">
                             <div class="row">
                                 <div v-for="(rent, index) in filteredGames" :key="index" class="col-md-6 col-lg-4 mb-5">

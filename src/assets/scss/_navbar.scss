@@ -248,8 +248,8 @@
 }
 
 .search-input-design {
-    border: 1px solid $secondery;
-    transform: skew(-21deg);
+    // border: 1px solid $secondery;
+    // transform: skew(-21deg);
     // clip-path: polygon(10% 0, 100% 0%, 91% 100%, 0% 100%);
     // border: none;
     position: relative;
@@ -332,6 +332,37 @@
         }
         @include for-min-1400 {
             max-width: 1230px;
+        }
+    }
+}
+
+// Auto suggestion
+.autosuggest__results-container {
+    ul {
+        flex-direction: column;
+        margin: 0;
+        border: 1px solid $secondery;
+        width: 185px;
+        border-radius: 10px;
+        margin-top: 10px;
+        background: $game-details;
+        color: $text-light;
+        padding: 15px;
+        li {
+            transition: all .3s ease-in;
+            &:hover {
+                background: transparent;
+                color: $secondery;
+            }
+        }
+    }
+}
+#autosuggest {
+    > div {
+        &:first-of-type {
+            transform: skew(-21deg);
+            border: 1px solid $secondery;
+            height: 40px;
         }
     }
 }

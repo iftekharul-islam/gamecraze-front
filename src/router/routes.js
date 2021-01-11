@@ -254,7 +254,7 @@ let router = new Router({
         {
             path: '/rent-posted-users/:id',
             name: 'RentPostedUser',
-            component: RentPostedUser,
+            component: Dashboard,
             props: true,
             meta: {
                 requiresAuth: false

@@ -97,24 +97,14 @@
                 games: [],
                 results: [],
                 filteredResults: [],
-              query: "",
-              selected: "",
+                query: "",
+                selected: "",
             }
         },
         methods: {
             searchGame() {
                 console.log(this.result)
                 if(this.query !== '') {
-                    // this.$api.get('/rent-posts'+ '?include=game.assets,game.genres,platform').then(response => {
-                    //     let games = response.data.data;
-                    //     console.log(games);
-                    //     var gameName = this.result;
-                    //     let filtered = games.filter(function (data) {
-                    //         return data.game.data.name.toLowerCase().includes(gameName.toLowerCase())
-                    //     })
-                    //     this.$store.commit('addToSearchResult', filtered);
-                    //     this.$router.push('/search').catch(err => {});
-                    // });
                   this.$router.push({name: 'games', query: {categories: this.$route.query.categories, platforms: this.$route.query.platforms, search: this.query}})
                   this.$root.$emit('searchEvent')
                 }
@@ -142,6 +132,9 @@
           },
           onSelected(item) {
             this.selected = item.item;
+            this.query = this.selected.name;
+            console.log('selected');
+            console.log(this.selected);
           },
           onInputChange(text) {
             // event fired when the input changes
@@ -183,11 +176,15 @@
                 })
                 console.log(uniqueArr)
             });
-          this.$api.get('games?include=platforms')
-              .then(response =>
-              {
-                this.games = response.data.data;
-              })
+            this.$api.get('games?include=platforms')
+                .then(response =>
+                {
+                  this.games = response.data.data;
+                })
+
+            this.$root.$on('clearSearchKey', () => {
+              this.query = '';
+            })
         },
         mounted() {
             this.$root.$on("loggedIn", () => {
@@ -200,88 +197,5 @@
 </script>
 
 <style scoped>
-    /* .router_link {
-        color: white;
-    }
-    .about {
-        display: flex;
-    }
-    .main-search-bar {
-        border-top-left-radius: 20px;
-        border-bottom-left-radius: 20px;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-        background: #2d2061;
-        border-color: #2d2061;
-        color: #ffffff !important;
-        padding-left: 20px;
-        -webkit-transition: all 0.3s ease-in;
-        transition: all 0.3s ease-in;
-    }
-    .menu-search-icon {
-        border-top-right-radius: 20px;
-        border-bottom-right-radius: 20px;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        background: #fcd700;
-        border-color: #fcd700;
-        width: 20%;
-        -webkit-transition: all 0.3s ease-in;
-        transition: all 0.3s ease-in;
-    }
-    .my-postion {
-        position: absolute;
-        z-index: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-    }
-    .my-list {
-        position: absolute;
-        left: 0;
-        background: #fcd700;
-        top: 44px;
-        z-index: 10;
-        width: 244px;
-        padding: 0;
 
-    }
-    .demo {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    }
-
-    input {
-      width: 260px;
-      padding: 0.5rem;
-    }
-
-    ul {
-      width: 100%;
-      color: rgba(30, 39, 46,1.0);
-      list-style: none;
-      margin: 0;
-      padding: 0.5rem 0 .5rem 0;
-    }
-    li {
-      margin: 0 0 0 0;
-      border-radius: 5px;
-      padding: 0.75rem 0 0.75rem 0.75rem;
-      display: flex;
-      align-items: center;
-    }
-    li:hover {
-      cursor: pointer;
-    }
-
-    .autosuggest-container {
-      display: block;
-      justify-content: center;
-      width: 280px;
-    }
-
-    #autosuggest { width: 100%; display: block;}
-    .autosuggest__results-item--highlighted {
-      background-color: rgba(51, 217, 178,0.2);
-    } */
 </style>

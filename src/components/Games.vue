@@ -37,13 +37,14 @@
                     </div>
                     <div class="col-md-8 col-lg-9 mb-5">
                       <div class="games-categories-section--tag">
-                        <span>Action <i class="fas fa-times"></i></span>
-                        <span>Adventure <i class="fas fa-times"></i></span>
+                        <span v-for="(categoryItem, categoryIndex) in checkedCategories" :key="categoryIndex">{{categoryItem}} <i @click="removeCategoryFilter(categoryItem)" class="fas fa-times"></i></span>
+                        <span v-for="(platformItem, platformIndex) in checkedPlatforms" :key="platformIndex">{{ platformItem}} <i @click="removePlatformFilter(platformItem)" class="fas fa-times"></i></span>
+                        <span v-if="$route.query.search">{{$route.query.search}} <i @click="removeSearchKey()" class="fas fa-times"></i></span>
                       </div>
                         <div class="games-categories-section--games">
                             <div class="row">
                                 <div v-for="(rent, index) in filteredGames" :key="index" class="col-md-6 col-lg-4 mb-5">
-                                  <router-link :to="{ path: '/rent-posted-users/' + rent.id}">
+                                  <router-link :to="{ path: '/game-details/' + rent.id}">
                                     <div class="game-card">
                                         <a class="display-image" href="#">
                                             <img src="../assets/img/fifa19.png" alt="fifa" class="img-fluid">
@@ -51,7 +52,7 @@
                                         <a href="#"> <h6>{{rent.name}}</h6></a>
                                         <div class="d-flex">
 
-                                          <span v-for="(genre,index) in rent.genres.data" :key="index" >{{ genre.name }}<span class="mr-1" v-if="index < rent.genres.data.length-1">, </span></span>
+                                          <span v-for="(genre, index) in rent.genres.data" :key="index" >{{ genre.name }}<span class="mr-1" v-if="index < rent.genres.data.length-1">, </span></span>
 
 
                                         </div>
@@ -65,6 +66,10 @@
                                     </div>
                                   </router-link>
                                 </div>
+
+                              <div v-if="!filteredGames.length">
+                                <h2>Not match any games</h2>
+                              </div>
 
                             </div>
                         </div>
@@ -101,6 +106,25 @@
             StarRating
         },
       methods: {
+        removeSearchKey() {
+          let query = Object.assign({}, this.$route.query);
+          delete query.search;
+          this.$router.replace({ query });
+          this.fetchFilteredGames();
+          this.$root.$emit('clearSearchKey');
+        },
+        removeCategoryFilter(value) {
+          const index = this.checkedCategories.indexOf(value);
+          if ( index> -1) {
+            this.checkedCategories.splice(index, 1);
+          }
+        },
+        removePlatformFilter(value) {
+          const index = this.checkedPlatforms.indexOf(value);
+          if ( index> -1) {
+            this.checkedPlatforms.splice(index, 1);
+          }
+        },
         clearFilter() {
           this.$router.push({query: {}});
           this.checkedPlatforms = [];
@@ -148,12 +172,8 @@
             }
 
             const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
-          console.log('Hi');
-          console.log(uniqueArr);
             this.$api.get('filter-games/?ids=' + uniqueArr + '&include=assets,genres,platforms&categories=' + this.queryCategories + '&platforms=' + this.queryPlatforms + '&search=' + this.searchKey).then(resp => {
               this.filteredGames = resp.data.data;
-              console.log("Hello")
-              console.log(this.filteredGames);
             })
 
         },
@@ -186,62 +206,7 @@
         }
       },
         computed: {
-            filteredCategory(){
-                if (this.checkedCategories.length) {
-                    let newRents = [];
 
-                    this.rents.forEach( rent => {
-                      let existing = newRents.find(item => item.game_id == rent.game_id);
-
-                      if(!existing) {
-                        newRents.push(rent);
-                      }
-
-                    });
-
-                    var checkedCat = this.checkedCategories
-                    var categoryByGenre = newRents.filter(function (rent) {
-                      var genres= []
-                      for (var genre of rent.game.data.genres.data) {
-                        genres.push(genre.name)
-                      }
-                      return checkedCat.some(r => genres.includes(r))
-                    })
-
-                    if (this.checkedPlatforms.length) {
-                      var checkedPlat = this.checkedPlatforms
-                      var rents = this.rents
-                      return categoryByGenre.filter(function (rent) {
-                        var platforms= []
-                        platforms.push(rent.platform.data.name)
-                        return checkedPlat.some(r => platforms.includes(r))
-                      })
-                    }
-                    return categoryByGenre;
-                }
-                if (this.checkedPlatforms.length) {
-                    checkedPlat = this.checkedPlatforms
-                    rents = this.rents
-                    return this.rents.filter(function (rent) {
-                      var platforms= []
-                      platforms.push(rent.platform.data.name)
-                      return checkedPlat.some(r => platforms.includes(r))
-                    })
-                }
-
-                let newRents = [];
-
-                this.rents.forEach( rent => {
-                  let existing = newRents.find(item => item.game_id == rent.game_id);
-
-                  if(!existing) {
-                    newRents.push(rent);
-                  }
-
-                });
-
-                return newRents;
-            }
         },
         created() {
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {

@@ -194,9 +194,9 @@
                         </div>
                         <div class="tab-pane fade" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
                                     <div class="dashboard-content">
-                                        <div class="d-flex justify-content-center mb-5">
-                                            <button class="btn btn-primary mr-3" @click.prevent="onOfferedGames" :disabled="!show">Offered Games</button>
-                                            <button class="btn btn-primary ml-3" @click.prevent="onRentedGames" :disabled="show">Rented Games</button>
+                                        <div class="d-flex justify-content-center dashboard-tab-button mb-5">
+                                            <button  @click.prevent="onOfferedGames" :disabled="!show" :class="{active: !show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  Offered Games</button>
+                                            <button  @click.prevent="onRentedGames" :disabled="show" :class="{active: show}"><img class="active-black" src="../assets/img/rent-icon.png" alt="rent icon"> <img class="active-yellow" src="../assets/img/rent-icon-black.png" alt="rent icon"> Rented Games</button>
                                         </div>
                                         <div class="table-responsive pb-5" v-if="rents.length && !show">
                                                 <table class="table table-striped table-dark">
@@ -241,7 +241,6 @@
                                                 <thead>
                                                 <tr>
                                                     <td scope="col">Game</td>
-                                                    <td scope="col">Platform</td>
                                                     <td scope="col">Rent Week(s)</td>
                                                     <td scope="col">Rent Start</td>
                                                     <td scope="col">Return Date</td>
@@ -253,7 +252,6 @@
                                                 <tbody>
                                                 <tr v-for="(lend, index) in lends" :key="index">
                                                 <td>{{ lend.rent.game.name }}</td>
-                                                    <td>{{ lend.rent.platform.name }}</td>
                                                     <td>{{ lend.lend_week }}</td>
                                                     <td>{{ formattedDate(lend.lend_date) }}</td>
                                                     <td>{{ returnDate(lend.lend_date, lend.lend_week) }}</td>

@@ -40,6 +40,34 @@
             }
         }
     }
+    &--tag {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        span {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background: $game-details;
+            border-radius: 100px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            padding-left: 30px;
+            transition: all .3s ease-in;
+            text-transform: capitalize;
+            i {
+                cursor: pointer;
+                transform: translate(10px, 36px);
+                transition: all .3s ease-in;
+            }
+            &:hover {
+                i {
+                    transform: translate(10px, 0px);
+                }
+            }
+        }
+    }
 }
 .clear {
     &-filters {

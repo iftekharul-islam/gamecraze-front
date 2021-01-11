@@ -1623,9 +1623,6 @@ html {
 }
 
 .search-input-design {
-  border: 1px solid #FFD715;
-  -webkit-transform: skew(-21deg);
-          transform: skew(-21deg);
   position: relative;
   width: 140px;
   height: 40px;
@@ -1721,6 +1718,38 @@ html {
   .gamehub-body .container {
     max-width: 1230px;
   }
+}
+
+.autosuggest__results-container ul {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin: 0;
+  border: 1px solid #FFD715;
+  width: 185px;
+  border-radius: 10px;
+  margin-top: 10px;
+  background: #141A27;
+  color: #fff;
+  padding: 15px;
+}
+
+.autosuggest__results-container ul li {
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
+.autosuggest__results-container ul li:hover {
+  background: transparent;
+  color: #FFD715;
+}
+
+#autosuggest > div:first-of-type {
+  -webkit-transform: skew(-21deg);
+          transform: skew(-21deg);
+  border: 1px solid #FFD715;
+  height: 40px;
 }
 
 .slider-section {
@@ -3409,6 +3438,49 @@ html {
   background-size: 16px 16px !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
+}
+
+.games-categories-section--tag {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+
+.games-categories-section--tag span {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px 20px;
+  background: #141A27;
+  border-radius: 100px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  padding-left: 30px;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+  text-transform: capitalize;
+}
+
+.games-categories-section--tag span i {
+  cursor: pointer;
+  -webkit-transform: translate(10px, 36px);
+          transform: translate(10px, 36px);
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
+.games-categories-section--tag span:hover i {
+  -webkit-transform: translate(10px, 0px);
+          transform: translate(10px, 0px);
 }
 
 .clear {

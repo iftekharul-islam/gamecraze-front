@@ -48,7 +48,7 @@
                                   @input="onInputChange"
                                   @selected="onSelected"
                                   :get-suggestion-value="getSuggestionValue"
-                                  :input-props="{id:'autosuggest__input', placeholder:'Game Name'}">
+                                  :input-props="{id:'autosuggest__input', placeholder:'Game Name',class:'auto-suggest-menu'}">
                                 <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
                                   <div style="{ display: 'flex', color: 'white'}">{{suggestion.item.name}}</div>
                                 </div>
@@ -67,6 +67,7 @@
 <!--                                </div>-->
 <!--                              </vue-autosuggest>-->
                             </div>
+                            
                             <button class="btn gamehub-search-btn" type="search" @click.prevent="searchGame">
                                 <i class="fa fa-search"></i>
                             </button>
@@ -92,6 +93,8 @@
                         <div class="gamehub-input-group--content">
                             <a href="#"><i class="fas fa-shopping-cart"></i></a>
                         </div>
+
+                        
                     </div>
                 </div>
             </div>
@@ -284,7 +287,7 @@
 </script>
 
 <style scoped>
-    .router_link {
+    /* .router_link {
         color: white;
     }
     .about {
@@ -367,5 +370,5 @@
     #autosuggest { width: 100%; display: block;}
     .autosuggest__results-item--highlighted {
       background-color: rgba(51, 217, 178,0.2);
-    }
+    } */
 </style>

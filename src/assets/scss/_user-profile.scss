@@ -209,7 +209,7 @@
         opacity: 0;
       }
       [type="date"] {
-        background:$game-details url(../img/calendar.png)  97% 50% no-repeat ;
+        background:$game-details url(../img/calender.png)  97% 50% no-repeat ;
       }
       label {
           height: 50px;
@@ -413,5 +413,40 @@
         border: 1px solid $secondery;
         height: 40px;
         color: $text-light;
+    }
+    [type="date"]::-webkit-inner-spin-button {
+        display: none;
+      }
+      [type="date"]::-webkit-calendar-picker-indicator {
+        opacity: 0;
+      }
+      [type="date"] {
+        background:$game-details url(../img/calender.png)  97% 50% no-repeat ;
+      }
+      .custom-file-input ~.custom-file-label {
+        border: 1px solid $secondery;
+        background: $game-details;
+        cursor: pointer;
+        &::after {
+            font-family:  "Font Awesome 5 Free";
+			font-weight: 900;
+            content: "\f093 \00a0 \00a0 Upload";
+            background: $secondery;
+            color: $text-dark;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    }
+    label {
+        font-size: 20px;
+    }
+}
+.edit--input {
+    padding-right: 90px;
+    @include for-max-1200 {
+        padding-right: 0;
+    }
+    @include for-max-575 {
+        padding-right: 15px;
     }
 }

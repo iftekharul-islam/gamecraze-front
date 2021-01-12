@@ -18,7 +18,8 @@
                             <tr v-for="(rent, index) in availableRentPosts" :key="index" data-toggle="modal" data-target="#rennow1" @click="setModalData(rent)">
                                 <td scope="col"><img src="../assets/img/renter.png" alt="renter">{{ rent.user.data.name }}</td>
                                 <td scope="col">5/5</td>
-                                <td scope="col">ECB Chattar</td>
+                                <td scope="col" v-if="rent.checkpoint">{{ rent.checkpoint.data.area.data.name }}</td>
+                                <td scope="col" v-else>Not Set</td>
                                 <td scope="col">{{ formattedDate(rent.availability_from_date) }}</td>
                                 <td scope="col">{{ rent.max_number_of_week}} week(s)</td>
                             </tr>
@@ -175,6 +176,7 @@
             created() {
                 this.$api.get('rent-posted-users/' + this.id + '?include=game,diskCondition,user,checkpoint.area').then(response => {
                   this.rentPosts = response.data.data;
+                  console.log(this.rentPosts)
                 });
             },
             

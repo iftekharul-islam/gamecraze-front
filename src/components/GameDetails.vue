@@ -86,7 +86,7 @@
                             </div>
                             <div class="overview-content--text">
                                 <p>Developer</p>
-                                <p>DICE</p>
+                                <p>{{game.developer}}</p>
                             </div>
                         </div>
                         <div class="col-md-6">

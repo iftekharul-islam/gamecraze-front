@@ -120,6 +120,9 @@
         margin-top: 10px;
         font-size: 20px;
         margin-bottom: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     .display-image {
         @include for-max-768 {

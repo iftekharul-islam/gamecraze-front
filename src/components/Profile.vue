@@ -333,7 +333,94 @@
                                 </form>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="v-pills-edit-profile" role="tabpanel" aria-labelledby="v-pills-edit-profile-tab">...</div>
+
+                        <div class="tab-pane fade" id="v-pills-edit-profile" role="tabpanel" aria-labelledby="v-pills-edit-profile-tab">
+                            <div class="edit-profile">
+                                <form action="#">
+                                    <div class="form-group row">
+                                        <label for="first_name" class="col-sm-3 col-form-label">First name:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="first_name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="last_name" class="col-sm-3 col-form-label">Last name:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="last_name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="user_name" class="col-sm-3 col-form-label">Username:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="user_name">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="gender" class="col-sm-3 col-form-label">Gender:</label>
+                                        <div class="col-sm-9">
+                                            <select class="custom-select" id="gender" required>
+                                                <option selected disabled value="">Choose...</option>
+                                                <option>Male</option>
+                                                <option>Female</option>
+                                                <option>Others</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                     <div class="form-group row">
+                                        <label for="dateofbirth" class="col-sm-3 col-form-label">Date of Birth:</label>
+                                        <div class="col-sm-9">
+                                            <input type="date" class="form-control" id="dateofbirth">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="email" class="col-sm-3 col-form-label">Email:</label>
+                                        <div class="col-sm-9">
+                                            <input type="email" class="form-control" id="email">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="mobileno" class="col-sm-3 col-form-label">Mobile No:</label>
+                                        <div class="col-sm-9">
+                                            <input type="tel" class="form-control" id="mobileno">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="address" class="col-sm-3 col-form-label">Address:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="address">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="city" class="col-sm-3 col-form-label">City:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="city">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="postcode" class="col-sm-3 col-form-label">Post Code:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="postcode">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="nidno" class="col-sm-3 col-form-label">NID No:</label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" id="nidno">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="" class="col-sm-3 col-form-label">NID Image:</label>
+                                        <div class="col-sm-9">
+                                           <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="customFile">
+                                                <label class="custom-file-label text-light" for="customFile">Disk Image</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
                         </div>
                     </div>
                 </div>

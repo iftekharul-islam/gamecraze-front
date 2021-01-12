@@ -51,7 +51,7 @@
                         <img src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
                     </router-link>
                     <div class="trending-game--name-price d-flex justify-content-between">
-                         <router-link :to="{ path: '/game-details/' + trending.game.data.id}" class="trending-image">{{ trending.game.data.name }}</router-link>
+                         <router-link :to="{ path: '/game-details/' + trending.game.data.id}" class="">{{ trending.game.data.name }}</router-link>
                         <!-- <span>$19.99</span>-->
                     </div>
                     <div class="trending-game--categories d-flex justify-content-between">
@@ -100,7 +100,7 @@
                         <router-link :to="{ path: '/game-details/' + game.id}" class="upcoming-image">
                             <img class="card-img-top" :src="game.poster_url" :alt="game.name"  v-if="game.poster_url">
                             <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
-                            <button class="set-reminder" @click.prevent="setReminder(game.id)" style="position: absolute; z-index: 2; top: 0;">Reminder</button>
+                            <button class="set-reminder" @click.prevent="setReminder(game.id)" ><i class="fas fa-bell"></i></button>
                         </router-link>
                         <div class="d-flex upcoming-order">
                             <router-link :to="{ path: '/game-details/' + game.id}"><span>View Details</span></router-link>

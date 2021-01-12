@@ -114,33 +114,33 @@ $(document).ready(function(){
   
 	// Increment value in quantity input
 	
-	$('.rented-plus').each(function(index) {
-	  $(this).click(function(e) {
-		e.preventDefault();
-		var current = $(this).siblings("input.renten-input").val();
-		var currentVal = parseInt($(this).siblings("input.renten-input").val());
-		if (!isNaN(currentVal)) {
-		  $(this).siblings("input.renten-input").val(currentVal + 1);
-		} else {
-		  $(this).siblings("input.renten-input").val(0);
-		  console.log("Failed!")
-		}
-	  });
-	});
+	// $('.rented-plus').each(function(index) {
+	//   $(this).click(function(e) {
+	// 	e.preventDefault();
+	// 	var current = $(this).siblings("input.renten-input").val();
+	// 	var currentVal = parseInt($(this).siblings("input.renten-input").val());
+	// 	if (!isNaN(currentVal)) {
+	// 	  $(this).siblings("input.renten-input").val(currentVal + 1);
+	// 	} else {
+	// 	  $(this).siblings("input.renten-input").val(0);
+	// 	  console.log("Failed!")
+	// 	}
+	//   });
+	// });
 	
 	// Decrement value in quantity input
 	
-	$(".rented-minus").each(function(index) {
-	  $(this).click(function(e) {
-		e.preventDefault();
-		var currentVal = parseInt($(this).siblings("input.renten-input").val());
-		if (!isNaN(currentVal) && currentVal > 0) {
-		  $(this).siblings("input.renten-input").val(currentVal - 1);
-		} else {
-		  $(this).siblings("input.renten-input").val(0);
-		}
-	  });
-	});
+	// $(".rented-minus").each(function(index) {
+	//   $(this).click(function(e) {
+	// 	e.preventDefault();
+	// 	var currentVal = parseInt($(this).siblings("input.renten-input").val());
+	// 	if (!isNaN(currentVal) && currentVal > 0) {
+	// 	  $(this).siblings("input.renten-input").val(currentVal - 1);
+	// 	} else {
+	// 	  $(this).siblings("input.renten-input").val(0);
+	// 	}
+	//   });
+	// });
 	  
 	  
 	});

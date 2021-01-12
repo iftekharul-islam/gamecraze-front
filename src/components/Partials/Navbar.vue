@@ -48,7 +48,7 @@
                                   @input="onInputChange"
                                   @selected="onSelected"
                                   :get-suggestion-value="getSuggestionValue"
-                                  :input-props="{id:'autosuggest__input', placeholder:'Game Name',class:'auto-suggest-menu'}">
+                                  :input-props="{id:'autosuggest__input',class:'auto-suggest-menu'}">
                                 <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
                                   <div style="{ display: 'flex', color: 'white'}">{{suggestion.item.name}}</div>
                                 </div>

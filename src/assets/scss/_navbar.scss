@@ -169,10 +169,10 @@
     @include for-max-991 {
         position: absolute;
         top: 60px;
-        right: 0;
+        right: 15px;
         /* flex-direction: column-reverse; */
         display: grid;
-        grid-template-columns: 1fr 50px;
+        grid-template-columns: 1fr 30px;
         grid-template-rows: auto;
         grid-row-gap: 20px;
     }

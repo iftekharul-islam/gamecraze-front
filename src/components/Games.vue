@@ -60,7 +60,7 @@
                                             <a href="#"><img src="../assets/img/ps4-white.png" alt="ps4"></a>
                                             <a href="#"><img src="../assets/img/fav-1.png" alt="ps4"></a>
                                             <a href="#"><img src="../assets/img/windows.png" alt="ps4"></a>
-                                            <span class="game-rating">71</span>
+                                            <span class="game-rating">{{ rent.rating }}</span>
                                         </div>
 
                                     </div>
@@ -130,6 +130,7 @@
           this.checkedPlatforms = [];
           this.checkedCategories = [];
           this.fetchFilteredGames();
+          this.$root.$emit('clearSearchKey');
         },
         changeCheckedCategories(value) {
           const index = this.checkedCategories.indexOf(value);

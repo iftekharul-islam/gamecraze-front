@@ -31,7 +31,7 @@
                             </div>
                             <div class="clear">
                                 <a href="javascript:void(0)" class="clear-filters" id="clear-filters" @click="clearFilter()">Clear Filters</a>
-                                <a href="#" class="clear-filters d-block d-sm-none" id="filter-apply">Apply</a>
+                                <a href="#" class="clear-filters d-block d-sm-none" id="filter-apply" v-on:click="toggleMenu()">Apply</a>
                             </div>
                         </div>
                     </div>
@@ -131,6 +131,7 @@
           this.checkedCategories = [];
           this.fetchFilteredGames();
           this.$root.$emit('clearSearchKey');
+          this.toggleMenu();
         },
         changeCheckedCategories(value) {
           const index = this.checkedCategories.indexOf(value);

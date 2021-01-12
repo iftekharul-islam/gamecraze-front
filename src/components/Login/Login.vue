@@ -16,7 +16,7 @@
                                 <a>CREATE AN ACCOUNT</a>
                             </li>
                         </ul>
-                         
+
                                 <form action="index.html">
 
                                     <div class="form-group">
@@ -58,12 +58,12 @@
                             </li>
                         </ul>
 
-                        <div class="password-setup-popup" v-if="$store.state.setPasswordPopUp">
+                        <!-- <div class="password-setup-popup" v-if="$store.state.setPasswordPopUp">
                             <div class="password-setup-popup--content">
                                 <p>Please Click this link and set your password</p>
                                 <router-link to="/registration">ok</router-link>
                             </div>
-                        </div>
+                        </div> -->
 
                         <!-- form -->
                         <ValidationObserver v-slot="{ handleSubmit }"
@@ -108,7 +108,7 @@
                                     <button class="btn mb-2 btn--login w-100" type="submit"
                                             :disabled="isLoading && $store.state.notSetPassword && !$store.state.notFoundEmail">
                                         PROCEED
-                                        <span v-if="isLoading && $store.state.notSetPassword && !$store.state.notFoundEmail"
+                                        <span v-if="isLoading && $store.state.notSetPassword && !$store.state.notFoundEmail && $store.state.isEmailLoading"
                                               class="spinner-border spinner-border-sm"></span>
                                     </button>
                                 </div>
@@ -171,6 +171,7 @@
                                         <span class="error-message" v-if="$store.state.wrongOTP && !resend">You entered wrong OTP</span>
                                         <span class="error-message" v-if="$store.state.timeout && !resend">This OTP is not valid for timeout</span>
                                         <span class="error-message" v-if="$store.state.inactiveUser && !resend">This User is inactive, please contact to helpline</span>
+                                        <span class="error-message" v-if="$store.state.otpNotFound && !resend">The OTP no found. Please recheck.</span>
 
                                         <!--                                            </ValidationProvider>-->
                                     </div>
@@ -193,7 +194,7 @@
                                 <!-- sign in button -->
                                 <div v-else>
                                     <div class="text-center sign-btn">
-                                        <button class="btn mb-2 w-100 btn--login" type="submit" :disabled="isLoading">
+                                        <button class="btn mb-2 w-100 btn--login" type="submit" :disabled="isLoading | $.">
                                             PROCEED
                                             <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
                                         </button>
@@ -204,7 +205,7 @@
                         <span class="or text-center w-100 d-block">OR</span>
                         <button v-if="!$store.state.setPasswordPopUp"
                                 class="btn mb-4 btn--registration button-style w-100" style="margin: 0 auto;"
-                                @click="onChangeLoginOption"><i v-if="loginOption === 'Email'" class="fas fa-envelope login-email"></i> 
+                                @click="onChangeLoginOption"><i v-if="loginOption === 'Email'" class="fas fa-envelope login-email"></i>
                                 <i v-if="loginOption === 'Phone Number'" class="fas fa-mobile-alt login-phone"></i> <span>Continue with  {{ loginOption }} </span>
                         </button>
                     </div>
@@ -262,7 +263,7 @@
                 return roles.some(el => el.name === 'admin')
             },
             onLogin() {
-                console.log(this.$store.state.inactiveUser, 'hello email')
+                this.$store.dispatch('setEmailLoader', true);
                 this.isLoading = true
                 if (this.loginOption === "Email") {
                     this.$store.dispatch('setPhoneNumber', this.phone_number)
@@ -297,7 +298,7 @@
                 }
             },
             onOtpVerification: function () {
-                console.log('hello')
+                console.log('verify otp')
                 this.isLoading = true
                 this.resend = false
                 this.$store.dispatch('verifyOtp', {phone_number: this.phone_number, otp: this.otp})
@@ -323,6 +324,9 @@
         },
         created() {
             this.$store.state.setPasswordPopUp = false;
+            this.$root.$on('stopLoader', () => {
+                this.isLoading = false;
+            })
         },
         mounted() {
             document.body.classList.add('body-position')

@@ -7,14 +7,19 @@
                     <div class="col-md-6 col-xl-4 mx-auto">
                         <div class="registration-form">
                             <div class="text-center registration-logo">
-                            <img src="../../assets/img/logo/gamehublogo.svg" alt="gamehublogo" class="text-center">
-                        </div>
-                         <ul class="mb-3 d-flex justify-content-center align-items-center">
-                            <li>SIGN UP</li>
-                        </ul>
+                                <img src="../../assets/img/logo/gamehublogo.svg" alt="gamehublogo" class="text-center">
+                            </div>
+                            <ul class="mb-3 d-flex justify-content-center align-items-center">
+                            <li>RESET PASSWORD</li>
+                            </ul>
                             <ValidationObserver v-slot="{ handleSubmit }">
-                                <form id="regForm" @submit.prevent="handleSubmit(onNext)" method="post">
-                                     <div class="form-group">
+                                <div class="text-center" v-if="!isTokenValid && show">
+                                    <h4 >{{ errMsg }}</h4>
+                                    <router-link to="/login">Try Again</router-link>
+                                </div>
+
+                                <form id="regForm" @submit.prevent="handleSubmit(onNext)" method="post" v-if="isTokenValid && show">
+                                   <div class="form-group">
                                         <label >Email address</label>
                                         <ValidationProvider name="name" rules="required" v-slot="{ errors }">
                                             <input type="email" class="form-control"  v-model="form.email" readonly>
@@ -25,7 +30,7 @@
                                           <!-- First Name -->
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                           
+
                                             <label for="firstName">First name</label>
                                             <ValidationProvider name="firstName" rules="required" v-slot="{ errors }">
                                                 <input type="text" class="form-control" id="firstName" value="" v-model="form.name">
@@ -34,7 +39,7 @@
                                         </div>
                                                <!-- Last Name -->
                                             <div class="form-group col-md-6">
-                                            
+
                                                 <label for="LastName">Last name</label>
                                                 <ValidationProvider name="LastName" rules="required" v-slot="{ errors }">
                                                     <input type="text" class="form-control" id="LastName" value="" v-model="form.lastName">
@@ -46,13 +51,13 @@
                                     <div class="form-group">
                                         <label for="user-number">Phone number</label>
                                         <ValidationProvider name="phone number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
-                                            <input @keypress="isNumber($event)" type="tel" class="form-control" id="user-number" v-model="form.phone_number" readonly>
+                                            <input @keypress="isNumber($event)" type="tel" class="form-control" id="user-number" v-model="form.phone_number">
                                             <span style="color: red;">{{ errors[0] }}</span>
                                         </ValidationProvider>
 
                                     </div>
-                                    <!-- password -->
-                                    <div class="form-group">
+
+                                   <div class="form-group">
                                         <label>Set your password</label>
                                         <ValidationProvider name="password" rules="required" v-slot="{ errors }">
                                             <input type="password" class="form-control" v-model="form.password">
@@ -69,52 +74,6 @@
                 </div>
             </div>
         </section>
-
-         <!-- <section class="registration-section">
-            <div class="container">
-                <div class="col-md-6 mx-auto">
-                    <div class="registration-form">
-                        <div class="text-center registration-logo">
-                            <img src="../../assets/img/logo/gamehublogo.svg" alt="gamehublogo" class="text-center">
-                        </div>
-                        <ul class="mb-3 d-flex justify-content-center align-items-center">
-                            <li>CREATE YOUR ACCOUNT</li>
-                        </ul>
-
-                            registration
-                                <form action="#">
-                                     <div class="form-group">
-                                        <label for="regisName">Name</label>
-                                        <input type="text" class="form-control" id="regisName" aria-describedby="emailHelp" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="regismail">Phone/Email Address</label>
-                                        <input type="text" class="form-control" id="regismail" aria-describedby="emailHelp" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="regispass">Password</label>
-                                        <input type="text" class="form-control" id="regispass" aria-describedby="emailHelp" required>
-                                    </div>
-                                    <div class="form-group form-check ">
-                                        <div class="remember-me">
-                                            <input type="checkbox" class="form-check-input" id="regischeck">
-                                            <label class="form-check-label" for="regischeck">
-                                                Creating an account means you’re okay with our Terms of Service, Privacy Policy, and our default Notification Settings.
-                                            </label>
-                                        </div>
-                                        
-                                    </div>
-                                    <button type="submit" class="btn btn-primary w-100 btn--registration mt-4">CREATE ACCOUNT</button>
-
-
-                                </form>
-
-                    </div>
-                </div>
-            </div>
-        </section> -->
-
-
     </div>
 </template>
 
@@ -122,37 +81,61 @@
     export default {
         data() {
             return {
+                isTokenValid: false,
+                show:false,
+                errMsg: 'Invalid Token',
                 form: {
                     email: this.$store.state.setupPasswordUser.email,
                     name: this.$store.state.setupPasswordUser.name,
                     lastName: this.$store.state.setupPasswordUser.last_name,
                     phone_number: this.$store.state.setupPasswordUser.phone_number,
-                    password: ""
+                    password: "",
+                    token: ''
                 },
                 // user: this.$store.state.setupPasswordUser
             }
         },
+        props: ['token'],
         methods: {
-          isNumber: function(evt) {
-            evt = (evt) ? evt : window.event;
-            var charCode = (evt.which) ? evt.which : evt.keyCode;
-            if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.form.phone_number.length > 10) {
-              evt.preventDefault();
-            } else {
-              return true;
-            }
-          },
+            isNumber: function(evt) {
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.form.phone_number.length > 10) {
+                evt.preventDefault();
+                } else {
+                return true;
+                }
+            },
             onNext() {
-                // this.$store.dispatch('setSignUp', this.form)
-                this.$api.put('users', this.form).then(response => {
-                  if (response.data.error === false) {
-                    this.$store.dispatch('login', this.form)
-                  }
+                console.log('frm ', this.form)
+                this.$api.put('update-password', this.form).then(response => {
+                    if (response.data.error === false) {
+                        this.$store.dispatch('loginUserAfterVerification', response.data)
+                    } else {
+                        this.$swal("Warning", response.message, 'warning', 'warning')
+                    }
                 });
             },
+            validateToken() {
+                if (this.token) {
+                    this.$api.get('validate-token/' +  this.token).then(response => {
+                        console.log('verify: ', response);
+                        if (response.data.error === false) {
+                            this.isTokenValid = true;
+                            this.show = true;
+                        } else {
+                            this.errMsg = response.data.message;
+                            this.show = true;
+                        }
+                    });
+                }
+            }
+        },
+        created() {
+            this.form.token = this.token
+            this.validateToken();
         },
         mounted () {
-          console.log(this.$store.state.setupPasswordUser)
           document.body.classList.add('body-position')
         },
         destroyed () {

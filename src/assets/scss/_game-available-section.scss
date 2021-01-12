@@ -5,15 +5,24 @@
         padding: 0 20px;
         border: 1px solid $secondery;
         position: relative;
+        overflow: auto;
+        table {
+            @include for-max-992 {
+                width: 700px;
+            }
+        }
         &::after {
             content: "";
-            height: 48px;
+            height: 60px;
             width: 100%;
             position: absolute;
             top: 0;
             left: 0;
             z-index: -1;
             background: $secondery;
+            @include for-max-992 {
+                width: 740px;
+            }
         }
         
     }
@@ -58,6 +67,7 @@
             th {
                 background: $secondery !important;
                 color: $text-dark !important;
+                padding: 18px 20px;
             }
         }
 
@@ -72,6 +82,7 @@
                 border-top: 1px solid $game-details;
                 border-bottom: 1px solid $game-details;
                 transition: all .3s ease-in;
+                padding: 10px 20px;
                 &:first-of-type {
                     border-top-left-radius: 10px;
                     border-bottom-left-radius: 10px;

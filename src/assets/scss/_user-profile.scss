@@ -404,3 +404,14 @@
         }
     }
 }
+
+// edit profile
+.edit-profile {
+    input,
+    select {
+        background: $game-details;
+        border: 1px solid $secondery;
+        height: 40px;
+        color: $text-light;
+    }
+}

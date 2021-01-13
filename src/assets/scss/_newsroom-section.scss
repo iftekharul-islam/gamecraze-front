@@ -37,10 +37,12 @@
        }
        &--img {
            overflow: hidden;
+           height: 238px;
            img {
                transition: all .3s ease-in;
                border-top-left-radius: 10px;
                border-top-right-radius: 10px;
+               height: 100%;
            }
        }
     }

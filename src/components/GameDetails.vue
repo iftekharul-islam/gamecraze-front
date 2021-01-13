@@ -10,15 +10,15 @@
                     <div class="col-md-6">
                         <div class="games-header-section--content" v-if="game">
                             <a href="#" class="d-block game-name-img"><h2>{{game.name}}</h2></a>
-                            <p>{{game.description}}</p>
-                            <a href="#" class="read-more">Read More</a>
+                            <p>{{game.description.substring(0, 300) | strippedContent}} . . .</p>
+                            <a href="#description" class="read-more">Read More</a>
                             <router-link :to="{ path: '/rent-posted-users/' + game.id}" class="btn--secondery rent-now"><span>RENT NOW</span></router-link>
                             <div class="d-flex games-header-section--platforms">
                                 <p>PLATFORM:</p>
-                                <a href="#"><img src="../assets/img/windows.png" alt="windowa"></a>
-                                <a href="#"><img src="../assets/img/ps4-white.png" alt="windowa"></a>
-                                <a href="#"><img src="../assets/img/windows.png" alt="windowa"></a>
-                                <a href="#"><img src="../assets/img/windows.png" alt="windowa"></a>
+                                <a href="javascript:void(0)" v-for="(platform, index) in game.platforms.data" :key="index"><img :src="platform.url" alt="windows"></a>
+<!--                                <a href="javascript:void(0)" v-if="game.platforms.data.find(s => s.slug === 'ps4')"><img src="../assets/img/ps4-white.png" alt="ps4"></a>-->
+<!--                                <a href="javascript:void(0)" v-if="game.platforms.data.find(s => s.slug === 'xbox')"><img src="../assets/img/fav-1.png" alt="xbox"></a>-->
+<!--                                <a href="javascript:void(0)"><img src="../assets/img/windows.png" alt="windowa"></a>-->
                             </div>
                         </div>
                     </div>
@@ -112,56 +112,9 @@
         <section class="description" id="description">
             <div class="container">
                 <h6>Description</h6>
-                <div class="description-content">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <p>
-                                The Battlefield series goes back to its roots in a
-                                never-before-seen portrayal of World War 2. Take on physical,
-                                all-out multiplayer with your squad in modes like the vast Grand
-                                Operations and the cooperative Combined Arms, or witness human drama
-                                set against global combat in the single player War Stories. As you fight in
-                                epic, unexpected locations across the globe, enjoy the richest and most
-                                immersive Battlefield yet. Now also includes Firestorm – Battle Royale,
-                                reimagined for Battlefield.
-                            </p>
-                            <p>Game contains In-Game Purchases:</p>
-                            <ul>
-                                <li> Firestorm – Battle Royale, reimagined for Battlefield. Dominate on the largest
-                                    Battlefield map ever with epic weapons and combat
-                                    vehicles as a deadly ring of fire closes in. Scavenge, fight,
-                                    and survive to become the last squad standing.</li>
-                                <li>
-                                    World War 2 as You’ve Never Seen It Before – Take the fight
-                                    to unexpected but crucial moments of the war,
-                                    as Battlefield goes back to where it all began.
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="col-md-6">
-                            <ul>
-                                <li> Firestorm – Battle Royale, reimagined for Battlefield. Dominate on the largest
-                                    Battlefield map ever with epic weapons and combat
-                                    vehicles as a deadly ring of fire closes in. Scavenge, fight,
-                                    and survive to become the last squad standing.</li>
+                <div class="description-content" v-if="game">
+                    <div class="row" v-html="game.description">
 
-                                <li>
-                                    World War 2 as You’ve Never Seen It Before – Take the fight
-                                    to unexpected but crucial moments of the war,
-                                    as Battlefield goes back to where it all began.
-                                </li>
-                                <li> Firestorm – Battle Royale, reimagined for Battlefield. Dominate on the largest
-                                    Battlefield map ever with epic weapons and combat
-                                    vehicles as a deadly ring of fire closes in. Scavenge, fight,
-                                    and survive to become the last squad standing.</li>
-
-                                <li>
-                                    World War 2 as You’ve Never Seen It Before – Take the fight
-                                    to unexpected but crucial moments of the war,
-                                    as Battlefield goes back to where it all began.
-                                </li>
-                            </ul>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -338,18 +291,31 @@
                 game: null,
             }
         },
+        watch: {
+          '$route.params': function (value) {
+            this.fetchGame();
+          },
+        },
         methods: {
           formattedDate(date) {
             const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             let formattedDate = new Date(date)
             return  months[formattedDate.getMonth()] + " " + formattedDate.getDate() + ", " + formattedDate.getFullYear()
           },
+          fetchGame() {
+            this.$api.get('games/' + this.id + '?include=assets,genres,platforms').then(response => {
+              this.game = response.data.data;
+              console.log(this.game);
+            });
+          }
         },
         created() {
-            this.$api.get('games/' + this.id + '?include=assets,genres,platforms').then(response => {
-                this.game = response.data.data;
-                console.log(this.game);
-            });
+            this.fetchGame();
+        },
+        filters: {
+          strippedContent: function(string) {
+            return string.replace(/<\/?[^>]+>/ig, " ");
+          }
         }
     }
 </script>

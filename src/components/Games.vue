@@ -57,11 +57,9 @@
 
                                         </div>
                                         <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                                            <div class="d-flex align-items-center">
-                                                <span><img src="../assets/img/ps4-white.png" alt="ps4"></span>
-                                                <span><img src="../assets/img/fav-1.png" alt="ps4"></span>
-                                                <span><img src="../assets/img/windows.png" alt="ps4"></span>
-                                            </div>
+
+                                            <a href="javascript:void(0)" v-for="(platform, index) in rent.platforms.data" :key="index"><img :src="platform.url" alt="ps4"></a>
+
                                             <span class="game-rating">{{ rent.rating }}</span>
                                         </div>
 
@@ -72,7 +70,6 @@
                               <div v-if="!filteredGames.length">
                                 <h2>Not match any games</h2>
                               </div>
-
                             </div>
                         </div>
                     </div>

@@ -40,10 +40,8 @@
                                             <tbody>
                                             <tr>
                                                 <td>Platform:</td>
-                                                <td>
-                                                    <img src="../assets/img/ps4-white.png" alt="ps4">
-                                                    <img src="../assets/img/ps4-white.png" alt="ps4">
-                                                    <img src="../assets/img/ps4-white.png" alt="ps4">
+                                                <td v-if="modalData">
+                                                    <img :src="modalData.platform.data.url" alt="ps4">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -85,25 +83,23 @@
                                                     <td>{{ returnDate }}</td>
                                                 </tr>
                                                 <tr>
-                                                    <td>Delivery:</td>
+                                                    <td>Delivery Type:</td>
                                                     <td>
-                                                        <select class="form-control" id="exampleFormControlSelect2">
-                                                            <option selected>Please select delivery</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
+                                                        <select class="form-control" id="exampleFormControlSelect2" v-model="form.deliveryType">
+                                                            <option>Please select delivery type</option>
+                                                            <option value="home">Home Delivery</option>
+                                                            <option value="checkpoint">Checkpoint</option>
                                                         </select>
                                                     </td>
                                                 </tr>
-                                                <tr>
+                                                <tr v-if="form.deliveryType === 'checkpoint'">
                                                     <td>Checkpoint Details:</td>
                                                     <td>
                                                         <div class="seller-address">
                                                             <i class="fas fa-map-marker-alt"></i>
-                                                            House: 278/C, Namapara,
-                                                            Manikdi, Dhaka Cantt.,
-                                                            Dhaka - 1206.
+                                                            Flat: {{ modalData.checkpoint.data.flat_no }}, House: {{modalData.checkpoint.data.house_no}}/{{modalData.checkpoint.data.road_no}},
+                                                          {{ modalData.checkpoint.data.area.data.name }},
+                                                            {{ modalData.checkpoint.data.area.data.thana.data.name }}, {{modalData.checkpoint.data.area.data.thana.data.district.data.name}}
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -136,7 +132,8 @@
                     show: false,
                     modalData: null,
                     form: {
-                      week: ''
+                      week: '',
+                      deliveryType: ''
                     }
                 }
             },
@@ -166,6 +163,7 @@
             methods: {
                 setModalData(rent) {
                   this.modalData = rent;
+                  console.log(this.modalData)
                 },
                 formattedDate(date) {
                     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -174,7 +172,7 @@
                 }
             },
             created() {
-                this.$api.get('rent-posted-users/' + this.id + '?include=game,diskCondition,user,checkpoint.area').then(response => {
+                this.$api.get('rent-posted-users/' + this.id + '?include=game,platform,diskCondition,user,checkpoint.area.thana.district').then(response => {
                   this.rentPosts = response.data.data;
                   console.log(this.rentPosts)
                 });

@@ -27,10 +27,7 @@
                             <router-link class="router_link" to="/games">Games</router-link>
                         </li>
                         <li>
-                            <router-link class="router_link" to="/support">Supports</router-link>
-                        </li>
-                        <li>
-                            <router-link class="router_link" to="/contacts">Contact us</router-link>
+                            <router-link class="router_link" to="/profile" @click.native="clickProfile()">Post For Rent</router-link>
                         </li>
                         <li>
                             <router-link class="router_link" to="/notice-board">Notice Board</router-link>
@@ -50,7 +47,7 @@
                                   :get-suggestion-value="getSuggestionValue"
                                   :input-props="{id:'autosuggest__input',class:'auto-suggest-menu'}">
                                 <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
-                                  <div style="{ display: 'flex', color: 'white'}">{{suggestion.item.name}}</div>
+                                  {{suggestion.item.name}}
                                 </div>
                               </vue-autosuggest>
                             </div>
@@ -102,6 +99,10 @@
             }
         },
         methods: {
+          clickProfile() {
+            this.$root.$emit('rentPost');
+            console.log("hello")
+          },
             searchGame() {
                 console.log(this.result)
                 if(this.query !== '') {
@@ -133,8 +134,7 @@
           onSelected(item) {
             this.selected = item.item;
             this.query = this.selected.name;
-            console.log('selected');
-            console.log(this.selected);
+            this.$router.push('/game-details/' + this.selected.id);
           },
           onInputChange(text) {
             // event fired when the input changes

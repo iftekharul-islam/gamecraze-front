@@ -438,6 +438,7 @@
     import FlipCountdown from 'vue2-flip-countdown'
         export default {
             components: { FlipCountdown },
+            props: ['rentPost'],
             data() {
                 return {
                     rents: [],
@@ -536,6 +537,17 @@
                         this.lends = response.data
                         console.log(this.lends, 'lends');
                     })
+
+              this.$root.$on('rentPost', () => {
+                $('#v-pills-overview-tab').removeClass('active');
+                $('#v-pills-overview').removeClass('active');
+                $('#v-pills-overview').removeClass('show');
+                $('#v-pills-post-rent-tab').addClass('active');
+                $('#v-pills-post-rent').addClass('active');
+                $('#v-pills-post-rent').addClass('show');
+                console.log('active')
+              })
+
             },
             
         mounted() {

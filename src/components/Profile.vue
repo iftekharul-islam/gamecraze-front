@@ -1,119 +1,12 @@
 <template>
     <div>
-        <!-- user profile -->
-
-        <!-- <section class="user-profile sign-in-bg">
-            <div class="conatainer-fluid user-profile-width">
-                <div class="row">
-                    <div class=" col-xl-6 offset-xl-3 user-profile-width-padding pb-5">
-                        <div class="card">
-                            <div class="d-flex justify-content-between">
-                                <div class="current-balance">
-                                    <h5>Current Balance</h5>
-                                    <span>${{ user.wallet }}</span>
-                                </div>
-                                <div class="rating">
-                                    <h5>Player Rating</h5>
-                                    <span>
-                                      <i class="fas fa-star"></i>
-                                      <i class="fas fa-star"></i>
-                                      <i class="fas fa-star"></i>
-                                      <i class="fas fa-star-half-alt"></i>
-                                      <i class="fas fa-star-half-alt"></i>
-                                     </span>
-                                </div>
-
-                            </div>
-
-                            <div class="user-image">
-                                <a v-if="!$store.state.user.image" href="#"><img src="../assets/img/profile_image4.png" alt="user image"></a>
-                                <a v-else href="#"><img :src="$gamehubStorageApi + $store.state.user.image" alt="user image"></a>
-                            </div>
-                            <div class="editprofile-btn">
-                                <router-link to="dashboard" type="button" class="btn btn-primary mr-4">Dashboard</router-link>
-                                <router-link to="rent-post" type="button" class="btn btn-primary mr-4">Post for Rent</router-link>
-                                <router-link to="update-profile" type="button" class="btn btn-primary mr-4">Update Profile</router-link>
-                            </div>
-                            <div class="user-details">
-                                <h3 class="mb-5 text-light">Profile Info</h3>
-                                <div class="profile-view" id="myTabContent">
-
-                                        <table class="table table-borderless">
-                                            <tbody>
-                                            <tr>
-                                                <th scope="row">Name</th>
-                                                <td>{{ user.name }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Gender</th>
-                                                <td>{{ user.gender }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Date of Birth</th>
-                                                <td>{{ user.birth_date != null ? formattedDate(user.birth_date) : ''}}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Email</th>
-                                                <td>{{ user.email }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Mobile No</th>
-                                                <td>{{ user.phone_number }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Address</th>
-                                                <td v-if="user.address">{{ user.address.address }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">City</th>
-                                                <td v-if="user.address">{{ user.address.city }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Post Code</th>
-                                                <td v-if="user.address">{{ user.address.post_code }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">NID Id</th>
-                                                <td>{{ user.identification_number }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row" class="d-block">NID Image</th>
-                                                <td><img class="w-50" :src="$gamehubStorageApi + $store.state.user.identification_image" alt="nid image"></td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-
-                                </div>
-                            </div>
-                            <div class="recharge">
-                                <div class="recharge-button">
-                                    <button class="btn btn-primary rechargebtn" type="button" data-toggle="collapse" data-target="#rechargeBtn" aria-expanded="false" aria-controls="rechargeBtn">
-                                        Recharge $
-                                    </button>
-                                </div>
-                                <div class="collapse" id="rechargeBtn">
-                                    <form method="post" action="#">
-                                        <div class="form-group">
-                                            <label for="currency-field">Enter Amount</label>
-                                            <input class="form-control" type="text" name="currency-field" id="currency-field" pattern="^\$\d{1,3}(,\d{3})*(\.\d+)?$" value="" data-type="currency" placeholder="$1,00.00">
-                                        </div>
-                                        <button type="submit">Submit</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-     
         <section class="user-profile-heading">
             <img src="../assets/img/profile-bg.png" alt="profile bg" class="img-fluid user-profile-bg">
             <div class="container">
                 <div class="user-profile-heading--name">
                     <img src="../assets/img/sss.jpg" alt="user profile" class="img-fluid">
                     <div class="users-name">
-                        <h3>MD Minhaj</h3>
+                        <h3>{{ user.name }}</h3>
                         <h6>sabertooth_wolf</h6>
                     </div>
                     <div class="user-rating">
@@ -146,7 +39,7 @@
                                     <tbody>
                                         <tr>
                                             <td scope="row">Name:</td>
-                                            <td>Minhaj</td>
+                                            <td>{{ user.name }}</td>
                                         </tr>
                                         <tr>
                                            <td scope="row">Username:</td>
@@ -154,19 +47,19 @@
                                         </tr>
                                         <tr>
                                            <td scope="row">Gender:</td>
-                                            <td>Male</td>
+                                            <td>{{ user.gender }}</td>
                                         </tr>
                                         <tr>
                                            <td scope="row">Date of Birth:</td>
-                                            <td>Male</td>
+                                            <td>{{ user.birth_date }}</td>
                                         </tr>
                                         <tr>
                                            <td scope="row">Email:</td>
-                                            <td>Male</td>
+                                            <td>{{ user.email }}</td>
                                         </tr>
                                         <tr>
                                            <td scope="row">Mobile No:</td>
-                                            <td>Male</td>
+                                            <td>{{ user.phone_number }}</td>
                                         </tr>
                                         <tr>
                                            <td scope="row">Address:</td>
@@ -174,19 +67,19 @@
                                         </tr>
                                         <tr>
                                            <td scope="row">City:</td>
-                                            <td>Male</td>
+                                            <td>{{ user.address.city }}</td>
                                         </tr>
                                         <tr>
                                            <td scope="row">Post Code:</td>
-                                            <td>Male</td>
+                                            <td>{{ user.address.post_code }}</td>
                                         </tr>
                                          <tr>
                                            <td scope="row">NID No:</td>
-                                            <td>Male</td>
+                                            <td>{{ user.identification_number }}</td>
                                         </tr>
                                          <tr>
                                            <td scope="row">NID Image:</td>
-                                            <td><img src="../assets/img/nid.png" alt="nid" class="img-fluid"></td>
+                                            <td><img :src="user.identification_image" alt="nid" class="img-fluid"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -195,8 +88,8 @@
                         <div class="tab-pane fade" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
                                     <div class="dashboard-content">
                                         <div class="d-flex justify-content-center dashboard-tab-button mb-5">
-                                            <button  @click.prevent="onOfferedGames" :disabled="!show" :class="{active: !show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  Offered Games</button>
-                                            <button  @click.prevent="onRentedGames" :disabled="show" :class="{active: show}"><img class="active-black" src="../assets/img/rent-icon.png" alt="rent icon"> <img class="active-yellow" src="../assets/img/rent-icon-black.png" alt="rent icon"> Rented Games</button>
+                                            <button  @click.prevent="onOfferedGames()" :disabled="!show" :class="{active: !show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  Offered Games</button>
+                                            <button  @click.prevent="onRentedGames()" :disabled="show" :class="{active: show}"><img class="active-black" src="../assets/img/rent-icon.png" alt="rent icon"> <img class="active-yellow" src="../assets/img/rent-icon-black.png" alt="rent icon"> Rented Games</button>
                                         </div>
                                         <div class="table-responsive pb-5" v-if="rents.length && !show">
                                                 <table class="table table-striped table-dark">
@@ -214,9 +107,9 @@
                                                     </thead>
                                                     <tbody>
                                                     <tr v-for="(rent, index) in rents" :key="index">
-                                                        <td>{{ rent.game.data.name }}</td>
-                                                        <td>{{ rent.diskCondition.data.name_of_type }}</td>
-                                                        <td>{{ rent.platform.data.name }}</td>
+                                                        <td v-if="rent.game">{{ rent.game.data.name }}</td>
+                                                        <td v-if="rent">{{ rent.diskCondition.data.name_of_type }}</td>
+                                                        <td v-if="rent">{{ rent.platform.data.name }}</td>
                                                         <td>{{ rent.rented_user_id ? rent.rented_user_id : 'N/A' }}</td>
                                                         <td>{{ rent.checkpoint_id ? rent.checkpoint.data.name : 'Home Delivery' }}</td>
                                                         <td v-if="rent.status === 0">
@@ -251,7 +144,7 @@
                                                 </thead>
                                                 <tbody>
                                                 <tr v-for="(lend, index) in lends" :key="index">
-                                                <td>{{ lend.rent.game.name }}</td>
+                                                    <td v-if="lend.rent">{{ lend.rent.game.name }}</td>
                                                     <td>{{ lend.lend_week }}</td>
                                                     <td>{{ formattedDate(lend.lend_date) }}</td>
                                                     <td>{{ returnDate(lend.lend_date, lend.lend_week) }}</td>
@@ -444,6 +337,7 @@
                     rents: [],
                     lends: [],
                     show: false,
+                    user: this.$store.state.user
                 }
             },
             methods: {
@@ -529,6 +423,7 @@
                     .then(response =>
                     {
                         this.rents = response.data.data
+                      console.log(this.rents, 'rents')
                     })
 
                 this.$api.get('lends', config)
@@ -545,9 +440,8 @@
                 $('#v-pills-post-rent-tab').addClass('active');
                 $('#v-pills-post-rent').addClass('active');
                 $('#v-pills-post-rent').addClass('show');
-                console.log('active')
               })
-
+              console.log(this.user)
             },
             
         mounted() {

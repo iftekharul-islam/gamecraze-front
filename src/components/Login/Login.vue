@@ -194,7 +194,7 @@
                                 <!-- sign in button -->
                                 <div v-else>
                                     <div class="text-center sign-btn">
-                                        <button class="btn mb-2 w-100 btn--login" type="submit" :disabled="isLoading | $.">
+                                        <button class="btn mb-2 w-100 btn--login" type="submit" :disabled="isLoading">
                                             PROCEED
                                             <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
                                         </button>

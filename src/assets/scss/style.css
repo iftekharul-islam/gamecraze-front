@@ -3462,6 +3462,7 @@ html {
 @media (max-width: 768px) {
   .games-categories-section {
     padding-top: 15px;
+    padding-bottom: 100px;
   }
 }
 
@@ -3511,7 +3512,7 @@ html {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 10px 50px 10px 20px;
+  padding: 5px 40px 5px 15px;
   background: #141A27;
   border-radius: 100px;
   margin-right: 20px;
@@ -3523,6 +3524,15 @@ html {
   position: relative;
 }
 
+@media (max-width: 768px) {
+  .games-categories-section--tag span {
+    padding: 3px 35px 3px 10px;
+    font-size: 12px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+}
+
 .games-categories-section--tag span i {
   cursor: pointer;
   -webkit-transition: all .3s ease-in;
@@ -3532,11 +3542,21 @@ html {
   right: 0;
   height: 100%;
   margin-top: auto;
-  padding-top: 15px;
+  padding-top: 10px;
   padding-left: 10px;
   background: #171f31;
-  width: 100;
-  width: 35px;
+  width: 30px;
+}
+
+@media (max-width: 768px) {
+  .games-categories-section--tag span i {
+    padding-top: 7px;
+    padding-left: 9px;
+  }
+}
+
+.games-categories-section--games--game-card-box:hover {
+  color: inherit;
 }
 
 .clear {
@@ -3621,6 +3641,40 @@ html {
       -ms-flex-pack: center;
           justify-content: center;
   font-size: 32px;
+}
+
+@media (max-width: 1200px) {
+  .game-rating {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1200px) and (max-width: 768px) {
+  .game-rating {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    font-size: 32px;
+  }
+}
+
+.game-card-platform .d-flex span {
+  margin-right: 17px;
+}
+
+@media (max-width: 1200px) {
+  .game-card-platform .d-flex span {
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .game-card-platform .d-flex span {
+    margin-right: 17px;
+  }
 }
 
 .games-header-section {
@@ -4779,6 +4833,7 @@ html {
   height: 50px;
   border-radius: 0;
   color: #000;
+  border: none;
 }
 
 .set-password form .form-group input.gray {
@@ -5188,11 +5243,28 @@ html {
 
 .newsroom-section--content-box--text h6 {
   font-size: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .newsroom-section--content-box--img {
   overflow: hidden;
   height: 238px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+@media (max-width: 992px) {
+  .newsroom-section--content-box--img {
+    height: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .newsroom-section--content-box--img {
+    height: 238px;
+  }
 }
 
 .newsroom-section--content-box--img img {

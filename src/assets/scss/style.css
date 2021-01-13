@@ -1527,12 +1527,12 @@ html {
   .gamehub-input-group {
     position: absolute;
     top: 60px;
-    right: 0;
+    right: 15px;
     /* flex-direction: column-reverse; */
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: 1fr 50px;
-        grid-template-columns: 1fr 50px;
+    -ms-grid-columns: 1fr 30px;
+        grid-template-columns: 1fr 30px;
     -ms-grid-rows: auto;
         grid-template-rows: auto;
     grid-row-gap: 20px;
@@ -2741,10 +2741,10 @@ html {
           justify-content: center;
   text-align: center;
   position: relative;
-  background: #FFD715;
-  -webkit-clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
-          clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
   margin-left: auto;
+  -webkit-transform: skew(-21deg);
+          transform: skew(-21deg);
+  border: 3px solid #FFD715;
 }
 
 .noticed-details a span {
@@ -2753,25 +2753,12 @@ html {
   color: #FFD715;
   -webkit-transition: all .3s ease-in;
   transition: all .3s ease-in;
+  -webkit-transform: skew(21deg);
+          transform: skew(21deg);
 }
 
-.noticed-details a::after {
-  position: absolute;
-  width: 97%;
-  height: 94%;
-  background: #000735;
-  display: block;
-  content: "";
-  -webkit-clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
-  clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
-  top: 1px;
-  left: 2px;
-  -webkit-transition: all .3s ease-in;
-  transition: all .3s ease-in;
-}
-
-.noticed-details a:hover::after {
-  background: #FFD715;
+.noticed-details a:hover {
+  background-color: #FFD715;
 }
 
 .noticed-details a:hover span {
@@ -2799,6 +2786,7 @@ html {
 .notice-box {
   position: relative;
   overflow: hidden;
+  border: 8px solid #141A27;
 }
 
 .notice-box img {
@@ -3474,6 +3462,7 @@ html {
 @media (max-width: 768px) {
   .games-categories-section {
     padding-top: 15px;
+    padding-bottom: 100px;
   }
 }
 
@@ -3523,7 +3512,7 @@ html {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  padding: 10px 50px 10px 20px;
+  padding: 5px 40px 5px 15px;
   background: #141A27;
   border-radius: 100px;
   margin-right: 20px;
@@ -3535,6 +3524,15 @@ html {
   position: relative;
 }
 
+@media (max-width: 768px) {
+  .games-categories-section--tag span {
+    padding: 3px 35px 3px 10px;
+    font-size: 12px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+}
+
 .games-categories-section--tag span i {
   cursor: pointer;
   -webkit-transition: all .3s ease-in;
@@ -3544,11 +3542,21 @@ html {
   right: 0;
   height: 100%;
   margin-top: auto;
-  padding-top: 15px;
+  padding-top: 10px;
   padding-left: 10px;
   background: #171f31;
-  width: 100;
-  width: 35px;
+  width: 30px;
+}
+
+@media (max-width: 768px) {
+  .games-categories-section--tag span i {
+    padding-top: 7px;
+    padding-left: 9px;
+  }
+}
+
+.games-categories-section--games--game-card-box:hover {
+  color: inherit;
 }
 
 .clear {
@@ -3635,6 +3643,40 @@ html {
   font-size: 32px;
 }
 
+@media (max-width: 1200px) {
+  .game-rating {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 1200px) and (max-width: 768px) {
+  .game-rating {
+    width: 60px;
+    height: 60px;
+    border-radius: 10px;
+    font-size: 32px;
+  }
+}
+
+.game-card-platform .d-flex span {
+  margin-right: 17px;
+}
+
+@media (max-width: 1200px) {
+  .game-card-platform .d-flex span {
+    margin-right: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  .game-card-platform .d-flex span {
+    margin-right: 17px;
+  }
+}
+
 .games-header-section {
   height: 600px;
   background-size: cover;
@@ -3703,6 +3745,14 @@ html {
 
 .game-name-img {
   margin-bottom: 20px;
+}
+
+.game-name-img h2 {
+  font-size: 50px;
+  text-transform: uppercase;
+  -webkit-text-stroke: 2px #264171;
+  font-family: circular-bold;
+  color: #E6FDFF;
 }
 
 .game-details-menu {
@@ -4477,7 +4527,7 @@ html {
 }
 
 .post-rent .form-group [type="date"] {
-  background: #141A27 url(../img/calendar.png) 97% 50% no-repeat;
+  background: #141A27 url(../img/calender.png) 97% 50% no-repeat;
 }
 
 .post-rent .form-group label {
@@ -4715,6 +4765,54 @@ html {
   color: #fff;
 }
 
+.edit-profile [type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+.edit-profile [type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+.edit-profile [type="date"] {
+  background: #141A27 url(../img/calender.png) 97% 50% no-repeat;
+}
+
+.edit-profile .custom-file-input ~ .custom-file-label {
+  border: 1px solid #FFD715;
+  background: #141A27;
+  cursor: pointer;
+}
+
+.edit-profile .custom-file-input ~ .custom-file-label::after {
+  font-family: "Font Awesome 5 Free";
+  font-weight: 900;
+  content: "\f093 \00a0 \00a0 Upload";
+  background: #FFD715;
+  color: #000;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-profile label {
+  font-size: 20px;
+}
+
+.edit--input {
+  padding-right: 90px;
+}
+
+@media (max-width: 1200px) {
+  .edit--input {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 575px) {
+  .edit--input {
+    padding-right: 15px;
+  }
+}
+
 .set-password {
   padding-bottom: 120px;
   padding-top: 120px;
@@ -4735,6 +4833,7 @@ html {
   height: 50px;
   border-radius: 0;
   color: #000;
+  border: none;
 }
 
 .set-password form .form-group input.gray {
@@ -5144,10 +5243,28 @@ html {
 
 .newsroom-section--content-box--text h6 {
   font-size: 20px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .newsroom-section--content-box--img {
   overflow: hidden;
+  height: 238px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+@media (max-width: 992px) {
+  .newsroom-section--content-box--img {
+    height: 160px;
+  }
+}
+
+@media (max-width: 768px) {
+  .newsroom-section--content-box--img {
+    height: 238px;
+  }
 }
 
 .newsroom-section--content-box--img img {
@@ -5155,6 +5272,7 @@ html {
   transition: all .3s ease-in;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
+  height: 100%;
 }
 
 .trending-news {

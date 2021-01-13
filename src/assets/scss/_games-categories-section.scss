@@ -1,3 +1,9 @@
+@mixin oneline-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
 .games-categories-section {
     padding-top: 60px;
     padding-bottom: 100px;
@@ -6,6 +12,7 @@
      }
      @include for-max-768 {
         padding-top: 15px;
+        padding-bottom: 100px;
      }
     &--categories {
         background: $game-details;
@@ -47,7 +54,7 @@
         span {
             display: flex;
             align-items: center;
-            padding: 10px 50px 10px 20px;
+            padding: 5px 40px 5px 15px;
             background: $game-details;
             border-radius: 100px;
             margin-right: 20px;
@@ -57,6 +64,12 @@
             transition: all .3s ease-in;
             text-transform: capitalize;
             position: relative;
+            @include for-max-768 {
+                padding: 3px 35px 3px 10px;
+                font-size: 12px;
+                margin-right: 10px;
+                margin-bottom: 10px;
+            }
             i {
                 cursor: pointer;
                 transition: all .3s ease-in;
@@ -65,17 +78,27 @@
                 right: 0;
                 height: 100%;
                 margin-top: auto;
-                padding-top: 15px;
+                padding-top: 10px;
                 padding-left: 10px;
                 background: #171f31;
-                width: 100;
-                width: 35px;
+                width: 30px;
+                @include for-max-768 {
+                    padding-top: 7px;
+                    padding-left: 9px;
+                }
 
             }
             &:hover {
                 i {
                     // transform: translate(10px, 0px);
                 }
+            }
+        }
+    }
+    &--games {
+        &--game-card-box {
+            &:hover {
+                color: inherit;
             }
         }
     }
@@ -120,9 +143,7 @@
         margin-top: 10px;
         font-size: 20px;
         margin-bottom: 10px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        @include oneline-text;
     }
     .display-image {
         @include for-max-768 {
@@ -145,4 +166,29 @@
     align-items: center;
     justify-content: center;
     font-size: 32px;
+    @include for-max-1200 {
+        width: 25px;
+        height: 25px;
+        border-radius: 5px; 
+        font-size: 12px;
+        @include for-max-768 {
+            width: 60px;
+             height: 60px;
+             border-radius: 10px;
+             font-size: 32px;
+        }
+    }
+}
+.game-card-platform {
+    .d-flex {
+        span {
+            margin-right: 17px;
+            @include for-max-1200 {
+                margin-right: 8px;
+            }
+            @include for-max-768 {
+                margin-right: 17px;
+            }
+        }
+    }
 }

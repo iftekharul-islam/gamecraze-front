@@ -1,3 +1,10 @@
+@mixin oneline-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+
 .newsroom-section {
     padding-top: 150px;
     padding-bottom: 150px;
@@ -33,11 +40,20 @@
         }
         h6 {
             font-size: 20px;
+            @include oneline-text;
         }
        }
        &--img {
            overflow: hidden;
            height: 238px;
+           border-top-left-radius: 10px;
+           border-top-right-radius: 10px;
+           @include for-max-992 {
+               height: 160px;
+           }
+           @include for-max-768 {
+            height: 238px;
+        }
            img {
                transition: all .3s ease-in;
                border-top-left-radius: 10px;

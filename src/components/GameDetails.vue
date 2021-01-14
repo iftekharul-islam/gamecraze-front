@@ -2,8 +2,8 @@
     <div>
         <!-- games header section -->
         <section class="games-header-section">
-            <div class="games-header-section--display-image">
-                <img src="../assets/img/game-details.png" alt="game details">
+            <div class="games-header-section--display-image" v-if="game">
+                <img :src="game.coverImage" alt="game details">
             </div>
             <div class="container">
                 <div class="row">
@@ -16,9 +16,6 @@
                             <div class="d-flex games-header-section--platforms">
                                 <p>PLATFORM:</p>
                                 <a href="javascript:void(0)" v-for="(platform, index) in game.platforms.data" :key="index"><img :src="platform.url" alt="windows"></a>
-<!--                                <a href="javascript:void(0)" v-if="game.platforms.data.find(s => s.slug === 'ps4')"><img src="../assets/img/ps4-white.png" alt="ps4"></a>-->
-<!--                                <a href="javascript:void(0)" v-if="game.platforms.data.find(s => s.slug === 'xbox')"><img src="../assets/img/fav-1.png" alt="xbox"></a>-->
-<!--                                <a href="javascript:void(0)"><img src="../assets/img/windows.png" alt="windowa"></a>-->
                             </div>
                         </div>
                     </div>
@@ -40,30 +37,9 @@
         <section class="screenshot-video" id="screenshot-video">
             <div class="container">
                 <h6>Screenshots & Videos</h6>
-                <div id="owl-screenshot-video" class="owl-carousel owl-theme">
-                    <div class="item">
-                        <a href="../assets/img/screenshot.png"><img src="../assets/img/screenshot.png" alt="screenshot"></a>
-                    </div>
-                    <div class="item">
-                        <a href="../assets/img/screenshot.png"><img src="../assets/img/screenshot.png" alt="screenshot"></a>
-                    </div>
-                    <div class="item">
-                        <a href="../assets/img/screenshot.png"><img src="../assets/img/screenshot.png" alt="screenshot"></a>
-                    </div>
-                    <div class="item">
-                        <a href="../assets/img/screenshot.png"><img src="../assets/img/screenshot.png" alt="screenshot"></a>
-                    </div>
-                    <div class="item">
-                        <a href="../assets/img/screenshot.png"><img src="../assets/img/screenshot.png" alt="screenshot"></a>
-                    </div>
-                    <div class="item">
-                        <a href="../assets/img/screenshot.png"><img src="../assets/img/screenshot.png" alt="screenshot"></a>
-                    </div>
-                    <div class="item">
-                        <a href="../assets/img/screenshot.png"><img src="../assets/img/screenshot.png" alt="screenshot"></a>
-                    </div>
-                    <div class="item">
-                        <a href="../assets/img/screenshot.png"><img src="../assets/img/screenshot.png" alt="screenshot"></a>
+                <div id="owl-screenshot-video" class="owl-carousel owl-theme" v-if="game">
+                    <div class="item" v-for="(screenshot, index) in game.screenshots.data" :key="index">
+                        <a href="#"><img :src="screenshot.url" alt="screenshot"></a>
                     </div>
                 </div>
 
@@ -123,158 +99,24 @@
         <section class="related-game-section" id="related-game">
             <div class="container">
                 <h6>You Might Also Like</h6>
-                <div id="owl-related" class="owl-carousel owl-theme">
-                    <div class="item">
+                <div id="owl-related" class="owl-carousel owl-theme" v-if="relatedGames">
+                    <div class="item" v-for="(related, index) in relatedGames" :key="index">
+                      <router-link @click.native="scrollToTop()" :to="{ path: '/game-details/' + related.game.data.id}" class="games-categories-section--games--game-card-box">
                         <div class="game-card">
-                            <a class="display-image" href="#">
+                            <a class="display-image" href="javascript:void(0)">
                                 <img src="../assets/img/fifa19.png" alt="fifa" class="img-fluid">
                             </a>
-                            <a href="#"> <h6>REALM ROYALE</h6></a>
+                            <a href="javascript:void(0)"> <h6>{{related.game.data.name}}</h6></a>
                             <div class="d-flex">
-                                <a href="#">Action</a>,
-                                <a href="#">Adventure</a>
+                              <span v-for="(genre, index) in related.game.data.genres.data" :key="index" >{{ genre.name }}<span class="mr-1" v-if="index < related.game.data.genres.data.length-1">, </span></span>
                             </div>
                             <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                                <a href="#"><img src="../assets/img/ps4-white.png" alt="ps4"></a>
-                                <a href="#"><img src="../assets/img/fav-1.png" alt="ps4"></a>
-                                <a href="#"><img src="../assets/img/windows.png" alt="ps4"></a>
-                                <span class="game-rating">71</span>
+                                <a href="javascript:void(0)" v-for="(platform, index) in related.game.data.platforms.data" :key="index"><img :src="platform.url" alt="ps4"></a>
+                                <span class="game-rating">{{ related.game.data.rating }}</span>
                             </div>
 
                         </div>
-                    </div>
-                    <div class="item">
-                        <div class="game-card">
-                            <a class="display-image" href="#">
-                                <img src="../assets/img/fifa19.png" alt="fifa" class="img-fluid">
-                            </a>
-                            <a href="#"> <h6>REALM ROYALE</h6></a>
-                            <div class="d-flex">
-                                <a href="#">Action</a>,
-                                <a href="#">Adventure</a>
-                            </div>
-                            <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                                <a href="#"><img src="../assets/img/ps4-white.png" alt="ps4"></a>
-                                <a href="#"><img src="../assets/img/fav-1.png" alt="ps4"></a>
-                                <a href="#"><img src="../assets/img/windows.png" alt="ps4"></a>
-                                <span class="game-rating">71</span>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="game-card">
-                            <a class="display-image" href="#">
-                                <img src="../assets/img/fifa19.png" alt="fifa" class="img-fluid">
-                            </a>
-                            <a href="#"> <h6>REALM ROYALE</h6></a>
-                            <div class="d-flex">
-                                <a href="#">Action</a>,
-                                <a href="#">Adventure</a>
-                            </div>
-                            <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                                <a href="#"><img src="../assets/img/ps4-white.png" alt="ps4"></a>
-                                <a href="#"><img src="../assets/img/fav-1.png" alt="ps4"></a>
-                                <a href="#"><img src="../assets/img/windows.png" alt="ps4"></a>
-                                <span class="game-rating">71</span>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="game-card">
-                            <a class="display-image" href="#">
-                                <img src="../assets/img/fifa19.png" alt="fifa" class="img-fluid">
-                            </a>
-                            <a href="#"> <h6>REALM ROYALE</h6></a>
-                            <div class="d-flex">
-                                <a href="#">Action</a>,
-                                <a href="#">Adventure</a>
-                            </div>
-                            <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                                <a href="#"><img src="../assets/img/ps4-white.png" alt="ps4"></a>
-                                <a href="#"><img src="../assets/img/fav-1.png" alt="ps4"></a>
-                                <a href="#"><img src="../assets/img/windows.png" alt="ps4"></a>
-                                <span class="game-rating">71</span>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="game-card">
-                            <a class="display-image" href="#">
-                                <img src="../assets/img/fifa19.png" alt="fifa" class="img-fluid">
-                            </a>
-                            <a href="#"> <h6>REALM ROYALE</h6></a>
-                            <div class="d-flex">
-                                <a href="#">Action</a>,
-                                <a href="#">Adventure</a>
-                            </div>
-                            <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                                <a href="#"><img src="../assets/img/ps4-white.png" alt="ps4"></a>
-                                <a href="#"><img src="../assets/img/fav-1.png" alt="ps4"></a>
-                                <a href="#"><img src="../assets/img/windows.png" alt="ps4"></a>
-                                <span class="game-rating">71</span>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="game-card">
-                            <a class="display-image" href="#">
-                                <img src="../assets/img/fifa19.png" alt="fifa" class="img-fluid">
-                            </a>
-                            <a href="#"> <h6>REALM ROYALE</h6></a>
-                            <div class="d-flex">
-                                <a href="#">Action</a>,
-                                <a href="#">Adventure</a>
-                            </div>
-                            <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                                <a href="#"><img src="../assets/img/ps4-white.png" alt="ps4"></a>
-                                <a href="#"><img src="../assets/img/fav-1.png" alt="ps4"></a>
-                                <a href="#"><img src="../assets/img/windows.png" alt="ps4"></a>
-                                <span class="game-rating">71</span>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="game-card">
-                            <a class="display-image" href="#">
-                                <img src="../assets/img/fifa19.png" alt="fifa" class="img-fluid">
-                            </a>
-                            <a href="#"> <h6>REALM ROYALE</h6></a>
-                            <div class="d-flex">
-                                <a href="#">Action</a>,
-                                <a href="#">Adventure</a>
-                            </div>
-                            <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                                <a href="#"><img src="../assets/img/ps4-white.png" alt="ps4"></a>
-                                <a href="#"><img src="../assets/img/fav-1.png" alt="ps4"></a>
-                                <a href="#"><img src="../assets/img/windows.png" alt="ps4"></a>
-                                <span class="game-rating">71</span>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="game-card">
-                            <a class="display-image" href="#">
-                                <img src="../assets/img/fifa19.png" alt="fifa" class="img-fluid">
-                            </a>
-                            <a href="#"> <h6>REALM ROYALE</h6></a>
-                            <div class="d-flex">
-                                <a href="#">Action</a>,
-                                <a href="#">Adventure</a>
-                            </div>
-                            <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                                <a href="#"><img src="../assets/img/ps4-white.png" alt="ps4"></a>
-                                <a href="#"><img src="../assets/img/fav-1.png" alt="ps4"></a>
-                                <a href="#"><img src="../assets/img/windows.png" alt="ps4"></a>
-                                <span class="game-rating">71</span>
-                            </div>
-
-                        </div>
+                      </router-link>
                     </div>
                 </div>
             </div>
@@ -283,12 +125,15 @@
 </template>
 
 <script>
+    import Vue from "vue";
+
     export default {
         name: 'GameDetails',
         props: ['id'],
         data() {
             return {
                 game: null,
+                relatedGames: null
             }
         },
         watch: {
@@ -297,17 +142,93 @@
           },
         },
         methods: {
+          scrollToTop() {
+            window.scrollTo(0,0);
+          },
           formattedDate(date) {
             const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             let formattedDate = new Date(date)
             return  months[formattedDate.getMonth()] + " " + formattedDate.getDate() + ", " + formattedDate.getFullYear()
           },
           fetchGame() {
-            this.$api.get('games/' + this.id + '?include=assets,genres,platforms').then(response => {
-              this.game = response.data.data;
-              console.log(this.game);
+            this.$api.get('games/' + this.id + '?include=assets,genres,platforms,screenshots').then(response => {
+              var vm = this;
+              vm.game = response.data.data;
+              Vue.nextTick(function(){
+                vm.screenshotsCarousel();
+              }.bind(vm));
+              this.fetchRelatedGame();
             });
-          }
+          },
+          fetchRelatedGame() {
+            let genres = [];
+            this.game.genres.data.forEach(genre => {
+              genres.push(genre.slug);
+            })
+            console.log(genres, 'genres')
+            this.$api.get('games/related/' + genres.join() + '?include=game.assets,game.genres,game.platforms').then(response => {
+              var vm = this;
+              vm.relatedGames = response.data.data;
+              console.log(vm.relatedGames, 'related');
+              Vue.nextTick(function(){
+                vm.relatedCarousel();
+              }.bind(vm));
+            });
+          },
+          screenshotsCarousel() {
+            $('#owl-screenshot-video').owlCarousel({
+              loop: true,
+              margin: 10,
+              nav: true,
+              dots:true,
+              navText: [
+                '<i class="fas fa-arrow-left"></i>',
+                '<i class="fas fa-arrow-right"></i>'
+              ],
+              responsive:{
+                0:{
+                  items: 1.3,
+                  dots:false,
+                  nav: false,
+                },
+                600:{
+                  items: 2,
+                  dots:true,
+                  nav: true,
+
+                },
+                1000:{
+                  items: 4
+                }
+              }
+            });
+          },
+          relatedCarousel() {
+            $('#owl-related').owlCarousel({
+              loop: true,
+              margin: 10,
+              nav: true,
+              dots:false,
+              navText: [
+                '<i class="fas fa-arrow-left"></i>',
+                '<i class="fas fa-arrow-right"></i>'
+              ],
+              responsive:{
+                0:{
+                  items: 1.3,
+                  nav: false,
+                },
+                600:{
+                  items: 2,
+                  nav: true,
+
+                },
+                1000:{
+                  items: 4
+                }
+              }
+            });
+          },
         },
         created() {
             this.fetchGame();

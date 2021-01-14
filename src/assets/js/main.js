@@ -15,7 +15,6 @@ $(function () {
   
 
 $(document).ready(function() {
-	// 
 	$('#owl-screenshot-video').owlCarousel({
 		loop: true,
 		margin: 10,

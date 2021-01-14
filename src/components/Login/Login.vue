@@ -264,11 +264,10 @@
             },
             onLogin() {
                 this.$store.dispatch('setEmailLoader', true);
-                this.isLoading = true
+                this.isLoading = true;
                 if (this.loginOption === "Email") {
                     this.$store.dispatch('setPhoneNumber', this.phone_number)
                     this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
-                        console.log(response);
                         if (response.data.error === false) {
                             this.isLoading = false
                             setTimeout(() => {

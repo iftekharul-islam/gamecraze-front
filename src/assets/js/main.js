@@ -15,31 +15,6 @@ $(function () {
   
 
 $(document).ready(function() {
-	$('#owl-video').owlCarousel({
-		// stagePadding: 150,
-		center: true,
-		loop: true,
-		margin: 10,
-		nav: true,
-		// autoplay:true,
-		dots:false,
-		navText: [
-			'<i class="fas fa-arrow-left"></i>',
-			'<i class="fas fa-arrow-right"></i>'
-		],
-		responsive:{
-			0:{
-				items: 1,
-				dots:true,
-				nav: false,
-			},
-			768:{
-				items: 2,
-
-			}
-		}
-	});
-	// 
 	$('#owl-screenshot-video').owlCarousel({
 		loop: true,
 		margin: 10,

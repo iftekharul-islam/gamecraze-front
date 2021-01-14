@@ -311,7 +311,6 @@ export const storage = {
             commit('setSubmitLoading', true)
             commit('setNumberExist', false)
             axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'verify-email', payload).then(response => {
-                console.log(response);
                 if (response.data.error === false) {
                     commit('authUser', {
                         token: response.data.token,

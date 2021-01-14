@@ -60,7 +60,10 @@
                                             <span class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                     </div>
-                                    <button class="btn--secondery submit-btn"><span>Submit</span></button>
+                                    <button class="btn--secondery submit-btn">
+                                        <span class="mr-2">Submit</span>
+                                        <i v-if="isLoading" class="spinner-border spinner-border-sm"></i>
+                                    </button>
                                 </form>
                             </ValidationObserver>
                         </div>

@@ -227,7 +227,7 @@
                                 <li><a href="#">About</a></li>
                                 <li><a href="#">Join Us</a></li>
                                 <li><a href="#">Sponsors</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="/contacts">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -238,7 +238,7 @@
                                 <li><a href="#">About</a></li>
                                 <li><a href="#">Join Us</a></li>
                                 <li><a href="#">Sponsors</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="/contacts">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -249,7 +249,7 @@
                                 <li><a href="#">About</a></li>
                                 <li><a href="#">Join Us</a></li>
                                 <li><a href="#">Sponsors</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="/contacts">Contact</a></li>
                             </ul>
                         </div>
                     </div>
@@ -260,7 +260,7 @@
                                 <li><a href="#">About</a></li>
                                 <li><a href="#">Join Us</a></li>
                                 <li><a href="#">Sponsors</a></li>
-                                <li><a href="#">Contact</a></li>
+                                <li><a href="/contacts">Contact</a></li>
                             </ul>
                         </div>
                     </div>

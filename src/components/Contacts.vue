@@ -12,8 +12,9 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="map">
-                            <img src="../assets/img/map.png" alt="map" class="img-fluid">
-                            
+                            <a href="https://goo.gl/maps/K1gTqktfgaojX44o9" target="_blank" title="View location in google map">
+                                <img src="../assets/img/map.png" alt="map" class="img-fluid">
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-6 mt-4 mt-md-0">

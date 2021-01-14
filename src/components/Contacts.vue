@@ -96,9 +96,11 @@
               }
             },
             sendMail: function() {
+                this.isLoading = true;
                 this.$api.post('contact', this.form).then(response => {
+                    this.isLoading = false;
                     if (response.data.error === false) {
-                        this.isLoading = false
+                        this.isLoading = false;
                         this.$toaster.success(response.data.message);
                         document.querySelector("#contactForm").reset();
                         return;

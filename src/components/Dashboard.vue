@@ -29,6 +29,7 @@
                         <div class="modal fade seller-information-modal" id="rennow1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered">
                                 <div class="modal-content">
+                                  <ValidationObserver v-slot="{ handleSubmit }">
                                     <div class="modal-header text-center">
                                         <h2 class="modal-title m-auto" id="exampleModalLabel" v-if="modalData">{{ modalData.game.data.name }}</h2>
                                         <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
@@ -72,10 +73,13 @@
                                                 <tr>
                                                     <td>Select Rent Week:</td>
                                                     <td>
+                                                      <ValidationProvider name="Rent Week" rules="required" v-slot="{ errors }">
                                                         <select class="form-control" id="exampleFormControlSelect1" v-if="modalData" v-model="form.week">
                                                             <option selected>Please select rent week</option>
                                                             <option v-for="n in modalData.max_number_of_week" :value="n">For {{n}} Week</option>
                                                         </select>
+                                                        <span class="text-danger">{{ errors[0] }}</span>
+                                                      </ValidationProvider>
                                                     </td>
                                                 </tr>
                                                 <tr v-if="form.week">
@@ -84,15 +88,18 @@
                                                 </tr>
                                                 <tr>
                                                     <td>Delivery Type:</td>
-                                                    <td>
+                                                    <td v-if="modalData">
+                                                      <ValidationProvider name="Delivery type" rules="required" v-slot="{ errors }">
                                                         <select class="form-control" id="exampleFormControlSelect2" v-model="form.deliveryType">
                                                             <option>Please select delivery type</option>
-                                                            <option value="home">Home Delivery</option>
-                                                            <option value="checkpoint">Checkpoint</option>
+                                                            <option value="0">Home Delivery</option>
+                                                            <option :value="modalData.checkpoint_id" :disabled="modalData.checkpoint_id == null ">Checkpoint</option>
                                                         </select>
+                                                        <span class="text-danger">{{ errors[0] }}</span>
+                                                      </ValidationProvider>
                                                     </td>
                                                 </tr>
-                                                <tr v-if="form.deliveryType === 'checkpoint'">
+                                                <tr v-if="form.deliveryType !== -1 && modalData">
                                                     <td>Checkpoint Details:</td>
                                                     <td>
                                                         <div class="seller-address">
@@ -108,8 +115,9 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer justify-content-center">
-                                        <a href="#" class="btn--secondery"><span><i class="fas fa-shopping-cart"></i> ADD TO CART</span></a>
+                                        <a href="javascript:void(0)" class="btn--secondery" @click.prevent="handleSubmit(onAddToCart)" data-dismiss="modal"><span><i class="fas fa-shopping-cart"></i> ADD TO CART</span></a>
                                     </div>
+                                  </ValidationObserver>
                                 </div>
                             </div>
                         </div>
@@ -120,9 +128,7 @@
     </template>
 
     <script>
-        import FlipCountdown from 'vue2-flip-countdown'
         export default {
-            components: { FlipCountdown },
             props: ['id'],
             data() {
                 return {
@@ -133,8 +139,9 @@
                     modalData: null,
                     form: {
                       week: '',
-                      deliveryType: ''
-                    }
+                      deliveryType: -1
+                    },
+                  userDetails: null,
                 }
             },
             computed: {
@@ -143,10 +150,6 @@
                 let available = new Date(this.modalData.availability_from_date);
                 if (today < available)
                 {
-                  // available.setDate(available.getDate()+ 1 + this.week * 7);
-                  // const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-                  // return available.getDate() + " " + months[available.getMonth()] + " " + available.getFullYear()
-
                   today.setDate(today.getDate() + this.form.week * 7);
                   const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
                   return today.getDate() + " " + months[today.getMonth()] + " " + today.getFullYear()
@@ -169,13 +172,39 @@
                     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                     let formattedDate = new Date(date)
                     return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
-                }
+                },
+              onAddToCart() {
+                console.log(this.id, 'id');
+                console.log(this.$store.state.userId, 'user id');
+                console.log(this.$store.state.postId.length, 'post length');
+                console.log(this.lends.length, 'lends');
+
+                this.$store.dispatch('pushPostId', this.modalData.id)
+                this.$store.dispatch('pushLendWeek', this.form.week)
+                this.$store.dispatch('pushCheckpointId', this.form.deliveryType)
+                return this.$router.push('/add-to-cart').then(err => {});
+
+              }
             },
             created() {
                 this.$api.get('rent-posted-users/' + this.id + '?include=game,platform,diskCondition,user,checkpoint.area.thana.district').then(response => {
                   this.rentPosts = response.data.data;
                   console.log(this.rentPosts)
                 });
+
+              let config = {
+                headers: {
+                  'Authorization': 'Bearer ' + this.$store.state.token
+                }
+              };
+              if (this.$store.state.userId != null) {
+                this.$api.get('user/details', config)
+                    .then (response =>
+                    {
+                      this.userDetails = response.data.data;
+                      console.log(this.userDetails, 'User details');
+                    })
+              }
             },
             
         mounted() {

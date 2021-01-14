@@ -101,24 +101,12 @@
                                 <td scope="col">Subtotal</td>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <td scope="col">Call of Duty</td>
-                                <td scope="col">৳80</td>
-                                <td scope="col">1 week</td>
-                                <td scope="col">৳80</td>
-                            </tr>
-                             <tr>
-                                <td scope="col">Call of Duty</td>
-                                <td scope="col">৳80</td>
-                                <td scope="col">1 week</td>
-                                <td scope="col">৳80</td>
-                            </tr>
-                             <tr>
-                                <td scope="col">Call of Duty</td>
-                                <td scope="col">৳80</td>
-                                <td scope="col">1 week</td>
-                                <td scope="col">৳80</td>
+                            <tbody v-if="cart">
+                            <tr v-for="(item, index) in cart" :key="index">
+                                <td scope="col">{{ item.game.data.name }}</td>
+                                <td scope="col">{{ price[index] }}</td>
+                                <td scope="col">4</td>
+                                <td scope="col">{{price[index]}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -134,19 +122,19 @@
                         <p>Subtotal</p>
                         <span class="subtotal-price">৳1480</span>
                       </div>
-                      <div class="promotional-code">
-                        <p class="mb-2">Enter a promotional code</p>
-                        <div class="promotional-code--input-group d-flex">
-                          <input type="text" class="form-control mr-3">
-                          <button class="btn--cart-btn">APPLY</button>
-                        </div>
-                      </div>
+<!--                      <div class="promotional-code">-->
+<!--                        <p class="mb-2">Enter a promotional code</p>-->
+<!--                        <div class="promotional-code&#45;&#45;input-group d-flex">-->
+<!--                          <input type="text" class="form-control mr-3">-->
+<!--                          <button class="btn&#45;&#45;cart-btn">APPLY</button>-->
+<!--                        </div>-->
+<!--                      </div>-->
                       <div class="total d-flex align-items-center justify-content-between">
                         <p>Total</p>
                         <span class="total-price">৳1480</span>
                       </div>
                       <div class="checkout-btn">
-                          <button class="btn--cart-btn w-100">GO TO SECURE CHECKOUT</button>
+                          <button @click="onCheckout()" class="btn--cart-btn w-100">GO TO SECURE CHECKOUT</button>
                       </div>
                       </form>
                   </div>
@@ -243,7 +231,7 @@
           .then (response =>
           {
               this.cart = response.data.data
-            console.log(this.cart);
+            console.log(this.cart, 'cart');
               for (let i=0;i<this.cart.length;i++) {
                 this.$api.get('base-price/game-calculation/' + this.cart[i].game.data.id + '/' + this.lendWeek )
                     .then (response => {

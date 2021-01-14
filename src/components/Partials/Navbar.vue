@@ -69,7 +69,7 @@
                                         
                         </div>
                         <div class="gamehub-input-group--content">
-                            <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                            <router-link to="/add-to-cart"><i class="fas fa-shopping-cart"></i></router-link>
                         </div>
 
                         
@@ -101,7 +101,6 @@
         methods: {
           clickProfile() {
             this.$root.$emit('rentPost');
-            console.log("hello")
           },
             searchGame() {
                 console.log(this.result)
@@ -122,7 +121,6 @@
                 this.modal = false;
             },
             onLogout() {
-                // this.$store.dispatch('clearCart');
                 this.$store.dispatch('logout');
                 this.$store.state.postId = [];
                 console.log(this.$store.state.postId, 'postId');

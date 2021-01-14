@@ -1545,7 +1545,7 @@ html {
 
 .gamehub-input-group--content:last-child {
   margin-right: 0;
-  margin-left: 20px;
+  margin-left: 30px;
 }
 
 @media (max-width: 991px) {
@@ -1582,7 +1582,6 @@ html {
 
 .gamehub-input-group--content:nth-child(2) {
   margin-left: 30px;
-  margin-right: 20px;
   height: 40px;
 }
 
@@ -1626,7 +1625,6 @@ html {
 }
 
 .gamehub-input-group--content:nth-child(2) .complete-sign-in {
-  margin-right: 20px;
   cursor: pointer;
   position: relative;
 }
@@ -3077,7 +3075,6 @@ html {
 .login-form .form-group label {
   font-size: 20px;
   font-weight: normal;
-  font-family: 'circular-normal';
 }
 
 .remember-me input, .remember-me label {

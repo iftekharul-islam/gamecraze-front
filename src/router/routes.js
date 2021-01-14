@@ -73,7 +73,7 @@ let router = new Router({
             path: '/email-registration',
             component: EmailRegistration,
             meta: {
-                requiresAuth: true
+                requiresAuth: false
             }
         },
         {

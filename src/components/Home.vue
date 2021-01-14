@@ -156,36 +156,12 @@
             </div>
             <div class="container">
                 <div class="col-12">
-                    <div id="owl-video" class="owl-carousel owl-theme">
-                        <div class="item">
+                    <div id="owl-video" class="owl-carousel owl-theme" v-if="videos.length">
+                        <div class="item" v-for="(video, index) in videos" :key="index">
                             <div class="featured-videos">
-                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
+                                <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
                             </div>
                        </div>
-                        <div class="item">
-                            <div class="featured-videos">
-                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="featured-videos">
-                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="featured-videos">
-                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="featured-videos">
-                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="featured-videos">
-                                <iframe src="https://www.youtube.com/embed/xIl2z5wwjdA" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -193,84 +169,82 @@
         <!-- footer -->
         <footer class="footer-section">
              <div class="footer-section--content">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-md-10 mx-auto">
-                                <div class="footer-top">
-                                <a href="#" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
-                                <div class="footer-top--right">
-                                    <span>Sign up for our newsletter.</span>
-                                    <div class="footer-top--right-input-group">
-                                        <div class="footer-top--right-input">
-                                            <input type="text" class="" placeholder="E-mail address">
-                                        </div>
-                                        <button class="btn gamehub-search-btn" type="search">
-                                            <i class="far fa-envelope"></i>
-                                        </button>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 mx-auto">
+                            <div class="footer-top">
+                            <a href="#" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
+                            <div class="footer-top--right">
+                                <span>Sign up for our newsletter.</span>
+                                <div class="footer-top--right-input-group">
+                                    <div class="footer-top--right-input">
+                                        <input type="text" class="" placeholder="E-mail address">
                                     </div>
+                                    <button class="btn gamehub-search-btn" type="search">
+                                        <i class="far fa-envelope"></i>
+                                    </button>
                                 </div>
                             </div>
-                            </div>
                         </div>
-                    </div>
-            </div>
-
-        <div class="footer-middle">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10 mx-auto">
-                        <div class="row">
-                            <div class="col-6 col-md-3">
-                        <div class="footer-menu-content">
-                            <ul>
-                                <li><a href="#">Company</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Join Us</a></li>
-                                <li><a href="#">Sponsors</a></li>
-                                <li><a href="/contacts">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="footer-menu-content">
-                            <ul>
-                                <li><a href="#">Company</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Join Us</a></li>
-                                <li><a href="#">Sponsors</a></li>
-                                <li><a href="/contacts">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="footer-menu-content">
-                            <ul>
-                                <li><a href="#">Company</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Join Us</a></li>
-                                <li><a href="#">Sponsors</a></li>
-                                <li><a href="/contacts">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="col-6 col-md-3">
-                        <div class="footer-menu-content">
-                            <ul>
-                                <li><a href="#">Company</a></li>
-                                <li><a href="#">About</a></li>
-                                <li><a href="#">Join Us</a></li>
-                                <li><a href="#">Sponsors</a></li>
-                                <li><a href="/contacts">Contact</a></li>
-                            </ul>
-                        </div>
-                    </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-
+            <div class="footer-middle">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-10 mx-auto">
+                            <div class="row">
+                                <div class="col-6 col-md-3">
+                            <div class="footer-menu-content">
+                                <ul>
+                                    <li><a href="#">Company</a></li>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Join Us</a></li>
+                                    <li><a href="#">Sponsors</a></li>
+                                    <li><a href="/contacts">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="footer-menu-content">
+                                <ul>
+                                    <li><a href="#">Company</a></li>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Join Us</a></li>
+                                    <li><a href="#">Sponsors</a></li>
+                                    <li><a href="/contacts">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="footer-menu-content">
+                                <ul>
+                                    <li><a href="#">Company</a></li>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Join Us</a></li>
+                                    <li><a href="#">Sponsors</a></li>
+                                    <li><a href="/contacts">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="footer-menu-content">
+                                <ul>
+                                    <li><a href="#">Company</a></li>
+                                    <li><a href="#">About</a></li>
+                                    <li><a href="#">Join Us</a></li>
+                                    <li><a href="#">Sponsors</a></li>
+                                    <li><a href="/contacts">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="footer-section--content">
                 <div class="container">
                      <div class="row">
@@ -302,7 +276,8 @@
                 upcomingGames: [],
                 rents: [],
                 articles: [],
-                isLoggedIn: false
+                isLoggedIn: false,
+                videos: []
             }
         },
         methods: {
@@ -447,6 +422,32 @@
                     }
                 });
             },
+            carouselVideo: function () {
+                $('#owl-video').owlCarousel({
+                    // stagePadding: 150,
+                    center: true,
+                    loop: true,
+                    margin: 10,
+                    nav: true,
+                    // autoplay:true,
+                    dots:false,
+                    navText: [
+                        '<i class="fas fa-arrow-left"></i>',
+                        '<i class="fas fa-arrow-right"></i>'
+                    ],
+                    responsive:{
+                        0:{
+                            items: 1,
+                            dots:true,
+                            nav: false,
+                        },
+                        768:{
+                            items: 2,
+
+                        }
+                    }
+                });
+            },
             getTrendingGames: function () {
                 this.$api.get('games/trending?include=game,game.assets,game.genres,game.platforms').then(response => {
                     var vm = this;
@@ -484,6 +485,17 @@
                     }
                 });
             },
+            getFeturedVideo: function (number) {
+                this.$api.get('featured-videos?number=' + number).then(response => {
+                    if (response.status == 200) {
+                        let vm = this;
+                        vm.videos = response.data.data;
+                        Vue.nextTick(function() {
+                            vm.carouselVideo();
+                        }.bind(vm));
+                    }
+                });
+            },
             setReminder: function(gameId) {
                 if (!this.isLoggedIn) {
                     this.$toaster.warning('Please login to set reminder');
@@ -503,6 +515,11 @@
                     }
                     this.$toaster.warning(response.data.message);
                 })
+            },
+            getVideoIdByURL: function(url) {
+                var regExp = /^https?\:\/\/(?:www\.youtube(?:\-nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*\&)?vi?=|\&vi?=|\?(?:.*\&)?vi?=)([^#\&\?\n\/<>"']*)/i;
+                var match = url.match(regExp);
+                return (match && match[1].length==11)? match[1] : false;
             }
         },
         computed: {
@@ -515,6 +532,7 @@
             this.getNewGames();
             this.getRentGames();
             this.getArticles();
+            this.getFeturedVideo(5);
             if (this.$store.getters.ifAuthenticated) {
                 this.isLoggedIn = true;
             }

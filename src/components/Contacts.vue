@@ -12,65 +12,108 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="map">
-                            <img src="../assets/img/map.png" alt="map" class="img-fluid">
+                            <a href="https://goo.gl/maps/K1gTqktfgaojX44o9" target="_blank" title="View location in google map">
+                                <img src="../assets/img/map.png" alt="map" class="img-fluid">
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-6 mt-4 mt-md-0">
                         <div class="contact-form">
                             <h2>CONTACT US</h2>
-                            <form action="#">
-                                <div class="form-row">
-                                    <div class="form-group col-md-6">
-                                        <label for="firstName">First name</label>
-                                        <input type="text" class="form-control" id="firstName">
+                            <ValidationObserver v-slot="{ handleSubmit }">
+                                <form @submit.prevent="handleSubmit(sendMail)" method="post" id="contactForm">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="firstName">First name</label>
+                                            <ValidationProvider name="first_name" rules="required" v-slot="{ errors }">
+                                                <input type="text" class="form-control" name="first_name" id="firstName" value="" v-model="form.first_name">
+                                                <span class="error-message">{{ errors[0] }}</span>
+                                            </ValidationProvider>
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="lastName">Last name</label>
+                                            <ValidationProvider name="last_name" rules="required" v-slot="{ errors }">
+                                                <input type="text" class="form-control" name="last_name" id="lastName" value="" v-model="form.last_name">
+                                                <span class="error-message">{{ errors[0] }}</span>
+                                            </ValidationProvider>
+                                        </div>
                                     </div>
-                                    <div class="form-group col-md-6">
-                                        <label for="lastName">Last name</label>
-                                        <input type="text" class="form-control" id="lastName">
+                                    <ValidationProvider name="number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
+                                        <div class="form-group">
+                                            <label for="phone">Phone</label>
+                                                <input type="tel" @keypress="isNumber($event)" class="form-control country-number mb-2" v-model="form.phone_number" name="phone"/>
+                                                <span class="error-message">{{ errors[0] }}</span>
+                                        </div>
+                                    </ValidationProvider>
+                                    <div class="form-group">
+                                        <label for="contactmail">Email </label>
+                                        <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
+                                            <input type="email" class="form-control" name="email" id="contactmail" v-model="form.email" aria-describedby="Contact email">
+                                            <span class="error-message">{{ errors[0] }}</span>
+                                        </ValidationProvider>
                                     </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" id="phone" aria-describedby="emailHelp">
-                                </div>
-                                <div class="form-group">
-                                    <label for="contactmail">Email </label>
-                                    <input type="email" class="form-control" id="contactmail" aria-describedby="emailHelp">
-                                </div>
-                                <div class="form-group">
-                                    <label for="contactmessage">Message</label>
-                                    <textarea class="form-control" id="contactmessage" rows="3"></textarea>
-                                </div>
-                                <button class="btn--secondery submit-btn"><span>Submit</span></button>
-                            </form>
+                                    <div class="form-group">
+                                        <label for="contactmessage">Message</label>
+                                        
+                                        <ValidationProvider name="message" rules="required" v-slot="{ errors }">
+                                            <textarea class="form-control" id="contactmessage" rows="3" v-model="form.message"></textarea>
+                                            <span class="error-message">{{ errors[0] }}</span>
+                                        </ValidationProvider>
+                                    </div>
+                                    <button class="btn--secondery submit-btn">
+                                        <span class="mr-2">Submit</span>
+                                        <i v-if="isLoading" class="spinner-border spinner-border-sm"></i>
+                                    </button>
+                                </form>
+                            </ValidationObserver>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-<!--        <div class="container mt-4">-->
-<!--            <div class="w-50 m-0 m-auto">-->
-<!--                <h3 class="text-center">Contact Form</h3>-->
-<!--                <script type="application/javascript">-->
-<!--                    hbspt.forms.create({-->
-<!--                        css: '',-->
-<!--                        cssRequired: '',-->
-<!--                        portalId: "7914426",-->
-<!--                        formId: "94f62086-f74a-4d36-b32b-67a53916ecb9"-->
-<!--                    });-->
-<!--                </script>-->
-<!--            </div>-->
-<!--        </div>-->
-
     </div>
 </template>
 
 <script>
-
     export default {
         data() {
             return {
+                form: {
+                    first_name: '',
+                    last_name: '',
+                    email: "",
+                    phone_number: "",
+                    message:'',
+                },
+                isLoading: false,
+            }
+        },
+        methods: {
+            isNumber: function(evt) {
+              evt = (evt) ? evt : window.event;
+              var charCode = (evt.which) ? evt.which : evt.keyCode;
+              if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.form.phone_number.length > 10) {
+                evt.preventDefault();
+              } else {
+                return true;
+              }
+            },
+            sendMail: function() {
+                this.isLoading = true;
+                this.$api.post('contact', this.form).then(response => {
+                    this.isLoading = false;
+                    if (response.data.error === false) {
+                        this.isLoading = false;
+                        this.$toaster.success(response.data.message);
+                        document.querySelector("#contactForm").reset();
+                        return;
+                    }
 
+                    this.$toaster.warning('Cound not send your message. Try sometime later.');
+                }).catch(error => {
+                    console.error(error)
+                    this.isLoading = false
+                });
             }
         }
     }

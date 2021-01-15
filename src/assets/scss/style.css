@@ -2051,7 +2051,7 @@ html {
 @media (max-width: 1500px) {
   .trending-section .item .trending-image img {
     left: -46px;
-    width: 485px;
+    width: 495px;
   }
 }
 
@@ -2506,22 +2506,35 @@ html {
 .upcoming-section .item .upcoming-image img {
   position: absolute;
   left: -75px;
-  width: 520px;
+  width: 450px;
   height: 238px;
-  -webkit-transform: skew(30deg, 0deg);
-          transform: skew(30deg, 0deg);
+  -webkit-transform: skew(21deg, 0deg);
+          transform: skew(21deg, 0deg);
+}
+
+@media (max-width: 1800px) {
+  .upcoming-section .item .upcoming-image img {
+    left: -46px;
+    width: 470px;
+  }
 }
 
 @media (max-width: 1500px) {
   .upcoming-section .item .upcoming-image img {
-    left: -55px;
+    left: -46px;
+    width: 495px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .upcoming-section .item .upcoming-image img {
+    width: 430px;
   }
 }
 
 @media (max-width: 1200px) {
   .upcoming-section .item .upcoming-image img {
-    left: -70px;
-    width: 600px;
+    width: 597px;
   }
 }
 
@@ -2662,8 +2675,8 @@ html {
 
 .owl-upcoming--item {
   position: relative;
-  -webkit-transform: skew(-30deg);
-          transform: skew(-30deg);
+  -webkit-transform: skew(-21deg);
+          transform: skew(-21deg);
 }
 
 @media (max-width: 768px) {

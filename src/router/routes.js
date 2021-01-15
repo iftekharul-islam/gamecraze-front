@@ -128,7 +128,7 @@ let router = new Router({
             name: 'NoticeBoard',
             component: NoticeBoard,
             meta: {
-                requiresAuth: false
+                requiresAuth: true
             }
         },
         {

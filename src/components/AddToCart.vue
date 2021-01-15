@@ -105,8 +105,8 @@
                             <tr v-for="(item, index) in cart" :key="index">
                                 <td scope="col">{{ item.game.data.name }}</td>
                                 <td scope="col">{{ price[index] }}</td>
-                                <td scope="col">4</td>
-                                <td scope="col"><div class="d-flex align-items-center justify-content-between">{{price[index]}} <div class="item-del"><i class="fas fa-trash-alt"></i></div></div></td>
+                                <td scope="col">{{ lendWeek[index] }}</td>
+                                <td scope="col"><div class="d-flex align-items-center justify-content-between">{{price[index]}} <div class="item-del" @click="onRemoveCartItem(index)"><i class="fas fa-trash-alt"></i></div></div></td>
                             </tr>
                             </tbody>
                         </table>
@@ -120,7 +120,7 @@
                       </div>
                       <div class="subtotal d-flex align-items-center justify-content-between">
                         <p>Subtotal</p>
-                        <span class="subtotal-price">৳1480</span>
+                        <span class="subtotal-price">৳{{ totalPrice }}</span>
                       </div>
 <!--                      <div class="promotional-code">-->
 <!--                        <p class="mb-2">Enter a promotional code</p>-->
@@ -131,7 +131,7 @@
 <!--                      </div>-->
                       <div class="total d-flex align-items-center justify-content-between">
                         <p>Total</p>
-                        <span class="total-price">৳1480</span>
+                        <span class="total-price">৳{{ totalPrice }}</span>
                       </div>
                       <div class="checkout-btn">
                           <button @click="onCheckout()" class="btn--cart-btn w-100">GO TO SECURE CHECKOUT</button>
@@ -214,7 +214,7 @@
                       this.$store.dispatch('removePostId', index)
                         this.$store.state.totalAmount = 0;
                         for (let i=0;i<this.cart.length;i++) {
-                            this.$store.state.totalAmount = this.$store.state.totalAmount + this.price ;;
+                            this.$store.state.totalAmount = this.$store.state.totalAmount + this.price ;
                         }
                       swal("Poof! Your imaginary file has been deleted!", {
                         icon: "success",

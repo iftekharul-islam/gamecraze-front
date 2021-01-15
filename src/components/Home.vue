@@ -251,7 +251,7 @@
                              <div class="footer-bottom">
                                 <p>©2020 Game Hub Inc.</p>
                                 <div class="footer-bottom--social">
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="https://www.facebook.com/adda.gamehub" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                     <a href="#"><i class="fab fa-twitter"></i></a>
                                     <a href="#"><i class="fab fa-instagram"></i></a>
                                     <a href="#"><i class="fab fa-youtube"></i></a>

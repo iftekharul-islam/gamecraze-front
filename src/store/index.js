@@ -207,7 +207,7 @@ export const storage = {
             context.commit('setPhoneNumber', payload)
         },
         setNumberExist (context, payload) {
-            context.commit('setNumberExist', payload)
+            context.commit('setNumberExist', payload);
         },
         setEmail (context, payload) {
             context.commit('setEmail', payload)
@@ -383,13 +383,12 @@ export const storage = {
                             commit('setNotSetPassword', false);
                         }
                         else {
-                            // this.$emit('stopLoader');
                             commit('setSetupPasswordUser', response.data.user);
                             localStorage.setItem('setupPasswordUser', JSON.stringify(response.data.user))
                             // commit('setPasswordPopUp', true);
                             commit('setEmailLoader', false);
                             if (response.data.isPaswordEmpty) {
-                                swal('Reset Password', 'A verification email has been sent. Please check your email.', 'success');
+                                commit('setPasswordPopUp', true);
                             }
                         }
                     })
@@ -419,6 +418,9 @@ export const storage = {
             localStorage.setItem('user', JSON.stringify(authData.user))
             localStorage.removeItem('setupPasswordUser')
             router.push('/').catch(err => { });
+        },
+        hidePasswordResetPopup({ commit }, payload) {
+            commit('setPasswordPopUp', payload);
         }
     },
 }

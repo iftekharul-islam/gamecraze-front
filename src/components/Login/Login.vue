@@ -58,12 +58,13 @@
                             </li>
                         </ul>
 
-                        <!-- <div class="password-setup-popup" v-if="$store.state.setPasswordPopUp">
+                        <div class="password-setup-popup" v-if="$store.state.setPasswordPopUp">
                             <div class="password-setup-popup--content">
-                                <p>Please Click this link and set your password</p>
-                                <router-link to="/registration">ok</router-link>
+                                <p>A verification email has been sent. Please check your email.</p>
+                                <!-- <router-link to="/registration">ok</router-link> -->
+                                <button @click="hidePopUp">ok</button>
                             </div>
-                        </div> -->
+                        </div>
 
                         <!-- form -->
                         <ValidationObserver v-slot="{ handleSubmit }"
@@ -321,6 +322,9 @@
             },
             changeWrongOtp() {
                 this.$store.commit('setWrongOTP', false)
+            },
+            hidePopUp() {
+                this.$store.dispatch('hidePasswordResetPopup', false)
             }
         },
         created() {

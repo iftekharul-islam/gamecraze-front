@@ -45,7 +45,7 @@
                                     <div class="form-group">
                                         <label for="Phone">Phone number</label>
                                         <ValidationProvider name="Phone Number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
-                                            <input @keypress="isNumber($event)" type="text" class="form-control" id="Phone" value="" v-model="form.phone_number">
+                                            <input @change="changePhoneValidation" @keypress="isNumber($event)" type="text" class="form-control" id="Phone" value="" v-model="form.phone_number">
                                             <span class="error-message">{{ errors[0] }}</span>
                                             <span class="error-message d-block" v-if="$store.state.numberExists">Phone number already exists</span>
                                         </ValidationProvider>
@@ -105,17 +105,20 @@
             }
         },
         methods: {
-          isNumber: function(evt) {
-            evt = (evt) ? evt : window.event;
-            var charCode = (evt.which) ? evt.which : evt.keyCode;
-            if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.form.phone_number.length > 10) {
-              evt.preventDefault();;
-            } else {
-              return true;
-            }
-          },
+            isNumber: function(evt) {
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.form.phone_number.length > 10) {
+                    evt.preventDefault();;
+                } else {
+                    return true;
+                }
+            },
             onSubmit: function () {
                 this.$store.dispatch('emailVerify', this.form)
+            },
+            changePhoneValidation: function() {
+                this.$store.dispatch('setNumberExist', false);
             }
         },
         created () {

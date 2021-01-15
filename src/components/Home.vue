@@ -178,10 +178,11 @@
                                 <span>Sign up for our newsletter.</span>
                                 <div class="footer-top--right-input-group">
                                     <div class="footer-top--right-input">
-                                        <input type="text" class="" placeholder="E-mail address">
+                                        <input type="email" class="" placeholder="E-mail address" v-model="email">
                                     </div>
-                                    <button class="btn gamehub-search-btn" type="search">
-                                        <i class="far fa-envelope"></i>
+                                    <button class="btn gamehub-search-btn" @click="subscribe" type="search" :disabled="isSubscring">
+                                        <i v-if="!isSubscring" class="far fa-envelope"></i>
+                                        <i v-if="isSubscring" class="spinner-border spinner-border-sm"></i>
                                     </button>
                                 </div>
                             </div>
@@ -277,7 +278,10 @@
                 rents: [],
                 articles: [],
                 isLoggedIn: false,
-                videos: []
+                videos: [],
+                email: '',
+                reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
+                isSubscring: false
             }
         },
         methods: {
@@ -479,7 +483,7 @@
                 this.$swal("Rent is now unavailable!", "We will provide rent facility very soon!")
             },
             getArticles: function () {
-                this.$api.get('top-articles?number=5').then(response => {
+                this.$api.get('featured-article?number=5').then(response => {
                     if (response.status == 200) {
                         this.articles = response.data.data;
                     }
@@ -520,6 +524,23 @@
                 var regExp = /^https?\:\/\/(?:www\.youtube(?:\-nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*\&)?vi?=|\&vi?=|\?(?:.*\&)?vi?=)([^#\&\?\n\/<>"']*)/i;
                 var match = url.match(regExp);
                 return (match && match[1].length==11)? match[1] : false;
+            },
+            subscribe: function() {
+                if (this.email == '' || !this.reg.test(this.email)) {
+                    this.$toaster.warning('Enter Valid Email');
+                    return;
+                } 
+                this.isSubscring = true;
+                this.$api.post('subscribe/', {email: this.email}, '').then(response => {
+                    if (response.status == 200) {
+                        this.email = null;
+                        this.$toaster.success(response.data.message);
+                    } else {
+                        this.$toaster.warning(response.data.message);
+                    }
+                    
+                    this.isSubscring = false;
+                })
             }
         },
         computed: {

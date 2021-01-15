@@ -75,6 +75,7 @@
                                         
                         </div>
                         <div class="gamehub-input-group--content">
+
                             <router-link to="/add-to-cart"><i class="fas fa-shopping-cart"><span class="badge gamehub-nadge navbar-badge">{{ $store.state.postId.length }}</span></i></router-link>
                         </div>
 

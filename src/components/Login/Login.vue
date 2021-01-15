@@ -75,7 +75,7 @@
                                     <label for="username1" class="">Email address</label>
                                     <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                                         <input @click="changeErrorMessage" type="text" class="form-control mb-2"
-                                               id="username1" v-model="form.email">
+                                               id="username1" v-model="form.email" placeholder="Please enter your Email">
                                         <span class="error-message">{{ errors[0] }}</span>
                                     </ValidationProvider>
                                 </div>
@@ -269,6 +269,7 @@
                 if (this.loginOption === "Email") {
                     this.$store.dispatch('setPhoneNumber', this.phone_number)
                     this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
+
                          console.log('send otp: ', response.data);
                         if (response.data.error === false) {
                             this.isLoading = false
@@ -308,7 +309,9 @@
                 this.isResendLoading = true
                 this.$store.dispatch('setPhoneNumber', this.phone_number)
                 this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
+
                      console.log('resent otp: ', response.data);
+
                     if (response.data.error === false) {
                         this.isResendLoading = false
                         this.resend = true

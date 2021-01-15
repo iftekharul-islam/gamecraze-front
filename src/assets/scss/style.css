@@ -1293,7 +1293,7 @@ html {
 }
 
 .gamehub-menu.gamehub-menu-active {
-  background: #141A27;
+  background: #141a27b5;
 }
 
 @media (max-width: 575px) {
@@ -1340,19 +1340,9 @@ html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-left: 100px;
-}
-
-@media (max-width: 1400px) {
-  .gamehub-menu-collapse ul {
-    margin-left: 60px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .gamehub-menu-collapse ul {
-    margin-left: 50px;
-  }
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 @media (max-width: 991px) {
@@ -1560,9 +1550,9 @@ html {
   position: relative;
 }
 
-.gamehub-input-group--content:last-child i .gamehub-nadge {
+.gamehub-input-group--content:last-child i .gamehub-badge {
   background: #66CC33;
-  color: #141A27;
+  color: #fff;
   position: absolute;
   top: -15px;
   right: -23px;
@@ -1897,6 +1887,7 @@ html {
   text-transform: uppercase;
   font-style: italic;
   font-weight: bold;
+  text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
 .gamehub-heading span {
@@ -2097,7 +2088,7 @@ html {
 
 .trending-section .owl-nav button {
   position: absolute;
-  top: -235px;
+  top: -242px;
   width: 50px;
   height: 50px;
   -webkit-transform: skewX(-13deg);
@@ -2568,7 +2559,7 @@ html {
 
 .upcoming-section .owl-nav button {
   position: absolute;
-  top: -235px;
+  top: -242px;
   width: 50px;
   height: 50px;
   -webkit-transform: skewX(-13deg);
@@ -3135,13 +3126,7 @@ html {
   cursor: text;
 }
 
-@media (max-width: 1500px) {
-  .login-form ul li {
-    font-size: 20px;
-  }
-}
-
-@media (max-width: 1500px) {
+@media (max-width: 992px) {
   .login-form ul li {
     font-size: 16px;
   }
@@ -3155,6 +3140,23 @@ html {
   border-radius: 0;
   border: none;
   height: 50px;
+  color: #0B0F18;
+}
+
+.login-form .form-group input::-webkit-input-placeholder {
+  color: #0B0F18;
+}
+
+.login-form .form-group input:-ms-input-placeholder {
+  color: #0B0F18;
+}
+
+.login-form .form-group input::-ms-input-placeholder {
+  color: #0B0F18;
+}
+
+.login-form .form-group input::placeholder {
+  color: #0B0F18;
 }
 
 .login-form .form-group label {
@@ -3343,7 +3345,7 @@ html {
 .title-section {
   background: url(../img/title-bg.png);
   background-repeat: no-repeat;
-  height: 300px;
+  height: 320px;
   background-size: cover;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3359,6 +3361,8 @@ html {
 .contact-title h2 {
   font-size: 22px;
   font-family: 'Roboto Condensed', sans-serif;
+  font-weight: 700;
+  font-style: italic;
 }
 
 @media (min-width: 992px) {
@@ -3566,6 +3570,11 @@ html {
 .games-categories-section--categories label::before {
   border-radius: 3px;
   background: transparent;
+  left: -1.1rem;
+}
+
+.games-categories-section--categories label {
+  padding-left: 10px;
 }
 
 .games-categories-section--categories input:checked ~ label:before {
@@ -3653,6 +3662,7 @@ html {
   border: 1px solid #FFD715;
   border-radius: 10px;
   padding: 20px;
+  background: #0B0F18;
 }
 
 .clear-filters:hover {
@@ -3811,6 +3821,7 @@ html {
 
 .games-header-section--display-image img {
   width: 100%;
+  height: 100%;
 }
 
 .games-header-section--display-image::after {
@@ -3921,7 +3932,7 @@ html {
 
 .screenshot-video .owl-nav {
   position: absolute;
-  top: -90px;
+  top: -85px;
   right: 0;
 }
 
@@ -3940,8 +3951,13 @@ html {
   outline: none !important;
 }
 
+.screenshot-video .owl-nav.disabled,
+.screenshot-video .owl-dots.disabled {
+  display: block;
+}
+
 .screenshot-video .owl-dots {
-  margin-top: 30px;
+  margin-top: 30px !important;
 }
 
 .screenshot-video .owl-dots button span {
@@ -3964,6 +3980,10 @@ html {
 
 .screenshot-video .owl-item .item {
   margin-right: 10px;
+}
+
+.screenshot-video .owl-item .item img {
+  height: 146px;
 }
 
 .overview {
@@ -4495,7 +4515,6 @@ html {
 .user-profile-details--nav a.active {
   background: transparent !important;
   color: #fff;
-  border-bottom: 2px solid #fff;
 }
 
 .user-profile-details--nav a.active img {

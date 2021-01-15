@@ -171,7 +171,7 @@
              <div class="footer-section--content">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-10 mx-auto">
+                        <div class="col-md-11 ml-auto">
                             <div class="footer-top">
                             <a href="/" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
                             <div class="footer-top--right">
@@ -195,7 +195,7 @@
             <div class="footer-middle">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-10 mx-auto">
+                        <div class="col-md-11 ml-auto">
                             <div class="row">
                                 <div class="col-6 col-md-3">
                             <div class="footer-menu-content">
@@ -247,7 +247,7 @@
             <div class="footer-section--content">
                 <div class="container">
                      <div class="row">
-                         <div class="col-md-10 mx-auto">
+                         <div class="col-md-11 ml-auto">
                              <div class="footer-bottom">
                                 <p>©2020 Game Hub Inc.</p>
                                 <div class="footer-bottom--social">

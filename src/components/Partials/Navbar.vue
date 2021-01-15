@@ -128,9 +128,6 @@
             },
             onLogout() {
                 this.$store.dispatch('logout');
-                // this.$store.state.postId = [];
-                // console.log(this.$store.state.postId, 'postId');
-
             },
           clickHandler(item) {
             // event fired when clicking on the input

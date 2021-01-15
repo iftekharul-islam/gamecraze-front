@@ -33,17 +33,23 @@
             img {
                 position: absolute;
                 left: -75px;
-                width: 520px;
+                width: 450px;
                 height: 238px;
-                transform: skew(30deg, 0deg);
+                transform: skew(21deg, 0deg);
+                @include for-max-1800 {
+                    left: -46px;
+                    width: 470px;
+                }
                 @include for-max-1500 {
-                    left: -55px;
+                    left: -46px;
+                    width: 495px;
+                }
+                @include for-max-1300 {
+                    width: 430px;
                 }
                 @include for-max-1200 {
-                    left: -70px;
-                    width: 600px;
+                    width: 597px;
                 }
-               
                 @include for-max-992 {
                         left: -60px;
                         width: 506px;
@@ -150,7 +156,7 @@
 }
 .owl-upcoming--item {
     position: relative;
-    transform: skew(-30deg);
+    transform: skew(-21deg);
     @include for-max-768 {
         transform: skew(0deg);
     }

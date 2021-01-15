@@ -208,7 +208,6 @@ export const storage = {
         },
         setNumberExist (context, payload) {
             context.commit('setNumberExist', payload);
-            console.log('pp', payload)
         },
         setEmail (context, payload) {
             context.commit('setEmail', payload)

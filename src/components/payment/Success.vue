@@ -5,7 +5,7 @@
                 <div class="card no-post-found-card mb-0">
                     <div class="loading text-center">
                         <div id="loading-wrapper">
-                            <div id="loading-text">LOADING</div>
+                            <div id="loading-text" style="color:red">LOADING</div>
                             <div id="loading-content"></div>
                         </div>
                     </div>
@@ -24,6 +24,7 @@
                 }
             }
             this.$api.get('success-payment', config).then(response => {
+                console.log('sucess: ', response);
                 if (response.data.error === false) {
                     var config = {
                         headers: {
@@ -33,8 +34,10 @@
                     var data = {
                         postId: this.$store.state.postId,
                         week: this.$store.state.lendWeek,
-                        paymentMethod: 'online'
+                        paymentMethod: 'online',
+                        checkpointId: this.$store.state.checkpointId
                     };
+                    console.log('data: ', data);
                     this.$api.post('lend-game', data, config).then(resp => {
                         if (resp.data.error === false) {
                             this.$store.dispatch('clearCart');

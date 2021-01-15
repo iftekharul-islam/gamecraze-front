@@ -1,5 +1,5 @@
 .cart-section {
-    padding-top: 150px;
+    padding-top: 100px;
     padding-bottom: 150px;
     @include for-max-992 {
         padding: 50px 0;
@@ -45,12 +45,29 @@
                         &:first-of-type {
                             border-top-left-radius: 10px;
                             border-bottom-left-radius: 10px;
+                            width: 250px;
                         }
                         &:last-of-type {
                             border-top-right-radius: 10px;
                             border-bottom-right-radius: 10px;
+                            // display: flex;
+                            // align-items: center;
+                            // justify-content: space-between;
                         }
                     }
+                }
+            }
+            .item-del {
+                background: $secondery;
+                width: 35px;
+                height: 35px;
+                border-radius: 5px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                i {
+                    color: $game-details;
                 }
             }
         }

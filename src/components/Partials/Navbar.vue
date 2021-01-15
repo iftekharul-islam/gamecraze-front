@@ -61,9 +61,15 @@
                                 <div v-if="auth" class="dropdown-toggle complete-sign-in" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span><span v-else>{{ this.$store.state.user.phone_number }}</span>
                                  <img src="../../assets/img/sss.jpg" alt="profile" class="">
                                             <div class="dropdown-menu gamehub-dropdown-menu">
-                                                <router-link to="/profile" class="dropdown-item" href="#">Profile</router-link>
-                                                <router-link to="/profile" class="dropdown-item" href="#">My Account</router-link>
-                                                <a @click="onLogout" to="" class="dropdown-item" href="#">Log out</a>
+                                                <div class="gamehub-dropdown-menu--top">
+                                                  <router-link to="/profile" class="dropdown-item" href="#">Profile</router-link>
+                                                  <router-link to="/profile" class="dropdown-item" href="#">My Account</router-link>
+                                                  <router-link to="/profile" class="dropdown-item" @click.native="clickProfile()">Post For Rent</router-link>
+                                                  <router-link to="/support" class="dropdown-item" href="#">support</router-link>
+                                                </div>
+                                                <div class="gamehub-dropdown-menu--bottom">
+                                                  <a @click="onLogout" to="" class="dropdown-item" href="#">Log out</a>
+                                                </div>
                                             </div>
                                 </div>
                                         

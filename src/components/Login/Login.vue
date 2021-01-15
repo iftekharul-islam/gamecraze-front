@@ -142,11 +142,11 @@
                                 </div>
                                 <div v-if="showOTP">
                                     <div class="form-group">
-                                        <span class="success-message" v-if="resend">Insert 6 digits code sent to your phone <strong
+                                        <span class="success-message mt-4" v-if="resend">Insert 6 digits code sent to your phone <strong
                                                 style="color: white;">{{ form.phone_number }}</strong></span>
-                                        <span class="success-message"
+                                        <span class="success-message mt-4 d-block"
                                               v-if="!resend && !$store.state.wrongOTP && !$store.state.timeout && !$store.state.inactiveUser">Insert 6 digits code sent to your phone <strong
-                                                style="color: white;">{{ form.phone_number }}</strong></span><br>
+                                                style="color: white;">{{ form.phone_number }}</strong></span>
                                         <div class="otp-input-group">
                                             <v-otp-input
                                                     ref="otpInput"

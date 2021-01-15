@@ -8,7 +8,7 @@
          position: absolute;
          bottom: 0;
          width: 100%;
-         padding: 20px;
+         padding: 5px 20px;
          z-index: 99;
         //  transform: translate(0px, 199px);
         visibility: hidden;
@@ -24,6 +24,10 @@
             margin-left: auto;
             transform: skew(-21deg);
             border: 3px solid $secondery;
+            &.small-readmore {
+                width: 130px;
+                padding: 5px;
+            }
             span {
                 position: relative;
                 z-index: 9999;
@@ -42,10 +46,14 @@
 
     .noticed-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 353px 353px 353px;
         grid-template-rows: 200px;
         grid-auto-rows: 200px;
         grid-gap: 20px;
+        justify-content: center;
+        @include for-max-1200 {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
         @include for-max-575 {
             grid-template-columns: 1fr 1fr;
         }
@@ -84,4 +92,5 @@
             }
         }
     }
+    
   

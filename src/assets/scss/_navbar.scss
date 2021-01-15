@@ -327,8 +327,27 @@
     border-radius: 5px;
     background: $game-details;
     border: 1px solid $secondery;
-    padding: 20px;
-    top: 69px;
+    top: 59px;
+    &--top {
+        padding: 0 20px;
+        padding-top: 10px;
+    }
+    &--bottom {
+        padding: 0 20px;
+        padding-top: 10px;
+        position: relative;
+        &::after {
+            content: "";
+            width: 90%;
+            height: 1px;
+            background: $gray;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    }
     a {
         color: $text-light !important;
         margin-bottom: 15px;

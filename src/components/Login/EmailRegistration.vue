@@ -17,7 +17,7 @@
                                     <div class="form-group">
                                         <label for="email">Email address</label>
                                         <ValidationProvider name="email" rules="email" v-slot="{ errors }">
-                                            <input type="email" class="form-control cursor-none" id="email" value="" v-model="form.email" readonly>
+                                            <input type="email" class="form-control cursor-none gray" id="email" value="" v-model="form.email" readonly>
                                             <span class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                     </div>

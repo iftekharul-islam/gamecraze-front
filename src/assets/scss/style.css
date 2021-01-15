@@ -1717,8 +1717,30 @@ html {
   border-radius: 5px;
   background: #141A27;
   border: 1px solid #FFD715;
-  padding: 20px;
-  top: 69px;
+  top: 59px;
+}
+
+.gamehub-dropdown-menu--top {
+  padding: 0 20px;
+  padding-top: 10px;
+}
+
+.gamehub-dropdown-menu--bottom {
+  padding: 0 20px;
+  padding-top: 10px;
+  position: relative;
+}
+
+.gamehub-dropdown-menu--bottom::after {
+  content: "";
+  width: 90%;
+  height: 1px;
+  background: #808080;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
 }
 
 .gamehub-dropdown-menu a {
@@ -1973,9 +1995,9 @@ html {
 
 .trending-section .item .trending-image {
   position: relative;
-  -webkit-transform: skew(-30deg, 0deg);
-          transform: skew(-30deg, 0deg);
-  height: 238px;
+  -webkit-transform: skew(-21deg, 0deg);
+          transform: skew(-21deg, 0deg);
+  height: 234px;
   overflow: hidden;
   display: block;
   border-radius: 0;
@@ -1991,22 +2013,35 @@ html {
 .trending-section .item .trending-image img {
   position: absolute;
   left: -75px;
-  width: 520px;
-  height: 238px;
-  -webkit-transform: skew(30deg, 0deg);
-          transform: skew(30deg, 0deg);
+  width: 450px;
+  height: 234px;
+  -webkit-transform: skew(21deg, 0deg);
+          transform: skew(21deg, 0deg);
+}
+
+@media (max-width: 1800px) {
+  .trending-section .item .trending-image img {
+    left: -46px;
+    width: 470px;
+  }
 }
 
 @media (max-width: 1500px) {
   .trending-section .item .trending-image img {
-    left: -55px;
+    left: -46px;
+    width: 485px;
+  }
+}
+
+@media (max-width: 1300px) {
+  .trending-section .item .trending-image img {
+    width: 430px;
   }
 }
 
 @media (max-width: 1200px) {
   .trending-section .item .trending-image img {
-    left: -70px;
-    width: 600px;
+    width: 547px;
   }
 }
 
@@ -2720,7 +2755,7 @@ html {
   position: absolute;
   bottom: 0;
   width: 100%;
-  padding: 20px;
+  padding: 5px 20px;
   z-index: 99;
   visibility: hidden;
   opacity: 0;
@@ -2745,6 +2780,11 @@ html {
   border: 3px solid #FFD715;
 }
 
+.noticed-details a.small-readmore {
+  width: 130px;
+  padding: 5px;
+}
+
 .noticed-details a span {
   position: relative;
   z-index: 9999;
@@ -2766,12 +2806,22 @@ html {
 .noticed-grid {
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: 1fr 1fr 1fr;
-      grid-template-columns: 1fr 1fr 1fr;
+  -ms-grid-columns: 353px 353px 353px;
+      grid-template-columns: 353px 353px 353px;
   -ms-grid-rows: 200px;
       grid-template-rows: 200px;
   grid-auto-rows: 200px;
   grid-gap: 20px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media (max-width: 1200px) {
+  .noticed-grid {
+    -ms-grid-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr;
+  }
 }
 
 @media (max-width: 575px) {
@@ -4826,6 +4876,13 @@ html {
   color: #FFD715;
 }
 
+@media (min-width: 1200px) {
+  .set-password form {
+    width: 90%;
+    margin: auto;
+  }
+}
+
 .set-password form .form-group input {
   height: 50px;
   border-radius: 0;
@@ -5939,6 +5996,11 @@ h6 {
 @font-face {
   font-family: circular-book;
   src: url(../fonts/CircularStd-Book.ttf);
+}
+
+@font-face {
+  font-family: circular-std;
+  src: url(../fonts/Circular-Std.otf);
 }
 
 .section-heading {

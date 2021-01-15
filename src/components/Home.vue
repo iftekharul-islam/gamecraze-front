@@ -100,11 +100,11 @@
                         <router-link :to="{ path: '/game-details/' + game.id}" class="upcoming-image">
                             <img class="card-img-top" :src="game.poster_url" :alt="game.name"  v-if="game.poster_url">
                             <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
-                            <button class="set-reminder" @click.prevent="setReminder(game.id)" ><i class="fas fa-bell"></i></button>
+                            <!-- <button class="set-reminder" @click.prevent="setReminder(game.id)" ><i class="fas fa-bell"></i></button> -->
                         </router-link>
                         <div class="d-flex upcoming-order">
                             <router-link :to="{ path: '/game-details/' + game.id}"><span>View Details</span></router-link>
-                            <a href="javascript:void(0)"><span>Rent</span></a>
+                            <a href="javascript:void(0)"  @click.prevent="setReminder(game.id)"><span>Remind me</span></a>
                         </div>
                     </div>
                     <div class="upcoming-game--name-price d-flex justify-content-between">
@@ -131,19 +131,19 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-10 mx-auto">
+                    <div class="col-md-12 mx-auto">
                             <div class="noticed-grid">
                             <div class="notice-box" v-for="(article, index) in articles" :key="index"> 
                                 <img :src=article.thumbnail :alt="article.title" class="w-100">
                                 <div class="noticed-details">
-                                    <h6 v-if="index == 0">{{ article.title }}</h6>
-                                    <p v-if="index == 0"> {{ article.description.substring(0, 100) | strippedContent }}</p>
-                                    <router-link :to="{ name: 'NewsStory', params: { id: article.id }}" ><span>View More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
+                                    <h6 v-if="index == 0">{{ article.title.substring(0, 20) }}</h6>
+                                    <p v-if="index == 0"> {{ article.description.substring(0, 80) | strippedContent }}</p>
+                                    <router-link :to="{ name: 'NewsStory', params: { id: article.id }}" :class="{ 'small-readmore' : index != 0 }"><span>Read More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
                                 </div>
                             </div>
                         </div>
                         <div class="text-center mt-5">
-                            <a href="#" class="btn--secondery m-auto"><span>View All</span></a>
+                            <a href="#" class="btn--secondery m-auto "><span>View All</span></a>
                         </div>
                     </div>
                 </div>

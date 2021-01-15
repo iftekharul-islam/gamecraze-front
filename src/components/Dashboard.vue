@@ -182,7 +182,7 @@
                 this.$store.dispatch('pushPostId', this.modalData.id)
                 this.$store.dispatch('pushLendWeek', this.form.week)
                 this.$store.dispatch('pushCheckpointId', this.form.deliveryType)
-                return this.$router.push('/add-to-cart').then(err => {});
+                return this.$router.push('/cart').then(err => {});
 
               }
             },

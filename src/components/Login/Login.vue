@@ -268,6 +268,7 @@
                 if (this.loginOption === "Email") {
                     this.$store.dispatch('setPhoneNumber', this.phone_number)
                     this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
+                        console.log('send otp: ', response.data);
                         if (response.data.error === false) {
                             this.isLoading = false
                             setTimeout(() => {
@@ -306,6 +307,7 @@
                 this.isResendLoading = true
                 this.$store.dispatch('setPhoneNumber', this.phone_number)
                 this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
+                    console.log('otp: ', response.data);
                     if (response.data.error === false) {
                         this.isResendLoading = false
                         this.resend = true

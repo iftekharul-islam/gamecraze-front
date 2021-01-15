@@ -106,7 +106,7 @@
                                 <td scope="col">{{ item.game.data.name }}</td>
                                 <td scope="col">{{ price[index] }}</td>
                                 <td scope="col">4</td>
-                                <td scope="col">{{price[index]}}</td>
+                                <td scope="col"><div class="d-flex align-items-center justify-content-between">{{price[index]}} <div class="item-del"><i class="fas fa-trash-alt"></i></div></div></td>
                             </tr>
                             </tbody>
                         </table>
@@ -241,6 +241,12 @@
             console.log(this.price)
           });
     },
+    mounted () {
+            document.body.classList.add('body-position')
+        },
+        destroyed () {
+            document.body.classList.remove('body-position')
+        }
   }
 
 </script>

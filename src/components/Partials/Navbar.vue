@@ -75,7 +75,7 @@
                                         
                         </div>
                         <div class="gamehub-input-group--content">
-                            <router-link to="/add-to-cart"><i class="fas fa-shopping-cart"></i></router-link>
+                            <router-link to="/add-to-cart"><i class="fas fa-shopping-cart"><span class="badge gamehub-nadge navbar-badge">3</span></i></router-link>
                         </div>
 
                         

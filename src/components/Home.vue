@@ -483,7 +483,7 @@
                 this.$swal("Rent is now unavailable!", "We will provide rent facility very soon!")
             },
             getArticles: function () {
-                this.$api.get('featured-articles?number=5').then(response => {
+                this.$api.get('featured-article?number=5').then(response => {
                     if (response.status == 200) {
                         this.articles = response.data.data;
                     }

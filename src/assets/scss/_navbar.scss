@@ -2,7 +2,7 @@
     background: $primary;
     padding: 8px 0;
     &.gamehub-menu-active {
-        background: $game-details;
+        background: $trans-nav-bg;
     }
     @include for-max-575 {
         background: transparent;
@@ -33,13 +33,13 @@
     ul {
         margin: auto;
         display: flex;
-        margin-left: 100px;
-        @include for-max-1400 {
-            margin-left: 60px;
-        }
-        @include for-max-1200 {
-            margin-left: 50px;
-        }
+        justify-content: center;
+        // @include for-max-1400 {
+        //     margin-left: 60px;
+        // }
+        // @include for-max-1200 {
+        //     margin-left: 50px;
+        // }
         @include for-max-991 {
             display: block;
             margin-left: 0px;
@@ -195,9 +195,9 @@
                 font-size: 25px;
                 position: relative;
                 // badge
-                .gamehub-nadge {
+                .gamehub-badge {
                     background: $game-rating;
-                    color: $game-details;
+                    color: $text-light;
                     position: absolute;
                     top: -15px;
                     right: -23px;

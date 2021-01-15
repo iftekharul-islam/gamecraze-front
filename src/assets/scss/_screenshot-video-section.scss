@@ -6,7 +6,7 @@
     }
     .owl-nav {
         position: absolute;
-        top: -90px;
+        top: -85px;
         right: 0;
         button {
             width: 50px;
@@ -21,8 +21,14 @@
            
         }
     }
+    .owl-nav,
     .owl-dots {
-        margin-top: 30px;
+        &.disabled {
+            display: block;
+        }
+    }
+    .owl-dots {
+        margin-top: 30px !important;
         button {
             span {
                 width: 60px !important;
@@ -45,6 +51,9 @@
     .owl-item {
         .item {
             margin-right: 10px;
+            img {
+                height: 146px;
+            }
         }
     }
 }

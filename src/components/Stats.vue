@@ -24,8 +24,7 @@
                             <a href="#">SIGN IN FOR CUSTOMISED SUPPORT</a>
                         </div>
                         <div class="text-center">
-                            <!-- <h6>Top <span><img src="../assets/img/logo/gamehublogo.svg" alt="gr"></span> Support</h6> -->
-                            <h6>Support</h6>
+                            <h6>Stats</h6>
                         </div>
                         <!-- collapse -->
                             <div class="accordion" id="accordionExample">

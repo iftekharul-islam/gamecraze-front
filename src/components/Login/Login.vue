@@ -58,12 +58,13 @@
                             </li>
                         </ul>
 
-                        <!-- <div class="password-setup-popup" v-if="$store.state.setPasswordPopUp">
+                        <div class="password-setup-popup" v-if="$store.state.setPasswordPopUp">
                             <div class="password-setup-popup--content">
-                                <p>Please Click this link and set your password</p>
-                                <router-link to="/registration">ok</router-link>
+                                <p>A verification email has been sent. Please check your email.</p>
+                                <!-- <router-link to="/registration">ok</router-link> -->
+                                <button @click="hidePopUp">ok</button>
                             </div>
-                        </div> -->
+                        </div>
 
                         <!-- form -->
                         <ValidationObserver v-slot="{ handleSubmit }"
@@ -268,7 +269,8 @@
                 if (this.loginOption === "Email") {
                     this.$store.dispatch('setPhoneNumber', this.phone_number)
                     this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
-                        console.log('otp: ', response.data);
+
+                         console.log('send otp: ', response.data);
                         if (response.data.error === false) {
                             this.isLoading = false
                             setTimeout(() => {
@@ -307,7 +309,9 @@
                 this.isResendLoading = true
                 this.$store.dispatch('setPhoneNumber', this.phone_number)
                 this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
-                    console.log('otp: ', response.data);
+
+                     console.log('resent otp: ', response.data);
+
                     if (response.data.error === false) {
                         this.isResendLoading = false
                         this.resend = true
@@ -321,6 +325,9 @@
             },
             changeWrongOtp() {
                 this.$store.commit('setWrongOTP', false)
+            },
+            hidePopUp() {
+                this.$store.dispatch('hidePasswordResetPopup', false)
             }
         },
         created() {

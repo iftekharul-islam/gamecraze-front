@@ -34,6 +34,15 @@ import Fail from "../components/payment/Fail";
 import RentDetails from "../components/RentDetails";
 import RentPostedUser from "@/components/RentPostedUser";
 import Support from "../components/Support";
+import Faq from "../components/Faq";
+import About from '../components/About';
+import Join from '../components/JoinUs';
+import Sponsors from '../components/Sponsors';
+import Shop from '../components/Shop';
+import Privacy from '../components/Privacy';
+import Terms from '../components/Terms';
+import Forum from '../components/Forum';
+import Stats from '../components/Stats';
 
 let router = new Router({
     mode: 'history',
@@ -116,6 +125,78 @@ let router = new Router({
             }
         },
         {
+            path: '/frequently-asked-questions',
+            name: 'Faq',
+            component: Faq,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/about-us',
+            name: 'About',
+            component: About,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/join-us',
+            name: 'Join',
+            component: Join,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/sponsors',
+            name: 'Sponsors',
+            component: Sponsors,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/shop',
+            name: 'Shop',
+            component: Shop,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/privacy',
+            name: 'Privacy',
+            component: Privacy,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/terms',
+            name: 'Terms',
+            component: Terms,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/forum',
+            name: 'Forum',
+            component: Forum,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/stats',
+            name: 'Stats',
+            component: Stats,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
             path: '/contacts',
             name: 'Contacts',
             component: Contacts,
@@ -128,7 +209,7 @@ let router = new Router({
             name: 'NoticeBoard',
             component: NoticeBoard,
             meta: {
-                requiresAuth: false
+                requiresAuth: true
             }
         },
         {

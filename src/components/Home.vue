@@ -143,7 +143,7 @@
                             </div>
                         </div>
                         <div class="text-center mt-5">
-                            <a href="#" class="btn--secondery m-auto "><span>View All</span></a>
+                            <a href="/news" class="btn--secondery m-auto "><span>View All</span></a>
                         </div>
                     </div>
                 </div>
@@ -173,7 +173,7 @@
                     <div class="row">
                         <div class="col-md-10 mx-auto">
                             <div class="footer-top">
-                            <a href="#" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
+                            <a href="/" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
                             <div class="footer-top--right">
                                 <span>Sign up for our newsletter.</span>
                                 <div class="footer-top--right-input-group">
@@ -200,44 +200,42 @@
                                 <div class="col-6 col-md-3">
                             <div class="footer-menu-content">
                                 <ul>
-                                    <li><a href="#">Company</a></li>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Join Us</a></li>
-                                    <li><a href="#">Sponsors</a></li>
-                                    <li><a href="/contacts">Contact</a></li>
+                                    <li><a href="javascript:void(0)">Company</a></li>
+                                    <li><a href="/about-us">About Gamehub</a></li>
+                                    <li><a href="/join-us">Join Us</a></li>
+                                    <li><a href="/sponsors">Sponsors</a></li>
+                                    <li><a href="/contacts">Contact Us</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-6 col-md-3">
                             <div class="footer-menu-content">
                                 <ul>
-                                    <li><a href="#">Company</a></li>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Join Us</a></li>
-                                    <li><a href="#">Sponsors</a></li>
-                                    <li><a href="/contacts">Contact</a></li>
+                                    <li><a href="javascript:void(0)">For You</a></li>
+                                    <li><a href="/frequently-asked-questions">FAQs</a></li>
+                                    <li><a href="/shop">Shop</a></li>
+                                    <li><a href="/privacy">Privacy</a></li>
+                                    <li><a href="/terms">Terms</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-6 col-md-3">
                             <div class="footer-menu-content">
                                 <ul>
-                                    <li><a href="#">Company</a></li>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Join Us</a></li>
-                                    <li><a href="#">Sponsors</a></li>
-                                    <li><a href="/contacts">Contact</a></li>
+                                    <li><a href="javascript:void(0)">Help</a></li>
+                                    <li><a href="/support">Supoort</a></li>
+                                    <li><a href="/forum">Forum</a></li>
+                                    <li><a href="/stats">Stats</a></li>
                                 </ul>
                             </div>
                         </div>
                         <div class="col-6 col-md-3">
                             <div class="footer-menu-content">
                                 <ul>
-                                    <li><a href="#">Company</a></li>
-                                    <li><a href="#">About</a></li>
-                                    <li><a href="#">Join Us</a></li>
-                                    <li><a href="#">Sponsors</a></li>
-                                    <li><a href="/contacts">Contact</a></li>
+                                    <li><a href="javascript:void(0)">Platforms</a></li>
+                                    <li v-for="platform in platforms" :key="'platform-' + platform.id">
+                                        <a :href="'/games?platforms=' + platform.slug">{{ platform.name }}</a>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -279,6 +277,7 @@
                 articles: [],
                 isLoggedIn: false,
                 videos: [],
+                platforms: [],
                 email: '',
                 reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
                 isSubscring: false
@@ -541,6 +540,16 @@
                     
                     this.isSubscring = false;
                 })
+            },
+            featuredPlatforms: function(number) {
+                
+                this.$api.get('featured-platforms?number=' + number).then(response => {
+                    console.log('platforms', response.data.data)
+                    if (response.status == 200) {
+                        this.platforms = response.data.data;
+                    }
+                    
+                })
             }
         },
         computed: {
@@ -554,6 +563,7 @@
             this.getRentGames();
             this.getArticles();
             this.getFeturedVideo(5);
+            this.featuredPlatforms(4)
             if (this.$store.getters.ifAuthenticated) {
                 this.isLoggedIn = true;
             }

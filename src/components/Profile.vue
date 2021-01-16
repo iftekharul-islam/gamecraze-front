@@ -172,66 +172,155 @@
                         </div>
                         <div class="tab-pane fade" id="v-pills-post-rent" role="tabpanel" aria-labelledby="v-pills-post-rent-tab">
                             <div class="post-rent">
-                                <form action="#">
-                                     <div class="form-group row">
-                                        <label for="gamename" class="col-sm-3 col-form-label">Game Name:</label>
-                                        <div class="col-sm-8 post-rent--input">
-                                        <input type="text" class="form-control" id="gamename">
+                                <ValidationObserver v-slot="{ handleSubmit }">
+                                    <form @submit.prevent="handleSubmit(onRentSubmit)" method="post">
+                                        <div class="form-group row">
+                                            <label for="gamename" class="col-sm-3 col-form-label">Game Name:</label>
+                                            <div class="col-sm-8 post-rent--input">
+                                                <!-- <input type="text" class="form-control" id="gamename"> -->
+                                                <ValidationProvider name="game" rules="" v-slot="{ errors }">
+                                                    <vue-autosuggest
+                                                        :v-model="gameName"
+                                                        :suggestions="filteredOptions"
+                                                        @focus="focusMe"
+                                                        @click="clickHandler"
+                                                        @input="onInputChange"
+                                                        @selected="onSelected"
+                                                        :get-suggestion-value="getSuggestionValue"
+                                                        :input-props="{id:'autosuggest__input', placeholder:'Enter game name'}">
+                                                        <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
+                                                        <div style="display: flex; color: white;">{{suggestion.item.name}}</div>
+                                                        </div>
+                                                    </vue-autosuggest>
+                <!--                                            <v-select label="name" :options="games" :reduce="game => game" v-model="form.game" @change="changeGame"></v-select>-->
+                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                </ValidationProvider>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="gamenumber" class="col-sm-3 col-form-label">Max Rented Week:</label>
-                                        <div class="col-sm-8 post-rent--input">
-                                        <input type="number" class="form-control renten-input" id="gamenumber">
-                                         <i class="fa fa-angle-up rented-plus"></i>
-                                        <i class="fa fa-angle-down rented-minus"></i>
+                                        <div class="form-group row">
+                                            <label for="rentedWeek" class="col-sm-3 col-form-label">Max Rented Week:</label>
+                                            <div class="col-sm-8 post-rent--input">
+                                                <ValidationProvider name="rented week" rules="required|min_value:1" v-slot="{ errors }">
+                                                    <input type="number" class="form-control renten-input" id="rentedWeek" min="1" v-model="rentData.max_week">
+                                                    <i class="fa fa-angle-up rented-plus"></i>
+                                                    <i class="fa fa-angle-down rented-minus"></i>
+                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                </ValidationProvider>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="gamendate" class="col-sm-3 col-form-label">Available from:</label>
-                                        <div class="col-sm-8 post-rent--input">
-                                        <input type="date" class="form-control" id="gamendate">
+                                        <div class="form-group row">
+                                            <label for="gamendate" class="col-sm-3 col-form-label">Available from:</label>
+                                            <div class="col-sm-8 post-rent--input">
+                                                <ValidationProvider name="available date" rules="required" v-slot="{ errors }">
+                                                    <input type="date" class="form-control" id="gamendate" placeholder="Availablity Date" :min="todayDate()" v-model="rentData.availability">
+                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                </ValidationProvider>
+                                            </div>
                                         </div>
-                                    </div>
-                                     <div class="form-group row">
-                                        <label for="gamedisk" class="col-sm-3 col-form-label">Disk Condition:</label>
-                                        <div class="col-sm-8 post-rent--input">
-                                        <select id="gamedisk" class="form-control">
-                                            <option selected>Please Select Disk Condition</option>
-                                            <option>...</option>
-                                        </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Disk Image:</label>
-                                        <div class="col-sm-8 post-rent--input">
-                                            <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="customFile">
-                                                    <label class="custom-file-label text-light" for="customFile">Disk Image</label>
+                                        <!-- platform -->
+                                        <div class="form-group" v-if="gamePlatform">
+                                            <label>Platform</label><br>
+                                            <ValidationProvider name="Platform" rules="required" v-slot="{ errors }" class="d-flex">
+                                                <div class="form-check form-check-inline" v-for="(platform, index) in rentData.game.platforms.data" :key="index">
+                                                    <input class="form-check-input platform" :id="'platform-' + index" name="platform" type="radio" :value="platform" v-model="form.platform">
+                                                    <label class="form-check-label ml-3" :for="'platform-' + index">{{ platform.name }}</label>
                                                 </div>
-                                                <div class="img-prev">
-                                                    <img src="../assets/img/disk.png" alt="img previes">
-                                                </div>
+                                                <span class="error-message">{{ errors[0] }}</span>
+                                            </ValidationProvider>
                                         </div>
-                                    </div>
-                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Cover Image:</label>
-                                        <div class="col-sm-8 post-rent--input">
-                                            <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="customFile2">
-                                                    <label class="custom-file-label text-light" for="customFile2">Cover Image</label>
-                                                </div>
-                                                <div class="img-prev">
-                                                    <img src="../assets/img/disk.png" alt="img previes">
-                                                </div>
+                                        <!-- earning amount -->
+                                        <div class="form-group" v-if="basePrices">
+                                            <label>Earning Amount</label>
+                                            <div class="earning-amount">
+                                                <table class="table table-borderless">
+                                                    <tbody>
+                                                    <tr class="">
+                                                        <td>Your Estimated earning for 1 week</td>
+                                                        <td>BDT {{ basePrices[1] }}</td>
+                                                    </tr>
+                                                    <tr class="">
+                                                        <td>Your Estimated earning for 2 week</td>
+                                                        <td>BDT {{ basePrices[1] + basePrices[2] }}</td>
+                                                    </tr>
+                                                    <tr class="">
+                                                        <td>Your Estimated earning for 3 week</td>
+                                                        <td>BDT {{ basePrices[1] + basePrices[2] + basePrices[3] }}</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <div class="alert alert-info alert-dismissible mt-2">
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                <p>
+                                                    If you want to Borrow for more weeks.Then renting price will be cyclic like the given price table.So its start from 1st week.
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <div class="offset-md-3 col-md-8 mt-4">
-                                            <button class="btn--secondery w-100 border-0"><span>Submit</span></button>
+
+                                        <div class="form-group row">
+                                            <label for="gamedisk" class="col-sm-3 col-form-label">Disk Condition:</label>
+                                            <div class="col-sm-8 post-rent--input">
+                                                <ValidationProvider name="Disk Condition" rules="required" v-slot="{ errors }">
+                                                    <select class="form-control" id="DiskCondition" v-model="rentData.disk_condition">
+                                                        <option selected>Please Select Disk Condition</option>
+                                                        <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }} ({{ diskCondition.description }})</option>
+                                                    </select>
+                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                </ValidationProvider>
+                                            </div>
                                         </div>
-                                    </div>
-                                </form>
+
+                                        <div class="form-group row">
+                                            <label for="gamedisk" class="col-sm-3 col-form-label">How do you want to Deliver ?</label>
+                                            <div class="col-sm-8 post-rent--input">
+                                                    <label for="cod"><input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod"> COD</label>
+                                                    <label for="checkpoint_true"><input type="radio" v-model="x" value="1" name="checkpoint_id" id="checkpoint_true"> Checkpoint</label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row" v-show="x === '1'">
+                                            <label for="gamedisk" class="col-sm-3 col-form-label">Select checkpont:</label>
+                                            <div class="col-sm-8 post-rent--input">
+                                                <select class="form-control" id="checkpoint" v-model="rentData.checkpoint">
+                                                    <option value="" disabled>Please Select Near Checkpoint</option>
+                                                    <option v-for="(checkpoint, index) in checkpoints" :key="index" :value="checkpoint">{{ checkpoint.name }}, Area: {{ checkpoint.area.data.name }}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Disk Image:</label>
+                                            <div class="col-sm-8 post-rent--input">
+                                                <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="DiskUpload" accept="image/*" @change="onDiskimageChange">
+                                                        <label class="custom-file-label text-light" for="customFile">Disk Image</label>
+                                                    </div>
+                                                    <div class="img-prev">
+                                                        <img v-if="rentData.disk_image" :src="rentData.disk_image" alt="Disk image preview">
+                                                        <img v-else src="../assets/img/disk.png" alt="Disk image preview">
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-sm-3 col-form-label">Cover Image:</label>
+                                            <div class="col-sm-8 post-rent--input">
+                                                <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="customFile2" accept="image/*" @change="onCoverimageChange">
+                                                        <label class="custom-file-label text-light" for="customFile2">Cover Image</label>
+                                                    </div>
+                                                    <div class="img-prev">
+                                                        <img v-if="rentData.cover_image" :src="rentData.cover_image" alt="Cover image preview">
+                                                        <img v-else src="../assets/img/disk.png" alt="Cover image preview">
+                                                    </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="offset-md-3 col-md-8 mt-4">
+                                                <button class="btn--secondery w-100 border-0"><span>Submit</span></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                 </ValidationObserver>
                             </div>
                         </div>
 
@@ -372,165 +461,360 @@
 
 <script>
     import FlipCountdown from 'vue2-flip-countdown'
-        export default {
-            components: { FlipCountdown },
-            props: ['rentPost'],
-            data() {
-                return {
-                    rents: [],
-                    lends: [],
-                    show: false,
-                    user: this.$store.state.user,
-                    form: {
-                        name: this.$store.state.user.name,
-                        last_name: this.$store.state.user.last_name,
-                        gender: this.$store.state.user.gender,
-                        birth_date: this.$store.state.user.birth_date,
-                        email: this.$store.state.user.email,
-                        phone_number: this.$store.state.user.phone_number,
-                        id_number: this.$store.state.user.identification_number,
-                        id_image: "",
-                        address: this.$store.state.user.address.address,
-                        city: this.$store.state.user.address.city,
-                        postCode: this.$store.state.user.address.post_code,
-                        image: ""
-                    },
-                    selectedFile: 'Select NID'
+    export default {
+        components: { FlipCountdown },
+        props: ['rentPost'],
+        data() {
+            return {
+                rents: [],
+                lends: [],
+                show: false,
+                user: this.$store.state.user,
+                form: {
+                    name: this.$store.state.user.name,
+                    last_name: this.$store.state.user.last_name,
+                    gender: this.$store.state.user.gender,
+                    birth_date: this.$store.state.user.birth_date,
+                    email: this.$store.state.user.email,
+                    phone_number: this.$store.state.user.phone_number,
+                    id_number: this.$store.state.user.identification_number,
+                    id_image: "",
+                    address: this.$store.state.user.address.address,
+                    city: this.$store.state.user.address.city,
+                    postCode: this.$store.state.user.address.post_code,
+                    image: ""
+                },
+                selectedFile: 'Select NID',
+                x: '',
+                //rentPost: true,
+                // rentView: false,
+                diskConditions: [],
+                checkpoints: [],
+                games: [],
+                platforms: [],
+                gamesName: {},
+                platformsName: {},
+                basePrices: false,
+                diskConditionsName: {},
+                gameName: '',
+                gamePlatform: false,
+                rentData: {
+                    game: {},
+                    availability: '',
+                    max_week: '',
+                    platform: {},
+                    disk_condition: {},
+                    disk_image: '',
+                    cover_image: '',
+                    checkpoint: {},
+                },
+            }
+        },
+        methods: {
+            onDelete(rent) {
+                this.$swal({
+                    title: "Rent Post Delete!",
+                    text: "Do you want to delete the Rent Post?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                }).then((willDelete) => {
+                    if (willDelete) {
+                        let config = {
+                            headers: {
+                                'Authorization': 'Bearer ' + this.$store.state.token
+                            }
+                        }
+                        this.$api.delete('rents/' + rent.id, config)
+                            .then(response => {
+                            if (response.data) {
+                                this.rents.splice(this.rents.indexOf(rent), 1)
+                            }
+                            this.$swal ({
+                                title: "Post Deleted!",
+                                text: "Rent Post Delete Successful!",
+                                timer: 1500
+                            });
+                        })
+
+                    }
+                    else {
+                        this.$swal("Your information is safe!");
+                    }
+                });
+
+            },
+            extend () {
+                this.$swal({
+                    title: "Please Contact",
+                    text: "Phone no: 017773278387",
+                    icon: "warning",
+                }).then(() => {
+                        this.$swal({
+                            text: "thank you",
+                            icon: 'success',
+                            timer: 1500,
+                            button: false,
+                        });
+
+                });
+
+            },
+            onOfferedGames() {
+                this.show = false
+            },
+            onRentedGames() {
+                this.show = true
+            },
+            returnDate(lendDate, week) {
+                let date = new Date(lendDate);
+                date.setDate(date.getDate() + week * 7);
+                const months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
+            },
+            formattedDate(date) {
+                const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                let formattedDate = new Date(date)
+                return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
+            },
+            endDate(data, week) {
+                let date = new Date(data);
+                date.setDate(date.getDate() + 1 + week * 7);
+                return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear()
+            },
+            onProfileUpdate: function() {
+                this.$store.dispatch('updateUserDetails', this.form)
+                console.log(this.form)
+            },
+            isNumber: function(evt) {
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.form.phone_number.length > 10) {
+                    evt.preventDefault();;
+                } else {
+                    return true;
                 }
             },
-            methods: {
-                onDelete(rent) {
-                    this.$swal({
-                        title: "Rent Post Delete!",
-                        text: "Do you want to delete the Rent Post?",
-                        icon: "warning",
-                        buttons: true,
-                        dangerMode: true,
-                    }).then((willDelete) => {
-                        if (willDelete) {
-                            let config = {
-                                headers: {
-                                    'Authorization': 'Bearer ' + this.$store.state.token
-                                }
-                            }
-                            this.$api.delete('rents/' + rent.id, config)
-                                .then(response => {
-                                if (response.data) {
-                                    this.rents.splice(this.rents.indexOf(rent), 1)
-                                }
-                                this.$swal ({
-                                    title: "Post Deleted!",
-                                    text: "Rent Post Delete Successful!",
-                                    timer: 1500
-                                });
-                            })
+            onIdChange(event) {
+                let fileReader = new FileReader();
+                if (event.srcElement.files.length > 0) {
+                    this.selectedFile = event.srcElement.files[0].name;
+                }
 
-                        }
-                        else {
-                            this.$swal("Your information is safe!");
-                        }
-                    });
-
-                },
-                extend () {
-                    this.$swal({
-                        title: "Please Contact",
-                        text: "Phone no: 017773278387",
-                        icon: "warning",
-                    }).then(() => {
-                            this.$swal({
-                                text: "thank you",
-                                icon: 'success',
-                                timer: 1500,
-                                button: false,
-                            });
-
-                    });
-
-                },
-                onOfferedGames() {
-                    this.show = false
-                },
-                onRentedGames() {
-                    this.show = true
-                },
-                returnDate(lendDate, week) {
-                    let date = new Date(lendDate);
-                    date.setDate(date.getDate() + week * 7);
-                    const months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                    return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
-                },
-                formattedDate(date) {
-                    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                    let formattedDate = new Date(date)
-                    return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
-                },
-                endDate(data, week) {
-                    let date = new Date(data);
-                    date.setDate(date.getDate() + 1 + week * 7);
-                    return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear()
-                },
-                onProfileUpdate: function() {
-                    this.$store.dispatch('updateUserDetails', this.form)
-                    console.log(this.form)
-                },
-                isNumber: function(evt) {
-                    evt = (evt) ? evt : window.event;
-                    var charCode = (evt.which) ? evt.which : evt.keyCode;
-                    if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.form.phone_number.length > 10) {
-                        evt.preventDefault();;
-                    } else {
-                        return true;
-                    }
-                },
-                onIdChange(event) {
-                    let fileReader = new FileReader();
-                    if (event.srcElement.files.length > 0) {
-                        this.selectedFile = event.srcElement.files[0].name;
-                    }
-
-                    fileReader.onload = (e) => {
-                        this.form.image = e.target.result;
-                    }
-                    fileReader.readAsDataURL(event.target.files[0]);
-                },
+                fileReader.onload = (e) => {
+                    this.form.image = e.target.result;
+                }
+                fileReader.readAsDataURL(event.target.files[0]);
             },
-            created() {
+            //rent post
+            onDiskimageChange (event) {
+                let fileReader = new FileReader();
+                fileReader.onload = (e) => {
+                    this.rentData.disk_image = e.target.result;
+                }
+                fileReader.readAsDataURL(event.target.files[0]);
+                console.log('rent data: ', this.rentData)
+            },
+            onCoverimageChange (event) {
+                let fileReader = new FileReader();
+
+                fileReader.onload = (e) => {
+                    this.rentData.cover_image = e.target.result;
+                }
+                fileReader.readAsDataURL(event.target.files[0]);
+                console.log('rent data: ', this.rentData)
+            },
+            onEmpty () {
+                this.form.checkpoint = '';
+            },
+            onRentSubmit () {
+                // this.rentView = false;
+                //this.rentPost = true;
+                let  uploadInfo = {
+                    game_id: this.rentData.game.id,
+                    availability: this.rentData.availability,
+                    max_week: this.rentData.max_week,
+                    platform_id: this.rentData.platform.id,
+                    disk_condition_id: this.rentData.disk_condition.id,
+                    disk_image: this.rentData.disk_image,
+                    cover_image: this.rentData.cover_image,
+                    checkpoint_id: this.rentData.checkpoint.id,
+                }
                 let config = {
                     headers: {
                         'Authorization': 'Bearer ' + this.$store.state.token
                     }
                 }
-                this.$api.get('rents?include=game,platform,diskCondition,checkpoint', config)
-                    .then(response =>
-                    {
-                        this.rents = response.data.data
-                      console.log(this.rents, 'rents')
-                    })
-
-                this.$api.get('lends', config)
-                    .then(response =>
-                    {
-                        this.lends = response.data
-                        console.log(this.lends, 'lends');
-                    })
-
-              this.$root.$on('rentPost', () => {
-                $('#v-pills-overview-tab').removeClass('active');
-                $('#v-pills-overview').removeClass('active');
-                $('#v-pills-overview').removeClass('show');
-                $('#v-pills-post-rent-tab').addClass('active');
-                $('#v-pills-post-rent').addClass('active');
-                $('#v-pills-post-rent').addClass('show');
-              })
-              console.log(this.user)
+                console.log('game: ', this.gameName);
+                console.log(uploadInfo);
+                return;
+                this.$api.post('rents', uploadInfo, config)
+                    .then(response => {
+                        this.$swal({
+                            title: "Post Uploaded!",
+                            text: "Rent Post Successful!",
+                            timer: 1500
+                        });
+                        this.$router.push('dashboard').catch(err => {});
+                    });
             },
+            clickHandler(item) {
+              // event fired when clicking on the input
+            },
+            onSelected(item) {
+              this.form.game = item.item;
+              this.gamePlatform = true;
+                this.$api.get('base-price/calculate/' + this.form.game.id)
+                    .then (response =>
+                    {
+                        this.basePrices = response.data;
+                        // console.log(response);
+                        // console.log(this.basePrices);
+                    })
+            },
+            onInputChange(text) {
+              // event fired when the input changes
+              // console.log(text)
+            },
+            /**
+             * This is what the <input/> value is set to when you are selecting a suggestion.
+             */
+            getSuggestionValue(suggestion) {
+              return suggestion.item.name;
+            },
+            focusMe(e) {
+              // console.log(e) // FocusEvent
+            },
+            formattedDate(date) {
+              const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+              let birthDate = new Date(date)
+              return birthDate.getDate() + " " + months[birthDate.getMonth()] + " " + birthDate.getFullYear()
+            },
+            todayDate() {
+              var today = new Date();
+              var dd = today.getDate() + 1;
 
+              var mm = today.getMonth()+1;
+              var yyyy = today.getFullYear();
+
+              if(dd<10)
+              {
+                dd='0'+dd;
+              }
+
+              if(mm<10)
+              {
+                mm='0'+mm;
+              }
+              return yyyy+'-'+mm+'-'+dd;
+
+            }
+        },
+        created() {
+            let config = {
+                headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                }
+            };
+            this.$api.get('rents?include=game,platform,diskCondition,checkpoint', config).then(response =>
+            {
+                this.rents = response.data.data
+                console.log(this.rents, 'rents')
+            });
+
+            this.$api.get('lends', config).then(response =>
+            {
+                this.lends = response.data
+                console.log(this.lends, 'lends');
+            });
+
+            // this.$root.$on('rentPost', () => {
+            //     $('#v-pills-overview-tab').removeClass('active');
+            //     $('#v-pills-overview').removeClass('active');
+            //     $('#v-pills-overview').removeClass('show');
+            //     $('#v-pills-post-rent-tab').addClass('active');
+            //     $('#v-pills-post-rent').addClass('active');
+            //     $('#v-pills-post-rent').addClass('show');
+            // });
+
+            console.log('current user:', this.user);
+            //rent posts
+            this.$api.get('games?include=platforms').then(response =>
+            {
+                this.games = response.data.data
+                console.log(this.games)
+            });
+
+            this.$api.get('platforms').then (response =>
+            {
+                this.platforms = response.data.data
+            });
+
+            this.$api.get('disk-conditions').then (response =>
+            {
+                this.diskConditions = response.data.data
+            });
+
+            this.$api.get('checkpoints?include=area').then (response =>
+            {
+                this.checkpoints = response.data.data
+            });
+        },
+        computed: {
+          filteredOptions() {
+            return [
+              {
+                data: this.games.filter(option => {
+                  return option.name.toLowerCase().indexOf(this.gameName.toLowerCase()) > -1;
+                })
+              }
+            ];
+          }
+        },
         mounted() {
             document.body.classList.add('body-position')
         },
         destroyed() {
             document.body.classList.remove('body-position')
         }
-        }
+    }
 </script>
+<style>
+.demo {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+input {
+  width: 100%;
+  padding: 0.5rem;
+}
+
+ul {
+  width: 100%;
+  color: rgba(30, 39, 46,1.0);
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0 .5rem 0;
+}
+li {
+  margin: 0 0 0 0;
+  border-radius: 5px;
+  padding: 0.75rem 0 0.75rem 0.75rem;
+  display: flex;
+  align-items: center;
+}
+li:hover {
+  cursor: pointer;
+}
+
+.autosuggest-container {
+  display: flex;
+  justify-content: center;
+  width: 280px;
+}
+
+#autosuggest { width: 100%; display: block;}
+.autosuggest__results-item--highlighted {
+  background-color: rgba(51, 217, 178,0.2);
+}
+</style>

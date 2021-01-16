@@ -31,7 +31,8 @@ export const storage = {
         cart: null,
         totalAmount: 0,
         setupPasswordUser: null,
-        otpNotFound: ''
+        otpNotFound: '',
+        totalPrice: 0
     },
     getters: {
         user (state) {
@@ -158,6 +159,9 @@ export const storage = {
         },
         setOTPNotFound (state, payload) {
             state.otpNotFound = payload
+        },
+        setTotalPrice(state, payload) {
+            state.totalPrice = payload
         }
     },
     actions: {
@@ -272,7 +276,7 @@ export const storage = {
         verifyOtp({commit}, payload) {
             commit('setSubmitLoading', true)
             axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'verify-otp', payload).then(response => {
-                console.log(response);
+                console.log('otp-verification: ', response);
 
                 if (response.data.error === false) {
                     commit('authUser', {
@@ -358,8 +362,9 @@ export const storage = {
                     'Authorization': 'Bearer ' + this.state.token
                 }
             }
+            console.log('update token: ', this.state.token);
             axios.put(process.env.VUE_APP_GAMEHUB_BASE_API + 'users', payload, config).then(response => {
-                console.log('update: ', response.data);
+                console.log('updated data: ', response.data);
                 if (response.data) {
                     commit('setUser', response.data);
                     localStorage.setItem('user', JSON.stringify(response.data));
@@ -419,6 +424,9 @@ export const storage = {
             localStorage.setItem('user', JSON.stringify(authData.user))
             localStorage.removeItem('setupPasswordUser')
             router.push('/').catch(err => { });
+        },
+        setTotalPrice({ commit }, price) {
+            commit('setTotalPrice', price)
         }
     },
 }

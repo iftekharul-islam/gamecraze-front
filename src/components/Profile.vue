@@ -59,7 +59,15 @@
                                         </tr>
                                         <tr>
                                            <td scope="row">Mobile No:</td>
-                                            <td>{{ user.phone_number }}</td>
+                                            <td>
+                                                {{ user.phone_number }}
+                                                <span class="verified" v-if="user.is_phone_verified == 1">
+                                                    <i  class="fas fa-check" aria-hidden="true" title="Verified"></i>
+                                                </span>
+                                                <span v-else class="not-verified">
+                                                    <i class="fas fa-question-circle" aria-hidden="true" title="Not Verified"></i>
+                                                </span>
+                                            </td>
                                         </tr>
                                         <tr>
                                            <td scope="row">Address:</td>
@@ -229,89 +237,129 @@
 
                         <div class="tab-pane fade" id="v-pills-edit-profile" role="tabpanel" aria-labelledby="v-pills-edit-profile-tab">
                             <div class="edit-profile">
-                                <form action="#">
-                                    <div class="form-group row">
-                                        <label for="first_name" class="col-sm-3 col-form-label">First name:</label>
-                                        <div class="col-sm-9 edit--input">
-                                            <input type="text" class="form-control" id="first_name">
+                                <ValidationObserver v-slot="{ handleSubmit }">
+                                    <form @submit.prevent="handleSubmit(onProfileUpdate)" method="post">
+                                        <div class="form-group row">
+                                            <label for="first_name" class="col-sm-3 col-form-label">First name:</label>
+
+                                                <div class="col-sm-9 edit--input">
+                                                    <ValidationProvider name="first_name" rules="required" v-slot="{ errors }">
+                                                        <input type="text" class="form-control" id="first_name" v-model="form.name">
+                                                        <span class="text-danger">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+
                                         </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="last_name" class="col-sm-3 col-form-label">Last name:</label>
-                                        <div class="col-sm-9 edit--input">
-                                            <input type="text" class="form-control" id="last_name">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="user_name" class="col-sm-3 col-form-label">Username:</label>
-                                        <div class="col-sm-9 edit--input">
-                                            <input type="text" class="form-control" id="user_name">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="gender" class="col-sm-3 col-form-label">Gender:</label>
-                                        <div class="col-sm-9 edit--input">
-                                            <select class="custom-select" id="gender" required>
-                                                <option selected disabled value="">Choose...</option>
-                                                <option>Male</option>
-                                                <option>Female</option>
-                                                <option>Others</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                     <div class="form-group row">
-                                        <label for="dateofbirth" class="col-sm-3 col-form-label">Date of Birth:</label>
-                                        <div class="col-sm-9 edit--input">
-                                            <input type="date" class="form-control" id="dateofbirth">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="email" class="col-sm-3 col-form-label">Email:</label>
-                                        <div class="col-sm-9 edit--input">
-                                            <input type="email" class="form-control" id="email">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="mobileno" class="col-sm-3 col-form-label">Mobile No:</label>
-                                        <div class="col-sm-9 edit--input">
-                                            <input type="tel" class="form-control" id="mobileno">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="address" class="col-sm-3 col-form-label">Address:</label>
-                                        <div class="col-sm-9 edit--input">
-                                            <input type="text" class="form-control" id="address">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="city" class="col-sm-3 col-form-label">City:</label>
-                                        <div class="col-sm-9 edit--input">
-                                            <input type="text" class="form-control" id="city">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="postcode" class="col-sm-3 col-form-label">Post Code:</label>
-                                        <div class="col-sm-9 edit--input">
-                                            <input type="text" class="form-control" id="postcode">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="nidno" class="col-sm-3 col-form-label">NID No:</label>
-                                        <div class="col-sm-9 edit--input">
-                                            <input type="text" class="form-control" id="nidno">
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="" class="col-sm-3 col-form-label">NID Image:</label>
-                                        <div class="col-sm-9 edit--input">
-                                           <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile">
-                                                <label class="custom-file-label text-light" for="customFile">Disk Image</label>
+                                        <div class="form-group row">
+                                            <label for="last_name" class="col-sm-3 col-form-label">Last name:</label>
+                                            <div class="col-sm-9 edit--input">
+                                                 <ValidationProvider name="last_name" rules="required" v-slot="{ errors }">
+                                                    <input type="text" class="form-control" id="last_name" v-model="form.last_name">
+                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                </ValidationProvider>
                                             </div>
                                         </div>
-                                    </div>
+                                        <div class="form-group row">
+                                            <label for="user_name" class="col-sm-3 col-form-label">Username:</label>
+                                            <div class="col-sm-9 edit--input">
+                                                <input type="text" class="form-control" id="user_name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="gender" class="col-sm-3 col-form-label">Gender:</label>
+                                            <div class="col-sm-9 edit--input">
+                                                <ValidationProvider name="gender" rules="required" v-slot="{ errors }">
+                                                    <select class="custom-select" id="gender" v-model="form.gender">
+                                                        <option selected disabled value="">Choose...</option>
+                                                        <option value="male" >Male</option>
+                                                        <option value="female">Female</option>
+                                                        <option value="others">Others</option>
+                                                    </select>
+                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                </ValidationProvider>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="dateofbirth" class="col-sm-3 col-form-label">Date of Birth:</label>
+                                            <div class="col-sm-9 edit--input">
+                                                <ValidationProvider name="dateofbirth" rules="required" v-slot="{ errors }">
+                                                    <input type="date" class="form-control" id="dateofbirth" v-model="form.birth_date">
+                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                </ValidationProvider>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="email" class="col-sm-3 col-form-label">Email:</label>
+                                            <div class="col-sm-9 edit--input">
+                                                <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
+                                                    <input type="email" class="form-control" id="email" v-model="form.email">
+                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                </ValidationProvider>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="mobileno" class="col-sm-3 col-form-label">Mobile No:</label>
+                                            <div class="col-sm-9 edit--input">
+                                                <ValidationProvider name="phone_number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
+                                                    <input type="text" @keypress="isNumber($event)" class="form-control" id="phone_number" v-model="form.phone_number">
+                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                    <span class="error-message d-block" v-if="$store.state.numberExists">Phone number already exists</span>
+                                                </ValidationProvider>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="address" class="col-sm-3 col-form-label">Address:</label>
+                                            <div class="col-sm-9 edit--input">
+                                                <ValidationProvider name="address" rules="required" v-slot="{ errors }">
+                                                    <input type="text" class="form-control" id="address" v-model="form.address">
+                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                </ValidationProvider>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="city" class="col-sm-3 col-form-label">City:</label>
+                                            <div class="col-sm-9 edit--input">
+                                                <ValidationProvider name="city" rules="required" v-slot="{ errors }">
+                                                    <input type="text" class="form-control" id="city" v-model="form.city">
+                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                </ValidationProvider>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="postcode" class="col-sm-3 col-form-label">Post Code:</label>
+                                            <div class="col-sm-9 edit--input">
+                                                 <ValidationProvider name="postcode" rules="required" v-slot="{ errors }">
+                                                    <input type="text" class="form-control" id="postcode" v-model="form.postCode">
+                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                </ValidationProvider>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="nidno" class="col-sm-3 col-form-label">NID No:</label>
+                                            <div class="col-sm-9 edit--input">
+                                                <ValidationProvider name="nidno" rules="required" v-slot="{ errors }">
+                                                <input type="text" class="form-control" id="nidno" v-model="form.id_number">
+                                                  <span class="text-danger">{{ errors[0] }}</span>
+                                                </ValidationProvider>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="" class="col-sm-3 col-form-label">NID Image:</label>
+                                            <div class="col-sm-9 edit--input">
+                                            <div class="custom-file">
+                                                    <input @change="onIdChange" accept=".png, .jpg, .jpeg" type="file" class="custom-file-input" id="customFile">
+                                                    <label class="custom-file-label text-light" for="customFile">{{ selectedFile }}</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                        <div class="offset-md-3 col-md-8 mt-4">
+                                                <button class="btn--secondery w-100 border-0"><span>Submit</span></button>
+                                            </div>
+                                        </div>
 
-                                </form>
+                                    </form>
+                                </ValidationObserver>
                             </div>
                         </div>
                         </div>
@@ -319,11 +367,6 @@
                 </div>
             </div>
         </section>
-
-
-
-
-
     </div>
 </template>
 
@@ -337,7 +380,22 @@
                     rents: [],
                     lends: [],
                     show: false,
-                    user: this.$store.state.user
+                    user: this.$store.state.user,
+                    form: {
+                        name: this.$store.state.user.name,
+                        last_name: this.$store.state.user.last_name,
+                        gender: this.$store.state.user.gender,
+                        birth_date: this.$store.state.user.birth_date,
+                        email: this.$store.state.user.email,
+                        phone_number: this.$store.state.user.phone_number,
+                        id_number: this.$store.state.user.identification_number,
+                        id_image: "",
+                        address: this.$store.state.user.address.address,
+                        city: this.$store.state.user.address.city,
+                        postCode: this.$store.state.user.address.post_code,
+                        image: ""
+                    },
+                    selectedFile: 'Select NID'
                 }
             },
             methods: {
@@ -411,7 +469,31 @@
                     let date = new Date(data);
                     date.setDate(date.getDate() + 1 + week * 7);
                     return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear()
-                }
+                },
+                onProfileUpdate: function() {
+                    this.$store.dispatch('updateUserDetails', this.form)
+                    console.log(this.form)
+                },
+                isNumber: function(evt) {
+                    evt = (evt) ? evt : window.event;
+                    var charCode = (evt.which) ? evt.which : evt.keyCode;
+                    if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.form.phone_number.length > 10) {
+                        evt.preventDefault();;
+                    } else {
+                        return true;
+                    }
+                },
+                onIdChange(event) {
+                    let fileReader = new FileReader();
+                    if (event.srcElement.files.length > 0) {
+                        this.selectedFile = event.srcElement.files[0].name;
+                    }
+
+                    fileReader.onload = (e) => {
+                        this.form.image = e.target.result;
+                    }
+                    fileReader.readAsDataURL(event.target.files[0]);
+                },
             },
             created() {
                 let config = {
@@ -443,7 +525,7 @@
               })
               console.log(this.user)
             },
-            
+
         mounted() {
             document.body.classList.add('body-position')
         },

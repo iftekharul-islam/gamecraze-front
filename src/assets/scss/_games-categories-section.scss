@@ -148,7 +148,7 @@
         margin-top: 10px;
         font-size: 20px;
         margin-bottom: 10px;
-        @include oneline-text;
+        height: 55px;
     }
     .display-image {
         @include for-max-768 {
@@ -160,6 +160,9 @@
                 width: 100%;
             }
         }
+    }
+    &--category {
+        height: 55px;
     }
 }
 .game-rating {

@@ -408,6 +408,7 @@
         background: $game-details;
         color: $text-light;
         padding: 15px;
+        margin-left: -6px;
         @include for-max-575 {
             position: relative;
             z-index: 9;

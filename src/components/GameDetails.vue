@@ -80,7 +80,7 @@
                             </div>
                             <div class="overview-content--text">
                                 <p>Game link</p>
-                                <p>{{ game.official_website }}</p>
+                                <a :href="game.official_website" target="_blank"></a>
                             </div>
                         </div>
                     </div>

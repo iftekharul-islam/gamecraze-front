@@ -319,6 +319,7 @@
             },
             onSelected(item) {
               this.form.game = item.item;
+              console.log(this.form.game);
               this.gamePlatform = true;
                 this.$api.get('base-price/calculate/' + this.form.game.id)
                     .then (response =>

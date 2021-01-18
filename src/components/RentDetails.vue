@@ -675,7 +675,7 @@
                         this.$store.dispatch('pushPostId', this.id)
                         this.$store.dispatch('pushLendWeek', this.week)
                         this.$store.dispatch('pushCheckpointId', this.form.checkpoint.id)
-                        return this.$router.push('/add-to-cart').then(err => {});
+                        return this.$router.push('/cart').then(err => {});
                     }
                     return this.$swal({
                         title: "Rent is Limited",
@@ -687,7 +687,7 @@
                         this.$store.dispatch('pushPostId', this.id)
                         this.$store.dispatch('pushLendWeek', this.week)
                         this.$store.dispatch('pushCheckpointId', this.form.checkpoint.id)
-                        return this.$router.push('/add-to-cart').then(err => {});
+                        return this.$router.push('/cart').then(err => {});
                     }
                     this.$swal({
                         title: "Rent is Limited",

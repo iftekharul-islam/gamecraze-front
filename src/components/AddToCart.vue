@@ -173,7 +173,7 @@
             for (let i=0;i<this.cart.length;i++) {
                 this.$store.state.totalAmount = this.$store.state.totalAmount + this.price;
             }
-            // console.log(this.$store.state.totalAmount)
+
             return this.$store.state.totalAmount;
         },
         updateRentWeek(index) {
@@ -186,6 +186,7 @@
         onCheckout() {
             var token = this.$store.state.token;
             var user = this.$store.state.user;
+            console.log('user: ', user);
             if (token) {
                 if (user.name && user.phone_number && user.address.address && user.identification_number && user.birth_date) {
                   this.$router.push('/payment/' + this.totalPrice).catch(err => {});

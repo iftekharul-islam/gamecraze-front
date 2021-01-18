@@ -43,6 +43,7 @@ import Privacy from '../components/Privacy';
 import Terms from '../components/Terms';
 import Forum from '../components/Forum';
 import Stats from '../components/Stats';
+import RentPostedBy from '../components/RentPostedBy';
 
 let router = new Router({
     mode: 'history',
@@ -109,7 +110,7 @@ let router = new Router({
             }
         },
         {
-            path: '/add-to-cart',
+            path: '/cart',
             name: 'AddToCart',
             component: AddToCart,
             meta: {
@@ -344,8 +345,8 @@ let router = new Router({
         },
         {
             path: '/rent-posted-users/:id',
-            name: 'RentPostedUser',
-            component: Dashboard,
+            name: 'RentPostedBy',
+            component: RentPostedBy,
             props: true,
             meta: {
                 requiresAuth: false

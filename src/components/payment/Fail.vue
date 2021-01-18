@@ -27,7 +27,7 @@
             }
             this.$api.get('fail-payment', config).then(response => {
                 if (response.data.error === true) {
-                    this.$router.push('/add-to-cart').then(err => {});
+                    this.$router.push('/cart').then(err => {});
                     this.$swal("Payment Failed", "Something went wrong. Try Again!", "error");
                 }
             })

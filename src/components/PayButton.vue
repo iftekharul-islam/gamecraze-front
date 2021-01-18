@@ -29,7 +29,8 @@
       },
       methods: {
         loadData() {
-            $('#sslczPayBtn').prop('postdata',  this.data );
+          this.$store.dispatch('setTotalPrice', this.amount)|
+          $('#sslczPayBtn').prop('postdata',  this.data );
         },
 
         loadSSLCdn() {

@@ -27,11 +27,13 @@ export const storage = {
         wrongOTP: false,
         inactiveUser: false,
         timeout: false,
+        isProfileUpdating: false,
         postId: [],
         cart: null,
         totalAmount: 0,
         setupPasswordUser: null,
-        otpNotFound: ''
+        otpNotFound: '',
+        totalPrice: 0
     },
     getters: {
         user (state) {
@@ -150,6 +152,9 @@ export const storage = {
         setUser (state, payload) {
             state.user = payload
         },
+        setUserId (state, payload) {
+            state.userId = payload
+        },
         setSetupPasswordUser (state, payload) {
             state.setupPasswordUser = payload
         },
@@ -158,6 +163,12 @@ export const storage = {
         },
         setOTPNotFound (state, payload) {
             state.otpNotFound = payload
+        },
+        setTotalPrice(state, payload) {
+            state.totalPrice = payload
+        },
+        setIsProfileUpdateing(state, payload) {
+            state.isProfileUpdating = payload
         }
     },
     actions: {
@@ -272,7 +283,7 @@ export const storage = {
         verifyOtp({commit}, payload) {
             commit('setSubmitLoading', true)
             axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'verify-otp', payload).then(response => {
-                console.log(response);
+                console.log('otp-verification: ', response);
 
                 if (response.data.error === false) {
                     commit('authUser', {
@@ -358,11 +369,27 @@ export const storage = {
                     'Authorization': 'Bearer ' + this.state.token
                 }
             }
+
+            commit('setIsProfileUpdateing', true);
             axios.put(process.env.VUE_APP_GAMEHUB_BASE_API + 'users', payload, config).then(response => {
-                console.log('update: ', response.data);
+                commit('setIsProfileUpdateing', false);
                 if (response.data) {
-                    commit('setUser', response.data);
-                    localStorage.setItem('user', JSON.stringify(response.data));
+                    if (response.data.data) {
+                        commit('setUser', response.data.data);
+                        commit('setUserId', response.data.data.id);
+                        localStorage.setItem('userId', JSON.stringify(response.data.data.id))
+                        localStorage.setItem('user', JSON.stringify(response.data.data));
+                    } else {
+                        commit('setUser', response.data);
+                        commit('setUserId', response.data.id);
+                        localStorage.setItem('userId', JSON.stringify(response.data.id))
+                        localStorage.setItem('user', JSON.stringify(response.data));
+                    }
+                    // commit('setUser', response.data);
+                    // commit('setUserId', response.data.id);
+                    // localStorage.setItem('userId', JSON.stringify(response.data.id))
+                    // localStorage.setItem('user', JSON.stringify(response.data));
+
                     if (payload.name || payload.lastName || payload.gender || payload.birth_date || payload.email || payload.phone_number || payload.id_number || payload.id_image || payload.address || payload.city || payload.postCode || payload.image) {
                         swal("Profile Updated!", "Profile Update Successful!", "success");
                         router.push('/profile').catch(err => {});
@@ -371,7 +398,6 @@ export const storage = {
                         router.push('/').catch(err => {});
                     }
                 }
-
             });
         },
         checkPassword ({commit, dispatch}, payload) {
@@ -419,8 +445,12 @@ export const storage = {
             localStorage.removeItem('setupPasswordUser')
             router.push('/').catch(err => { });
         },
+        setTotalPrice({ commit }, price) {
+            commit('setTotalPrice', price)
+        },
         hidePasswordResetPopup({ commit }, payload) {
             commit('setPasswordPopUp', payload);
+
         }
     },
 }

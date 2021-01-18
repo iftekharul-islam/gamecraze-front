@@ -67,8 +67,7 @@
                         </div>
 
                         <!-- form -->
-                        <ValidationObserver v-slot="{ handleSubmit }"
-                                            v-if="loginOption==='Phone Number' && !$store.state.setPasswordPopUp">
+                        <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption==='Phone Number' && !$store.state.setPasswordPopUp">
                             <form @submit.prevent="handleSubmit(onLogin)" method="post">
                                 <div class="form-group" v-if="$store.state.notSetPassword">
                                     <!-- user name -->
@@ -269,7 +268,6 @@
                 if (this.loginOption === "Email") {
                     this.$store.dispatch('setPhoneNumber', this.phone_number)
                     this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
-
                          console.log('send otp: ', response.data);
                         if (response.data.error === false) {
                             this.isLoading = false
@@ -309,9 +307,7 @@
                 this.isResendLoading = true
                 this.$store.dispatch('setPhoneNumber', this.phone_number)
                 this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
-
-                     console.log('resent otp: ', response.data);
-
+                    console.log('resent otp: ', response.data);
                     if (response.data.error === false) {
                         this.isResendLoading = false
                         this.resend = true

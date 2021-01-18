@@ -540,9 +540,7 @@
                 })
             },
             featuredPlatforms: function(number) {
-                
                 this.$api.get('featured-platforms?number=' + number).then(response => {
-                    console.log('platforms', response.data.data)
                     if (response.status == 200) {
                         this.platforms = response.data.data;
                     }

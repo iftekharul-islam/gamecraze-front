@@ -65,7 +65,7 @@
                     this.$store.dispatch('clearCart');
                     this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
                     this.isLoading = false;
-                    this.$router.push('/dashboard').then(err => {});
+                    this.$router.push('/profile').then(err => {});
                   }
                 });
             }

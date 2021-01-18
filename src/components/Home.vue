@@ -130,12 +130,19 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 mx-auto" v>
-                            <div class="noticed-grid" v-if="articles">
+                        <div class="noticed-grid" v-if="articles">
+                            <div class="notice-box" v-if="featuredArticle" :key="index"> 
+                                <img :src=featuredArticle.thumbnail :alt="featuredArticle.title" class="w-100">
+                                <div class="noticed-details">
+                                    <h6>{{ featuredArticle.title.substring(0, 20) }}</h6>
+                                    <p> {{ featuredArticle.description.substring(0, 80) | strippedContent }}</p>
+                                    <router-link :to="{ name: 'NewsStory', params: { id: featuredArticle.id }}" :class="{ 'small-readmore' : index != 0 }"><span>Read More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
+                                </div>
+                            </div>
+
                             <div class="notice-box" v-for="(article, index) in articles" :key="index"> 
                                 <img :src=article.thumbnail :alt="article.title" class="w-100">
                                 <div class="noticed-details">
-                                    <h6 v-if="index == 0">{{ article.title.substring(0, 20) }}</h6>
-                                    <p v-if="index == 0"> {{ article.description.substring(0, 80) | strippedContent }}</p>
                                     <router-link :to="{ name: 'NewsStory', params: { id: article.id }}" :class="{ 'small-readmore' : index != 0 }"><span>Read More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
                                 </div>
                             </div>
@@ -273,6 +280,7 @@
                 upcomingGames: [],
                 rents: [],
                 articles: [],
+                featuredArticle: null,
                 isLoggedIn: false,
                 videos: [],
                 platforms: [],
@@ -479,10 +487,20 @@
             onExchange () {
                 this.$swal("Rent is now unavailable!", "We will provide rent facility very soon!")
             },
-            getArticles: function () {
-                this.$api.get('featured-article?number=5').then(response => {
+            getArticles: function (number) {
+                this.$api.get('top-articles?number=' + number).then(response => {
                     if (response.status == 200) {
                         this.articles = response.data.data;
+                    }
+                });
+            },
+            getFeaturedArticles: function (number) {
+                this.$api.get('featured-article?number=' + number).then(response => {
+                    console.log('fa: ', response.data.data)
+                    if (response.status == 200) {
+                        if ( response.data.data.length > 0) {
+                            this.featuredArticle = response.data.data[0];
+                        }
                     }
                 });
             },
@@ -557,9 +575,11 @@
             this.getTrendingGames();
             this.getNewGames();
             this.getRentGames();
-            this.getArticles();
+            this.getArticles(4);
+            this.getFeaturedArticles(1)
             this.getFeturedVideo(5);
-            this.featuredPlatforms(4)
+            this.featuredPlatforms(4);
+
             if (this.$store.getters.ifAuthenticated) {
                 this.isLoggedIn = true;
             }

@@ -1794,6 +1794,7 @@ html {
   background: #141A27;
   color: #fff;
   padding: 15px;
+  margin-left: -6px;
 }
 
 @media (max-width: 575px) {
@@ -3309,6 +3310,12 @@ html {
   z-index: 9;
 }
 
+@media (max-width: 575px) {
+  .password-setup-popup {
+    padding: 0 15px;
+  }
+}
+
 .password-setup-popup--content {
   width: 540px;
   height: 400px;
@@ -3324,22 +3331,64 @@ html {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   text-align: center;
+}
+
+@media (max-width: 768px) {
+  .password-setup-popup--content {
+    width: 450px;
+    height: 350px;
+  }
+}
+
+@media (max-width: 575px) {
+  .password-setup-popup--content {
+    width: 100%;
+  }
 }
 
 .password-setup-popup--content p {
   font-size: 40px;
   margin-bottom: 80px;
+  margin-top: 120px;
   color: #000;
+}
+
+@media (max-width: 768px) {
+  .password-setup-popup--content p {
+    margin-top: 100px;
+    margin-bottom: 35px;
+    font-size: 26px;
+  }
 }
 
 .password-setup-popup--content a {
   background: #141A27;
   padding: 7px 30px;
   border-radius: 5px;
+}
+
+.password-setup-popup--content--btn {
+  width: 120px;
+  height: 48px;
+  background: #0B0F18;
+  border: none;
+  color: #fff;
+  border-radius: 5px;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+  text-transform: uppercase;
+}
+
+.password-setup-popup--content--btn:focus {
+  outline: none;
+}
+
+.password-setup-popup--content--btn:hover {
+  background: #141A27;
 }
 
 .title-section {
@@ -3700,9 +3749,7 @@ html {
   margin-top: 10px;
   font-size: 20px;
   margin-bottom: 10px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  height: 55px;
 }
 
 @media (max-width: 768px) {
@@ -3716,6 +3763,10 @@ html {
   .game-card .display-image img {
     width: 100%;
   }
+}
+
+.game-card--category {
+  height: 55px;
 }
 
 .game-rating {
@@ -3980,6 +4031,10 @@ html {
 
 .screenshot-video .owl-item .item {
   margin-right: 10px;
+}
+
+.screenshot-video .owl-item .item iframe {
+  width: 100%;
 }
 
 .screenshot-video .owl-item .item img {
@@ -5327,7 +5382,7 @@ html {
 }
 
 .newsroom-section {
-  padding-top: 150px;
+  padding-top: 80px;
   padding-bottom: 150px;
 }
 

@@ -60,9 +60,9 @@
 
                         <div class="password-setup-popup" v-if="$store.state.setPasswordPopUp">
                             <div class="password-setup-popup--content">
-                                <p>A verification email has been sent. Please check your email.</p>
+                                <p>Please check your mail and set your password</p>
                                 <!-- <router-link to="/registration">ok</router-link> -->
-                                <button @click="hidePopUp">ok</button>
+                                <button @click="hidePopUp" class="password-setup-popup--content--btn">ok</button>
                             </div>
                         </div>
 

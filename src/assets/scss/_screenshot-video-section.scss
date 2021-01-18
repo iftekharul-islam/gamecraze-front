@@ -51,6 +51,9 @@
     .owl-item {
         .item {
             margin-right: 10px;
+            iframe {
+                width: 100%;
+            }
             img {
                 height: 146px;
             }

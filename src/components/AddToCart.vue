@@ -202,8 +202,8 @@
         },
         onRemoveCartItem(index) {
           this.$swal({
-            title: "Are you sure?",
-            text: "Once deleted, you will not be able to recover this imaginary file!",
+            title: "Do you want to remove this item?",
+            text: "",
             icon: "warning",
             buttons: true,
             dangerMode: true,
@@ -216,11 +216,11 @@
                         for (let i=0;i<this.cart.length;i++) {
                             this.$store.state.totalAmount = this.$store.state.totalAmount + this.price ;
                         }
-                      swal("Poof! Your imaginary file has been deleted!", {
+                      swal("The item is removed.", {
                         icon: "success",
                       });
                     } else {
-                      swal("Your imaginary file is safe!");
+                      swal("The item is not removed.");
                     }
                   });
         },

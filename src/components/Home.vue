@@ -210,10 +210,10 @@
                             <div class="footer-menu-content">
                                 <ul>
                                     <li><a href="javascript:void(0)">For You</a></li>
-                                    <li><a href="/frequently-asked-questions">FAQs</a></li>
-                                    <li><a href="/shop">Shop</a></li>
-                                    <li><a href="/privacy">Privacy</a></li>
-                                    <li><a href="/terms">Terms</a></li>
+                                    <li><router-link to="/frequently-asked-questions">FAQs</router-link></li>
+                                    <li><router-link to="/shop">Shop</router-link></li>
+                                    <li><router-link to="/privacy">Privacy</router-link></li>
+                                    <li><router-link to="/terms">Terms</router-link></li>
                                 </ul>
                             </div>
                         </div>
@@ -221,9 +221,9 @@
                             <div class="footer-menu-content">
                                 <ul>
                                     <li><a href="javascript:void(0)">Help</a></li>
-                                    <li><a href="/support">Supoort</a></li>
-                                    <li><a href="/forum">Forum</a></li>
-                                    <li><a href="/stats">Stats</a></li>
+                                    <li><router-link to="/support">Supoort</router-link></li>
+                                    <li><router-link to="/forum">Forum</router-link></li>
+                                    <li><router-link to="/stats">Stats</router-link></li>
                                 </ul>
                             </div>
                         </div>

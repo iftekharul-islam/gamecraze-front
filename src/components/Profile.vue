@@ -7,7 +7,7 @@
                     <img src="../assets/img/sss.jpg" alt="user profile" class="img-fluid">
                     <div class="users-name">
                         <h3>{{ user.name }}</h3>
-                        <h6>sabertooth_wolf</h6>
+<!--                        <h6>sabertooth_wolf</h6>-->
                     </div>
                     <div class="user-rating">
                         <i class="fas fa-star"></i>
@@ -41,10 +41,10 @@
                                             <td scope="row">Name:</td>
                                             <td>{{ user.name }}</td>
                                         </tr>
-                                        <tr>
-                                           <td scope="row">Username:</td>
-                                            <td>sabertooth_wolf</td>
-                                        </tr>
+<!--                                        <tr>-->
+<!--                                           <td scope="row">Username:</td>-->
+<!--                                            <td>sabertooth_wolf</td>-->
+<!--                                        </tr>-->
                                         <tr>
                                            <td scope="row">Gender:</td>
                                             <td>{{ user.gender }}</td>

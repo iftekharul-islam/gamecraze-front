@@ -99,7 +99,8 @@
                                                       </ValidationProvider>
                                                     </td>
                                                 </tr>
-                                                <tr v-if="form.deliveryType !== -1 && modalData">
+
+                                                <tr v-if="form.deliveryType !== '0' && modalData">
                                                     <td>Checkpoint Details:</td>
                                                     <td>
                                                         <div class="seller-address">
@@ -109,6 +110,10 @@
                                                             {{ modalData.checkpoint.data.area.data.thana.data.name }}, {{modalData.checkpoint.data.area.data.thana.data.district.data.name}}
                                                         </div>
                                                     </td>
+                                                </tr>
+                                                <tr v-else>
+                                                  <td>Delivery Address:</td>
+                                                  <td></td>
                                                 </tr>
                                                 </tbody>
                                             </table>
@@ -139,9 +144,9 @@
                     modalData: null,
                     form: {
                       week: '',
-                      deliveryType: -1
+                      deliveryType: '0'
                     },
-                  userDetails: null,
+                  userDetails: this.$store.state.user,
                 }
             },
             computed: {
@@ -192,19 +197,20 @@
                   console.log(this.rentPosts)
                 });
 
-              let config = {
-                headers: {
-                  'Authorization': 'Bearer ' + this.$store.state.token
-                }
-              };
-              if (this.$store.state.userId != null) {
-                this.$api.get('user/details', config)
-                    .then (response =>
-                    {
-                      this.userDetails = response.data.data;
-                      console.log(this.userDetails, 'User details');
-                    })
-              }
+              // let config = {
+              //   headers: {
+              //     'Authorization': 'Bearer ' + this.$store.state.token
+              //   }
+              // };
+              // if (this.$store.state.userId != null) {
+              //   this.$api.get('user/details', config)
+              //       .then (response =>
+              //       {
+              //         this.userDetails = response.data.data;
+              //         console.log(this.userDetails, 'User details');
+              //       })
+              // }
+              console.log(this.userDetails, 'user')
             },
             
         mounted() {

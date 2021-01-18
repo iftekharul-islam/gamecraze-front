@@ -58,12 +58,13 @@
                             </li>
                         </ul>
 
-                        <!-- <div class="password-setup-popup" v-if="$store.state.setPasswordPopUp">
+                        <div class="password-setup-popup" v-if="$store.state.setPasswordPopUp">
                             <div class="password-setup-popup--content">
-                                <p>Please Click this link and set your password</p>
-                                <router-link to="/registration">ok</router-link>
+                                <p>A verification email has been sent. Please check your email.</p>
+                                <!-- <router-link to="/registration">ok</router-link> -->
+                                <button @click="hidePopUp">ok</button>
                             </div>
-                        </div> -->
+                        </div>
 
                         <!-- form -->
                         <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption==='Phone Number' && !$store.state.setPasswordPopUp">
@@ -73,7 +74,7 @@
                                     <label for="username1" class="">Email address</label>
                                     <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                                         <input @click="changeErrorMessage" type="text" class="form-control mb-2"
-                                               id="username1" v-model="form.email">
+                                               id="username1" v-model="form.email" placeholder="Please enter your Email">
                                         <span class="error-message">{{ errors[0] }}</span>
                                     </ValidationProvider>
                                 </div>
@@ -267,7 +268,7 @@
                 if (this.loginOption === "Email") {
                     this.$store.dispatch('setPhoneNumber', this.phone_number)
                     this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
-                        console.log('send otp: ', response.data);
+                         console.log('send otp: ', response.data);
                         if (response.data.error === false) {
                             this.isLoading = false
                             setTimeout(() => {
@@ -306,7 +307,7 @@
                 this.isResendLoading = true
                 this.$store.dispatch('setPhoneNumber', this.phone_number)
                 this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
-                    console.log('otp: ', response.data);
+                    console.log('resent otp: ', response.data);
                     if (response.data.error === false) {
                         this.isResendLoading = false
                         this.resend = true
@@ -320,6 +321,9 @@
             },
             changeWrongOtp() {
                 this.$store.commit('setWrongOTP', false)
+            },
+            hidePopUp() {
+                this.$store.dispatch('hidePasswordResetPopup', false)
             }
         },
         created() {

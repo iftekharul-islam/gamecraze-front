@@ -12,6 +12,19 @@
                             </button>
                       </div>
                         <div v-if="isHidden" class="games-categories-section--categories" id="games-categories-list">
+                           <!-- Gamehub -->
+                            <div class="select-categories">
+                                <h6>Game Hub</h6>
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="custom-control-input" id="gamehub-name" >
+                                    <label class="custom-control-label" for="gamehub-name">Trending</label>
+                                </div>
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="custom-control-input" id="gamehub-name2" >
+                                    <label class="custom-control-label" for="gamehub-name2">Upcoming</label>
+                                </div>
+
+                            </div>
                             <!-- select categories -->
                             <div class="select-categories">
                                 <h6>Select Category</h6>
@@ -47,12 +60,12 @@
                                   <router-link :to="{ path: '/game-details/' + rent.id}" class="games-categories-section--games--game-card-box">
                                     <div class="game-card">
                                         <div class="display-image" href="#">
-                                            <img src="../assets/img/fifa19.png" alt="fifa" class="img-fluid">
+                                            <img :src="rent.poster_url" :alt="rent.name" class="img-fluid">
                                         </div>
                                         <div> <h6>{{rent.name}}</h6></div>
-                                        <div class="d-flex">
+                                        <div class="d-flex flex-wrap">
 
-                                          <span v-for="(genre, index) in rent.genres.data" :key="index" >{{ genre.name }}<span class="mr-1" v-if="index < rent.genres.data.length-1">, </span></span>
+                                          <span v-for="(genre, index) in rent.genres.data" :key="index" >{{ genre.name }}<span class="mr-2" v-if="index < rent.genres.data.length-1">, </span></span>
 
 
                                         </div>
@@ -175,6 +188,7 @@
             const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
             this.$api.get('filter-games/?ids=' + uniqueArr + '&include=assets,genres,platforms&categories=' + this.queryCategories + '&platforms=' + this.queryPlatforms + '&search=' + this.searchKey).then(resp => {
               this.filteredGames = resp.data.data;
+              console.log(this.filteredGames, 'filtered');
             })
 
         },

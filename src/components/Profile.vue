@@ -8,7 +8,7 @@
                     <img v-else src="../assets/img/profile_image4.png" alt="user profile" class="img-fluid">
                     <div class="users-name">
                         <h3>{{ user.name }}</h3>
-                        <h6>sabertooth_wolf</h6>
+<!--                        <h6>sabertooth_wolf</h6>-->
                     </div>
                     <div class="user-rating">
                         <i class="fas fa-star"></i>
@@ -42,10 +42,10 @@
                                             <td scope="row">Name:</td>
                                             <td>{{ user.name }}</td>
                                         </tr>
-                                        <tr>
-                                           <td scope="row">Username:</td>
-                                            <td>sabertooth_wolf</td>
-                                        </tr>
+<!--                                        <tr>-->
+<!--                                           <td scope="row">Username:</td>-->
+<!--                                            <td>sabertooth_wolf</td>-->
+<!--                                        </tr>-->
                                         <tr>
                                            <td scope="row">Gender:</td>
                                             <td>{{ user.gender }}</td>
@@ -100,44 +100,79 @@
                                             <button  @click.prevent="onOfferedGames()" :disabled="!show" :class="{active: !show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  Offered Games</button>
                                             <button  @click.prevent="onRentedGames()" :disabled="show" :class="{active: show}"><img class="active-black" src="../assets/img/rent-icon.png" alt="rent icon"> <img class="active-yellow" src="../assets/img/rent-icon-black.png" alt="rent icon"> Rented Games</button>
                                         </div>
-                                        <div class="table-responsive pb-5" v-if="rents.length && !show">
-                                                <table class="table table-striped table-dark">
-                                                    <thead>
-                                                    <tr>
-                                                        <th scope="col">Game name</th>
-                                                        <th scope="col">Disk condition</th>
-                                                        <th scope="col">Platform</th>
-                                                        <th scope="col">Renter name</th>
-                                                        <th scope="col">Pick Point</th>
-                                                        <th scope="col">Approvement</th>
-                                                        <th scope="col">Available From</th>
-                                                        <th scope="col">Action</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr v-for="(rent, index) in rents" :key="index">
-                                                        <td v-if="rent.game">{{ rent.game.data.name }}</td>
-                                                        <td v-if="rent">{{ rent.diskCondition.data.name_of_type }}</td>
-                                                        <td v-if="rent">{{ rent.platform.data.name }}</td>
-                                                        <td>{{ rent.rented_user_id ? rent.rented_user_id : 'N/A' }}</td>
-                                                        <td>{{ rent.checkpoint_id ? rent.checkpoint.data.name : 'Home Delivery' }}</td>
-                                                        <td v-if="rent.status === 0">
-                                                            <a class="badge-danger badge" >Rejected</a>
-                                                        </td>
-                                                        <td v-else-if="rent.status === 1">
-                                                            <a class="badge-success badge" >Approved</a>
-                                                        </td>
-                                                        <td v-else>
-                                                            <a class="badge-info badge" >Pending</a>
-                                                        </td>
-                                                        <td>{{ formattedDate(rent.availability_from_date) }}</td>
-                                                        <td>
-                                                            <button type="button" class="btn btn-danger mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button>
-                                                        </td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                        </div>
+<!--                                        <div class="table-responsive pb-5" v-if="rents.length && !show">-->
+<!--                                                <table class="table table-striped table-dark">-->
+<!--                                                    <thead>-->
+<!--                                                    <tr>-->
+<!--                                                        <th scope="col">Game name</th>-->
+<!--                                                        <th scope="col">Disk condition</th>-->
+<!--                                                        <th scope="col">Platform</th>-->
+<!--                                                        <th scope="col">Renter name</th>-->
+<!--                                                        <th scope="col">Pick Point</th>-->
+<!--                                                        <th scope="col">Approvement</th>-->
+<!--                                                        <th scope="col">Available From</th>-->
+<!--                                                        <th scope="col">Action</th>-->
+<!--                                                    </tr>-->
+<!--                                                    </thead>-->
+<!--                                                    <tbody>-->
+<!--                                                    <tr v-for="(rent, index) in rents" :key="index">-->
+<!--                                                        <td v-if="rent.game">{{ rent.game.data.name }}</td>-->
+<!--                                                        <td v-if="rent">{{ rent.diskCondition.data.name_of_type }}</td>-->
+<!--                                                        <td v-if="rent">{{ rent.platform.data.name }}</td>-->
+<!--                                                        <td>{{ rent.rented_user_id ? rent.rented_user_id : 'N/A' }}</td>-->
+<!--                                                        <td>{{ rent.checkpoint_id ? rent.checkpoint.data.name : 'Home Delivery' }}</td>-->
+<!--                                                        <td v-if="rent.status === 0">-->
+<!--                                                            <a class="badge-danger badge" >Rejected</a>-->
+<!--                                                        </td>-->
+<!--                                                        <td v-else-if="rent.status === 1">-->
+<!--                                                            <a class="badge-success badge" >Approved</a>-->
+<!--                                                        </td>-->
+<!--                                                        <td v-else>-->
+<!--                                                            <a class="badge-info badge" >Pending</a>-->
+<!--                                                        </td>-->
+<!--                                                        <td>{{ formattedDate(rent.availability_from_date) }}</td>-->
+<!--                                                        <td>-->
+<!--                                                            <button type="button" class="btn btn-danger mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button>-->
+<!--                                                        </td>-->
+<!--                                                    </tr>-->
+<!--                                                    </tbody>-->
+<!--                                                </table>-->
+<!--                                        </div>-->
+
+                                      <div class="dashboard-content--rented pb-5" v-if="rents.length && !show">
+                                        <table class="table table-borderless" v-if="rents">
+                                          <thead>
+                                          <tr>
+                                            <td scope="col">Game</td>
+                                            <td scope="col">Disk condition</td>
+                                            <td scope="col">Platform</td>
+                                            <td scope="col">Renter name</td>
+                                            <td scope="col">Pick Point</td>
+                                            <td scope="col">Available From</td>
+                                            <td scope="col">Approvement</td>
+                                            <td scope="col">Action</td>
+                                          </tr>
+                                          </thead>
+                                          <tbody>
+                                          <tr v-for="(rent, index) in rents" :key="index">
+                                            <td v-if="rent.game">{{ rent.game.data.name }}</td>
+                                            <td>{{ rent.diskCondition.data.name_of_type }}</td>
+                                            <td>{{ rent.platform.data.name }}</td>
+                                            <td>Renter Name</td>
+                                            <td v-if="rent.checkpoint_id">{{}}</td>
+                                            <td v-else>Not Set</td>
+                                            <td>{{ formattedDate(rent.availability_from_date) }}</td>
+                                            <td v-if="rent.status === 0">
+                                                <a class="badge-danger badge" >Rejected</a>
+                                            </td>
+                                            <td v-else-if="rent.status === 1">
+                                                <a class="badge-success badge" >Approved</a>
+                                            </td>
+                                            <td><button type="button" class="btn btn-danger mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                                          </tr>
+                                          </tbody>
+                                        </table>
+                                      </div>
                                         <div class="dashboard-content--rented pb-5" v-else-if="lends.length && show">
                                             <table class="table table-borderless" v-if="lends">
                                                 <thead>

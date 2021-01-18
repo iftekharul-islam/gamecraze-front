@@ -42,9 +42,7 @@
             <div class="text-center">
                 <h2 class="section-heading">TRENDING GAMES</h2>
             </div>
-            <div id="owl-trending" class="owl-carousel owl-theme">
-
-
+            <div id="owl-trending" class="owl-carousel owl-theme" v-if="trendingGames">
                 <div class="item" v-for="(trending, index) in trendingGames" :key="index">
                     <router-link :to="{ path: '/game-details/' + trending.game.data.id}" class="trending-image">
                         <img :src="trending.game.data.trending_url" alt="trending.game.data.name" v-if="trending.game.data.assets.data.length">
@@ -54,7 +52,7 @@
                          <router-link :to="{ path: '/game-details/' + trending.game.data.id}" class="">{{ trending.game.data.name }}</router-link>
                         <!-- <span>$19.99</span>-->
                     </div>
-                    <div class="trending-game--categories d-flex justify-content-between">
+                    <div class="trending-game--categories d-flex justify-content-between" v-if="trending">
                         <div class="home-categories">
                             <a href="#" v-for="(genre) in trending.game.data.genres.data" :key="genre.id">{{ genre.name }}</a>
                         </div>
@@ -73,7 +71,7 @@
             <div class="text-center">
                  <h2 class="section-heading">RENT YOUR FAVORITE GAMES</h2>
             </div>
-            <div id="owl-favorite" class="owl-carousel owl-theme" v-if="rents.length">
+            <div id="owl-favorite" class="owl-carousel owl-theme" v-if="rents">
                 <div class="item" v-for="(rent, index) in rents" :key="index" >
                     <div class="favorite-games">
                         <router-link :to="{ path: '/game-details/' + rent.game.data.id}" v-if="rent.game.data.trending_url">
@@ -94,11 +92,11 @@
                 <h2 class="section-heading">UPCOMING GAMES</h2>
             </div>
              
-            <div id="owl-upcoming" class="owl-carousel owl-theme">
+            <div id="owl-upcoming" class="owl-carousel owl-theme" v-if="upcomingGames">
                 <div class="item" v-for="(game, index) in upcomingGames" :key="index">
                     <div class="owl-upcoming--item">
                         <router-link :to="{ path: '/game-details/' + game.id}" class="upcoming-image">
-                            <img class="card-img-top" :src="game.poster_url" :alt="game.name"  v-if="game.poster_url">
+                            <img class="card-img-top" :src="game.upcoming_url" :alt="game.name"  v-if="game.upcoming_url">
                             <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
                             <!-- <button class="set-reminder" @click.prevent="setReminder(game.id)" ><i class="fas fa-bell"></i></button> -->
                         </router-link>
@@ -131,8 +129,8 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 mx-auto">
-                            <div class="noticed-grid">
+                    <div class="col-md-12 mx-auto" v>
+                            <div class="noticed-grid" v-if="articles">
                             <div class="notice-box" v-for="(article, index) in articles" :key="index"> 
                                 <img :src=article.thumbnail :alt="article.title" class="w-100">
                                 <div class="noticed-details">
@@ -156,7 +154,7 @@
             </div>
             <div class="container">
                 <div class="col-12">
-                    <div id="owl-video" class="owl-carousel owl-theme" v-if="videos.length">
+                    <div id="owl-video" class="owl-carousel owl-theme" v-if="videos">
                         <div class="item" v-for="(video, index) in videos" :key="index">
                             <div class="featured-videos">
                                 <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
@@ -171,7 +169,7 @@
              <div class="footer-section--content">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-10 mx-auto">
+                        <div class="col-md-11 ml-auto">
                             <div class="footer-top">
                             <a href="/" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
                             <div class="footer-top--right">
@@ -195,7 +193,7 @@
             <div class="footer-middle">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-10 mx-auto">
+                        <div class="col-md-11 ml-auto">
                             <div class="row">
                                 <div class="col-6 col-md-3">
                             <div class="footer-menu-content">
@@ -230,7 +228,7 @@
                             </div>
                         </div>
                         <div class="col-6 col-md-3">
-                            <div class="footer-menu-content">
+                            <div class="footer-menu-content" v-if="platforms">
                                 <ul>
                                     <li><a href="javascript:void(0)">Platforms</a></li>
                                     <li v-for="platform in platforms" :key="'platform-' + platform.id">
@@ -247,7 +245,7 @@
             <div class="footer-section--content">
                 <div class="container">
                      <div class="row">
-                         <div class="col-md-10 mx-auto">
+                         <div class="col-md-11 ml-auto">
                              <div class="footer-bottom">
                                 <p>©2020 Game Hub Inc.</p>
                                 <div class="footer-bottom--social">

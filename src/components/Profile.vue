@@ -4,7 +4,8 @@
             <img src="../assets/img/profile-bg.png" alt="profile bg" class="img-fluid user-profile-bg">
             <div class="container">
                 <div class="user-profile-heading--name">
-                    <img src="../assets/img/sss.jpg" alt="user profile" class="img-fluid">
+                    <img v-if="user" :src="user.image" :alt="user.name" class="img-fluid">
+                    <img v-else src="../assets/img/profile_image4.png" alt="user profile" class="img-fluid">
                     <div class="users-name">
                         <h3>{{ user.name }}</h3>
                         <h6>sabertooth_wolf</h6>
@@ -173,11 +174,10 @@
                         <div class="tab-pane fade" id="v-pills-post-rent" role="tabpanel" aria-labelledby="v-pills-post-rent-tab">
                             <div class="post-rent">
                                 <ValidationObserver v-slot="{ handleSubmit }">
-                                    <form @submit.prevent="handleSubmit(onRentSubmit)" method="post">
+                                    <form @submit.prevent="handleSubmit(onRentSubmit)" method="post" id="rentPostForm">
                                         <div class="form-group row">
                                             <label for="gamename" class="col-sm-3 col-form-label">Game Name:</label>
                                             <div class="col-sm-8 post-rent--input">
-                                                <!-- <input type="text" class="form-control" id="gamename"> -->
                                                 <ValidationProvider name="game" rules="" v-slot="{ errors }">
                                                     <vue-autosuggest
                                                         :v-model="gameName"
@@ -192,7 +192,6 @@
                                                         <div style="display: flex; color: white;">{{suggestion.item.name}}</div>
                                                         </div>
                                                     </vue-autosuggest>
-                <!--                                            <v-select label="name" :options="games" :reduce="game => game" v-model="form.game" @change="changeGame"></v-select>-->
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
@@ -202,8 +201,8 @@
                                             <div class="col-sm-8 post-rent--input">
                                                 <ValidationProvider name="rented week" rules="required|min_value:1" v-slot="{ errors }">
                                                     <input type="number" class="form-control renten-input" id="rentedWeek" min="1" v-model="rentData.max_week">
-                                                    <i class="fa fa-angle-up rented-plus"></i>
-                                                    <i class="fa fa-angle-down rented-minus"></i>
+                                                    <i class="fa fa-angle-up rented-plus" @click="adjustRentedWeek('increase')"></i>
+                                                    <i class="fa fa-angle-down rented-minus" @click="adjustRentedWeek('decrease')"></i>
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
@@ -222,7 +221,7 @@
                                             <label>Platform</label><br>
                                             <ValidationProvider name="Platform" rules="required" v-slot="{ errors }" class="d-flex">
                                                 <div class="form-check form-check-inline" v-for="(platform, index) in rentData.game.platforms.data" :key="index">
-                                                    <input class="form-check-input platform" :id="'platform-' + index" name="platform" type="radio" :value="platform" v-model="form.platform">
+                                                    <input class="form-check-input platform" :id="'platform-' + index" name="platform" type="radio" :value="platform" v-model="rentData.platform">
                                                     <label class="form-check-label ml-3" :for="'platform-' + index">{{ platform.name }}</label>
                                                 </div>
                                                 <span class="error-message">{{ errors[0] }}</span>
@@ -316,7 +315,10 @@
                                         </div>
                                         <div class="form-group row">
                                             <div class="offset-md-3 col-md-8 mt-4">
-                                                <button class="btn--secondery w-100 border-0"><span>Submit</span></button>
+                                                <button class="btn--secondery w-100 border-0">
+                                                    <span class="mr-2">Submit</span>
+                                                    <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i>
+                                                </button>
                                             </div>
                                         </div>
                                     </form>
@@ -443,7 +445,10 @@
                                         </div>
                                         <div class="form-group row">
                                         <div class="offset-md-3 col-md-8 mt-4">
-                                                <button class="btn--secondery w-100 border-0"><span>Submit</span></button>
+                                                <button class="btn--secondery w-100 border-0" :disabled="$store.state.isProfileUpdating">
+                                                    <span class="mr-2">Submit</span>
+                                                    <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm"></i>  
+                                                </button>
                                             </div>
                                         </div>
 
@@ -499,15 +504,16 @@
                 gameName: '',
                 gamePlatform: false,
                 rentData: {
-                    game: {},
+                    game: null,
                     availability: '',
-                    max_week: '',
-                    platform: {},
+                    max_week: 1,
+                    platform: null,
                     disk_condition: {},
                     disk_image: '',
                     cover_image: '',
                     checkpoint: {},
                 },
+                isRentLoading: false
             }
         },
         methods: {
@@ -583,8 +589,7 @@
                 return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear()
             },
             onProfileUpdate: function() {
-                this.$store.dispatch('updateUserDetails', this.form)
-                console.log(this.form)
+                this.$store.dispatch('updateUserDetails', this.form);
             },
             isNumber: function(evt) {
                 evt = (evt) ? evt : window.event;
@@ -628,8 +633,7 @@
                 this.form.checkpoint = '';
             },
             onRentSubmit () {
-                // this.rentView = false;
-                //this.rentPost = true;
+                this.isRentLoading = true;
                 let  uploadInfo = {
                     game_id: this.rentData.game.id,
                     availability: this.rentData.availability,
@@ -645,32 +649,26 @@
                         'Authorization': 'Bearer ' + this.$store.state.token
                     }
                 }
-                console.log('game: ', this.gameName);
-                console.log(uploadInfo);
-                return;
+
                 this.$api.post('rents', uploadInfo, config)
                     .then(response => {
-                        this.$swal({
-                            title: "Post Uploaded!",
-                            text: "Rent Post Successful!",
-                            timer: 1500
-                        });
-                        this.$router.push('dashboard').catch(err => {});
+                        this.isRentLoading = false;
+                        this.$toaster.success('Post submitted');
+                        setTimeout(function(){
+                            window.location.reload();
+                        }, 2000);
                     });
             },
             clickHandler(item) {
               // event fired when clicking on the input
             },
             onSelected(item) {
-              this.form.game = item.item;
+              this.rentData.game = item.item;
               this.gamePlatform = true;
-                this.$api.get('base-price/calculate/' + this.form.game.id)
-                    .then (response =>
-                    {
-                        this.basePrices = response.data;
-                        // console.log(response);
-                        // console.log(this.basePrices);
-                    })
+                this.$api.get('base-price/calculate/' + this.rentData.game.id).then (response =>
+                {
+                    this.basePrices = response.data;
+                })
             },
             onInputChange(text) {
               // event fired when the input changes
@@ -708,6 +706,17 @@
               }
               return yyyy+'-'+mm+'-'+dd;
 
+            },
+            adjustRentedWeek: function(adjustmentType) {
+                if (adjustmentType == 'increase') {
+                    this.rentData.max_week =this.rentData.max_week + 1; 
+                    return;
+                }
+
+                if (adjustmentType == 'decrease' && this.rentData.max_week > 1) {
+                    this.rentData.max_week = this.rentData.max_week - 1;
+                    return;
+                }
             }
         },
         created() {

@@ -66,8 +66,7 @@
                         </div> -->
 
                         <!-- form -->
-                        <ValidationObserver v-slot="{ handleSubmit }"
-                                            v-if="loginOption==='Phone Number' && !$store.state.setPasswordPopUp">
+                        <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption==='Phone Number' && !$store.state.setPasswordPopUp">
                             <form @submit.prevent="handleSubmit(onLogin)" method="post">
                                 <div class="form-group" v-if="$store.state.notSetPassword">
                                     <!-- user name -->

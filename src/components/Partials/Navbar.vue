@@ -26,9 +26,9 @@
                         <li>
                             <router-link class="router_link" to="/games">Games</router-link>
                         </li>
-                        <li>
+                        <!-- <li>
                             <router-link class="router_link" to="/profile" @click.native="clickProfile()">Post For Rent</router-link>
-                        </li>
+                        </li> -->
                         <li>
                             <router-link class="router_link" to="/notice-board">Notice Board</router-link>
                         </li>

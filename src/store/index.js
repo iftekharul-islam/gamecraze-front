@@ -27,6 +27,7 @@ export const storage = {
         wrongOTP: false,
         inactiveUser: false,
         timeout: false,
+        isProfileUpdating: false,
         postId: [],
         cart: null,
         totalAmount: 0,
@@ -151,6 +152,9 @@ export const storage = {
         setUser (state, payload) {
             state.user = payload
         },
+        setUserId (state, payload) {
+            state.userId = payload
+        },
         setSetupPasswordUser (state, payload) {
             state.setupPasswordUser = payload
         },
@@ -162,6 +166,9 @@ export const storage = {
         },
         setTotalPrice(state, payload) {
             state.totalPrice = payload
+        },
+        setIsProfileUpdateing(state, payload) {
+            state.isProfileUpdating = payload
         }
     },
     actions: {
@@ -362,12 +369,29 @@ export const storage = {
                     'Authorization': 'Bearer ' + this.state.token
                 }
             }
-            console.log('update token: ', this.state.token);
+
+            commit('setIsProfileUpdateing', true);
             axios.put(process.env.VUE_APP_GAMEHUB_BASE_API + 'users', payload, config).then(response => {
                 console.log('updated data: ', response.data);
+                commit('setIsProfileUpdateing', false);
                 if (response.data) {
-                    commit('setUser', response.data);
-                    localStorage.setItem('user', JSON.stringify(response.data));
+                    if (response.data.data) {
+                        console.log('in data.data: ', response.data.data);
+                        commit('setUser', response.data.data);
+                        commit('setUserId', response.data.data.id);
+                        localStorage.setItem('userId', JSON.stringify(response.data.data.id))
+                        localStorage.setItem('user', JSON.stringify(response.data.data));
+                    } else {
+                        commit('setUser', response.data);
+                        commit('setUserId', response.data.id);
+                        localStorage.setItem('userId', JSON.stringify(response.data.id))
+                        localStorage.setItem('user', JSON.stringify(response.data));
+                    }
+                    // commit('setUser', response.data);
+                    // commit('setUserId', response.data.id);
+                    // localStorage.setItem('userId', JSON.stringify(response.data.id))
+                    // localStorage.setItem('user', JSON.stringify(response.data));
+
                     if (payload.name || payload.lastName || payload.gender || payload.birth_date || payload.email || payload.phone_number || payload.id_number || payload.id_image || payload.address || payload.city || payload.postCode || payload.image) {
                         swal("Profile Updated!", "Profile Update Successful!", "success");
                         router.push('/profile').catch(err => {});
@@ -376,7 +400,6 @@ export const storage = {
                         router.push('/').catch(err => {});
                     }
                 }
-
             });
         },
         checkPassword ({commit, dispatch}, payload) {

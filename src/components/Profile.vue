@@ -522,7 +522,7 @@
                     address: this.$store.state.user.address.address,
                     city: this.$store.state.user.address.city,
                     postCode: this.$store.state.user.address.post_code,
-                    image: ""
+                    id_image: ""
                 },
                 selectedFile: 'Select NID',
                 x: '',
@@ -642,7 +642,7 @@
                 }
 
                 fileReader.onload = (e) => {
-                    this.form.image = e.target.result;
+                    this.form.id_image = e.target.result;
                 }
                 fileReader.readAsDataURL(event.target.files[0]);
             },
@@ -802,6 +802,18 @@
             {
                 this.checkpoints = response.data.data
             });
+
+            this.$store.watch(
+                (state)=>{
+                    return this.$store.state.user // could also put a Getter here
+                },
+                (newValue, oldValue)=>{
+                    this.user = newValue;
+                    console.log('newuser: ', newValue)
+                },
+                //Optional Deep if you need it
+                { deep:true }
+            );
         },
         computed: {
           filteredOptions() {

@@ -480,7 +480,6 @@
                     email: this.$store.state.user.email,
                     phone_number: this.$store.state.user.phone_number,
                     id_number: this.$store.state.user.identification_number,
-                    id_image: "",
                     address: this.$store.state.user.address.address,
                     city: this.$store.state.user.address.city,
                     postCode: this.$store.state.user.address.post_code,
@@ -684,11 +683,11 @@
             focusMe(e) {
               // console.log(e) // FocusEvent
             },
-            formattedDate(date) {
-              const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-              let birthDate = new Date(date)
-              return birthDate.getDate() + " " + months[birthDate.getMonth()] + " " + birthDate.getFullYear()
-            },
+            // formattedDate(date) {
+            //   const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+            //   let birthDate = new Date(date)
+            //   return birthDate.getDate() + " " + months[birthDate.getMonth()] + " " + birthDate.getFullYear()
+            // },
             todayDate() {
               var today = new Date();
               var dd = today.getDate() + 1;
@@ -745,10 +744,7 @@
                 $('#v-pills-post-rent-tab').addClass('active');
                 $('#v-pills-post-rent').addClass('active');
                 $('#v-pills-post-rent').addClass('show');
-              })
-            },
-            
-            });
+              });
 
             //rent posts
             this.$api.get('games?include=platforms').then(response =>

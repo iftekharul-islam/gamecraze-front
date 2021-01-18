@@ -224,7 +224,7 @@
                                                         :get-suggestion-value="getSuggestionValue"
                                                         :input-props="{id:'autosuggest__input', placeholder:'Enter game name'}">
                                                         <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
-                                                        <div style="display: flex; color: white;">{{suggestion.item.name}}</div>
+                                                            <div style="display: flex; color: white;">{{suggestion.item.name}}</div>
                                                         </div>
                                                     </vue-autosuggest>
                                                     <span class="text-danger">{{ errors[0] }}</span>
@@ -543,7 +543,7 @@
                     availability: '',
                     max_week: 1,
                     platform: null,
-                    disk_condition: {},
+                    disk_condition: null,
                     disk_image: '',
                     cover_image: '',
                     checkpoint: {},
@@ -668,6 +668,10 @@
                 this.form.checkpoint = '';
             },
             onRentSubmit () {
+                if ( this.rentData.game == '' || this.rentData.game == null) {
+                    this.$toaster.warning('Select Game');
+                    return;
+                }
                 this.isRentLoading = true;
                 let  uploadInfo = {
                     game_id: this.rentData.game.id,

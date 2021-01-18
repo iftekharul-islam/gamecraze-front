@@ -96,7 +96,7 @@
                 <div class="item" v-for="(game, index) in upcomingGames" :key="index">
                     <div class="owl-upcoming--item">
                         <router-link :to="{ path: '/game-details/' + game.id}" class="upcoming-image">
-                            <img class="card-img-top" :src="game.poster_url" :alt="game.name"  v-if="game.poster_url">
+                            <img class="card-img-top" :src="game.upcoming_url" :alt="game.name"  v-if="game.upcoming_url">
                             <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
                             <!-- <button class="set-reminder" @click.prevent="setReminder(game.id)" ><i class="fas fa-bell"></i></button> -->
                         </router-link>

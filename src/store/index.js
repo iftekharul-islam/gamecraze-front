@@ -372,11 +372,9 @@ export const storage = {
 
             commit('setIsProfileUpdateing', true);
             axios.put(process.env.VUE_APP_GAMEHUB_BASE_API + 'users', payload, config).then(response => {
-                console.log('updated data: ', response.data);
                 commit('setIsProfileUpdateing', false);
                 if (response.data) {
                     if (response.data.data) {
-                        console.log('in data.data: ', response.data.data);
                         commit('setUser', response.data.data);
                         commit('setUserId', response.data.data.id);
                         localStorage.setItem('userId', JSON.stringify(response.data.data.id))

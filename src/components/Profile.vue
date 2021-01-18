@@ -184,7 +184,7 @@
                                                         @input="onInputChange"
                                                         @selected="onSelected"
                                                         :get-suggestion-value="getSuggestionValue"
-                                                        :input-props="{id:'autosuggest__input', placeholder:'Enter game name'}">
+                                                        :input-props="{id:'autosuggest__input', class:'form-control', placeholder:'Enter game name'}">
                                                         <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
                                                             <div style="display: flex; color: white;">{{suggestion.item.name}}</div>
                                                         </div>
@@ -214,20 +214,22 @@
                                             </div>
                                         </div>
                                         <!-- platform -->
-                                        <div class="form-group" v-if="gamePlatform">
-                                            <label>Platform</label><br>
-                                            <ValidationProvider name="Platform" rules="required" v-slot="{ errors }" class="d-flex">
-                                                <div class="form-check form-check-inline" v-for="(platform, index) in rentData.game.platforms.data" :key="index">
+                                        <div class="form-group row" v-if="gamePlatform">
+                                            <label class="col-sm-3 col-form-label">Platform:</label>
+                                             <div class="col-sm-8 post-rent--input">
+                                            <ValidationProvider name="Platform" rules="required" v-slot="{ errors }">
+                                                <div class="form-check form-check-inline post-rent--input--platform-input" v-for="(platform, index) in rentData.game.platforms.data" :key="index">
                                                     <input class="form-check-input platform" :id="'platform-' + index" name="platform" type="radio" :value="platform" v-model="rentData.platform">
-                                                    <label class="form-check-label ml-3" :for="'platform-' + index">{{ platform.name }}</label>
+                                                    <label class="form-check-label ml-2" :for="'platform-' + index">{{ platform.name }}</label>
                                                 </div>
                                                 <span class="error-message">{{ errors[0] }}</span>
                                             </ValidationProvider>
+                                            </div>
                                         </div>
                                         <!-- earning amount -->
-                                        <div class="form-group" v-if="basePrices">
-                                            <label>Earning Amount</label>
-                                            <div class="earning-amount">
+                                        <div class="form-group row" v-if="basePrices">
+                                            <label class="col-sm-3 col-form-label">Earning Amount:</label>
+                                            <div class="earning-amount col-sm-8 post-rent--input">
                                                 <table class="table table-borderless">
                                                     <tbody>
                                                     <tr class="">
@@ -268,7 +270,7 @@
 
                                         <div class="form-group row">
                                             <label for="gamedisk" class="col-sm-3 col-form-label">How do you want to Deliver ?</label>
-                                            <div class="col-sm-8 post-rent--input">
+                                            <div class="col-sm-8 post-rent--input post-rent--deliver">
                                                     <label for="cod"><input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod"> COD</label>
                                                     <label for="checkpoint_true"><input type="radio" v-model="x" value="1" name="checkpoint_id" id="checkpoint_true"> Checkpoint</label>
                                             </div>

@@ -1786,6 +1786,9 @@ html {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
   margin: 0;
   border: 1px solid #FFD715;
   width: 185px;
@@ -1795,6 +1798,25 @@ html {
   color: #fff;
   padding: 15px;
   margin-left: -6px;
+  height: 187px;
+  overflow-y: auto;
+}
+
+.autosuggest__results-container ul::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #FFD715;
+  border-radius: 10px;
+}
+
+.autosuggest__results-container ul::-webkit-scrollbar {
+  width: 10px;
+  background: #FFD715;
+  border-radius: 10px;
+}
+
+.autosuggest__results-container ul::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.44, #7a99d9), color-stop(0.72, #497dbd), color-stop(0.86, #1c3a94));
 }
 
 @media (max-width: 575px) {
@@ -4730,6 +4752,55 @@ html {
 
 .post-rent--input i {
   color: #FFD715;
+}
+
+.post-rent--input #autosuggest > div {
+  -webkit-transform: skew(0deg);
+          transform: skew(0deg);
+  border: none;
+}
+
+.post-rent--input #autosuggest > div input {
+  border-radius: 5px;
+}
+
+.post-rent--input #autosuggest .autosuggest__results-container ul {
+  width: 100%;
+  margin-left: 0;
+}
+
+.post-rent--input--platform-input {
+  margin-right: 20px;
+}
+
+.post-rent--input--platform-input input {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.post-rent--input--platform-input label {
+  height: auto !important;
+  cursor: pointer;
+  font-size: 16px !important;
+}
+
+.post-rent--deliver label {
+  font-size: 16px !important;
+}
+
+.post-rent--deliver label input {
+  width: 20px;
+  height: 20px;
+}
+
+.earning-amount table tr td {
+  color: #808080;
+}
+
+.earning-amount table tr td:first-of-type {
+  width: 75%;
+  padding-left: 0;
 }
 
 .img-prev img {

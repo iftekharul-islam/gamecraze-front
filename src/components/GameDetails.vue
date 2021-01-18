@@ -41,6 +41,10 @@
                     <div class="item" v-for="(screenshot, index) in game.screenshots.data" :key="index">
                         <a href="#"><img :src="screenshot.url" alt="screenshot"></a>
                     </div>
+                  <div class="item" v-for="(video, index) in game.videoUrls.data" :key="index">
+                    <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
+<!--                        <a href="#">< :src="video.url" alt="screenshot"></a>-->
+                    </div>
                 </div>
 
             </div>
@@ -72,11 +76,11 @@
                             </div>
                             <div class="overview-content--text">
                                 <p>Supported languages</p>
-                                <p>English (US), 한국어, 中文（体）, 中文（繁體）</p>
+                                <p>{{ game.supported_language }}</p>
                             </div>
                             <div class="overview-content--text">
-                                <p>Game links</p>
-                                <p>Official Site</p>
+                                <p>Game link</p>
+                                <p>{{ game.official_website }}</p>
                             </div>
                         </div>
                     </div>
@@ -104,7 +108,7 @@
                       <router-link @click.native="scrollToTop()" :to="{ path: '/game-details/' + related.game.data.id}" class="games-categories-section--games--game-card-box">
                         <div class="game-card">
                             <a class="display-image" href="javascript:void(0)">
-                                <img src="../assets/img/fifa19.png" alt="fifa" class="img-fluid">
+                              <img :src="related.game.data.poster_url" :alt="related.game.data.name" class="img-fluid">
                             </a>
                             <a href="javascript:void(0)"> <h6>{{related.game.data.name}}</h6></a>
                             <div class="d-flex">
@@ -142,6 +146,11 @@
           },
         },
         methods: {
+          getVideoIdByURL: function(url) {
+            var regExp = /^https?\:\/\/(?:www\.youtube(?:\-nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*\&)?vi?=|\&vi?=|\?(?:.*\&)?vi?=)([^#\&\?\n\/<>"']*)/i;
+            var match = url.match(regExp);
+            return (match && match[1].length==11)? match[1] : false;
+          },
           scrollToTop() {
             window.scrollTo(0,0);
           },
@@ -151,9 +160,10 @@
             return  months[formattedDate.getMonth()] + " " + formattedDate.getDate() + ", " + formattedDate.getFullYear()
           },
           fetchGame() {
-            this.$api.get('games/' + this.id + '?include=assets,genres,platforms,screenshots').then(response => {
+            this.$api.get('games/' + this.id + '?include=assets,genres,platforms,screenshots,videoUrls').then(response => {
               var vm = this;
               vm.game = response.data.data;
+              console.log(vm.game, 'game');
               Vue.nextTick(function(){
                 vm.screenshotsCarousel();
               }.bind(vm));

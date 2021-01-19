@@ -14,7 +14,7 @@
                          <div class="card" v-for="index in 5" :key="index">
                              <div class="inbox-click" @click="changeToggle(index)">Click me</div>
                              <i class="fas fa-envelope mail-icon"></i>
-                            <p class="single-notice peraToggle">
+                            <p :class="{ peraToggle: show !== index }">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit amet luctus 
                                 venenatis, lectus magna fringilla urna, porttitor rhoncus dolor purus non enim praesent elementum 
                                 facilisis leo, vel fringilla est ullamcorper eget nulla facilisi etiam dignissim diam quis enim lobortis 
@@ -165,7 +165,7 @@
             return {
                 user: {},
                 isToggle: false,
-                show: false
+                show: -1
             }
         },
         methods: {
@@ -174,14 +174,13 @@
                 let birthDate = new Date(date)
                 return birthDate.getDate() + " " + months[birthDate.getMonth()] + " " + birthDate.getFullYear()
             },
-            changeToggle(value) {
-              if ($('.single-notice').hasClass('peraToggle')) {
-                  $('.single-notice').removeClass('peraToggle');
+            changeToggle(index) {
+              if (this.show === index) {
+                this.show = -1;
               }
               else {
-                $('.single-notice').addClass('peraToggle');
+                this.show = index;
               }
-
             }
         },
         created() {
@@ -189,6 +188,6 @@
             console.log(this.user, 'user');
         }
     }
-		
+
 
 </script>

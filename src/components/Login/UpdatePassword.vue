@@ -59,7 +59,7 @@
 
                                    <div class="form-group">
                                         <label>Set your password</label>
-                                        <ValidationProvider name="password" rules="required" v-slot="{ errors }">
+                                        <ValidationProvider name="password" rules="required|min:8" v-slot="{ errors }">
                                             <input type="password" class="form-control" v-model="form.password">
                                             <span style="color: red;">{{ errors[0] }}</span>
                                         </ValidationProvider>

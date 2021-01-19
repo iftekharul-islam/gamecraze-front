@@ -238,6 +238,11 @@ export const storage = {
         .then(res => {
             console.log(res, 'response')
             if (!res.data.error) {
+                if (res.data.message && res.data.message == "inactiveUser") {
+                    commit('setInactiveUser', true);
+                    commit('setNotFoundEmail', true)
+                    return;
+                }
                 commit('setInactiveUser', false)
                 commit('setNotFoundEmail', false)
                 commit('authUser', {

@@ -168,7 +168,8 @@
                                         <!--                                                <span class="error-message">{{ errors[0] }}</span>-->
                                         <br v-if="error">
 
-                                        <span class="error-message" v-if="$store.state.wrongOTP && !resend">You entered wrong OTP</span>
+                                        <span class="error-message" v-if="$store.state.isOTPEmpty && !resend">Enter OTP</span>
+                                        <span class="error-message" v-if="$store.state.wrongOTP && !resend">Wrong OTP</span>
                                         <span class="error-message" v-if="$store.state.timeout && !resend">This OTP is not valid for timeout</span>
                                         <span class="error-message" v-if="$store.state.inactiveUser && !resend">This User is inactive, please contact to helpline</span>
                                         <span class="error-message" v-if="$store.state.otpNotFound && !resend">The OTP no found. Please recheck.</span>
@@ -263,6 +264,7 @@
                 return roles.some(el => el.name === 'admin')
             },
             onLogin() {
+                
                 this.$store.dispatch('setEmailLoader', true);
                 this.isLoading = true;
                 if (this.loginOption === "Email") {
@@ -281,6 +283,7 @@
                         this.isLoading = false
                     });
                 } else {
+                    console.log('otp login')
                     if (this.$store.state.notSetPassword) {
                         this.$store.dispatch('setEmail', this.form.email)
                         this.$store.dispatch('checkPassword', this.form)
@@ -298,9 +301,13 @@
                 }
             },
             onOtpVerification: function () {
-                console.log('verify otp')
-                this.isLoading = true
-                this.resend = false
+                console.log('verify otp');
+                if (this.otp == '' || this.otp == null) {
+                    this.$store.commit('setEmptyOTP', true)
+                    return;
+                }
+                this.isLoading = true;
+                this.resend = false;
                 this.$store.dispatch('verifyOtp', {phone_number: this.phone_number, otp: this.otp})
             },
             onResendOtp: function () {

@@ -72,7 +72,7 @@
                                         </tr>
                                         <tr>
                                            <td scope="row">Address:</td>
-                                            <td v-if="user.address">{{ user.address.address }}, {{ user.address.city }}- {{ user.address.post_code }}</td>
+                                            <td v-if="user.address.address">{{ user.address.address }}</td>
                                         </tr>
                                         <tr>
                                            <td scope="row">City:</td>

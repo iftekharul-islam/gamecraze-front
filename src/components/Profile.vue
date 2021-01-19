@@ -386,7 +386,7 @@
                                         <div class="form-group row">
                                             <label for="dateofbirth" class="col-sm-3 col-form-label">Date of Birth:</label>
                                             <div class="col-sm-9 edit--input">
-                                                <ValidationProvider name="dateofbirth" rules="required" v-slot="{ errors }">
+                                                <ValidationProvider name="date of birth" rules="required" v-slot="{ errors }">
                                                     <input type="date" class="form-control" id="dateofbirth" v-model="form.birth_date">
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>
@@ -404,7 +404,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Mobile No:</label>
                                             <div class="col-sm-9 edit--input">
-                                                <ValidationProvider name="phone_number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
+                                                <ValidationProvider name="phone number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
                                                     <input type="text" @keypress="isNumber($event)" class="form-control" id="phone_number" v-model="form.phone_number">
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                     <span class="error-message d-block" v-if="$store.state.numberExists">Phone number already exists</span>
@@ -432,7 +432,7 @@
                                         <div class="form-group row">
                                             <label for="postcode" class="col-sm-3 col-form-label">Post Code:</label>
                                             <div class="col-sm-9 edit--input">
-                                                 <ValidationProvider name="postcode" rules="required" v-slot="{ errors }">
+                                                 <ValidationProvider name="post code" rules="required" v-slot="{ errors }">
                                                     <input type="text" class="form-control" id="postcode" v-model="form.postCode">
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>
@@ -441,7 +441,7 @@
                                         <div class="form-group row">
                                             <label for="nidno" class="col-sm-3 col-form-label">NID No:</label>
                                             <div class="col-sm-9 edit--input">
-                                                <ValidationProvider name="nidno" rules="required" v-slot="{ errors }">
+                                                <ValidationProvider name="NID" rules="required" v-slot="{ errors }">
                                                 <input type="text" class="form-control" id="nidno" v-model="form.id_number">
                                                   <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>

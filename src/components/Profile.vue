@@ -174,21 +174,34 @@
                                 <ValidationObserver v-slot="{ handleSubmit }">
                                     <form @submit.prevent="handleSubmit(onRentSubmit)" method="post" id="rentPostForm">
                                         <div class="form-group row">
-                                            <label for="gamename" class="col-sm-3 col-form-label">Game Name:</label>
+                                            <label class="col-sm-3 col-form-label">Game Name:</label>
                                             <div class="col-sm-8 post-rent--input">
                                                 <ValidationProvider name="game" rules="" v-slot="{ errors }">
+<!--                                                    <vue-autosuggest-->
+<!--                                                        :v-model="gameName"-->
+<!--                                                        :suggestions="filteredOptions"-->
+<!--                                                        @focus="focusMe"-->
+<!--                                                        @click="clickHandler"-->
+<!--                                                        @input="onInputChange"-->
+<!--                                                        @selected="onSelected"-->
+<!--                                                        :get-suggestion-value="getSuggestionValue"-->
+<!--                                                        :input-props="{id:'autosuggest__input', class:'form-control', placeholder:'Enter game name'}">-->
+<!--                                                        <div slot-scope="{suggestion}" style="display: flex; align-items: center;">-->
+<!--                                                            <div style="display: flex; color: white;">{{suggestion.item.name}}</div>-->
+<!--                                                        </div>-->
+<!--                                                    </vue-autosuggest>-->
                                                     <vue-autosuggest
-                                                        :v-model="gameName"
+                                                        v-model="gameName"
                                                         :suggestions="filteredOptions"
                                                         @focus="focusMe"
                                                         @click="clickHandler"
                                                         @input="onInputChange"
                                                         @selected="onSelected"
                                                         :get-suggestion-value="getSuggestionValue"
-                                                        :input-props="{id:'autosuggest__input', class:'form-control', placeholder:'Enter game name'}">
-                                                        <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
-                                                            <div style="display: flex; color: white;">{{suggestion.item.name}}</div>
-                                                        </div>
+                                                        :input-props="{id:'autosuggest__input', placeholder:'Search Game'}">
+                                                      <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
+                                                        <div>{{suggestion.item.name}}</div>
+                                                      </div>
                                                     </vue-autosuggest>
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>
@@ -257,7 +270,7 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="gamedisk" class="col-sm-3 col-form-label">Disk Condition:</label>
+                                            <label class="col-sm-3 col-form-label">Disk Condition:</label>
                                             <div class="col-sm-8 post-rent--input">
                                                 <ValidationProvider name="Disk Condition" rules="required" v-slot="{ errors }">
                                                     <select class="form-control" id="DiskCondition" v-model="rentData.disk_condition">
@@ -270,7 +283,7 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="gamedisk" class="col-sm-3 col-form-label">How do you want to Deliver ?</label>
+                                            <label class="col-sm-3 col-form-label">How do you want to Deliver ?</label>
                                             <div class="col-sm-8 post-rent--input post-rent--deliver">
                                                     <label for="cod"><input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod"> COD</label>
                                                     <label for="checkpoint_true"><input type="radio" v-model="x" value="1" name="checkpoint_id" id="checkpoint_true"> Checkpoint</label>
@@ -278,7 +291,7 @@
                                         </div>
 
                                         <div class="form-group row" v-show="x === '1'">
-                                            <label for="gamedisk" class="col-sm-3 col-form-label">Select checkpont:</label>
+                                            <label class="col-sm-3 col-form-label">Select checkpont:</label>
                                             <div class="col-sm-8 post-rent--input">
                                                 <select class="form-control" id="checkpoint" v-model="rentData.checkpoint">
                                                     <option value="" disabled>Please Select Near Checkpoint</option>
@@ -389,7 +402,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="mobileno" class="col-sm-3 col-form-label">Mobile No:</label>
+                                            <label class="col-sm-3 col-form-label">Mobile No:</label>
                                             <div class="col-sm-9 edit--input">
                                                 <ValidationProvider name="phone_number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
                                                     <input type="text" @keypress="isNumber($event)" class="form-control" id="phone_number" v-model="form.phone_number">
@@ -435,7 +448,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="" class="col-sm-3 col-form-label">NID Image:</label>
+                                            <label class="col-sm-3 col-form-label">NID Image:</label>
                                             <div class="col-sm-9 edit--input">
                                             <div class="custom-file">
                                                     <input @change="onIdChange" accept=".png, .jpg, .jpeg" type="file" class="custom-file-input" id="customFile">
@@ -513,7 +526,7 @@
                     cover_image: '',
                     checkpoint: {},
                 },
-                isRentLoading: false
+                isRentLoading: false,
             }
         },
         methods: {

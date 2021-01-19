@@ -445,7 +445,7 @@
                                         <div class="form-group row">
                                         <div class="offset-md-3 col-md-8 mt-4">
                                                 <button class="btn--secondery w-100 border-0" :disabled="$store.state.isProfileUpdating">
-                                                    <span class="mr-2">Submit</span>
+                                                    <span class="mr-2">Update Profile</span>
                                                     <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm"></i>  
                                                 </button>
                                             </div>

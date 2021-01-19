@@ -32,7 +32,7 @@
                                 <div class="modal-header text-center">
                                     <h2 class="modal-title m-auto" id="exampleModalLabel" v-if="modalData">{{ modalData.game.data.name }}</h2>
                                     <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                                        <span aria-hidden="true"></span>
                                     </button>
                                 </div>
                                 <div class="modal-body">

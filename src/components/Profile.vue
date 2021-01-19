@@ -347,8 +347,8 @@
                                             <label for="first_name" class="col-sm-3 col-form-label">First name:</label>
 
                                                 <div class="col-sm-9 edit--input">
-                                                    <ValidationProvider name="first_name" rules="required" v-slot="{ errors }">
-                                                        <input type="text" class="form-control" id="first_name" v-model="form.name">
+                                                    <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
+                                                        <input @keypress="isValidString($event)" type="text" class="form-control" id="first_name" v-model="form.name">
                                                         <span class="text-danger">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
@@ -357,8 +357,8 @@
                                         <div class="form-group row">
                                             <label for="last_name" class="col-sm-3 col-form-label">Last name:</label>
                                             <div class="col-sm-9 edit--input">
-                                                 <ValidationProvider name="last_name" rules="required" v-slot="{ errors }">
-                                                    <input type="text" class="form-control" id="last_name" v-model="form.last_name">
+                                                 <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
+                                                    <input @keypress="isValidString($event)" type="text" class="form-control" id="last_name" v-model="form.last_name">
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
@@ -374,7 +374,7 @@
                                             <div class="col-sm-9 edit--input">
                                                 <ValidationProvider name="gender" rules="required" v-slot="{ errors }">
                                                     <select class="custom-select" id="gender" v-model="form.gender">
-                                                        <option selected disabled value="">Choose...</option>
+                                                        <option selected value="">Choose...</option>
                                                         <option value="male" >Male</option>
                                                         <option value="female">Female</option>
                                                         <option value="others">Others</option>
@@ -611,6 +611,13 @@
                     evt.preventDefault();;
                 } else {
                     return true;
+                }
+            },
+            isValidString: function(evt) {
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0)){
+                    event.preventDefault();
                 }
             },
             onIdChange(event) {

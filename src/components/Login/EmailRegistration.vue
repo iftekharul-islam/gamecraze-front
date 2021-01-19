@@ -26,17 +26,16 @@
                                         <div class="form-group col-md-6">
 
                                             <label for="firstName">First name</label>
-                                            <ValidationProvider name="firstName" rules="required" v-slot="{ errors }">
-                                                <input type="text" class="form-control" id="firstName" value="" v-model="form.name">
+                                            <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
+                                                <input @keypress="isValidString($event)" type="text" class="form-control" id="firstName" value="" v-model="form.name">
                                                 <span class="error-message">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
                                         <!-- Last Name -->
                                         <div class="form-group col-md-6">
-
                                             <label for="LastName">Last name</label>
-                                            <ValidationProvider name="LastName" rules="required" v-slot="{ errors }">
-                                                <input type="text" class="form-control" id="LastName" value="" v-model="form.lastName">
+                                            <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
+                                                <input @keypress="isValidString($event)" type="text" class="form-control" id="LastName" value="" v-model="form.lastName">
                                                 <span class="error-message">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
@@ -72,7 +71,7 @@
                                     <div class="text-center sign-btn">
                                         <button class="btn  btn--otp w-100" type="button" @click.prevent="handleSubmit(onSubmit)" :disabled="isLoading">
                                             PROCEED
-                                            <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
+                                            <span v-if="$store.state.isSubmitLoading" class="spinner-border spinner-border-sm"></span>
                                         </button>
                                         <!-- <button type="button" class="btn btn-primary mb-2" @click.prevent="handleSubmit(onSubmit)">Submit</button>-->
                                     </div>
@@ -112,6 +111,13 @@
                     evt.preventDefault();;
                 } else {
                     return true;
+                }
+            },
+            isValidString: function(evt) {
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0)){
+                    event.preventDefault();
                 }
             },
             onSubmit: function () {

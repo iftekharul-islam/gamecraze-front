@@ -14,38 +14,32 @@
                             <ValidationObserver v-slot="{ handleSubmit }">
                                 <form method="post">
                                    <!-- Mobile No. -->
-                                            <div class="form-group">
-                                                <label for="Phone">Phone number</label>
-                                                <ValidationProvider name="Phone" rules="required" v-slot="{ errors }">
-                                                    <input type="text" class="form-control gray cursor-none" id="Phone" value="" v-model="form.phone_number" readonly>
-                                                    <span class="error-message">{{ errors[0] }}</span>
-                                                </ValidationProvider>
-                                            </div>
-                                         <!-- First Name -->
+                                    <div class="form-group">
+                                        <label for="Phone">Phone number</label>
+                                        <ValidationProvider name="Phone" rules="required" v-slot="{ errors }">
+                                            <input type="text" class="form-control gray cursor-none" id="Phone" value="" v-model="form.phone_number" readonly>
+                                            <span class="error-message">{{ errors[0] }}</span>
+                                        </ValidationProvider>
+                                    </div>
+                                    <!-- First Name -->
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                           
                                             <label for="firstName">First name</label>
-                                            <ValidationProvider name="firstName" rules="required" v-slot="{ errors }">
-                                                <input type="text" class="form-control" id="firstName" value="" v-model="form.name">
+                                            <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
+                                                <input @keypress="isValidString($event)" type="text" class="form-control" id="firstName" value="" v-model="form.name">
                                                 <span class="error-message">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
-                                               <!-- Last Name -->
-                                            <div class="form-group col-md-6">
-                                            
-                                                <label for="LastName">Last name</label>
-                                                <ValidationProvider name="LastName" rules="required" v-slot="{ errors }">
-                                                    <input type="text" class="form-control" id="LastName" value="" v-model="form.lastName">
-                                                    <span class="error-message">{{ errors[0] }}</span>
-                                                </ValidationProvider>
-                                            </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="LastName">Last name</label>
+                                            <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
+                                                <input @keypress="isValidString($event)" type="text" class="form-control" id="LastName" value="" v-model="form.lastName">
+                                                <span class="error-message">{{ errors[0] }}</span>
+                                            </ValidationProvider>
+                                        </div>
                                     </div>
                                          
-
-                                             <!-- user email -->
                                      <div class="form-group">
-                                        
                                         <label for="email">Email address</label>
                                         <ValidationProvider name="email" rules="email" v-slot="{ errors }">
                                             <input type="email" class="form-control" id="email" value="" v-model="form.email">
@@ -53,24 +47,6 @@
                                         </ValidationProvider>
 
                                     </div>
-                                   
-                                    <!-- password -->
-                                    <!-- <div class="form-group">
-                                        <label for="gamepassword1">Password</label>
-                                        <ValidationProvider name="password" rules="min:8" v-slot="{ errors }">
-                                            <input type="password" class="form-control" id="gamepassword1" placeholder="Password" v-model="form.password">
-                                            <span class="error-message">{{ errors[0] }}</span>
-                                        </ValidationProvider>
-                                    </div> -->
-
-                                    <!-- confirm password -->
-                                    <!-- <div class="form-group">
-                                        <label for="gamepassword2">Confirm Password</label>
-                                        <ValidationProvider name="confirm" rules="password:@password" v-slot="{ errors }">
-                                            <input type="password" class="form-control" id="gamepassword2" placeholder="Confirm Password" v-model="form.confirmPassword">
-                                            <span class="error-message">{{ errors[0] }}</span>
-                                        </ValidationProvider>
-                                    </div> -->
 
                                     <!-- sign in button -->
                                     <div class="text-center sign-btn">
@@ -111,6 +87,13 @@
             onSubmit: function () {
                 this.isLoading = true
                 this.$store.dispatch('updateUserDetails', this.form)
+            },
+            isValidString: function(evt) {
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0)){
+                    event.preventDefault();
+                }
             }
         },
         created () {

@@ -33,7 +33,8 @@ export const storage = {
         totalAmount: 0,
         setupPasswordUser: null,
         otpNotFound: '',
-        totalPrice: 0
+        totalPrice: 0,
+        isOTPEmpty: false
     },
     getters: {
         user (state) {
@@ -142,6 +143,9 @@ export const storage = {
         },
         setWrongOTP (state, payload) {
             state.wrongOTP = payload
+        },
+        setEmptyOTP (state, payload) {
+            state.isOTPEmpty = payload
         },
         setInactiveUser (state, payload) {
             state.inactiveUser = payload
@@ -315,6 +319,7 @@ export const storage = {
                         router.push('/password-setup').catch(err => {});
                     }
                 }
+                commit('setEmptyOTP', false)
                 commit('setInactiveUser', response.data.message === 'inactiveUser')
                 commit('setWrongOTP', response.data.message === 'wrongOtp')
                 commit('setTimeout', response.data.message === 'timeout')

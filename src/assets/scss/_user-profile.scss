@@ -189,6 +189,7 @@
         background: $game-details;
         color: $text-light;
         height: 40px;
+        font-size: 16px;
     }
     select {
         -webkit-box-sizing: border-box;
@@ -201,6 +202,7 @@
         background-repeat: no-repeat;
         background-position: 96% center;
         background-size: 15px;
+        
     }
     [type="date"]::-webkit-inner-spin-button {
         display: none;
@@ -221,6 +223,7 @@
         margin-bottom: 25px;
         label {
             height: initial;
+            font-size: 16px;
         }
         input {
             cursor: pointer;
@@ -242,7 +245,7 @@
         }
         .rented-minus {
             position: absolute;
-            bottom: 15px;
+            top: 19px;
             right: 44px;
             cursor: pointer;
         }
@@ -255,6 +258,7 @@
                 border: none;
                 input {
                     border-radius: 5px;
+                    font-size: 16px;
                 }
             }
             .autosuggest__results-container {
@@ -462,9 +466,16 @@
     input,
     select {
         background: $game-details;
-        border: 1px solid $secondery;
+        border: 0.5px solid $secondery;
         height: 40px;
         color: $text-light;
+        font-size: 16px;
+    }
+    select {
+        background: $game-details url(../img/down-arw.png);
+        background-repeat: no-repeat;
+        background-position: 96% center;
+        background-size: 15px;
     }
     [type="date"]::-webkit-inner-spin-button {
         display: none;

@@ -26,32 +26,78 @@
         }
         
     }
-    
+    .modal-dialog-centered {
+        @include for-min-768 {
+            max-width: 726px;
+        }
+    }
     .modal-content {
         background: $game-details;
-        border: 1px solid $secondery;
+        border: .5px solid $secondery;
+        @include for-min-768 {
+            padding: 0 93px;
+        }
         .modal-header,.modal-footer {
             border: none;
         }
+        .modal-header {
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
         button {
+            font-weight: normal !important;
+            font-size: 20px;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            border: 1px solid $secondery;
+            border-radius: 50%;
+            position: absolute;
+            right: 32px;
+            top: 32px;
+            @include for-max-575 {
+                right: 16px;
+                top: 16px;
+            }
             &:focus {
                 outline: none !important;
             }
             span {
-                width: 30px !important;
-                height: 30px !important;
-                border: 1px solid $secondery;
-                color: $secondery;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                // width: 20px !important;
+                // height: 20px !important;
+                position: relative;
+                top: -7px;
+               &::after,
+               &::before {
+                position: absolute;
+                content: ' ';
+                height: 14px;
+                width: 1px;
+                background-color: $secondery;
+               }
+               &::after {
+                transform: rotate(45deg);
+              }
+              &::before {
+                transform: rotate(-45deg);
+              }
             }
         }
         table {
             tr {
                 td,th {
                     color: $text-light;
+                    @include for-max-575 {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+        .modal-footer {
+            padding-bottom: 40px;
+            a {
+                &:hover {
+                    background: $primary;
                 }
             }
         }
@@ -111,6 +157,9 @@
             td {
                 &:first-of-type {
                     width: 180px;
+                    @include for-max-575 {
+                        width: 145px;
+                    }
                 }
             }
         }
@@ -123,10 +172,13 @@
     }
 }
 .seller-information {
-    border-top: 1px solid $secondery;
+    border-top: .5px solid $secondery;
     padding-top: 20px;
     h2 {
         margin-bottom: 35px;
+        @include for-min-992 {
+            font-size: 32px;
+        }
     }
     .seller-address {
         width: 80%;
@@ -137,6 +189,32 @@
             display: block;
             color: $secondery;
             margin-bottom: 15px;
+        }
+    }
+    table {
+        tr {
+            @include for-max-768 {
+                display: flex;
+                flex-direction: column;
+                padding-bottom: 20px;
+            }
+            td {
+                select {
+                    @include for-max-991 {
+                        width: 63%;
+                    }
+                    @include for-max-768 {
+                        width: 67%;
+                    }
+                    @include for-max-575 {
+                        width: 43%;
+                    }
+                }
+                @include for-max-768 {
+                    padding-top: 0;
+                    padding-bottom: 0;
+                }
+            }
         }
     }
 }

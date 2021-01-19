@@ -88,8 +88,8 @@
                                         <br v-if="errors[0]">
                                     </ValidationProvider>
                                     <span class="error-message"
-                                          v-if="$store.state.notFoundEmail && !$store.state.inactiveUser">Email or Password is not valid<br></span>
-                                    <span class="error-message" v-if="$store.state.inactiveUser">This User is inactive, please contact to helpline</span>
+                                        v-if="$store.state.notFoundEmail && !$store.state.inactiveUser">Email or Password is not valid<br></span>
+                                        <span class="error-message" v-if="$store.state.inactiveUser">This User is inactive, please contact to helpline</span>
                                 </div>
                                 <div class="d-flex justify-content-between" v-if="!$store.state.notSetPassword">
                                     <div class="custom-control custom-checkbox">

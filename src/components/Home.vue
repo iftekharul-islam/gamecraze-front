@@ -528,9 +528,9 @@
                 }
 
                 this.$api.post('set-reminder/' + gameId, {game_id: gameId}, config).then(response => {
-                    if (response.status == 200) {
+                    if (response.status === 200) {
                         this.$toaster.success(response.data.message);
-                        return
+                        return;
                     }
                     this.$toaster.warning(response.data.message);
                 })

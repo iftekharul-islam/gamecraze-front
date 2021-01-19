@@ -15,7 +15,8 @@
                         </thead>
                         <tbody>
                         <tr v-for="(rent, index) in availableRentPosts" :key="index" data-toggle="modal" data-target="#rennow1" @click="setModalData(rent)">
-                            <td scope="col"><img src="../assets/img/renter.png" alt="renter">{{ rent.user.data.name }}</td>
+                            <td scope="col" v-if="rent.user.data.image"><img :src="rent.user.data.image" alt="renter">{{ rent.user.data.name }}</td>
+                            <td scope="col" v-else><img width="80px" v-if="rent.user.data.gender === 'Male'" src="../assets/img/male.png" alt="renter"><img width="80px" v-else-if="rent.user.data.gender === 'Female'" src="../assets/img/female.png" alt="renter"><img v-else src="../assets/img/avatar.jpg" width="80px" alt="renter">{{ rent.user.data.name }}</td>
                             <td scope="col">5/5</td>
                             <td scope="col" v-if="rent.checkpoint">{{ rent.checkpoint.data.area.data.name }}</td>
                             <td scope="col" v-else>Not Set</td>
@@ -90,7 +91,7 @@
                                                 <td v-if="modalData">
                                                   <ValidationProvider name="Delivery type" rules="required" v-slot="{ errors }">
                                                     <select class="form-control" id="exampleFormControlSelect2" v-model="form.deliveryType">
-                                                        <option>Please select delivery type</option>
+                                                        <option disabled>Please select delivery type</option>
                                                         <option value="0">Home Delivery</option>
                                                         <option :value="modalData.checkpoint_id" :disabled="modalData.checkpoint_id == null ">Checkpoint</option>
                                                     </select>
@@ -98,7 +99,13 @@
                                                   </ValidationProvider>
                                                 </td>
                                             </tr>
-                                            <tr v-if="form.deliveryType !== -1 && modalData">
+                                            <tr v-if="form.deliveryType === '0' && modalData">
+                                                <td>Delivery Address:</td>
+                                                <td>
+                                                  <input type="text" class="form-control">
+                                                </td>
+                                            </tr>
+                                            <tr v-if="form.deliveryType !== '0' && form.deliveryType !== '' && modalData">
                                                 <td>Checkpoint Details:</td>
                                                 <td>
                                                     <div class="seller-address">
@@ -138,7 +145,7 @@
                 modalData: null,
                 form: {
                   week: '',
-                  deliveryType: -1
+                  deliveryType: ''
                 },
               userDetails: null,
             }

@@ -61,8 +61,8 @@
                                         </ValidationProvider>
                                     </div>
                                     <button class="btn--secondery submit-btn">
-                                        <span class="mr-2">Submit</span>
-                                        <i v-if="isLoading" class="spinner-border spinner-border-sm"></i>
+                                        <span>Submit <i v-if="isLoading" class="spinner-border spinner-border-sm"></i></span>
+                                        
                                     </button>
                                 </form>
                             </ValidationObserver>

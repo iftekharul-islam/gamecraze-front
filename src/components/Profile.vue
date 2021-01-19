@@ -315,8 +315,8 @@
                                         <div class="form-group row">
                                             <div class="offset-md-3 col-md-8 mt-4">
                                                 <button class="btn--secondery w-100 border-0">
-                                                    <span class="mr-2">Submit</span>
-                                                    <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i>
+                                                    <span class="mr-2">Submit <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i></span>
+                                                    
                                                 </button>
                                             </div>
                                         </div>
@@ -445,8 +445,8 @@
                                         <div class="form-group row">
                                         <div class="offset-md-3 col-md-8 mt-4">
                                                 <button class="btn--secondery w-100 border-0" :disabled="$store.state.isProfileUpdating">
-                                                    <span class="mr-2">Submit</span>
-                                                    <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm"></i>  
+                                                    <span class="mr-2">Submit <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm"></i>  </span>
+                                                    
                                                 </button>
                                             </div>
                                         </div>

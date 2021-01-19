@@ -63,9 +63,9 @@
                                             <div class="dropdown-menu gamehub-dropdown-menu">
                                                 <div class="gamehub-dropdown-menu--top">
                                                   <router-link to="/profile" class="dropdown-item" href="#">Profile</router-link>
-                                                  <router-link to="/profile" class="dropdown-item" href="#">My Account</router-link>
                                                   <router-link to="/profile" class="dropdown-item" @click.native="clickProfile()">Post For Rent</router-link>
-                                                  <router-link to="/support" class="dropdown-item" href="#">support</router-link>
+                                                  <router-link to="/support" class="dropdown-item" href="#">Support</router-link>
+                                                  <router-link to="/contacts" class="dropdown-item" href="#">Contact Us</router-link>
                                                 </div>
                                                 <div class="gamehub-dropdown-menu--bottom">
                                                   <a @click="onLogout" to="" class="dropdown-item" href="#">Log out</a>

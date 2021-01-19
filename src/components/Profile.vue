@@ -271,7 +271,7 @@
 
                                         <div class="form-group row">
                                             <label for="gamedisk" class="col-sm-3 col-form-label">How do you want to Deliver ?</label>
-                                            <div class="col-sm-8 post-rent--input post-rent--deliver">
+                                            <div class="col-sm-8 post-rent--input post-rent--delivery">
                                                     <label for="cod"><input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod"> COD</label>
                                                     <label for="checkpoint_true"><input type="radio" v-model="x" value="1" name="checkpoint_id" id="checkpoint_true"> Checkpoint</label>
                                             </div>

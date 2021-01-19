@@ -1293,7 +1293,7 @@ html {
 }
 
 .gamehub-menu.gamehub-menu-active {
-  background: #141a27b5;
+  background: #141a27e0;
 }
 
 @media (max-width: 575px) {
@@ -4316,6 +4316,8 @@ html {
 
 .rented-dashbord tbody tr td img {
   margin-right: 20px;
+  width: 40px;
+  height: 40px;
 }
 
 .rented-dashbord tbody tr:hover td {
@@ -4324,6 +4326,7 @@ html {
 
 .seller-information-modal table tr td:first-of-type {
   width: 180px;
+  vertical-align: middle;
 }
 
 @media (max-width: 575px) {
@@ -4337,6 +4340,13 @@ html {
   color: #fff;
   border: 1px solid #FFD715;
   cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  position: relative;
+  background: #141A27 url(../img/down-arw.png);
+  background-repeat: no-repeat;
+  background-position: 96% center;
+  background-size: 16px;
 }
 
 .seller-information {
@@ -4667,6 +4677,10 @@ html {
           align-items: center;
 }
 
+.user-profile-details--nav a:first-of-type {
+  padding-top: 0;
+}
+
 @media (max-width: 1200px) {
   .user-profile-details--nav a {
     font-size: 20px;
@@ -4899,13 +4913,33 @@ html {
   font-size: 16px !important;
 }
 
-.post-rent--deliver label {
-  font-size: 16px !important;
+.post-rent--delivery {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-.post-rent--deliver label input {
+.post-rent--delivery label {
+  font-size: 16px !important;
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.post-rent--delivery label:last-of-type {
+  margin-right: 0;
+}
+
+.post-rent--delivery label input {
   width: 20px;
   height: 20px;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
 .earning-amount table tr td {

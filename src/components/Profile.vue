@@ -40,7 +40,7 @@
                                     <tbody>
                                         <tr>
                                             <td scope="row">Name:</td>
-                                            <td>{{ user.name }}</td>
+                                            <td>{{ user.name + ' ' + user.last_name }}</td>
                                         </tr>
 <!--                                        <tr>-->
 <!--                                           <td scope="row">Username:</td>-->
@@ -72,15 +72,15 @@
                                         </tr>
                                         <tr>
                                            <td scope="row">Address:</td>
-                                            <td>{{ user.address.address }}, {{ user.address.city }}- {{ user.address.post_code }}</td>
+                                            <td v-if="user.address">{{ user.address.address }}, {{ user.address.city }}- {{ user.address.post_code }}</td>
                                         </tr>
                                         <tr>
                                            <td scope="row">City:</td>
-                                            <td>{{ user.address.city }}</td>
+                                            <td v-if="user.address">{{ user.address.city }}</td>
                                         </tr>
                                         <tr>
                                            <td scope="row">Post Code:</td>
-                                            <td>{{ user.address.post_code }}</td>
+                                            <td v-if="user.address">{{ user.address.post_code }}</td>
                                         </tr>
                                          <tr>
                                            <td scope="row">NID No:</td>
@@ -88,7 +88,8 @@
                                         </tr>
                                          <tr>
                                            <td scope="row">NID Image:</td>
-                                            <td><img :src="user.identification_image" alt="nid" class="img-fluid"></td>
+                                            <td v-if="user.identification_image"><img :src="user.identification_image" alt="nid" class="img-fluid"></td>
+                                            <td v-else><img src="../assets/img/id.jpg" alt="nid" class="img-fluid"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -97,8 +98,8 @@
                         <div class="tab-pane fade" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
                                     <div class="dashboard-content">
                                         <div class="d-flex justify-content-center dashboard-tab-button mb-5">
-                                            <button  @click.prevent="onOfferedGames()" :disabled="!show" :class="{active: !show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  Offered Games</button>
                                             <button  @click.prevent="onRentedGames()" :disabled="show" :class="{active: show}"><img class="active-black" src="../assets/img/rent-icon.png" alt="rent icon"> <img class="active-yellow" src="../assets/img/rent-icon-black.png" alt="rent icon"> Rented Games</button>
+                                            <button  @click.prevent="onOfferedGames()" :disabled="!show" :class="{active: !show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  Offered Games</button>
                                         </div>
 
                                       <div class="dashboard-content--rented pb-5" v-if="rents.length && !show">

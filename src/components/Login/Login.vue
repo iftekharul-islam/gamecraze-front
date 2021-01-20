@@ -240,10 +240,8 @@
         },
         methods: {
             isNumber: function(evt) {
-                
                 evt = (evt) ? evt : window.event;
                 var charCode = (evt.which) ? evt.which : evt.keyCode;
-                console.log(charCode);
                 //if enter pressed
                 if (charCode == 13) {
                     console.log('in', charCode);
@@ -259,7 +257,6 @@
                 } 
 
                 if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.phone_number.length > 10) {
-                    console.log('sfddf');
                     evt.preventDefault();
                 } else {
                     console.log('return')
@@ -359,6 +356,7 @@
                 this.$store.commit('setTimeout', false);
                 this.$store.commit('setEmptyOTP', false);
                 this.$store.commit('setOTPNotFound', false);
+                 this.$store.dispatch('setEmailLoader', false);
             },
             submitOnEnterPressed(evt, option) {
                 if (option == 'passsword') {

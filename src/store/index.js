@@ -305,8 +305,8 @@ export const storage = {
                     localStorage.setItem('token', response.data.token)
                     localStorage.setItem('userId', JSON.stringify(response.data.user.id))
                     localStorage.setItem('user', JSON.stringify(response.data.user))
-                    commit('setSubmitLoading', false)
-                    commit('setInactiveUser', false)
+                    commit('setSubmitLoading', false);
+                    commit('setInactiveUser', false);
                     if (response.data.newUser === false) {
                         if (payload.email) {
                             router.push('/reset-password').catch(err => {});

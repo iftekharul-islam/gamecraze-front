@@ -54,13 +54,10 @@
                     </div>
                     <div class="trending-game--categories d-flex justify-content-between" v-if="trending">
                         <div class="home-categories">
-                            <a href="#" v-for="(genre) in trending.game.data.genres.data" :key="genre.id">{{ genre.name }}</a>
+                            <a :href="'/games?categories=' + genre.slug" v-for="(genre) in trending.game.data.genres.data" :key="genre.id">{{ genre.name }}</a>
                         </div>
-
-
                         <div class="d-flex home-platform">
-                            <a href="#" v-for="(platform) in trending.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>
-
+                            <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in trending.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>
                         </div>
                     </div>
                 </div>
@@ -81,7 +78,7 @@
                                 <img src="../assets/img/rented/dummy-image.jpg" alt="no-image">
                         </router-link>
                         <div class="favorite-games-categories d-flex justify-content-center align-items-center">
-                            <a href="#"><img :src="rent.platform.data.url" :alt="rent.platform.data.name" class="img-fluid"></a>
+                            <a :href="'/games?platforms=' + rent.platform.data.slug"><img :src="rent.platform.data.url" :alt="rent.platform.data.name" class="img-fluid"></a>
                         </div>
                     </div>
                 </div>
@@ -110,11 +107,11 @@
                     </div>
                     <div class="upcoming-game--categories d-flex justify-content-between">
                         <div class="home-categories">
-                            <a href="#" v-for="(genre) in game.genres.data">{{ genre.name }}</a>
+                            <a :href="'/games?categories=' + genre.slug" v-for="(genre, index) in game.genres.data" :key="index">{{ genre.name }}</a>
                         </div>
 
                         <div class="d-flex">
-                            <a href="#" v-for="(platform) in game.platforms.data">
+                            <a :href="'/games?platforms=' + platform.slug" v-for="(platform, index) in game.platforms.data" :key="index">
                                 <img :src=platform.url :alt="platform.name">
                             </a>
                         </div>
@@ -461,6 +458,7 @@
                 this.$api.get('games/trending?include=game,game.assets,game.genres,game.platforms').then(response => {
                     var vm = this;
                     vm.trendingGames = response.data.data;
+                    console.log('trending: ', response.data.data)
                     Vue.nextTick(function(){
                         vm.carouselOne();
                     }.bind(vm));
@@ -496,7 +494,6 @@
             },
             getFeaturedArticles: function (number) {
                 this.$api.get('featured-article?number=' + number).then(response => {
-                    console.log('fa: ', response.data.data)
                     if (response.status == 200) {
                         if ( response.data.data.length > 0) {
                             this.featuredArticle = response.data.data[0];

@@ -82,7 +82,7 @@
                                 <div class="form-group mb-3" v-if="!$store.state.notSetPassword">
                                     <label for="gamepassword1" class="">Password</label>
                                     <ValidationProvider name="password" rules="required|min:8" v-slot="{ errors }">
-                                        <input @click="changeErrorMessage" type="password" class="form-control mb-2"
+                                        <input @keypress="submitOnEnterPressed" @click="changeErrorMessage" type="password" class="form-control mb-2"
                                                id="gamepassword1" v-model="form.password">
                                         <span class="error-message">{{ errors[0] }}</span>
                                         <br v-if="errors[0]">
@@ -105,10 +105,9 @@
                                 </div>
                                 <!-- sign in button -->
                                 <div class="text-center sign-btn">
-                                    <button class="btn mb-2 btn--login w-100" type="submit"
-                                            :disabled="isLoading && $store.state.notSetPassword && !$store.state.notFoundEmail">
+                                    <button class="btn mb-2 btn--login w-100" type="submit" ref="emailLoginBtn" :disabled="isLoading && $store.state.notSetPassword && !$store.state.notFoundEmail">
                                         PROCEED
-                                        <span v-if="isLoading && $store.state.notSetPassword && !$store.state.notFoundEmail && $store.state.isEmailLoading"
+                                        <span v-if="$store.state.isEmailLoading"
                                               class="spinner-border spinner-border-sm"></span>
                                     </button>
                                 </div>
@@ -131,7 +130,7 @@
                                             <input type="tel" class="form-control country-number mb-2 cursor-none"
                                                    v-model="phone_number" name="user-number" v-if="showOTP === true"
                                                    disabled/>
-                                            <input @keypress="isNumber($event)" type="tel" id="user-number" class="form-control country-number mb-2"
+                                            <input @keypress="isNumber($event)" type="tel" id="user-number"  class="form-control country-number mb-2"
                                                    v-model="phone_number" name="user-number" placeholder="Please enter your Number"
                                                    v-else/>
 
@@ -170,7 +169,7 @@
 
                                         <span class="error-message" v-if="$store.state.isOTPEmpty && !resend">Enter OTP</span>
                                         <span class="error-message" v-if="$store.state.wrongOTP && !resend">Wrong OTP</span>
-                                        <span class="error-message" v-if="$store.state.timeout && !resend">This OTP is not valid for timeout</span>
+                                        <span class="error-message" v-if="$store.state.timeout && !resend">This OTP expired</span>
                                         <span class="error-message" v-if="$store.state.inactiveUser && !resend">This User is inactive, please contact to helpline</span>
                                         <span class="error-message" v-if="$store.state.otpNotFound && !resend">The OTP no found. Please recheck.</span>
 
@@ -195,7 +194,7 @@
                                 <!-- sign in button -->
                                 <div v-else>
                                     <div class="text-center sign-btn">
-                                        <button class="btn mb-2 w-100 btn--login" type="submit" :disabled="isLoading">
+                                        <button class="btn mb-2 w-100 btn--login" ref="sendOtpBtn" type="submit" :disabled="isLoading">
                                             PROCEED
                                             <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
                                         </button>
@@ -235,18 +234,34 @@
                 resend: false,
                 wrongOTP: false,
                 isLoading: false,
-                isResendLoading: false
+                isResendLoading: false,
+                isLoggingIn: false
             }
         },
         methods: {
             isNumber: function(evt) {
-              evt = (evt) ? evt : window.event;
-              var charCode = (evt.which) ? evt.which : evt.keyCode;
-              if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.phone_number.length > 10) {
-                evt.preventDefault();
-              } else {
-                return true;
-              }
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                //if enter pressed
+                if (charCode == 13) {
+                    console.log('in', charCode);
+                    if (this.phone_number == '' || this.phone_number.length < 11) {
+                        return;
+                    }
+
+                    this.$store.dispatch('setEmailLoader', true);
+                    this.isLoggingIn = true;
+                    let elem = this.$refs.sendOtpBtn;
+                    elem.click();
+                    return;
+                } 
+
+                if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.phone_number.length > 10) {
+                    evt.preventDefault();
+                } else {
+                    console.log('return')
+                    return true;
+                }
             },
             handleOnComplete(value) {
                 this.otp = value;
@@ -264,11 +279,12 @@
                 return roles.some(el => el.name === 'admin')
             },
             onLogin() {
-                
                 this.$store.dispatch('setEmailLoader', true);
                 this.isLoading = true;
+                this.isLoggingIn = true;
                 if (this.loginOption === "Email") {
-                    this.$store.dispatch('setPhoneNumber', this.phone_number)
+                    this.$store.dispatch('setPhoneNumber', this.phone_number);
+                    this.clearErrorMessages();
                     this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
                          console.log('send otp: ', response.data);
                         if (response.data.error === false) {
@@ -294,6 +310,7 @@
                 }
             },
             onChangeLoginOption: function () {
+                this.clearErrorMessages();
                 if (this.loginOption === "Phone Number") {
                     this.loginOption = "Email"
                 } else {
@@ -303,7 +320,7 @@
             onOtpVerification: function () {
                 console.log('verify otp');
                 if (this.otp == '' || this.otp == null) {
-                    this.$store.commit('setEmptyOTP', true)
+                    this.$store.commit('setEmptyOTP', true);
                     return;
                 }
                 this.isLoading = true;
@@ -311,8 +328,9 @@
                 this.$store.dispatch('verifyOtp', {phone_number: this.phone_number, otp: this.otp})
             },
             onResendOtp: function () {
-                this.isResendLoading = true
-                this.$store.dispatch('setPhoneNumber', this.phone_number)
+                this.isResendLoading = true;
+                this.$store.dispatch('setPhoneNumber', this.phone_number);
+                this.clearErrorMessages();
                 this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
                     console.log('resent otp: ', response.data);
                     if (response.data.error === false) {
@@ -331,13 +349,52 @@
             },
             hidePopUp() {
                 this.$store.dispatch('hidePasswordResetPopup', false)
+            },
+            clearErrorMessages () {
+                this.$store.commit('setWrongOTP', false);
+                this.$store.commit('setInactiveUser', false);
+                this.$store.commit('setTimeout', false);
+                this.$store.commit('setEmptyOTP', false);
+                this.$store.commit('setOTPNotFound', false);
+                 this.$store.dispatch('setEmailLoader', false);
+            },
+            submitOnEnterPressed(evt, option) {
+                if (option == 'passsword') {
+                    if (this.form.password == '' || this.form.password.length < 8) {
+                        return;
+                    }
+                    evt = (evt) ? evt : window.event;
+                    let charCode = (evt.which) ? evt.which : evt.keyCode;
+                    if (charCode == 13) {
+                        this.$store.dispatch('setEmailLoader', true);
+                        this.isLoggingIn = true;
+                        let elem = this.$refs.emailLoginBtn;
+                        elem.click();
+                    }
+                    return;
+                }
+
+                if (option == 'phone') {
+                    console.log('op: ', option);
+                }
+                
             }
         },
         created() {
             this.$store.state.setPasswordPopUp = false;
             this.$root.$on('stopLoader', () => {
                 this.isLoading = false;
-            })
+            });
+
+            this.$store.watch(
+                (state)=>{
+                    return this.$store.state.isSubmitLoading;
+                },
+                (newValue, oldValue)=>{
+                    this.isLoggingIn = newValue;
+                },
+                { deep:true }
+            );
         },
         mounted() {
             document.body.classList.add('body-position')

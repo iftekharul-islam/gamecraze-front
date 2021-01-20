@@ -240,15 +240,17 @@ export const storage = {
                 returnSecureToken: true
         })
         .then(res => {
-            console.log(res, 'response')
+            console.log(res, 'login response')
             if (!res.data.error) {
                 if (res.data.message && res.data.message == "inactiveUser") {
                     commit('setInactiveUser', true);
-                    commit('setNotFoundEmail', true)
+                    commit('setNotFoundEmail', true);
+                    commit('setEmailLoader', false);
                     return;
                 }
-                commit('setInactiveUser', false)
-                commit('setNotFoundEmail', false)
+                commit('setInactiveUser', false);
+                commit('setNotFoundEmail', false);
+                commit('setEmailLoader', false);
                 commit('authUser', {
                     token: res.data.token,
                     user: res.data.user
@@ -261,7 +263,8 @@ export const storage = {
             }
             else {
                 commit('setInactiveUser', res.data.message === 'inactiveUser')
-                commit('setNotFoundEmail', true)
+                commit('setNotFoundEmail', true);
+                commit('setEmailLoader', false);
             }
         })
         .catch(error => console.log(error))
@@ -302,8 +305,8 @@ export const storage = {
                     localStorage.setItem('token', response.data.token)
                     localStorage.setItem('userId', JSON.stringify(response.data.user.id))
                     localStorage.setItem('user', JSON.stringify(response.data.user))
-                    commit('setSubmitLoading', false)
-                    commit('setInactiveUser', false)
+                    commit('setSubmitLoading', false);
+                    commit('setInactiveUser', false);
                     if (response.data.newUser === false) {
                         if (payload.email) {
                             router.push('/reset-password').catch(err => {});
@@ -324,8 +327,7 @@ export const storage = {
                 commit('setWrongOTP', response.data.message === 'wrongOtp')
                 commit('setTimeout', response.data.message === 'timeout')
                 commit('setOTPNotFound', response.data.message === 'otpNotFound')
-                commit('setSubmitLoading', response.data.message === 'timeout')
-
+                commit('setSubmitLoading', false);
             });
         },
         emailVerify({commit}, payload) {
@@ -417,6 +419,7 @@ export const storage = {
                         console.log('check if password exists: ', response.data);
                         if (response.data.error === true) {
                             commit('setNotSetPassword', false);
+                            commit('setEmailLoader', false);
                         }
                         else {
                             commit('setSetupPasswordUser', response.data.user);
@@ -460,7 +463,6 @@ export const storage = {
         },
         hidePasswordResetPopup({ commit }, payload) {
             commit('setPasswordPopUp', payload);
-
         }
     },
 }

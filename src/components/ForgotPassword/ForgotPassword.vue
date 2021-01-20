@@ -28,7 +28,7 @@
                                                 <input @click="changeWrongOtp" type="text" class="form-control mb-2" id="user-otp" placeholder="Your code" v-model="form.otp">
                                                 <span class="error-message">{{ errors[0] }}</span>
                                                 <br v-if="errors[0]">
-                                                <span class="success-message" v-if="!resend && !$store.state.wrongOTP && !$store.state.timeout">We've sent a 6-digit one time PIN in your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>
+                                                <span class="success-message" v-if="!resend && !$store.state.wrongOTP && !$store.state.timeout">We've sent a 6-digit one time PIN<strong style="color: white;">{{ form.phone_number }}</strong></span>
                                                 <span class="error-message" v-if="$store.state.wrongOTP && !resend">You entered wrong OTP</span>
                                                 <span class="error-message" v-if="$store.state.timeout && !resend">This OTP is not valid for timeout</span>
                                                 <span class="success-message" v-if="resend">We've Resent a 6-digit one time PIN in your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>

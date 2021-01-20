@@ -222,7 +222,7 @@
                                             <label for="gamendate" class="col-sm-3 col-form-label">Available from:</label>
                                             <div class="col-sm-8 post-rent--input">
                                                 <ValidationProvider name="available date" rules="required" v-slot="{ errors }">
-                                                    <input type="date" class="form-control" id="gamendate" placeholder="Availablity Date" :min="todayDate()" v-model="rentData.availability">
+                                                    <input type="date" class="form-control" id="gamendate" placeholder="Availablity Date" :min="todayDate(1)" v-model="rentData.availability">
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
@@ -397,7 +397,7 @@
                                             <label for="dateofbirth" class="col-sm-3 col-form-label">Date of Birth:</label>
                                             <div class="col-sm-9 edit--input">
                                                 <ValidationProvider name="date of birth" rules="required" v-slot="{ errors }">
-                                                    <input type="date" class="form-control" id="dateofbirth" v-model="form.birth_date">
+                                                    <input type="date" class="form-control" id="dateofbirth" :max="todayDate()" v-model="form.birth_date">
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
@@ -514,8 +514,6 @@
                 },
                 selectedFile: 'Select NID',
                 x: '',
-                //rentPost: true,
-                // rentView: false,
                 diskConditions: [],
                 checkpoints: [],
                 games: [],
@@ -722,24 +720,17 @@
             //   let birthDate = new Date(date)
             //   return birthDate.getDate() + " " + months[birthDate.getMonth()] + " " + birthDate.getFullYear()
             // },
-            todayDate() {
+            todayDate(daysToAdd = 0) {
               var today = new Date();
-              var dd = today.getDate() + 1;
-
+              if (daysToAdd > 0) {
+                   today.setDate(today.getDate() + daysToAdd);
+              }
+              var dd =  today.getDate();
               var mm = today.getMonth()+1;
               var yyyy = today.getFullYear();
-
-              if(dd<10)
-              {
-                dd='0'+dd;
-              }
-
-              if(mm<10)
-              {
-                mm='0'+mm;
-              }
-              return yyyy+'-'+mm+'-'+dd;
-
+              if (dd < 10) { dd='0'+dd; }
+              if (mm < 10) { mm='0'+mm; }
+              return yyyy + '-' + mm + '-' + dd;
             },
             adjustRentedWeek: function(adjustmentType) {
                 if (adjustmentType == 'increase') {
@@ -761,14 +752,12 @@
             };
             this.$api.get('rents?include=game,platform,diskCondition,checkpoint', config).then(response =>
             {
-                this.rents = response.data.data
-                console.log(this.rents, 'rents')
+                this.rents = response.data.data;
             });
 
             this.$api.get('lends', config).then(response =>
             {
-                this.lends = response.data
-                console.log(this.lends, 'lends');
+                this.lends = response.data;
             });
 
             this.$root.$on('rentPost', () => {

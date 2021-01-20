@@ -119,13 +119,6 @@
                   this.$router.push({name: 'games', query: {categories: this.$route.query.categories, platforms: this.$route.query.platforms}})
                   this.$root.$emit('searchEvent')
                 }
-            },filterResults() {
-                 this.filteredResults = this.results.filter(result => {
-                     return result.name.toLowerCase().startsWith(this.result.toLowerCase())
-                });
-            },setResult(result) {
-                this.result = result;
-                this.modal = false;
             },
             onLogout() {
                 this.$store.dispatch('logout');

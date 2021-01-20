@@ -72,7 +72,7 @@
                                         </tr>
                                         <tr>
                                            <td scope="row">Address:</td>
-                                            <td v-if="user.address">{{ user.address.address }}, {{ user.address.city }}- {{ user.address.post_code }}</td>
+                                            <td v-if="user.address.address">{{ user.address.address }}</td>
                                         </tr>
                                         <tr>
                                            <td scope="row">City:</td>
@@ -174,21 +174,34 @@
                                 <ValidationObserver v-slot="{ handleSubmit }">
                                     <form @submit.prevent="handleSubmit(onRentSubmit)" method="post" id="rentPostForm">
                                         <div class="form-group row">
-                                            <label for="gamename" class="col-sm-3 col-form-label">Game Name:</label>
+                                            <label class="col-sm-3 col-form-label">Game Name:</label>
                                             <div class="col-sm-8 post-rent--input">
                                                 <ValidationProvider name="game" rules="" v-slot="{ errors }">
+<!--                                                    <vue-autosuggest-->
+<!--                                                        :v-model="gameName"-->
+<!--                                                        :suggestions="filteredOptions"-->
+<!--                                                        @focus="focusMe"-->
+<!--                                                        @click="clickHandler"-->
+<!--                                                        @input="onInputChange"-->
+<!--                                                        @selected="onSelected"-->
+<!--                                                        :get-suggestion-value="getSuggestionValue"-->
+<!--                                                        :input-props="{id:'autosuggest__input', class:'form-control', placeholder:'Enter game name'}">-->
+<!--                                                        <div slot-scope="{suggestion}" style="display: flex; align-items: center;">-->
+<!--                                                            <div style="display: flex; color: white;">{{suggestion.item.name}}</div>-->
+<!--                                                        </div>-->
+<!--                                                    </vue-autosuggest>-->
                                                     <vue-autosuggest
-                                                        :v-model="gameName"
+                                                        v-model="gameName"
                                                         :suggestions="filteredOptions"
                                                         @focus="focusMe"
                                                         @click="clickHandler"
                                                         @input="onInputChange"
                                                         @selected="onSelected"
                                                         :get-suggestion-value="getSuggestionValue"
-                                                        :input-props="{id:'autosuggest__input', class:'form-control', placeholder:'Enter game name'}">
-                                                        <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
-                                                            <div style="display: flex; color: white;">{{suggestion.item.name}}</div>
-                                                        </div>
+                                                        :input-props="{id:'autosuggest__input', placeholder:'Search Game'}">
+                                                      <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
+                                                        <div>{{suggestion.item.name}}</div>
+                                                      </div>
                                                     </vue-autosuggest>
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>
@@ -257,7 +270,7 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="gamedisk" class="col-sm-3 col-form-label">Disk Condition:</label>
+                                            <label class="col-sm-3 col-form-label">Disk Condition:</label>
                                             <div class="col-sm-8 post-rent--input">
                                                 <ValidationProvider name="Disk Condition" rules="required" v-slot="{ errors }">
                                                     <select class="form-control" id="DiskCondition" v-model="rentData.disk_condition">
@@ -270,15 +283,17 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <label for="gamedisk" class="col-sm-3 col-form-label">How do you want to Deliver ?</label>
+
+                                            <label class="col-sm-3 col-form-label">How do you want to Deliver ?</label>
                                             <div class="col-sm-8 post-rent--input post-rent--delivery">
+
                                                     <label for="cod"><input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod"> COD</label>
                                                     <label for="checkpoint_true"><input type="radio" v-model="x" value="1" name="checkpoint_id" id="checkpoint_true"> Checkpoint</label>
                                             </div>
                                         </div>
 
                                         <div class="form-group row" v-show="x === '1'">
-                                            <label for="gamedisk" class="col-sm-3 col-form-label">Select checkpont:</label>
+                                            <label class="col-sm-3 col-form-label">Select checkpont:</label>
                                             <div class="col-sm-8 post-rent--input">
                                                 <select class="form-control" id="checkpoint" v-model="rentData.checkpoint">
                                                     <option value="" disabled>Please Select Near Checkpoint</option>
@@ -334,8 +349,8 @@
                                             <label for="first_name" class="col-sm-3 col-form-label">First name:</label>
 
                                                 <div class="col-sm-9 edit--input">
-                                                    <ValidationProvider name="first_name" rules="required" v-slot="{ errors }">
-                                                        <input type="text" class="form-control" id="first_name" v-model="form.name">
+                                                    <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
+                                                        <input @keypress="isValidString($event)" type="text" class="form-control" id="first_name" v-model="form.name">
                                                         <span class="text-danger">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
@@ -344,8 +359,8 @@
                                         <div class="form-group row">
                                             <label for="last_name" class="col-sm-3 col-form-label">Last name:</label>
                                             <div class="col-sm-9 edit--input">
-                                                 <ValidationProvider name="last_name" rules="required" v-slot="{ errors }">
-                                                    <input type="text" class="form-control" id="last_name" v-model="form.last_name">
+                                                 <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
+                                                    <input @keypress="isValidString($event)" type="text" class="form-control" id="last_name" v-model="form.last_name">
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
@@ -361,7 +376,7 @@
                                             <div class="col-sm-9 edit--input">
                                                 <ValidationProvider name="gender" rules="required" v-slot="{ errors }">
                                                     <select class="custom-select" id="gender" v-model="form.gender">
-                                                        <option selected disabled value="">Choose...</option>
+                                                        <option selected value="">Choose...</option>
                                                         <option value="male" >Male</option>
                                                         <option value="female">Female</option>
                                                         <option value="others">Others</option>
@@ -373,7 +388,7 @@
                                         <div class="form-group row">
                                             <label for="dateofbirth" class="col-sm-3 col-form-label">Date of Birth:</label>
                                             <div class="col-sm-9 edit--input">
-                                                <ValidationProvider name="dateofbirth" rules="required" v-slot="{ errors }">
+                                                <ValidationProvider name="date of birth" rules="required" v-slot="{ errors }">
                                                     <input type="date" class="form-control" id="dateofbirth" v-model="form.birth_date">
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>
@@ -389,9 +404,9 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="mobileno" class="col-sm-3 col-form-label">Mobile No:</label>
+                                            <label class="col-sm-3 col-form-label">Mobile No:</label>
                                             <div class="col-sm-9 edit--input">
-                                                <ValidationProvider name="phone_number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
+                                                <ValidationProvider name="phone number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
                                                     <input type="text" @keypress="isNumber($event)" class="form-control" id="phone_number" v-model="form.phone_number">
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                     <span class="error-message d-block" v-if="$store.state.numberExists">Phone number already exists</span>
@@ -419,7 +434,7 @@
                                         <div class="form-group row">
                                             <label for="postcode" class="col-sm-3 col-form-label">Post Code:</label>
                                             <div class="col-sm-9 edit--input">
-                                                 <ValidationProvider name="postcode" rules="required" v-slot="{ errors }">
+                                                 <ValidationProvider name="post code" rules="required" v-slot="{ errors }">
                                                     <input type="text" class="form-control" id="postcode" v-model="form.postCode">
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>
@@ -428,14 +443,14 @@
                                         <div class="form-group row">
                                             <label for="nidno" class="col-sm-3 col-form-label">NID No:</label>
                                             <div class="col-sm-9 edit--input">
-                                                <ValidationProvider name="nidno" rules="required" v-slot="{ errors }">
+                                                <ValidationProvider name="NID" rules="required" v-slot="{ errors }">
                                                 <input type="text" class="form-control" id="nidno" v-model="form.id_number">
                                                   <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="" class="col-sm-3 col-form-label">NID Image:</label>
+                                            <label class="col-sm-3 col-form-label">NID Image:</label>
                                             <div class="col-sm-9 edit--input">
                                             <div class="custom-file">
                                                     <input @change="onIdChange" accept=".png, .jpg, .jpeg" type="file" class="custom-file-input" id="customFile">
@@ -513,7 +528,7 @@
                     cover_image: '',
                     checkpoint: {},
                 },
-                isRentLoading: false
+                isRentLoading: false,
             }
         },
         methods: {
@@ -598,6 +613,13 @@
                     evt.preventDefault();;
                 } else {
                     return true;
+                }
+            },
+            isValidString: function(evt) {
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0)){
+                    event.preventDefault();
                 }
             },
             onIdChange(event) {

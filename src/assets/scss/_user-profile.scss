@@ -88,6 +88,9 @@
             padding: 20px 0;
             display: flex;
             align-items: center;
+            &:first-of-type {
+                padding-top: 0;
+            }
             @include for-max-1200 {
                 font-size: 20px;
             }
@@ -283,16 +286,27 @@
             
         }
     }
-    &--deliver {
+    &--delivery {
+        display: flex;
         label {
             font-size: 16px !important;
+            display: flex !important;
+            align-items: center;
+            margin-right: 20px;
+            cursor: pointer;
+            &:last-of-type {
+                margin-right: 0;
+            }
             input {
                 width: 20px;
                 height: 20px;
+                margin-right: 10px;
+                cursor: pointer;
             }
         }
     }
 }
+
 .earning-amount {
     table {
         tr {
@@ -513,3 +527,4 @@
         padding-right: 15px;
     }
 }
+

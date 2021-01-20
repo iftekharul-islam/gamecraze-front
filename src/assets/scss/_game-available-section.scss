@@ -141,6 +141,8 @@
                 }
                 img {
                     margin-right: 20px;
+                    width: 40px;
+                    height: 40px;
                 }
             }
             &:hover {
@@ -157,6 +159,7 @@
             td {
                 &:first-of-type {
                     width: 180px;
+                    vertical-align: middle;
                     @include for-max-575 {
                         width: 145px;
                     }
@@ -169,6 +172,13 @@
         color: $text-light;
         border: 1px solid $secondery;
         cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        position: relative;
+        background: #141A27 url(../img/down-arw.png);
+        background-repeat: no-repeat;
+        background-position: 96% center;
+        background-size: 16px;
     }
 }
 .seller-information {

@@ -130,7 +130,7 @@
                                             <input type="tel" class="form-control country-number mb-2 cursor-none"
                                                    v-model="phone_number" name="user-number" v-if="showOTP === true"
                                                    disabled/>
-                                            <input @keypress="isNumber($event)" type="tel" id="user-number" class="form-control country-number mb-2"
+                                            <input @keypress="isNumber($event)" type="tel" id="user-number"  class="form-control country-number mb-2"
                                                    v-model="phone_number" name="user-number" placeholder="01xxxxxxxxx"
                                                    v-else/>
 
@@ -194,7 +194,7 @@
                                 <!-- sign in button -->
                                 <div v-else>
                                     <div class="text-center sign-btn">
-                                        <button class="btn mb-2 w-100 btn--login" type="submit" :disabled="isLoading">
+                                        <button class="btn mb-2 w-100 btn--login" ref="sendOtpBtn" type="submit" :disabled="isLoading">
                                             PROCEED
                                             <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
                                         </button>
@@ -240,13 +240,31 @@
         },
         methods: {
             isNumber: function(evt) {
-              evt = (evt) ? evt : window.event;
-              var charCode = (evt.which) ? evt.which : evt.keyCode;
-              if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.phone_number.length > 10) {
-                evt.preventDefault();
-              } else {
-                return true;
-              }
+                
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                console.log(charCode);
+                //if enter pressed
+                if (charCode == 13) {
+                    console.log('in', charCode);
+                    if (this.phone_number == '' || this.phone_number.length < 11) {
+                        return;
+                    }
+
+                    this.$store.dispatch('setEmailLoader', true);
+                    this.isLoggingIn = true;
+                    let elem = this.$refs.sendOtpBtn;
+                    elem.click();
+                    return;
+                } 
+
+                if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.phone_number.length > 10) {
+                    console.log('sfddf');
+                    evt.preventDefault();
+                } else {
+                    console.log('return')
+                    return true;
+                }
             },
             handleOnComplete(value) {
                 this.otp = value;
@@ -342,18 +360,26 @@
                 this.$store.commit('setEmptyOTP', false);
                 this.$store.commit('setOTPNotFound', false);
             },
-            submitOnEnterPressed(evt) {
-                if (this.form.password == '') {
+            submitOnEnterPressed(evt, option) {
+                if (option == 'passsword') {
+                    if (this.form.password == '' || this.form.password.length < 8) {
+                        return;
+                    }
+                    evt = (evt) ? evt : window.event;
+                    let charCode = (evt.which) ? evt.which : evt.keyCode;
+                    if (charCode == 13) {
+                        this.$store.dispatch('setEmailLoader', true);
+                        this.isLoggingIn = true;
+                        let elem = this.$refs.emailLoginBtn;
+                        elem.click();
+                    }
                     return;
                 }
-                evt = (evt) ? evt : window.event;
-                let charCode = (evt.which) ? evt.which : evt.keyCode;
-                if (charCode == 13) {
-                    this.$store.dispatch('setEmailLoader', true);
-                    this.isLoggingIn = true;
-                    let elem = this.$refs.emailLoginBtn;
-                    elem.click();
+
+                if (option == 'phone') {
+                    console.log('op: ', option);
                 }
+                
             }
         },
         created() {

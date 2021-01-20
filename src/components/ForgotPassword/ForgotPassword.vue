@@ -5,7 +5,7 @@
             <div class="container-fluid sign-in-width">
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
-                        <div class="card" style="color: red !important">
+                        <div class="card">
                             <h3 class="card-title text-center">Reset Password</h3>
                             <!-- form -->
                             <ValidationObserver v-slot="{ handleSubmit }">

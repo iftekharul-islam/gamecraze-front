@@ -39,6 +39,7 @@
                 text-decoration: none !important;
                 color: $secondery;
                 font-size: 18px;
+                font-family: circular-medium;
                 &.collapsed {
                     color: $text-light;
                 }
@@ -48,14 +49,9 @@
                     text-decoration: none !important;
                 }
             }
-            .show {
-                .card-body {
-                    color: $secondery;
-                    font-size: 18px;
-                }
-            }
             .card-body {
                 font-size: 18px;
+                color: $secondery;
             }
         }
     }
@@ -97,14 +93,37 @@
     }
 }
 
-.accordion .card-header button::after {
-    font-family: 'FontAwesome';  
-    content: "-";
-    position: absolute;
-    left: 15px;
-
-}
-.accordion .card-header button.collapsed::after {
-    /* symbol for "collapsed" panels */
-    content: "+"; 
+.accordion {
+    .card-header {
+        button {
+            &::after {
+                content: "";
+                position: absolute;
+                left: 10px;
+                top: 31px;
+                width: 15px;
+                height: 2px;
+                background: $secondery;
+            }
+            &::before {
+                content: "";
+                position: absolute;
+                left: 10px;
+                top: 31px;
+                width: 15px;
+                height: 2px;
+                background: $secondery;
+                transform: rotate(90deg);
+            }
+            &.collapsed {
+                &::after {
+                    background: $text-light;
+                }
+                &::before {
+                    transform: rotate(0deg);
+                    background: $text-light;
+                }
+            }
+        }
+    }
 }

@@ -1287,6 +1287,21 @@ html {
   color: #505050;
 }
 
+.custom-control-input:checked ~ .custom-control-label::before {
+  color: #141A27 !important;
+  border-color: #FFD715 !important;
+  background-color: #FFD715 !important;
+}
+
+.custom-radio .custom-control-input:checked ~ .custom-control-label::after {
+  background: #141a27 !important;
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  top: 7px !important;
+  left: -21px !important;
+}
+
 .gamehub-menu {
   background: #0B0F18;
   padding: 8px 0;
@@ -3252,6 +3267,7 @@ html {
 
 .or {
   margin-bottom: 20px;
+  margin-top: 20px;
   font-size: 14px;
 }
 
@@ -4464,6 +4480,7 @@ html {
   text-decoration: none !important;
   color: #FFD715;
   font-size: 18px;
+  font-family: circular-medium;
 }
 
 .support-faq .accordion .card button.collapsed {
@@ -4477,13 +4494,9 @@ html {
   text-decoration: none !important;
 }
 
-.support-faq .accordion .card .show .card-body {
-  color: #FFD715;
-  font-size: 18px;
-}
-
 .support-faq .accordion .card .card-body {
   font-size: 18px;
+  color: #FFD715;
 }
 
 .support-bottom h6 {
@@ -4521,15 +4534,35 @@ html {
 }
 
 .accordion .card-header button::after {
-  font-family: 'FontAwesome';
-  content: "-";
+  content: "";
   position: absolute;
-  left: 15px;
+  left: 10px;
+  top: 31px;
+  width: 15px;
+  height: 2px;
+  background: #FFD715;
+}
+
+.accordion .card-header button::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 31px;
+  width: 15px;
+  height: 2px;
+  background: #FFD715;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
 }
 
 .accordion .card-header button.collapsed::after {
-  /* symbol for "collapsed" panels */
-  content: "+";
+  background: #fff;
+}
+
+.accordion .card-header button.collapsed::before {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+  background: #fff;
 }
 
 .user-profile-heading {
@@ -4648,7 +4681,7 @@ html {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .user-profile-details--nav {
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
@@ -4659,6 +4692,12 @@ html {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 991px) and (max-width: 575px) {
+  .user-profile-details--nav {
     margin-bottom: 20px;
   }
 }
@@ -4687,7 +4726,7 @@ html {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .user-profile-details--nav a {
     font-size: 14px;
     -webkit-box-orient: vertical;
@@ -4701,13 +4740,13 @@ html {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 992px) {
   .user-profile-details--nav a:last-of-type {
     border-bottom: 0;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .user-profile-details--nav a img {
     margin-right: 0;
     margin-bottom: 10px;
@@ -4735,7 +4774,7 @@ html {
   width: 70px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .user-profile-details--nav--img {
     height: 50px;
     width: initial;
@@ -4746,7 +4785,7 @@ html {
   margin-right: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 991px) {
   .user-profile-details--nav--img img {
     height: 70%;
   }
@@ -4756,9 +4795,21 @@ html {
   margin-left: 57px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1200px) {
+  .user-profile-details .tab-content {
+    margin-left: 25px;
+  }
+}
+
+@media (max-width: 991px) {
   .user-profile-details .tab-content {
     margin-left: 0;
+  }
+}
+
+@media (min-width: 1200px) {
+  .over-view table tr:first-of-type td {
+    padding-top: 0;
   }
 }
 
@@ -4839,6 +4890,18 @@ html {
   font-size: 20px;
 }
 
+@media (max-width: 1300px) {
+  .post-rent .form-group label {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .post-rent .form-group label {
+    font-size: 16px;
+  }
+}
+
 .post-rent .custom-file {
   margin-bottom: 25px;
 }
@@ -4917,6 +4980,10 @@ html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-left: 40px;
 }
 
 .post-rent--delivery label {
@@ -4927,8 +4994,9 @@ html {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  margin-right: 20px;
+  height: 20px !important;
   cursor: pointer;
+  padding-top: 5px;
 }
 
 .post-rent--delivery label:last-of-type {
@@ -4936,10 +5004,14 @@ html {
 }
 
 .post-rent--delivery label input {
-  width: 20px;
-  height: 20px;
+  width: 20px !important;
+  height: 20px !important;
   margin-right: 10px;
   cursor: pointer;
+}
+
+.post-rent--delivery .custom-radio {
+  margin-right: 50px;
 }
 
 .earning-amount table tr td {
@@ -5050,6 +5122,10 @@ html {
   color: #000;
 }
 
+.dashboard-content--offer table tr td:nth-of-type(5) {
+  min-width: initial;
+}
+
 .dashboard-content .flip-clock {
   display: -ms-grid;
   display: grid;
@@ -5099,8 +5175,29 @@ html {
           align-items: center;
 }
 
+@media (max-width: 768px) {
+  .dashboard-tab-button button {
+    padding: 10px 30px;
+  }
+}
+
+@media (max-width: 575px) {
+  .dashboard-tab-button button {
+    padding: 8px 10px;
+    font-size: 15px;
+    border-radius: 5px;
+  }
+}
+
 .dashboard-tab-button button img {
   margin-right: 15px;
+}
+
+@media (max-width: 575px) {
+  .dashboard-tab-button button img {
+    width: 25px;
+    margin-right: 5px;
+  }
 }
 
 .dashboard-tab-button button .active-black {
@@ -5126,6 +5223,12 @@ html {
 
 .dashboard-tab-button button:first-of-type {
   margin-right: 20px;
+}
+
+@media (max-width: 575px) {
+  .dashboard-tab-button button:first-of-type {
+    margin-right: 10px;
+  }
 }
 
 .dashboard-tab-button button:focus {
@@ -5178,6 +5281,18 @@ html {
 
 .edit-profile label {
   font-size: 20px;
+}
+
+@media (max-width: 1300px) {
+  .edit-profile label {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .edit-profile label {
+    font-size: 16px;
+  }
 }
 
 .edit--input {
@@ -5823,6 +5938,49 @@ html {
 .related-article-section h2 {
   font-family: circular-medium;
   margin-bottom: 40px;
+}
+
+.forget-password-section {
+  padding-top: 100px;
+}
+
+.forget-password-section--card {
+  background: #141A27;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.forget-password-section--card--title {
+  font-size: 40px;
+  font-style: italic;
+  margin-bottom: 40px;
+}
+
+.forget-password-section--card form input {
+  border-radius: 0;
+  border: none;
+  color: #000 !important;
+}
+
+.forget-password-section--card--input-group {
+  padding-left: 20px;
+}
+
+.forget-password-section--card--input-group:first-of-type {
+  margin-right: 20px;
+}
+
+.forget-password-section--card--input-group input {
+  width: 20px;
+}
+
+.forget-password-section--card--input-group input, .forget-password-section--card--input-group label {
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.forget-password-section--card button:hover {
+  background: #0B0F18;
 }
 
 .btn:focus {

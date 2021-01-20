@@ -133,14 +133,14 @@
                                 <div class="noticed-details">
                                     <h6>{{ featuredArticle.title.substring(0, 20) }}</h6>
                                     <p> {{ featuredArticle.description.substring(0, 80) | strippedContent }}</p>
-                                    <router-link :to="{ name: 'NewsStory', params: { id: featuredArticle.id }}" :class="{ 'small-readmore' : index != 0 }"><span>Read More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
+                                    <router-link :to="{ name: 'NewsStory', params: { id: featuredArticle.id }}"><span>Read More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
                                 </div>
                             </div>
 
                             <div class="notice-box" v-for="(article, index) in articles" :key="index"> 
                                 <img :src=article.thumbnail :alt="article.title" class="w-100">
                                 <div class="noticed-details">
-                                    <router-link :to="{ name: 'NewsStory', params: { id: article.id }}" :class="{ 'small-readmore' : index != 0 }"><span>Read More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
+                                    <router-link :to="{ name: 'NewsStory', params: { id: article.id }}" class="small-readmore"><span>Read More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
                                 </div>
                             </div>
                         </div>

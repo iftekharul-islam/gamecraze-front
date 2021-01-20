@@ -1,12 +1,12 @@
 <template>
     <div>
         <!-- sign in  -->
-        <section class="sign-in sign-in-bg">
-            <div class="container-fluid sign-in-width">
+        <section class="forget-password-section">
+            <div class="container">
                 <div class="row">
-                    <div class="col-md-6 offset-md-3">
-                        <div class="card">
-                            <h3 class="card-title text-center">Reset Password</h3>
+                    <div class="col-md-6 mx-auto">
+                        <div class="forget-password-section--card">
+                            <h3 class="forget-password-section--card--title text-center">Reset Password</h3>
                             <!-- form -->
                             <ValidationObserver v-slot="{ handleSubmit }">
                                 <form @submit.prevent="handleSubmit(onSendResetPasswordCode)" method="post">
@@ -14,7 +14,7 @@
                                         <!-- user anme -->
                                         <label for="username1" class="sr-only">Email</label>
                                         <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
-                                            <input type="text" class="form-control mb-2" id="username1" value="" placeholder="User Email" v-model="form.email">
+                                            <input type="text" class="form-control mb-2" id="username1" value="" placeholder="Enter your Email" v-model="form.email">
                                             <span class="error-message">{{ errors[0] }}</span>
                                             <br v-if="errors[0]">
                                         </ValidationProvider>
@@ -40,13 +40,16 @@
                                     <div class="form-group">
                                         <ValidationProvider name="reset option" rules="required" v-slot="{ errors }">
                                             <p style="color: white;">Get Password Reset code in</p>
-                                            <div class="form-check mb-3">
-                                                <input class="form-check-input" type="radio" name="resetradio" id="emailreset" value="email" v-model="form.resetOption">
-                                                <label class="form-check-label" for="emailreset"> Email </label>
-                                            </div>
-                                            <div class="form-check mb-2">
-                                                <input class="form-check-input" type="radio" name="resetradio" id="phonereset" value="phone" v-model="form.resetOption">
-                                                <label class="form-check-label" for="phonereset"> Phone Number </label>
+
+                                            <div class="d-flex">
+                                                <div class="forget-password-section--card--input-group custom-radio">
+                                                    <input class="custom-control-input" type="radio" name="resetradio" id="emailreset" selected value="email" v-model="form.resetOption">
+                                                    <label class="custom-control-label" for="emailreset"> Email </label>
+                                                </div>
+                                                <div class="forget-password-section--card--input-group custom-radio">
+                                                    <input class="custom-control-input" type="radio" name="resetradio" id="phonereset" value="phone" v-model="form.resetOption">
+                                                    <label class="custom-control-label" for="phonereset"> Phone Number </label>
+                                                </div>
                                             </div>
                                             <span class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
@@ -64,8 +67,8 @@
 
                                     <!-- sign in button -->
                                     <div class="text-center sign-btn pt-2" v-if="!codeSent">
-                                        <button class="btn btn-primary mb-2" type="submit" :disabled="isLoading">
-                                            Send Reset Code
+                                        <button class="btn--secondery mb-2 m-auto border-0" type="submit" :disabled="isLoading">
+                                            <span>Send Reset Code</span>
                                             <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
                                         </button>
                                     </div>
@@ -143,6 +146,12 @@
             changeWrongOtp() {
                 this.$store.commit('setWrongOTP', false)
             }
+        },
+         mounted() {
+            document.body.classList.add('body-position')
+        },
+        destroyed() {
+            document.body.classList.remove('body-position')
         }
     }
 </script>

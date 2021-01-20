@@ -24,7 +24,7 @@
         <section class="user-profile-details">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-lg-4">
                         <div class="nav nav-pills user-profile-details--nav" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link active" id="v-pills-overview-tab" data-toggle="pill" href="#v-pills-overview" role="tab" aria-controls="v-pills-overview" aria-selected="true"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon1.png" alt="profile icon"> <img src="../assets/img/active-profile-icon1.png" class="img-active" alt="profile icon"></div> <span>Overview</span></a>
                         <a class="nav-link" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon2.png" alt="profile icon"> <img src="../assets/img/active-profile-icon2.png" class="img-active" alt="profile icon"></div> <span>Dashboard</span></a>
@@ -32,7 +32,7 @@
                         <a class="nav-link" id="v-pills-edit-profile-tab" data-toggle="pill" href="#v-pills-edit-profile" role="tab" aria-controls="v-pills-edit-profile" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon4.png" alt="profile icon"> <img src="../assets/img/active-profile-icon4.png" class="img-active" alt="profile icon"></div> <span>Edit Profile</span></a>
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-lg-8">
                         <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-overview" role="tabpanel" aria-labelledby="v-pills-overview-tab">
                             <div class="over-view">
@@ -102,7 +102,7 @@
                                             <button  @click.prevent="onOfferedGames()" :disabled="!show" :class="{active: !show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  Offered Games</button>
                                         </div>
 
-                                      <div class="dashboard-content--rented pb-5" v-if="rents.length && !show">
+                                      <div class="dashboard-content--rented dashboard-content--offer pb-5" v-if="rents.length && !show">
                                         <table class="table table-borderless" v-if="rents">
                                           <thead>
                                           <tr>
@@ -285,10 +285,18 @@
                                         <div class="form-group row">
 
                                             <label class="col-sm-3 col-form-label">How do you want to Deliver ?</label>
-                                            <div class="col-sm-8 post-rent--input post-rent--delivery">
+                                            <div class="col-sm-8 post-rent--delivery">
 
-                                                    <label for="cod"><input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod"> COD</label>
-                                                    <label for="checkpoint_true"><input type="radio" v-model="x" value="1" name="checkpoint_id" id="checkpoint_true"> Checkpoint</label>
+                                                   <div class="custom-radio d-flex">
+                                                         <input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod" class="custom-control-input">
+                                                        <label for="cod" class="custom-control-label"> COD</label>
+                                                      
+                                                   </div>
+                                                    <div class=" custom-radio d-flex">
+                                                        <input type="radio" v-model="x" value="1" name="checkpoint_id" id="checkpoint_true" class="custom-control-input">
+                                                        <label for="checkpoint_true" class="custom-control-label"> Checkpoint</label>
+                                                        
+                                                    </div>
                                             </div>
                                         </div>
 
@@ -329,7 +337,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="offset-md-3 col-md-8 mt-4">
+                                            <div class="offset-md-3 col-md-8 mt-4 post-rent--input">
                                                 <button class="btn--secondery w-100 border-0">
                                                     <span class="mr-2">Submit <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i></span>
                                                     
@@ -459,7 +467,7 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                        <div class="offset-md-3 col-md-8 mt-4">
+                                        <div class="offset-md-3 col-md-9 col-xl-8 mt-4 post-rent--input">
                                                 <button class="btn--secondery w-100 border-0" :disabled="$store.state.isProfileUpdating">
 
                                                     <span class="mr-2">Update Profile <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm"></i>  </span>

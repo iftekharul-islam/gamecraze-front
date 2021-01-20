@@ -5,7 +5,7 @@
             <div class="container-fluid sign-in-width">
                 <div class="row">
                     <div class="col-md-6 offset-md-3">
-                        <div class="card">
+                        <div class="card" style="color: red !important">
                             <h3 class="card-title text-center">Reset Password</h3>
                             <!-- form -->
                             <ValidationObserver v-slot="{ handleSubmit }">
@@ -28,7 +28,7 @@
                                                 <input @click="changeWrongOtp" type="text" class="form-control mb-2" id="user-otp" placeholder="Your code" v-model="form.otp">
                                                 <span class="error-message">{{ errors[0] }}</span>
                                                 <br v-if="errors[0]">
-                                                <span class="success-message" v-if="!resend && !$store.state.wrongOTP && !$store.state.timeout">We've sent a 6-digit one time PIN in your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>
+                                                <span class="success-message" v-if="!resend && !$store.state.wrongOTP && !$store.state.timeout">We've sent a 6-digit one time PIN<strong style="color: white;">{{ form.phone_number }}</strong></span>
                                                 <span class="error-message" v-if="$store.state.wrongOTP && !resend">You entered wrong OTP</span>
                                                 <span class="error-message" v-if="$store.state.timeout && !resend">This OTP is not valid for timeout</span>
                                                 <span class="success-message" v-if="resend">We've Resent a 6-digit one time PIN in your phone <strong style="color: white;">{{ form.phone_number }}</strong></span>

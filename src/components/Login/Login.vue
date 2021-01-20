@@ -82,7 +82,7 @@
                                 <div class="form-group mb-3" v-if="!$store.state.notSetPassword">
                                     <label for="gamepassword1" class="">Password</label>
                                     <ValidationProvider name="password" rules="required|min:8" v-slot="{ errors }">
-                                        <input @click="changeErrorMessage" type="password" class="form-control mb-2"
+                                        <input @keypress="submitOnEnterPressed" @click="changeErrorMessage" type="password" class="form-control mb-2"
                                                id="gamepassword1" v-model="form.password">
                                         <span class="error-message">{{ errors[0] }}</span>
                                         <br v-if="errors[0]">
@@ -105,10 +105,9 @@
                                 </div>
                                 <!-- sign in button -->
                                 <div class="text-center sign-btn">
-                                    <button class="btn mb-2 btn--login w-100" type="submit"
-                                            :disabled="isLoading && $store.state.notSetPassword && !$store.state.notFoundEmail">
+                                    <button class="btn mb-2 btn--login w-100" type="submit" ref="emailLoginBtn" :disabled="isLoading && $store.state.notSetPassword && !$store.state.notFoundEmail">
                                         PROCEED
-                                        <span v-if="isLoading && $store.state.notSetPassword && !$store.state.notFoundEmail && $store.state.isEmailLoading"
+                                        <span v-if="$store.state.isEmailLoading"
                                               class="spinner-border spinner-border-sm"></span>
                                     </button>
                                 </div>
@@ -170,7 +169,7 @@
 
                                         <span class="error-message" v-if="$store.state.isOTPEmpty && !resend">Enter OTP</span>
                                         <span class="error-message" v-if="$store.state.wrongOTP && !resend">Wrong OTP</span>
-                                        <span class="error-message" v-if="$store.state.timeout && !resend">This OTP is not valid for timeout</span>
+                                        <span class="error-message" v-if="$store.state.timeout && !resend">This OTP expired</span>
                                         <span class="error-message" v-if="$store.state.inactiveUser && !resend">This User is inactive, please contact to helpline</span>
                                         <span class="error-message" v-if="$store.state.otpNotFound && !resend">The OTP no found. Please recheck.</span>
 
@@ -235,7 +234,8 @@
                 resend: false,
                 wrongOTP: false,
                 isLoading: false,
-                isResendLoading: false
+                isResendLoading: false,
+                isLoggingIn: false
             }
         },
         methods: {
@@ -264,11 +264,12 @@
                 return roles.some(el => el.name === 'admin')
             },
             onLogin() {
-                
                 this.$store.dispatch('setEmailLoader', true);
                 this.isLoading = true;
+                this.isLoggingIn = true;
                 if (this.loginOption === "Email") {
-                    this.$store.dispatch('setPhoneNumber', this.phone_number)
+                    this.$store.dispatch('setPhoneNumber', this.phone_number);
+                    this.clearErrorMessages();
                     this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
                          console.log('send otp: ', response.data);
                         if (response.data.error === false) {
@@ -294,6 +295,7 @@
                 }
             },
             onChangeLoginOption: function () {
+                this.clearErrorMessages();
                 if (this.loginOption === "Phone Number") {
                     this.loginOption = "Email"
                 } else {
@@ -303,7 +305,7 @@
             onOtpVerification: function () {
                 console.log('verify otp');
                 if (this.otp == '' || this.otp == null) {
-                    this.$store.commit('setEmptyOTP', true)
+                    this.$store.commit('setEmptyOTP', true);
                     return;
                 }
                 this.isLoading = true;
@@ -311,8 +313,9 @@
                 this.$store.dispatch('verifyOtp', {phone_number: this.phone_number, otp: this.otp})
             },
             onResendOtp: function () {
-                this.isResendLoading = true
-                this.$store.dispatch('setPhoneNumber', this.phone_number)
+                this.isResendLoading = true;
+                this.$store.dispatch('setPhoneNumber', this.phone_number);
+                this.clearErrorMessages();
                 this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
                     console.log('resent otp: ', response.data);
                     if (response.data.error === false) {
@@ -331,13 +334,43 @@
             },
             hidePopUp() {
                 this.$store.dispatch('hidePasswordResetPopup', false)
+            },
+            clearErrorMessages () {
+                this.$store.commit('setWrongOTP', false);
+                this.$store.commit('setInactiveUser', false);
+                this.$store.commit('setTimeout', false);
+                this.$store.commit('setEmptyOTP', false);
+                this.$store.commit('setOTPNotFound', false);
+            },
+            submitOnEnterPressed(evt) {
+                if (this.form.password == '') {
+                    return;
+                }
+                evt = (evt) ? evt : window.event;
+                let charCode = (evt.which) ? evt.which : evt.keyCode;
+                if (charCode == 13) {
+                    this.$store.dispatch('setEmailLoader', true);
+                    this.isLoggingIn = true;
+                    let elem = this.$refs.emailLoginBtn;
+                    elem.click();
+                }
             }
         },
         created() {
             this.$store.state.setPasswordPopUp = false;
             this.$root.$on('stopLoader', () => {
                 this.isLoading = false;
-            })
+            });
+
+            this.$store.watch(
+                (state)=>{
+                    return this.$store.state.isSubmitLoading;
+                },
+                (newValue, oldValue)=>{
+                    this.isLoggingIn = newValue;
+                },
+                { deep:true }
+            );
         },
         mounted() {
             document.body.classList.add('body-position')

@@ -132,7 +132,7 @@
                                                    v-model="phone_number" name="user-number" v-if="showOTP === true"
                                                    disabled/>
                                             <input @keypress="isNumber($event)" type="tel" id="user-number" class="form-control country-number mb-2"
-                                                   v-model="phone_number" name="user-number" placeholder="01xxxxxxxxx"
+                                                   v-model="phone_number" name="user-number" placeholder="Please enter your Number"
                                                    v-else/>
 
                                             <span class="error-message">{{ errors[0] }}</span>
@@ -142,9 +142,9 @@
                                 </div>
                                 <div v-if="showOTP">
                                     <div class="form-group">
-                                        <span class="success-message mt-4" v-if="resend">Insert 6 digits code sent to your phone <strong
+                                        <span class="success-message mt-5" v-if="resend">Insert 6 digits code sent to your phone <strong
                                                 style="color: white;">{{ form.phone_number }}</strong></span>
-                                        <span class="success-message mt-4 d-block"
+                                        <span class="success-message mt-5 d-block"
                                               v-if="!resend && !$store.state.wrongOTP && !$store.state.timeout && !$store.state.inactiveUser">Insert 6 digits code sent to your phone <strong
                                                 style="color: white;">{{ form.phone_number }}</strong></span>
                                         <div class="otp-input-group">

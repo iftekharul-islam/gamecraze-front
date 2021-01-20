@@ -54,7 +54,6 @@
                     </div>
                     <div class="trending-game--categories d-flex justify-content-between" v-if="trending">
                         <div class="home-categories">
-                          
                             <a :href="'/games?categories=' + genre.slug" v-for="(genre) in trending.game.data.genres.data" :key="genre.id">{{ genre.name }}</a>
                         </div>
                         <div class="d-flex home-platform">

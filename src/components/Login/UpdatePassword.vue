@@ -53,6 +53,7 @@
                                         <ValidationProvider name="phone number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
                                             <input @keypress="isNumber($event)" type="tel" class="form-control" id="user-number" v-model="form.phone_number">
                                             <span style="color: red;">{{ errors[0] }}</span>
+                                            <span v-if="isNumberExists" style="color:red">Number already taken</span>
                                         </ValidationProvider>
 
                                     </div>
@@ -65,7 +66,7 @@
                                         </ValidationProvider>
                                     </div>
                                     <div class="regbtn mt-4">
-                                        <button type="submit" class="btn w-100 btn--login">PROCEED</button>
+                                        <button type="submit" class="btn w-100 btn--login">PROCEED <i v-if="isLoading" class="spinner-border spinner-border-sm"></i></button>
                                     </div>
                                 </form>
                             </ValidationObserver>
@@ -84,6 +85,8 @@
                 isTokenValid: false,
                 show:false,
                 errMsg: 'Invalid Token',
+                isNumberExists: false,
+                isLoading: false,
                 form: {
                     email: this.$store.state.setupPasswordUser.email,
                     name: this.$store.state.setupPasswordUser.name,
@@ -98,22 +101,26 @@
         props: ['token'],
         methods: {
             isNumber: function(evt) {
+                this.isNumberExists = false;
                 evt = (evt) ? evt : window.event;
                 var charCode = (evt.which) ? evt.which : evt.keyCode;
                 if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.form.phone_number.length > 10) {
-                evt.preventDefault();
+                    evt.preventDefault();
                 } else {
-                return true;
+                    return true;
                 }
             },
             onNext() {
-                console.log('frm ', this.form)
+                this.isLoading = true;
                 this.$api.put('update-password', this.form).then(response => {
                     if (response.data.error === false) {
                         this.$store.dispatch('loginUserAfterVerification', response.data)
+                    } else if (response.data.message == 'numberExists') {
+                        this.isNumberExists = true;
                     } else {
-                        this.$swal("Warning", response.message, 'warning', 'warning')
+                        this.$swal("Warning", response.message, 'warning');
                     }
+                    this.isLoading = false;
                 });
             },
             validateToken() {

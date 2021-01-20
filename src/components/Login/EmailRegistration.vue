@@ -52,7 +52,7 @@
                                     <!-- password -->
                                     <div class="form-group">
                                         <label for="gamepassword1">Password</label>
-                                        <ValidationProvider name="password" rules="min:8" v-slot="{ errors }">
+                                        <ValidationProvider name="password" rules="required|min:8" v-slot="{ errors }">
                                             <input type="password" class="form-control" id="gamepassword1" placeholder="Password" v-model="form.password">
                                             <span class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>

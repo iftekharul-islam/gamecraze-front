@@ -87,9 +87,9 @@
         <section class="cart-section">
           <div class="container">
             <div class="cart-heading">
-              <h2>YOUR CART</h2>
+              <h2>YOUR CART <span v-if="!cart.length">IS EMPTY</span></h2>
             </div>
-            <div class="row">
+            <div v-if="cart.length" class="row">
               <div class="mb-4 mb-lg-0 col-md-12 col-lg-7">
                 <div class="cart-section--item-details">
                   <table class="table table-borderless cart-section--item-details--table">
@@ -101,7 +101,7 @@
                                 <td scope="col">Subtotal</td>
                             </tr>
                             </thead>
-                            <tbody v-if="cart">
+                            <tbody >
                             <tr v-for="(item, index) in cart" :key="index">
                                 <td scope="col">{{ item.game.data.name }}</td>
                                 <td scope="col">{{ price[index] }}</td>
@@ -140,6 +140,11 @@
                   </div>
               </div>
             </div>
+            <!-- <div v-else class="row">
+              <div class="col-md-12">
+                <h4 class="text-center">Cart is empty</h4>
+              </div>
+            </div> -->
           </div>
         </section>
     </div>
@@ -152,7 +157,7 @@
             games: null,
             checkedGame: '',
             lendWeek: '',
-            cart: [],
+            cart: null,
             paymentMethod: 'cod',
             isLoading: false,
             price: [],
@@ -228,19 +233,26 @@
     },
     created() {
       this.lendWeek = this.$store.state.lendWeek;
-      this.$api.get('cart-items/?ids=' + this.$store.state.postId + '&include=game.assets')
-          .then (response =>
-          {
-              this.cart = response.data.data
-            console.log(this.cart, 'cart');
-              for (let i=0;i<this.cart.length;i++) {
-                this.$api.get('base-price/game-calculation/' + this.cart[i].game.data.id + '/' + this.lendWeek )
-                    .then (response => {
-                      this.price.push(parseFloat(response.data));
-                    });
-              }
-            console.log(this.price)
-          });
+      this.$api.get('cart-items/?ids=' + this.$store.state.postId + '&include=game.assets').then (response => {
+        this.cart = response.data.data
+        console.log(this.cart, 'cart');
+          for (let i=0;i<this.cart.length;i++) {
+            this.$api.get('base-price/game-calculation/' + this.cart[i].game.data.id + '/' + this.lendWeek )
+                .then (response => {
+                  this.price.push(parseFloat(response.data));
+                });
+          }
+        console.log(this.price)
+      });
+
+      this.$store.watch((state)=>{
+          return this.$store.state.cart 
+        },
+        (newValue, oldValue)=>{
+            this.cart = newValue;
+        },
+        { deep:true }
+      );
     },
     mounted () {
             document.body.classList.add('body-position')

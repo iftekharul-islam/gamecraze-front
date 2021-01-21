@@ -40,7 +40,7 @@
                                     <tbody>
                                         <tr>
                                             <td scope="row">Name:</td>
-                                            <td>{{ user.name + ' ' + user.last_name }}</td>
+                                            <td> <span v-if="user.name">{{ user.name }}</span> <span v-if="user.last_name">{{ user.last_name }}</span></td>
                                         </tr>
 <!--                                        <tr>-->
 <!--                                           <td scope="row">Username:</td>-->

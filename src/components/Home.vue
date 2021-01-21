@@ -22,7 +22,7 @@
                         <div class="exchange-lend-section--exchange">
                             <h3>Do you want to
                                 <span>Rent</span> your CD?</h3>
-                            <a href="#" class="btn--secondery exchange-lend-section--exchange-btn" @click.prevent="onExchange"><span>rent</span></a>
+                                <router-link to="/profile" class="btn--secondery exchange-lend-section--exchange-btn" @click.native="clickProfile()"> <span>rent</span> </router-link>
                         </div>
                     </div>
 
@@ -61,7 +61,7 @@
                         </div>
                     </div>
                 </div>
-                </div>
+            </div>
         </section>
         <!-- favorite-section -->
         <section class="favorite-section">
@@ -128,7 +128,7 @@
                 <div class="row">
                     <div class="col-md-12 mx-auto" v>
                         <div class="noticed-grid" v-if="articles">
-                            <div class="notice-box" v-if="featuredArticle" :key="index"> 
+                            <div class="notice-box" v-if="featuredArticle"> 
                                 <img :src=featuredArticle.thumbnail :alt="featuredArticle.title" class="w-100">
                                 <div class="noticed-details">
                                     <h6>{{ featuredArticle.title.substring(0, 20) }}</h6>
@@ -458,7 +458,6 @@
                 this.$api.get('games/trending?include=game,game.assets,game.genres,game.platforms').then(response => {
                     var vm = this;
                     vm.trendingGames = response.data.data;
-                    console.log('trending: ', response.data.data)
                     Vue.nextTick(function(){
                         vm.carouselOne();
                     }.bind(vm));
@@ -481,9 +480,6 @@
                         vm.carouselTwo();
                     }.bind(vm));
                 });
-            },
-            onExchange () {
-                this.$swal("Rent is now unavailable!", "We will provide rent facility very soon!")
             },
             getArticles: function (number) {
                 this.$api.get('top-articles?number=' + number).then(response => {
@@ -561,7 +557,10 @@
                     }
                     
                 })
-            }
+            },
+            clickProfile() {
+                this.$root.$emit('rentPost');
+            },
         },
         computed: {
             auth () {

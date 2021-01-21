@@ -146,10 +146,13 @@
                                             <td v-else>Not Set</td>
                                             <td>{{ formattedDate(rent.availability_from_date) }}</td>
                                             <td v-if="rent.status === 0">
-                                                <a class="badge-danger badge" >Rejected</a>
+                                                <a class="badge-warning badge" >Pending</a>
                                             </td>
                                             <td v-else-if="rent.status === 1">
                                                 <a class="badge-success badge" >Approved</a>
+                                            </td>
+                                            <td v-else>
+                                                <a class="badge-danger badge" >Rejected</a>
                                             </td>
                                             <td><button type="button" class="btn btn-danger mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button></td>
                                           </tr>

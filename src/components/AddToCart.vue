@@ -140,11 +140,6 @@
                   </div>
               </div>
             </div>
-            <!-- <div v-else class="row">
-              <div class="col-md-12">
-                <h4 class="text-center">Cart is empty</h4>
-              </div>
-            </div> -->
           </div>
         </section>
     </div>

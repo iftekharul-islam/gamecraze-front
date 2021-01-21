@@ -757,7 +757,7 @@
               });
 
             //rent posts
-            this.$api.get('games?include=platforms').then(response =>
+            this.$api.get('games/released-games?include=platforms').then(response =>
             {
                 this.games = response.data.data
                 console.log(this.games)

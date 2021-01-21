@@ -385,6 +385,21 @@ html {
 .newsroom-date {
   color: $matterhorn;
 }
+// custom radio field for gamehub
 
+.custom-control-input:checked~.custom-control-label::before {
+  color: $game-details !important;
+  border-color: $secondery !important;
+  background-color: $secondery !important;
+}
+
+.custom-radio .custom-control-input:checked~.custom-control-label::after {
+  background: #141a27 !important;
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  top: 7px !important;
+  left: -21px !important;
+}
 
   

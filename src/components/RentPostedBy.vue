@@ -33,7 +33,7 @@
                                 <div class="modal-header text-center">
                                     <h2 class="modal-title m-auto" id="exampleModalLabel" v-if="modalData">{{ modalData.game.data.name }}</h2>
                                     <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
+                                        <span aria-hidden="true"></span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
@@ -91,7 +91,7 @@
                                                 <td v-if="modalData">
                                                   <ValidationProvider name="Delivery type" rules="required" v-slot="{ errors }">
                                                     <select class="form-control" id="exampleFormControlSelect2" v-model="form.deliveryType">
-                                                        <option disabled>Please select delivery type</option>
+                                                        <option disabled selected="selected">Please select delivery type</option>
                                                         <option value="0">Home Delivery</option>
                                                         <option :value="modalData.checkpoint_id" :disabled="modalData.checkpoint_id == null ">Checkpoint</option>
                                                     </select>

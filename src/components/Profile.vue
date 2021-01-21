@@ -24,7 +24,7 @@
         <section class="user-profile-details">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-lg-4">
                         <div class="nav nav-pills user-profile-details--nav" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link active" id="v-pills-overview-tab" data-toggle="pill" href="#v-pills-overview" role="tab" aria-controls="v-pills-overview" aria-selected="true"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon1.png" alt="profile icon"> <img src="../assets/img/active-profile-icon1.png" class="img-active" alt="profile icon"></div> <span>Overview</span></a>
                         <a class="nav-link" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon2.png" alt="profile icon"> <img src="../assets/img/active-profile-icon2.png" class="img-active" alt="profile icon"></div> <span>Dashboard</span></a>
@@ -32,7 +32,7 @@
                         <a class="nav-link" id="v-pills-edit-profile-tab" data-toggle="pill" href="#v-pills-edit-profile" role="tab" aria-controls="v-pills-edit-profile" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon4.png" alt="profile icon"> <img src="../assets/img/active-profile-icon4.png" class="img-active" alt="profile icon"></div> <span>Edit Profile</span></a>
                         </div>
                     </div>
-                    <div class="col-md-8">
+                    <div class="col-lg-8">
                         <div class="tab-content" id="v-pills-tabContent">
                         <div class="tab-pane fade show active" id="v-pills-overview" role="tabpanel" aria-labelledby="v-pills-overview-tab">
                             <div class="over-view">
@@ -102,7 +102,7 @@
                                             <button  @click.prevent="onOfferedGames()" :disabled="!show" :class="{active: !show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  Offered Games</button>
                                         </div>
 
-                                      <div class="dashboard-content--rented pb-5" v-if="rents.length && !show">
+                                      <div class="dashboard-content--rented dashboard-content--offer pb-5" v-if="rents.length && !show">
                                         <table class="table table-borderless" v-if="rents">
                                           <thead>
                                           <tr>
@@ -209,7 +209,7 @@
                                             <label for="gamendate" class="col-sm-3 col-form-label">Available from:</label>
                                             <div class="col-sm-8 post-rent--input">
                                                 <ValidationProvider name="available date" rules="required" v-slot="{ errors }">
-                                                    <input type="date" class="form-control" id="gamendate" placeholder="Availablity Date" :min="todayDate()" v-model="rentData.availability">
+                                                    <input type="date" class="form-control" id="gamendate" placeholder="Availablity Date" :min="todayDate(1)" v-model="rentData.availability">
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
@@ -270,10 +270,20 @@
                                         </div>
 
                                         <div class="form-group row">
+
                                             <label class="col-sm-3 col-form-label">How do you want to Deliver ?</label>
-                                            <div class="col-sm-8 post-rent--input post-rent--deliver">
-                                                    <label for="cod"><input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod"> COD</label>
-                                                    <label for="checkpoint_true"><input type="radio" v-model="x" value="1" name="checkpoint_id" id="checkpoint_true"> Checkpoint</label>
+                                            <div class="col-sm-8 post-rent--delivery">
+
+                                                   <div class="custom-radio d-flex">
+                                                         <input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod" class="custom-control-input">
+                                                        <label for="cod" class="custom-control-label"> COD</label>
+                                                      
+                                                   </div>
+                                                    <div class=" custom-radio d-flex">
+                                                        <input type="radio" v-model="x" value="1" name="checkpoint_id" id="checkpoint_true" class="custom-control-input">
+                                                        <label for="checkpoint_true" class="custom-control-label"> Checkpoint</label>
+                                                        
+                                                    </div>
                                             </div>
                                         </div>
 
@@ -314,10 +324,10 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <div class="offset-md-3 col-md-8 mt-4">
+                                            <div class="offset-md-3 col-md-8 mt-4 post-rent--input">
                                                 <button class="btn--secondery w-100 border-0">
-                                                    <span class="mr-2">Submit</span>
-                                                    <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i>
+                                                    <span class="mr-2">Submit <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i></span>
+                                                    
                                                 </button>
                                             </div>
                                         </div>
@@ -334,8 +344,8 @@
                                             <label for="first_name" class="col-sm-3 col-form-label">First name:</label>
 
                                                 <div class="col-sm-9 edit--input">
-                                                    <ValidationProvider name="first_name" rules="required" v-slot="{ errors }">
-                                                        <input type="text" class="form-control" id="first_name" v-model="form.name">
+                                                    <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
+                                                        <input @keypress="isValidString($event)" type="text" class="form-control" id="first_name" v-model="form.name">
                                                         <span class="text-danger">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
@@ -344,8 +354,8 @@
                                         <div class="form-group row">
                                             <label for="last_name" class="col-sm-3 col-form-label">Last name:</label>
                                             <div class="col-sm-9 edit--input">
-                                                 <ValidationProvider name="last_name" rules="required" v-slot="{ errors }">
-                                                    <input type="text" class="form-control" id="last_name" v-model="form.last_name">
+                                                 <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
+                                                    <input @keypress="isValidString($event)" type="text" class="form-control" id="last_name" v-model="form.last_name">
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
@@ -361,7 +371,7 @@
                                             <div class="col-sm-9 edit--input">
                                                 <ValidationProvider name="gender" rules="required" v-slot="{ errors }">
                                                     <select class="custom-select" id="gender" v-model="form.gender">
-                                                        <option selected disabled value="">Choose...</option>
+                                                        <option selected value="">Choose...</option>
                                                         <option value="male" >Male</option>
                                                         <option value="female">Female</option>
                                                         <option value="others">Others</option>
@@ -373,8 +383,8 @@
                                         <div class="form-group row">
                                             <label for="dateofbirth" class="col-sm-3 col-form-label">Date of Birth:</label>
                                             <div class="col-sm-9 edit--input">
-                                                <ValidationProvider name="dateofbirth" rules="required" v-slot="{ errors }">
-                                                    <input type="date" class="form-control" id="dateofbirth" v-model="form.birth_date">
+                                                <ValidationProvider name="date of birth" rules="required" v-slot="{ errors }">
+                                                    <input type="date" class="form-control" id="dateofbirth" :max="todayDate()" v-model="form.birth_date">
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
@@ -391,7 +401,7 @@
                                         <div class="form-group row">
                                             <label class="col-sm-3 col-form-label">Mobile No:</label>
                                             <div class="col-sm-9 edit--input">
-                                                <ValidationProvider name="phone_number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
+                                                <ValidationProvider name="phone number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
                                                     <input type="text" @keypress="isNumber($event)" class="form-control" id="phone_number" v-model="form.phone_number">
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                     <span class="error-message d-block" v-if="$store.state.numberExists">Phone number already exists</span>
@@ -419,7 +429,7 @@
                                         <div class="form-group row">
                                             <label for="postcode" class="col-sm-3 col-form-label">Post Code:</label>
                                             <div class="col-sm-9 edit--input">
-                                                 <ValidationProvider name="postcode" rules="required" v-slot="{ errors }">
+                                                 <ValidationProvider name="post code" rules="required" v-slot="{ errors }">
                                                     <input type="text" class="form-control" id="postcode" v-model="form.postCode">
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>
@@ -428,7 +438,7 @@
                                         <div class="form-group row">
                                             <label for="nidno" class="col-sm-3 col-form-label">NID No:</label>
                                             <div class="col-sm-9 edit--input">
-                                                <ValidationProvider name="nidno" rules="required" v-slot="{ errors }">
+                                                <ValidationProvider name="NID" rules="required" v-slot="{ errors }">
                                                 <input type="text" class="form-control" id="nidno" v-model="form.id_number">
                                                   <span class="text-danger">{{ errors[0] }}</span>
                                                 </ValidationProvider>
@@ -444,10 +454,11 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                        <div class="offset-md-3 col-md-8 mt-4">
+                                        <div class="offset-md-3 col-md-9 col-xl-8 mt-4 post-rent--input">
                                                 <button class="btn--secondery w-100 border-0" :disabled="$store.state.isProfileUpdating">
-                                                    <span class="mr-2">Submit</span>
-                                                    <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm"></i>  
+
+                                                    <span class="mr-2">Update Profile <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm"></i>  </span>
+    
                                                 </button>
                                             </div>
                                         </div>
@@ -490,8 +501,6 @@
                 },
                 selectedFile: 'Select NID',
                 x: '',
-                //rentPost: true,
-                // rentView: false,
                 diskConditions: [],
                 checkpoints: [],
                 games: [],
@@ -599,6 +608,13 @@
                     return true;
                 }
             },
+            isValidString: function(evt) {
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0)){
+                    event.preventDefault();
+                }
+            },
             onIdChange(event) {
                 let fileReader = new FileReader();
                 if (event.srcElement.files.length > 0) {
@@ -691,24 +707,17 @@
             //   let birthDate = new Date(date)
             //   return birthDate.getDate() + " " + months[birthDate.getMonth()] + " " + birthDate.getFullYear()
             // },
-            todayDate() {
+            todayDate(daysToAdd = 0) {
               var today = new Date();
-              var dd = today.getDate() + 1;
-
+              if (daysToAdd > 0) {
+                   today.setDate(today.getDate() + daysToAdd);
+              }
+              var dd =  today.getDate();
               var mm = today.getMonth()+1;
               var yyyy = today.getFullYear();
-
-              if(dd<10)
-              {
-                dd='0'+dd;
-              }
-
-              if(mm<10)
-              {
-                mm='0'+mm;
-              }
-              return yyyy+'-'+mm+'-'+dd;
-
+              if (dd < 10) { dd='0'+dd; }
+              if (mm < 10) { mm='0'+mm; }
+              return yyyy + '-' + mm + '-' + dd;
             },
             adjustRentedWeek: function(adjustmentType) {
                 if (adjustmentType == 'increase') {
@@ -730,14 +739,12 @@
             };
             this.$api.get('rents?include=game,platform,diskCondition,checkpoint', config).then(response =>
             {
-                this.rents = response.data.data
-                console.log(this.rents, 'rents')
+                this.rents = response.data.data;
             });
 
             this.$api.get('lends', config).then(response =>
             {
-                this.lends = response.data
-                console.log(this.lends, 'lends');
+                this.lends = response.data;
             });
 
             this.$root.$on('rentPost', () => {

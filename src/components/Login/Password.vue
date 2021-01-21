@@ -78,8 +78,6 @@
                     name: '',
                     lastName: '',
                     email: '',
-                    // password: '',
-                    // confirmPassword: '',
                     phone_number: JSON.parse(localStorage.getItem('user')).phone_number
                 },
                 isLoading: false,
@@ -89,8 +87,7 @@
         },
         methods: {
             onSubmit: function () {
-                this.isLoading = true
-                // this.$store.dispatch('updateUserDetails', this.form)
+                this.isLoading = true;
                 let config = {
                     headers: {
                         'Authorization': 'Bearer ' + this.$store.state.token

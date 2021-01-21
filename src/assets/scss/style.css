@@ -4679,6 +4679,12 @@ html {
   }
 }
 
+.avatar-edit {
+  position: absolute;
+  left: 105px;
+  bottom: -9px;
+}
+
 .avatar-edit form input {
   display: none;
 }
@@ -4689,24 +4695,52 @@ html {
   height: 34px;
   margin-bottom: 0;
   border-radius: 100%;
-  background: #FFFFFF;
-  border: 1px solid #d2d6de;
+  background: #141A27;
+  border: 1px solid #FFD715;
   cursor: pointer;
   font-weight: normal;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
-.avatar-edit form label::after {
-  content: "\f030";
-  font-family: "FontAwesome";
-  color: #337AB7;
+.avatar-edit form label i {
+  color: #FFD715;
+}
+
+.cover-edit {
   position: absolute;
-  left: 0;
-  right: 0;
-  text-align: center;
-  line-height: 34px;
-  margin: auto;
+  top: 20px;
+  right: 50px;
+}
+
+.cover-edit input {
+  display: none;
+}
+
+.cover-edit label {
+  position: relative;
+  cursor: pointer;
+  border: 2px solid #FFD715;
+  padding: 5px 10px;
+  -webkit-transform: skew(-21deg);
+          transform: skew(-21deg);
+}
+
+.cover-edit label i, .cover-edit label span {
+  -webkit-transform: skew(21deg);
+          transform: skew(21deg);
+  display: inherit;
+  color: #FFD715;
 }
 
 .users-name {

@@ -44,8 +44,10 @@
                                     <div class="form-group">
                                         <label for="Phone">Phone number</label>
                                         <ValidationProvider name="Phone Number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
-                                            <input @change="changePhoneValidation" @keypress="isNumber($event)" type="text" class="form-control" id="Phone" value="" v-model="form.phone_number">
+
+                                            <input @focus="changePhoneValidation" @keypress="isNumber($event)" type="text" class="form-control" id="Phone" value="" v-model="form.phone_number">
                                             <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+
                                             <span class="error-message d-block" v-if="$store.state.numberExists">Phone number already exists</span>
                                         </ValidationProvider>
                                     </div>

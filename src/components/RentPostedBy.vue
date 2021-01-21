@@ -75,7 +75,7 @@
                                                 <td>
                                                   <ValidationProvider name="Rent Week" rules="required" v-slot="{ errors }">
                                                     <select class="form-control" id="exampleFormControlSelect1" v-if="modalData" v-model="form.week">
-                                                        <option selected>Please select rent week</option>
+                                                        <option value="" selected disabled>Please select rent week</option>
                                                         <option v-for="n in modalData.max_number_of_week" :value="n" :key="n">For {{n}} Week</option>
                                                     </select>
                                                     <span class="text-danger">{{ errors[0] }}</span>
@@ -91,7 +91,7 @@
                                                 <td v-if="modalData">
                                                   <ValidationProvider name="Delivery type" rules="required" v-slot="{ errors }">
                                                     <select class="form-control" id="exampleFormControlSelect2" v-model="form.deliveryType">
-                                                        <option disabled selected="selected">Please select delivery type</option>
+                                                        <option value="" disabled selected="selected">Please select delivery type</option>
                                                         <option value="0">Home Delivery</option>
                                                         <option :value="modalData.checkpoint_id" :disabled="modalData.checkpoint_id == null ">Checkpoint</option>
                                                     </select>

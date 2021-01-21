@@ -43,7 +43,7 @@
 
                                             <div class="d-flex">
                                                 <div class="forget-password-section--card--input-group custom-radio">
-                                                    <input class="custom-control-input" type="radio" name="resetradio" id="emailreset" selected value="email" v-model="form.resetOption">
+                                                    <input class="custom-control-input" type="radio" name="resetradio" id="emailreset" value="email" v-model="form.resetOption">
                                                     <label class="custom-control-label" for="emailreset"> Email </label>
                                                 </div>
                                                 <div class="forget-password-section--card--input-group custom-radio">
@@ -97,7 +97,7 @@
                 form: {
                     email: "",
                     otp: "",
-                    resetOption: '',
+                    resetOption: 'email',
                 },
                 isLoading: false,
                 isResendLoading: false

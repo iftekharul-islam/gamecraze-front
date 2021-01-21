@@ -25,13 +25,13 @@
                         <h3>{{ user.name }}</h3>
 <!--           <h6>sabertooth_wolf</h6>-->
                     </div>
-                    <div class="user-rating">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                        <i class="far fa-star"></i>
-                    </div>
+<!--                    <div class="user-rating">-->
+<!--                        <i class="fas fa-star"></i>-->
+<!--                        <i class="fas fa-star"></i>-->
+<!--                        <i class="fas fa-star"></i>-->
+<!--                        <i class="fas fa-star-half-alt"></i>-->
+<!--                        <i class="far fa-star"></i>-->
+<!--                    </div>-->
                 </div>
             </div>
             <div class="user-profile-heading--change-photo">
@@ -139,7 +139,8 @@
                                             <td v-if="rent.game">{{ rent.game.data.name }}</td>
                                             <td>{{ rent.diskCondition.data.name_of_type }}</td>
                                             <td>{{ rent.platform.data.name }}</td>
-                                            <td>Renter Name</td>
+                                            <td v-if="rent.renter">{{ rent.renter.data.name }}</td>
+                                            <td v-else>Not rented</td>
                                             <td v-if="rent.checkpoint_id">{{}}</td>
                                             <td v-else>Not Set</td>
                                             <td>{{ formattedDate(rent.availability_from_date) }}</td>
@@ -279,7 +280,7 @@
                                             <div class="col-sm-8 post-rent--input">
                                                 <ValidationProvider name="Disk Condition" rules="required" v-slot="{ errors }">
                                                     <select class="form-control" id="DiskCondition" v-model="rentData.disk_condition">
-                                                        <option selected>Please Select Disk Condition</option>
+                                                        <option value="" selected>Please Select Disk Condition</option>
                                                         <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }} ({{ diskCondition.description }})</option>
                                                     </select>
                                                     <span class="text-danger">{{ errors[0] }}</span>
@@ -378,12 +379,7 @@
                                                 </ValidationProvider>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
-                                            <label for="user_name" class="col-sm-3 col-form-label">Username:</label>
-                                            <div class="col-sm-9 edit--input">
-                                                <input type="text" class="form-control" id="user_name">
-                                            </div>
-                                        </div>
+
                                         <div class="form-group row">
                                             <label for="gender" class="col-sm-3 col-form-label">Gender:</label>
                                             <div class="col-sm-9 edit--input">
@@ -534,7 +530,7 @@
                     availability: '',
                     max_week: 1,
                     platform: null,
-                    disk_condition: null,
+                    disk_condition: "",
                     disk_image: '',
                     cover_image: '',
                     checkpoint: {},
@@ -755,9 +751,10 @@
                     'Authorization': 'Bearer ' + this.$store.state.token
                 }
             };
-            this.$api.get('rents?include=game,platform,diskCondition,checkpoint', config).then(response =>
+            this.$api.get('rents?include=game,platform,diskCondition,checkpoint,renter', config).then(response =>
             {
                 this.rents = response.data.data;
+                console.log(this.rents, 'rents');
             });
 
             this.$api.get('lends', config).then(response =>

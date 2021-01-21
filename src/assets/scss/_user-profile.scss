@@ -39,6 +39,9 @@
 }
 // avatar edit
 .avatar-edit {
+    position: absolute;
+    left: 105px;
+    bottom: -9px;
     form {
         input {
             display: none;
@@ -49,22 +52,52 @@
             height: 34px;
             margin-bottom: 0;
             border-radius: 100%;
-            background: #FFFFFF;
-            border: 1px solid #d2d6de;
+            background: $game-details;
+            border: 1px solid $secondery;
             cursor: pointer;
             font-weight: normal;
             transition: all 0.2s ease-in-out;
-            &::after {
-                content: "\f030";
-                font-family: "FontAwesome";
-                color: #337AB7;
-                position: absolute;
-                left: 0;
-                right: 0;
-                text-align: center;
-                line-height: 34px;
-                margin: auto;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // &::after {
+            //     content: "";
+            //     height: 30px;
+            //     width: 30px;
+            //     background: url(../img/camera-icon.png);
+            //     background-repeat: no-repeat;
+            //     background-position: center;
+            //     position: absolute;
+            //     left: 0;
+            //     right: 0;
+            //     text-align: center;
+            //     margin: auto;
+            // }
+            i {
+                color: $secondery;
             }
+        }
+    }
+}
+// cover photo edit
+.cover-edit {
+    position: absolute;
+    top: 20px;
+    right: 50px;
+    input {
+        display: none;
+    }
+    label {
+        position: relative;
+        cursor: pointer;
+        border: 2px solid $secondery;
+        padding: 5px 10px;
+        transform: skew(-21deg);
+        i,span {
+            transform: skew(21deg);
+            display: inherit;
+            color: $secondery;
         }
     }
 }

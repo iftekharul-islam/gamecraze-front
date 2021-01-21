@@ -611,6 +611,9 @@
         @include for-max-1200 {
             font-size: 16px;
         }
+        @include for-max-991 {
+            font-size: 18px;
+        }
     }
 }
 .edit--input {

@@ -75,7 +75,7 @@
                                     <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                                         <input @click="changeErrorMessage" type="text" class="form-control mb-2"
                                                id="username1" v-model="form.email" placeholder="Please enter your Email">
-                                        <span class="error-message">{{ errors[0] }}</span>
+                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                     </ValidationProvider>
                                 </div>
                                 <!-- password -->
@@ -84,7 +84,7 @@
                                     <ValidationProvider name="password" rules="required|min:8" v-slot="{ errors }">
                                         <input @keypress="submitOnEnterPressed" @click="changeErrorMessage" type="password" class="form-control mb-2"
                                                id="gamepassword1" v-model="form.password">
-                                        <span class="error-message">{{ errors[0] }}</span>
+                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                         <br v-if="errors[0]">
                                     </ValidationProvider>
                                     <span class="error-message"
@@ -134,7 +134,7 @@
                                                    v-model="phone_number" name="user-number" placeholder="Please enter your Number"
                                                    v-else/>
 
-                                            <span class="error-message">{{ errors[0] }}</span>
+                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                             <label class="floating-label">+88</label>
                                         </ValidationProvider>
                                     </div>

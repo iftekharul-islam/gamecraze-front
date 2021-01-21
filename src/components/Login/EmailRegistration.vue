@@ -18,7 +18,7 @@
                                         <label for="email">Email address</label>
                                         <ValidationProvider name="email" rules="email" v-slot="{ errors }">
                                             <input type="email" class="form-control cursor-none gray" id="email" value="" v-model="form.email" readonly>
-                                            <span class="error-message">{{ errors[0] }}</span>
+                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                     </div>
                                     <!-- First Name -->
@@ -28,7 +28,7 @@
                                             <label for="firstName">First name</label>
                                             <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
                                                 <input @keypress="isValidString($event)" type="text" class="form-control" id="firstName" value="" v-model="form.name">
-                                                <span class="error-message">{{ errors[0] }}</span>
+                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
                                         <!-- Last Name -->
@@ -36,7 +36,7 @@
                                             <label for="LastName">Last name</label>
                                             <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
                                                 <input @keypress="isValidString($event)" type="text" class="form-control" id="LastName" value="" v-model="form.lastName">
-                                                <span class="error-message">{{ errors[0] }}</span>
+                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
                                     </div>
@@ -45,7 +45,7 @@
                                         <label for="Phone">Phone number</label>
                                         <ValidationProvider name="Phone Number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
                                             <input @change="changePhoneValidation" @keypress="isNumber($event)" type="text" class="form-control" id="Phone" value="" v-model="form.phone_number">
-                                            <span class="error-message">{{ errors[0] }}</span>
+                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                             <span class="error-message d-block" v-if="$store.state.numberExists">Phone number already exists</span>
                                         </ValidationProvider>
                                     </div>
@@ -54,7 +54,7 @@
                                         <label for="gamepassword1">Password</label>
                                         <ValidationProvider name="password" rules="required|min:8" v-slot="{ errors }">
                                             <input type="password" class="form-control" id="gamepassword1" placeholder="Password" v-model="form.password">
-                                            <span class="error-message">{{ errors[0] }}</span>
+                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                     </div>
 

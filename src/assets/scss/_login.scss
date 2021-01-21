@@ -113,7 +113,20 @@ html {
     font-size: 20px;
 }
 .error-message {
-    color: red;
+    color: $gamehub-danger;
+    position: relative;
+    padding-left: 30px;
+    &::after {
+        content: '';
+        background: url(../img/error.png);
+        background-repeat: no-repeat;
+        display: block;
+        width: 22px;
+        height: 22px;
+        position: absolute;
+        left: 0;
+        top: -3px;
+    }
 }
 .custom-checkbox {
     input,

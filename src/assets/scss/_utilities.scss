@@ -330,7 +330,9 @@
 // ******************Border ***************//
 .border-0 {border: none;}
 // ******************Color***************//
-
+.gamehub-danger {
+  color: $gamehub_danger;
+}
 // **************Opacity***********//
 .opa-1 {opacity: .1;}
 .opa-2 {opacity: .2;}

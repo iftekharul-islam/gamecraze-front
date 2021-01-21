@@ -95,7 +95,7 @@
                 form: {
                     name: '',
                     lastName: '',
-                    email: this.$store.state.email,
+                    email: localStorage.getItem('email'),
                     // password: '',
                     // confirmPassword: '',
                     phone_number: '',

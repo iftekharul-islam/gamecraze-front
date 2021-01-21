@@ -282,6 +282,7 @@
                     });
                 } else {
                     if (this.$store.state.notSetPassword) {
+                        localStorage.setItem('email', this.form.email)
                         this.$store.dispatch('setEmail', this.form.email)
                         this.$store.dispatch('checkPassword', this.form)
                     } else {
@@ -295,7 +296,9 @@
                     this.loginOption = "Email"
                 } else {
                     this.loginOption = "Phone Number"
+                    this.$store.state.notSetPassword = true;
                 }
+              this.isLoading = false
             },
             onOtpVerification: function () {
                 console.log('verify otp')

@@ -37,6 +37,37 @@
         }
     }
 }
+// avatar edit
+.avatar-edit {
+    form {
+        input {
+            display: none;
+        }
+        label {
+            display: inline-block;
+            width: 34px;
+            height: 34px;
+            margin-bottom: 0;
+            border-radius: 100%;
+            background: #FFFFFF;
+            border: 1px solid #d2d6de;
+            cursor: pointer;
+            font-weight: normal;
+            transition: all 0.2s ease-in-out;
+            &::after {
+                content: "\f030";
+                font-family: "FontAwesome";
+                color: #337AB7;
+                position: absolute;
+                left: 0;
+                right: 0;
+                text-align: center;
+                line-height: 34px;
+                margin: auto;
+            }
+        }
+    }
+}
 .users-name {
     margin-left: 20px;
     @include for-max-575 {
@@ -162,6 +193,13 @@
                 td {
                     @include for-min-1200 {
                         padding-top: 0;
+                    }
+                }
+            }
+            &:nth-of-type(2) {
+                td {
+                    &:last-of-type {
+                        text-transform: capitalize;
                     }
                 }
             }

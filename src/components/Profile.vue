@@ -2,13 +2,28 @@
     <div>
         <section class="user-profile-heading">
             <img src="../assets/img/profile-bg.png" alt="profile bg" class="img-fluid user-profile-bg">
+            <div class="cover-edit">
+                            <form action="" method="post" id="form-image">
+                                <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg">
+                                <label for="imageUpload"></label>
+                            </form>
+                        </div>
             <div class="container">
                 <div class="user-profile-heading--name">
-                    <img v-if="user" :src="user.image" :alt="user.name" class="img-fluid">
-                    <img v-else src="../assets/img/profile_image4.png" alt="user profile" class="img-fluid">
+                    <div class="user-profile-heading--dp">
+                        <!-- <img v-if="user" :src="user.image" :alt="user.name" class="img-fluid">
+                        <img v-else src="../assets/img/profile_image4.png" alt="user profile" class="img-fluid"> -->
+                         <img  src="../assets/img/profile_image4.png" alt="user profile" class="img-fluid">
+                        <div class="avatar-edit">
+                            <form action="" method="post" id="form-image">
+                                <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg">
+                                <label for="imageUpload"></label>
+                            </form>
+                        </div>
+                    </div>
                     <div class="users-name">
                         <h3>{{ user.name }}</h3>
-<!--                        <h6>sabertooth_wolf</h6>-->
+<!--           <h6>sabertooth_wolf</h6>-->
                     </div>
                     <div class="user-rating">
                         <i class="fas fa-star"></i>
@@ -18,6 +33,9 @@
                         <i class="far fa-star"></i>
                     </div>
                 </div>
+            </div>
+            <div class="user-profile-heading--change-photo">
+
             </div>
         </section>
     <!-- user profile details -->
@@ -52,7 +70,7 @@
                                         </tr>
                                         <tr>
                                            <td scope="row">Date of Birth:</td>
-                                            <td>{{ user.birth_date }}</td>
+                                            <td>{{ user.birth_date ? formattedDate(user.birth_date) : '' }}</td>
                                         </tr>
                                         <tr>
                                            <td scope="row">Email:</td>

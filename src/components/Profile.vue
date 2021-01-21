@@ -177,19 +177,6 @@
                                             <label class="col-sm-3 col-form-label">Game Name:</label>
                                             <div class="col-sm-8 post-rent--input">
                                                 <ValidationProvider name="game" rules="" v-slot="{ errors }">
-<!--                                                    <vue-autosuggest-->
-<!--                                                        :v-model="gameName"-->
-<!--                                                        :suggestions="filteredOptions"-->
-<!--                                                        @focus="focusMe"-->
-<!--                                                        @click="clickHandler"-->
-<!--                                                        @input="onInputChange"-->
-<!--                                                        @selected="onSelected"-->
-<!--                                                        :get-suggestion-value="getSuggestionValue"-->
-<!--                                                        :input-props="{id:'autosuggest__input', class:'form-control', placeholder:'Enter game name'}">-->
-<!--                                                        <div slot-scope="{suggestion}" style="display: flex; align-items: center;">-->
-<!--                                                            <div style="display: flex; color: white;">{{suggestion.item.name}}</div>-->
-<!--                                                        </div>-->
-<!--                                                    </vue-autosuggest>-->
                                                     <vue-autosuggest
                                                         v-model="gameName"
                                                         :suggestions="filteredOptions"

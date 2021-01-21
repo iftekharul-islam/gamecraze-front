@@ -80,7 +80,7 @@
                                   </router-link>
                                 </div>
 
-                              <div v-if="!filteredGames.length">
+                              <div v-if="noGameFound">
                                 <h2>Not match any games</h2>
                               </div>
                             </div>
@@ -105,13 +105,12 @@
                 platforms: [],
                 checkedPlatforms: [],
                 checkedCategories: [],
-
                 filteredGames: [],
                 searchKey: '',
                 queryCategories: [],
                 queryPlatforms: [],
-                isHidden: false
-
+                isHidden: false,
+                noGameFound: false
             }
         },
         components: {
@@ -188,7 +187,9 @@
             const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
             this.$api.get('filter-games/?ids=' + uniqueArr + '&include=assets,genres,platforms&categories=' + this.queryCategories + '&platforms=' + this.queryPlatforms + '&search=' + this.searchKey).then(resp => {
               this.filteredGames = resp.data.data;
-              console.log(this.filteredGames, 'filtered');
+              if (!this.filteredGames.length) {
+                this.noGameFound = true;
+              }
             })
 
         },

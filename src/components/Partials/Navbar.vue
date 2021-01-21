@@ -59,7 +59,8 @@
                         <div class="gamehub-input-group--content">
                             <router-link v-if="!auth" class="sign-in" to="/login"><span>Sign in</span></router-link>
                                 <div v-if="auth" class="dropdown-toggle complete-sign-in" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span><span v-else>{{ this.$store.state.user.phone_number }}</span>
-                                 <img src="../../assets/img/sss.jpg" alt="profile" class="">
+                                 <img v-if="$store.state.user.image" :src="$store.state.user.image" :alt="$store.state.user.name">
+                                 <img v-else src="../../assets/img/sss.jpg" alt="profile">
                                             <div class="dropdown-menu gamehub-dropdown-menu">
                                                 <div class="gamehub-dropdown-menu--top">
                                                   <router-link to="/profile" class="dropdown-item" href="#">Profile</router-link>

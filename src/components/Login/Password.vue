@@ -43,7 +43,7 @@
                                      <div class="form-group">
                                         <label for="email">Email address</label>
                                         <ValidationProvider name="email" rules="email" v-slot="{ errors }">
-                                            <input @change="onEmailChange" type="email" class="form-control" id="email" value="" v-model="form.email">
+                                            <input @focus="onEmailChange" type="email" class="form-control" id="email" value="" v-model="form.email">
                                             <span class="error-message">{{ errors[0] }}</span>
                                             <span v-if="isEmailExists" class="error-message">Email address already taken</span>
                                         </ValidationProvider>

@@ -53,13 +53,13 @@
                                             </div>
                                             <span class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
-                                        <div class="otpbtn mt-3" v-if="codeSent">
-                                            <button class="btn btn-primary mb-2" type="button" :disabled="isResendLoading" @click.prevent="onResendOtp">
-                                                Resend Code
+                                        <div class="otpbtn forget-otp mt-3" v-if="codeSent">
+                                            <button class="btn--secondery mb-2" type="button" :disabled="isResendLoading" @click.prevent="onResendOtp">
+                                                <span>Resend Code</span>
                                                 <span v-if="isResendLoading" class="spinner-border spinner-border-sm"></span>
                                             </button>
-                                            <button class="btn btn-primary mb-2" type="button" :disabled="$store.state.isSubmitLoading" @click.prevent="handleSubmit(onVerifyPasswordResetCode)">
-                                                Submit
+                                            <button class="btn--secondery mb-2" type="button" :disabled="$store.state.isSubmitLoading" @click.prevent="handleSubmit(onVerifyPasswordResetCode)">
+                                                <span>Submit</span>
                                                 <span v-if="$store.state.isSubmitLoading" class="spinner-border spinner-border-sm"></span>
                                             </button>
                                         </div>

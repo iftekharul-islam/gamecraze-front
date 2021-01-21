@@ -225,7 +225,7 @@
                             <div class="footer-menu-content">
                                 <ul>
                                     <li><a href="javascript:void(0)">Help</a></li>
-                                    <li><router-link to="/support">Supoort</router-link></li>
+                                    <li><router-link to="/support">Support</router-link></li>
                                     <li><router-link to="/forum">Forum</router-link></li>
                                     <li><router-link to="/stats">Stats</router-link></li>
                                 </ul>

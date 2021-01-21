@@ -771,12 +771,12 @@
             },
             adjustRentedWeek: function(adjustmentType) {
                 if (adjustmentType == 'increase') {
-                    this.rentData.max_week =this.rentData.max_week + 1; 
+                    this.rentData.max_week = parseInt(this.rentData.max_week) + 1; 
                     return;
                 }
 
                 if (adjustmentType == 'decrease' && this.rentData.max_week > 1) {
-                    this.rentData.max_week = this.rentData.max_week - 1;
+                    this.rentData.max_week = parseInt(this.rentData.max_week) - 1;
                     return;
                 }
             },
@@ -815,7 +815,6 @@
                     }
                 }
                 this.$api.post('update-user-profile-image', {image: imageBase64, image_type: type}, config).then(response => {
-                    console.log('up pro: ', response);
                     if (response.data.error  == false) {
                         this.$store.commit('setUser', response.data.user);
                         this.$store.commit('setUserId', response.data.user.id);

@@ -1,23 +1,24 @@
 <template>
     <div>
         <section class="user-profile-heading">
-            <img src="../assets/img/profile-bg.png" alt="profile bg" class="img-fluid user-profile-bg">
+            <img v-if="user.cover" :src="user.cover" alt="profile bg" class="img-fluid user-profile-bg">
+            <img v-else src="../assets/img/profile-bg.png" alt="profile bg" class="img-fluid user-profile-bg">
             <div class="cover-edit">
-                            <form action="" method="post" id="form-image">
-                                <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg">
-                                <label for="imageUpload"></label>
-                            </form>
-                        </div>
+                <input type="file" @change="onProfileImageChange($event, 'cover')" id="imageUpload" accept=".png, .jpg, .jpeg">
+                <label for="imageUpload"></label>
+                <i v-if="isCoverImgUpdating" class="spinner-border spinner-border-sm"></i>
+            </div>
             <div class="container">
                 <div class="user-profile-heading--name">
                     <div class="user-profile-heading--dp">
-                        <!-- <img v-if="user" :src="user.image" :alt="user.name" class="img-fluid">
-                        <img v-else src="../assets/img/profile_image4.png" alt="user profile" class="img-fluid"> -->
-                         <img  src="../assets/img/profile_image4.png" alt="user profile" class="img-fluid">
+                        <img v-if="user.image" :src="user.image" :alt="user.name" class="img-fluid">
+                        <img v-else src="../assets/img/profile_image4.png" :alt="user.name" class="img-fluid">
+                        
                         <div class="avatar-edit">
-                            <form action="" method="post" id="form-image">
-                                <input type="file" id="imageUpload" accept=".png, .jpg, .jpeg">
-                                <label for="imageUpload"></label>
+                            <form action="" method="post" id="profile-image-form">
+                                <input @change="onProfileImageChange($event, 'profile')" type="file" id="profileUpload" accept=".png, .jpg, .jpeg">
+                                <label for="profileUpload"></label>
+                                <i v-if="isProfileImgUpdating" class="spinner-border spinner-border-sm"></i>
                             </form>
                         </div>
                     </div>
@@ -540,6 +541,9 @@
                     checkpoint: {},
                 },
                 isRentLoading: false,
+                image: null,
+                isProfileImgUpdating: false,
+                isCoverImgUpdating: false
             }
         },
         methods: {
@@ -636,31 +640,63 @@
             onIdChange(event) {
                 let fileReader = new FileReader();
                 if (event.srcElement.files.length > 0) {
+                   console.log('filesiz: ', event.srcElement.files[0].size)
+                    let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+                    if (allowedTypes.indexOf(event.srcElement.files[0].type) == -1) { 
+                        this.$toaster.warning('Only jpg,jpeg or png file allowed');
+                        return;
+                    }
+                    let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
+                    if (fileSzie > 2048) { //2mb
+                        this.$toaster.warning('Maximum allowed file size 2MB');
+                        return;
+                    }
                     this.selectedFile = event.srcElement.files[0].name;
+                    fileReader.onload = (e) => {
+                        this.form.id_image = e.target.result;
+                    }
+                    fileReader.readAsDataURL(event.target.files[0]);
                 }
-
-                fileReader.onload = (e) => {
-                    this.form.id_image = e.target.result;
-                }
-                fileReader.readAsDataURL(event.target.files[0]);
             },
             //rent post
             onDiskimageChange (event) {
                 let fileReader = new FileReader();
-                fileReader.onload = (e) => {
-                    this.rentData.disk_image = e.target.result;
+
+                if (event.srcElement.files.length > 0) {
+                    let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+                    if (allowedTypes.indexOf(event.srcElement.files[0].type) == -1) { 
+                        this.$toaster.warning('Only jpg,jpeg or png file allowed');
+                        return;
+                    }
+                    let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
+                    if (fileSzie > 2048) { //2mb
+                        this.$toaster.warning('Maximum allowed file size 2MB');
+                        return;
+                    }
+                    fileReader.onload = (e) => {
+                        this.rentData.disk_image = e.target.result;
+                    }
+                    fileReader.readAsDataURL(event.target.files[0]);
                 }
-                fileReader.readAsDataURL(event.target.files[0]);
-                console.log('rent data: ', this.rentData)
             },
             onCoverimageChange (event) {
                 let fileReader = new FileReader();
-
-                fileReader.onload = (e) => {
-                    this.rentData.cover_image = e.target.result;
+                if (event.srcElement.files.length > 0) {
+                    let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+                    if (allowedTypes.indexOf(event.srcElement.files[0].type) == -1) { 
+                        this.$toaster.warning('Only jpg,jpeg or png file allowed');
+                        return;
+                    }
+                    let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
+                    if (fileSzie > 2048) { //2mb
+                        this.$toaster.warning('Maximum allowed file size 2MB');
+                        return;
+                    }
+                    fileReader.onload = (e) => {
+                        this.rentData.cover_image = e.target.result;
+                    }
+                    fileReader.readAsDataURL(event.target.files[0]);
                 }
-                fileReader.readAsDataURL(event.target.files[0]);
-                console.log('rent data: ', this.rentData)
             },
             onEmpty () {
                 this.form.checkpoint = '';
@@ -747,6 +783,57 @@
                     this.rentData.max_week = this.rentData.max_week - 1;
                     return;
                 }
+            },
+            onProfileImageChange: function(event, imageType) {
+                console.log('event: ', event.srcElement.files);
+                console.log('type: ', imageType);
+                let fileReader = new FileReader();
+                if (event.srcElement.files.length > 0) {
+                    let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+                    if (allowedTypes.indexOf(event.srcElement.files[0].type) == -1) { 
+                        this.$toaster.warning('Only jpg,jpeg or png file allowed');
+                        return;
+                    }
+                    let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
+                    if (fileSzie > 2048) { //2mb
+                        this.$toaster.warning('Maximum allowed file size 2MB');
+                        return;
+                    }
+                    fileReader.onload = (e) => {
+                        this.image = e.target.result;
+                        this.uploadProfileImage(e.target.result, imageType);
+                    }
+                    fileReader.readAsDataURL(event.target.files[0]);
+                }
+            },
+            uploadProfileImage: function(imageBase64, type) {
+                if (type == 'cover') {
+                    this.isCoverImgUpdating = true;
+                } else {
+                    this.isProfileImgUpdating = true;
+                }
+                
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                }
+                this.$api.post('update-user-profile-image', {image: imageBase64, image_type: type}, config).then(response => {
+                    console.log('up pro: ', response);
+                    if (response.data.error  == false) {
+                        this.$store.commit('setUser', response.data.user);
+                        this.$store.commit('setUserId', response.data.user.id);
+                        localStorage.setItem('userId', JSON.stringify(response.data.user.id))
+                        localStorage.setItem('user', JSON.stringify(response.data.user));
+                        this.$toaster.success(response.data.message);
+                    } else {
+                        this.$toaster.warning(response.data.message);
+                    }
+                    
+                    this.isProfileImgUpdating = false;
+                    this.isCoverImgUpdating = false;
+                })
+
             }
         },
         created() {

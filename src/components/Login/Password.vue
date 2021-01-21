@@ -19,6 +19,7 @@
                                         <ValidationProvider name="Phone" rules="required" v-slot="{ errors }">
                                             <input type="text" class="form-control gray cursor-none" id="Phone" value="" v-model="form.phone_number" readonly>
                                             <span class="error-message">{{ errors[0] }}</span>
+                                            <span v-if="isPhoneExists" class="error-message">Phone number already taken</span>
                                         </ValidationProvider>
                                     </div>
                                     <!-- First Name -->
@@ -42,8 +43,9 @@
                                      <div class="form-group">
                                         <label for="email">Email address</label>
                                         <ValidationProvider name="email" rules="email" v-slot="{ errors }">
-                                            <input type="email" class="form-control" id="email" value="" v-model="form.email">
+                                            <input @change="onEmailChange" type="email" class="form-control" id="email" value="" v-model="form.email">
                                             <span class="error-message">{{ errors[0] }}</span>
+                                            <span v-if="isEmailExists" class="error-message">Email address already taken</span>
                                         </ValidationProvider>
 
                                     </div>
@@ -76,17 +78,43 @@
                     name: '',
                     lastName: '',
                     email: '',
-                    // password: '',
-                    // confirmPassword: '',
                     phone_number: JSON.parse(localStorage.getItem('user')).phone_number
                 },
-                isLoading: false
+                isLoading: false,
+                isEmailExists: false,
+                isPhoneExists: false
             }
         },
         methods: {
             onSubmit: function () {
-                this.isLoading = true
-                this.$store.dispatch('updateUserDetails', this.form)
+                this.isLoading = true;
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                }
+                this.$api.put('update-users-by-phone', this.form, config).then(response => {
+                    this.isLoading = false;
+                    if (response.data.error === false) {
+                        this.$store.commit('setUser', response.data.data);
+                        this.$store.commit('setUserId', response.data.data.id);
+                        localStorage.setItem('userId', JSON.stringify(response.data.data.id))
+                        localStorage.setItem('user', JSON.stringify(response.data.data));
+                        this.$router.push('/profile');
+                        return
+                    }
+                    if (response.data.error === true) {
+                        if (response.data.data.isEmailExists) {
+                            this.isEmailExists = true;
+                        }
+                        if (response.data.data.isPhoneExists) {
+                            this.isPhoneExists = true;
+                        }
+                        return;
+                    }
+
+                    this.$swal("Warning", response.message, 'warning');
+                });
             },
             isValidString: function(evt) {
                 evt = (evt) ? evt : window.event;
@@ -94,17 +122,20 @@
                 if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0)){
                     event.preventDefault();
                 }
+            },
+            onEmailChange: function() {
+                this.isEmailExists = false;
             }
         },
         created () {
             this.$toaster.success('Welcome to Game Hub');
         },
         
-       mounted () {
-        document.body.classList.add('body-position')
+        mounted () {
+            document.body.classList.add('body-position')
         },
         destroyed () {
-        document.body.classList.remove('body-position')
+            document.body.classList.remove('body-position')
         }
 
     }

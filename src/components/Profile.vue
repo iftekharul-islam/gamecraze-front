@@ -40,7 +40,7 @@
                                     <tbody>
                                         <tr>
                                             <td scope="row">Name:</td>
-                                            <td>{{ user.name + ' ' + user.last_name }}</td>
+                                            <td> <span v-if="user.name">{{ user.name }}</span> <span v-if="user.last_name">{{ user.last_name }}</span></td>
                                         </tr>
 <!--                                        <tr>-->
 <!--                                           <td scope="row">Username:</td>-->
@@ -757,7 +757,7 @@
               });
 
             //rent posts
-            this.$api.get('games?include=platforms').then(response =>
+            this.$api.get('games/released-games?include=platforms').then(response =>
             {
                 this.games = response.data.data
                 console.log(this.games)

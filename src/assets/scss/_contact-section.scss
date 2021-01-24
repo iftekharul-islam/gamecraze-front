@@ -1,6 +1,13 @@
 .contact-section {
     padding-top: 80px; 
     padding-bottom: 150px;
+    .error-message {
+        display: inline-block;
+        margin-top: 10px;
+        &::after {
+            top: 2px;
+        }
+    }
 }
 .contact-form {
     h2 {

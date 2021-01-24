@@ -34,7 +34,7 @@
                                         <div class="form-group col-md-6">
                                             <label for="LastName">Last name</label>
                                             <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
-                                                <input @keypress="isValidString($event)" type="text" class="form-control" id="LastName" value="" v-model="form.lastName">
+                                                <input @keypress="isValidString($event)" type="text" class="form-control" id="LastName" value="" v-model="form.last_name">
                                                 <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
@@ -78,7 +78,7 @@
             return {
                 form: {
                     name: '',
-                    lastName: '',
+                    last_name: '',
                     email: '',
                     phone_number: JSON.parse(localStorage.getItem('user')).phone_number
                 },

@@ -727,7 +727,13 @@
                         this.isRentLoading = false;
                         this.$toaster.success('Post submitted');
                         setTimeout(function(){
-                            window.location.reload();
+                            // window.location.reload();
+                          $('#v-pills-post-rent-tab').removeClass('active');
+                          $('#v-pills-post-rent').removeClass('active');
+                          $('#v-pills-post-rent').removeClass('show');
+                          $('#v-pills-dashboard-tab').addClass('active');
+                          $('#v-pills-dashboard').addClass('active');
+                          $('#v-pills-dashboard').addClass('show');
                         }, 2000);
                     });
             },
@@ -856,8 +862,8 @@
                 $('#v-pills-overview').removeClass('active');
                 $('#v-pills-overview').removeClass('show');
                 $('#v-pills-post-rent-tab').addClass('active');
-                $('#v-pills-post-rent').addClass('active');
-                $('#v-pills-post-rent').addClass('show');
+                $('#v-pills-dashboard').addClass('active');
+                $('#v-pills-dashboard').addClass('show');
               });
 
             //rent posts

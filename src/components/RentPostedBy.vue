@@ -14,7 +14,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(rent, index) in rentPosts" :key="index" data-toggle="modal" data-target="#rennow1" @click="setModalData(rent)">
+                        <tr v-for="(rent, index) in rentPosts" :key="index" data-toggle="modal" data-target="#rennow1" @click="setModalData(rent)" :class="{disablePost: rent.user_id === $store.state.userId}">
                             <td scope="col" v-if="rent.user.data.image"><img :src="rent.user.data.image" alt="renter">{{ rent.user.data.name }}</td>
                             <td scope="col" v-else><img width="80px" v-if="rent.user.data.gender === 'Male'" src="../assets/img/male.png" alt="renter"><img width="80px" v-else-if="rent.user.data.gender === 'Female'" src="../assets/img/female.png" alt="renter"><img v-else src="../assets/img/avatar.jpg" width="80px" alt="renter">{{ rent.user.data.name }}</td>
                             <td scope="col">5/5</td>
@@ -26,7 +26,7 @@
                         </tbody>
                     </table>
 
-                    <div class="modal fade seller-information-modal" id="rennow1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div v-if="modalData && modalData.user_id !== $store.state.userId" class="modal fade seller-information-modal" id="rennow1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                               <ValidationObserver v-slot="{ handleSubmit }">
@@ -81,6 +81,10 @@
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                   </ValidationProvider>
                                                 </td>
+                                            </tr>
+                                            <tr v-if="form.week">
+                                                <td>Rent Start Date:</td>
+                                                <td>{{ rentStartDate }}</td>
                                             </tr>
                                             <tr v-if="form.week">
                                                 <td>Return Date:</td>
@@ -154,11 +158,16 @@
           returnDate() {
             let today = new Date();
             let available = new Date(this.modalData.availability_from_date);
-            if (today < available)
+            if (today > available)
             {
               today.setDate(today.getDate() + this.form.week * 7);
               const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
               return today.getDate() + " " + months[today.getMonth()] + " " + today.getFullYear()
+            }
+            else {
+              available.setDate(available.getDate() + this.form.week * 7);
+              const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+              return available.getDate() + " " + months[available.getMonth()] + " " + available.getFullYear()
             }
           },
           availableRentPosts() {
@@ -167,6 +176,19 @@
               let available = new Date(post.availability_from_date);
               return today < available;
             })
+          },
+          rentStartDate() {
+            let today = new Date();
+            let available = new Date(this.modalData.availability_from_date);
+            if (today > available)
+            {
+              const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+              return today.getDate() + " " + months[today.getMonth()] + " " + today.getFullYear()
+            }
+            else {
+              const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+              return available.getDate() + " " + months[available.getMonth()] + " " + available.getFullYear()
+            }
           }
         },
         methods: {

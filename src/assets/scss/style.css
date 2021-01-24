@@ -4362,6 +4362,11 @@ html {
   background: #0B0F18;
 }
 
+.disablePost {
+  opacity: .3;
+  cursor: not-allowed !important;
+}
+
 .rented-dashbord {
   border-collapse: separate;
   border-spacing: 0px 20px;
@@ -5910,6 +5915,21 @@ html {
 .cart-heading {
   text-align: center;
   margin-bottom: 60px;
+}
+
+.cart-heading h2 {
+  font-size: 40px;
+  color: #FFD715;
+  font-style: italic;
+}
+
+@media (max-width: 575px) {
+  .cart-heading h2 {
+    font-size: 24px;
+  }
+}
+
+.cart-heading-empty {
   height: 200px;
   border: 1px solid #FFD715;
   display: -webkit-box;
@@ -5925,21 +5945,21 @@ html {
 }
 
 @media (min-width: 992px) {
-  .cart-heading {
+  .cart-heading-empty {
     width: 60%;
     margin: auto;
     margin-top: 7rem;
   }
 }
 
-.cart-heading h2 {
+.cart-heading-empty h2 {
   font-size: 40px;
   color: #FFD715;
   font-style: italic;
 }
 
 @media (max-width: 575px) {
-  .cart-heading h2 {
+  .cart-heading-empty h2 {
     font-size: 24px;
   }
 }

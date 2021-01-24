@@ -14,7 +14,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(rent, index) in availableRentPosts" :key="index" data-toggle="modal" data-target="#rennow1" @click="setModalData(rent)">
+                        <tr v-for="(rent, index) in rentPosts" :key="index" data-toggle="modal" data-target="#rennow1" @click="setModalData(rent)">
                             <td scope="col" v-if="rent.user.data.image"><img :src="rent.user.data.image" alt="renter">{{ rent.user.data.name }}</td>
                             <td scope="col" v-else><img width="80px" v-if="rent.user.data.gender === 'Male'" src="../assets/img/male.png" alt="renter"><img width="80px" v-else-if="rent.user.data.gender === 'Female'" src="../assets/img/female.png" alt="renter"><img v-else src="../assets/img/avatar.jpg" width="80px" alt="renter">{{ rent.user.data.name }}</td>
                             <td scope="col">5/5</td>
@@ -147,7 +147,7 @@
                   week: '',
                   deliveryType: ''
                 },
-              userDetails: null,
+              // userDetails: null,
             }
         },
         computed: {
@@ -203,14 +203,14 @@
               'Authorization': 'Bearer ' + this.$store.state.token
             }
           };
-          if (this.$store.state.userId != null) {
-            this.$api.get('user/details', config)
-                .then (response =>
-                {
-                  this.userDetails = response.data.data;
-                  console.log(this.userDetails, 'User details');
-                })
-          }
+          // if (this.$store.state.userId != null) {
+          //   this.$api.get('user/details', config)
+          //       .then (response =>
+          //       {
+          //         this.userDetails = response.data.data;
+          //         console.log(this.userDetails, 'User details');
+          //       })
+          // }
         },
         
     mounted() {

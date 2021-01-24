@@ -104,6 +104,18 @@
 .cart-heading {
     text-align: center;
     margin-bottom: 60px;
+ 
+    
+    h2 {
+        font-size: 40px;
+        color: $secondery;
+        font-style: italic;
+        @include for-max-575 {
+            font-size: 24px;
+        }
+    }
+}
+.cart-heading-empty {
     height: 200px;
     border: 1px solid $secondery;
     display: flex;

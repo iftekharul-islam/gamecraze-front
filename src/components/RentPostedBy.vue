@@ -14,7 +14,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(rent, index) in rentPosts" :key="index" data-toggle="modal" data-target="#rennow1" @click="setModalData(rent)" :class="{disablePost: rent.user_id === $store.state.userId}">
+                        <tr v-for="(rent, index) in rentPosts" :key="index"  data-toggle="modal" title="This is your item" data-target="#rennow1" @click="setModalData(rent)" :class="{disablePost: rent.user_id === $store.state.userId}">
                             <td scope="col" v-if="rent.user.data.image"><img :src="rent.user.data.image" alt="renter">{{ rent.user.data.name }}</td>
                             <td scope="col" v-else><img width="80px" v-if="rent.user.data.gender === 'Male'" src="../assets/img/male.png" alt="renter"><img width="80px" v-else-if="rent.user.data.gender === 'Female'" src="../assets/img/female.png" alt="renter"><img v-else src="../assets/img/avatar.jpg" width="80px" alt="renter">{{ rent.user.data.name }}</td>
                             <td scope="col">5/5</td>
@@ -138,6 +138,7 @@
 </template>
 
 <script>
+ 
     export default {
         props: ['id'],
         data() {

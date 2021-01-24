@@ -86,8 +86,11 @@
 
         <section class="cart-section">
           <div class="container">
-            <div class="cart-heading">
-              <h2>YOUR CART <span v-if="!cart.length">IS EMPTY</span></h2>
+            <div class="cart-heading"  v-if="cart.length">
+              <h2>YOUR CART</h2>
+            </div>
+            <div class="cart-heading-empty" v-else>
+              <h2>YOUR CART IS EMPTY</h2>
             </div>
             <div v-if="cart.length" class="row">
               <div class="mb-4 mb-lg-0 col-md-12 col-lg-7">

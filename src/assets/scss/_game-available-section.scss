@@ -103,6 +103,10 @@
         }
     }
 }
+.disablePost {
+    opacity: .3;
+    cursor: not-allowed !important;
+}
 
 .rented-dashbord {
     border-collapse: separate;

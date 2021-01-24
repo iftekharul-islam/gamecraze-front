@@ -76,7 +76,11 @@
                                         
                         </div>
                         <div class="gamehub-input-group--content">
-                            <router-link to="/cart"><i class="fas fa-shopping-cart"><span class="badge gamehub-badge navbar-badge">{{ $store.state.postId.length }}</span></i></router-link>
+                            <router-link to="/cart">
+                              <i class="fas fa-shopping-cart">
+                                <span class="badge gamehub-badge navbar-badge">{{ totalItems }}</span>
+                              </i>
+                            </router-link>
 
                         </div>
 
@@ -104,26 +108,27 @@
                 filteredResults: [],
                 query: "",
                 selected: "",
+                totalItems: 0
             }
         },
         methods: {
           clickProfile() {
             this.$root.$emit('rentPost');
           },
-            searchGame() {
-                console.log(this.result)
-                if(this.query !== '') {
-                  this.$router.push({name: 'games', query: {categories: this.$route.query.categories, platforms: this.$route.query.platforms, search: this.query}})
-                  this.$root.$emit('searchEvent')
-                }
-                else {
-                  this.$router.push({name: 'games', query: {categories: this.$route.query.categories, platforms: this.$route.query.platforms}})
-                  this.$root.$emit('searchEvent')
-                }
-            },
-            onLogout() {
-                this.$store.dispatch('logout');
-            },
+          searchGame() {
+              console.log(this.result)
+              if(this.query !== '') {
+                this.$router.push({name: 'games', query: {categories: this.$route.query.categories, platforms: this.$route.query.platforms, search: this.query}})
+                this.$root.$emit('searchEvent')
+              }
+              else {
+                this.$router.push({name: 'games', query: {categories: this.$route.query.categories, platforms: this.$route.query.platforms}})
+                this.$root.$emit('searchEvent')
+              }
+          },
+          onLogout() {
+              this.$store.dispatch('logout');
+          },
           clickHandler(item) {
             // event fired when clicking on the input
           },
@@ -144,12 +149,20 @@
           },
           focusMe(e) {
             console.log(e) // FocusEvent
+          }, 
+          totalCartItems(){
+            let cartItems = localStorage.getItem('cartItems');
+            if (cartItems) {
+              console.log('items: ', cartItems)
+              let cart = JSON.parse(cartItems);
+              this.totalItems = cart.length;
+            }
           }
         },
         computed: {
-            auth () {
-                return this.$store.getters.ifAuthenticated
-            },
+          auth () {
+              return this.$store.getters.ifAuthenticated
+          },
           filteredOptions() {
             return [
               {
@@ -161,6 +174,7 @@
           }
         },
         created() {
+            this.totalItems = this.$store.state.itemsInCart;
             this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {
                 this.rents = response.data.data;
@@ -172,15 +186,25 @@
                 })
                 console.log(uniqueArr)
             });
-            this.$api.get('games?include=platforms')
-                .then(response =>
-                {
-                  this.games = response.data.data;
-                })
+            
+            this.$api.get('games?include=platforms').then(response =>{
+              this.games = response.data.data;
+            });
 
             this.$root.$on('clearSearchKey', () => {
               this.query = '';
-            })
+            });
+
+            this.$store.watch(
+                (state)=>{
+                    return this.$store.state.itemsInCart // could also put a Getter here
+                },
+                (newValue, oldValue)=>{
+                  this.totalItems = newValue;
+                },
+                //Optional Deep if you need it
+                { deep:true }
+            );
         },
         mounted() {
             this.$root.$on("loggedIn", () => {

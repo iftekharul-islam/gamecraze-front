@@ -93,23 +93,27 @@
               <div class="mb-4 mb-lg-0 col-md-12 col-lg-7">
                 <div class="cart-section--item-details">
                   <table class="table table-borderless cart-section--item-details--table">
-                            <thead>
-                            <tr>
-                                <td scope="col">Item</td>
-                                <td scope="col">Price</td>
-                                <td scope="col">Rent Week</td>
-                                <td scope="col">Subtotal</td>
-                            </tr>
-                            </thead>
-                            <tbody >
-                            <tr v-for="(item, index) in cart" :key="index">
-                                <td scope="col">{{ item.game.data.name }}</td>
-                                <td scope="col">{{ price[index] }}</td>
-                                <td scope="col">{{ lendWeek[index] }}</td>
-                                <td scope="col"><div class="d-flex align-items-center justify-content-between">{{price[index]}} <div class="item-del" @click="onRemoveCartItem(index)"><i class="fas fa-trash-alt"></i></div></div></td>
-                            </tr>
-                            </tbody>
-                        </table>
+                        <thead>
+                        <tr>
+                            <td scope="col">Item</td>
+                            <td scope="col">Price</td>
+                            <td scope="col">Rent Week</td>
+                            <td scope="col">Subtotal</td>
+                        </tr>
+                        </thead>
+                        <tbody >
+                        <tr v-for="(item, index) in cart" :key="index">
+                            <td scope="col">{{ item.rent.game.data.name }}</td>
+                            <td scope="col">{{ item.price }}</td>
+                            <td scope="col">{{ item.lend_week }}</td>
+                            <td scope="col">
+                              <div class="d-flex align-items-center justify-content-between">{{ item.price }} 
+                                <div class="item-del" @click="onRemoveCartItem(index)"><i class="fas fa-trash-alt"></i></div>
+                              </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
                 </div>
               </div>
               <div class="col-md-7 col-lg-5">
@@ -152,7 +156,7 @@
             games: null,
             checkedGame: '',
             lendWeek: '',
-            cart: null,
+            cart: [],
             paymentMethod: 'cod',
             isLoading: false,
             price: [],
@@ -161,20 +165,23 @@
     computed: {
       totalPrice() {
         var total = 0;
-        for (let i=0; i<this.cart.length; i++) {
-          total += this.price[i];
+        if (this.cart) {
+          for (let i = 0; i < this.cart.length; i++) {
+            total += parseFloat(this.cart[i].price);
+          }
         }
         return total;
       }
     },
     methods: {
         subTotal() {
-            console.log(this.cart.length)
-            for (let i=0;i<this.cart.length;i++) {
-                this.$store.state.totalAmount = this.$store.state.totalAmount + this.price;
-            }
+            if (this.cart != null) {
+              for (let i = 0; i < this.cart.length; i++) {
+                  this.$store.state.totalAmount = this.$store.state.totalAmount + this.price;
+              }
 
-            return this.$store.state.totalAmount;
+              return this.$store.state.totalAmount;
+            }
         },
         updateRentWeek(index) {
             localStorage.setItem('lendWeek', JSON.stringify(this.$store.state.lendWeek));
@@ -208,37 +215,40 @@
             icon: "warning",
             buttons: true,
             dangerMode: true,
-          })
-                  .then((willDelete) => {
-                    if (willDelete) {
-                      this.cart.splice(index, 1)
-                      this.$store.dispatch('removePostId', index)
-                        this.$store.state.totalAmount = 0;
-                        for (let i=0;i<this.cart.length;i++) {
-                            this.$store.state.totalAmount = this.$store.state.totalAmount + this.price ;
-                        }
-                      swal("The item is removed.", {
-                        icon: "success",
-                      });
-                    } else {
-                      swal("The item is not removed.");
-                    }
-                  });
+          }).then((willDelete) => {
+            if (willDelete) {
+              this.cart.splice(index, 1)
+              this.$store.dispatch('removeCartItem', index)
+              swal("The item is removed.", {
+                icon: "success",
+              });
+            } else {
+              swal("The item is not removed.");
+            }
+          });
         },
+        getCartItems() {
+          let cartItems = localStorage.getItem('cartItems');
+          if (cartItems != '') {
+            this.cart = JSON.parse(cartItems);
+          }
+        }
     },
     created() {
-      this.lendWeek = this.$store.state.lendWeek;
-      this.$api.get('cart-items/?ids=' + this.$store.state.postId + '&include=game.assets').then (response => {
-        this.cart = response.data.data
-        console.log(this.cart, 'cart');
-          for (let i=0;i<this.cart.length;i++) {
-            this.$api.get('base-price/game-calculation/' + this.cart[i].game.data.id + '/' + this.lendWeek )
-                .then (response => {
-                  this.price.push(parseFloat(response.data));
-                });
-          }
-        console.log(this.price)
-      });
+      // this.lendWeek = this.$store.state.lendWeek;
+      // this.$api.get('cart-items/?ids=' + this.$store.state.postId + '&include=game.assets').then (response => {
+      //   this.cart = response.data.data
+      //   console.log(this.cart, 'cart');
+      //     for (let i=0;i<this.cart.length;i++) {
+      //       this.$api.get('base-price/game-calculation/' + this.cart[i].game.data.id + '/' + this.lendWeek )
+      //           .then (response => {
+      //             this.price.push(parseFloat(response.data));
+      //           });
+      //     }
+      //   console.log(this.price)
+      // });
+
+      this.getCartItems();
 
       this.$store.watch((state)=>{
           return this.$store.state.cart 

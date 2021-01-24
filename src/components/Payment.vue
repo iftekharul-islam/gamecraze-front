@@ -39,7 +39,8 @@
             return {
                 paymentMethod: 'cod',
                 isLoading: false,
-                amount: this.$route.params.amount
+                amount: 0,
+                cart: []
             }
         },
         components: {
@@ -53,22 +54,48 @@
                     'Authorization': 'Bearer ' + this.$store.state.token
                   }
                 };
-                var data = {
-                  postId: this.$store.state.postId,
-                  week: this.$store.state.lendWeek,
-                  checkpointId: this.$store.state.checkpointId,
-                  paymentMethod: this.paymentMethod,
-                  totalPrice: this.amount
+
+                // var data = {
+                //   postId: this.$store.state.postId,
+                //   week: this.$store.state.lendWeek,
+                //   checkpointId: this.$store.state.checkpointId,
+                //   paymentMethod: this.paymentMethod,
+                //   totalPrice: this.amount
+                // };
+
+                let data = {
+                    paymentMethod: this.paymentMethod,
+                    cart_items: this.cart
                 };
+
                 this.$api.post('lend-game', data, config).then(response => {
-                  if (response.data.error === false) {
-                    this.$store.dispatch('clearCart');
-                    this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
-                    this.isLoading = false;
-                    this.$router.push('/profile').then(err => {});
-                  }
+                    console.log(response);
+                    
+                    if (response.data.error === false) {
+                        this.$store.dispatch('clearCart');
+                        this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
+                        this.isLoading = false;
+                        localStorage.setItem('cartItems', '');
+                        this.$router.push('/profile').then(err => {});
+                    }
+                });
+            },
+            getCartItems() {
+                this.$store.dispatch('getCartItems').then(response => {
+                    if (response) {
+                        this.cart = response;
+                        let amount = 0;
+                        for (let i = 0; i < response.length; i++) {
+                            amount += parseFloat(response[i].price); 
+                        }
+                        this.amount = amount;
+                        console.log('amon: ', amount)
+                    }
                 });
             }
         },
+        created() {
+            this.getCartItems();
+        }
     }
 </script>

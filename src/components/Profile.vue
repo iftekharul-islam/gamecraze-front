@@ -81,10 +81,10 @@
                                            <td scope="row">Mobile No:</td>
                                             <td>
                                                 {{ user.phone_number }}
-                                                <span class="verified" v-if="user.is_phone_verified == 1">
+                                                <span class="verified gamehub-success" v-if="user.is_phone_verified == 1">
                                                     <i  class="fas fa-check" aria-hidden="true" title="Verified"></i>
                                                 </span>
-                                                <span v-else class="not-verified">
+                                                <span v-else class="not-verified gamehub-danger">
                                                     <i class="fas fa-question-circle" aria-hidden="true" title="Not Verified"></i>
                                                 </span>
                                             </td>
@@ -117,11 +117,11 @@
                         <div class="tab-pane fade" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
                                     <div class="dashboard-content">
                                         <div class="d-flex justify-content-center dashboard-tab-button mb-5">
-                                            <button  @click.prevent="onRentedGames()" :disabled="show" :class="{active: show}"><img class="active-black" src="../assets/img/rent-icon.png" alt="rent icon"> <img class="active-yellow" src="../assets/img/rent-icon-black.png" alt="rent icon"> Rented Games</button>
-                                            <button  @click.prevent="onOfferedGames()" :disabled="!show" :class="{active: !show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  Offered Games</button>
+                                            <button  @click.prevent="onRentedGames()" :disabled="!show" :class="{active: !show}"><img class="active-black" src="../assets/img/rent-icon.png" alt="rent icon"> <img class="active-yellow" src="../assets/img/rent-icon-black.png" alt="rent icon"> Rented Games</button>
+                                            <button  @click.prevent="onOfferedGames()" :disabled="show" :class="{active: show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  Offered Games</button>
                                         </div>
 
-                                      <div class="dashboard-content--rented dashboard-content--offer pb-5" v-if="rents.length && !show">
+                                      <div class="dashboard-content--rented dashboard-content--offer pb-5" v-if="rents.length && show">
                                         <table class="table table-borderless" v-if="rents">
                                           <thead>
                                           <tr>
@@ -159,7 +159,7 @@
                                           </tbody>
                                         </table>
                                       </div>
-                                        <div class="dashboard-content--rented pb-5" v-else-if="lends.length && show">
+                                        <div class="dashboard-content--rented pb-5" v-else-if="lends.length && !show">
                                             <table class="table table-borderless" v-if="lends">
                                                 <thead>
                                                 <tr>
@@ -187,8 +187,8 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <div class="card no-post-found-card mb-0" v-else>
-                                        <h5 class="text-white text-center">Nothing to Show</h5>
+                                        <div class="no-post-found-card mb-0" v-else>
+                                        <h5>Nothing to Show!</h5>
                                         </div>
                                     </div>
                         </div>
@@ -233,20 +233,20 @@
                                             <div class="col-sm-8 post-rent--input">
                                                 <ValidationProvider name="available date" rules="required" v-slot="{ errors }">
                                                     <input type="date" class="form-control" id="gamendate" placeholder="Availablity Date" :min="todayDate(1)" v-model="rentData.availability">
-                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
                                         </div>
                                         <!-- platform -->
                                         <div class="form-group row" v-if="gamePlatform">
                                             <label class="col-sm-3 col-form-label">Platform:</label>
-                                             <div class="col-sm-8 post-rent--input">
+                                             <div class="col-sm-8 post-rent--delivery">
                                             <ValidationProvider name="Platform" rules="required" v-slot="{ errors }">
-                                                <div class="form-check form-check-inline post-rent--input--platform-input" v-for="(platform, index) in rentData.game.platforms.data" :key="index">
-                                                    <input class="form-check-input platform" :id="'platform-' + index" name="platform" type="radio" :value="platform" v-model="rentData.platform">
-                                                    <label class="form-check-label ml-2" :for="'platform-' + index">{{ platform.name }}</label>
+                                                <div class="form-check form-check-inline post-rent--input--platform-input custom-radio" v-for="(platform, index) in rentData.game.platforms.data" :key="index">
+                                                    <input class="custom-control-input platform" :id="'platform-' + index" name="platform" type="radio" :value="platform" v-model="rentData.platform">
+                                                    <label class="custom-control-label ml-2" :for="'platform-' + index">{{ platform.name }}</label>
                                                 </div>
-                                                <span class="error-message">{{ errors[0] }}</span>
+                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                             </div>
                                         </div>
@@ -287,7 +287,7 @@
                                                         <option value="" selected>Please Select Disk Condition</option>
                                                         <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }} ({{ diskCondition.description }})</option>
                                                     </select>
-                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
                                         </div>
@@ -369,7 +369,7 @@
                                                 <div class="col-sm-9 edit--input">
                                                     <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
                                                         <input @keypress="isValidString($event)" type="text" class="form-control" id="first_name" v-model="form.name">
-                                                        <span class="text-danger">{{ errors[0] }}</span>
+                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
 
@@ -379,7 +379,7 @@
                                             <div class="col-sm-9 edit--input">
                                                  <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
                                                     <input @keypress="isValidString($event)" type="text" class="form-control" id="last_name" v-model="form.last_name">
-                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
                                         </div>
@@ -394,7 +394,7 @@
                                                         <option value="female">Female</option>
                                                         <option value="others">Others</option>
                                                     </select>
-                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
                                         </div>
@@ -403,7 +403,7 @@
                                             <div class="col-sm-9 edit--input">
                                                 <ValidationProvider name="date of birth" rules="required" v-slot="{ errors }">
                                                     <input type="date" class="form-control" id="dateofbirth" :max="todayDate()" v-model="form.birth_date">
-                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
                                         </div>
@@ -412,7 +412,7 @@
                                             <div class="col-sm-9 edit--input">
                                                 <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                                                     <input type="email" class="form-control" id="email" v-model="form.email">
-                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                   <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
                                         </div>
@@ -421,7 +421,7 @@
                                             <div class="col-sm-9 edit--input">
                                                 <ValidationProvider name="phone number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
                                                     <input type="text" @keypress="isNumber($event)" class="form-control" id="phone_number" v-model="form.phone_number">
-                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                   <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                     <span class="error-message d-block" v-if="$store.state.numberExists">Phone number already exists</span>
                                                 </ValidationProvider>
                                             </div>
@@ -431,7 +431,7 @@
                                             <div class="col-sm-9 edit--input">
                                                 <ValidationProvider name="address" rules="required" v-slot="{ errors }">
                                                     <input type="text" class="form-control" id="address" v-model="form.address">
-                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
                                         </div>
@@ -440,7 +440,7 @@
                                             <div class="col-sm-9 edit--input">
                                                 <ValidationProvider name="city" rules="required" v-slot="{ errors }">
                                                     <input type="text" class="form-control" id="city" v-model="form.city">
-                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
                                         </div>
@@ -449,7 +449,7 @@
                                             <div class="col-sm-9 edit--input">
                                                  <ValidationProvider name="post code" rules="required" v-slot="{ errors }">
                                                     <input type="text" class="form-control" id="postcode" v-model="form.postCode">
-                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
                                         </div>
@@ -458,7 +458,7 @@
                                             <div class="col-sm-9 edit--input">
                                                 <ValidationProvider name="NID" rules="required" v-slot="{ errors }">
                                                 <input type="text" class="form-control" id="nidno" v-model="form.id_number">
-                                                  <span class="text-danger">{{ errors[0] }}</span>
+                                                  <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
                                         </div>
@@ -596,10 +596,10 @@
 
             },
             onOfferedGames() {
-                this.show = false
+                this.show = true
             },
             onRentedGames() {
-                this.show = true
+                this.show = false
             },
             returnDate(lendDate, week) {
                 let date = new Date(lendDate);

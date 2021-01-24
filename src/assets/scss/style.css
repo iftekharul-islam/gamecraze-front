@@ -1177,6 +1177,10 @@
   color: #F16A46;
 }
 
+.gamehub-success {
+  color: #66CC33;
+}
+
 .opa-1 {
   opacity: .1;
 }
@@ -4681,8 +4685,8 @@ html {
 
 .avatar-edit {
   position: absolute;
-  left: 105px;
-  bottom: -9px;
+  right: 4px;
+  bottom: 15px;
 }
 
 .avatar-edit form input {
@@ -4990,6 +4994,10 @@ html {
   background-repeat: no-repeat;
   background-position: 96% center;
   background-size: 15px;
+}
+
+.post-rent .form-group select option {
+  text-transform: capitalize;
 }
 
 .post-rent .form-group [type="date"]::-webkit-inner-spin-button {
@@ -5386,6 +5394,7 @@ html {
   border: 1px solid #FFD715;
   background: #141A27;
   cursor: pointer;
+  font-size: 16px;
 }
 
 .edit-profile .custom-file-input ~ .custom-file-label::after {
@@ -5434,6 +5443,32 @@ html {
   .edit--input {
     padding-right: 15px;
   }
+}
+
+.no-post-found-card {
+  height: 200px;
+  width: 100%;
+  background: #0B0F18;
+  border: 1px solid #FFD715;
+  border-radius: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #FFD715;
+}
+
+.no-post-found-card h5 {
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #FFD715;
 }
 
 .set-password {

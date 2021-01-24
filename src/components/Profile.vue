@@ -91,7 +91,7 @@
                                         </tr>
                                         <tr>
                                            <td scope="row">Address:</td>
-                                            <td v-if="user.address.address">{{ user.address.address }}</td>
+                                            <td v-if="user.address">{{ user.address.address }}</td>
                                         </tr>
                                         <tr>
                                            <td scope="row">City:</td>
@@ -512,9 +512,9 @@
                     email: this.$store.state.user.email,
                     phone_number: this.$store.state.user.phone_number,
                     id_number: this.$store.state.user.identification_number,
-                    address: this.$store.state.user.address.address,
-                    city: this.$store.state.user.address.city,
-                    postCode: this.$store.state.user.address.post_code,
+                    address: this.$store.state.user.address ? this.$store.state.user.address.address: '',
+                    city: this.$store.state.user.address ? this.$store.state.user.address.city: '',
+                    postCode: this.$store.state.user.address ? this.$store.state.user.address.post_code: '',
                     id_image: ""
                 },
                 selectedFile: 'Select NID',

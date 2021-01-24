@@ -220,11 +220,11 @@
               console.log('users: ', this.rentPosts)
             });
 
-          let config = {
-            headers: {
-              'Authorization': 'Bearer ' + this.$store.state.token
-            }
-          };
+          // let config = {
+          //   headers: {
+          //     'Authorization': 'Bearer ' + this.$store.state.token
+          //   }
+          // };
           // if (this.$store.state.userId != null) {
           //   this.$api.get('user/details', config)
           //       .then (response =>

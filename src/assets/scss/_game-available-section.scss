@@ -143,6 +143,7 @@
                     margin-right: 20px;
                     width: 40px;
                     height: 40px;
+                    border-radius: 4px;
                 }
             }
             &:hover {
@@ -223,6 +224,10 @@
                 @include for-max-768 {
                     padding-top: 0;
                     padding-bottom: 0;
+                }
+                &:first-of-type {
+                    vertical-align: initial;
+                    padding-top: 21px;
                 }
             }
         }

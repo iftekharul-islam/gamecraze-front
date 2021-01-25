@@ -83,7 +83,7 @@
 
             }
             @include for-max-590 {
-                top: 0;
+                // top: 0;
                 width: 35px;
                  height: 35px;
             }
@@ -104,13 +104,13 @@
         .owl-prev {
             left: 45px;
             @include for-max-590 {
-                left: 35%;
+                left: 5%;
             }
         }
         .owl-next {
             right: 45px;
             @include for-max-590 {
-                right: 35%;
+                right: 5%;
             }
         }
     }

@@ -1,0 +1,20 @@
+.payment-section {
+    &--item {
+        display: flex;
+        &--content {
+            flex-basis: 50%;
+            &:last-of-type {
+                p {
+                    padding-left: 102px;
+                }
+            }
+            form {
+                padding-left: 102px;
+                border-left: 1px solid $secondery;
+            }
+            &--delivery-point {
+                display: flex;
+            }
+        }
+    }
+}

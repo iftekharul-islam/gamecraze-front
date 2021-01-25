@@ -3,6 +3,9 @@
     @include for-max-992 {
         padding-bottom: 70px;
     }
+    @include for-max-575 {
+        padding-bottom: 20px;
+    }
 }
 .noticed-details {
          position: absolute;
@@ -89,6 +92,63 @@
                 visibility: visible;
                 opacity: 1;
                 
+            }
+        }
+    }
+    // notice board mobile
+    .noticed-board-section-mobile {
+        padding-bottom: 70px;
+        .notice-box {
+            height: 280px;
+        }
+        .noticed-details {
+            visibility: visible;
+            opacity: 1;
+            a {
+                background: $secondery;
+                span {
+                    color: $text-dark;
+                }
+            }
+        }
+        .owl-nav {
+            position: relative;
+            &.disabled {
+                display: block !important;
+                @include for-max-575 {
+                    display: none !important;
+                }
+            }
+    
+            button {
+                position: absolute;
+                transform: skewX(-13deg);
+                border: 1px solid $secondery !important;
+                border-radius: 0 !important;
+                transition: all .3s ease-in !important;
+                top: -170px;
+                width: 35px;
+                height: 35px;
+                
+                &:hover {
+                    background: $secondery !important;
+                    i {
+                        color: black;
+                    }
+                }
+                i {
+                    transition: all .3s ease-in;
+                }
+                &:focus {
+                    outline: none !important;
+                    box-shadow: none !important;
+                }
+            }
+            .owl-prev {
+                left: 5%;
+            }
+            .owl-next {
+                right: 5%;
             }
         }
     }

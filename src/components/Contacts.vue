@@ -25,14 +25,14 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="firstName">First name</label>
-                                            <ValidationProvider name="first_name" rules="required" v-slot="{ errors }">
+                                            <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
                                                 <input type="text" class="form-control" name="first_name" id="firstName" value="" v-model="form.first_name">
                                                 <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="lastName">Last name</label>
-                                            <ValidationProvider name="last_name" rules="required" v-slot="{ errors }">
+                                            <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
                                                 <input type="text" class="form-control" name="last_name" id="lastName" value="" v-model="form.last_name">
                                                 <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                             </ValidationProvider>

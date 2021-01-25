@@ -136,11 +136,14 @@
                         <p>Total</p>
                         <span class="total-price">৳{{ totalPrice }}</span>
                       </div>
-                      <div class="checkout-btn">
-                          <button @click="onCheckout()" class="btn--cart-btn w-100">GO TO SECURE CHECKOUT</button>
-                      </div>
+                      
                       </form>
                   </div>
+              </div>
+              <div class="col-12">
+                  <div class="checkout-btn">
+                          <button @click="onCheckout()" class="btn--cart-btn w-100">GO TO SECURE CHECKOUT</button>
+                      </div>
               </div>
             </div>
           </div>

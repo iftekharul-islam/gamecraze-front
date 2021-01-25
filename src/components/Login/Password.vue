@@ -5,9 +5,9 @@
             <div class="container-fluid sign-in-width">
                 <div class="row">
                     <div class="col-md-6 col-lg-4 mx-auto">
-                        <div class="text-center login-logo">
+                        <!-- <div class="text-center login-logo">
                             <img src="../../assets/img/logo/gamehublogo.svg" alt="gamehublogo" class="text-center">
-                        </div>
+                        </div> -->
                         <div class="card mt-5">
                             <h3 class="card-title text-center">SIGN UP</h3>
                             <!-- form -->

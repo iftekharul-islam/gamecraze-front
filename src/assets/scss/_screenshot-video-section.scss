@@ -18,7 +18,12 @@
             &:focus {
                 outline: none !important;
             }
-           
+           &:hover {
+               background: $secondery !important;
+               i {
+                   color: $text-dark;
+               }
+           }
         }
     }
     .owl-nav,

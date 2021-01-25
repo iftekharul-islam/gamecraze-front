@@ -407,4 +407,6 @@ html {
   left: -21px !important;
 }
 
-  
+input::placeholder {
+  color: $gray;
+}

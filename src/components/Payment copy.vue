@@ -1,6 +1,6 @@
 <template>
     <div>
-        <!-- <section class="cart sign-in-bg pt-4">
+        <section class="cart sign-in-bg pt-4">
             <div class="container-fluid cart-width">
                 <div class="payment-method m-auto">
                     <h3 class="text-light text-center mb-5">Payment Method</h3>
@@ -28,41 +28,7 @@
                     </div>
                 </div>
             </div>
-        </section> -->
-        <section class="payment-section">
-            <div class="container">
-                <div class="col-12">
-                    <div class="payment-section--heading text-center">
-                        <h2>YOUR CART</h2>
-                    </div>
-                    <div class="payment-section--item">
-                        <div class="payment-section--item--content">
-                            <p>Select payment method</p>
-                            <div class="payment-section--item--content--method-btn">
-                                <a href="#">CASH ON DELIVERY</a>
-                                <a href="#">ONLINE PAYMENT</a>
-                            </div>
-                        </div>
-                        <div class="payment-section--item--content"> 
-                            <p>Select delivery point</p>
-                            <form action="">
-                                <div class="payment-section--item--content--delivery-point">
-                                    <div class="payment-section--item--content--delivery-point--input">
-                                        <input type="text">
-                                        <label for=""></label>
-                                    </div>
-                                    <button><img src="../assets/img/location-arw.png" alt="location"> Locate me</button>
-                                </div>
-                                <div class="payment-section--item--content--map">
-                                    <img src="../assets/img/paymentmap.png" alt="payment map">
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </section>
-
     </div>
 </template>
 <script>

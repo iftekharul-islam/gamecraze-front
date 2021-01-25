@@ -19,6 +19,9 @@
         @include for-max-1200 {
             width: 100px;
         }
+        @include for-max-575 {
+            width: 115px;
+        }
     }
 }
 

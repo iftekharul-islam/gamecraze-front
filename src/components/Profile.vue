@@ -894,7 +894,6 @@
                 },
                 (newValue, oldValue)=>{
                     this.user = newValue;
-                    console.log('newuser: ', newValue)
                 },
                 //Optional Deep if you need it
                 { deep:true }

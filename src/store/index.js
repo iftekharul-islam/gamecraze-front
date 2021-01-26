@@ -1,6 +1,7 @@
 import axios from 'axios'
 import router from "../router/routes";
 import {swal} from 'vue-swal';
+import {toaster} from 'v-toaster';
 
 export const storage = {
     state: {
@@ -30,6 +31,7 @@ export const storage = {
         isProfileUpdating: false,
         postId: [],
         cart: null,
+        itemsInCart: 0,
         totalAmount: 0,
         setupPasswordUser: null,
         otpNotFound: '',
@@ -88,7 +90,7 @@ export const storage = {
             localStorage.setItem('postId', JSON.stringify(state.postId))
             localStorage.setItem('lendWeek', JSON.stringify(state.lendWeek))
             localStorage.setItem('checkpointId', JSON.stringify(state.lendWeek))
-
+            localStorage.setItem('cartItems', '');
         },
         addToSearchResult (state, payload) {
             state.searchResult = payload
@@ -173,6 +175,9 @@ export const storage = {
         },
         setIsProfileUpdateing(state, payload) {
             state.isProfileUpdating = payload
+        },
+        setItemsInCart(state, payload) {
+            state.itemsInCart = payload
         }
     },
     actions: {
@@ -463,6 +468,59 @@ export const storage = {
         },
         hidePasswordResetPopup({ commit }, payload) {
             commit('setPasswordPopUp', payload);
+        },
+        addToCart({commit, dispatch }, rentDetails) {
+            let items = [];
+            dispatch('getCartItems').then(res => {
+                if (res.length > 0) {
+                    items = res;
+                }
+
+                axios.get(process.env.VUE_APP_GAMEHUB_BASE_API + 'base-price/game-calculation/' + rentDetails.rent.game.data.id + '/' + rentDetails.lendWeek ).then (response => {
+                    if (response.status != 200) {
+                            toaster.warning('Could not add to cart');
+                            return;
+                    }
+
+                    let days = parseInt(rentDetails.lendWeek) * 7;
+                    let startDate = new Date(rentDetails.rent.availability_from_date);
+                    startDate.setDate(startDate.getDate() + days);
+                    let date  = startDate.getDate() < 9  ? '0' + startDate.getDate() : startDate.getDate();
+                    let month = startDate.getMonth() + 1 < 9 ? '0' + parseInt(startDate.getMonth() + 1) : startDate.getMonth();
+                    let year  = startDate.getFullYear();
+
+                    items.push({
+                        rent: rentDetails.rent,
+                        price: response.data,
+                        rent_start_date: rentDetails.rent.availability_from_date,
+                        rent_end_date: year + '-' + month + '-' + date,
+                        lend_week: rentDetails.lendWeek,
+                        delivery_type: rentDetails.deliveryType,
+                        address: rentDetails.deliveryAddress
+                    });
+                    commit('setItemsInCart', items.length);
+                    localStorage.setItem('cartItems', JSON.stringify(items));
+                    router.push('/cart').then(err => {});
+                });
+
+                
+            });
+        },
+        getCartItems() {
+            let items = localStorage.getItem('cartItems');
+            if (items) {
+                return JSON.parse(items);
+            }
+            return [];
+        },
+        removeCartItem({commit, dispatch }, index) {
+            let items = localStorage.getItem('cartItems');
+            if (items) {
+                items = JSON.parse(items);
+                items.splice(index, 1);
+                localStorage.setItem('cartItems', JSON.stringify(items));
+                commit('setItemsInCart', items.length);
+            }
         }
     },
 }

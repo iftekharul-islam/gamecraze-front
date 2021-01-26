@@ -64,7 +64,8 @@
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <div class="seller-information">
+                                    <span v-if="isExistsInCart" class="text-center d-block">Already added in cart</span>
+                                    <div v-if="!isExistsInCart" class="seller-information">
                                         <div class="text-center">
                                             <h2>Provide Necessary Information</h2>
                                         </div>
@@ -106,7 +107,7 @@
                                             <tr v-if="form.deliveryType === '0' && modalData">
                                                 <td>Delivery Address:</td>
                                                 <td>
-                                                  <input type="text" class="form-control">
+                                                  <input type="text" class="form-control" v-model="form.address">
                                                 </td>
                                             </tr>
                                             <tr v-if="form.deliveryType !== '0' && form.deliveryType !== '' && modalData">
@@ -124,8 +125,10 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div class="modal-footer justify-content-center">
-                                    <a href="javascript:void(0)" class="btn--secondery" @click.prevent="handleSubmit(onAddToCart)" data-dismiss="modal"><span><i class="fas fa-shopping-cart"></i> ADD TO CART</span></a>
+                                <div v-if="!isExistsInCart" class="modal-footer justify-content-center">
+                                    <a href="javascript:void(0)" class="btn--secondery" @click.prevent="handleSubmit(onAddToCart)" data-dismiss="modal">
+                                      <span><i class="fas fa-shopping-cart"></i> ADD TO CART</span>
+                                    </a>
                                 </div>
                               </ValidationObserver>
                             </div>
@@ -143,16 +146,18 @@
         props: ['id'],
         data() {
             return {
-                rentPosts: [],
-                rents: [],
-                lends: [],
-                show: false,
-                modalData: null,
-                form: {
-                  week: '',
-                  deliveryType: ''
-                },
-              // userDetails: null,
+              rentPosts: [],
+              rents: [],
+              lends: [],
+              show: false,
+              modalData: null,
+              form: {
+                week: '',
+                deliveryType: '',
+                address: ''
+              },
+              userDetails: null,
+              isExistsInCart: false
             }
         },
         computed: {
@@ -193,33 +198,55 @@
           }
         },
         methods: {
-            setModalData(rent) {
-              this.modalData = rent;
-              console.log(this.modalData)
-            },
-            formattedDate(date) {
-                const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                let formattedDate = new Date(date)
-                return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
-            },
+          setModalData(rent) {
+            if (this.checkIfExistsInCart(this.id)) {
+              this.isExistsInCart = true;
+            }
+            this.modalData = rent;
+            console.log(this.modalData)
+          },
+          formattedDate(date) {
+              const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+              let formattedDate = new Date(date)
+              return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
+          },
           onAddToCart() {
-            console.log(this.id, 'id');
-            console.log(this.$store.state.userId, 'user id');
-            console.log(this.$store.state.postId.length, 'post length');
-            console.log(this.lends.length, 'lends');
+            // console.log(this.id, 'id');
+            // console.log(this.$store.state.userId, 'user id');
+            // console.log(this.$store.state.postId.length, 'post length');
+            // console.log(this.lends.length, 'lends');
 
-            this.$store.dispatch('pushPostId', this.modalData.id)
-            this.$store.dispatch('pushLendWeek', this.form.week)
-            this.$store.dispatch('pushCheckpointId', this.form.deliveryType)
-            return this.$router.push('/cart').then(err => {});
+            // this.$store.dispatch('pushPostId', this.modalData.id);
+            // this.$store.dispatch('pushLendWeek', this.form.week);
+            // this.$store.dispatch('pushCheckpointId', this.form.deliveryType);
+            
+            this.$store.dispatch('addToCart', { 
+              rent: this.modalData,
+              lendWeek: this.form.week, 
+              deliveryType: this.form.deliveryType, 
+              deliveryAddress: this.form.address
+            });
+          }, 
+          checkIfExistsInCart(gameId) {
+            let cartItems = localStorage.getItem('cartItems');
+            if (cartItems) {
+              cartItems = JSON.parse(cartItems);
+              let isExists = cartItems.some(item => {
+                if (item.rent.game.data.id == gameId) {
+                  return true;
+                }
+              });
 
+              return isExists;
+            }
+            return false;
           }
         },
         created() {
-            this.$api.get('rent-posted-users/' + this.id + '?include=game,platform,diskCondition,user,checkpoint.area.thana.district').then(response => {
-              this.rentPosts = response.data.data;
-              console.log('users: ', this.rentPosts)
-            });
+          this.$api.get('rent-posted-users/' + this.id + '?include=game,game.basePrice,platform,diskCondition,user,checkpoint.area.thana.district').then(response => {
+            this.rentPosts = response.data.data;
+          });
+
 
           // let config = {
           //   headers: {
@@ -234,6 +261,7 @@
           //         console.log(this.userDetails, 'User details');
           //       })
           // }
+          // localStorage.setItem('cartItems', '');
         },
         
     mounted() {

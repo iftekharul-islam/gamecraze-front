@@ -31,20 +31,39 @@
                             'Authorization': 'Bearer ' + this.$store.state.token
                         }
                     };
-                    var data = {
-                        postId: this.$store.state.postId,
-                        week: this.$store.state.lendWeek,
-                        paymentMethod: 'online',
-                        checkpointId: this.$store.state.checkpointId,
-                        totalPrice: this.$store.state.totalPrice
-                    };
-                    console.log('data: ', data);
-                    this.$api.post('lend-game', data, config).then(resp => {
-                        if (resp.data.error === false) {
-                            this.$store.dispatch('clearCart');
-                            this.$router.push('/profile').then(err => {});
-                            this.$swal("Payment Successful!", "Your Order is Confirmed. Your Transaction id " + response.data.order.transaction_id, "success");
-                        }
+
+                    // var data = {
+                    //     postId: this.$store.state.postId,
+                    //     week: this.$store.state.lendWeek,
+                    //     paymentMethod: 'online',
+                    //     checkpointId: this.$store.state.checkpointId,
+                    //     totalPrice: this.$store.state.totalPrice
+                    // };
+                    // console.log('data: ', data);
+                    // this.$api.post('lend-game', data, config).then(resp => {
+                    //     if (resp.data.error === false) {
+                    //         this.$store.dispatch('clearCart');
+                    //         this.$router.push('/profile').then(err => {});
+                    //         this.$swal("Payment Successful!", "Your Order is Confirmed. Your Transaction id " + response.data.order.transaction_id, "success");
+                    //     }
+                    // });
+
+                    this.$store.dispatch('getCartItems').then(response => {
+                        let data = {
+                            paymentMethod: 'online',
+                            cart_items: response
+                        };
+                        this.$api.post('lend-game', data, config).then(response => {
+                            console.log(response);
+                            
+                            if (response.data.error === false) {
+                                this.$store.dispatch('clearCart');
+                                this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
+                                // this.isLoading = false;
+                                // localStorage.setItem('cartItems', '');
+                                this.$router.push('/profile').then(err => {});
+                            }
+                        });
                     });
                 }
             })

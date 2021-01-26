@@ -25,16 +25,16 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="firstName">First name</label>
-                                            <ValidationProvider name="first_name" rules="required" v-slot="{ errors }">
+                                            <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
                                                 <input type="text" class="form-control" name="first_name" id="firstName" value="" v-model="form.first_name">
-                                                <span class="error-message">{{ errors[0] }}</span>
+                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="lastName">Last name</label>
-                                            <ValidationProvider name="last_name" rules="required" v-slot="{ errors }">
+                                            <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
                                                 <input type="text" class="form-control" name="last_name" id="lastName" value="" v-model="form.last_name">
-                                                <span class="error-message">{{ errors[0] }}</span>
+                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
                                     </div>
@@ -42,14 +42,14 @@
                                         <div class="form-group">
                                             <label for="phone">Phone</label>
                                                 <input type="tel" @keypress="isNumber($event)" class="form-control country-number mb-2" v-model="form.phone_number" name="phone"/>
-                                                <span class="error-message">{{ errors[0] }}</span>
+                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                         </div>
                                     </ValidationProvider>
                                     <div class="form-group">
                                         <label for="contactmail">Email </label>
                                         <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                                             <input type="email" class="form-control" name="email" id="contactmail" v-model="form.email" aria-describedby="Contact email">
-                                            <span class="error-message">{{ errors[0] }}</span>
+                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                     </div>
                                     <div class="form-group">
@@ -57,7 +57,7 @@
                                         
                                         <ValidationProvider name="message" rules="required" v-slot="{ errors }">
                                             <textarea class="form-control" id="contactmessage" rows="3" v-model="form.message"></textarea>
-                                            <span class="error-message">{{ errors[0] }}</span>
+                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                     </div>
                                     <button class="btn--secondery submit-btn">

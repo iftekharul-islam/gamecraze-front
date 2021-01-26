@@ -49,9 +49,9 @@
             <div class="container-fluid sign-in-width">
                 <div class="row login-form">
                     <div class="col-md-6 col-xl-4 mx-auto">
-                        <div class="text-center login-logo">
+                        <!-- <div class="text-center login-logo">
                             <img src="../../assets/img/logo/gamehublogo.svg" alt="gamehublogo" class="text-center">
-                        </div>
+                        </div> -->
                         <ul class="d-flex justify-content-center align-items-center p-0">
                             <li>
                                 SIGN IN
@@ -73,8 +73,11 @@
                                     <!-- user name -->
                                     <label for="username1" class="">Email address</label>
                                     <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
-                                        <input @click="changeErrorMessage" type="text" class="form-control mb-2"
+                                        <div class="floating-email">
+                                            <input @click="changeErrorMessage" type="text" class="form-control mb-2"
                                                id="username1" v-model="form.email" placeholder="Please enter your Email">
+                                             <label class="email-icon"><i class="fas fa-envelope"></i></label>
+                                        </div>
                                         <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                     </ValidationProvider>
                                 </div>

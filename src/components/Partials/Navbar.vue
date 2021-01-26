@@ -41,6 +41,7 @@
                                   v-model="query"
                                   :suggestions="filteredOptions"
                                   @focus="focusMe"
+                                  @keyup.enter="searchGame"
                                   @click="clickHandler"
                                   @input="onInputChange"
                                   @selected="onSelected"

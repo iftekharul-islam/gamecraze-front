@@ -51,9 +51,6 @@ html {
                 background: none;
                 font-size: 24px;
                 cursor: text;
-                    @include for-max-992 {
-                        font-size: 16px;
-                    }
             
         }
     }
@@ -66,6 +63,9 @@ html {
             color: $primary;
             &::placeholder {
                 color: $gray;
+                @include for-max-991 {
+                    font-size: 16px;
+                }
             }
         }
         label {
@@ -123,6 +123,7 @@ html {
         display: block;
         width: 22px;
         height: 22px;
+        background-size: 20px;
         position: absolute;
         left: 0;
         top: -3px;
@@ -274,3 +275,23 @@ html {
         }
     }
   }
+
+//   floating-mail
+.floating-email {
+    position: relative;
+    label {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        background: $secondery;
+        color: $text-dark;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        top: 0;
+        left: 0;
+    }
+    input {
+        padding-left: 60px;
+    }
+}

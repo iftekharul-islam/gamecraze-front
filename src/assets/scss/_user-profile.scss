@@ -40,8 +40,8 @@
 // avatar edit
 .avatar-edit {
     position: absolute;
-    left: 105px;
-    bottom: -9px;
+    right: 4px;
+    bottom: 15px;
     form {
         input {
             display: none;
@@ -83,8 +83,8 @@
 // cover photo edit
 .cover-edit {
     position: absolute;
-    top: 20px;
-    right: 50px;
+    bottom: 20px;
+    right: 125px;
     input {
         display: none;
     }
@@ -289,6 +289,9 @@
         background-repeat: no-repeat;
         background-position: 96% center;
         background-size: 15px;
+        option {
+            text-transform: capitalize;
+        }
         
     }
     [type="date"]::-webkit-inner-spin-button {
@@ -399,6 +402,13 @@
         }
         .custom-radio {
             margin-right: 50px;
+        }
+    }
+    .error-message {
+        display: inline-block;
+        margin-top: 10px;
+        &::after {
+            top: 2px;
         }
     }
 }
@@ -626,6 +636,8 @@
         border: 1px solid $secondery;
         background: $game-details;
         cursor: pointer;
+        font-size: 16px;
+        overflow: hidden;
         &::after {
             font-family:  "Font Awesome 5 Free";
 			font-weight: 900;
@@ -658,4 +670,21 @@
         padding-right: 15px;
     }
 }
-
+// No post found
+.no-post-found-card {
+    height: 200px;
+    width: 100%;
+    background: $primary;
+    border: 1px solid $secondery;
+    border-radius: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h5 {
+        font-size: 24px;
+        font-style: italic;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: $secondery;
+    }
+}

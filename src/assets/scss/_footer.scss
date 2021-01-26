@@ -16,12 +16,12 @@
         }
         @include for-max-575 {
             flex-direction: column-reverse;
-            text-align: center;
+            // text-align: center;
         }
     &--right-input-group {
         display: flex;
         @include for-max-575 {
-            justify-content: center;
+            // justify-content: center;
         }
         .gamehub-search-btn {
             transform: initial;
@@ -36,6 +36,7 @@
     &--right {
         @include for-max-575 {
             width: 100%;
+            padding-left: 35px;
         }
         span {
             margin-bottom: 10px;
@@ -125,13 +126,15 @@
     @include for-max-575 {
         flex-direction: column-reverse;
         margin-top: 0;
+        padding: 18px 0;
     }
     &--social {
         margin-right: 6rem;
         @include for-max-575 {
             margin-right: 0;
-            position: relative;
+            position: absolute;
             top: -65px;
+            margin-left: 10px;
         }
         a {
             margin-left: 25px;

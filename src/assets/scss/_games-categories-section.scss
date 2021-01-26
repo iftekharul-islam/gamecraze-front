@@ -156,6 +156,7 @@
             text-align: center;
         }
         img {
+            border-radius: 5px;
             @include for-max-768 {
                 width: 100%;
             }

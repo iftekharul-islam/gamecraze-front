@@ -126,7 +126,7 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-12 mx-auto" v>
+                    <div class="col-md-12 mx-auto d-none d-sm-block">
                         <div class="noticed-grid" v-if="articles">
                             <div class="notice-box" v-if="featuredArticle"> 
                                 <img :src=featuredArticle.thumbnail :alt="featuredArticle.title" class="w-100">
@@ -148,6 +148,23 @@
                             <a href="/news" class="btn--secondery m-auto "><span>View All</span></a>
                         </div>
                     </div>
+                </div>
+            </div>
+        </section>
+        <!-- Noticed bord section mobile -->
+        <section class="noticed-board-section-mobile d-block d-sm-none">
+            <div class="container">
+                <div class="col-12 p-0">
+                     <div id="owl-notice-mobile" class="owl-carousel owl-theme">
+                         <div class="item"  v-for="(article, index) in articles" :key="index">
+                             <div class="notice-box"> 
+                                <img :src=article.thumbnail :alt="article.title" class="w-100">
+                                <div class="noticed-details">
+                                    <router-link :to="{ name: 'NewsStory', params: { id: article.id }}" class="small-readmore"><span>Read More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
+                                </div>
+                            </div>
+                         </div>
+                     </div>
                 </div>
             </div>
         </section>
@@ -302,8 +319,8 @@
                         0:{
                             items: 1.3,
                             stagePadding: 0,
-                            dots:true,
-                            nav: false,
+                            dots:false,
+                            nav: true,
                         },
                         590:{
                             stagePadding: 0,
@@ -348,8 +365,8 @@
                         0:{
                             items: 1.3,
                             stagePadding: 0,
-                            dots:true,
-                            nav: false,
+                            dots:false,
+                            nav: true,
                         },
                         590:{
                             stagePadding: 0,
@@ -395,7 +412,8 @@
                             items: 3,
                             stagePadding: 0,
                             dots:true,
-                            nav: false,
+                            dots:false,
+                            nav: true,
                             center: true,
                         },
                         600:{
@@ -428,6 +446,7 @@
                     }
                 });
             },
+            
             carouselVideo: function () {
                 $('#owl-video').owlCarousel({
                     // stagePadding: 150,
@@ -444,8 +463,8 @@
                     responsive:{
                         0:{
                             items: 1,
-                            dots:true,
-                            nav: false,
+                            dots:false,
+                            nav: true,
                         },
                         768:{
                             items: 2,
@@ -453,6 +472,27 @@
                         }
                     }
                 });
+            },
+            carouselNotice: function () {
+            $('#owl-notice-mobile').owlCarousel({
+			loop: true,
+			margin: 10,
+			nav: true,
+			dots:false,
+			navText: [
+				'<i class="fas fa-arrow-left"></i>',
+				'<i class="fas fa-arrow-right"></i>'
+			],
+			responsive:{
+				0:{
+					items: 1.3,
+					stagePadding: 0,
+					dots:true,
+					dots:false,
+                            nav: true,
+				}
+			}
+        });
             },
             getTrendingGames: function () {
                 this.$api.get('games/trending?include=game,game.assets,game.genres,game.platforms').then(response => {
@@ -484,7 +524,12 @@
             getArticles: function (number) {
                 this.$api.get('top-articles?number=' + number).then(response => {
                     if (response.status == 200) {
-                        this.articles = response.data.data;
+                       //this.articles = response.data.data;
+                        let vm = this;
+                        vm.articles = response.data.data;
+                        Vue.nextTick(function() {
+                            vm.carouselNotice();
+                        }.bind(vm));
                     }
                 });
             },

@@ -6774,14 +6774,72 @@ html {
   display: flex;
 }
 
-.payment-section--item--content--method-btn .method-btn:first-of-type {
+.payment-section--item--content--method-btn .payment-option {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.payment-section--item--content--method-btn .form-check {
+  padding: 0;
+}
+
+.payment-section--item--content--method-btn .form-check:first-of-type {
   margin-right: 20px;
 }
 
 @media (max-width: 575px) {
-  .payment-section--item--content--method-btn .method-btn:first-of-type {
+  .payment-section--item--content--method-btn .form-check:first-of-type {
     margin-right: 10px;
   }
+}
+
+.payment-section--item--content--method-btn .form-check input {
+  visibility: hidden;
+}
+
+.payment-section--item--content--method-btn .form-check input:checked ~ label {
+  background: #FFD715;
+  color: #000;
+}
+
+.payment-section--item--content--method-btn .form-check label {
+  width: 194px;
+  height: 48px;
+  background: transparent;
+  color: #fff;
+  border: 1px solid #FFD715;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 575px) {
+  .payment-section--item--content--method-btn .form-check label {
+    width: 140px;
+    font-size: 14px;
+  }
+}
+
+.payment-section .checkout-btn button {
+  width: 100% !important;
+  border-radius: 0 !important;
+  background: #FFD715;
+}
+
+.payment-section .checkout-btn #sslczPayBtn {
+  height: 48px;
 }
 
 .method-btn {

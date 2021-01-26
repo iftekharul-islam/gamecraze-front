@@ -18,7 +18,6 @@
           }
       },
       mounted() {
-        console.log('button ammount: ', this.amount);
         // this.data = {
         //   cus_name: this.$store.state.user.name,
         //   cus_phone: this.$store.state.user.phone_number,

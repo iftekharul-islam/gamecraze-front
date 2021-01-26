@@ -54,7 +54,7 @@
                                     <button class="payment-section--item--content--delivery-point--btn"><img src="../assets/img/location-arw.png" alt="location"> Locate me</button>
                                 </div>
                                 <div class="payment-section--item--content--map">
-                                    <img src="../assets/img/paymentmap.png" alt="payment map">
+                                    <img src="../assets/img/paymentmap.png" class="img-fluid w-100" alt="payment map">
                                 </div>
                             </form>
                         </div>

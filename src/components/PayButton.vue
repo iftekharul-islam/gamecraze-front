@@ -14,7 +14,7 @@
         props: ['amount'],
       data() {
           return {
-            data: {}
+            data: {},
           }
       },
       mounted() {
@@ -61,7 +61,11 @@
                 for (let i = 0; i < response.length; i++) {
                     amount += parseFloat(response[i].price); 
                 }
-                this.amount = amount;
+
+                let deliveryCharge = localStorage.getItem('deliveryCharge');
+
+                this.amount = amount + parseFloat(deliveryCharge);
+                console.log('tta ', this.amount);
               }
           });
         }

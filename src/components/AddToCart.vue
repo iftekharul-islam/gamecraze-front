@@ -143,7 +143,7 @@
               <div class="col-12">
                   <div class="checkout-btn">
                           <button @click="onCheckout()" class="btn--cart-btn w-100">GO TO SECURE CHECKOUT</button>
-                      </div>
+                    </div>
               </div>
             </div>
           </div>

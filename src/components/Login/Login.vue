@@ -170,7 +170,7 @@
                                         <!--                                                <span class="error-message">{{ errors[0] }}</span>-->
                                         <br v-if="error">
 
-                                        <span class="error-message" v-if="$store.state.isOTPEmpty && !resend">Enter OTP</span>
+                                        <span class="error-message" v-if="$store.state.isOTPEmpty && !resend"> Please enter 6 digit one time pin</span>
                                         <span class="error-message" v-if="$store.state.wrongOTP && !resend">Wrong OTP</span>
                                         <span class="error-message" v-if="$store.state.timeout && !resend">This OTP expired</span>
                                         <span class="error-message" v-if="$store.state.inactiveUser && !resend">This User is inactive, please contact to helpline</span>

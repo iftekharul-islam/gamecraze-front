@@ -12,7 +12,7 @@
                 <div class="user-profile-heading--name">
                     <div class="user-profile-heading--dp position-relative">
                         <img v-if="user.image" :src="user.image" :alt="user.name" class="img-fluid">
-                        <img v-else src="../assets/img/profile_image4.png" :alt="user.name" class="img-fluid">
+                        <img v-else src="../assets/img/avatar.png" :alt="user.name" class="img-fluid">
                         
                         <div class="avatar-edit">
                             <form action="" method="post" id="profile-image-form">

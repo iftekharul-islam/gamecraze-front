@@ -77,7 +77,8 @@
                 paymentMethod: 'cod',
                 isLoading: false,
                 amount: 0,
-                cart: []
+                cart: [],
+                deliveryCharge: 0
             }
         },
         components: {
@@ -92,17 +93,10 @@
                   }
                 };
 
-                // var data = {
-                //   postId: this.$store.state.postId,
-                //   week: this.$store.state.lendWeek,
-                //   checkpointId: this.$store.state.checkpointId,
-                //   paymentMethod: this.paymentMethod,
-                //   totalPrice: this.amount
-                // };
-
                 let data = {
                     paymentMethod: this.paymentMethod,
-                    cart_items: this.cart
+                    cart_items: this.cart,
+                    delivery_charge: this.deliveryCharge
                 };
 
                 this.$api.post('lend-game', data, config).then(response => {
@@ -130,6 +124,8 @@
         },
         created() {
             this.getCartItems();
+            let deliveryCharge = localStorage.getItem('deliveryCharge');
+            this.deliveryCharge = deliveryCharge ? deliveryCharge : 0;
         }
     }
 </script>

@@ -49,9 +49,11 @@
                     // });
 
                     this.$store.dispatch('getCartItems').then(response => {
+                        let deliveryCharge = localStorage.getItem('deliveryCharge');
                         let data = {
                             paymentMethod: 'online',
-                            cart_items: response
+                            cart_items: response,
+                            delivery_charge: deliveryCharge ? deliveryCharge : 0
                         };
                         this.$api.post('lend-game', data, config).then(response => {
                             console.log(response);

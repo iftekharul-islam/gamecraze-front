@@ -14,7 +14,7 @@
         props: ['amount'],
       data() {
           return {
-            data: {}
+            data: {},
           }
       },
       mounted() {
@@ -56,12 +56,14 @@
         getCartItems() {
           this.$store.dispatch('getCartItems').then(response => {
               if (response) {
-                // this.cart = response;
                 let amount = 0;
                 for (let i = 0; i < response.length; i++) {
                     amount += parseFloat(response[i].price); 
                 }
-                this.amount = amount;
+
+                let deliveryCharge = localStorage.getItem('deliveryCharge');
+
+                this.amount = amount + parseFloat(deliveryCharge);
               }
           });
         }

@@ -129,6 +129,10 @@
                         <p>Subtotal</p>
                         <span class="subtotal-price">৳{{ totalPrice }}</span>
                       </div>
+                      <div class="subtotal d-flex align-items-center justify-content-between">
+                        <p>Delivery Charge</p>
+                        <span class="subtotal-price">৳{{ deliveryCharge }}</span>
+                      </div>
 <!--                      <div class="promotional-code">-->
 <!--                        <p class="mb-2">Enter a promotional code</p>-->
 <!--                        <div class="promotional-code&#45;&#45;input-group d-flex">-->
@@ -138,7 +142,7 @@
 <!--                      </div>-->
                       <div class="total d-flex align-items-center justify-content-between">
                         <p>Total</p>
-                        <span class="total-price">৳{{ totalPrice }}</span>
+                        <span class="total-price">৳{{ totalPrice + parseFloat(deliveryCharge)}}</span>
                       </div>
                       
                       </form>
@@ -159,13 +163,14 @@
   export default {
     data() {
         return {
-            games: null,
-            checkedGame: '',
-            lendWeek: '',
-            cart: [],
-            paymentMethod: 'cod',
-            isLoading: false,
-            price: [],
+          games: null,
+          checkedGame: '',
+          lendWeek: '',
+          cart: [],
+          paymentMethod: 'cod',
+          isLoading: false,
+          price: [],
+          deliveryCharge: 0
         }
     },
     computed: {
@@ -253,6 +258,13 @@
       //     }
       //   console.log(this.price)
       // });
+
+      this.$api.get('delivery-charge').then (response => {
+        if (response.data.data) {
+          this.deliveryCharge = response.data.data.charge;
+          localStorage.setItem('deliveryCharge', response.data.data.charge);
+        }
+      });
 
       this.getCartItems();
 

@@ -31,6 +31,7 @@ export const storage = {
         isProfileUpdating: false,
         postId: [],
         cart: null,
+        deliveryCharge: 0,
         itemsInCart: 0,
         totalAmount: 0,
         setupPasswordUser: null,

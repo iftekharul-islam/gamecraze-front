@@ -64,7 +64,6 @@
                 let deliveryCharge = localStorage.getItem('deliveryCharge');
 
                 this.amount = amount + parseFloat(deliveryCharge);
-                console.log('tta ', this.amount);
               }
           });
         }

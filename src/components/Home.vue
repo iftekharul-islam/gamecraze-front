@@ -317,8 +317,8 @@
                     ],
                     responsive:{
                         0:{
-                            items: 1.3,
-                            stagePadding: 0,
+                            items: 1,
+                            stagePadding: 50,
                             dots:false,
                             nav: true,
                         },
@@ -363,8 +363,8 @@
                     ],
                     responsive:{
                         0:{
-                            items: 1.3,
-                            stagePadding: 0,
+                            items: 1,
+                            stagePadding: 50,
                             dots:false,
                             nav: true,
                         },
@@ -485,11 +485,11 @@
 			],
 			responsive:{
 				0:{
-					items: 1.3,
-					stagePadding: 0,
+					items: 1,
+					stagePadding: 50,
 					dots:true,
 					dots:false,
-                            nav: true,
+                    nav: true,
 				}
 			}
         });

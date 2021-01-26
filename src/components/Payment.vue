@@ -39,8 +39,8 @@
                         <div class="payment-section--item--content">
                             <p>Select payment method</p>
                             <div class="payment-section--item--content--method-btn">
-                                <a href="#">CASH ON DELIVERY</a>
-                                <a href="#">ONLINE PAYMENT</a>
+                                <a class="method-btn" href="#">CASH ON DELIVERY</a>
+                                <a class="method-btn" href="#">ONLINE PAYMENT</a>
                             </div>
                         </div>
                         <div class="payment-section--item--content"> 
@@ -49,15 +49,18 @@
                                 <div class="payment-section--item--content--delivery-point">
                                     <div class="payment-section--item--content--delivery-point--input">
                                         <input type="text">
-                                        <label for=""></label>
+                                        <label for=""><img src="../assets/img/map-forward.png" alt="map forward"></label>
                                     </div>
-                                    <button><img src="../assets/img/location-arw.png" alt="location"> Locate me</button>
+                                    <button class="payment-section--item--content--delivery-point--btn"><img src="../assets/img/location-arw.png" alt="location"> Locate me</button>
                                 </div>
                                 <div class="payment-section--item--content--map">
                                     <img src="../assets/img/paymentmap.png" alt="payment map">
                                 </div>
                             </form>
                         </div>
+                    </div>
+                    <div class="checkout-btn">
+                          <button class="btn--cart-btn w-100">Confirm</button>
                     </div>
                 </div>
             </div>

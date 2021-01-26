@@ -25,6 +25,6 @@ extend('user-number', {
             return true;
         }
     },
-    message: 'Please starts your digits with 01 and minimum digit should be 11'
+    message: 'Please enter a valid number'
 });
 

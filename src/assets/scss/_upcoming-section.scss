@@ -86,6 +86,7 @@
                 // top: 0;
                 width: 35px;
                  height: 35px;
+                 transform: skewX(0deg);
             }
             &:hover {
                 background: $secondery !important;
@@ -104,13 +105,13 @@
         .owl-prev {
             left: 45px;
             @include for-max-590 {
-                left: 5%;
+                left: 0%;
             }
         }
         .owl-next {
             right: 45px;
             @include for-max-590 {
-                right: 5%;
+                right: 0%;
             }
         }
     }

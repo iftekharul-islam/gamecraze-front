@@ -200,10 +200,10 @@
                     background: $cart-badge;
                     color: $text-light;
                     position: absolute;
-                    top: -15px;
-                    right: -10px;
-                    width: 25px;
-                    height: 25px;
+                    top: -10px;
+                    right: -6px;
+                    width: 20px;
+                    height: 20px;
                     border-radius: 50%;
                     padding: 0;
                     display: flex;
@@ -250,9 +250,15 @@
                 align-items: center;
                 justify-content: center;
                 transform: skew(-21deg);
+                @include for-max-991 {
+                    transform: skew(0deg);
+                }
                 span {
                     display: inline-block; 
                     transform: skew(21deg);
+                    @include for-max-991 {
+                        transform: skew(0deg);
+                    }
                 }
                 @include for-max-1200 {
                     width: 100px;
@@ -329,6 +335,9 @@
         }
         @include for-max-1200 {
             width: 115px;
+        }
+        @include for-max-991 {
+            width: 100%;
         }
     }
     #autosuggest {
@@ -488,3 +497,45 @@
         }
     }
 }
+// delete moadl
+.swal-overlay--show-modal  {
+    .swal-modal {
+      @include for-max-575 {
+        width: calc(100% - 60px);
+      }
+      .swal-icon {
+        @include for-max-575 {
+            width: 65px;
+            height: 65px;
+        }
+        .swal-icon--warning__body {
+            @include for-max-575 {
+                height: 35px;
+            }
+        }
+      }
+    }
+    .swal-title {
+        @include for-max-575 {
+            font-size: 18px;
+        }
+    }
+    .swal-text {
+        @include for-max-575 {
+            font-size: 15px;
+        }
+    }
+    .swal-footer {
+        @include for-max-575 {
+            text-align: center;
+        }
+    }
+    .swal-button-container {
+        button {
+            @include for-max-575 {
+                height: 48px;
+                width: 100px;
+            }
+        }
+    }
+  }

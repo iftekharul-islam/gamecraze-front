@@ -62,7 +62,8 @@
                                 this.$store.dispatch('clearCart');
                                 this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
                                 // this.isLoading = false;
-                                // localStorage.setItem('cartItems', '');
+                                localStorage.setItem('cartItems', '');
+                                localStorage.setItem('deliveryCharge', 0);
                                 this.$router.push('/profile').then(err => {});
                             }
                         });

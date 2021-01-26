@@ -39,8 +39,20 @@
                         <div class="payment-section--item--content">
                             <p>Select payment method</p>
                             <div class="payment-section--item--content--method-btn">
-                                <a class="method-btn" href="#">CASH ON DELIVERY</a>
-                                <a class="method-btn" href="#">ONLINE PAYMENT</a>
+                                <div class="payment-option">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="cod" v-model="paymentMethod">
+                                        <label class="form-check-label" for="exampleRadios1">
+                                            Cash on Delivery
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="online" v-model="paymentMethod">
+                                        <label class="form-check-label" for="exampleRadios2">
+                                            Online Payment
+                                        </label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="payment-section--item--content"> 
@@ -60,7 +72,12 @@
                         </div>
                     </div>
                     <div class="checkout-btn">
-                          <button class="btn--cart-btn w-100">Confirm</button>
+                        <button class="btn btn-primary" v-show="paymentMethod === 'cod'" @click.prevent="placeOrder" :disabled="isLoading">
+                            Place Order
+                            <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
+                        </button>
+
+                        <PayButton :amount="amount" v-show="paymentMethod === 'online'"></PayButton>
                     </div>
                 </div>
             </div>
@@ -105,6 +122,7 @@
                         this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
                         this.isLoading = false;
                         localStorage.setItem('cartItems', '');
+                        localStorage.setItem('deliveryCharge', 0);
                         this.$router.push('/profile').then(err => {});
                     }
                 });

@@ -211,10 +211,10 @@
             @include for-max-768 {
                 display: flex;
                 flex-direction: column;
-                padding-bottom: 20px;
+                padding-bottom: 0px;
             }
             td {
-                select {
+                select,input {
                     @include for-max-991 {
                         width: 63%;
                     }

@@ -105,15 +105,57 @@
             }
             &--method-btn {
                 display: flex;
-                .method-btn {
+                .payment-option {
+                    display: flex;
+                }
+                .form-check {
+                    padding: 0;
                     &:first-of-type {
                         margin-right: 20px;
                         @include for-max-575 {
                             margin-right: 10px;
                         }
                     }
+                    input {
+                        visibility: hidden;
+                        &:checked {
+                            &~label {
+                                background: $secondery;
+                                color: $text-dark;
+                            }
+                        }
+                    }
+                    label {
+                        width: 194px;
+                        height: 48px;
+                        background: $transparent;
+                        color: $text-light;
+                        border: 1px solid $secondery;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        transition: all .3s ease-in;
+                        cursor: pointer;
+                        font-size: 16px;
+                        text-transform: uppercase;
+                        @include for-max-575 {
+                            width: 140px;
+                            font-size: 14px;
+                        }
+                    }
+
                 }
             }
+        }
+    }
+    .checkout-btn {
+        button {
+            width: 100% !important;
+            border-radius: 0 !important;
+            background: $secondery;
+        }
+        #sslczPayBtn {
+            height: 48px;
         }
     }
 }

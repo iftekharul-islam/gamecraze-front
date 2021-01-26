@@ -72,7 +72,7 @@
                         </div>
                     </div>
                     <div class="checkout-btn">
-                        <button class="btn btn-primary" v-show="paymentMethod === 'cod'" @click.prevent="placeOrder" :disabled="isLoading">
+                        <button class="btn w-100" v-show="paymentMethod === 'cod'" @click.prevent="placeOrder" :disabled="isLoading">
                             Place Order
                             <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
                         </button>

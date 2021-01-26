@@ -69,8 +69,6 @@
                 };
 
                 this.$api.post('lend-game', data, config).then(response => {
-                    console.log(response);
-                    
                     if (response.data.error === false) {
                         this.$store.dispatch('clearCart');
                         this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
@@ -89,7 +87,6 @@
                             amount += parseFloat(response[i].price); 
                         }
                         this.amount = amount;
-                        console.log('amon: ', amount)
                     }
                 });
             }

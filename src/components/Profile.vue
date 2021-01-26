@@ -411,8 +411,9 @@
                                             <label for="email" class="col-sm-3 col-form-label">Email:</label>
                                             <div class="col-sm-9 edit--input">
                                                 <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
-                                                    <input type="email" class="form-control" id="email" v-model="form.email">
+                                                    <input type="email" @focus="onEmailFocus" class="form-control" id="email" v-model="form.email">
                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                   <span class="error-message d-block" v-if="isEmailExists">Email already taken</span>
                                                 </ValidationProvider>
                                             </div>
                                         </div>
@@ -420,9 +421,9 @@
                                             <label class="col-sm-3 col-form-label">Mobile No:</label>
                                             <div class="col-sm-9 edit--input">
                                                 <ValidationProvider name="phone number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
-                                                    <input type="text" @keypress="isNumber($event)" class="form-control" id="phone_number" v-model="form.phone_number">
-                                                   <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                    <span class="error-message d-block" v-if="$store.state.numberExists">Phone number already exists</span>
+                                                    <input type="text" @focus="onPhoneFocus" @keypress="isNumber($event)" class="form-control" id="phone_number" v-model="form.phone_number">
+                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                    <span class="error-message d-block" v-if="isPhoneExists">Phone number already exists</span>
                                                 </ValidationProvider>
                                             </div>
                                         </div>
@@ -474,9 +475,7 @@
                                         <div class="form-group row">
                                         <div class="offset-md-3 col-md-9 col-xl-8 mt-4 post-rent--input">
                                                 <button class="btn--secondery w-100 border-0" :disabled="$store.state.isProfileUpdating">
-
-                                                    <span class="mr-2">Update Profile <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm"></i>  </span>
-    
+                                                    <span class="mr-2">Update Profile <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm text-dark"></i>  </span>
                                                 </button>
                                             </div>
                                         </div>
@@ -542,7 +541,9 @@
                 isRentLoading: false,
                 image: null,
                 isProfileImgUpdating: false,
-                isCoverImgUpdating: false
+                isCoverImgUpdating: false,
+                isPhoneExists: false,
+                isEmailExists: false
             }
         },
         methods: {
@@ -618,7 +619,26 @@
                 return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear()
             },
             onProfileUpdate: function() {
-                this.$store.dispatch('updateUserDetails', this.form);
+                this.validateUserPhoneEmail();
+            },
+            validateUserPhoneEmail: function() {
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                }
+
+                this.$api.post('user-phone-email-validation', {email: this.form.email, phone: this.form.phone_number}, config).then(response => {
+                    this.$store.commit('setIsProfileUpdateing', true);
+                    if ( response.data.error) {
+                        this.isEmailExists = response.data.isEmailExists;
+                        this.isPhoneExists = response.data.isPhoneExists;
+                         this.$store.commit('setIsProfileUpdateing', false);
+                        return;
+                    }
+                    
+                    this.$store.dispatch('updateUserDetails', this.form);
+                });
             },
             isNumber: function(evt) {
                 evt = (evt) ? evt : window.event;
@@ -761,11 +781,6 @@
             focusMe(e) {
               // console.log(e) // FocusEvent
             },
-            // formattedDate(date) {
-            //   const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-            //   let birthDate = new Date(date)
-            //   return birthDate.getDate() + " " + months[birthDate.getMonth()] + " " + birthDate.getFullYear()
-            // },
             todayDate(daysToAdd = 0) {
               var today = new Date();
               if (daysToAdd > 0) {
@@ -838,6 +853,12 @@
                     this.isCoverImgUpdating = false;
                 })
 
+            },
+            onPhoneFocus: function() {
+                this.isPhoneExists = false;
+            },
+            onEmailFocus: function() {
+                this.isEmailExists = false;
             }
         },
         created() {

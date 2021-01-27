@@ -3,6 +3,9 @@
     height: 370px;
     display: flex;
     align-items: flex-end;
+    @include for-max-991 {
+        margin-top: 20px;
+    }
     @include for-max-575 {
         height: 250px;
     }
@@ -269,13 +272,15 @@
         border: 1px solid $secondery;
         background: $game-details;
         cursor: pointer;
+        border-radius: 5px;
         &::after {
             font-family:  "Font Awesome 5 Free";
 			font-weight: 900;
             content: "\f093 \00a0 \00a0 Upload";
             background: $secondery;
             color: $text-dark;
-            border-radius: 5px;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
             cursor: pointer;
         }
     }
@@ -647,13 +652,15 @@
         cursor: pointer;
         font-size: 16px;
         overflow: hidden;
+        border-radius: 5px;
         &::after {
             font-family:  "Font Awesome 5 Free";
 			font-weight: 900;
             content: "\f093 \00a0 \00a0 Upload";
             background: $secondery;
             color: $text-dark;
-            border-radius: 5px;
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
             cursor: pointer;
         }
     }

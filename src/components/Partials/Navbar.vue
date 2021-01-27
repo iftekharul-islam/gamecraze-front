@@ -33,8 +33,9 @@
                             <router-link class="router_link" to="/notice-board">Notice Board</router-link>
                         </li>
                     </ul>
-                    <div class="gamehub-input-group">
-                        <div class="gamehub-input-group--content">
+                   <!-- search bar -->
+                   <div class="gamehub-input-group gamehub-input-group-searchbar">
+                   <div class="gamehub-input-group--content">
 
                             <div class="search-input-design">
                               <vue-autosuggest
@@ -57,9 +58,36 @@
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>
+                </div>
+                </div>
+                <!-- sign in button and cart icon out side of collapse -->
+                 <div class="gamehub-input-group signin-cart-group">
+                        <!-- <div class="gamehub-input-group--content">
+
+                            <div class="search-input-design">
+                              <vue-autosuggest
+                                  v-model="query"
+                                  :suggestions="filteredOptions"
+                                  @focus="focusMe"
+                                  @keyup.enter="searchGame"
+                                  @click="clickHandler"
+                                  @input="onInputChange"
+                                  @selected="onSelected"
+                                  :get-suggestion-value="getSuggestionValue"
+                                  :input-props="{id:'autosuggest__input',class:'auto-suggest-menu'}">
+                                <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
+                                  {{suggestion.item.name}}
+                                </div>
+                              </vue-autosuggest>
+                            </div>
+                            
+                            <button class="btn gamehub-search-btn" type="search" @click.prevent="searchGame">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div> -->
                         <div class="gamehub-input-group--content">
                             <router-link v-if="!auth" class="sign-in" to="/login"><span>Sign in</span></router-link>
-                                <div v-if="auth" class="dropdown-toggle complete-sign-in" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span><span v-else>{{ this.$store.state.user.phone_number }}</span>
+                                <div v-if="auth" class="dropdown-toggle complete-sign-in" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="user-name" v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span><span v-else>{{ this.$store.state.user.phone_number }}</span>
                                  <img v-if="$store.state.user.image" :src="$store.state.user.image" :alt="$store.state.user.name">
                                  <img v-else src="../../assets/img/avatar.png" alt="profile">
                                             <div class="dropdown-menu gamehub-dropdown-menu">
@@ -77,7 +105,7 @@
                                         
                         </div>
                         <div class="gamehub-input-group--content">
-                            <router-link to="/cart">
+                            <router-link class="gamehub-input-group--content--cart" to="/cart">
                               <i class="fas fa-shopping-cart">
                                 <span class="badge gamehub-badge navbar-badge">{{ totalItems }}</span>
                               </i>
@@ -87,7 +115,6 @@
 
                         
                     </div>
-                </div>
             </div>
         </nav>
 

@@ -404,7 +404,6 @@
                 },
                 { deep:true }
             );
-            // console.log('auth', this.$store.getters.ifAuthenticated);
         },
         mounted() {
             document.body.classList.add('body-position')

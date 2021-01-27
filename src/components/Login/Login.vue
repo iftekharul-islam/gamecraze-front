@@ -387,6 +387,9 @@
             }
         },
         created() {
+            if(this.$store.getters.ifAuthenticated) {
+                this.$router.push('/profile');
+            }
             this.$store.state.setPasswordPopUp = false;
             this.$root.$on('stopLoader', () => {
                 this.isLoading = false;

@@ -31,7 +31,7 @@
         </section> -->
         <section class="payment-section">
             <div class="container">
-                <div class="col-12">
+                <div class="col-11 mx-auto p-0 ">
                     <div class="payment-section--heading text-center">
                         <h2>YOUR CART</h2>
                     </div>

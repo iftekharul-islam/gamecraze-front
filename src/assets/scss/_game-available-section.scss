@@ -196,7 +196,7 @@
         }
     }
     .seller-address {
-        width: 80%;
+        width: 100%;
         border: 1px solid $secondery;
         padding: 10px;
         border-radius: 10px;
@@ -214,7 +214,7 @@
                 padding-bottom: 0px;
             }
             td {
-                select,input {
+                select,input,.seller-address {
                     @include for-max-991 {
                         width: 63%;
                     }

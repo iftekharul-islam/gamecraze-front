@@ -54,7 +54,7 @@
                 grid-auto-rows: 48px;
                 grid-template-columns: 1fr 156px;
                 grid-column-gap: 15px;
-                max-width: 450px;
+                // max-width: 450px;
                 margin-bottom: 30px;
                 @include for-max-991 {
                     max-width: initial;
@@ -97,12 +97,12 @@
                     }
                 }
             }
-            &--map {
-                max-width: 450px;
-                @include for-max-991 {
-                    max-width: initial;
-                }
-            }
+            // &--map {
+               
+            //     @include for-max-991 {
+            //         max-width: initial;
+            //     }
+            // }
             &--method-btn {
                 display: flex;
                 .payment-option {
@@ -156,6 +156,9 @@
         }
         #sslczPayBtn {
             height: 48px;
+            &::before {
+                border-radius: 0;
+            }
         }
     }
 }

@@ -55,7 +55,7 @@
                 <h6>Overview</h6>
                 <div class="overview-content">
                     <div class="row" v-if="game">
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <div class="overview-content--text mb-3" v-if="game">
                               <p>Genre</p>
                               <span v-for="(genre, index) in game.genres.data" :key="index" >{{ genre.name }}<span class="mr-1" v-if="index < game.genres.data.length-1">, </span></span>
@@ -69,7 +69,7 @@
                                 <p>{{game.developer}}</p>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-6">
                             <div class="overview-content--text">
                                 <p>Release Date</p>
                                 <p>{{ formattedDate (game.release_date)}}</p>
@@ -102,7 +102,7 @@
         <!-- RELATED GAME -->
         <section class="related-game-section" id="related-game">
             <div class="container">
-                <h6>You Might Also Like</h6>
+                <h6 class="mb-4">You Might Also Like</h6>
                 <div id="owl-related" class="owl-carousel owl-theme" v-if="relatedGames">
                     <div class="item" v-for="(related, index) in relatedGames" :key="index">
                       <router-link @click.native="scrollToTop()" :to="{ path: '/game-details/' + related.game.data.id}" class="games-categories-section--games--game-card-box">
@@ -197,14 +197,16 @@
               ],
               responsive:{
                 0:{
-                  items: 1.3,
+                  items: 1,
                   dots:false,
                   nav: false,
+                  stagePadding: 50,
                 },
                 600:{
                   items: 2,
                   dots:true,
                   nav: true,
+                  stagePadding: 0,
 
                 },
                 1000:{
@@ -225,12 +227,14 @@
               ],
               responsive:{
                 0:{
-                  items: 1.3,
+                  items: 1,
                   nav: false,
+                  stagePadding: 50,
                 },
                 600:{
                   items: 2,
                   nav: true,
+                     stagePadding: 0,
 
                 },
                 1000:{

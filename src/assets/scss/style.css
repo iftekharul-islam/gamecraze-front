@@ -1326,6 +1326,12 @@ input::placeholder {
   color: #808080;
 }
 
+@media (max-width: 575px) {
+  .body-home .gamehub-menu {
+    background: transparent;
+  }
+}
+
 .gamehub-menu {
   background: #0B0F18;
   padding: 8px 0;
@@ -1335,9 +1341,9 @@ input::placeholder {
   background: #141a27e0;
 }
 
-@media (max-width: 575px) {
+@media (max-width: 991px) {
   .gamehub-menu {
-    background: transparent;
+    padding: 20px 0;
   }
 }
 
@@ -1345,9 +1351,16 @@ input::placeholder {
   margin-right: 0;
 }
 
+@media (max-width: 991px) {
+  .navbar-brand {
+    padding-left: 70px;
+    padding-top: 0;
+  }
+}
+
 @media (max-width: 575px) {
   .navbar-brand {
-    padding-left: 15px;
+    padding-left: 60px;
   }
 }
 
@@ -1363,20 +1376,16 @@ input::placeholder {
 
 @media (max-width: 575px) {
   .navbar-brand img {
-    width: 115px;
+    width: 145px;
   }
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
   .gamehub-menu-collapse {
-    padding-top: 20px;
-  }
-}
-
-@media (max-width: 575px) {
-  .gamehub-menu-collapse {
-    background: #141A27;
-    padding-bottom: 20px;
+    padding-top: 60px;
+    margin-top: 20px;
+    position: relative;
+    background: #141a27e0;
   }
 }
 
@@ -1394,6 +1403,7 @@ input::placeholder {
   .gamehub-menu-collapse ul {
     display: block;
     margin-left: 0px;
+    padding-bottom: 0;
   }
 }
 
@@ -1472,16 +1482,17 @@ input::placeholder {
   padding-right: 1rem;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 991px) {
   .toggler-position {
-    right: 50px;
-    top: 12px;
+    right: initial;
+    left: 50px;
+    top: 17px;
   }
 }
 
 @media (max-width: 575px) {
   .toggler-position {
-    right: 0;
+    left: 10px;
   }
 }
 
@@ -1554,6 +1565,27 @@ input::placeholder {
   outline: none;
 }
 
+@media (max-width: 991px) {
+  .signin-cart-group {
+    position: absolute;
+    top: 17px;
+    right: 50px;
+  }
+}
+
+@media (max-width: 575px) {
+  .signin-cart-group {
+    right: 20px;
+  }
+}
+
+@media (max-width: 991px) {
+  .gamehub-input-group-searchbar {
+    position: absolute;
+    top: 20px;
+  }
+}
+
 .gamehub-input-group {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1567,32 +1599,27 @@ input::placeholder {
   .gamehub-input-group {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
-    padding-left: 20px;
   }
 }
 
 .gamehub-input-group--content {
-  margin-right: 0px;
-}
-
-.gamehub-input-group--content:last-child {
   margin-right: 0;
-  margin-left: 30px;
+  height: 40px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-@media (max-width: 991px) {
-  .gamehub-input-group--content:last-child {
-    margin-left: 10px;
-  }
-}
-
-.gamehub-input-group--content:last-child i {
+.gamehub-input-group--content i {
   color: #FFD715;
   font-size: 25px;
   position: relative;
 }
 
-.gamehub-input-group--content:last-child i .gamehub-badge {
+.gamehub-input-group--content i .gamehub-badge {
   background: #F65157;
   color: #fff;
   position: absolute;
@@ -1615,39 +1642,44 @@ input::placeholder {
   font-family: circular-medium;
 }
 
-.gamehub-input-group--content:first-child {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
+.gamehub-input-group--content:hover a {
+  color: #000;
+  background: #FFD715;
 }
 
-@media (max-width: 991px) {
-  .gamehub-input-group--content:first-child {
-    margin-bottom: 20px;
-  }
+.gamehub-input-group--content:hover .gamehub-input-group--content--cart {
+  background: none;
 }
 
-@media (max-width: 991px) {
-  .gamehub-input-group--content:first-child {
-    -ms-flex-preferred-size: 100%;
-        flex-basis: 100%;
-  }
+.gamehub-input-group--content:hover .complete-sign-in .gamehub-dropdown-menu a {
+  background: initial;
 }
 
-.gamehub-input-group--content:nth-child(2) {
-  margin-left: 30px;
+.complete-sign-in {
+  cursor: pointer;
+  position: relative;
+  margin: 0 20px;
+}
+
+.complete-sign-in img {
+  width: 40px;
   height: 40px;
+  border-radius: 50%;
+  margin-left: 15px;
 }
 
-@media (max-width: 991px) {
-  .gamehub-input-group--content:nth-child(2) {
-    margin-left: 0px;
-    margin-right: 0px;
+.complete-sign-in::after {
+  display: none !important;
+}
+
+@media (max-width: 575px) {
+  .complete-sign-in .user-name {
+    display: none;
   }
 }
 
-.gamehub-input-group--content:nth-child(2) .sign-in {
-  color: #fff;
+.sign-in {
+  color: #FFD715;
   font-weight: 700;
   text-align: center;
   border: 1px solid #FFD715;
@@ -1664,57 +1696,40 @@ input::placeholder {
           justify-content: center;
   -webkit-transform: skew(-21deg);
           transform: skew(-21deg);
+  margin: 0 20px;
+}
+
+@media (max-width: 1200px) {
+  .sign-in {
+    width: 100px;
+  }
 }
 
 @media (max-width: 991px) {
-  .gamehub-input-group--content:nth-child(2) .sign-in {
+  .sign-in {
     -webkit-transform: skew(0deg);
             transform: skew(0deg);
   }
 }
 
-.gamehub-input-group--content:nth-child(2) .sign-in span {
+@media (max-width: 575px) {
+  .sign-in {
+    width: 80px;
+    height: 35px;
+  }
+}
+
+.sign-in span {
   display: inline-block;
   -webkit-transform: skew(21deg);
           transform: skew(21deg);
 }
 
 @media (max-width: 991px) {
-  .gamehub-input-group--content:nth-child(2) .sign-in span {
+  .sign-in span {
     -webkit-transform: skew(0deg);
             transform: skew(0deg);
   }
-}
-
-@media (max-width: 1200px) {
-  .gamehub-input-group--content:nth-child(2) .sign-in {
-    width: 100px;
-  }
-}
-
-.gamehub-input-group--content:nth-child(2) .complete-sign-in {
-  cursor: pointer;
-  position: relative;
-}
-
-.gamehub-input-group--content:nth-child(2) .complete-sign-in img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-left: 15px;
-}
-
-.gamehub-input-group--content:nth-child(2) .complete-sign-in::after {
-  display: none !important;
-}
-
-.gamehub-input-group--content:nth-child(2):hover a {
-  color: #000;
-  background: #FFD715;
-}
-
-.gamehub-input-group--content:hover .complete-sign-in .gamehub-dropdown-menu a {
-  background: initial;
 }
 
 .search-input-design {
@@ -1732,6 +1747,12 @@ input::placeholder {
 @media (max-width: 991px) {
   .search-input-design {
     width: 200px;
+  }
+}
+
+@media (max-width: 575px) {
+  .search-input-design {
+    margin-left: 20px;
   }
 }
 
@@ -1812,6 +1833,8 @@ input::placeholder {
 .gamehub-search-btn i {
   -webkit-transform: skew(21deg);
           transform: skew(21deg);
+  color: #000;
+  font-size: 18px;
 }
 
 @media (max-width: 991px) {
@@ -1826,6 +1849,13 @@ input::placeholder {
   background: #141A27;
   border: 1px solid #FFD715;
   top: 59px;
+}
+
+@media (max-width: 575px) {
+  .gamehub-dropdown-menu {
+    right: -20px;
+    left: initial;
+  }
 }
 
 .gamehub-dropdown-menu--top {
@@ -1861,7 +1891,7 @@ input::placeholder {
   color: #FFD715 !important;
 }
 
-.body-home .copyright-section {
+.body-home .copyright-section .footer-bottom {
   display: none;
 }
 
@@ -1950,19 +1980,6 @@ input::placeholder {
 }
 
 @media (max-width: 575px) {
-  .swal-overlay--show-modal .swal-modal .swal-icon {
-    width: 65px;
-    height: 65px;
-  }
-}
-
-@media (max-width: 575px) {
-  .swal-overlay--show-modal .swal-modal .swal-icon .swal-icon--warning__body {
-    height: 35px;
-  }
-}
-
-@media (max-width: 575px) {
   .swal-overlay--show-modal .swal-title {
     font-size: 18px;
   }
@@ -2015,8 +2032,8 @@ input::placeholder {
 @media (max-width: 575px) {
   .slider-section {
     background-position: center;
-    margin-top: -80px;
-    height: 550px;
+    margin-top: -45px;
+    height: 600px;
     position: relative;
   }
 }
@@ -2033,18 +2050,18 @@ input::placeholder {
 
 @media (max-width: 575px) {
   .slider-section h1 {
-    width: 75%;
-    margin-top: 40px;
+    width: 90%;
   }
 }
 
 .slider-section h6 {
   margin-bottom: 40px;
+  line-height: 24px;
+  font-family: circular-medium;
 }
 
 @media (max-width: 575px) {
   .slider-section h6 {
-    font-family: sans-serif;
     font-weight: 400;
     font-size: 16px;
   }
@@ -2072,7 +2089,7 @@ input::placeholder {
   .slider-section .btn--secondery {
     width: 196px;
     height: 50px;
-    margin-left: 20px;
+    margin-left: 15px;
   }
 }
 
@@ -3901,7 +3918,13 @@ html {
 
 @media (max-width: 991px) {
   .contact-section {
-    padding: 50px 0;
+    padding-top: 50px;
+  }
+}
+
+@media (max-width: 575px) {
+  .contact-section {
+    padding-bottom: 120px;
   }
 }
 
@@ -3983,7 +4006,7 @@ html {
 
 @media (max-width: 768px) {
   .games-categories-section {
-    padding-top: 15px;
+    padding-top: 35px;
   }
 }
 
@@ -4139,6 +4162,12 @@ html {
 }
 
 @media (max-width: 768px) {
+  .game-card h6 {
+    height: initial;
+  }
+}
+
+@media (max-width: 768px) {
   .game-card .display-image {
     display: block;
     text-align: center;
@@ -4157,6 +4186,12 @@ html {
 
 .game-card--category {
   height: 55px;
+}
+
+@media (max-width: 768px) {
+  .game-card--category {
+    height: initial;
+  }
 }
 
 .game-rating {
@@ -4377,6 +4412,12 @@ html {
   right: 0;
 }
 
+@media (max-width: 575px) {
+  .screenshot-video .owl-nav {
+    top: -75px;
+  }
+}
+
 .screenshot-video .owl-nav button {
   width: 50px;
   height: 50px;
@@ -4386,6 +4427,13 @@ html {
   border-radius: 0 !important;
   -webkit-transition: all .3s ease-in !important;
   transition: all .3s ease-in !important;
+}
+
+@media (max-width: 575px) {
+  .screenshot-video .owl-nav button {
+    width: 40px;
+    height: 40px;
+  }
 }
 
 .screenshot-video .owl-nav button:focus {
@@ -4407,6 +4455,12 @@ html {
 
 .screenshot-video .owl-dots {
   margin-top: 30px !important;
+}
+
+@media (max-width: 575px) {
+  .screenshot-video .owl-dots {
+    display: none !important;
+  }
 }
 
 .screenshot-video .owl-dots button span {
@@ -4507,7 +4561,7 @@ html {
 }
 
 .related-game-section h6 {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .related-game-section .owl-nav {
@@ -4753,7 +4807,7 @@ html {
 }
 
 .seller-information .seller-address {
-  width: 80%;
+  width: 100%;
   border: 1px solid #FFD715;
   padding: 10px;
   border-radius: 10px;
@@ -4779,19 +4833,19 @@ html {
 }
 
 @media (max-width: 991px) {
-  .seller-information table tr td select, .seller-information table tr td input {
+  .seller-information table tr td select, .seller-information table tr td input, .seller-information table tr td .seller-address {
     width: 63%;
   }
 }
 
 @media (max-width: 768px) {
-  .seller-information table tr td select, .seller-information table tr td input {
+  .seller-information table tr td select, .seller-information table tr td input, .seller-information table tr td .seller-address {
     width: 67%;
   }
 }
 
 @media (max-width: 575px) {
-  .seller-information table tr td select, .seller-information table tr td input {
+  .seller-information table tr td select, .seller-information table tr td input, .seller-information table tr td .seller-address {
     width: 43%;
   }
 }
@@ -4951,6 +5005,12 @@ html {
   -webkit-box-align: end;
       -ms-flex-align: end;
           align-items: flex-end;
+}
+
+@media (max-width: 991px) {
+  .user-profile-heading {
+    margin-top: 20px;
+  }
 }
 
 @media (max-width: 575px) {
@@ -5295,6 +5355,7 @@ html {
   border: 1px solid #FFD715;
   background: #141A27;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .post-rent .form-group .custom-file-input ~ .custom-file-label::after {
@@ -5303,7 +5364,8 @@ html {
   content: "\f093 \00a0 \00a0 Upload";
   background: #FFD715;
   color: #000;
-  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   cursor: pointer;
 }
 
@@ -5737,6 +5799,7 @@ html {
   cursor: pointer;
   font-size: 16px;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .edit-profile .custom-file-input ~ .custom-file-label::after {
@@ -5745,7 +5808,8 @@ html {
   content: "\f093 \00a0 \00a0 Upload";
   background: #FFD715;
   color: #000;
-  border-radius: 5px;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
   cursor: pointer;
 }
 
@@ -6694,7 +6758,6 @@ html {
   -ms-grid-columns: 1fr 156px;
       grid-template-columns: 1fr 156px;
   grid-column-gap: 15px;
-  max-width: 450px;
   margin-bottom: 30px;
 }
 
@@ -6756,16 +6819,6 @@ html {
 
 .payment-section--item--content--delivery-point--btn img {
   margin-right: 10px;
-}
-
-.payment-section--item--content--map {
-  max-width: 450px;
-}
-
-@media (max-width: 991px) {
-  .payment-section--item--content--map {
-    max-width: initial;
-  }
 }
 
 .payment-section--item--content--method-btn {
@@ -6842,6 +6895,10 @@ html {
   height: 48px;
 }
 
+.payment-section .checkout-btn #sslczPayBtn::before {
+  border-radius: 0;
+}
+
 .method-btn {
   width: 194px;
   height: 48px;
@@ -6908,9 +6965,23 @@ html {
   }
 }
 
+@media (max-width: 575px) {
+  .btn--secondery {
+    -webkit-transform: skew(-16deg);
+            transform: skew(-16deg);
+  }
+}
+
 .btn--secondery span {
   -webkit-transform: skew(21deg);
           transform: skew(21deg);
+}
+
+@media (max-width: 575px) {
+  .btn--secondery span {
+    -webkit-transform: skew(16deg);
+            transform: skew(16deg);
+  }
 }
 
 .btn--secondery:focus {

@@ -80,6 +80,12 @@ html {
             // font-family: 'circular-normal';
         }
     }
+    .error-message {
+        padding-top: 2px;
+        &::after {
+            top: 0;
+        }
+    }
 }
 .remember-me {
     input,label {

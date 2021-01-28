@@ -29,6 +29,12 @@
       @include for-max-575 {
         transform: skew(16deg);
       }
+      // &.loader-skew {
+      //   transform: skew(21deg);
+      // @include for-max-575 {
+      //   transform: skew(-16deg);
+      // }
+      // }
     }
     &:focus {
       outline: none;

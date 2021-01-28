@@ -42,6 +42,10 @@
     position: absolute;
     right: 4px;
     bottom: 15px;
+    @include for-max-575 {
+        right: 15px;
+        bottom: 3px;
+    }
     form {
         input {
             display: none;

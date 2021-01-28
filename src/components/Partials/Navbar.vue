@@ -11,7 +11,7 @@
 
                 <!-- Toggle button for small device -->
                 <div class="toggler-position">
-                    <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button v-bind:class="{ open: isNavOpen }" @click="isNavOpen = !isNavOpen" id="removeClass" class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -21,16 +21,16 @@
                 <div class="collapse navbar-collapse custom-collapse gamehub-menu-collapse" id="navbarSupportedContent" @click="modal = false">
                     <ul class="">
                         <li class="active">
-                            <router-link class="nav-link active router_link" to="/">Home<span class="sr-only">(current)</span></router-link>
+                            <router-link @click.native="isNavOpen = false" class="nav-link active router_link" to="/" data-toggle="collapse" data-target="#navbarSupportedContent">Home<span class="sr-only">(current)</span></router-link>
                         </li>
                         <li>
-                            <router-link class="router_link" to="/games">Games</router-link>
+                            <router-link @click.native="isNavOpen = false" class="router_link" to="/games" data-toggle="collapse" data-target="#navbarSupportedContent">Games</router-link>
                         </li>
                         <li>
-                            <router-link class="router_link" to="/profile" @click.native="clickProfile()">Post For Rent</router-link>
+                            <router-link  class="router_link" to="/profile" @click.native="isNavOpen = false; clickProfile()" data-toggle="collapse" data-target="#navbarSupportedContent">Post For Rent</router-link>
                         </li>
                         <li>
-                            <router-link class="router_link" to="/notice-board">Notice Board</router-link>
+                            <router-link @click.native="isNavOpen = false" class="router_link" to="/notice-board" data-toggle="collapse" data-target="#navbarSupportedContent">Notice Board</router-link>
                         </li>
                     </ul>
                    <!-- search bar -->
@@ -136,7 +136,8 @@
                 filteredResults: [],
                 query: "",
                 selected: "",
-                totalItems: 0
+                totalItems: 0,
+                isNavOpen: false
             }
         },
         methods: {

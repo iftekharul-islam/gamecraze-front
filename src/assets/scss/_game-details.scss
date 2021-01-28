@@ -66,5 +66,8 @@
         -webkit-text-stroke: 2px $stroke-outline;
         font-family: circular-bold;
         color: $game-details-heading;
+        @include for-max-575 {
+            font-size: 28px;
+        }
     }
 }

@@ -1539,30 +1539,32 @@ input::placeholder {
   width: 8px;
 }
 
-.toggler-position .custom-toggler.open span:nth-child(1) {
-  top: 18px;
-  width: 0%;
-  left: 50%;
-}
-
-.toggler-position .custom-toggler.open span:nth-child(2) {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-}
-
-.toggler-position .custom-toggler.open span:nth-child(3) {
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-}
-
-.toggler-position .custom-toggler.open span:nth-child(4) {
-  top: 18px;
-  width: 0%;
-  left: 50%;
-}
-
 .toggler-position .custom-toggler:focus {
   outline: none;
+}
+
+.toggler-position .open span:nth-child(1) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
+}
+
+.toggler-position .open span:nth-child(2) {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  width: 18px;
+}
+
+.toggler-position .open span:nth-child(3) {
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  width: 18px;
+}
+
+.toggler-position .open span:nth-child(4) {
+  top: 18px;
+  width: 0%;
+  left: 50%;
 }
 
 @media (max-width: 991px) {
@@ -2032,7 +2034,7 @@ input::placeholder {
 @media (max-width: 575px) {
   .slider-section {
     background-position: center;
-    margin-top: -45px;
+    margin-top: -56px;
     height: 600px;
     position: relative;
   }
@@ -4324,6 +4326,12 @@ html {
   color: #E6FDFF;
 }
 
+@media (max-width: 575px) {
+  .game-name-img h2 {
+    font-size: 28px;
+  }
+}
+
 .game-details-menu {
   background: #141A27;
 }
@@ -5058,6 +5066,13 @@ html {
   position: absolute;
   right: 4px;
   bottom: 15px;
+}
+
+@media (max-width: 575px) {
+  .avatar-edit {
+    right: 15px;
+    bottom: 3px;
+  }
 }
 
 .avatar-edit form input {

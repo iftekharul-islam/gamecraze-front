@@ -155,7 +155,12 @@
           width: 8px;
         }
       }
-      &.open {
+      
+      &:focus {
+        outline: none;
+      }
+    }
+    .open {
         span {
           &:nth-child(1) {
             top: 18px;
@@ -164,9 +169,11 @@
           }
           &:nth-child(2) {
             transform: rotate(45deg);
+            width: 18px;
           }
           &:nth-child(3) {
             transform: rotate(-45deg);
+            width: 18px;
           }
           &:nth-child(4) {
             top: 18px;
@@ -175,10 +182,6 @@
           }
         }
       }
-      &:focus {
-        outline: none;
-      }
-    }
   }
 .signin-cart-group {
     @include for-max-991 {

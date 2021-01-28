@@ -3491,6 +3491,14 @@ html {
   font-weight: normal;
 }
 
+.login-form .error-message {
+  padding-top: 2px;
+}
+
+.login-form .error-message::after {
+  top: 0;
+}
+
 .remember-me input, .remember-me label {
   cursor: pointer;
 }
@@ -3942,6 +3950,7 @@ html {
 .contact-form h2 {
   font-style: italic;
   font-size: 22px;
+  margin-bottom: 25px;
 }
 
 @media (min-width: 992px) {
@@ -5850,6 +5859,16 @@ html {
   }
 }
 
+.edit-profile .error-message {
+  top: 8px;
+}
+
+@media (max-width: 575px) {
+  .edit-profile .error-message {
+    top: 11px;
+  }
+}
+
 .edit--input {
   padding-right: 90px;
 }
@@ -5893,7 +5912,7 @@ html {
 
 .set-password {
   padding-bottom: 120px;
-  padding-top: 120px;
+  padding-top: 40px;
 }
 
 @media (max-width: 575px) {
@@ -6103,12 +6122,28 @@ html {
   z-index: 9;
 }
 
+.event-results {
+  padding-bottom: 50px;
+}
+
+@media (max-width: 575px) {
+  .event-results {
+    padding-bottom: 10px;
+  }
+}
+
 .event-results--img {
   margin-bottom: 25px;
 }
 
 .event-results--content {
-  margin-bottom: 150px;
+  margin-bottom: 100px;
+}
+
+@media (max-width: 991px) {
+  .event-results--content {
+    margin-bottom: 50px;
+  }
 }
 
 .event-results--content--heading {

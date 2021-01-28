@@ -680,6 +680,12 @@
             font-size: 18px;
         }
     }
+    .error-message {
+        top: 8px;
+        @include for-max-575 {
+            top: 11px;
+        }
+    }
 }
 .edit--input {
     padding-right: 90px;

@@ -1,9 +1,16 @@
 .event-results {
+    padding-bottom: 50px;
+    @include for-max-575 {
+        padding-bottom: 10px;
+    }
     &--img {
         margin-bottom: 25px;
     }
     &--content {
-        margin-bottom: 150px;
+        margin-bottom: 100px;
+        @include for-max-991 {
+            margin-bottom: 50px;
+        }
         &--heading {
             margin-bottom: 60px;
             text-align: center;

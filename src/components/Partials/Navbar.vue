@@ -11,7 +11,7 @@
 
                 <!-- Toggle button for small device -->
                 <div class="toggler-position">
-                    <button v-bind:class="{ open: isNavOpen }" @click="isNavOpen = !isNavOpen" id="removeClass" class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button v-bind:class="{ open: isNavOpen }" @click="isNavOpen = !isNavOpen" ref="btnMenuToggle" id="removeClass" class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -21,16 +21,16 @@
                 <div class="collapse navbar-collapse custom-collapse gamehub-menu-collapse" id="navbarSupportedContent" @click="modal = false">
                     <ul class="">
                         <li class="active">
-                            <router-link @click.native="isNavOpen = false" class="nav-link active router_link" to="/" data-toggle="collapse" data-target="#navbarSupportedContent">Home<span class="sr-only">(current)</span></router-link>
+                            <router-link @click.native="onMenuItemClick()" class="nav-link active router_link" to="/" >Home<span class="sr-only">(current)</span></router-link>
                         </li>
                         <li>
-                            <router-link @click.native="isNavOpen = false" class="router_link" to="/games" data-toggle="collapse" data-target="#navbarSupportedContent">Games</router-link>
+                            <router-link @click.native="onMenuItemClick()" class="router_link" to="/games" >Games</router-link>
                         </li>
                         <li>
-                            <router-link  class="router_link" to="/profile" @click.native="isNavOpen = false; clickProfile()" data-toggle="collapse" data-target="#navbarSupportedContent">Post For Rent</router-link>
+                            <router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">Post For Rent</router-link>
                         </li>
                         <li>
-                            <router-link @click.native="isNavOpen = false" class="router_link" to="/notice-board" data-toggle="collapse" data-target="#navbarSupportedContent">Notice Board</router-link>
+                            <router-link @click.native="onMenuItemClick()" class="router_link" to="/notice-board">Notice Board</router-link>
                         </li>
                     </ul>
                    <!-- search bar -->
@@ -54,7 +54,7 @@
                               </vue-autosuggest>
                             </div>
                             
-                            <button class="btn gamehub-search-btn" type="search" @click.prevent="searchGame">
+                            <button class="btn gamehub-search-btn" @click="onMenuItemClick()" type="search" @click.prevent="searchGame">
                                 <i class="fa fa-search"></i>
                             </button>
                         </div>
@@ -87,7 +87,7 @@
                         </div> -->
                         <div class="gamehub-input-group--content">
                             <router-link v-if="!auth" class="sign-in" to="/login"><span>Sign in</span></router-link>
-                                <div v-if="auth" class="dropdown-toggle complete-sign-in" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="user-name" v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span><span v-else>{{ this.$store.state.user.phone_number }}</span>
+                                <div v-if="auth" class="dropdown-toggle complete-sign-in" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span class="user-name" v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span><span class="user-name" v-else>{{ this.$store.state.user.phone_number }}</span>
                                  <img v-if="$store.state.user.image" :src="$store.state.user.image" :alt="$store.state.user.name">
                                  <img v-else src="../../assets/img/avatar.png" alt="profile">
                                             <div class="dropdown-menu gamehub-dropdown-menu">
@@ -185,6 +185,12 @@
               console.log('items: ', cartItems)
               let cart = JSON.parse(cartItems);
               this.totalItems = cart.length;
+            }
+          },
+          onMenuItemClick() {
+            if( window.innerWidth < 992 ) {
+                let elem = this.$refs.btnMenuToggle;
+                    elem.click();
             }
           }
         },

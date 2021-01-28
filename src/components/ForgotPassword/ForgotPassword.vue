@@ -15,7 +15,7 @@
                                         <label for="username1" class="sr-only">Email</label>
                                         <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                                             <input type="text" class="form-control mb-2" id="username1" value="" placeholder="Enter your Email" v-model="form.email">
-                                            <span class="error-message">{{ errors[0] }}</span>
+                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                             <br v-if="errors[0]">
                                         </ValidationProvider>
                                         <span class="error-message" v-if="invalidEmail">{{ invalidEmailMessage }}<br></span>
@@ -26,7 +26,7 @@
                                             <label for="user-otp" class="sr-only">otp</label>
                                             <ValidationProvider name="otp" rules="required|digits:6" v-slot="{ errors }">
                                                 <input @click="changeWrongOtp" type="text" class="form-control mb-2" id="user-otp" placeholder="Your code" v-model="form.otp">
-                                                <span class="error-message">{{ errors[0] }}</span>
+                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                 <br v-if="errors[0]">
                                                 <span class="success-message" v-if="!resend && !$store.state.wrongOTP && !$store.state.timeout">We've sent a 6-digit one time PIN<strong style="color: white;">{{ form.phone_number }}</strong></span>
                                                 <span class="error-message" v-if="$store.state.wrongOTP && !resend">You entered wrong OTP</span>
@@ -51,16 +51,16 @@
                                                     <label class="custom-control-label" for="phonereset"> Phone Number </label>
                                                 </div>
                                             </div>
-                                            <span class="error-message">{{ errors[0] }}</span>
+                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                         <div class="otpbtn forget-otp mt-3" v-if="codeSent">
                                             <button class="btn--secondery mb-2" type="button" :disabled="isResendLoading" @click.prevent="onResendOtp">
-                                                <span>Resend Code</span>
-                                                <span v-if="isResendLoading" class="spinner-border spinner-border-sm"></span>
+                                                <span>Resend Code <i v-if="isResendLoading" class="spinner-border spinner-border-sm"></i></span>
+                                                
                                             </button>
                                             <button class="btn--secondery mb-2" type="button" :disabled="$store.state.isSubmitLoading" @click.prevent="handleSubmit(onVerifyPasswordResetCode)">
-                                                <span>Submit</span>
-                                                <span v-if="$store.state.isSubmitLoading" class="spinner-border spinner-border-sm"></span>
+                                                <span>Submit <i v-if="$store.state.isSubmitLoading" class="spinner-border spinner-border-sm"></i></span>
+                                                
                                             </button>
                                         </div>
                                     </div>
@@ -68,8 +68,8 @@
                                     <!-- sign in button -->
                                     <div class="text-center sign-btn pt-2" v-if="!codeSent">
                                         <button class="btn--secondery mb-2 m-auto border-0" type="submit" :disabled="isLoading">
-                                            <span>Send Reset Code</span>
-                                            <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
+                                            <span>Send Reset Code <i v-if="isLoading" class="spinner-border spinner-border-sm loader-skew"></i></span>
+                                            
                                         </button>
                                     </div>
                                 </form>

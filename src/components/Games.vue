@@ -163,7 +163,7 @@
           }
         },
         fetchFilteredGames() {
-          console.log(this.$route.query.search);
+            this.noGameFound = false;
             if (this.$route.query.search) {
               this.searchKey = this.$route.query.search
             }

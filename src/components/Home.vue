@@ -9,7 +9,6 @@
                             <span>Exchanging</span> AND
                             <span>Renting</span> Platform</h1>
                         <h6>Play with over 15 million+ gamers in leagues,<br> tournaments & ladders.</h6>
-                        <!-- <a href="/games" class="btn--secondery"><span>BEGIN JOURNEY</span></a> -->
                         <router-link to="/games" class="btn--secondery"><span>BEGIN JOURNEY</span></router-link>
                     </div>
                 </div>

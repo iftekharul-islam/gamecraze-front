@@ -23,7 +23,7 @@
                         </div>
                     </div>
                     <div class="users-name">
-                        <h3>{{ user.name }}</h3>
+                        <h3>{{ user.name + ' ' + user.last_name }}</h3>
 <!--           <h6>sabertooth_wolf</h6>-->
                     </div>
 <!--                    <div class="user-rating">-->
@@ -61,10 +61,6 @@
                                             <td scope="row">Name:</td>
                                             <td> <span v-if="user.name">{{ user.name }}</span> <span v-if="user.last_name">{{ user.last_name }}</span></td>
                                         </tr>
-<!--                                        <tr>-->
-<!--                                           <td scope="row">Username:</td>-->
-<!--                                            <td>sabertooth_wolf</td>-->
-<!--                                        </tr>-->
                                         <tr>
                                            <td scope="row">Gender:</td>
                                             <td>{{ user.gender }}</td>

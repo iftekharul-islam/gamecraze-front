@@ -96,15 +96,15 @@
               <div class="mb-4 mb-lg-0 col-md-12 col-lg-7">
                 <div class="cart-section--item-details">
                   <table class="table table-borderless cart-section--item-details--table">
-                        <thead>
+                      <thead>
                         <tr>
                             <td scope="col">Item</td>
                             <td scope="col">Price</td>
                             <td scope="col">Rent Week</td>
                             <td scope="col">Subtotal</td>
                         </tr>
-                        </thead>
-                        <tbody >
+                      </thead>
+                      <tbody >
                         <tr v-for="(item, index) in cart" :key="index">
                             <td scope="col">{{ item.rent.game.data.name }}</td>
                             <td scope="col">{{ item.price }}</td>
@@ -115,7 +115,7 @@
                               </div>
                             </td>
                         </tr>
-                        </tbody>
+                      </tbody>
                     </table>
                 </div>
               </div>
@@ -240,25 +240,12 @@
         },
         getCartItems() {
           let cartItems = localStorage.getItem('cartItems');
-          if (cartItems != '') {
+          if (cartItems != '' && cartItems != null) {
             this.cart = JSON.parse(cartItems);
           }
         }
     },
     created() {
-      // this.lendWeek = this.$store.state.lendWeek;
-      // this.$api.get('cart-items/?ids=' + this.$store.state.postId + '&include=game.assets').then (response => {
-      //   this.cart = response.data.data
-      //   console.log(this.cart, 'cart');
-      //     for (let i=0;i<this.cart.length;i++) {
-      //       this.$api.get('base-price/game-calculation/' + this.cart[i].game.data.id + '/' + this.lendWeek )
-      //           .then (response => {
-      //             this.price.push(parseFloat(response.data));
-      //           });
-      //     }
-      //   console.log(this.price)
-      // });
-
       this.$api.get('delivery-charge').then (response => {
         if (response.data.data) {
           this.deliveryCharge = response.data.data.charge;
@@ -284,5 +271,4 @@
             document.body.classList.remove('body-position')
         }
   }
-
 </script>

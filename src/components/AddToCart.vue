@@ -240,26 +240,12 @@
         },
         getCartItems() {
           let cartItems = localStorage.getItem('cartItems');
-          console.log('cart: ', cartItems);
           if (cartItems != '' && cartItems != null) {
             this.cart = JSON.parse(cartItems);
           }
         }
     },
     created() {
-      // this.lendWeek = this.$store.state.lendWeek;
-      // this.$api.get('cart-items/?ids=' + this.$store.state.postId + '&include=game.assets').then (response => {
-      //   this.cart = response.data.data
-      //   console.log(this.cart, 'cart');
-      //     for (let i=0;i<this.cart.length;i++) {
-      //       this.$api.get('base-price/game-calculation/' + this.cart[i].game.data.id + '/' + this.lendWeek )
-      //           .then (response => {
-      //             this.price.push(parseFloat(response.data));
-      //           });
-      //     }
-      //   console.log(this.price)
-      // });
-
       this.$api.get('delivery-charge').then (response => {
         if (response.data.data) {
           this.deliveryCharge = response.data.data.charge;
@@ -285,5 +271,4 @@
             document.body.classList.remove('body-position')
         }
   }
-
 </script>

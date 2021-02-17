@@ -55,7 +55,7 @@
                             </div>
                             
                             <button class="btn gamehub-search-btn" @click="onMenuItemClick()" type="search" @click.prevent="searchGame">
-                                <i class="fa fa-search"></i>
+                                <i class="fa fa-search gamehub-search-btn--icon"></i>
                             </button>
                         </div>
                 </div>
@@ -106,9 +106,11 @@
                         </div>
                         <div class="gamehub-input-group--content">
                             <router-link class="gamehub-input-group--content--cart" to="/cart">
-                              <i class="fas fa-shopping-cart">
+                              <!-- <i class="fas fa-shopping-cart">
                                 <span class="badge gamehub-badge navbar-badge">{{ totalItems }}</span>
-                              </i>
+                              </i> -->
+                              <i class="fas fa-shopping-cart gamehub-input-group--content--cart--icon"></i>
+                              <div class="badge gamehub-badge navbar-badge">{{ totalItems }}</div>
                             </router-link>
 
                         </div>

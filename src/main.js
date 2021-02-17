@@ -6,6 +6,8 @@ import './assets/scss/style.css'
 // import './assets/admin/dist/css/adminlte.css'
 import "vue-select/dist/vue-select.css";
 import 'v-toaster/dist/v-toaster.css'
+import '@fortawesome/fontawesome-free/css/all.css'
+import '@fortawesome/fontawesome-free/js/all.js'  
 
 
 global.jQuery = require('jquery/dist/jquery.min');

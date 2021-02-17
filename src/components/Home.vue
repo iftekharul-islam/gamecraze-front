@@ -71,7 +71,7 @@
             <div id="owl-favorite" class="owl-carousel owl-theme" v-if="rents">
                 <div class="item" v-for="(rent, index) in rents" :key="index" >
                     <div class="favorite-games">
-                        <router-link :to="{ path: '/game-details/' + rent.game.data.id}" v-if="rent.game.data.trending_url">
+                        <router-link :to="{ path: '/game-details/' + rent.game.data.id}" v-if="rent.game.data.trending_url" class="d-block">
                             <img :src="rent.game.data.trending_url" :alt="rent.game.data.name"  >
                         </router-link>
                         <router-link :to="{ path: '/game-details/' + rent.game.data.id}" v-else> 

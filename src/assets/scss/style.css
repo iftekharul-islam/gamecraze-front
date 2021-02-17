@@ -1615,13 +1615,17 @@ input::placeholder {
           align-items: center;
 }
 
-.gamehub-input-group--content i {
-  color: #FFD715;
-  font-size: 25px;
+.gamehub-input-group--content--cart {
+  display: block;
   position: relative;
 }
 
-.gamehub-input-group--content i .gamehub-badge {
+.gamehub-input-group--content--cart--icon {
+  color: #FFD715;
+  font-size: 25px;
+}
+
+.gamehub-input-group--content--cart .gamehub-badge {
   background: #F65157;
   color: #fff;
   position: absolute;
@@ -1832,7 +1836,7 @@ input::placeholder {
           box-shadow: none;
 }
 
-.gamehub-search-btn i {
+.gamehub-search-btn--icon {
   -webkit-transform: skew(21deg);
           transform: skew(21deg);
   color: #000;
@@ -1840,7 +1844,7 @@ input::placeholder {
 }
 
 @media (max-width: 991px) {
-  .gamehub-search-btn i {
+  .gamehub-search-btn--icon {
     -webkit-transform: skew(0deg);
             transform: skew(0deg);
   }

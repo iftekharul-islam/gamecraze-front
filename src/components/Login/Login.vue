@@ -208,8 +208,9 @@
                         <span class="or text-center w-100 d-block">OR</span>
                         <button v-if="!$store.state.setPasswordPopUp"
                                 class="btn mb-4 btn--registration button-style w-100" style="margin: 0 auto;"
-                                @click="onChangeLoginOption"><i v-if="loginOption === 'Email'" class="fas fa-envelope login-email"></i>
-                                <i v-if="loginOption === 'Phone Number'" class="fas fa-mobile-alt login-phone"></i> <span>Continue with  {{ loginOption }} </span>
+                                @click="onChangeLoginOption">
+                                <i class="fas fa-sign-in-alt"></i>
+                            <span>Continue with  {{ loginOption }} </span>
                         </button>
                     </div>
                 </div>

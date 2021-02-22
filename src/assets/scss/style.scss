@@ -9,6 +9,8 @@
 @import "../scss/variables";
 // utility
 @import "../scss/utilities";
+// mixin
+@import "../scss/mixin";
 //media query
 @import "../scss/media-queries";
 // navbar
@@ -69,6 +71,8 @@
 @import "../scss/forget-password-section";
 // payment section
 @import "../scss/payment-section";
+// my earning tab 
+@import "../scss/my-earning-tab";
 
 // button
 @import "../scss/buttons";
@@ -76,8 +80,7 @@
 @import "../scss/generic";
 // back to top
 @import "../scss/back-to-top";
-// mixin
-@import "../scss/mixin";
+
 // footer
 @import "../scss/footer";
 

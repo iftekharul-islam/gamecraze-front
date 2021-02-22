@@ -5116,7 +5116,7 @@ html {
           justify-content: center;
 }
 
-.avatar-edit form label i {
+.avatar-edit form label .camera-icon {
   color: #FFD715;
 }
 
@@ -5147,7 +5147,7 @@ html {
           transform: skew(-21deg);
 }
 
-.cover-edit label i, .cover-edit label span {
+.cover-edit label .camera-icon, .cover-edit label span {
   -webkit-transform: skew(21deg);
           transform: skew(21deg);
   display: inherit;
@@ -5263,6 +5263,12 @@ html {
         -ms-flex-align: center;
             align-items: center;
     padding: 0;
+  }
+}
+
+@media (max-width: 575px) {
+  .user-profile-details--nav a {
+    font-size: 12px;
   }
 }
 
@@ -6981,6 +6987,94 @@ html {
 .method-btn:hover {
   background: transparent;
   color: #fff;
+}
+
+.my-earning--dashboard {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 50px 36px;
+  border: 1px solid #FFD715;
+  margin-bottom: 64px;
+}
+
+.my-earning--dashboard--content h4 {
+  color: #808080;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 575px) {
+  .my-earning--dashboard--content h4 {
+    font-size: 16px;
+  }
+}
+
+.my-earning--dashboard--content h2 {
+  color: #FFD715;
+  font-size: 40px;
+}
+
+@media (max-width: 575px) {
+  .my-earning--dashboard--content h2 {
+    font-size: 18px;
+  }
+}
+
+.my-earning--dashboard--content h4, .my-earning--dashboard--content h2 {
+  font-family: circular-medium;
+  font-style: normal;
+}
+
+.my-earning--payment-history--heading {
+  color: #808080;
+  margin-bottom: 32px;
+  font-size: 24px;
+}
+
+.my-earning--payment-history--table thead tr th {
+  border: 0;
+  color: #fff;
+  font-weight: normal;
+}
+
+.my-earning--payment-history--table tbody tr td {
+  color: #808080;
+}
+
+.my-earning--payment-history--table tr td, .my-earning--payment-history--table tr th {
+  padding-left: 0;
+}
+
+.my-earning--payment-history--pagination .pagination .page-item:first-of-type, .my-earning--payment-history--pagination .pagination .page-item:last-of-type {
+  display: none;
+}
+
+.my-earning--payment-history--pagination .pagination .page-item .page-link {
+  background: transparent;
+  border: 1px solid #808080;
+  color: #808080;
+  font-size: 16px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 28px;
+  height: 28px;
+}
+
+.my-earning--payment-history--pagination .pagination .page-item .page-link.active {
+  background: #FFD715;
+  color: #000;
+  font-weight: bold;
 }
 
 .btn:focus {

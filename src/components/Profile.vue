@@ -5,7 +5,7 @@
             <img v-else src="../assets/img/profile-bg.png" alt="profile bg" class="img-fluid user-profile-bg">
             <div class="cover-edit">
                 <input type="file" @change="onProfileImageChange($event, 'cover')" id="imageUpload" accept=".png, .jpg, .jpeg">
-                <label for="imageUpload"><i class="fas fa-camera"></i>  <span>Edit Cover Photo</span></label>
+                <label for="imageUpload"><i class="fas fa-camera camera-icon"></i>  <span>Edit Cover Photo</span></label>
                 <i v-if="isCoverImgUpdating" class="spinner-border spinner-border-sm"></i>
             </div>
             <div class="container">
@@ -17,7 +17,7 @@
                         <div class="avatar-edit">
                             <form action="" method="post" id="profile-image-form">
                                 <input @change="onProfileImageChange($event, 'profile')" type="file" id="profileUpload" accept=".png, .jpg, .jpeg">
-                                <label for="profileUpload"><i class="fas fa-camera"></i></label>
+                                <label for="profileUpload"><i class="fas fa-camera camera-icon"></i></label>
                                 <i v-if="isProfileImgUpdating" class="spinner-border spinner-border-sm"></i>
                             </form>
                         </div>
@@ -49,437 +49,508 @@
                         <a class="nav-link" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon2.png" alt="profile icon"> <img src="../assets/img/active-profile-icon2.png" class="img-active" alt="profile icon"></div> <span>Dashboard</span></a>
                         <a class="nav-link" id="v-pills-post-rent-tab" data-toggle="pill" href="#v-pills-post-rent" role="tab" aria-controls="v-pills-post-rent" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon3.png" alt="profile icon"> <img src="../assets/img/active-profile-icon3.png" class="img-active" alt="profile icon"></div> <span>Post for Rent</span></a>
                         <a class="nav-link" id="v-pills-edit-profile-tab" data-toggle="pill" href="#v-pills-edit-profile" role="tab" aria-controls="v-pills-edit-profile" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon4.png" alt="profile icon"> <img src="../assets/img/active-profile-icon4.png" class="img-active" alt="profile icon"></div> <span>Edit Profile</span></a>
+                        <a class="nav-link" id="v-pills-my-earning-tab" data-toggle="pill" href="#v-pills-my-earning" role="tab" aria-controls="v-pills-my-earning" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/earn.png" alt="profile icon"> <img src="../assets/img/active-earn.png" class="img-active" alt="profile icon"></div> <span>My Earning</span></a>
                         </div>
                     </div>
                     <div class="col-lg-8">
                         <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-overview" role="tabpanel" aria-labelledby="v-pills-overview-tab">
-                            <div class="over-view">
-                                <table class="table table-borderless">
-                                    <tbody>
-                                        <tr>
-                                            <td scope="row">Name:</td>
-                                            <td> <span v-if="user.name">{{ user.name }}</span> <span v-if="user.last_name">{{ user.last_name }}</span></td>
-                                        </tr>
-                                        <tr>
-                                           <td scope="row">Gender:</td>
-                                            <td>{{ user.gender }}</td>
-                                        </tr>
-                                        <tr>
-                                           <td scope="row">Date of Birth:</td>
-                                            <td>{{ user.birth_date ? formattedDate(user.birth_date) : '' }}</td>
-                                        </tr>
-                                        <tr>
-                                           <td scope="row">Email:</td>
-                                            <td>{{ user.email }}</td>
-                                        </tr>
-                                        <tr>
-                                           <td scope="row">Mobile No:</td>
-                                            <td>
-                                                {{ user.phone_number }}
-                                                <span class="verified gamehub-success" v-if="user.is_phone_verified == 1">
-                                                    <i  class="fas fa-check" aria-hidden="true" title="Verified"></i>
-                                                </span>
-                                                <span v-else class="not-verified gamehub-danger">
-                                                    <i class="fas fa-question-circle" aria-hidden="true" title="Not Verified"></i>
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                           <td scope="row">Address:</td>
-                                            <td v-if="user.address">{{ user.address.address }}</td>
-                                        </tr>
-                                        <tr>
-                                           <td scope="row">City:</td>
-                                            <td v-if="user.address">{{ user.address.city }}</td>
-                                        </tr>
-                                        <tr>
-                                           <td scope="row">Post Code:</td>
-                                            <td v-if="user.address">{{ user.address.post_code }}</td>
-                                        </tr>
-                                         <tr>
-                                           <td scope="row">NID No:</td>
-                                            <td>{{ user.identification_number }}</td>
-                                        </tr>
-                                         <tr>
-                                           <td scope="row">NID Image:</td>
-                                            <td v-if="user.identification_image"><img :src="user.identification_image" alt="nid" class="img-fluid"></td>
-                                            <td v-else><img src="../assets/img/id.jpg" alt="nid" class="img-fluid"></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                            <div class="tab-pane fade show active" id="v-pills-overview" role="tabpanel" aria-labelledby="v-pills-overview-tab">
+                                <div class="over-view">
+                                    <table class="table table-borderless">
+                                        <tbody>
+                                            <tr>
+                                                <td scope="row">Name:</td>
+                                                <td> <span v-if="user.name">{{ user.name }}</span> <span v-if="user.last_name">{{ user.last_name }}</span></td>
+                                            </tr>
+                                            <tr>
+                                            <td scope="row">Gender:</td>
+                                                <td>{{ user.gender }}</td>
+                                            </tr>
+                                            <tr>
+                                            <td scope="row">Date of Birth:</td>
+                                                <td>{{ user.birth_date ? formattedDate(user.birth_date) : '' }}</td>
+                                            </tr>
+                                            <tr>
+                                            <td scope="row">Email:</td>
+                                                <td>{{ user.email }}</td>
+                                            </tr>
+                                            <tr>
+                                            <td scope="row">Mobile No:</td>
+                                                <td>
+                                                    {{ user.phone_number }}
+                                                    <span class="verified gamehub-success" v-if="user.is_phone_verified == 1">
+                                                        <i  class="fas fa-check" aria-hidden="true" title="Verified"></i>
+                                                    </span>
+                                                    <span v-else class="not-verified gamehub-danger">
+                                                        <i class="fas fa-question-circle" aria-hidden="true" title="Not Verified"></i>
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                            <td scope="row">Address:</td>
+                                                <td v-if="user.address">{{ user.address.address }}</td>
+                                            </tr>
+                                            <tr>
+                                            <td scope="row">City:</td>
+                                                <td v-if="user.address">{{ user.address.city }}</td>
+                                            </tr>
+                                            <tr>
+                                            <td scope="row">Post Code:</td>
+                                                <td v-if="user.address">{{ user.address.post_code }}</td>
+                                            </tr>
+                                            <tr>
+                                            <td scope="row">NID No:</td>
+                                                <td>{{ user.identification_number }}</td>
+                                            </tr>
+                                            <tr>
+                                            <td scope="row">NID Image:</td>
+                                                <td v-if="user.identification_image"><img :src="user.identification_image" alt="nid" class="img-fluid"></td>
+                                                <td v-else><img src="../assets/img/id.jpg" alt="nid" class="img-fluid"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
-                                    <div class="dashboard-content">
-                                        <div class="d-flex justify-content-center dashboard-tab-button mb-5">
-                                            <button  @click.prevent="onRentedGames()" :disabled="!show" :class="{active: !show}"><img class="active-black" src="../assets/img/rent-icon.png" alt="rent icon"> <img class="active-yellow" src="../assets/img/rent-icon-black.png" alt="rent icon"> Rented Games</button>
-                                            <button  @click.prevent="onOfferedGames()" :disabled="show" :class="{active: show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  Offered Games</button>
-                                        </div>
 
-                                      <div class="dashboard-content--rented dashboard-content--offer pb-5" v-if="rents.length && show">
-                                        <table class="table table-borderless" v-if="rents">
-                                          <thead>
-                                          <tr>
-                                            <td scope="col">Game</td>
-                                            <td scope="col">Disk condition</td>
-                                            <td scope="col">Platform</td>
-                                            <td scope="col">Renter name</td>
-                                            <td scope="col">Pick Point</td>
-                                            <td scope="col">Available From</td>
-                                            <td scope="col">Approvement</td>
-                                            <td scope="col">Action</td>
-                                          </tr>
-                                          </thead>
-                                          <tbody>
-                                          <tr v-for="(rent, index) in rents" :key="index">
-                                            <td v-if="rent.game">{{ rent.game.data.name }}</td>
-                                            <td>{{ rent.diskCondition.data.name_of_type }}</td>
-                                            <td>{{ rent.platform.data.name }}</td>
-                                            <td v-if="rent.renter">{{ rent.renter.data.name }}</td>
-                                            <td v-else>Not rented</td>
-                                            <td v-if="rent.checkpoint_id">{{}}</td>
-                                            <td v-else>Not Set</td>
-                                            <td>{{ formattedDate(rent.availability_from_date) }}</td>
-                                            <td v-if="rent.status === 0">
-                                                <a class="badge-warning badge" >Pending</a>
-                                            </td>
-                                            <td v-else-if="rent.status === 1">
-                                                <a class="badge-success badge" >Approved</a>
-                                            </td>
-                                            <td v-else>
-                                                <a class="badge-danger badge" >Rejected</a>
-                                            </td>
-                                            <td><button type="button" class="btn btn-danger mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button></td>
-                                          </tr>
-                                          </tbody>
-                                        </table>
-                                      </div>
-                                        <div class="dashboard-content--rented pb-5" v-else-if="lends.length && !show">
-                                            <table class="table table-borderless" v-if="lends">
-                                                <thead>
-                                                <tr>
-                                                    <td scope="col">Game</td>
-                                                    <td scope="col">Rent Week(s)</td>
-                                                    <td scope="col">Rent Start</td>
-                                                    <td scope="col">Return Date</td>
-                                                    <td scope="col" class="text-center">Remaining Days</td>
-                                                    <td scope="col">Cost</td>
-                                                    <td scope="col">Action</td>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr v-for="(lend, index) in lends" :key="index">
-                                                    <td v-if="lend.rent">{{ lend.rent.game.name }}</td>
-                                                    <td>{{ lend.lend_week }}</td>
-                                                    <td>{{ formattedDate(lend.lend_date) }}</td>
-                                                    <td>{{ returnDate(lend.lend_date, lend.lend_week) }}</td>
-                                                    <td>
-                                                        <flip-countdown :deadline="endDate(lend.lend_date, lend.lend_week)"></flip-countdown>
-                                                    </td>
-                                                    <td>{{ lend.lend_cost }}</td>
-                                                    <td><button class="btn btn-primary" @click.prevent="extend">Extent Date</button></td>
-                                                </tr>
-                                                </tbody>
+                            <div class="tab-pane fade" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
+                                        <div class="dashboard-content">
+                                            <div class="d-flex justify-content-center dashboard-tab-button mb-5">
+                                                <button  @click.prevent="onRentedGames()" :disabled="!show" :class="{active: !show}"><img class="active-black" src="../assets/img/rent-icon.png" alt="rent icon"> <img class="active-yellow" src="../assets/img/rent-icon-black.png" alt="rent icon"> Rented Games</button>
+                                                <button  @click.prevent="onOfferedGames()" :disabled="show" :class="{active: show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  Offered Games</button>
+                                            </div>
+
+                                        <div class="dashboard-content--rented dashboard-content--offer pb-5" v-if="rents.length && show">
+                                            <table class="table table-borderless" v-if="rents">
+                                            <thead>
+                                            <tr>
+                                                <td scope="col">Game</td>
+                                                <td scope="col">Disk condition</td>
+                                                <td scope="col">Platform</td>
+                                                <td scope="col">Renter name</td>
+                                                <td scope="col">Pick Point</td>
+                                                <td scope="col">Available From</td>
+                                                <td scope="col">Approvement</td>
+                                                <td scope="col">Action</td>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr v-for="(rent, index) in rents" :key="index">
+                                                <td v-if="rent.game">{{ rent.game.data.name }}</td>
+                                                <td>{{ rent.diskCondition.data.name_of_type }}</td>
+                                                <td>{{ rent.platform.data.name }}</td>
+                                                <td v-if="rent.renter">{{ rent.renter.data.name }}</td>
+                                                <td v-else>Not rented</td>
+                                                <td v-if="rent.checkpoint_id">{{}}</td>
+                                                <td v-else>Not Set</td>
+                                                <td>{{ formattedDate(rent.availability_from_date) }}</td>
+                                                <td v-if="rent.status === 0">
+                                                    <a class="badge-warning badge" >Pending</a>
+                                                </td>
+                                                <td v-else-if="rent.status === 1">
+                                                    <a class="badge-success badge" >Approved</a>
+                                                </td>
+                                                <td v-else>
+                                                    <a class="badge-danger badge" >Rejected</a>
+                                                </td>
+                                                <td><button type="button" class="btn btn-danger mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                                            </tr>
+                                            </tbody>
                                             </table>
                                         </div>
-                                        <div class="no-post-found-card mb-0" v-else>
-                                        <h5>Nothing to Show!</h5>
-                                        </div>
-                                    </div>
-                        </div>
-                        <div class="tab-pane fade" id="v-pills-post-rent" role="tabpanel" aria-labelledby="v-pills-post-rent-tab">
-                            <div class="post-rent">
-                                <ValidationObserver v-slot="{ handleSubmit }">
-                                    <form @submit.prevent="handleSubmit(onRentSubmit)" method="post" id="rentPostForm">
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Game Name:</label>
-                                            <div class="col-sm-8 post-rent--input">
-                                                <ValidationProvider name="game" rules="" v-slot="{ errors }">
-                                                    <vue-autosuggest
-                                                        v-model="gameName"
-                                                        :suggestions="filteredOptions"
-                                                        @focus="focusMe"
-                                                        @click="clickHandler"
-                                                        @input="onInputChange"
-                                                        @selected="onSelected"
-                                                        :get-suggestion-value="getSuggestionValue"
-                                                        :input-props="{id:'autosuggest__input', placeholder:'Search Game'}">
-                                                      <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
-                                                        <div>{{suggestion.item.name}}</div>
-                                                      </div>
-                                                    </vue-autosuggest>
-                                                    <span class="text-danger">{{ errors[0] }}</span>
-                                                </ValidationProvider>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="rentedWeek" class="col-sm-3 col-form-label">Max Rented Week:</label>
-                                            <div class="col-sm-8 post-rent--input">
-                                                <ValidationProvider name="rented week" rules="required|min_value:1" v-slot="{ errors }">
-                                                    <input type="number" class="form-control renten-input" id="rentedWeek" min="1" v-model="rentData.max_week">
-                                                    <i class="fa fa-angle-up rented-plus" @click="adjustRentedWeek('increase')"></i>
-                                                    <i class="fa fa-angle-down rented-minus" @click="adjustRentedWeek('decrease')"></i>
-                                                    <span class="text-danger">{{ errors[0] }}</span>
-                                                </ValidationProvider>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="gamendate" class="col-sm-3 col-form-label">Available from:</label>
-                                            <div class="col-sm-8 post-rent--input">
-                                                <ValidationProvider name="available date" rules="required" v-slot="{ errors }">
-                                                    <input type="date" class="form-control" id="gamendate" placeholder="Availablity Date" :min="todayDate(1)" v-model="rentData.availability">
-                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                </ValidationProvider>
-                                            </div>
-                                        </div>
-                                        <!-- platform -->
-                                        <div class="form-group row" v-if="gamePlatform">
-                                            <label class="col-sm-3 col-form-label">Platform:</label>
-                                             <div class="col-sm-8 post-rent--delivery">
-                                            <ValidationProvider name="Platform" rules="required" v-slot="{ errors }">
-                                                <div class="form-check form-check-inline post-rent--input--platform-input custom-radio" v-for="(platform, index) in rentData.game.platforms.data" :key="index">
-                                                    <input class="custom-control-input platform" :id="'platform-' + index" name="platform" type="radio" :value="platform" v-model="rentData.platform">
-                                                    <label class="custom-control-label ml-2" :for="'platform-' + index">{{ platform.name }}</label>
-                                                </div>
-                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                            </ValidationProvider>
-                                            </div>
-                                        </div>
-                                        <!-- earning amount -->
-                                        <div class="form-group row" v-if="basePrices">
-                                            <label class="col-sm-3 col-form-label">Earning Amount:</label>
-                                            <div class="earning-amount col-sm-8 post-rent--input">
-                                                <table class="table table-borderless">
+                                            <div class="dashboard-content--rented pb-5" v-else-if="lends.length && !show">
+                                                <table class="table table-borderless" v-if="lends">
+                                                    <thead>
+                                                    <tr>
+                                                        <td scope="col">Game</td>
+                                                        <td scope="col">Rent Week(s)</td>
+                                                        <td scope="col">Rent Start</td>
+                                                        <td scope="col">Return Date</td>
+                                                        <td scope="col" class="text-center">Remaining Days</td>
+                                                        <td scope="col">Cost</td>
+                                                        <td scope="col">Action</td>
+                                                    </tr>
+                                                    </thead>
                                                     <tbody>
-                                                    <tr class="">
-                                                        <td>Your Estimated earning for 1 week</td>
-                                                        <td>BDT {{ basePrices[1] }}</td>
-                                                    </tr>
-                                                    <tr class="">
-                                                        <td>Your Estimated earning for 2 week</td>
-                                                        <td>BDT {{ basePrices[1] + basePrices[2] }}</td>
-                                                    </tr>
-                                                    <tr class="">
-                                                        <td>Your Estimated earning for 3 week</td>
-                                                        <td>BDT {{ basePrices[1] + basePrices[2] + basePrices[3] }}</td>
+                                                    <tr v-for="(lend, index) in lends" :key="index">
+                                                        <td v-if="lend.rent">{{ lend.rent.game.name }}</td>
+                                                        <td>{{ lend.lend_week }}</td>
+                                                        <td>{{ formattedDate(lend.lend_date) }}</td>
+                                                        <td>{{ returnDate(lend.lend_date, lend.lend_week) }}</td>
+                                                        <td>
+                                                            <flip-countdown :deadline="endDate(lend.lend_date, lend.lend_week)"></flip-countdown>
+                                                        </td>
+                                                        <td>{{ lend.lend_cost }}</td>
+                                                        <td><button class="btn btn-primary" @click.prevent="extend">Extent Date</button></td>
                                                     </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            <div class="alert alert-info alert-dismissible mt-2">
-                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                <p>
-                                                    If you want to Borrow for more weeks.Then renting price will be cyclic like the given price table.So its start from 1st week.
-                                                </p>
+                                            <div class="no-post-found-card mb-0" v-else>
+                                            <h5>Nothing to Show!</h5>
                                             </div>
                                         </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Disk Condition:</label>
-                                            <div class="col-sm-8 post-rent--input">
-                                                <ValidationProvider name="Disk Condition" rules="required" v-slot="{ errors }">
-                                                    <select class="form-control" id="DiskCondition" v-model="rentData.disk_condition">
-                                                        <option value="" selected>Please Select Disk Condition</option>
-                                                        <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }} ({{ diskCondition.description }})</option>
-                                                    </select>
-                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                </ValidationProvider>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-
-                                            <label class="col-sm-3 col-form-label">How do you want to Deliver ?</label>
-                                            <div class="col-sm-8 post-rent--delivery">
-
-                                                   <div class="custom-radio d-flex">
-                                                         <input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod" class="custom-control-input">
-                                                        <label for="cod" class="custom-control-label"> COD</label>
-                                                      
-                                                   </div>
-                                                    <div class=" custom-radio d-flex">
-                                                        <input type="radio" v-model="x" value="1" name="checkpoint_id" id="checkpoint_true" class="custom-control-input">
-                                                        <label for="checkpoint_true" class="custom-control-label"> Checkpoint</label>
-                                                        
-                                                    </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row" v-show="x === '1'">
-                                            <label class="col-sm-3 col-form-label">Select checkpont:</label>
-                                            <div class="col-sm-8 post-rent--input">
-                                                <select class="form-control" id="checkpoint" v-model="rentData.checkpoint">
-                                                    <option value="" disabled>Please Select Near Checkpoint</option>
-                                                    <option v-for="(checkpoint, index) in checkpoints" :key="index" :value="checkpoint">{{ checkpoint.name }}, Area: {{ checkpoint.area.data.name }}</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Disk Image:</label>
-                                            <div class="col-sm-8 post-rent--input">
-                                                <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="DiskUpload" accept="image/*" @change="onDiskimageChange">
-                                                        <label class="custom-file-label text-light" for="customFile">Disk Image</label>
-                                                    </div>
-                                                    <div class="img-prev">
-                                                        <img v-if="rentData.disk_image" :src="rentData.disk_image" alt="Disk image preview">
-                                                        <img v-else src="../assets/img/disk.png" alt="Disk image preview">
-                                                    </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Cover Image:</label>
-                                            <div class="col-sm-8 post-rent--input">
-                                                <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="customFile2" accept="image/*" @change="onCoverimageChange">
-                                                        <label class="custom-file-label text-light" for="customFile2">Cover Image</label>
-                                                    </div>
-                                                    <div class="img-prev">
-                                                        <img v-if="rentData.cover_image" :src="rentData.cover_image" alt="Cover image preview">
-                                                        <img v-else src="../assets/img/disk.png" alt="Cover image preview">
-                                                    </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <div class="offset-md-3 col-md-8 mt-4 post-rent--input">
-                                                <button class="btn--secondery w-100 border-0">
-                                                    <span class="mr-2">Submit <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i></span>
-                                                    
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-                                 </ValidationObserver>
                             </div>
-                        </div>
 
-                        <div class="tab-pane fade" id="v-pills-edit-profile" role="tabpanel" aria-labelledby="v-pills-edit-profile-tab">
-                            <div class="edit-profile">
-                                <ValidationObserver v-slot="{ handleSubmit }">
-                                    <form @submit.prevent="handleSubmit(onProfileUpdate)" method="post">
-                                        <div class="form-group row">
-                                            <label for="first_name" class="col-sm-3 col-form-label">First name:</label>
-
-                                                <div class="col-sm-9 edit--input">
-                                                    <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
-                                                        <input @keypress="isValidString($event)" type="text" class="form-control" id="first_name" v-model="form.name">
+                            <div class="tab-pane fade" id="v-pills-post-rent" role="tabpanel" aria-labelledby="v-pills-post-rent-tab">
+                                <div class="post-rent">
+                                    <ValidationObserver v-slot="{ handleSubmit }">
+                                        <form @submit.prevent="handleSubmit(onRentSubmit)" method="post" id="rentPostForm">
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Game Name:</label>
+                                                <div class="col-sm-8 post-rent--input">
+                                                    <ValidationProvider name="game" rules="" v-slot="{ errors }">
+                                                        <vue-autosuggest
+                                                            v-model="gameName"
+                                                            :suggestions="filteredOptions"
+                                                            @focus="focusMe"
+                                                            @click="clickHandler"
+                                                            @input="onInputChange"
+                                                            @selected="onSelected"
+                                                            :get-suggestion-value="getSuggestionValue"
+                                                            :input-props="{id:'autosuggest__input', placeholder:'Search Game'}">
+                                                        <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
+                                                            <div>{{suggestion.item.name}}</div>
+                                                        </div>
+                                                        </vue-autosuggest>
+                                                        <span class="text-danger">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="rentedWeek" class="col-sm-3 col-form-label">Max Rented Week:</label>
+                                                <div class="col-sm-8 post-rent--input">
+                                                    <ValidationProvider name="rented week" rules="required|min_value:1" v-slot="{ errors }">
+                                                        <input type="number" class="form-control renten-input" id="rentedWeek" min="1" v-model="rentData.max_week">
+                                                        <i class="fa fa-angle-up rented-plus" @click="adjustRentedWeek('increase')"></i>
+                                                        <i class="fa fa-angle-down rented-minus" @click="adjustRentedWeek('decrease')"></i>
+                                                        <span class="text-danger">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="gamendate" class="col-sm-3 col-form-label">Available from:</label>
+                                                <div class="col-sm-8 post-rent--input">
+                                                    <ValidationProvider name="available date" rules="required" v-slot="{ errors }">
+                                                        <input type="date" class="form-control" id="gamendate" placeholder="Availablity Date" :min="todayDate(1)" v-model="rentData.availability">
                                                         <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
-
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="last_name" class="col-sm-3 col-form-label">Last name:</label>
-                                            <div class="col-sm-9 edit--input">
-                                                 <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
-                                                    <input @keypress="isValidString($event)" type="text" class="form-control" id="last_name" v-model="form.last_name">
+                                            </div>
+                                            <!-- platform -->
+                                            <div class="form-group row" v-if="gamePlatform">
+                                                <label class="col-sm-3 col-form-label">Platform:</label>
+                                                <div class="col-sm-8 post-rent--delivery">
+                                                <ValidationProvider name="Platform" rules="required" v-slot="{ errors }">
+                                                    <div class="form-check form-check-inline post-rent--input--platform-input custom-radio" v-for="(platform, index) in rentData.game.platforms.data" :key="index">
+                                                        <input class="custom-control-input platform" :id="'platform-' + index" name="platform" type="radio" :value="platform" v-model="rentData.platform">
+                                                        <label class="custom-control-label ml-2" :for="'platform-' + index">{{ platform.name }}</label>
+                                                    </div>
                                                     <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                 </ValidationProvider>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <label for="gender" class="col-sm-3 col-form-label">Gender:</label>
-                                            <div class="col-sm-9 edit--input">
-                                                <ValidationProvider name="gender" rules="required" v-slot="{ errors }">
-                                                    <select class="custom-select" id="gender" v-model="form.gender">
-                                                        <option selected value="">Choose...</option>
-                                                        <option value="male" >Male</option>
-                                                        <option value="female">Female</option>
-                                                        <option value="others">Others</option>
-                                                    </select>
-                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                </ValidationProvider>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="dateofbirth" class="col-sm-3 col-form-label">Date of Birth:</label>
-                                            <div class="col-sm-9 edit--input">
-                                                <ValidationProvider name="date of birth" rules="required" v-slot="{ errors }">
-                                                    <input type="date" class="form-control" id="dateofbirth" :max="todayDate()" v-model="form.birth_date">
-                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                </ValidationProvider>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="email" class="col-sm-3 col-form-label">Email:</label>
-                                            <div class="col-sm-9 edit--input">
-                                                <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
-                                                    <input type="email" @focus="onEmailFocus" class="form-control" id="email" v-model="form.email">
-                                                   <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                   <span class="error-message d-block" v-if="isEmailExists">Email already taken</span>
-                                                </ValidationProvider>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">Mobile No:</label>
-                                            <div class="col-sm-9 edit--input">
-                                                <ValidationProvider name="phone number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
-                                                    <input type="text" @focus="onPhoneFocus" @keypress="isNumber($event)" class="form-control" id="phone_number" v-model="form.phone_number">
-                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                    <span class="error-message d-block" v-if="isPhoneExists">Phone number already exists</span>
-                                                </ValidationProvider>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="address" class="col-sm-3 col-form-label">Address:</label>
-                                            <div class="col-sm-9 edit--input">
-                                                <ValidationProvider name="address" rules="required" v-slot="{ errors }">
-                                                    <input type="text" class="form-control" id="address" v-model="form.address">
-                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                </ValidationProvider>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="city" class="col-sm-3 col-form-label">City:</label>
-                                            <div class="col-sm-9 edit--input">
-                                                <ValidationProvider name="city" rules="required" v-slot="{ errors }">
-                                                    <input type="text" class="form-control" id="city" v-model="form.city">
-                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                </ValidationProvider>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="postcode" class="col-sm-3 col-form-label">Post Code:</label>
-                                            <div class="col-sm-9 edit--input">
-                                                 <ValidationProvider name="post code" rules="required" v-slot="{ errors }">
-                                                    <input type="text" class="form-control" id="postcode" v-model="form.postCode">
-                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                </ValidationProvider>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label for="nidno" class="col-sm-3 col-form-label">NID No:</label>
-                                            <div class="col-sm-9 edit--input">
-                                                <ValidationProvider name="NID" rules="required" v-slot="{ errors }">
-                                                <input type="text" class="form-control" id="nidno" v-model="form.id_number">
-                                                  <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                </ValidationProvider>
-                                            </div>
-                                        </div>
-                                        <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label">NID Image:</label>
-                                            <div class="col-sm-9 edit--input">
-                                            <div class="custom-file">
-                                                    <input @change="onIdChange" accept=".png, .jpg, .jpeg" type="file" class="custom-file-input" id="customFile">
-                                                    <label class="custom-file-label text-light" for="customFile">{{ selectedFile }}</label>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group row">
-                                        <div class="offset-md-3 col-md-9 col-xl-8 mt-4 post-rent--input">
-                                                <button class="btn--secondery w-100 border-0" :disabled="$store.state.isProfileUpdating">
-                                                    <span class="mr-2">Update Profile <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm text-dark"></i>  </span>
-                                                </button>
+                                            <!-- earning amount -->
+                                            <div class="form-group row" v-if="basePrices">
+                                                <label class="col-sm-3 col-form-label">Earning Amount:</label>
+                                                <div class="earning-amount col-sm-8 post-rent--input">
+                                                    <table class="table table-borderless">
+                                                        <tbody>
+                                                        <tr class="">
+                                                            <td>Your Estimated earning for 1 week</td>
+                                                            <td>BDT {{ basePrices[1] }}</td>
+                                                        </tr>
+                                                        <tr class="">
+                                                            <td>Your Estimated earning for 2 week</td>
+                                                            <td>BDT {{ basePrices[1] + basePrices[2] }}</td>
+                                                        </tr>
+                                                        <tr class="">
+                                                            <td>Your Estimated earning for 3 week</td>
+                                                            <td>BDT {{ basePrices[1] + basePrices[2] + basePrices[3] }}</td>
+                                                        </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <div class="alert alert-info alert-dismissible mt-2">
+                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                                    <p>
+                                                        If you want to Borrow for more weeks.Then renting price will be cyclic like the given price table.So its start from 1st week.
+                                                    </p>
+                                                </div>
                                             </div>
-                                        </div>
 
-                                    </form>
-                                </ValidationObserver>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Disk Condition:</label>
+                                                <div class="col-sm-8 post-rent--input">
+                                                    <ValidationProvider name="Disk Condition" rules="required" v-slot="{ errors }">
+                                                        <select class="form-control" id="DiskCondition" v-model="rentData.disk_condition">
+                                                            <option value="" selected>Please Select Disk Condition</option>
+                                                            <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }} ({{ diskCondition.description }})</option>
+                                                        </select>
+                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+
+                                                <label class="col-sm-3 col-form-label">How do you want to Deliver ?</label>
+                                                <div class="col-sm-8 post-rent--delivery">
+
+                                                    <div class="custom-radio d-flex">
+                                                            <input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod" class="custom-control-input">
+                                                            <label for="cod" class="custom-control-label"> COD</label>
+                                                        
+                                                    </div>
+                                                        <div class=" custom-radio d-flex">
+                                                            <input type="radio" v-model="x" value="1" name="checkpoint_id" id="checkpoint_true" class="custom-control-input">
+                                                            <label for="checkpoint_true" class="custom-control-label"> Checkpoint</label>
+                                                            
+                                                        </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row" v-show="x === '1'">
+                                                <label class="col-sm-3 col-form-label">Select checkpont:</label>
+                                                <div class="col-sm-8 post-rent--input">
+                                                    <select class="form-control" id="checkpoint" v-model="rentData.checkpoint">
+                                                        <option value="" disabled>Please Select Near Checkpoint</option>
+                                                        <option v-for="(checkpoint, index) in checkpoints" :key="index" :value="checkpoint">{{ checkpoint.name }}, Area: {{ checkpoint.area.data.name }}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Disk Image:</label>
+                                                <div class="col-sm-8 post-rent--input">
+                                                    <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="DiskUpload" accept="image/*" @change="onDiskimageChange">
+                                                            <label class="custom-file-label text-light" for="customFile">Disk Image</label>
+                                                        </div>
+                                                        <div class="img-prev">
+                                                            <img v-if="rentData.disk_image" :src="rentData.disk_image" alt="Disk image preview">
+                                                            <img v-else src="../assets/img/disk.png" alt="Disk image preview">
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Cover Image:</label>
+                                                <div class="col-sm-8 post-rent--input">
+                                                    <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="customFile2" accept="image/*" @change="onCoverimageChange">
+                                                            <label class="custom-file-label text-light" for="customFile2">Cover Image</label>
+                                                        </div>
+                                                        <div class="img-prev">
+                                                            <img v-if="rentData.cover_image" :src="rentData.cover_image" alt="Cover image preview">
+                                                            <img v-else src="../assets/img/disk.png" alt="Cover image preview">
+                                                        </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="offset-md-3 col-md-8 mt-4 post-rent--input">
+                                                    <button class="btn--secondery w-100 border-0">
+                                                        <span class="mr-2">Submit <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i></span>
+                                                        
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </ValidationObserver>
+                                </div>
                             </div>
-                        </div>
+
+                            <div class="tab-pane fade" id="v-pills-edit-profile" role="tabpanel" aria-labelledby="v-pills-edit-profile-tab">
+                                <div class="edit-profile">
+                                    <ValidationObserver v-slot="{ handleSubmit }">
+                                        <form @submit.prevent="handleSubmit(onProfileUpdate)" method="post">
+                                            <div class="form-group row">
+                                                <label for="first_name" class="col-sm-3 col-form-label">First name:</label>
+
+                                                    <div class="col-sm-9 edit--input">
+                                                        <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
+                                                            <input @keypress="isValidString($event)" type="text" class="form-control" id="first_name" v-model="form.name">
+                                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                        </ValidationProvider>
+                                                    </div>
+
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="last_name" class="col-sm-3 col-form-label">Last name:</label>
+                                                <div class="col-sm-9 edit--input">
+                                                    <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
+                                                        <input @keypress="isValidString($event)" type="text" class="form-control" id="last_name" v-model="form.last_name">
+                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group row">
+                                                <label for="gender" class="col-sm-3 col-form-label">Gender:</label>
+                                                <div class="col-sm-9 edit--input">
+                                                    <ValidationProvider name="gender" rules="required" v-slot="{ errors }">
+                                                        <select class="custom-select" id="gender" v-model="form.gender">
+                                                            <option selected value="">Choose...</option>
+                                                            <option value="male" >Male</option>
+                                                            <option value="female">Female</option>
+                                                            <option value="others">Others</option>
+                                                        </select>
+                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="dateofbirth" class="col-sm-3 col-form-label">Date of Birth:</label>
+                                                <div class="col-sm-9 edit--input">
+                                                    <ValidationProvider name="date of birth" rules="required" v-slot="{ errors }">
+                                                        <input type="date" class="form-control" id="dateofbirth" :max="todayDate()" v-model="form.birth_date">
+                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="email" class="col-sm-3 col-form-label">Email:</label>
+                                                <div class="col-sm-9 edit--input">
+                                                    <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
+                                                        <input type="email" @focus="onEmailFocus" class="form-control" id="email" v-model="form.email">
+                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                    <span class="error-message d-block" v-if="isEmailExists">Email already taken</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Mobile No:</label>
+                                                <div class="col-sm-9 edit--input">
+                                                    <ValidationProvider name="phone number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
+                                                        <input type="text" @focus="onPhoneFocus" @keypress="isNumber($event)" class="form-control" id="phone_number" v-model="form.phone_number">
+                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                        <span class="error-message d-block" v-if="isPhoneExists">Phone number already exists</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="address" class="col-sm-3 col-form-label">Address:</label>
+                                                <div class="col-sm-9 edit--input">
+                                                    <ValidationProvider name="address" rules="required" v-slot="{ errors }">
+                                                        <input type="text" class="form-control" id="address" v-model="form.address">
+                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="city" class="col-sm-3 col-form-label">City:</label>
+                                                <div class="col-sm-9 edit--input">
+                                                    <ValidationProvider name="city" rules="required" v-slot="{ errors }">
+                                                        <input type="text" class="form-control" id="city" v-model="form.city">
+                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="postcode" class="col-sm-3 col-form-label">Post Code:</label>
+                                                <div class="col-sm-9 edit--input">
+                                                    <ValidationProvider name="post code" rules="required" v-slot="{ errors }">
+                                                        <input type="text" class="form-control" id="postcode" v-model="form.postCode">
+                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="nidno" class="col-sm-3 col-form-label">NID No:</label>
+                                                <div class="col-sm-9 edit--input">
+                                                    <ValidationProvider name="NID" rules="required" v-slot="{ errors }">
+                                                    <input type="text" class="form-control" id="nidno" v-model="form.id_number">
+                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">NID Image:</label>
+                                                <div class="col-sm-9 edit--input">
+                                                <div class="custom-file">
+                                                        <input @change="onIdChange" accept=".png, .jpg, .jpeg" type="file" class="custom-file-input" id="customFile">
+                                                        <label class="custom-file-label text-light" for="customFile">{{ selectedFile }}</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                            <div class="offset-md-3 col-md-9 col-xl-8 mt-4 post-rent--input">
+                                                    <button class="btn--secondery w-100 border-0" :disabled="$store.state.isProfileUpdating">
+                                                        <span class="mr-2">Update Profile <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm text-dark"></i>  </span>
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                        </form>
+                                    </ValidationObserver>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="v-pills-my-earning" role="tabpanel" aria-labelledby="v-pills-my-earning-tab">
+                                <div class="my-earning">
+                                    <div class="my-earning--dashboard">
+                                        <div class="my-earning--dashboard--content">
+                                            <h4>Lifetime earnings</h4>
+                                            <h2>10,500 Taka</h2>
+                                        </div>
+                                        <div class="my-earning--dashboard--content">
+                                            <h4>Payable amount</h4>
+                                            <h2>1000 Taka</h2>
+                                        </div>
+                                    </div>
+                                    <!-- payment history -->
+                                    <div class="my-earning--payment-history">
+                                        <h4 class="my-earning--payment-history--heading">Payment history</h4>
+                                        <div class="table-responsive">
+                                            <table class="table my-earning--payment-history--table">
+                                                <thead>
+                                                    <tr>
+                                                    <th scope="col">Transaction id</th>
+                                                    <th scope="col">Date</th>
+                                                    <th scope="col">Widrawl amount</th>
+                                                    <th scope="col">Widrawl method</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>12365</td>
+                                                        <td>15.02.2021</td>
+                                                        <td>2500 Taka</td>
+                                                        <td>Bkash</td>
+                                                    </tr>
+                                                   <tr>
+                                                       <td>12365</td>
+                                                        <td>15.02.2021</td>
+                                                        <td>2500 Taka</td>
+                                                        <td>Bkash</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>12365</td>
+                                                        <td>15.02.2021</td>
+                                                        <td>2500 Taka</td>
+                                                        <td>Bkash</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <nav aria-label="Page navigation example" class="my-earning--payment-history--pagination">
+                                            <ul class="pagination">
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#" aria-label="Previous">
+                                                        <span aria-hidden="true"><i class="fas fa-arrow-left"></i></span>
+                                                    </a>
+                                                </li>
+                                                <li class="page-item"><a class="page-link active" href="#">1</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                                <li class="page-item">
+                                                    <a class="page-link" href="#" aria-label="Next">
+                                                        <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </nav>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

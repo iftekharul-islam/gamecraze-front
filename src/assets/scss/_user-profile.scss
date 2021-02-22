@@ -78,7 +78,7 @@
             //     text-align: center;
             //     margin: auto;
             // }
-            i {
+            .camera-icon {
                 color: $secondery;
             }
         }
@@ -103,7 +103,7 @@
         border: 2px solid $secondery;
         padding: 5px 10px;
         transform: skew(-21deg);
-        i,span {
+        .camera-icon,span {
             transform: skew(21deg);
             display: inherit;
             color: $secondery;
@@ -175,6 +175,9 @@
                 flex-direction: column;
                 align-items: center;
                 padding: 0;
+            }
+            @include for-max-575 {
+                font-size: 12px;
             }
             @include for-min-992 {
                 &:last-of-type {

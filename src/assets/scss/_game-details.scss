@@ -16,6 +16,7 @@
             font-weight: normal;
             margin-bottom: 0;
             font-family: circular-book;
+            opacity: .97;
         }
         .read-more {
             color: $secondery;
@@ -63,9 +64,7 @@
     h2 {
         font-size: 50px;
         text-transform: uppercase;
-        -webkit-text-stroke: 2px $stroke-outline;
-        font-family: circular-bold;
-        color: $game-details-heading;
+        color: $secondery;
         @include for-max-575 {
             font-size: 28px;
         }

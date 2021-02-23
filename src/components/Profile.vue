@@ -489,11 +489,11 @@
                                     <div class="my-earning--dashboard">
                                         <div class="my-earning--dashboard--content">
                                             <h4>Lifetime earnings</h4>
-                                            <h2>10,500 Taka</h2>
+                                            <h2>{{ total_earn }} Taka</h2>
                                         </div>
                                         <div class="my-earning--dashboard--content">
                                             <h4>Payable amount</h4>
-                                            <h2>1000 Taka</h2>
+                                            <h2>{{ payable_amount }} Taka</h2>
                                         </div>
                                     </div>
                                     <!-- payment history -->
@@ -510,23 +510,11 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>12365</td>
-                                                        <td>15.02.2021</td>
-                                                        <td>2500 Taka</td>
-                                                        <td>Bkash</td>
-                                                    </tr>
-                                                   <tr>
-                                                       <td>12365</td>
-                                                        <td>15.02.2021</td>
-                                                        <td>2500 Taka</td>
-                                                        <td>Bkash</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>12365</td>
-                                                        <td>15.02.2021</td>
-                                                        <td>2500 Taka</td>
-                                                        <td>Bkash</td>
+                                                    <tr v-for="item in transactions">
+                                                        <td>{{ item.transaction_id }}</td>
+                                                        <td>{{ item.create }}</td>
+                                                        <td>{{ item.amount }} Taka</td>
+                                                        <td>{{ item.payment_type }}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -610,10 +598,18 @@
                 isProfileImgUpdating: false,
                 isCoverImgUpdating: false,
                 isPhoneExists: false,
-                isEmailExists: false
+                isEmailExists: false,
+                total_earn: 0,
+                payable_amount: 0,
+                transactions: [],
             }
         },
         methods: {
+            format_date(value){
+                if (value) {
+                    return moment(String(value)).format('YYYYMMDD')
+                }
+            },
             onDelete(rent) {
                 this.$swal({
                     title: "Rent Post Delete!",
@@ -974,6 +970,23 @@
             this.$api.get('checkpoints?include=area').then (response =>
             {
                 this.checkpoints = response.data.data
+            });
+
+            //transaction details
+
+            this.$api.get('transaction-details', config).then (response =>
+            {
+                console.log("transaction-details");
+                console.log(response.data.transactions_details);
+                this.total_earn = response.data.transactions_details.total_earning;
+                this.payable_amount = response.data.transactions_details.due;
+            });
+
+            this.$api.get('payment-history', config).then (response =>
+            {
+                console.log("payment-history");
+                console.log(response.data);
+                this.transactions = response.data.data;
             });
 
             this.$store.watch(

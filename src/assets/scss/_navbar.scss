@@ -282,6 +282,28 @@
             display: none;
         }
     }
+    &--badge {
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        background: $account-verified;
+        border-radius: 50%;
+        right: 0;
+        top: 27px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &::after {
+            border: 1px solid $text-light;
+            border-width: 2px 2px 0 0;
+            position: absolute;
+            top: 5px;
+            height: 5px;
+            width: 9px;
+            transform: rotate(125deg);
+            content: "";
+        }
+    }
 }
 // normal sign in
 .sign-in {

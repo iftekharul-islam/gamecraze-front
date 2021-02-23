@@ -29,6 +29,7 @@
     "vue-swal": "^1.0.0",
     "vue-sweetalert2": "^3.0.6",
     "vue2-flip-countdown": "^0.10.0",
+    "vuejs-paginate": "^2.1.0",
     "vuex": "^3.4.0",
     "vuex-persistedstate": "^3.0.1"
   },

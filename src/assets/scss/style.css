@@ -1265,12 +1265,15 @@
 .account-verified {
   background: #66CC33;
   border: 2px solid #66CC33;
+  padding-left: 30px !important;
 }
 
 .account-verified::before {
   border: 1px solid #fff;
   border-width: 3px 2px 0 0;
-  display: inline-block;
+  position: absolute;
+  left: 14px;
+  top: 9px;
   height: 13px;
   width: 18px;
   -webkit-transform: rotate(125deg);
@@ -5145,7 +5148,7 @@ html {
 }
 
 .user-profile-heading--account-verified--btn {
-  padding: 5px 19px;
+  padding: 5px 0;
   -webkit-transform: skew(-21deg);
           transform: skew(-21deg);
   display: inline-block;

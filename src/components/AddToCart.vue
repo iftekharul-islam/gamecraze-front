@@ -107,10 +107,10 @@
                       <tbody >
                         <tr v-for="(item, index) in cart" :key="index">
                             <td scope="col">{{ item.rent.game.data.name }}</td>
-                            <td scope="col">{{ item.price }}</td>
+                            <td scope="col">{{ item.price + ((item.price * commissionAmount)/100) }}</td>
                             <td scope="col">{{ item.lend_week }}</td>
                             <td scope="col">
-                              <div class="d-flex align-items-center justify-content-between">{{ item.price }} 
+                              <div class="d-flex align-items-center justify-content-between">{{ item.price + ((item.price * commissionAmount)/100) }}
                                 <div class="item-del" @click="onRemoveCartItem(index)"><i class="fas fa-trash-alt"></i></div>
                               </div>
                             </td>
@@ -127,11 +127,11 @@
                       </div>
                       <div class="subtotal d-flex align-items-center justify-content-between">
                         <p>Subtotal</p>
-                        <span class="subtotal-price">৳{{ totalPrice }}</span>
+                        <span class="subtotal-price">৳ {{ totalPrice }}</span>
                       </div>
                       <div class="subtotal d-flex align-items-center justify-content-between">
                         <p>Delivery Charge</p>
-                        <span class="subtotal-price">৳{{ deliveryCharge }}</span>
+                        <span class="subtotal-price">৳ {{ deliveryCharge }}</span>
                       </div>
 <!--                      <div class="promotional-code">-->
 <!--                        <p class="mb-2">Enter a promotional code</p>-->
@@ -142,7 +142,7 @@
 <!--                      </div>-->
                       <div class="total d-flex align-items-center justify-content-between">
                         <p>Total</p>
-                        <span class="total-price">৳{{ totalPrice + parseFloat(deliveryCharge)}}</span>
+                        <span class="total-price">৳ {{ totalPrice + parseFloat(deliveryCharge)}}</span>
                       </div>
                       
                       </form>
@@ -170,7 +170,8 @@
           paymentMethod: 'cod',
           isLoading: false,
           price: [],
-          deliveryCharge: 0
+          deliveryCharge: 0,
+          commissionAmount: '',
         }
     },
     computed: {
@@ -178,8 +179,9 @@
         var total = 0;
         if (this.cart) {
           for (let i = 0; i < this.cart.length; i++) {
-            total += parseFloat(this.cart[i].price);
+            total += parseFloat(this.cart[i].price) ;
           }
+          total = total + ((total * this.commissionAmount)/100)
         }
         return total;
       }
@@ -250,6 +252,12 @@
         if (response.data.data) {
           this.deliveryCharge = response.data.data.charge;
           localStorage.setItem('deliveryCharge', response.data.data.charge);
+        }
+      });
+
+      this.$api.get('commission').then (response => {
+        if (response.data.data) {
+          this.commissionAmount = response.data.data.amount;
         }
       });
 

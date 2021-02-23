@@ -82,8 +82,9 @@ html {
     }
     .error-message {
         padding-top: 2px;
+        display: block;
         &::after {
-            top: 0;
+            top: 2px;
         }
     }
 }

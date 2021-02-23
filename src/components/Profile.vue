@@ -1,12 +1,16 @@
 <template>
     <div>
-        <section class="user-profile-heading ">
+        <section class="user-profile-heading">
             <img v-if="user.cover" :src="user.cover" alt="profile bg" class="img-fluid user-profile-bg">
             <img v-else src="../assets/img/profile-bg.png" alt="profile bg" class="img-fluid user-profile-bg">
             <div class="cover-edit">
                 <input type="file" @change="onProfileImageChange($event, 'cover')" id="imageUpload" accept=".png, .jpg, .jpeg">
                 <label for="imageUpload"><i class="fas fa-camera camera-icon"></i>  <span>Edit Cover Photo</span></label>
                 <i v-if="isCoverImgUpdating" class="spinner-border spinner-border-sm"></i>
+            </div>
+            <!-- Account verified -->
+            <div class="user-profile-heading--account-verified">
+                <a href="#" class="user-profile-heading--account-verified--btn account-not-verified"><span>Account verify now</span></a>
             </div>
             <div class="container">
                 <div class="user-profile-heading--name">

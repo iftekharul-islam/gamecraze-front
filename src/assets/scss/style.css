@@ -4327,6 +4327,7 @@ html {
   font-weight: normal;
   margin-bottom: 0;
   font-family: circular-book;
+  opacity: .97;
 }
 
 .games-header-section--content .read-more {
@@ -4380,9 +4381,7 @@ html {
 .game-name-img h2 {
   font-size: 50px;
   text-transform: uppercase;
-  -webkit-text-stroke: 2px #264171;
-  font-family: circular-bold;
-  color: #E6FDFF;
+  color: #FFD715;
 }
 
 @media (max-width: 575px) {

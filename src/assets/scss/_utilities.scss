@@ -358,6 +358,28 @@
 .f-s-24 {font-size:24px;}
 .f-s-26 {font-size:26px;}
 
+// ********color*********//
+.account-not-verified {
+  background: $account-not-verified;
+  border: 2px solid $account-not-verified;
+}
+.account-verified {
+  background: $account-verified;
+  border: 2px solid $account-verified;
+  &::before {
+    border: 1px solid $text-light;
+    border-width: 3px 2px 0 0;
+    display: inline-block;
+    height: 13px;
+    width: 18px;
+    transform: rotate(125deg);
+    content: "";
+    margin-right: 10px;
+  }
+}
+
+
+
 // **************ul***********//
 ul {
     list-style: none;

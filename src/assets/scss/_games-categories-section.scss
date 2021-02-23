@@ -31,16 +31,16 @@
         label {
             padding-left: 10px;
         }
-        input {
+        .custom-control-input {
             &:checked {
-                &~label {
+                &~.custom-control-label {
                     &:before {
                         border: none;
                         background: url(../img/check.png)!important;
                         background-size: 16px 16px !important;
                         background-repeat: no-repeat !important;
                         background-position: center !important;
-                    
+                        background-color: black !important;
                     
                     }
                 }
@@ -70,7 +70,7 @@
                 margin-right: 10px;
                 margin-bottom: 10px;
             }
-            i {
+            .fa-times {
                 cursor: pointer;
                 transition: all .3s ease-in;
                 color: $secondery;
@@ -78,19 +78,12 @@
                 right: 0;
                 height: 100%;
                 margin-top: auto;
-                padding-top: 10px;
-                padding-left: 10px;
+                padding-left: 8px;
+                padding-right: 8px;
                 background: #171f31;
                 width: 30px;
                 @include for-max-768 {
-                    padding-top: 7px;
                     padding-left: 9px;
-                }
-
-            }
-            &:hover {
-                i {
-                    // transform: translate(10px, 0px);
                 }
             }
         }
@@ -101,6 +94,16 @@
                 color: inherit;
             }
         }
+    }
+}
+.not-matching {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    width: 100%;
+    @include for-max-575 {
+        height: 200px;
     }
 }
 .clear {

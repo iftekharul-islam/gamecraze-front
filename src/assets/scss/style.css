@@ -1257,6 +1257,28 @@
   font-size: 26px;
 }
 
+.account-not-verified {
+  background: #FF8A1F;
+  border: 2px solid #FF8A1F;
+}
+
+.account-verified {
+  background: #66CC33;
+  border: 2px solid #66CC33;
+}
+
+.account-verified::before {
+  border: 1px solid #fff;
+  border-width: 3px 2px 0 0;
+  display: inline-block;
+  height: 13px;
+  width: 18px;
+  -webkit-transform: rotate(125deg);
+          transform: rotate(125deg);
+  content: "";
+  margin-right: 10px;
+}
+
 ul {
   list-style: none;
 }
@@ -3497,10 +3519,11 @@ html {
 
 .login-form .error-message {
   padding-top: 2px;
+  display: block;
 }
 
 .login-form .error-message::after {
-  top: 0;
+  top: 2px;
 }
 
 .remember-me input, .remember-me label {
@@ -4050,12 +4073,13 @@ html {
   padding-left: 10px;
 }
 
-.games-categories-section--categories input:checked ~ label:before {
+.games-categories-section--categories .custom-control-input:checked ~ .custom-control-label:before {
   border: none;
   background: url(../img/check.png) !important;
   background-size: 16px 16px !important;
   background-repeat: no-repeat !important;
   background-position: center !important;
+  background-color: black !important;
 }
 
 .games-categories-section--tag {
@@ -4097,7 +4121,7 @@ html {
   }
 }
 
-.games-categories-section--tag span i {
+.games-categories-section--tag span .fa-times {
   cursor: pointer;
   -webkit-transition: all .3s ease-in;
   transition: all .3s ease-in;
@@ -4106,21 +4130,40 @@ html {
   right: 0;
   height: 100%;
   margin-top: auto;
-  padding-top: 10px;
-  padding-left: 10px;
+  padding-left: 8px;
+  padding-right: 8px;
   background: #171f31;
   width: 30px;
 }
 
 @media (max-width: 768px) {
-  .games-categories-section--tag span i {
-    padding-top: 7px;
+  .games-categories-section--tag span .fa-times {
     padding-left: 9px;
   }
 }
 
 .games-categories-section--games--game-card-box:hover {
   color: inherit;
+}
+
+.not-matching {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 400px;
+  width: 100%;
+}
+
+@media (max-width: 575px) {
+  .not-matching {
+    height: 200px;
+  }
 }
 
 .clear {
@@ -4788,7 +4831,9 @@ html {
 }
 
 .seller-information-modal table tr td:first-of-type {
-  width: 180px;
+  width: 250px;
+  font-size: 20px;
+  padding-left: 0;
   vertical-align: middle;
 }
 
@@ -4812,6 +4857,15 @@ html {
   background-size: 16px;
 }
 
+.seller-information-modal--table-top tr td {
+  font-size: 20px;
+}
+
+.seller-information-modal--table-bottom tr td:last-of-type {
+  font-size: 16px;
+  vertical-align: middle;
+}
+
 .seller-information {
   border-top: 0.5px solid #FFD715;
   padding-top: 20px;
@@ -4832,12 +4886,14 @@ html {
   border: 1px solid #FFD715;
   padding: 10px;
   border-radius: 10px;
+  font-size: 12px;
 }
 
-.seller-information .seller-address i {
+.seller-information .seller-address .fa-map-marker-alt {
   display: block;
   color: #FFD715;
   margin-bottom: 15px;
+  font-size: 20px;
 }
 
 @media (max-width: 768px) {
@@ -5075,6 +5131,34 @@ html {
   }
 }
 
+.user-profile-heading--account-verified {
+  position: absolute;
+  bottom: 90px;
+  right: 106px;
+}
+
+@media (max-width: 991px) {
+  .user-profile-heading--account-verified {
+    right: 40px;
+    top: 70px;
+  }
+}
+
+.user-profile-heading--account-verified--btn {
+  padding: 5px 19px;
+  -webkit-transform: skew(-21deg);
+          transform: skew(-21deg);
+  display: inline-block;
+  width: 200px;
+  text-align: center;
+}
+
+.user-profile-heading--account-verified--btn span {
+  -webkit-transform: skew(21deg);
+          transform: skew(21deg);
+  display: inline-block;
+}
+
 .avatar-edit {
   position: absolute;
   right: 4px;
@@ -5142,9 +5226,11 @@ html {
   position: relative;
   cursor: pointer;
   border: 2px solid #FFD715;
-  padding: 5px 10px;
+  padding: 5px 19px;
   -webkit-transform: skew(-21deg);
           transform: skew(-21deg);
+  width: 200px;
+  text-align: center;
 }
 
 .cover-edit label .camera-icon, .cover-edit label span {
@@ -5495,7 +5581,8 @@ html {
   cursor: pointer;
 }
 
-.post-rent--input i {
+.post-rent--input .rented-plus,
+.post-rent--input .rented-minus {
   color: #FFD715;
 }
 
@@ -5971,6 +6058,30 @@ html {
 
 .set-password .error-message::after {
   top: 0px;
+}
+
+.first-name-error,
+.last-name-error,
+.number-error-message {
+  font-size: 0;
+}
+
+.first-name-error::before,
+.last-name-error::before,
+.number-error-message::before {
+  font-size: 16px;
+}
+
+.first-name-error::before {
+  content: "Please enter your first name";
+}
+
+.last-name-error::before {
+  content: "Please enter your last name";
+}
+
+.number-error-message::before {
+  content: "Please enter a valid number";
 }
 
 .inbox-section {
@@ -7047,6 +7158,7 @@ html {
 
 .my-earning--payment-history--table tr td, .my-earning--payment-history--table tr th {
   padding-left: 0;
+  border-color: #808080;
 }
 
 .my-earning--payment-history--pagination .pagination .page-item:first-of-type, .my-earning--payment-history--pagination .pagination .page-item:last-of-type {

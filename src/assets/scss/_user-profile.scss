@@ -36,6 +36,27 @@
             
         }
     }
+    // account veryfied
+    &--account-verified {
+        position: absolute;
+        bottom: 90px;
+        right: 106px;
+        @include for-max-991 {
+            right: 40px;
+            top: 70px;
+        }
+        &--btn {
+            padding: 5px 19px;
+            transform: skew(-21deg);
+            display: inline-block;
+            width: 200px;
+            text-align: center;
+            span {
+                transform: skew(21deg);
+                display: inline-block;
+            }
+        }
+    }
 }
 // avatar edit
 .avatar-edit {
@@ -101,8 +122,10 @@
         position: relative;
         cursor: pointer;
         border: 2px solid $secondery;
-        padding: 5px 10px;
+        padding: 5px 19px;
         transform: skew(-21deg);
+        width: 200px;
+        text-align: center;
         .camera-icon,span {
             transform: skew(21deg);
             display: inherit;
@@ -366,7 +389,8 @@
             right: 44px;
             cursor: pointer;
         }
-        i {
+        .rented-plus,
+        .rented-minus {
             color: $secondery;
         }
         #autosuggest {

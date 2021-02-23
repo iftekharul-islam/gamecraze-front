@@ -80,7 +80,7 @@
                                   </router-link>
                                 </div>
 
-                              <div v-if="noGameFound">
+                              <div class="not-matching" v-if="noGameFound">
                                 <h2>Not match any games</h2>
                               </div>
                             </div>

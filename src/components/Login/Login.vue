@@ -137,7 +137,7 @@
                                                    v-model="phone_number" name="user-number" placeholder="Please enter your Number"
                                                    v-else/>
 
-                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                            <span v-if="errors.length" class="error-message number-error-message">{{ errors[0] }}</span>
                                             <label class="floating-label">+88</label>
                                         </ValidationProvider>
                                     </div>

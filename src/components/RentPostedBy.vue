@@ -37,7 +37,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <table class="table table-borderless">
+                                    <table class="table table-borderless seller-information-modal--table-top">
                                         <tbody>
                                         <tr>
                                             <td>Platform:</td>
@@ -69,7 +69,7 @@
                                         <div class="text-center">
                                             <h2>Provide Necessary Information</h2>
                                         </div>
-                                        <table class="table table-borderless">
+                                        <table class="table table-borderless seller-information-modal--table-bottom">
                                             <tbody>
                                             <tr>
                                                 <td>Select Rent Week:</td>

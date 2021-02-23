@@ -5,9 +5,6 @@
             <div class="container-fluid sign-in-width">
                 <div class="row">
                     <div class="col-md-6 col-lg-4 mx-auto">
-                        <!-- <div class="text-center login-logo">
-                            <img src="../../assets/img/logo/gamehublogo.svg" alt="gamehublogo" class="text-center">
-                        </div> -->
                         <div class="card mt-5">
                             <h3 class="card-title text-center">SIGN UP</h3>
                             <!-- form -->
@@ -28,7 +25,7 @@
                                             <label for="firstName">First name</label>
                                             <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
                                                 <input @keypress="isValidString($event)" type="text" class="form-control" id="firstName" value="" v-model="form.name">
-                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                <span v-if="errors.length" class="error-message first-name-error">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
                                         <!-- Last Name -->
@@ -36,7 +33,7 @@
                                             <label for="LastName">Last name</label>
                                             <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
                                                 <input @keypress="isValidString($event)" type="text" class="form-control" id="LastName" value="" v-model="form.lastName">
-                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                <span v-if="errors.length" class="error-message last-name-error">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
                                     </div>

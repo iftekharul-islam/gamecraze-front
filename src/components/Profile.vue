@@ -181,7 +181,7 @@
                                                         <td>{{ formattedDate(lend.lend_date) }}</td>
                                                         <td>{{ returnDate(lend.lend_date, lend.lend_week) }}</td>
                                                         <td>
-                                                            <flip-countdown :deadline="endDate(lend.lend_date, lend.lend_week)"></flip-countdown>
+                                                            <flip-countdown :deadline="endDate(lend.lend_date, lend.created_at, lend.lend_week)"></flip-countdown>
                                                         </td>
                                                         <td>{{ lend.lend_cost }}</td>
                                                         <td><button class="btn btn-primary" @click.prevent="extend">Extent Date</button></td>
@@ -610,11 +610,6 @@
             }
         },
         methods: {
-            format_date(value){
-                if (value) {
-                    return moment(String(value)).format('YYYYMMDD')
-                }
-            },
             onDelete(rent) {
                 this.$swal({
                     title: "Rent Post Delete!",
@@ -681,9 +676,16 @@
                 let formattedDate = new Date(date)
                 return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
             },
-            endDate(data, week) {
+            endDate(data, datetime, week) {
                 let date = new Date(data);
-                date.setDate(date.getDate() + 1 + week * 7);
+
+                var time = new Date(datetime);
+                var hours = time.getHours();
+                if (hours >= 12) {
+                    date.setDate(date.getDate() + 2 + week * 7);
+                } else {
+                    date.setDate(date.getDate() + 1 + week * 7);
+                }
                 return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear()
             },
             onProfileUpdate: function() {

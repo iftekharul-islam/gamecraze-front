@@ -159,7 +159,7 @@
                                                 <td>{{ rent.platform.data.name }}</td>
                                                 <td v-if="rent.renter">{{ rent.renter.data.name }}</td>
                                                 <td v-else>Not rented</td>
-                                                <td v-if="rent.checkpoint_id">{{}}</td>
+                                                <td v-if="rent.checkpoint_id">{{rent.checkpoint.data.name}}</td>
                                                 <td v-else>Not Set</td>
                                                 <td>{{ formattedDate(rent.availability_from_date) }}</td>
                                                 <td v-if="rent.status === 0">
@@ -194,7 +194,7 @@
                                                         <td v-if="lend.rent">{{ lend.rent.game.name }}</td>
                                                         <td>{{ lend.lend_week }}</td>
                                                         <td>{{ formattedDate(lend.lend_date) }}</td>
-                                                        <td>{{ returnDate(lend.lend_date, lend.lend_week) }}</td>
+                                                        <td>{{ returnDate(lend.lend_date, lend.created_at, lend.lend_week) }}</td>
                                                         <td>
                                                             <flip-countdown :deadline="endDate(lend.lend_date, lend.created_at, lend.lend_week)"></flip-countdown>
                                                         </td>
@@ -698,9 +698,15 @@
             onRentedGames() {
                 this.show = false
             },
-            returnDate(lendDate, week) {
+            returnDate(lendDate, datetime, week) {
                 let date = new Date(lendDate);
-                date.setDate(date.getDate() + week * 7);
+                var time = new Date(datetime);
+                var hours = time.getHours();
+                if (hours >= 12) {
+                    date.setDate(date.getDate() + 2 + week * 7);
+                } else {
+                    date.setDate(date.getDate() + 1 + week * 7);
+                }
                 const months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                 return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
             },
@@ -990,8 +996,11 @@
                 $('#v-pills-overview').removeClass('active');
                 $('#v-pills-overview').removeClass('show');
                 $('#v-pills-post-rent-tab').addClass('active');
-                $('#v-pills-dashboard').addClass('active');
-                $('#v-pills-dashboard').addClass('show');
+                $('#v-pills-post-rent').addClass('show');
+                $('#v-pills-post-rent').addClass('active');
+                $('#v-pills-dashboard').removeClass('active');
+                $('#v-pills-dashboard').removeClass('show');
+
               });
 
             //rent posts

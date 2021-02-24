@@ -294,26 +294,23 @@
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
-
+                                                  <!-- Delivery type -->
                                             <div class="form-group row">
-
-                                                <label class="col-sm-3 col-form-label">How do you want to Deliver ?</label>
+                                                <label class="col-sm-3 col-form-label">Delivery type:</label>
                                                 <div class="col-sm-8 post-rent--delivery">
-
                                                     <div class="custom-radio d-flex">
-                                                            <input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod" class="custom-control-input">
-                                                            <label for="cod" class="custom-control-label"> COD</label>
-                                                        
+                                                        <input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod" class="custom-control-input">
+                                                        <label for="cod" class="custom-control-label"> Cash on Delivery <span class="checkbox-style"></span></label>
                                                     </div>
-                                                        <div class=" custom-radio d-flex">
-                                                            <input type="radio" v-model="x" value="1" name="checkpoint_id" id="checkpoint_true" class="custom-control-input">
-                                                            <label for="checkpoint_true" class="custom-control-label"> Checkpoint</label>
-                                                            
-                                                        </div>
+
+                                                    <div class=" custom-radio d-flex">
+                                                        <input type="radio" v-model="x" value="1" name="checkpoint_id" id="checkpoint_true" class="custom-control-input">
+                                                        <label for="checkpoint_true" class="custom-control-label"> Checkpoint <span class="checkbox-style"></span></label>
+                                                    </div>
                                                 </div>
                                             </div>
-
-                                            <div class="form-group row" v-show="x === '1'">
+                                            <!-- Select Check point -->
+                                             <div class="form-group row" v-show="x === '1'">
                                                 <label class="col-sm-3 col-form-label">Select checkpont:</label>
                                                 <div class="col-sm-8 post-rent--input">
                                                     <select class="form-control" id="checkpoint" v-model="rentData.checkpoint">
@@ -322,6 +319,25 @@
                                                     </select>
                                                 </div>
                                             </div>
+
+                                            <!-- game copy -->
+                                             <div class="form-group row">
+                                                <label class="col-sm-3 col-form-label">Game Copy:</label>
+                                                <div class="col-sm-8 post-rent--delivery">
+                                                    <div class="custom-radio d-flex">
+                                                        <input type="radio" name="checkpoint_id2" id="digital-copy" class="custom-control-input">
+                                                        <label for="digital-copy" class="custom-control-label"> Digital copy <span class="checkbox-style"></span></label>
+                                                    </div>
+
+                                                    <div class=" custom-radio d-flex">
+                                                        <input type="radio" name="checkpoint_id2" id="physical-copy" class="custom-control-input">
+                                                        <label for="physical-copy" class="custom-control-label"> Physical Copy <span class="checkbox-style"></span></label>
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+
+                                           
 
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Disk Image:</label>

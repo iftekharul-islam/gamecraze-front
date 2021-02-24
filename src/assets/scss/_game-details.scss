@@ -56,6 +56,21 @@
             height: 100%;
             background:  linear-gradient(90deg, rgba(0, 0, 0, 0.85) 18.75%, rgba(0, 0, 0, 0) 100%);
         }
+        &--photo-credit {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            background: $photo-credit-bg;
+            padding: 5px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            h3 {
+                font-size: 18px;
+                margin: 0;
+                color: $secondery;
+            }
+        }
     }
     
 }

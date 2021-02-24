@@ -87,6 +87,13 @@
                 }
             }
         }
+        .remove-icon {
+            width: 30px;
+            height: 100%;
+            position: absolute;
+            right: 0;
+            display: block;
+        }
     }
     &--games {
         &--game-card-box {

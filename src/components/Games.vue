@@ -50,9 +50,9 @@
                     </div>
                     <div class="col-md-8 col-lg-9 mb-3">
                       <div class="games-categories-section--tag">
-                        <span v-for="(categoryItem, categoryIndex) in checkedCategories" :key="categoryIndex">{{categoryItem}} <i @click="removeCategoryFilter(categoryItem)" class="fas fa-times"></i></span>
-                        <span v-for="(platformItem, platformIndex) in checkedPlatforms" :key="platformIndex">{{ platformItem}} <i @click="removePlatformFilter(platformItem)" class="fas fa-times"></i></span>
-                        <span v-if="$route.query.search">{{$route.query.search}} <i @click="removeSearchKey()" class="fas fa-times"></i></span>
+                        <span v-for="(categoryItem, categoryIndex) in checkedCategories" :key="categoryIndex">{{categoryItem}} <div @click="removeCategoryFilter(categoryItem)" class="remove-icon"><i class="fas fa-times"></i></div></span>
+                        <span v-for="(platformItem, platformIndex) in checkedPlatforms" :key="platformIndex">{{ platformItem}} <div @click="removePlatformFilter(platformItem)" class="remove-icon"><i class="fas fa-times"></i></div></span>
+                        <span v-if="$route.query.search">{{$route.query.search}} <div @click="removeSearchKey()" class="remove-icon"><i class="fas fa-times"></i></div></span>
                       </div>
                         <div class="games-categories-section--games">
                             <div class="row">

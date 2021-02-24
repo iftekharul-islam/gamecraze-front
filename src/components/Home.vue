@@ -45,12 +45,10 @@
             <div id="owl-trending" class="owl-carousel owl-theme" v-if="trendingGames">
                 <div class="item" v-for="(trending, index) in trendingGames" :key="index">
                     <router-link :to="{ path: '/game-details/' + trending.game.data.id}" class="trending-image">
-                        <img :src="trending.game.data.trending_url" alt="trending.game.data.name" v-if="trending.game.data.assets.data.length">
-                        <img src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
+                        <img :src="trending.game.data.trending_url" alt="trending.game.data.name">
                     </router-link>
                     <div class="trending-game--name-price d-flex justify-content-between">
                          <router-link :to="{ path: '/game-details/' + trending.game.data.id}" class="">{{ trending.game.data.name }}</router-link>
-                        <!-- <span>$19.99</span>-->
                     </div>
                     <div class="trending-game--categories d-flex justify-content-between" v-if="trending">
                         <div class="home-categories">
@@ -95,7 +93,6 @@
                         <router-link :to="{ path: '/game-details/' + game.id}" class="upcoming-image">
                             <img class="card-img-top" :src="game.upcoming_url" :alt="game.name"  v-if="game.upcoming_url">
                             <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
-                            <!-- <button class="set-reminder" @click.prevent="setReminder(game.id)" ><i class="fas fa-bell"></i></button> -->
                         </router-link>
                         <div class="d-flex upcoming-order">
                             <router-link :to="{ path: '/game-details/' + game.id}"><span>View Details</span></router-link>
@@ -498,6 +495,7 @@
                 this.$api.get('games/trending?include=game,game.assets,game.genres,game.platforms').then(response => {
                     var vm = this;
                     vm.trendingGames = response.data.data;
+
                     Vue.nextTick(function(){
                         vm.carouselOne();
                     }.bind(vm));

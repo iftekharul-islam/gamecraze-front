@@ -503,7 +503,7 @@
                                     <!-- payment history -->
                                     <div class="my-earning--payment-history">
                                         <h4 class="my-earning--payment-history--heading">Payment history</h4>
-                                        <div class="table-responsive">
+                                        <div class="table-responsive" v-if="transactions.length">
                                             <table class="table my-earning--payment-history--table">
                                                 <thead>
                                                     <tr>
@@ -523,23 +523,24 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <nav aria-label="Page navigation example" class="my-earning--payment-history--pagination">
-                                            <ul class="pagination">
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#" aria-label="Previous">
-                                                        <span aria-hidden="true"><i class="fas fa-arrow-left"></i></span>
-                                                    </a>
-                                                </li>
-                                                <li class="page-item"><a class="page-link active" href="#">1</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                                <li class="page-item">
-                                                    <a class="page-link" href="#" aria-label="Next">
-                                                        <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </nav>
+                                        <span class="text-center d-block" v-else>No transaction data found</span>
+<!--                                        <nav aria-label="Page navigation example" class="my-earning&#45;&#45;payment-history&#45;&#45;pagination">-->
+<!--                                            <ul class="pagination">-->
+<!--                                                <li class="page-item">-->
+<!--                                                    <a class="page-link" href="#" aria-label="Previous">-->
+<!--                                                        <span aria-hidden="true"><i class="fas fa-arrow-left"></i></span>-->
+<!--                                                    </a>-->
+<!--                                                </li>-->
+<!--                                                <li class="page-item"><a class="page-link active" href="#">1</a></li>-->
+<!--                                                <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+<!--                                                <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+<!--                                                <li class="page-item">-->
+<!--                                                    <a class="page-link" href="#" aria-label="Next">-->
+<!--                                                        <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>-->
+<!--                                                    </a>-->
+<!--                                                </li>-->
+<!--                                            </ul>-->
+<!--                                        </nav>-->
                                     </div>
                                 </div>
                             </div>

@@ -10,7 +10,22 @@
             </div>
             <!-- Account verified -->
             <div class="user-profile-heading--account-verified">
-                <a href="#" class="user-profile-heading--account-verified--btn account-not-verified"><span>Account verify now</span></a>
+                <a href="#" class="user-profile-heading--account-verified--btn account-verified" v-if="user.is_verified == 1"><span>Account verified</span></a>
+                <a href="#" data-toggle="modal" data-target="#warning" class="user-profile-heading--account-verified--btn account-not-verified" v-else><span>Account verify now</span></a>
+            </div>
+            <div class="modal fade seller-information-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h2 class="modal-title m-auto" id="warningModalLabel">Warning</h2>
+                            <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <p>To rent a physical disk please Verify your membership. For membership upgrade please
+                            <a href="/contacts" target="_blank" style="color: yellow"> Contact us</a> or call us: +8801886-614533</p>
+                    </div>
+                </div>
             </div>
             <div class="container">
                 <div class="user-profile-heading--name">
@@ -311,6 +326,23 @@
                                             </div>
                                             <!-- Select Check point -->
                                              <div class="form-group row" v-show="x === '1'">
+                                            <div class="form-group row">
+
+                                                <label class="col-sm-3 col-form-label">Game Type</label>
+                                                <div class="col-sm-8 post-rent--delivery">
+
+                                                    <div class="custom-radio d-flex">
+                                                        <input type="radio" value="0" id="digital_copy" name="disk_type" v-model="rentData.disk_type" class="custom-control-input" checked>
+                                                        <label for="digital_copy" class="custom-control-label"> Digital Copy</label>
+
+                                                    </div>
+                                                    <div class="custom-radio d-flex">
+                                                        <input type="radio" value="1" id="physical_copy" name="disk_type" v-model="rentData.disk_type"  class="custom-control-input">
+                                                        <label for="physical_copy" class="custom-control-label"> Physical Copy</label>
+
+                                                    </div>
+                                                </div>
+                                            </div>
                                                 <label class="col-sm-3 col-form-label">Select checkpont:</label>
                                                 <div class="col-sm-8 post-rent--input">
                                                     <select class="form-control" id="checkpoint" v-model="rentData.checkpoint">
@@ -613,6 +645,7 @@
                     disk_image: '',
                     cover_image: '',
                     checkpoint: {},
+                    disk_type: ''
                 },
                 isRentLoading: false,
                 image: null,
@@ -821,12 +854,16 @@
                     disk_image: this.rentData.disk_image,
                     cover_image: this.rentData.cover_image,
                     checkpoint_id: this.rentData.checkpoint.id,
+                    disk_type: this.rentData.disk_type
                 }
                 let config = {
                     headers: {
                         'Authorization': 'Bearer ' + this.$store.state.token
                     }
                 }
+
+                console.log('uploadInfo');
+                console.log(uploadInfo);
 
                 this.$api.post('rents', uploadInfo, config)
                     .then(response => {
@@ -1022,6 +1059,8 @@
                 //Optional Deep if you need it
                 { deep:true }
             );
+            console.log(this.$store.state.user);
+            console.log('user');
         },
         computed: {
           filteredOptions() {

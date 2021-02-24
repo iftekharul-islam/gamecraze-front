@@ -16,12 +16,27 @@
                             <a href="#" class="d-block game-name-img"><h2>{{game.name}}</h2></a>
                             <p>{{game.description.substring(0, 300) | strippedContent}} . . .</p>
                             <a href="#description" class="read-more">Read More</a>
-                            <router-link :to="{ path: '/rent-posted-users/' + game.id}" class="btn--secondery rent-now"><span>RENT NOW</span></router-link>
+                            <button class="btn--secondery rent-now"  data-toggle="modal" data-target="#warning" v-if="rentLimit <= myLends"><span>RENT NOW</span></button>
+                            <router-link :to="{ path: '/rent-posted-users/' + game.id}" class="btn--secondery rent-now" v-else><span>RENT NOW</span></router-link>
                             <div class="d-flex games-header-section--platforms">
                                 <p>PLATFORM:</p>
                                 <a href="javascript:void(0)" v-for="(platform, index) in game.platforms.data" :key="index"><img :src="platform.url" alt="windows"></a>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade seller-information-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h2 class="modal-title m-auto" id="warningModalLabel">Warning</h2>
+                            <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                        </div>
+                        <p>To rent a physical disk please Verify your membership. For membership upgrade please
+                            <a href="/contacts" target="_blank" style="color: yellow"> Contact us</a> or call us: +8801886-614533</p>
                     </div>
                 </div>
             </div>
@@ -141,7 +156,9 @@
         data() {
             return {
                 game: null,
-                relatedGames: null
+                relatedGames: null,
+                rentLimit: '',
+                myLends: ''
             }
         },
         watch: {
@@ -249,7 +266,23 @@
           },
         },
         created() {
+            let config = {
+                headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                }
+            };
+
             this.fetchGame();
+
+            this.$api.get('rent-limit', config).then (response =>
+            {
+                this.rentLimit = response.data.rent_limit;
+            });
+            this.$api.get('lends', config).then (response =>
+            {
+                this.myLends = response.data.length;
+            });
+
         },
         filters: {
           strippedContent: function(string) {

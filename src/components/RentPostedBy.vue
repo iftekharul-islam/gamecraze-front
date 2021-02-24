@@ -9,24 +9,27 @@
                             <th scope="col">Game Owner </th>
                             <th scope="col">Rating</th>
                             <th scope="col">Checkpoint</th>
+                            <th scope="col">Disk type</th>
                             <th scope="col">Available From</th>
                             <th scope="col">Available For</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(rent, index) in rentPosts" :key="index"  data-toggle="modal" title="This is your item" data-target="#rennow1" @click="setModalData(rent)" :class="{disablePost: rent.user_id === $store.state.userId}">
+                        <tr v-for="(rent, index) in rentPosts" :key="index"  data-toggle="modal" :data-target="user_type === 0 && rent.disk_type === 1 ? '#warning' : '#rent_now'" @click="setModalData(rent)" :class="{disablePost: rent.user_id === $store.state.userId}">
                             <td scope="col" v-if="rent.user.data.image"><img :src="rent.user.data.image" alt="renter">{{ rent.user.data.name }}</td>
                             <td scope="col" v-else><img width="80px" v-if="rent.user.data.gender === 'Male'" src="../assets/img/male.png" alt="renter"><img width="80px" v-else-if="rent.user.data.gender === 'Female'" src="../assets/img/female.png" alt="renter"><img v-else src="../assets/img/avatar.jpg" width="80px" alt="renter">{{ rent.user.data.name }}</td>
                             <td scope="col">5/5</td>
                             <td scope="col" v-if="rent.checkpoint">{{ rent.checkpoint.data.area.data.name }}</td>
                             <td scope="col" v-else>Not Set</td>
+                            <td scope="col" v-if="rent.disk_type == 1">Physical Disk</td>
+                            <td scope="col" v-else>Digital Disk</td>
                             <td scope="col">{{ formattedDate(rent.availability_from_date) }}</td>
                             <td scope="col">{{ rent.max_number_of_week}} week(s)</td>
                         </tr>
                         </tbody>
                     </table>
 
-                    <div v-if="modalData && modalData.user_id !== $store.state.userId" class="modal fade seller-information-modal" id="rennow1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div v-if="modalData && modalData.user_id !== $store.state.userId" class="modal fade seller-information-modal" id="rent_now" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                               <ValidationObserver v-slot="{ handleSubmit }">
@@ -134,6 +137,20 @@
                             </div>
                         </div>
                     </div>
+                    <div v-if="modalData && modalData.user_id !== $store.state.userId" class="modal fade seller-information-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header text-center">
+                                    <h2 class="modal-title m-auto" id="warningModalLabel">Warning</h2>
+                                    <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true"></span>
+                                    </button>
+                                </div>
+                                <p>To rent a physical disk please Verify your membership. For membership upgrade please
+                                    <a href="/contacts" target="_blank" style="color: yellow"> Contact us</a> or call us: +8801886-614533</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -146,18 +163,19 @@
         props: ['id'],
         data() {
             return {
-              rentPosts: [],
-              rents: [],
-              lends: [],
-              show: false,
-              modalData: null,
-              form: {
-                week: '',
-                deliveryType: '',
-                address: ''
-              },
-              userDetails: null,
-              isExistsInCart: false
+                rentPosts: [],
+                user_type: '',
+                rents: [],
+                lends: [],
+                show: false,
+                modalData: null,
+                form: {
+                    week: '',
+                    deliveryType: '',
+                    address: ''
+                },
+                userDetails: null,
+                isExistsInCart: false
             }
         },
         computed: {
@@ -203,7 +221,7 @@
               this.isExistsInCart = true;
             }
             this.modalData = rent;
-            console.log(this.modalData)
+            // console.log(this.modalData)
           },
           formattedDate(date) {
               const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -246,7 +264,7 @@
           this.$api.get('rent-posted-users/' + this.id + '?include=game,game.basePrice,platform,diskCondition,user,checkpoint.area.thana.district').then(response => {
             this.rentPosts = response.data.data;
           });
-
+          this.user_type = this.$store.state.user.is_verified;
 
           // let config = {
           //   headers: {

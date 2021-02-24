@@ -90,7 +90,7 @@
                                 <div v-if="auth" class="dropdown-toggle complete-sign-in" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                   <span class="user-name" v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span>
                                   <span class="user-name" v-else>{{ this.$store.state.user.phone_number }}</span>
-                                    <span class="complete-sign-in--badge"></span>
+                                    <span class="complete-sign-in--badge" v-if="$store.state.user.is_verified == 1"></span>
                                  <img v-if="$store.state.user.image" :src="$store.state.user.image" :alt="$store.state.user.name">
                                  <img v-else src="../../assets/img/avatar.png" alt="profile">
                                             <div class="dropdown-menu gamehub-dropdown-menu">

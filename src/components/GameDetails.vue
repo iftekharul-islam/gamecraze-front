@@ -16,8 +16,8 @@
                             <a href="#" class="d-block game-name-img"><h2>{{game.name}}</h2></a>
                             <p>{{game.description.substring(0, 300) | strippedContent}} . . .</p>
                             <a href="#description" class="read-more">Read More</a>
-                            <button class="btn--secondery rent-now"  data-toggle="modal" data-target="#warning" v-if="rentLimit <= myLends"><span>RENT NOW</span></button>
-                            <router-link :to="{ path: '/rent-posted-users/' + game.id}" class="btn--secondery rent-now" v-else><span>RENT NOW</span></router-link>
+                            <button class="btn--secondery rent-now border-0"  data-toggle="modal" data-target="#warning" v-if="rentLimit <= myLends"><span>RENT NOW</span></button>
+                            <router-link :to="{ path: '/rent-posted-users/' + game.id}" class="btn--secondery rent-now border-0" v-else><span>RENT NOW</span></router-link>
                             <div class="d-flex games-header-section--platforms">
                                 <p>PLATFORM:</p>
                                 <a href="javascript:void(0)" v-for="(platform, index) in game.platforms.data" :key="index"><img :src="platform.url" alt="windows"></a>

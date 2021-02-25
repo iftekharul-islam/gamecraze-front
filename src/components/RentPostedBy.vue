@@ -145,7 +145,19 @@
                                     <button type="button" class="close m-0 close-modal" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true"></span>
                                     </button>
-                                <p>Opps !!! You exceeded renting limit. Return your current games to rent new ones</p>
+                                <p>Opps !!! It looks like you are a Rookie member, to access the full features of GameHub you need
+                                    to upgrade to <a href="#" class="text-secondery">ELITE.</a> Once upgraded you can also rent physical disks.
+                                    To upgrade your account please contact us.</p>
+                                <div class="modal-content--description--form">
+                                    <div class="modal-content--description--form--call">
+                                        <p>Please call to this number</p>
+                                        <p>01886-614533</p>
+                                    </div>
+                                    <span class="modal-or">Or</span>
+                                    <div class="modal-content--description--form--call">
+                                        <a href="/contacts" class="btn--secondery secondery-border" target="_blank"><span>FILL UP FORM</span></a>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

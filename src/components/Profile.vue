@@ -30,7 +30,7 @@
                             </div>
                             <span class="modal-or">Or</span>
                             <div class="modal-content--description--form--call">
-                                <a href="#" class="btn--secondery secondery-border"><span>FILL UP FORM</span></a>
+                                <a href="/contacts" class="btn--secondery secondery-border" target="_blank"><span>FILL UP FORM</span></a>
                             </div>
                         </div>
                     </div>

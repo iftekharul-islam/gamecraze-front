@@ -1362,8 +1362,8 @@ input::placeholder {
 
 .close-modal {
   position: absolute;
-  right: 35px;
-  top: 35px;
+  right: 18px;
+  top: 18px;
   width: 20px;
   height: 20px;
   border: 1px solid #FFD715 !important;
@@ -4517,13 +4517,13 @@ html {
 
 @media (min-width: 992px) {
   .upgrade-modal .modal-dialog {
-    max-width: 890px !important;
+    max-width: 800px !important;
   }
 }
 
 @media (min-width: 1200px) {
   .upgrade-modal .modal-dialog {
-    max-width: 1126px !important;
+    max-width: 960px !important;
     background: transparent;
   }
 }
@@ -4536,8 +4536,8 @@ html {
   max-width: 100%;
   margin: auto;
   text-align: center;
-  height: 575px;
-  padding: 132px;
+  height: 500px;
+  padding: 93px;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
@@ -4545,7 +4545,7 @@ html {
 
 @media (max-width: 991px) {
   .upgrade-modal .modal-dialog .modal-content {
-    padding: 100px;
+    padding: 80px;
     max-width: 90%;
   }
 }

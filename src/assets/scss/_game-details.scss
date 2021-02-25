@@ -93,10 +93,10 @@
             max-width: 100% !important;
         }
         @include for-min-992 {
-            max-width: 890px !important;
+            max-width: 800px !important;
         }
         @include for-min-1200 {
-            max-width: 1126px !important;
+            max-width: 960px !important;
             background: transparent;
         }
         .modal-content {
@@ -107,11 +107,11 @@
             max-width: 100%;
             margin: auto;
             text-align: center;
-            height: 575px;
-            padding: 132px;
+            height: 500px;
+            padding: 93px;
             justify-content: center;
             @include for-max-991 {
-                padding: 100px;
+                padding: 80px;
                 max-width: 90%;
             }
             @include for-max-575 {

@@ -434,11 +434,22 @@
         }
         > span {
             display: flex;
+            flex-wrap: wrap;
             @include for-max-575 {
                 flex-direction: column;
-                align-items: flex-end;
                 width: 100%;
-                padding-left: 14px;
+                padding-left: 34px;
+            }
+            > div {
+                flex: 1;
+            }
+            .platform-error {
+                flex-basis: 100%;
+                margin-left: -15px;
+                @include for-max-575 {
+                    width: 100%;
+                    
+                }
             }
         }
         label {
@@ -471,86 +482,11 @@
                 }
             }
         }
-        // Custom radio
-        // .custom-control-label {
-        //     padding-left: 30px;
-        //     @include for-max-575 {
-        //         padding-left: 40px;
-        //     }
-        //     &::before {
-        //         width: 40px;
-        //         height: 40px;
-        //         border-radius: 10px;
-        //         border: .5px solid $secondery !important;
-        //         background: $game-details !important;
-        //         top: -5px;
-        //         @include for-max-575 {
-        //             width: 25px;
-        //             height: 25px;
-        //             border-radius: 5px;
-        //             left: 0;
-        //             top: 0px;
-        //         }
-        //     }
-        //     &::after {
-        //         width: 40px;
-        //         height: 40px;
-        //         border-radius: 10px;
-        //         border: .5px solid $secondery !important;
-        //         background: $game-details !important;
-        //         top: -5px;
-        //         @include for-max-575 {
-        //             width: 25px;
-        //             height: 25px;
-        //             border-radius: 5px;
-        //             left: 0;
-        //             top: 0px;
-        //         }
-        //     }
-        // }
-        // .custom-control-input {
-        //     &:checked {
-        //         &~.custom-control-label {
-        //             &::after {
-        //                 background: $secondery !important;
-        //                 width: 30px !important;
-        //                 height: 30px !important;
-        //                 border-radius: 6px !important;
-        //                 top: 0px !important;
-        //                 left: -19px !important;
-        //                 @include for-max-575 {
-        //                     width: 15px !important;
-        //                     height: 15px !important;
-        //                     border-radius: 3px !important;
-        //                     top: 5px !important;
-        //                     left: 5px !important;
-        //                 }
-        //             }
-        //             &::before {
-        //                 background: $game-details !important;
-        //             }
-        //             span {
-        //                 border: solid $game-details;
-        //                 border-width: 2px 2px 0 0;
-        //                 display: inline-block;
-        //                 height: 10px;
-        //                 width: 16px;
-        //                 background: none;
-        //                 position: absolute;
-        //                 top: 8px;
-        //                 left: -12px;
-        //                 z-index: 9;
-        //                 transform: rotate(125deg);
-        //                 @include for-max-575 {
-        //                     height: 6px;
-        //                     width: 10px;
-        //                     top: 9px;
-        //                     left: 7px;
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
+        &.platform--delivery {
+            @include for-max-575 {
+                padding-left: 0;
+            }
+        }
     }
     .error-message {
         display: inline-block;

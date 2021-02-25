@@ -259,13 +259,13 @@
                                             <!-- platform -->
                                             <div class="form-group row" v-if="gamePlatform">
                                                 <label class="col-sm-3 col-form-label">Platform:</label>
-                                                <div class="col-sm-8 post-rent--delivery">
+                                                <div class="col-sm-8 post-rent--delivery platform--delivery">
                                                 <ValidationProvider name="Platform" rules="required" v-slot="{ errors }">
                                                     <div class="form-check form-check-inline post-rent--input--platform-input custom-radio" v-for="(platform, index) in rentData.game.platforms.data" :key="index">
                                                         <input class="custom-control-input platform" :id="'platform-' + index" name="platform" type="radio" :value="platform" v-model="rentData.platform">
                                                         <label class="custom-control-label ml-2" :for="'platform-' + index">{{ platform.name }}</label>
                                                     </div>
-                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                    <span v-if="errors.length" class="error-message platform-error">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                                 </div>
                                             </div>

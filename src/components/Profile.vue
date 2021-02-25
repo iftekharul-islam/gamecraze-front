@@ -195,7 +195,7 @@
                                                         <td scope="col">Return Date</td>
                                                         <td scope="col" class="text-center">Remaining Days</td>
                                                         <td scope="col">Cost</td>
-                                                        <td scope="col">Action</td>
+                                                        <td scope="col">Status</td>
                                                     </tr>
                                                     </thead>
                                                     <tbody>
@@ -208,7 +208,25 @@
                                                             <flip-countdown :deadline="endDate(lend.lend_date, lend.created_at, lend.lend_week)"></flip-countdown>
                                                         </td>
                                                         <td>{{ lend.lend_cost }}</td>
-                                                        <td><button class="btn btn-primary" @click.prevent="extend">Extent Date</button></td>
+                                                        <td v-if="lend.status === 0">
+                                                            <a class="badge-warning badge" >Pending</a>
+                                                        </td>
+                                                        <td v-else-if="lend.status === 1">
+                                                            <a class="badge-success badge" >Completed</a>
+                                                        </td>
+                                                        <td v-else-if="lend.status === 2">
+                                                            <a class="badge-success badge" >Arrived at checkpoint</a>
+                                                        </td>
+                                                        <td v-else-if="lend.status === 3">
+                                                            <a class="badge-success badge" >Delivered</a>
+                                                        </td>
+                                                        <td v-else-if="lend.status === 4">
+                                                            <a class="badge-success badge" >Rejected</a>
+                                                        </td>
+                                                        <td v-else-if="lend.status === 5">
+                                                            <a class="badge-success badge" >Processing</a>
+                                                        </td>
+<!--                                                        <td><button class="btn btn-primary" @click.prevent="extend">Extent Date</button></td>-->
                                                     </tr>
                                                     </tbody>
                                                 </table>

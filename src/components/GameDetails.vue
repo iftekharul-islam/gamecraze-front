@@ -17,7 +17,7 @@
                             <p>{{game.description.substring(0, 300) | strippedContent}} . . .</p>
                             <a href="#description" class="read-more">Read More</a>
                             <button class="btn--secondery rent-now border-0"  data-toggle="modal" data-target="#warning" v-if="rentLimit <= myLends"><span>RENT NOW</span></button>
-                            <router-link :to="{ path: '/rent-posted-users/' + game.id}" class="btn--secondery rent-now border-0" v-else><span>RENT NOW</span></router-link>
+                            <router-link :to="{ path: '/rent-posted-users/' + game.slug}" class="btn--secondery rent-now border-0" v-else><span>RENT NOW</span></router-link>
                             <div class="d-flex games-header-section--platforms">
                                 <p>PLATFORM:</p>
                                 <a href="javascript:void(0)" v-for="(platform, index) in game.platforms.data" :key="index"><img :src="platform.url" alt="windows"></a>
@@ -133,7 +133,7 @@
                 <h6 class="mb-4">You Might Also Like</h6>
                 <div id="owl-related" class="owl-carousel owl-theme" v-if="relatedGames">
                     <div class="item" v-for="(related, index) in relatedGames" :key="index">
-                      <router-link @click.native="scrollToTop()" :to="{ path: '/game-details/' + related.game.data.id}" class="games-categories-section--games--game-card-box">
+                      <router-link @click.native="scrollToTop()" :to="{ path: '/game-details/' + related.game.data.slug}" class="games-categories-section--games--game-card-box">
                         <div class="game-card">
                             <a class="display-image" href="javascript:void(0)">
                               <img :src="related.game.data.poster_url" :alt="related.game.data.name" class="img-fluid">
@@ -161,7 +161,7 @@
 
     export default {
         name: 'GameDetails',
-        props: ['id'],
+        props: ['slug'],
         data() {
             return {
                 game: null,
@@ -190,7 +190,7 @@
             return  months[formattedDate.getMonth()] + " " + formattedDate.getDate() + ", " + formattedDate.getFullYear()
           },
           fetchGame() {
-            this.$api.get('games/' + this.id + '?include=assets,genres,platforms,screenshots,videoUrls').then(response => {
+            this.$api.get('games/slug/' + this.slug + '?include=assets,genres,platforms,screenshots,videoUrls').then(response => {
               var vm = this;
               vm.game = response.data.data;
               console.log(vm.game, 'game');

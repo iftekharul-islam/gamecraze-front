@@ -170,7 +170,7 @@
           onSelected(item) {
             this.selected = item.item;
             this.query = this.selected.name;
-            this.$router.push('/game-details/' + this.selected.id);
+            this.$router.push('/game-details/' + this.selected.slug);
           },
           onInputChange(text) {
             // event fired when the input changes

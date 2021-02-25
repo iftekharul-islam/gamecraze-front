@@ -32,20 +32,8 @@
                             <button type="button" class="close m-0 close-modal" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"></span>
                             </button>
-                            <div class="modal-content--description">
-                                <p>To rent a physical disk please upgrade your membership to <a href="/contacts" target="_blank" style="color: #FFD715"> ELITE.</a> For membership upgrade please contact us</p>
-                                <div class="modal-content--description--form">
-                                    <div class="modal-content--description--form--call">
-                                      <p>Please call to this number</p>
-                                      <p>01886-614533</p>
-                                    </div>
-                                    <span class="modal-or">Or</span>
-                                    <div class="modal-content--description--form--call">
-                                      <a href="#" class="btn--secondery secondery-border"><span>FILL UP FORM</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                         
+                        <p>Opps !!! You exceeded renting limit. Return your current games to rent new ones</p>
+
                     </div>
                 </div>
             </div>

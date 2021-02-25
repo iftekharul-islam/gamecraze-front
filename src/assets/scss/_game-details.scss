@@ -90,31 +90,33 @@
 .upgrade-modal {
     .modal-dialog {
         @include for-max-991 {
-            max-width: 100%;
+            max-width: 100% !important;
         }
         @include for-min-992 {
-            max-width: 890px;
+            max-width: 890px !important;
         }
         @include for-min-1200 {
-            max-width: 1126px;
+            max-width: 1126px !important;
             background: transparent;
         }
         .modal-content {
-            background: $game-details;
+            background: $game-details; 
+            border: 2px solid $secondery !important;
+            border-radius: 0;
             border: none;
             max-width: 100%;
             margin: auto;
             text-align: center;
             height: 575px;
             padding: 132px;
+            justify-content: center;
             @include for-max-991 {
                 padding: 100px;
                 max-width: 90%;
             }
             @include for-max-575 {
-                padding: 20px;
+                padding: 60px 20px;
                 height: initial;
-                min-height: 500px;
             }
             p {
                 font-size: 28px;

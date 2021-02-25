@@ -17,14 +17,22 @@
             <div class="modal fade seller-information-modal upgrade-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
-                        <div class="modal-header text-center">
-                            <h2 class="modal-title m-auto" id="warningModalLabel">Warning</h2>
-                            <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close m-0 close-modal" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"></span>
                             </button>
+                        <p>Opps !!! It looks like you are a Rookie member, to access the full features of GameHub you need
+                             to upgrade to <a href="#" class="text-secondery">ELITE.</a> Once upgraded you can also rent physical disks.
+                              To upgrade your account please contact us.</p>
+                        <div class="modal-content--description--form">
+                            <div class="modal-content--description--form--call">
+                                <p>Please call to this number</p>
+                                <p>01886-614533</p>
+                            </div>
+                            <span class="modal-or">Or</span>
+                            <div class="modal-content--description--form--call">
+                                <a href="#" class="btn--secondery secondery-border"><span>FILL UP FORM</span></a>
+                            </div>
                         </div>
-                        <p>To rent a physical disk please Verify your membership. For membership upgrade please
-                            <a href="/contacts" target="_blank" style="color: yellow"> Contact us</a> or call us: +8801886-614533</p>
                     </div>
                 </div>
             </div>
@@ -259,13 +267,13 @@
                                             <!-- platform -->
                                             <div class="form-group row" v-if="gamePlatform">
                                                 <label class="col-sm-3 col-form-label">Platform:</label>
-                                                <div class="col-sm-8 post-rent--delivery">
+                                                <div class="col-sm-8 post-rent--delivery platform--delivery">
                                                 <ValidationProvider name="Platform" rules="required" v-slot="{ errors }">
                                                     <div class="form-check form-check-inline post-rent--input--platform-input custom-radio" v-for="(platform, index) in rentData.game.platforms.data" :key="index">
                                                         <input class="custom-control-input platform" :id="'platform-' + index" name="platform" type="radio" :value="platform" v-model="rentData.platform">
                                                         <label class="custom-control-label ml-2" :for="'platform-' + index">{{ platform.name }}</label>
                                                     </div>
-                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                    <span v-if="errors.length" class="error-message platform-error">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                                 </div>
                                             </div>

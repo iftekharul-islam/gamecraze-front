@@ -93,7 +93,7 @@ let router = new Router({
             props: true
         },
         {
-            path: '/game-details/:id',
+            path: '/game-details/:slug',
             name: 'GameDetails',
             component: GameDetails,
             props: true,
@@ -344,7 +344,7 @@ let router = new Router({
             }
         },
         {
-            path: '/rent-posted-users/:id',
+            path: '/rent-posted-users/:slug',
             name: 'RentPostedBy',
             component: RentPostedBy,
             props: true,

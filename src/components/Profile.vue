@@ -3,17 +3,17 @@
         <section class="user-profile-heading">
             <img v-if="user.cover" :src="user.cover" alt="profile bg" class="img-fluid user-profile-bg">
             <img v-else src="../assets/img/profile-bg.png" alt="profile bg" class="img-fluid user-profile-bg">
-            <div class="cover-edit">
-                <input type="file" @change="onProfileImageChange($event, 'cover')" id="imageUpload" accept=".png, .jpg, .jpeg">
-                <label for="imageUpload"><i class="fas fa-camera camera-icon"></i>  <span>Edit Cover Photo</span></label>
-                <i v-if="isCoverImgUpdating" class="spinner-border spinner-border-sm"></i>
-            </div>
+<!--            <div class="cover-edit">-->
+<!--                <input type="file" @change="onProfileImageChange($event, 'cover')" id="imageUpload" accept=".png, .jpg, .jpeg">-->
+<!--                <label for="imageUpload"><i class="fas fa-camera camera-icon"></i>  <span>Edit Cover Photo</span></label>-->
+<!--                <i v-if="isCoverImgUpdating" class="spinner-border spinner-border-sm"></i>-->
+<!--            </div>-->
             <!-- Account verified -->
             <div class="user-profile-heading--account-verified">
                 <a href="#" class="user-profile-heading--account-verified--btn account-verified" v-if="user.is_verified == 1"><span>Account verified</span></a>
                 <a href="#" data-toggle="modal" data-target="#warning" class="user-profile-heading--account-verified--btn account-not-verified" v-else><span>Account verify now</span></a>
             </div>
-            <!-- accout upgrade modal -->
+            <!-- account upgrade modal -->
             <div class="modal fade seller-information-modal upgrade-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="users-name">
-                        <h3>{{ user.name + ' ' + user.last_name }}</h3>
+                        <h3>{{ user.name }} {{ user.last_name}}</h3>
 <!--           <h6>sabertooth_wolf</h6>-->
                     </div>
 <!--                    <div class="user-rating">-->
@@ -98,10 +98,10 @@
                                             <td scope="row">Mobile No:</td>
                                                 <td>
                                                     {{ user.phone_number }}
-                                                    <span class="verified gamehub-success" v-if="user.is_phone_verified == 1">
+                                                    <span class="verified gamehub-success" v-if="user.is_phone_verified === 1">
                                                         <i  class="fas fa-check" aria-hidden="true" title="Verified"></i>
                                                     </span>
-                                                    <span v-else class="not-verified gamehub-danger">
+                                                    <span class="not-verified gamehub-danger" v-if="user.is_phone_verified === 0">
                                                         <i class="fas fa-question-circle" aria-hidden="true" title="Not Verified"></i>
                                                     </span>
                                                 </td>
@@ -1040,6 +1040,7 @@
 
             this.$api.get('transaction-details', config).then (response =>
             {
+                console.log(response);
                 this.total_earn = response.data.transactions_details.total_earning;
                 this.payable_amount = response.data.transactions_details.due;
             });
@@ -1050,6 +1051,8 @@
             });
             this.$api.get('user/details', config).then(response =>{
                 this.user = response.data.data;
+                console.log('this.user');
+                console.log(this.user);
             });
 
 

@@ -8,7 +8,7 @@
                         <div class="footer-bottom">
                     <p>©2021 Game Hub Inc.</p>
                     <div class="footer-bottom--social">
-                        <a href="https://www.facebook.com/adda.gamehub" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.facebook.com/gamehub.bangladesh" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://twitter.com/BdGamehub" target="_blank"><i class="fab fa-twitter"></i></a>
                         <a href="https://www.instagram.com/gamehub.bd" target="_blank"><i class="fab fa-instagram"></i></a>
                         <a href="https://www.youtube.com/channel/UCEtVjE3POZd-DKXpjpjJ53g" target="_blank"><i class="fab fa-youtube"></i></a>

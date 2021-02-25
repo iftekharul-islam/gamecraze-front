@@ -57,7 +57,7 @@
                         <div class="games-categories-section--games">
                             <div class="row">
                                 <div v-for="(rent, index) in filteredGames" :key="index" class="col-md-6 col-lg-4 mb-4">
-                                  <router-link :to="{ path: '/game-details/' + rent.id}" class="games-categories-section--games--game-card-box">
+                                  <router-link :to="{ path: '/game-details/' + rent.slug}" class="games-categories-section--games--game-card-box">
                                     <div class="game-card">
                                         <div class="display-image" href="#">
                                             <img :src="rent.poster_url" :alt="rent.name" class="img-fluid">

@@ -610,7 +610,7 @@
                 rents: [],
                 lends: [],
                 show: false,
-                user: this.$store.state.user,
+                user: {},
                 form: {
                     name: this.$store.state.user.name,
                     last_name: this.$store.state.user.last_name,
@@ -784,7 +784,6 @@
             onIdChange(event) {
                 let fileReader = new FileReader();
                 if (event.srcElement.files.length > 0) {
-                   console.log('filesiz: ', event.srcElement.files[0].size)
                     let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
                     if (allowedTypes.indexOf(event.srcElement.files[0].type) == -1) { 
                         this.$toaster.warning('Only jpg,jpeg or png file allowed');
@@ -868,9 +867,6 @@
                     }
                 }
 
-                console.log('uploadInfo');
-                console.log(uploadInfo);
-
                 this.$api.post('rents', uploadInfo, config)
                     .then(response => {
                         this.isRentLoading = false;
@@ -934,8 +930,6 @@
                 }
             },
             onProfileImageChange: function(event, imageType) {
-                console.log('event: ', event.srcElement.files);
-                console.log('type: ', imageType);
                 let fileReader = new FileReader();
                 if (event.srcElement.files.length > 0) {
                     let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
@@ -999,7 +993,6 @@
             this.$api.get('rents?include=game,platform,diskCondition,checkpoint,renter', config).then(response =>
             {
                 this.rents = response.data.data;
-                console.log(this.rents, 'rents');
             });
 
             this.$api.get('lends', config).then(response =>
@@ -1023,7 +1016,6 @@
             this.$api.get('games/released-games?include=platforms').then(response =>
             {
                 this.games = response.data.data
-                console.log(this.games)
             });
 
             this.$api.get('platforms').then (response =>
@@ -1045,18 +1037,18 @@
 
             this.$api.get('transaction-details', config).then (response =>
             {
-                console.log("transaction-details");
-                console.log(response.data.transactions_details);
                 this.total_earn = response.data.transactions_details.total_earning;
                 this.payable_amount = response.data.transactions_details.due;
             });
 
             this.$api.get('payment-history', config).then (response =>
             {
-                console.log("payment-history");
-                console.log(response.data);
                 this.transactions = response.data.data;
             });
+            this.$api.get('user/details', config).then(response =>{
+                this.user = response.data.data;
+            });
+
 
             this.$store.watch(
                 (state)=>{
@@ -1068,8 +1060,6 @@
                 //Optional Deep if you need it
                 { deep:true }
             );
-            console.log(this.$store.state.user);
-            console.log('user');
         },
         computed: {
           filteredOptions() {

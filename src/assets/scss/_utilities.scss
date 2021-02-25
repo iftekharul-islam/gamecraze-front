@@ -381,6 +381,7 @@
     margin-right: 10px;
   }
 }
+.text-secondery {color: $secondery !important;}
 
 
 
@@ -452,6 +453,10 @@ input::placeholder {
   align-items: center;
   justify-content: center;
   transition: all .3s ease-in;
+  @include for-max-575 {
+    right: 16px;
+    top: 16px;
+  }
   &::after,
   &::before {
       content: "";

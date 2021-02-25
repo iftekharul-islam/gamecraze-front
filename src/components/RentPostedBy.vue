@@ -137,17 +137,13 @@
                             </div>
                         </div>
                     </div>
-                    <div v-if="modalData && modalData.user_id !== $store.state.userId" class="modal fade seller-information-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
+                    <div v-if="modalData && modalData.user_id !== $store.state.userId" class="modal fade seller-information-modal upgrade-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
-                                <div class="modal-header text-center">
-                                    <h2 class="modal-title m-auto" id="warningModalLabel">Warning</h2>
-                                    <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="close m-0 close-modal" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true"></span>
                                     </button>
-                                </div>
-                                <p>To rent a physical disk please Verify your membership. For membership upgrade please
-                                    <a href="/contacts" target="_blank" style="color: yellow"> Contact us</a> or call us: +8801886-614533</p>
+                                <p>Opps !!! You exceeded renting limit. Return your current games to rent new ones</p>
                             </div>
                         </div>
                     </div>

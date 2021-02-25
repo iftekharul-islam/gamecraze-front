@@ -13,7 +13,8 @@
                 <a href="#" class="user-profile-heading--account-verified--btn account-verified" v-if="user.is_verified == 1"><span>Account verified</span></a>
                 <a href="#" data-toggle="modal" data-target="#warning" class="user-profile-heading--account-verified--btn account-not-verified" v-else><span>Account verify now</span></a>
             </div>
-            <div class="modal fade seller-information-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
+            <!-- accout upgrade modal -->
+            <div class="modal fade seller-information-modal upgrade-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header text-center">
@@ -325,7 +326,16 @@
                                                 </div>
                                             </div>
                                             <!-- Select Check point -->
-                                             <div class="form-group row" v-show="x === '1'">
+                                           <div class="form-group row" v-show="x === '1'">
+                                                    <label class="col-sm-3 col-form-label">Select checkpont:</label>
+                                                    <div class="col-sm-8 post-rent--input">
+                                                        <select class="form-control" id="checkpoint" v-model="rentData.checkpoint">
+                                                            <option value="" disabled>Please Select Near Checkpoint</option>
+                                                            <option v-for="(checkpoint, index) in checkpoints" :key="index" :value="checkpoint">{{ checkpoint.name }}, Area: {{ checkpoint.area.data.name }}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+
                                             <div class="form-group row">
 
                                                 <label class="col-sm-3 col-form-label">Game Type</label>
@@ -333,27 +343,20 @@
 
                                                     <div class="custom-radio d-flex">
                                                         <input type="radio" value="0" id="digital_copy" name="disk_type" v-model="rentData.disk_type" class="custom-control-input" checked>
-                                                        <label for="digital_copy" class="custom-control-label"> Digital Copy</label>
+                                                        <label for="digital_copy" class="custom-control-label"> Digital Copy <span></span></label>
 
                                                     </div>
                                                     <div class="custom-radio d-flex">
                                                         <input type="radio" value="1" id="physical_copy" name="disk_type" v-model="rentData.disk_type"  class="custom-control-input">
-                                                        <label for="physical_copy" class="custom-control-label"> Physical Copy</label>
+                                                        <label for="physical_copy" class="custom-control-label"> Physical Copy <span></span></label>
 
                                                     </div>
                                                 </div>
                                             </div>
-                                                <label class="col-sm-3 col-form-label">Select checkpont:</label>
-                                                <div class="col-sm-8 post-rent--input">
-                                                    <select class="form-control" id="checkpoint" v-model="rentData.checkpoint">
-                                                        <option value="" disabled>Please Select Near Checkpoint</option>
-                                                        <option v-for="(checkpoint, index) in checkpoints" :key="index" :value="checkpoint">{{ checkpoint.name }}, Area: {{ checkpoint.area.data.name }}</option>
-                                                    </select>
-                                                </div>
-                                            </div>
+                                              
 
                                             <!-- game copy -->
-                                             <div class="form-group row">
+                                             <!-- <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">Game Copy:</label>
                                                 <div class="col-sm-8 post-rent--delivery">
                                                     <div class="custom-radio d-flex">
@@ -367,7 +370,7 @@
                                                     </div>
                                                     
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                            
 

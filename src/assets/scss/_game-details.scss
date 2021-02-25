@@ -85,3 +85,94 @@
         }
     }
 }
+
+// modal
+.upgrade-modal {
+    .modal-dialog {
+        @include for-max-991 {
+            max-width: 100%;
+        }
+        @include for-min-992 {
+            max-width: 890px;
+        }
+        @include for-min-1200 {
+            max-width: 1126px;
+            background: transparent;
+        }
+        .modal-content {
+            background: $game-details;
+            border: none;
+            max-width: 100%;
+            margin: auto;
+            text-align: center;
+            height: 575px;
+            padding: 132px;
+            @include for-max-991 {
+                padding: 100px;
+                max-width: 90%;
+            }
+            @include for-max-575 {
+                padding: 20px;
+                height: initial;
+                min-height: 500px;
+            }
+            p {
+                font-size: 28px;
+                @include for-max-768 {
+                    font-size: 20px;
+                }
+                @include for-max-575 {
+                    font-size: 16px;
+                }
+            }
+            &--description {
+                max-width: 642px;
+                margin: auto;
+                &--form {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: 76px;
+                    @include for-max-575 {
+                        flex-direction: column;
+                        margin-top: 44px;
+                    }
+                    &--call {
+                        p {
+                            &:first-of-type {
+                                font-size: 20px;
+                                color: $text-light;
+                                @include for-max-768 {
+                                    font-size: 16px;
+                                }
+                            }
+                            &:last-of-type {
+                                @include for-max-575 {
+                                    margin-bottom: 0;
+                                }
+                            }
+                            
+                            color: $secondery;
+                        }
+                        
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+.modal-or {
+    margin: 0 48px;
+    font-size: 28px;
+    text-transform: capitalize;
+    font-family: 'Roboto', sans-serif;
+    @include for-max-768 {
+        margin: 0 28px;
+        font-size: 20px;
+    }
+    @include for-max-575 {
+        margin: 24px 0;
+        font-size: 20px;
+    }
+}

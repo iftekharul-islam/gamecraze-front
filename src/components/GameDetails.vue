@@ -26,17 +26,26 @@
                     </div>
                 </div>
             </div>
-            <div class="modal fade seller-information-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
+            <div class="modal fade seller-information-modal upgrade-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
-                        <div class="modal-header text-center">
-                            <h2 class="modal-title m-auto" id="warningModalLabel">Warning</h2>
-                            <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
+                            <button type="button" class="close m-0 close-modal" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"></span>
                             </button>
-                        </div>
-                        <p>To rent a physical disk please Verify your membership. For membership upgrade please
-                            <a href="/contacts" target="_blank" style="color: yellow"> Contact us</a> or call us: +8801886-614533</p>
+                            <div class="modal-content--description">
+                                <p>To rent a physical disk please upgrade your membership to <a href="/contacts" target="_blank" style="color: #FFD715"> ELITE.</a> For membership upgrade please contact us</p>
+                                <div class="modal-content--description--form">
+                                    <div class="modal-content--description--form--call">
+                                      <p>Please call to this number</p>
+                                      <p>01886-614533</p>
+                                    </div>
+                                    <span class="modal-or">Or</span>
+                                    <div class="modal-content--description--form--call">
+                                      <a href="#" class="btn--secondery secondery-border"><span>FILL UP FORM</span></a>
+                                    </div>
+                                </div>
+                            </div>
+                         
                     </div>
                 </div>
             </div>

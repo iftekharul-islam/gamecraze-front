@@ -90,7 +90,7 @@
                                 <div v-if="auth" class="dropdown-toggle complete-sign-in" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                   <span class="user-name" v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span>
                                   <span class="user-name" v-else>{{ this.$store.state.user.phone_number }}</span>
-                                    <span class="complete-sign-in--badge" v-if="$store.state.user.is_verified == 1"></span>
+                                    <span class="complete-sign-in--badge" v-if="user.is_verified == 1"></span>
                                  <img v-if="$store.state.user.image" :src="$store.state.user.image" :alt="$store.state.user.name">
                                  <img v-else src="../../assets/img/avatar.png" alt="profile">
                                             <div class="dropdown-menu gamehub-dropdown-menu">
@@ -142,7 +142,8 @@
                 query: "",
                 selected: "",
                 totalItems: 0,
-                isNavOpen: false
+                isNavOpen: false,
+                user: {}
             }
         },
         methods: {
@@ -214,6 +215,11 @@
           }
         },
         created() {
+            let config = {
+                headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                }
+            };
             this.totalItems = this.$store.state.itemsInCart;
             this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {
@@ -233,6 +239,10 @@
 
             this.$root.$on('clearSearchKey', () => {
               this.query = '';
+            });
+
+            this.$api.get('user/details', config).then(response =>{
+                this.user = response.data.data;
             });
 
             this.$store.watch(

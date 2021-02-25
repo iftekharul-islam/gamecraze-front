@@ -5,8 +5,8 @@
             <div class="games-header-section--display-image" v-if="game">
                 <img :src="game.coverImage" alt="game details">
                 <div class="games-header-section--display-image--photo-credit">
-                    <h3>Photo Credit:</h3>
-                    <h3>Md Minhaj</h3>
+                    <h3>Photo Credit :</h3>
+                    <h3> {{ game.image_source }}</h3>
                 </div>
             </div>
             <div class="container">

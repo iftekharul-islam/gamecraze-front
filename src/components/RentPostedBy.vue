@@ -31,7 +31,7 @@
                         </tbody>
                     </table>
 
-                    <div v-if="modalData && modalData.user_id !== $store.state.userId" class="modal fade seller-information-modal" id="rent_now" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div v-if="modalData && modalData.user_id !== $store.state.userId && modalData.rented_user_id === null" class="modal fade seller-information-modal" id="rent_now" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                               <ValidationObserver v-slot="{ handleSubmit }">
@@ -139,7 +139,7 @@
                             </div>
                         </div>
                     </div>
-                    <div v-if="modalData && modalData.user_id !== $store.state.userId" class="modal fade seller-information-modal upgrade-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
+                    <div v-if="modalData && modalData.user_id !== $store.state.userId && modalData.rented_user_id === null" class="modal fade seller-information-modal upgrade-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
                                     <button type="button" class="close m-0 close-modal" data-dismiss="modal" aria-label="Close">
@@ -231,7 +231,6 @@
               this.isExistsInCart = true;
             }
             this.modalData = rent;
-            // console.log(this.modalData)
           },
           formattedDate(date) {
               const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

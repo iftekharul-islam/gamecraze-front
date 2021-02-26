@@ -16,7 +16,8 @@
                             <a href="#" class="d-block game-name-img"><h2>{{game.name}}</h2></a>
                             <p>{{game.description.substring(0, 300) | strippedContent}} . . .</p>
                             <a href="#description" class="read-more">Read More</a>
-                            <button class="btn--secondery rent-now border-0"  data-toggle="modal" data-target="#warning" v-if="rentLimit <= myLends"><span>RENT NOW</span></button>
+                            <router-link to="/login" class="btn--secondery rent-now border-0" v-if="!auth"><span>RENT NOW</span></router-link>
+                            <button class="btn--secondery rent-now border-0"  data-toggle="modal" data-target="#warning" v-else-if="rentLimit <= myLends"><span>RENT NOW</span></button>
                             <router-link :to="{ path: '/rent-posted-users/' + game.slug}" class="btn--secondery rent-now border-0" v-else><span>RENT NOW</span></router-link>
                             <div class="d-flex games-header-section--platforms">
                                 <p>PLATFORM:</p>
@@ -261,6 +262,11 @@
               }
             });
           },
+        },
+        computed: {
+            auth () {
+                return this.$store.getters.ifAuthenticated
+            },
         },
         created() {
             let config = {

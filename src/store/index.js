@@ -409,8 +409,10 @@ export const storage = {
                     // localStorage.setItem('user', JSON.stringify(response.data));
 
                     if (payload.name || payload.lastName || payload.gender || payload.birth_date || payload.email || payload.phone_number || payload.id_number || payload.id_image || payload.address || payload.city || payload.postCode || payload.image) {
-                        swal("Profile Updated!", "Profile Update Successful!", "success");
-                        router.push('/profile').catch(err => {});
+                        // swal("Profile Updated!", "Profile Update Successful!", "success");
+                        // this.$root.$emit('profileUpdate');
+                        // router.push('/profile').catch(err => {});
+
                     }
                     else {
                         router.push('/').catch(err => {});

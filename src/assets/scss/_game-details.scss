@@ -65,10 +65,18 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            z-index: 9;
             h3 {
                 font-size: 18px;
                 margin: 0;
                 color: $secondery;
+                opacity: .7;
+                &:first-of-type {
+                    margin-right: 5px;
+                }
+                @include for-max-575 {
+                    font-size: 12px;
+                }
             }
         }
     }

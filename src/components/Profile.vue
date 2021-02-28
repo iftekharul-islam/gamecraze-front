@@ -46,7 +46,7 @@
                             <form action="" method="post" id="profile-image-form">
                                 <input @change="onProfileImageChange($event, 'profile')" type="file" id="profileUpload" accept=".png, .jpg, .jpeg">
                                 <label for="profileUpload"><i class="fas fa-camera camera-icon"></i></label>
-                                <i v-if="isProfileImgUpdating" class="spinner-border spinner-border-sm"></i>
+                                <div class="avatar-edit--spinner" v-if="isProfileImgUpdating"><i  class="spinner-border spinner-border-sm"></i></div>
                             </form>
                         </div>
                     </div>
@@ -267,8 +267,8 @@
                                                 <div class="col-sm-8 post-rent--input">
                                                     <ValidationProvider name="rented week" rules="required|min_value:1" v-slot="{ errors }">
                                                         <input type="number" class="form-control renten-input" id="rentedWeek" min="1" v-model="rentData.max_week">
-                                                        <i class="fa fa-angle-up rented-plus" @click="adjustRentedWeek('increase')"></i>
-                                                        <i class="fa fa-angle-down rented-minus" @click="adjustRentedWeek('decrease')"></i>
+                                                       <div @click="adjustRentedWeek('increase')"> <i class="fa fa-angle-up rented-plus" ></i></div>
+                                                        <div  @click="adjustRentedWeek('decrease')"><i class="fa fa-angle-down rented-minus"></i></div>
                                                         <span class="text-danger">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
@@ -948,6 +948,7 @@
               return yyyy + '-' + mm + '-' + dd;
             },
             adjustRentedWeek: function(adjustmentType) {
+                console.log(this.rentData.max_week);
                 if (adjustmentType == 'increase') {
                     this.rentData.max_week = parseInt(this.rentData.max_week) + 1; 
                     return;

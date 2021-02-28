@@ -5,7 +5,7 @@
             <div class="games-header-section--display-image" v-if="game">
                 <img :src="game.coverImage" alt="game details">
                 <div class="games-header-section--display-image--photo-credit">
-                    <h3>Photo Credit :</h3>
+                    <h3>Photo Credit:  </h3>
                     <h3> {{ game.image_source }}</h3>
                 </div>
             </div>
@@ -97,7 +97,7 @@
                             </div>
                             <div class="overview-content--text">
                                 <p>Game link</p>
-                                <a :href="game.official_website" target="_blank">{{ game.official_website }}</a>
+                                <a :href="game.official_website" target="_blank">Click Here <i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
                     </div>

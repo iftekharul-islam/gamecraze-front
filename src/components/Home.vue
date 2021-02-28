@@ -66,17 +66,17 @@
             <div class="text-center">
                  <h2 class="section-heading">RENT YOUR FAVORITE GAMES</h2>
             </div>
-            <div id="owl-favorite" class="owl-carousel owl-theme" v-if="rents">
-                <div class="item" v-for="(rent, index) in rents" :key="index" >
+            <div id="owl-favorite" class="owl-carousel owl-theme" v-if="populars.length">
+                <div class="item" v-for="(popular, index) in populars" :key="index">
                     <div class="favorite-games">
-                        <router-link :to="{ path: '/game-details/' + rent.game.data.slug}" v-if="rent.game.data.trending_url" class="d-block">
-                            <img :src="rent.game.data.trending_url" :alt="rent.game.data.name"  >
+                        <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-if="popular.game.data.trending_url" class="d-block">
+                            <img :src="popular.game.data.trending_url" :alt="popular.game.data.name">
                         </router-link>
-                        <router-link :to="{ path: '/game-details/' + rent.game.data.slug}" v-else>
+                        <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-else>
                                 <img src="../assets/img/rented/dummy-image.jpg" alt="no-image">
                         </router-link>
                         <div class="favorite-games-categories d-flex justify-content-center align-items-center">
-                            <a :href="'/games?platforms=' + rent.platform.data.slug"><img :src="rent.platform.data.url" :alt="rent.platform.data.name" class="img-fluid"></a>
+                            <a :href="'/games?platforms=' + popular.platform.data.slug"><img :src="popular.platform.data.url" :alt="popular.platform.data.name" class="img-fluid"></a>
                         </div>
                     </div>
                 </div>
@@ -289,7 +289,7 @@
             return {
                 trendingGames: [],
                 upcomingGames: [],
-                rents: [],
+                populars: [],
                 articles: [],
                 featuredArticle: null,
                 isLoggedIn: false,
@@ -504,9 +504,9 @@
             getRentGames: function () {
                 this.$api.get('games/popular-games?include=game.assets,platform').then(response => {
                     var vm = this;
-                    vm.rents = response.data.data;
-                    console.log("Rent posts");
-                    console.log(vm.rents);
+                    vm.populars = response.data.data;
+                    console.log("populars posts");
+                    console.log(vm.populars);
                     Vue.nextTick(function(){
                         vm.carouselFour();
                     }.bind(vm));

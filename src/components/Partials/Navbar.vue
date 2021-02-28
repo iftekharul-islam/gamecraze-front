@@ -151,7 +151,6 @@
             this.$root.$emit('rentPost');
           },
           searchGame() {
-              console.log(this.result)
               if(this.query !== '') {
                 this.$router.push({name: 'games', query: {categories: this.$route.query.categories, platforms: this.$route.query.platforms, search: this.query}})
                 this.$root.$emit('searchEvent')
@@ -188,7 +187,6 @@
           totalCartItems(){
             let cartItems = localStorage.getItem('cartItems');
             if (cartItems) {
-              console.log('items: ', cartItems)
               let cart = JSON.parse(cartItems);
               this.totalItems = cart.length;
             }
@@ -224,13 +222,12 @@
             this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {
                 this.rents = response.data.data;
-                console.log(this.rents, 'rents')
+                // console.log(this.rents, 'rents')
                 const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
                 this.$api.get('rent-games/?ids=' + uniqueArr + '&include=assets,genres,platforms').then(resp => {
                     this.results = resp.data.data;
                     console.log(this.results, 'results');
                 })
-                console.log(uniqueArr)
             });
             
             this.$api.get('games?include=platforms').then(response =>{

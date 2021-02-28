@@ -11,7 +11,7 @@
             <!-- Account verified -->
             <div class="user-profile-heading--account-verified">
                 <a href="#" class="user-profile-heading--account-verified--btn account-verified" v-if="user.is_verified == 1"><span>Account verified</span></a>
-                <a href="#" data-toggle="modal" data-target="#warning" class="user-profile-heading--account-verified--btn account-not-verified" v-else><span>Account verify now</span></a>
+                <a href="#" data-toggle="modal" data-target="#warning" class="user-profile-heading--account-verified--btn account-not-verified" v-if="user.is_verified == 0"><span>Account verify now</span></a>
             </div>
             <!-- account upgrade modal -->
             <div class="modal fade seller-information-modal upgrade-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
@@ -155,7 +155,7 @@
                                                 <td scope="col">Disk condition</td>
                                                 <td scope="col">Platform</td>
                                                 <td scope="col">Renter name</td>
-                                                <td scope="col">Pick Point</td>
+<!--                                                <td scope="col">Pick Point</td>-->
                                                 <td scope="col">Available From</td>
                                                 <td scope="col">Approvement</td>
                                                 <td scope="col">Action</td>
@@ -167,8 +167,8 @@
                                                 <td>{{ rent.diskCondition.data.name_of_type }}</td>
                                                 <td>{{ rent.platform.data.name }}</td>
                                                 <td v-if="rent.renter">{{ rent.renter.data.name }}</td>
-                                                <td v-else>Not rented</td>
-                                                <td v-if="rent.checkpoint_id">{{rent.checkpoint.data.name}}</td>
+                                                <td v-else>N/A</td>
+<!--                                                <td v-if="rent.checkpoint_id">{{rent.checkpoint.data.name}}</td>-->
                                                 <td v-else>Not Set</td>
                                                 <td>{{ formattedDate(rent.availability_from_date) }}</td>
                                                 <td v-if="rent.status === 0">
@@ -273,15 +273,15 @@
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="gamendate" class="col-sm-3 col-form-label">Available from:</label>
-                                                <div class="col-sm-8 post-rent--input">
-                                                    <ValidationProvider name="available date" rules="required" v-slot="{ errors }">
-                                                        <input type="date" class="form-control" id="gamendate" placeholder="Availablity Date" :min="todayDate(1)" v-model="rentData.availability">
-                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                    </ValidationProvider>
-                                                </div>
-                                            </div>
+<!--                                            <div class="form-group row">-->
+<!--                                                <label for="gamendate" class="col-sm-3 col-form-label">Available from:</label>-->
+<!--                                                <div class="col-sm-8 post-rent&#45;&#45;input">-->
+<!--                                                    <ValidationProvider name="available date" rules="required" v-slot="{ errors }">-->
+<!--                                                        <input type="date" class="form-control" id="gamendate" placeholder="Availablity Date" :min="todayDate(1)" v-model="rentData.availability">-->
+<!--                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>-->
+<!--                                                    </ValidationProvider>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
                                             <!-- platform -->
                                             <div class="form-group row" v-if="gamePlatform">
                                                 <label class="col-sm-3 col-form-label">Platform:</label>
@@ -667,7 +667,7 @@
                 gamePlatform: false,
                 rentData: {
                     game: null,
-                    availability: '',
+                    // availability: '',
                     max_week: 1,
                     platform: null,
                     disk_condition: "",
@@ -792,6 +792,16 @@
                     }
                     
                     this.$store.dispatch('updateUserDetails', this.form);
+                    this.$toaster.success("Profile Update Successful!");
+                    setTimeout(function(){
+                        // window.location.reload();
+                        $('#v-pills-edit-profile-tab').removeClass('active');
+                        $('#v-pills-edit-profile').removeClass('active');
+                        $('#v-pills-edit-profile').removeClass('show');
+                        $('#v-pills-overview-tab').addClass('active');
+                        $('#v-pills-overview').addClass('active');
+                        $('#v-pills-overview').addClass('show');
+                    }, 1000);
                 });
             },
             isNumber: function(evt) {
@@ -881,7 +891,7 @@
                 this.isRentLoading = true;
                 let  uploadInfo = {
                     game_id: this.rentData.game.id,
-                    availability: this.rentData.availability,
+                    // availability: this.rentData.availability,
                     max_week: this.rentData.max_week,
                     platform_id: this.rentData.platform.id,
                     disk_condition_id: this.rentData.disk_condition.id,
@@ -900,14 +910,15 @@
                     .then(response => {
                         this.isRentLoading = false;
                         this.$toaster.success('Post submitted');
-                        setTimeout(function(){
+                        this.show = true;
+                        setTimeout(function () {
                             // window.location.reload();
-                          $('#v-pills-post-rent-tab').removeClass('active');
-                          $('#v-pills-post-rent').removeClass('active');
-                          $('#v-pills-post-rent').removeClass('show');
-                          $('#v-pills-dashboard-tab').addClass('active');
-                          $('#v-pills-dashboard').addClass('active');
-                          $('#v-pills-dashboard').addClass('show');
+                            $('#v-pills-post-rent-tab').removeClass('active');
+                            $('#v-pills-post-rent').removeClass('active');
+                            $('#v-pills-post-rent').removeClass('show');
+                            $('#v-pills-dashboard-tab').addClass('active');
+                            $('#v-pills-dashboard').addClass('active');
+                            $('#v-pills-dashboard').addClass('show');
                         }, 2000);
                     });
             },

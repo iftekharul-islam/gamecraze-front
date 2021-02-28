@@ -150,7 +150,11 @@
               </div>
               <div class="col-12">
                   <div class="checkout-btn">
-                          <button @click="onCheckout()" class="btn--cart-btn w-100">GO TO SECURE CHECKOUT</button>
+<!--                          <button @click="onCheckout()" class="btn&#45;&#45;cart-btn w-100">GO TO SECURE CHECKOUT</button>-->
+                          <button @click.prevent="placeOrder" class="btn--cart-btn w-100" :disabled="isLoading">
+                              Place order
+                              <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
+                          </button>
                     </div>
               </div>
             </div>
@@ -203,24 +207,49 @@
                 this.$store.state.totalAmount = this.$store.state.totalAmount + this.price;
             }
         },
-        onCheckout() {
-            var token = this.$store.state.token;
-            var user = this.$store.state.user;
-            console.log('user: ', user);
-            if (token) {
-                if (user.name && user.phone_number && user.address.address && user.identification_number && user.birth_date) {
-                  this.$router.push('/payment/' + this.totalPrice).catch(err => {});
+        placeOrder() {
+            this.isLoading = true
+            var config = {
+                headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
                 }
-                else {
-                  this.$swal("Incomplete Profile", "Please Update Your Profile with all information ");
-                  this.$router.push('/profile').catch(err => {});
+            };
+
+            let data = {
+                paymentMethod: this.paymentMethod,
+                cart_items: this.cart,
+                delivery_charge: this.deliveryCharge
+            };
+
+            this.$api.post('lend-game', data, config).then(response => {
+                if (response.data.error === false) {
+                    this.$store.dispatch('clearCart');
+                    this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
+                    this.isLoading = false;
+                    localStorage.setItem('cartItems', '');
+                    localStorage.setItem('deliveryCharge', 0);
+                    this.$router.push('/profile').then(err => {});
                 }
-            }
-            else {
-              this.$swal("Login First", "Please Login to Lend Games");
-                this.$router.push('/login').catch(err => {});
-            }
+            });
         },
+        // onCheckout() {
+        //     var token = this.$store.state.token;
+        //     var user = this.$store.state.user;
+        //     console.log('user: ', user);
+        //     if (token) {
+        //         if (user.name && user.phone_number && user.address.address && user.identification_number && user.birth_date) {
+        //           this.$router.push('/payment/' + this.totalPrice).catch(err => {});
+        //         }
+        //         else {
+        //           this.$swal("Incomplete Profile", "Please Update Your Profile with all information ");
+        //           this.$router.push('/profile').catch(err => {});
+        //         }
+        //     }
+        //     else {
+        //       this.$swal("Login First", "Please Login to Lend Games");
+        //         this.$router.push('/login').catch(err => {});
+        //     }
+        // },
         onRemoveCartItem(index) {
           this.$swal({
             title: "Do you want to remove this item?",

@@ -8,7 +8,7 @@
                         <tr>
                             <th scope="col">Game Owner </th>
                             <th scope="col">Status</th>
-                            <th scope="col">Checkpoint</th>
+<!--                            <th scope="col">Checkpoint</th>-->
                             <th scope="col">Disk type</th>
                             <th scope="col">Available From</th>
                             <th scope="col">Available For</th>
@@ -21,7 +21,7 @@
                             <td scope="col" v-if="rent.rented_user_id !== null">Rented</td>
                             <td scope="col" v-else-if="rent.user_id === $store.state.userId">Owner</td>
                             <td scope="col" v-else>Available</td>
-                            <td scope="col" v-if="rent.checkpoint">{{ rent.checkpoint.data.area.data.name }}</td>
+<!--                            <td scope="col" v-if="rent.checkpoint">{{ rent.checkpoint.data.area.data.name }}</td>-->
                             <td scope="col" v-else>Not Set</td>
                             <td scope="col" v-if="rent.disk_type == 1">Physical Disk</td>
                             <td scope="col" v-else>Digital Disk</td>
@@ -103,7 +103,7 @@
                                                     <select class="form-control" id="exampleFormControlSelect2" v-model="form.deliveryType">
                                                         <option value="" disabled selected="selected">Please select delivery type</option>
                                                         <option value="0">Home Delivery</option>
-                                                        <option :value="modalData.checkpoint_id" :disabled="modalData.checkpoint_id == null ">Checkpoint</option>
+<!--                                                        <option :value="modalData.checkpoint_id" :disabled="modalData.checkpoint_id == null ">Checkpoint</option>-->
                                                     </select>
                                                     <span class="text-danger">{{ errors[0] }}</span>
                                                   </ValidationProvider>

@@ -341,14 +341,14 @@
                                                 <label class="col-sm-3 col-form-label">Delivery type:</label>
                                                 <div class="col-sm-8 post-rent--delivery">
                                                     <div class="custom-radio d-flex">
-                                                        <input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod" class="custom-control-input">
+                                                        <input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod" class="custom-control-input" checked>
                                                         <label for="cod" class="custom-control-label"> Cash on Delivery <span class="checkbox-style"></span></label>
                                                     </div>
 
-                                                    <div class=" custom-radio d-flex">
-                                                        <input type="radio" v-model="x" value="1" name="checkpoint_id" id="checkpoint_true" class="custom-control-input">
-                                                        <label for="checkpoint_true" class="custom-control-label"> Checkpoint <span class="checkbox-style"></span></label>
-                                                    </div>
+<!--                                                    <div class=" custom-radio d-flex">-->
+<!--                                                        <input type="radio" v-model="x" value="1" name="checkpoint_id" id="checkpoint_true" class="custom-control-input">-->
+<!--                                                        <label for="checkpoint_true" class="custom-control-label"> Checkpoint <span class="checkbox-style"></span></label>-->
+<!--                                                    </div>-->
                                                 </div>
                                             </div>
                                             <!-- Select Check point -->
@@ -960,7 +960,7 @@
             },
             adjustRentedWeek: function(adjustmentType) {
                 if (adjustmentType == 'increase') {
-                    this.rentData.max_week = parseInt(this.rentData.max_week) + 1; 
+                    this.rentData.max_week = parseInt(this.rentData.max_week) + 1;
                     return;
                 }
 

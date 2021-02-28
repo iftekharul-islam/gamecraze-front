@@ -1747,13 +1747,12 @@ input::placeholder {
   cursor: pointer;
   position: relative;
   margin: 0 20px;
-}
-
-.complete-sign-in img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-left: 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .complete-sign-in::after {
@@ -1795,6 +1794,20 @@ input::placeholder {
   -webkit-transform: rotate(125deg);
           transform: rotate(125deg);
   content: "";
+}
+
+.complete-sign-in--nav-profile-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  margin-left: 15px;
+}
+
+.complete-sign-in--nav-profile-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
 }
 
 .sign-in {
@@ -2012,6 +2025,11 @@ input::placeholder {
 
 .body-home .copyright-section .footer-bottom {
   display: none;
+}
+
+.gamehub-body {
+  position: relative;
+  min-height: 100vh;
 }
 
 @media (min-width: 1200px) {
@@ -4485,12 +4503,24 @@ html {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  z-index: 9;
 }
 
 .games-header-section--display-image--photo-credit h3 {
   font-size: 18px;
   margin: 0;
   color: #FFD715;
+  opacity: .7;
+}
+
+.games-header-section--display-image--photo-credit h3:first-of-type {
+  margin-right: 5px;
+}
+
+@media (max-width: 575px) {
+  .games-header-section--display-image--photo-credit h3 {
+    font-size: 12px;
+  }
 }
 
 .game-name-img {
@@ -5370,21 +5400,26 @@ html {
           align-items: center;
 }
 
-.user-profile-heading--name img {
+.user-profile-heading--dp {
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  border: 1px solid #fff;
-  -o-object-fit: cover;
-     object-fit: cover;
+  border: 2px solid #fff;
 }
 
 @media (max-width: 575px) {
-  .user-profile-heading--name img {
+  .user-profile-heading--dp {
     width: 100px;
     height: 100px;
-    margin-right: 20px;
   }
+}
+
+.user-profile-heading--dp img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .user-profile-heading--account-verified {
@@ -5460,6 +5495,25 @@ html {
   color: #FFD715;
 }
 
+.avatar-edit--spinner {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  background: #141A27;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .cover-edit {
   position: absolute;
   bottom: 20px;
@@ -5498,12 +5552,6 @@ html {
 
 .users-name {
   margin-left: 20px;
-}
-
-@media (max-width: 575px) {
-  .users-name {
-    margin-left: 0;
-  }
 }
 
 .users-name h3 {

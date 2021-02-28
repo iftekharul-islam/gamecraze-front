@@ -134,7 +134,7 @@
                                 </div>
                             </div>
 
-                            <div class="notice-box" v-for="(article, index) in articles" :key="index"> 
+                            <div class="notice-box" v-for="(article, index) in articles" :key="index" v-if="featuredArticle.id !== article.id">
                                 <img :src=article.thumbnail :alt="article.title" class="w-100">
                                 <div class="noticed-details">
                                     <router-link :to="{ name: 'NewsStory', params: { id: article.id }}" class="small-readmore"><span>Read More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
@@ -153,7 +153,7 @@
             <div class="container">
                 <div class="col-12 p-0">
                      <div id="owl-notice-mobile" class="owl-carousel owl-theme">
-                         <div class="item"  v-for="(article, index) in articles" :key="index">
+                         <div class="item"  v-for="(article, index) in articles" :key="index" v-if="featuredArticle.id !== article.id">
                              <div class="notice-box"> 
                                 <img :src=article.thumbnail :alt="article.title" class="w-100">
                                 <div class="noticed-details">
@@ -521,24 +521,28 @@
                     }.bind(vm));
                 });
             },
+            getFeaturedArticles: function (number) {
+                this.$api.get('featured-article?number=' + number).then(response => {
+                    if (response.status == 200) {
+                        if ( response.data.data.length > 0) {
+                            this.featuredArticle = response.data.data[0];
+                            console.log('this.featuredArticle');
+                            console.log(this.featuredArticle);
+                        }
+                    }
+                });
+            },
             getArticles: function (number) {
                 this.$api.get('top-articles?number=' + number).then(response => {
                     if (response.status == 200) {
                        //this.articles = response.data.data;
                         let vm = this;
                         vm.articles = response.data.data;
+                        console.log('vm.articles');
+                        console.log(vm.articles);
                         Vue.nextTick(function() {
                             vm.carouselNotice();
                         }.bind(vm));
-                    }
-                });
-            },
-            getFeaturedArticles: function (number) {
-                this.$api.get('featured-article?number=' + number).then(response => {
-                    if (response.status == 200) {
-                        if ( response.data.data.length > 0) {
-                            this.featuredArticle = response.data.data[0];
-                        }
                     }
                 });
             },

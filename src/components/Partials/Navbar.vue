@@ -95,7 +95,7 @@
                                  <img v-else src="../../assets/img/avatar.png" alt="profile">
                                             <div class="dropdown-menu gamehub-dropdown-menu">
                                                 <div class="gamehub-dropdown-menu--top">
-                                                  <router-link to="/profile" class="dropdown-item" href="#">Profile</router-link>
+                                                  <router-link to="/profile" class="dropdown-item" href="#">Dashboard</router-link>
                                                   <router-link to="/profile" class="dropdown-item" @click.native="clickProfile()">Post For Rent</router-link>
                                                   <router-link to="/support" class="dropdown-item" href="#">Support</router-link>
                                                   <router-link to="/contacts" class="dropdown-item" href="#">Contact Us</router-link>
@@ -226,7 +226,7 @@
                 const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
                 this.$api.get('rent-games/?ids=' + uniqueArr + '&include=assets,genres,platforms').then(resp => {
                     this.results = resp.data.data;
-                    console.log(this.results, 'results');
+                    // console.log(this.results, 'results');
                 })
             });
             

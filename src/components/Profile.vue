@@ -73,8 +73,8 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="nav nav-pills user-profile-details--nav" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link active" id="v-pills-overview-tab" data-toggle="pill" href="#v-pills-overview" role="tab" aria-controls="v-pills-overview" aria-selected="true"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon1.png" alt="profile icon"> <img src="../assets/img/active-profile-icon1.png" class="img-active" alt="profile icon"></div> <span>Overview</span></a>
-                        <a class="nav-link" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon2.png" alt="profile icon"> <img src="../assets/img/active-profile-icon2.png" class="img-active" alt="profile icon"></div> <span>Dashboard</span></a>
+                        <a class="nav-link" id="v-pills-overview-tab" data-toggle="pill" href="#v-pills-overview" role="tab" aria-controls="v-pills-overview" aria-selected="true"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon1.png" alt="profile icon"> <img src="../assets/img/active-profile-icon1.png" class="img-active" alt="profile icon"></div> <span>Overview</span></a>
+                        <a class="nav-link active" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon2.png" alt="profile icon"> <img src="../assets/img/active-profile-icon2.png" class="img-active" alt="profile icon"></div> <span>Dashboard</span></a>
                         <a class="nav-link" id="v-pills-post-rent-tab" data-toggle="pill" href="#v-pills-post-rent" role="tab" aria-controls="v-pills-post-rent" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon3.png" alt="profile icon"> <img src="../assets/img/active-profile-icon3.png" class="img-active" alt="profile icon"></div> <span>Post for Rent</span></a>
                         <a class="nav-link" id="v-pills-edit-profile-tab" data-toggle="pill" href="#v-pills-edit-profile" role="tab" aria-controls="v-pills-edit-profile" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon4.png" alt="profile icon"> <img src="../assets/img/active-profile-icon4.png" class="img-active" alt="profile icon"></div> <span>Edit Profile</span></a>
                         <a class="nav-link" id="v-pills-my-earning-tab" data-toggle="pill" href="#v-pills-my-earning" role="tab" aria-controls="v-pills-my-earning" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/earn.png" alt="profile icon"> <img src="../assets/img/active-earn.png" class="img-active" alt="profile icon"></div> <span>My Earning</span></a>
@@ -82,7 +82,7 @@
                     </div>
                     <div class="col-lg-8">
                         <div class="tab-content" id="v-pills-tabContent">
-                            <div class="tab-pane fade show active" id="v-pills-overview" role="tabpanel" aria-labelledby="v-pills-overview-tab">
+                            <div class="tab-pane fade" id="v-pills-overview" role="tabpanel" aria-labelledby="v-pills-overview-tab">
                                 <div class="over-view">
                                     <table class="table table-borderless">
                                         <tbody>
@@ -140,7 +140,7 @@
                                 </div>
                             </div>
 
-                            <div class="tab-pane fade" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
+                            <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
                                         <div class="dashboard-content">
                                             <div class="d-flex justify-content-center dashboard-tab-button mb-5">
                                                 <button  @click.prevent="onRentedGames()" :disabled="!show" :class="{active: !show}"><img class="active-black" src="../assets/img/rent-icon.png" alt="rent icon"> <img class="active-yellow" src="../assets/img/rent-icon-black.png" alt="rent icon"> Rented Games</button>
@@ -638,7 +638,7 @@
             return {
                 rents: [],
                 lends: [],
-                show: false,
+                show: true,
                 user: {},
                 form: {
                     name: this.$store.state.user.name,
@@ -910,15 +910,15 @@
                     .then(response => {
                         this.isRentLoading = false;
                         this.$toaster.success('Post submitted');
-                        this.show = true;
+                        // this.show = true;
                         setTimeout(function () {
-                            // window.location.reload();
-                            $('#v-pills-post-rent-tab').removeClass('active');
-                            $('#v-pills-post-rent').removeClass('active');
-                            $('#v-pills-post-rent').removeClass('show');
-                            $('#v-pills-dashboard-tab').addClass('active');
-                            $('#v-pills-dashboard').addClass('active');
-                            $('#v-pills-dashboard').addClass('show');
+                            window.location.reload();
+                            // $('#v-pills-post-rent-tab').removeClass('active');
+                            // $('#v-pills-post-rent').removeClass('active');
+                            // $('#v-pills-post-rent').removeClass('show');
+                            // $('#v-pills-dashboard-tab').addClass('active');
+                            // $('#v-pills-dashboard').addClass('active');
+                            // $('#v-pills-dashboard').addClass('show');
                         }, 2000);
                     });
             },

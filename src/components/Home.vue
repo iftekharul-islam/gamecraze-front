@@ -502,9 +502,11 @@
                 });
             },
             getRentGames: function () {
-                this.$api.get('rent-posts?include=game.assets,platform').then(response => {
+                this.$api.get('games/popular-games?include=game.assets,platform').then(response => {
                     var vm = this;
                     vm.rents = response.data.data;
+                    console.log("Rent posts");
+                    console.log(vm.rents);
                     Vue.nextTick(function(){
                         vm.carouselFour();
                     }.bind(vm));

@@ -1,4 +1,5 @@
 .gamehub-policy-section {
+    padding-bottom: 150px;
     &--content {
         display: flex;
         @include for-max-768 {
@@ -16,12 +17,14 @@
             }
             p {
                 margin-bottom: 32px;
+                line-height: 28px;
+                opacity: .97;
             }
             &--heading {
                 p {
                     &:first-of-type {
                         color: $secondery;
-                        margin-bottom: 8px;
+                        margin-bottom: 4px;
                     }
                 }
             }

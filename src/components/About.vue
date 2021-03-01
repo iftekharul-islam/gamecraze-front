@@ -1,105 +1,73 @@
 <template>
-    <div>
-        <!-- support-section -->
-        <section class="title-section">
-            <div class="contact-title text-center">
-
-                <div class="gamehub-input-group--content">
-                    <div class="search-input-design support-input-design">
-                        <input type="search" class="" placeholder="How Can We Help?">
-                    </div>
-                    <button class="btn gamehub-search-btn support-search-btn" type="search">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
-
-            </div>
-        </section>
-        <!-- support faq -->
-        <section class="support-faq">
-            <div class="container">
+  <div>
+    <!-- About us -->
+    <section class="about-us-section">
+        <div class="container">
                 <div class="row">
-                    <div class="col-md-10 mx-auto">
-                        <div class="text-center support-sign-in">
-                            <a href="#">SIGN IN FOR CUSTOMISED SUPPORT</a>
+                    <div class="col-12">
+                        <div class="content-heading">
+                        <h2>ABOUT US</h2>
                         </div>
-                        <div class="text-center">
-                            <h6>About Us</h6>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="about-us-section--content ml-a-6">
+                            <h6>
+                                Firestorm – Battle Royale, reimagined for Battlefield. Dominate
+                                on the largest Battlefield map ever with epic weapons and combat
+                                vehicles as a deadly ring of fire closes in.
+                            </h6>
+                            <p>
+                                They say necessity is the mother of all invention. The story of
+                                Gamehub also started out of necessity at one of the best web &
+                                mobile application development firms in Bangladesh which is
+                                Augnitive. The idea of Gamehub came from playing PlayStation
+                                games during free time at the Augnitive office. Most of the team
+                                members wanted to play a variety of games but as you know game’s
+                                discs price is comparatively higher compared to PC games. There
+                                are already few Facebook groups that were selling games but the
+                                trust issue was always there and not to mention used games were
+                                not that cheap either. The idea was to make games available as
+                                cheaply as possible. The only option was to go for renting and
+                                to make everything super easy an online platform was the only
+                                viable option. Boom !!! GameHub was born.
+                            </p>
                         </div>
-                        <!-- collapse -->
-                            <div class="accordion" id="accordionExample">
-                                <div class="card">
-                                    <div class="card-header" id="headingOne">
-                                    <h2 class="mb-0">
-                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Collapsible Group Item #1
-                                        </button>
-                                    </h2>
-                                    </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="about-us-section--content">
+                            <p> Gamehub is a gaming community designed to make all games more accessible 
+                                to gamers without any hassle. With a vision to become the most appreciated 
+                                community among gamers, we are trying to unite all kinds of video game enthusiasts. 
+                                Bringing more and more games to your doorstep at the cheapest prices is our top priority 
+                                because we understand a gamer’s impulse and urges. With us by your side, you can save 
+                                more and most importantly play more. The amazing part of GameHub it does not only allow 
+                                you to play more game but also earn from gaming. You can post your unused games on-sell 
+                                or rent on our platform.</p>
 
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingTwo">
-                                    <h2 class="mb-0">
-                                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Collapsible Group Item #2
-                                        </button>
-                                    </h2>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingThree">
-                                    <h2 class="mb-0">
-                                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Collapsible Group Item #3
-                                        </button>
-                                    </h2>
-                                    </div>
-                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        <!-- end collapse -->
-                        <div class="text-center support-bottom">
-                            <h6>STILL LOOKING FOR HELP?</h6>
-                            <p>Opening a support case is easy. Email us your issue or chat with an expert</p>
-                            <a href="#">SIGN IN TO OPEN A SUPPORT CASE</a>
+                            <p> Apart from this GameHub is a service platform that is product oriented. 
+                                The platform that we provide will inspire the gaming industry. Following 
+                                a few basic rules, gamers will use our service to borrow games from others. 
+                                We will ensure the accuracy of the borrowed discs as well as take care of safety 
+                                problems such as theft, stolen or damaged discs. We will extend our scope to Xbox 
+                                and PC gaming later down the road, as well.</p>
                         </div>
-
                     </div>
                 </div>
-            </div>
-        </section>
-
-    </div>
+        </div>
+    </section>
+  </div>
 </template>
 
 <script>
-
-    export default {
-        data() {
-            return {
-
-            }
-        }
-    }
+export default {
+  data() {
+    return {};
+  },
+};
 </script>
 
 <style scoped>
-    fieldset {
-        max-width: 100% !important;
-    }
+fieldset {
+  max-width: 100% !important;
+}
 </style>

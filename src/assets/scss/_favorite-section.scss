@@ -88,11 +88,11 @@
             }
             &:hover {
                 background: $secondery !important;
-                i {
+                .arrow {
                     color: black;
                 }
             }
-            i {
+            .arrow {
                 transition: all .3s ease-in;
             }
             &:focus {

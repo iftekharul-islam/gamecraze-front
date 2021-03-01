@@ -30,16 +30,21 @@
     .accordion {
         .card {
             background: transparent;
-            border: 1px solid $text-light;
             border-radius: 0;
+            border: none;
+            box-shadow: none;
             &-header {
-                border-bottom: 1px solid $text-light;
+                background: $game-details;
+                margin: 0;
             }
             button {
                 text-decoration: none !important;
-                color: $secondery;
-                font-size: 18px;
+                color: $text-light;
+                font-size: 16px;
                 font-family: circular-medium;
+                padding: 9px 32px;
+                width: 85%;
+               
                 &.collapsed {
                     color: $text-light;
                 }
@@ -50,46 +55,30 @@
                 }
             }
             .card-body {
-                font-size: 18px;
-                color: $secondery;
+                font-size: 16px;
+                color: $text-light;
+                opacity: .97;
+                padding: 20px 32px;
             }
         }
     }
 }
 .support-bottom {
-    h6 {
-        margin-bottom: 20px;
-        font-style: italic;
-        font-family: 'Roboto Condensed', sans-serif;
-    }
-    a {
-        padding: 10px 20px;
-        text-transform: uppercase;
-        color: $text-dark;
-        background: $secondery;
-        font-style: italic;
-        font-family: 'Roboto Condensed', sans-serif;
-        font-weight: 700;
-
+    margin-top: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include for-max-575 {
+        flex-direction: column;
+        margin-top: 56px;
     }
     p {
-        margin-bottom: 60px;
         font-weight: normal;
         font-family: sans-serif;
-    }
-}
-.support-sign-in {
-    a {
-        padding: 10px 20px;
-        text-transform: uppercase;
-        color: $text-dark;
-        background: $secondery;
-        position: relative;
-        top: -12px;
-        font-style: italic;
-        font-weight: 700;
-        font-family: 'Roboto Condensed', sans-serif;
-
+        @include for-max-575 {
+            margin-bottom: 20px !important;
+            margin-right: 0;
+        }
     }
 }
 
@@ -98,30 +87,21 @@
         button {
             &::after {
                 content: "";
+                border: solid $text-light;
+                border-width: 0 0px 1px 1px;
+                transform: rotate(135deg);
                 position: absolute;
-                left: 10px;
-                top: 31px;
-                width: 15px;
-                height: 2px;
-                background: $secondery;
-            }
-            &::before {
-                content: "";
-                position: absolute;
-                left: 10px;
-                top: 31px;
-                width: 15px;
-                height: 2px;
-                background: $secondery;
-                transform: rotate(90deg);
+                width: 12px;
+                height: 12px;
+                background: transparent !important;
+                right: 20px;
+                top: 20px;
+                transition: all .5s ease-in;
             }
             &.collapsed {
                 &::after {
-                    background: $text-light;
-                }
-                &::before {
-                    transform: rotate(0deg);
-                    background: $text-light;
+                    transform: rotate(315deg);
+                    top: 13px;
                 }
             }
         }

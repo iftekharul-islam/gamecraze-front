@@ -7600,6 +7600,10 @@ html {
   line-height: 28px;
 }
 
+.gamehub-policy-section {
+  padding-bottom: 150px;
+}
+
 .gamehub-policy-section--content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -7630,11 +7634,13 @@ html {
 
 .gamehub-policy-section--content--text p {
   margin-bottom: 32px;
+  line-height: 28px;
+  opacity: .97;
 }
 
 .gamehub-policy-section--content--text--heading p:first-of-type {
   color: #FFD715;
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .btn:focus {

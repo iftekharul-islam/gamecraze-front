@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="content-heading">
-                            <h2>ABOUT US</h2>
+                            <h2>terms & conditions</h2>
                         </div>
                     </div>
 

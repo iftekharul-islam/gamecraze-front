@@ -1,84 +1,131 @@
 <template>
     <div>
-        <!-- support-section -->
-        <section class="title-section">
-            <div class="contact-title text-center">
-
-                <div class="gamehub-input-group--content">
-                    <div class="search-input-design support-input-design">
-                        <input type="search" class="" placeholder="How Can We Help?">
-                    </div>
-                    <button class="btn gamehub-search-btn support-search-btn" type="search">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
-
-            </div>
-        </section>
-        <!-- support faq -->
-        <section class="support-faq">
+        <!-- Privacy Policy -->
+        <section class="gamehub-policy-section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-10 mx-auto">
-                        <div class="text-center support-sign-in">
-                            <a href="#">SIGN IN FOR CUSTOMISED SUPPORT</a>
+                    <div class="col-12">
+                        <div class="content-heading">
+                            <h2>privacy & policies</h2>
                         </div>
-                        <div class="text-center">
-                            <h6>Privacy</h6>
-                        </div>
-                        <!-- collapse -->
-                            <div class="accordion" id="accordionExample">
-                                <div class="card">
-                                    <div class="card-header" id="headingOne">
-                                    <h2 class="mb-0">
-                                        <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Collapsible Group Item #1
-                                        </button>
-                                    </h2>
-                                    </div>
+                    </div>
 
-                                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                    </div>
-                                    </div>
+                    <div class="col-12">
+                        <div class="gamehub-policy-section--content">
+                            <div class="gamehub-policy-section--content--text">
+                                <p>At GameHub, accessible from www.gamehub.com.bd, one of our main priorities 
+                                    is the privacy of our visitors. This Privacy Policy document contains types 
+                                    of information that is collected and recorded by GameHub and how we use it. 
+                                    If you have additional questions or require more information about our Privacy 
+                                    Policy, do not hesitate to contact us. This Privacy Policy applies only to our 
+                                    online activities and is valid for visitors to our website with regards to the 
+                                    information that they shared and/or collect in GameHub. This policy is not 
+                                    applicable to any information collected offline or via channels other than this website.</p>
+                                 <div class="gamehub-policy-section--content--text--heading">
+                                     <p>
+                                      Consent
+                                    </p>
+                                    <p> By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
+                                 </div>
+                                <div class="gamehub-policy-section--content--text--heading">
+                                    <p>Information we collect</p>
+                                    <p>The personal information that you are asked to provide, and the reasons 
+                                        why you are asked to provide it, will be made clear to you at the point we 
+                                        ask you to provide your personal information. If you contact us directly, we 
+                                        may receive additional information about you such as your name, email address, 
+                                        phone number, the contents of the message and/or attachments you may send us, and 
+                                        any other information you may choose to provide. When you register for an Account, 
+                                        we may ask for your contact information, including items such as name, company name, 
+                                        address, email address, and telephone number.</p>
                                 </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingTwo">
-                                    <h2 class="mb-0">
-                                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Collapsible Group Item #2
-                                        </button>
-                                    </h2>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                    </div>
-                                    </div>
+                                <div class="gamehub-policy-section--content--text--heading">
+                                    <p> How we use your information</p>
+                                    <p>We use the information we collect in various ways, including to: Provide, operate, 
+                                        and maintain our website Improve, personalize, and expand our website Understand 
+                                        and analyze how you use our website Develop new products, services, features, and 
+                                        functionality Communicate with you, either directly or through one of our partners, 
+                                        including for customer service, to provide you with updates and other information 
+                                        relating to the website, and for marketing and promotional purposes Send you emails 
+                                        Find and prevent fraud</p>
                                 </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingThree">
-                                    <h2 class="mb-0">
-                                        <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Collapsible Group Item #3
-                                        </button>
-                                    </h2>
-                                    </div>
-                                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                    </div>
-                                    </div>
+                                 <div class="gamehub-policy-section--content--text--heading"> 
+                                     <p>Log Files</p>
+                                     <p>GameHub follows a standard procedure of using log files. These files log visitors when they 
+                                         visit websites. All hosting companies do this and a part of hosting services' analytics. The 
+                                         information collected by log files includes internet protocol (IP) addresses, browser type, 
+                                         Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the 
+                                         number of clicks. These are not linked to any information that is personally identifiable. The 
+                                         purpose of the information is for analyzing trends, administering the site, tracking users' 
+                                         movement on the website, and gathering demographic information.</p>
+                                 </div>
+                                  <div class="gamehub-policy-section--content--text--heading"> 
+                                     <p>Cookies and Web Beacons</p>
+                                     <p>Like any other website, GameHub uses 'cookies'. These cookies are used to store 
+                                         information including visitors' preferences, and the pages on the website that 
+                                         the visitor accessed or visited. The information is used to optimize the users' 
+                                         experience by customizing our web page content based on visitors' browser type and/or 
+                                         other information. <br>For more general information on cookies, please read "What Are 
+                                         Cookies" from Cookie Consent.</p>
+                                 </div>
+                            </div>
+                            <div class="gamehub-policy-section--content--text">
+                                <div class="gamehub-policy-section--content--text--heading">
+                                    <p>Delivery & Return Policy:</p>
+                                    <p>You may consult this list to find the Privacy Policy for each of the advertising 
+                                        partners of GameHub.<br><br> Third-party ad servers or ad networks use technologies like cookies, 
+                                        JavaScript, or Web Beacons that are used in their respective advertisements and links that appear 
+                                        on GameHub, which are sent directly to users' browsers. They automatically receive your IP address 
+                                        when this occurs. These technologies are used to measure the effectiveness of their advertising 
+                                        campaigns and/or to personalize the advertising content that you see on websites that you visit.<br><br>
+                                        Note that GameHub has no access to or control over these cookies that are used by third-party advertisers.</p>
+                                </div>
+                                 <div class="gamehub-policy-section--content--text--heading">
+                                    <p>Third Party Privacy Policies</p>
+                                    <p>GameHub's Privacy Policy does not apply to other advertisers or websites. 
+                                        Thus, we are advising you to consult the respective Privacy Policies of 
+                                        these third-party ad servers for more detailed information. It may include
+                                        their practices and instructions about how to opt-out of certain options.<br> 
+                                        You can choose to disable cookies through your individual browser options. 
+                                        To know more detailed information about cookie management with specific web 
+                                        browsers, it can be found at the browsers' respective websites.</p>
+                                </div>
+                                <div class="gamehub-policy-section--content--text--heading">
+                                    <p>CCPA Privacy Rights (Do Not Sell My Personal Information)</p>
+                                    <p>Under the CCPA, among other rights, consumers have the right to: Request that a business 
+                                        that collects a consumer's personal data disclose the categories and specific pieces of 
+                                        personal data that a business has collected about consumers.<br> Request that a business deletes 
+                                        any personal data about the consumer that a business has collected.<br> Request that a business 
+                                        that sells a consumer's personal data, not sell the consumer's personal data.<br> If you make a 
+                                        request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.</p>
+                                </div>
+                                <div class="gamehub-policy-section--content--text--heading">
+                                    <p>GDPR Data Protection Rights</p>
+                                    <p>We would like to make sure you are fully aware of all of your data protection rights. 
+                                        Every user is entitled to the following: The right to access – You have the right to 
+                                        request copies of your personal data. We may charge you a small fee for this service. 
+                                        The right to rectification – You have the right to request that we correct any information 
+                                        you believe is inaccurate. You also have the right to request that we complete the 
+                                        information you believe is<br> incomplete.<br> The right to erasure – You have the right to request 
+                                        that we erase your personal data, under certain<br> conditions.<br> The right to restrict processing – You have 
+                                        the right to request that we restrict the processing of your personal data, under certain conditions. 
+                                        The right to object to processing – You have the right to object to our processing of your personal data, 
+                                        under certain conditions. The right to data portability – You have the right to request that we transfer 
+                                        the data that we have collected to another organization, or directly to you, under certain conditions. 
+                                        If you make a request, we have one month to respond to you. If you would like to exercise any of these 
+                                        rights, please contact us. <br>Children's Information<br> Another part of our priority is adding protection for 
+                                        children while using the internet. We encourage parents and guardians to observe, participate in, and/or 
+                                        monitor and guide their online activity. GameHub does not knowingly collect any Personal Identifiable 
+                                        Information from children under the age of 13. If you think that your child provided this kind of 
+                                        information on our website, we strongly encourage you to contact us immediately and we will do our 
+                                        best efforts to promptly remove such information from our records. </p>
                                 </div>
                             </div>
-                        <!-- end collapse -->
-                        <div class="text-center support-bottom">
-                            <h6>STILL LOOKING FOR HELP?</h6>
-                            <p>Opening a support case is easy. Email us your issue or chat with an expert</p>
-                            <a href="#">SIGN IN TO OPEN A SUPPORT CASE</a>
                         </div>
-
+                         <!--  -->
+                         <div class="support-bottom">
+                            <p class="mb-0 mr-a-6">If you have any questions about the policy feel free to contact us.</p>
+                            <a href="/contacts" class="btn--secondery"><span>CONTACT US</span></a>
+                        </div>
                     </div>
                 </div>
             </div>

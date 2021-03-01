@@ -70,7 +70,7 @@
                 <div class="item" v-for="(popular, index) in populars" :key="index">
                     <div class="favorite-games">
                         <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-if="popular.game.data.trending_url" class="d-block">
-                            <img :src="popular.game.data.trending_url" :alt="popular.game.data.name">
+                            <img :src="popular.game.data.poster_url" :alt="popular.game.data.name">
                         </router-link>
                         <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-else>
                                 <img src="../assets/img/rented/dummy-image.jpg" alt="no-image">

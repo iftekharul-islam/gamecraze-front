@@ -95,7 +95,7 @@ import axios from 'axios'
 
 Vue.use({
   install (Vue) {
-    console.log(process.env.VUE_APP_GAMEHUB_BASE_API, "env", process.env);
+    // console.log(process.env.VUE_APP_GAMEHUB_BASE_API, "env", process.env);
     Vue.prototype.$api = axios.create({
       baseURL: process.env.VUE_APP_GAMEHUB_BASE_API
     })

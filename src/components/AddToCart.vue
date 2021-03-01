@@ -105,6 +105,7 @@
                         </tr>
                       </thead>
                       <tbody >
+
                         <tr v-for="(item, index) in cart" :key="index">
                             <td scope="col">{{ item.rent.game.data.name }}</td>
                             <td scope="col">{{ item.price + ((item.price * commissionAmount)/100) }}</td>
@@ -119,8 +120,15 @@
                     </table>
                 </div>
               </div>
+<!--                <ValidationObserver v-slot="{ handleSubmit }">-->
               <div class="col-md-7 col-lg-5">
                   <div class="cart-section--item-price-box">
+                      <div class="basket-module">
+                          <label for="address">Enter Address</label>
+<!--                          <ValidationProvider name="address" rules="required" v-slot="{ errors }">-->
+                          <input id="address" type="text" v-model="address" class="promo-code-field">
+<!--                          </ValidationProvider>-->
+                      </div>
                       <form action="">
                         <div class="cart-section--item-price-box--heading text-center">
                         <span>Items in your Bag</span>
@@ -157,6 +165,7 @@
                           </button>
                     </div>
               </div>
+<!--                </ValidationObserver>-->
             </div>
           </div>
         </section>
@@ -165,19 +174,20 @@
 
 <script>
   export default {
-    data() {
-        return {
-          games: null,
-          checkedGame: '',
-          lendWeek: '',
-          cart: [],
-          paymentMethod: 'cod',
-          isLoading: false,
-          price: [],
-          deliveryCharge: 0,
-          commissionAmount: '',
-        }
-    },
+      data() {
+          return {
+              address: '',
+              games: null,
+              checkedGame: '',
+              lendWeek: '',
+              cart: [],
+              paymentMethod: 'cod',
+              isLoading: false,
+              price: [],
+              deliveryCharge: 0,
+              commissionAmount: '',
+          }
+      },
     computed: {
       totalPrice() {
         var total = 0;
@@ -216,6 +226,7 @@
             };
 
             let data = {
+                address: this.address,
                 paymentMethod: this.paymentMethod,
                 cart_items: this.cart,
                 delivery_charge: this.deliveryCharge

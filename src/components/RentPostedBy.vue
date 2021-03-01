@@ -109,12 +109,12 @@
                                                   </ValidationProvider>
                                                 </td>
                                             </tr>
-                                            <tr v-if="form.deliveryType === '0' && modalData">
-                                                <td>Delivery Address:</td>
-                                                <td>
-                                                  <input type="text" class="form-control" v-model="form.address">
-                                                </td>
-                                            </tr>
+<!--                                            <tr v-if="form.deliveryType === '0' && modalData">-->
+<!--                                                <td>Delivery Address:</td>-->
+<!--                                                <td>-->
+<!--                                                  <input type="text" class="form-control" v-model="form.address">-->
+<!--                                                </td>-->
+<!--                                            </tr>-->
                                             <tr v-if="form.deliveryType !== '0' && form.deliveryType !== '' && modalData">
                                                 <td>Checkpoint Details:</td>
                                                 <td>

@@ -123,12 +123,6 @@
 <!--                <ValidationObserver v-slot="{ handleSubmit }">-->
               <div class="col-md-7 col-lg-5">
                   <div class="cart-section--item-price-box">
-                      <div class="basket-module">
-                          <label for="address">Enter Address</label>
-<!--                          <ValidationProvider name="address" rules="required" v-slot="{ errors }">-->
-                          <input id="address" type="text" v-model="address" class="promo-code-field">
-<!--                          </ValidationProvider>-->
-                      </div>
                       <form action="">
                         <div class="cart-section--item-price-box--heading text-center">
                         <span>Items in your Bag</span>
@@ -152,9 +146,15 @@
                         <p>Total</p>
                         <span class="total-price">৳ {{ totalPrice + parseFloat(deliveryCharge)}}</span>
                       </div>
-                      
                       </form>
                   </div>
+                  <!-- delivery address -->
+                   <div class="cart-delivery-address">
+                      <label for="address">Enter Address</label>
+                        <!-- <ValidationProvider name="address" rules="required" v-slot="{ errors }">-->
+                      <textarea id="address" type="text" v-model="address" class="promo-code-field" placeholder="Write..."></textarea>
+                         <!--  </ValidationProvider>-->
+                    </div>
               </div>
               <div class="col-12">
                   <div class="checkout-btn">

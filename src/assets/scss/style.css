@@ -2718,10 +2718,15 @@ input::placeholder {
   }
 }
 
+.favorite-section .owl-stage-outer {
+  max-height: 280px;
+}
+
 .favorite-games {
   background: #141A27;
   padding: 10px;
   position: relative;
+  overflow: hidden;
 }
 
 .favorite-games:hover .favorite-games-categories {
@@ -6906,6 +6911,31 @@ html {
   font-size: 16px;
   padding: 0;
   height: 48px;
+}
+
+.cart-delivery-address {
+  margin-top: 44px;
+}
+
+.cart-delivery-address label {
+  display: block;
+  margin-bottom: 16px;
+}
+
+.cart-delivery-address textarea {
+  width: 100%;
+  border: 1px solid #FFD715;
+  background: #141A27;
+  padding: 16px;
+  opacity: .5;
+  min-height: 80px;
+  color: #fff;
+}
+
+.cart-delivery-address textarea:focus {
+  border-radius: 0 !important;
+  border-color: #FFD715;
+  outline: none;
 }
 
 .newsroom-section {

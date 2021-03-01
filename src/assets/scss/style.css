@@ -7600,6 +7600,43 @@ html {
   line-height: 28px;
 }
 
+.gamehub-policy-section--content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .gamehub-policy-section--content {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
+@media (min-width: 768px) {
+  .gamehub-policy-section--content--text {
+    max-width: 505px;
+  }
+}
+
+@media (min-width: 768px) {
+  .gamehub-policy-section--content--text:first-of-type {
+    margin-left: 32px;
+    margin-right: 57px;
+  }
+}
+
+.gamehub-policy-section--content--text p {
+  margin-bottom: 32px;
+}
+
+.gamehub-policy-section--content--text--heading p:first-of-type {
+  color: #FFD715;
+  margin-bottom: 8px;
+}
+
 .btn:focus {
   outline: none;
 }

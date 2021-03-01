@@ -1,7 +1,7 @@
 <template>
     <div>
         <!-- support-section -->
-        <section class="title-section">
+        <!-- <section class="title-section">
             <div class="contact-title text-center">
 
                 <div class="gamehub-input-group--content">
@@ -14,69 +14,65 @@
                 </div>
 
             </div>
-        </section>
+        </section> -->
         <!-- support faq -->
         <section class="support-faq">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-10 mx-auto">
-                        <div class="text-center support-sign-in">
-                            <a href="#">SIGN IN FOR CUSTOMISED SUPPORT</a>
-                        </div>
-                        <div class="text-center">
-                            <h6>Top <span><img src="../assets/img/logo/gamehublogo.svg" alt="gr"></span> FAQs</h6>
-                        </div>
+                    <div class="col-md-11 mx-auto">
                         <!-- collapse -->
+                            <div class="content-heading">
+                                <h2>frequently asking questions</h2>
+                            </div>
                             <div class="accordion" id="accordionExample">
-                                <div class="card">
-                                    <div class="card-header" id="headingOne">
+                                <div class="card mb-a-7">
+                                    <div class="card-header p-0" id="headingOne">
                                     <h2 class="mb-0">
                                         <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                        Collapsible Group Item #1
+                                             1. How to sign up for GameHub?
                                         </button>
                                     </h2>
                                     </div>
 
                                     <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                        The sign up process of GameHub is quite straightforward. You need to provide your Mobile number, Email, Name.
                                     </div>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingTwo">
+                                <div class="card mb-a-7">
+                                    <div class="card-header p-0" id="headingTwo">
                                     <h2 class="mb-0">
                                         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                        Collapsible Group Item #2
+                                            2. How to pay the membership fee? 
                                         </button>
                                     </h2>
                                     </div>
                                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                       You can pay via Bkash, Nogod, Rocket, or also use COD when you will receive your 1st  games as rent.  
                                     </div>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-header" id="headingThree">
+                                <div class="card mb-a-7">
+                                    <div class="card-header p-0" id="headingThree">
                                     <h2 class="mb-0">
                                         <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                        Collapsible Group Item #3
+                                            3. How will I get my membership fee back?
                                         </button>
                                     </h2>
                                     </div>
                                     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                       We can send you the money via Bkash, Nogod, or via bank transfer.
                                     </div>
                                     </div>
-                                </div>
+                                </div>       
                             </div>
                         <!-- end collapse -->
-                        <div class="text-center support-bottom">
-                            <h6>STILL LOOKING FOR HELP?</h6>
-                            <p>Opening a support case is easy. Email us your issue or chat with an expert</p>
-                            <a href="#">SIGN IN TO OPEN A SUPPORT CASE</a>
+                        <div class="support-bottom">
+                            <p class="mb-0 mr-a-6">We hope we got you covered if not feel free to contact us</p>
+                            <a href="#" class="btn--secondery"><span>CONTACT US</span></a>
                         </div>
 
                     </div>

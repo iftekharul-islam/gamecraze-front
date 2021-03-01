@@ -48,7 +48,7 @@
 .ml-a-3 { margin-left: 0.938rem; }
 .ml-a-4 { margin-left: 1.25rem; }
 .ml-a-5 { margin-left: 1.875rem; }
-.ml-a-6 { margin-left: 2.188rem; }
+.ml-a-6 { margin-left: 2rem; }
 .ml-a-7 { margin-left: 2.5rem; }
 .ml-a-8 { margin-left: 2.813rem; }
 .ml-a-9 { margin-left: 3.125rem; }
@@ -77,7 +77,7 @@
 .mr-a-3 { margin-right: 0.938rem; }
 .mr-a-4 { margin-right: 1.25rem; }
 .mr-a-5 { margin-right: 1.875rem; }
-.mr-a-6 { margin-right: 2.188rem; }
+.mr-a-6 { margin-right: 2rem; }
 .mr-a-7 { margin-right: 2.5rem; }
 .mr-a-8 { margin-right: 2.813rem; }
 .mr-a-9 { margin-right: 3.125rem; }
@@ -108,7 +108,7 @@
 .mb-a-4 { margin-bottom: 1.25rem; }
 .mb-a-5 { margin-bottom: 1.875rem; }
 .mb-a-6 { margin-bottom: 2.188rem; }
-.mb-a-7 { margin-bottom: 2.5rem; }
+.mb-a-7 { margin-bottom: 2.5rem; @include for-max-992{margin-bottom: 1.25rem;}}
 .mb-a-8 { margin-bottom: 2.813rem; }
 .mb-a-9 { margin-bottom: 3.125rem; }
 .mb-a-10 { margin-bottom: 3.438rem; }
@@ -167,7 +167,7 @@
 .pt-a-3 { padding-top: 0.938rem; }
 .pt-a-4 { padding-top: 1.25rem; }
 .pt-a-5 { padding-top: 1.875rem; }
-.pt-a-6 { padding-top: 2.188rem; }
+.pt-a-6 { padding-top: 2rem; }
 .pt-a-7 { padding-top: 2.5rem; }
 .pt-a-8 { padding-top: 2.813rem; }
 .pt-a-9 { padding-top: 3.125rem; }
@@ -208,7 +208,7 @@
 .pl-a-3 { padding-left: 0.938rem; }
 .pl-a-4 { padding-left: 1.25rem; }
 .pl-a-5 { padding-left: 1.875rem; }
-.pl-a-6 { padding-left: 2.188rem; }
+.pl-a-6 { padding-left: 2rem; }
 .pl-a-7 { padding-left: 2.5rem; }
 .pl-a-8 { padding-left: 2.813rem; }
 .pl-a-9 { padding-left: 3.125rem; }
@@ -237,7 +237,7 @@
 .pr-a-3 { padding-right: 0.938rem; }
 .pr-a-4 { padding-right: 1.25rem; }
 .pr-a-5 { padding-right: 1.875rem; }
-.pr-a-6 { padding-right: 2.188rem; }
+.pr-a-6 { padding-right: 2rem; }
 .pr-a-7 { padding-right: 2.5rem; }
 .pr-a-8 { padding-right: 2.813rem; }
 .pr-a-9 { padding-right: 3.125rem; }
@@ -474,5 +474,11 @@ input::placeholder {
     transform: rotate(135deg);
   }
 }
-
+// content heading
+.content-heading {
+  text-align: center;
+  text-transform: capitalize;
+  margin-bottom: 47px;
+  margin-top: 99px;
+}
 

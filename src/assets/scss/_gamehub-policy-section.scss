@@ -1,0 +1,30 @@
+.gamehub-policy-section {
+    &--content {
+        display: flex;
+        @include for-max-768 {
+            flex-direction: column;
+        }
+        &--text {
+            @include for-min-768 {
+                max-width: 505px;
+            }
+            &:first-of-type {
+                @include for-min-768 {
+                    margin-left: 32px;
+                    margin-right: 57px;
+                }
+            }
+            p {
+                margin-bottom: 32px;
+            }
+            &--heading {
+                p {
+                    &:first-of-type {
+                        color: $secondery;
+                        margin-bottom: 8px;
+                    }
+                }
+            }
+        }
+    }
+}

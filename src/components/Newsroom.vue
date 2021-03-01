@@ -19,7 +19,7 @@
                 </div>
                 <!-- row -->
                 <div class="row">
-                    <div v-for="(item, index) in news" :key="item.id" :class="{ 'col-md-6 mb-4': (index == 0 || index == 1) , 'col-md-4 mb-4' : (index != 0 || index != 1) }" v-if="featured.id !== item.id">
+                    <div v-for="(item, index) in news" :key="item.id" :class="{ 'col-md-6 mb-4': (index == 1 || index == 2) , 'col-md-4 mb-4' : (index != 1 || index != 2) }" v-if="featured.id !== item.id">
                         <router-link :to="{ name: 'NewsStory', params: { id: item.id }}" class="newsroom-section--content-box">
                             <div class="newsroom-section--content-box--img">
                                 <img :src=item.thumbnail :alt=item.title class="w-100 img-fluid">

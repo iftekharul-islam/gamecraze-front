@@ -158,7 +158,7 @@
 <!--                                                <td scope="col">Pick Point</td>-->
                                                 <td scope="col">Available From</td>
                                                 <td scope="col">Approvement</td>
-                                                <td scope="col">Action</td>
+<!--                                                <td scope="col">Action</td>-->
                                             </tr>
                                             </thead>
                                             <tbody>
@@ -180,7 +180,7 @@
                                                 <td v-else>
                                                     <a class="badge-danger badge" >Rejected</a>
                                                 </td>
-                                                <td><button type="button" class="btn btn-danger mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+<!--                                                <td><button type="button" class="btn btn-danger mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button></td>-->
                                             </tr>
                                             </tbody>
                                             </table>
@@ -1048,6 +1048,7 @@
                 $('#v-pills-post-rent-tab').addClass('active');
                 $('#v-pills-post-rent').addClass('show');
                 $('#v-pills-post-rent').addClass('active');
+                $('#v-pills-dashboard-tab').removeClass('active');
                 $('#v-pills-dashboard').removeClass('active');
                 $('#v-pills-dashboard').removeClass('show');
 

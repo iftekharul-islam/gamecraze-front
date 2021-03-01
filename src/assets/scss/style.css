@@ -7571,6 +7571,35 @@ html {
   font-weight: bold;
 }
 
+.about-us-section {
+  padding-bottom: 100px;
+}
+
+.about-us-section--content {
+  max-width: 505px;
+}
+
+@media (max-width: 768px) {
+  .about-us-section--content {
+    margin-left: 0;
+  }
+}
+
+.about-us-section--content p, .about-us-section--content h6 {
+  opacity: .97;
+  margin-bottom: 32px;
+}
+
+.about-us-section--content h6 {
+  font-size: 20px;
+  font-style: italic;
+  line-height: 36px;
+}
+
+.about-us-section--content p {
+  line-height: 28px;
+}
+
 .btn:focus {
   outline: none;
 }

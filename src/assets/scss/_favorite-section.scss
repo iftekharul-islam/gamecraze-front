@@ -1,5 +1,4 @@
 
-
 .favorite-section {
     padding-bottom: 150px;
     @include for-max-992 {
@@ -114,11 +113,15 @@
             }
         }
     }
+    .owl-stage-outer {
+        max-height: 280px;
+    }
 }
 .favorite-games {
     background: $game-details;
     padding: 10px;
     position: relative;
+    overflow: hidden;
     &:hover {
         .favorite-games-categories {
             transform: translate(0px, 0px);

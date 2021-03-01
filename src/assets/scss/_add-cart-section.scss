@@ -150,4 +150,25 @@
         height: 48px;
     }
 }
-
+// cart deleivery address
+.cart-delivery-address {
+    margin-top: 44px;
+    label {
+        display: block;
+        margin-bottom: 16px;
+    }
+    textarea {
+        width: 100%;
+        border: 1px solid $secondery;
+        background: $game-details;
+        padding: 16px;
+        opacity: .5;
+        min-height: 80px;
+        color: $text-light;
+        &:focus {
+            border-radius: 0 !important;
+            border-color: $secondery;
+            outline: none;
+        }
+    }
+}

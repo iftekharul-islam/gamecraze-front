@@ -207,7 +207,7 @@
                                                         <td>
                                                             <flip-countdown :deadline="endDate(lend.lend_date, lend.created_at, lend.lend_week)"></flip-countdown>
                                                         </td>
-                                                        <td>{{ lend.lend_cost }}</td>
+                                                        <td>{{ lend.lend_cost + Math.floor(lend.commission) }}</td>
                                                         <td v-if="lend.status === 0">
                                                             <a class="badge-warning badge" >Pending</a>
                                                         </td>

@@ -227,9 +227,15 @@
         },
         methods: {
           setModalData(rent) {
-            if (this.checkIfExistsInCart(this.id)) {
+              console.log('set modeldata')
+              console.log(rent);
+            if (this.checkIfExistsInCart(rent.game.data.id)) {
               this.isExistsInCart = true;
+              // console.log('this.isExistsInCart');
+              // console.log(this.isExistsInCart);
             }
+            console.log('isExistsInCart');
+            console.log(this.isExistsInCart);
             this.modalData = rent;
           },
           formattedDate(date) {
@@ -256,6 +262,9 @@
           }, 
           checkIfExistsInCart(gameId) {
             let cartItems = localStorage.getItem('cartItems');
+            console.log('cartItems');
+            console.log(cartItems);
+            console.log(gameId);
             if (cartItems) {
               cartItems = JSON.parse(cartItems);
               let isExists = cartItems.some(item => {
@@ -283,7 +292,7 @@
 
             this.$api.get('user/details', config).then(response => {
                 this.user_type = response.data.data.is_verified;
-                console.log(this.user_type);
+                // console.log(this.user_type);
             });
 
           // let config = {

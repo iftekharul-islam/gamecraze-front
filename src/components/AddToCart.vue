@@ -156,15 +156,54 @@
                          <!--  </ValidationProvider>-->
                     </div>
               </div>
-              <div class="col-12">
-                  <div class="checkout-btn">
-<!--                          <button @click="onCheckout()" class="btn&#45;&#45;cart-btn w-100">GO TO SECURE CHECKOUT</button>-->
-                          <button @click.prevent="placeOrder" class="btn--cart-btn w-100" :disabled="isLoading">
-                              Place order
-                              <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
-                          </button>
+                <div class="col-12">
+                    <div class="checkout-btn">
+                        <!--                          <button @click="onCheckout()" class="btn&#45;&#45;cart-btn w-100">GO TO SECURE CHECKOUT</button>-->
+                        <button @click.prevent="ExistInCart" data-toggle="modal" data-target="#warning" class="btn--cart-btn w-100" :disabled="isLoading">
+                            Place order
+                            <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
+                        </button>
+<!--                        <button @click.prevent="placeOrder" class="btn&#45;&#45;cart-btn w-100" :disabled="isLoading" v-else>-->
+<!--                            Place order-->
+<!--                            <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>-->
+<!--                        </button>-->
                     </div>
-              </div>
+                </div>
+                <div v-if="showModal">
+                    <transition name="modal">
+                        <div class="modal-mask">
+                            <div class="modal-wrapper">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Modal title</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true" @click="showModal = false">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Opps !!! The game <span v-for="(item, index) in cart" v-if="item.rent.id == id">{{ item.rent.game.data.name }}</span> you wanted to rent is not available at this moment.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-primary" @click="showModal = false">OK</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </transition>
+                </div>
+                <!-- rented game modal -->
+                <div class="modal fade seller-information-modal upgrade-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true" v-if="isEnabled">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <button type="button" class="close m-0 close-modal" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true"></span>
+                            </button>
+                            <p>Opps !!! The game <span v-for="(item, index) in cart" v-if="item.rent.id == id">{{ item.rent.game.data.name }}</span> you wanted to rent is not available at this moment.</p>
+                        </div>
+                    </div>
+                </div>
 <!--                </ValidationObserver>-->
             </div>
           </div>
@@ -186,6 +225,10 @@
               price: [],
               deliveryCharge: 0,
               commissionAmount: '',
+              gameIds: [],
+              id: null,
+              showModal: false,
+              isEnabled: false,
           }
       },
     computed: {
@@ -201,6 +244,24 @@
       }
     },
     methods: {
+        ExistInCart() {
+            console.log('this.gameIds');
+            console.log(this.gameIds);
+            let data = {
+                ids: this.gameIds,
+            };
+            this.$api.post('check-rented', data).then(response => {
+                console.log(response);
+                if (response.data.id != '') {
+                    this.id = response.data.id;
+                    this.showModal = true;
+                    console.log(this.id, 'id');
+                } else {
+                    this.placeOrder();
+                }
+            });
+
+        },
         subTotal() {
             if (this.cart != null) {
               for (let i = 0; i < this.cart.length; i++) {
@@ -284,6 +345,14 @@
           let cartItems = localStorage.getItem('cartItems');
           if (cartItems != '' && cartItems != null) {
             this.cart = JSON.parse(cartItems);
+              if (this.cart) {
+                  for (let i = 0; i < this.cart.length; i++) {
+                      console.log('cart data');
+                      this.gameIds.push(this.cart);
+                  }
+              }
+            console.log('this.cart');
+            console.log(this.cart);
           }
         }
     },
@@ -320,3 +389,4 @@
         }
   }
 </script>
+

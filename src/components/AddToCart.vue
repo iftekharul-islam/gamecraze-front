@@ -120,7 +120,6 @@
                     </table>
                 </div>
               </div>
-<!--                <ValidationObserver v-slot="{ handleSubmit }">-->
               <div class="col-md-7 col-lg-5">
                   <div class="cart-section--item-price-box">
                       <form action="">
@@ -148,18 +147,23 @@
                       </div>
                       </form>
                   </div>
+              </div>
+                <ValidationObserver v-slot="{ handleSubmit }">
+                    <form class="col-12" @submit.prevent="handleSubmit(ExistInCart)" method="post">
+                  <div class="col-md-7 col-lg-5">
                   <!-- delivery address -->
                    <div class="cart-delivery-address">
                       <label for="address">Enter Address</label>
-                        <!-- <ValidationProvider name="address" rules="required" v-slot="{ errors }">-->
-                      <textarea id="address" type="text" v-model="address" class="promo-code-field" placeholder="Write..."></textarea>
-                         <!--  </ValidationProvider>-->
+                    <ValidationProvider name="address" rules="required" v-slot="{ errors }">
+                      <textarea id="address" type="text" v-model="address" class="promo-code-field"></textarea>
+                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                       </ValidationProvider>
                     </div>
-              </div>
+                </div>
                 <div class="col-12">
                     <div class="checkout-btn">
                         <!--                          <button @click="onCheckout()" class="btn&#45;&#45;cart-btn w-100">GO TO SECURE CHECKOUT</button>-->
-                        <button @click.prevent="ExistInCart" data-toggle="modal" data-target="#warning" class="btn--cart-btn w-100" :disabled="isLoading">
+                        <button class="btn--cart-btn w-100" :disabled="isLoading">
                             Place order
                             <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
                         </button>
@@ -169,6 +173,8 @@
 <!--                        </button>-->
                     </div>
                 </div>
+                </form>
+            </ValidationObserver>
                 <div v-if="showModal">
                     <transition name="modal">
                         <div class="modal-mask">
@@ -204,7 +210,6 @@
                         </div>
                     </div>
                 </div>
-<!--                </ValidationObserver>-->
             </div>
           </div>
         </section>

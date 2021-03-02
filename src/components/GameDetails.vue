@@ -281,9 +281,11 @@
             {
                 this.rentLimit = response.data.rent_limit;
             });
-            this.$api.get('lends', config).then (response =>
+            this.$api.get('my-lends', config).then (response =>
             {
-                this.myLends = response.data.length;
+                this.myLends = response.data.lends;
+                console.log('this.myLends');
+                console.log(this.myLends);
             });
 
         },

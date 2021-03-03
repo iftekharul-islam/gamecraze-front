@@ -4980,7 +4980,6 @@ html {
 @media (max-width: 992px) {
   .game-available-section--table::after {
     width: 740px;
-    height: 84px;
   }
 }
 

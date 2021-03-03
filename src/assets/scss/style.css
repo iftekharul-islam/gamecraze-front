@@ -3584,6 +3584,7 @@ html {
 }
 
 .login-form ul li {
+  font-family: 'Roboto Condensed', sans-serif;
   font-style: italic;
   padding: 0;
   color: #FFD715;
@@ -6409,6 +6410,7 @@ html {
   font-size: 24px;
   font-style: italic;
   color: #FFD715;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 @media (min-width: 1200px) {
@@ -6746,6 +6748,18 @@ html {
   background: #FFD715;
 }
 
+@media (max-width: 1200px) {
+  .cart-section--item-details::after {
+    height: 70px;
+  }
+}
+
+@media (max-width: 992px) {
+  .cart-section--item-details::after {
+    height: 54px;
+  }
+}
+
 @media (max-width: 768px) {
   .cart-section--item-details::after {
     width: 590px;
@@ -6931,6 +6945,19 @@ html {
   border-radius: 0 !important;
   border-color: #FFD715;
   outline: none;
+}
+
+.multiple-user-warning-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: auto;
+  height: 100%;
+  width: 100%;
+}
+
+.multiple-user-warning-modal .modal-wrapper {
+  height: 100%;
 }
 
 .newsroom-section {

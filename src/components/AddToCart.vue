@@ -147,51 +147,48 @@
                       </div>
                       </form>
                   </div>
+                  <!-- Enter Adsress -->
+                    <ValidationObserver v-slot="{ handleSubmit }">
+                      <form class="" @submit.prevent="handleSubmit(ExistInCart)" method="post">
+                          <div class="">
+                            <div class="cart-delivery-address">
+                                <label for="address">Enter Address</label>
+                                <ValidationProvider name="address" rules="required" v-slot="{ errors }">
+                                  <textarea id="address" type="text" v-model="address" class="promo-code-field"></textarea>
+                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                </ValidationProvider>
+                            </div>
+                          </div>
+                           <!-- Place Order button -->
+                            <div class="checkout-btn">
+                                <!-- <button @click="onCheckout()" class="btn&#45;&#45;cart-btn w-100">GO TO SECURE CHECKOUT</button>-->
+                                <button class="btn--cart-btn w-100" :disabled="isLoading">
+                                    Place order
+                                    <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
+                                </button>
+                              <!-- <button @click.prevent="placeOrder" class="btn&#45;&#45;cart-btn w-100" :disabled="isLoading" v-else>-->
+                              <!-- Place order-->
+                              <!-- <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>-->
+                              <!--  </button>-->
+                            </div>
+                        <!-- PLace Order button -->
+                      </form>
+              </ValidationObserver>
+              <!-- End Enter Adsress -->
               </div>
-                <ValidationObserver v-slot="{ handleSubmit }">
-                    <form class="col-12" @submit.prevent="handleSubmit(ExistInCart)" method="post">
-                  <div class="col-md-7 col-lg-5">
-                  <!-- delivery address -->
-                   <div class="cart-delivery-address">
-                      <label for="address">Enter Address</label>
-                    <ValidationProvider name="address" rules="required" v-slot="{ errors }">
-                      <textarea id="address" type="text" v-model="address" class="promo-code-field"></textarea>
-                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                       </ValidationProvider>
-                    </div>
-                </div>
-                <div class="col-12">
-                    <div class="checkout-btn">
-                        <!--                          <button @click="onCheckout()" class="btn&#45;&#45;cart-btn w-100">GO TO SECURE CHECKOUT</button>-->
-                        <button class="btn--cart-btn w-100" :disabled="isLoading">
-                            Place order
-                            <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
-                        </button>
-<!--                        <button @click.prevent="placeOrder" class="btn&#45;&#45;cart-btn w-100" :disabled="isLoading" v-else>-->
-<!--                            Place order-->
-<!--                            <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>-->
-<!--                        </button>-->
-                    </div>
-                </div>
-                </form>
-            </ValidationObserver>
+               
+               
                 <div v-if="showModal">
                     <transition name="modal">
-                        <div class="modal-mask">
+                        <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal">
                             <div class="modal-wrapper">
-                                <div class="modal-dialog" role="document">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Modal title</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true" @click="showModal = false">&times;</span>
+                                                <span aria-hidden="true" @click="showModal = false" class="close-modal"></span>
                                             </button>
-                                        </div>
-                                        <div class="modal-body">
+                                        <div class="modal-body-content">
                                             <p>Opps !!! The game <span v-for="(item, index) in cart" v-if="item.rent.id == id">{{ item.rent.game.data.name }}</span> you wanted to rent is not available at this moment.</p>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" @click="showModal = false">OK</button>
                                         </div>
                                     </div>
                                 </div>
@@ -210,6 +207,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
           </div>
         </section>

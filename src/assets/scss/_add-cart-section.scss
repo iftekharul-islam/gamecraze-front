@@ -19,6 +19,12 @@
             left: 0;
             z-index: -1;
             background: $secondery;
+            @include for-max-1200 {
+                height: 70px;
+            }
+            @include for-max-992 {
+                height: 54px;
+            }
             @include for-max-768 {
                 width: 590px;
             }
@@ -172,3 +178,17 @@
         }
     }
 }
+
+// multiple user rent warning modal
+.multiple-user-warning-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: auto;
+    height: 100%;
+    width: 100%;
+    .modal-wrapper {
+        height: 100%;
+    }
+}
+

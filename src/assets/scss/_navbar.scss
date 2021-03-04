@@ -501,7 +501,7 @@
         margin-top: 10px;
         background: $game-details;
         color: $text-light;
-        padding: 15px;
+        padding: 0px;
         margin-left: -6px;
         height: 187px;
         overflow-y: auto;
@@ -526,9 +526,12 @@
         }
         li {
             transition: all .3s ease-in;
+            padding: 8px 20px;
+            border-radius: 0 !important;
+            border-bottom: 1px solid $primary;
             &:hover {
-                background: transparent;
-                color: $secondery;
+                background: $secondery;
+                color: $text-dark;
             }
         }
     }
@@ -604,3 +607,4 @@
           background: $gamehub_danger;
       }
   }
+  

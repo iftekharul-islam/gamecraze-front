@@ -127,15 +127,16 @@
                             <a class="display-image" href="javascript:void(0)">
                               <img :src="related.game.data.poster_url" :alt="related.game.data.name" class="img-fluid">
                             </a>
-                            <a href="javascript:void(0)"> <h6>{{related.game.data.name}}</h6></a>
-                            <div class="d-flex">
-                              <span v-for="(genre, index) in related.game.data.genres.data" :key="index" >{{ genre.name }}<span class="mr-1" v-if="index < related.game.data.genres.data.length-1">, </span></span>
+                            <div class="game-card--details">
+                              <a href="javascript:void(0)"> <h6>{{related.game.data.name}}</h6></a>
+                              <div class="d-flex">
+                                <span v-for="(genre, index) in related.game.data.genres.data" :key="index" >{{ genre.name }}<span class="mr-1" v-if="index < related.game.data.genres.data.length-1">, </span></span>
+                              </div>
+                              <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
+                                 <div class="game-card--details--platforms"> <a href="javascript:void(0)" v-for="(platform, index) in related.game.data.platforms.data" :key="index"><img :src="platform.url" alt="ps4"></a> </div>
+                                  <span class="game-rating">{{ related.game.data.rating }}</span>
+                              </div>
                             </div>
-                            <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                                <a href="javascript:void(0)" v-for="(platform, index) in related.game.data.platforms.data" :key="index"><img :src="platform.url" alt="ps4"></a>
-                                <span class="game-rating">{{ related.game.data.rating }}</span>
-                            </div>
-
                         </div>
                       </router-link>
                     </div>

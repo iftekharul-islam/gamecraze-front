@@ -126,7 +126,14 @@
         .favorite-games-categories {
             transform: translate(0px, 0px);
         }
-        
+        a {
+            img {
+                transform: scale(1.3);
+            }
+        }
+    }
+    &--link {
+        overflow: hidden;
     }
     &-categories {
         padding-top: 20px;
@@ -164,6 +171,7 @@
         display: block;
         background-color: hsl(220, 20%, 90%);
         animation: loading 0.8s infinite alternate;
+        transition: all.3s ease-in;
         &::after {
           content: "\1f517" " Broken Image of " attr(alt);
           display: block;
@@ -192,4 +200,3 @@
         margin-top: 30px;
     }
   }
-

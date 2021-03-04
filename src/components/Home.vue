@@ -5,10 +5,10 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-7">
-                        <h1 class="gamehub-heading">Largest <span>Game</span><br>
-                            <span>Exchanging</span> AND
-                            <span>Renting</span> Platform</h1>
-                        <h6>Play with over 15 million+ gamers in leagues,<br> tournaments & ladders.</h6>
+                        <h1 class="gamehub-heading">
+                                Largest <span>Online</span><br> <span>Platform</span> For Games rent in <span>Bangladesh</span>
+                            </h1>
+                        <h6>Rent Sell buy PlayStation, Xbox, PC games online<br> and join the largest gaming community in Bangladesh</h6>
                         <router-link to="/games" class="btn--secondery"><span>BEGIN JOURNEY</span></router-link>
                     </div>
                 </div>
@@ -21,17 +21,17 @@
                     <div class="col-md-6">
                         <div class="exchange-lend-section--exchange">
                             <h3>Do you want to
-                                <span>Rent</span> your CD?</h3>
-                                <router-link to="/profile" class="btn--secondery exchange-lend-section--exchange-btn" @click.native="clickProfile()"> <span>rent</span> </router-link>
+                                <span>Earn</span> Money?</h3>
+                                <router-link to="/profile" class="btn--secondery exchange-lend-section--exchange-btn" @click.native="clickProfile()"> <span>Lend</span> </router-link>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="exchange-lend-section--lend">
                             <h3>DO YOU WANT TO
-                                <span>LEND</span> GAMES?</h3>
+                                <span>Save</span> Money?</h3>
 <!--                            <a href="#" class="btn&#45;&#45;secondery exchange-lend-section&#45;&#45;exchange-btn">lend</a>-->
-                                <router-link to="/games" class="btn--secondery exchange-lend-section--exchange-btn"><span>Lend</span></router-link>
+                                <router-link to="/games" class="btn--secondery exchange-lend-section--exchange-btn"><span>rent</span></router-link>
                         </div>
                     </div>
                 </div>
@@ -215,43 +215,72 @@
                             <div class="row">
                                 <div class="col-6 col-md-3">
                             <div class="footer-menu-content">
-                                <ul>
+                                <!-- <ul>
                                     <li><a href="javascript:void(0)">Company</a></li>
                                     <li><a href="/about-us">About Gamehub</a></li>
                                     <li><a href="/join-us">Join Us</a></li>
                                     <li><a href="/sponsors">Sponsors</a></li>
                                     <li><a href="/contacts">Contact Us</a></li>
-                                </ul>
+                                </ul> -->
+
+                                <p class="footer-menu-content--about-gamehub">
+                                    Game Hub is Bangladesh's First
+                                     Online Platform for lending &
+                                    renting games for PlayStation, Xbox And PC.
+                                </p>
                             </div>
                         </div>
                         <div class="col-6 col-md-3">
                             <div class="footer-menu-content">
-                                <ul>
+                                <!-- <ul>
                                     <li><a href="javascript:void(0)">For You</a></li>
                                     <li><router-link to="/frequently-asked-questions">FAQs</router-link></li>
                                     <li><router-link to="/shop">Shop</router-link></li>
                                     <li><router-link to="/privacy">Privacy</router-link></li>
                                     <li><router-link to="/terms">Terms</router-link></li>
-                                </ul>
+                                </ul> -->
+                                <div class="footer-menu-content--address">
+                                    <p class="footer-menu-content--address--text">Email Us</p>
+                                    <p class="footer-menu-content--address--text">contact@augnitive.com</p>
+                                </div>
+                                <div class="footer-menu-content--address">
+                                    <p class="footer-menu-content--address--text">Office</p>
+                                    <p class="footer-menu-content--address--text">House: 941, Road: 14, Avenue: 2,
+                                        Mirpur DOHS, Dhaka 1216</p>
+                                </div>
+
+
                             </div>
                         </div>
                         <div class="col-6 col-md-3">
                             <div class="footer-menu-content">
                                 <ul>
-                                    <li><a href="javascript:void(0)">Help</a></li>
+                                    <!-- <li><a href="javascript:void(0)">Help</a></li>
                                     <li><router-link to="/support">Support</router-link></li>
                                     <li><router-link to="/forum">Forum</router-link></li>
-                                    <li><router-link to="/stats">Stats</router-link></li>
+                                    <li><router-link to="/stats">Stats</router-link></li> -->
+
+                                    <li><router-link to="/about-us">About Gamehub</router-link></li>
+                                    <li><router-link to="/profile">Rent Games</router-link></li>
+                                    <li><router-link to="/games">Lend Games</router-link></li>
+                                    <li><router-link to="/terms">Terms & condition</router-link></li>
+                                    
+
                                 </ul>
                             </div>
                         </div>
                         <div class="col-6 col-md-3">
                             <div class="footer-menu-content" v-if="platforms">
                                 <ul>
-                                    <li><a href="javascript:void(0)">Platforms</a></li>
+                                    <!-- <li><a href="javascript:void(0)">Platforms</a></li>
                                     <li v-for="platform in platforms" :key="'platform-' + platform.id">
                                         <a :href="'/games?platforms=' + platform.slug">{{ platform.name }}</a>
-                                    </li>
+                                    </li> -->
+                                     <li><router-link to="/sponsors">Ask for sponsorship</router-link></li>
+                                     <li><router-link to="/contacts">Contact Us</router-link></li>
+                                     <li><router-link to="/frequently-asked-questions">FAQ</router-link></li>
+                                     <li><router-link to="/news">News & blogs</router-link></li>
+                                      <li><router-link to="/privacy">Privacy</router-link></li>
                                 </ul>
                             </div>
                         </div>

@@ -44,6 +44,8 @@ import Terms from '../components/Terms';
 import Forum from '../components/Forum';
 import Stats from '../components/Stats';
 import RentPostedBy from '../components/RentPostedBy';
+import Elite from '../components/Elite';
+import Rookie from '../components/Rookie';
 
 let router = new Router({
     mode: 'history',
@@ -179,6 +181,22 @@ let router = new Router({
             component: Terms,
             meta: {
                 requiresAuth: false
+            }
+        },
+        {
+            path: '/elite',
+            name: 'Elite',
+            component: Elite,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/rookie',
+            name: 'Rookie',
+            component: Rookie,
+            meta: {
+                requiresAuth: true
             }
         },
         {

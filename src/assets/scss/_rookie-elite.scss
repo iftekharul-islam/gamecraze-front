@@ -1,0 +1,13 @@
+.rookie-elite-content {
+    margin: 100px auto;
+    @include for-min-768 {
+        max-width: 505px;
+        text-align: center;
+    } 
+    &--heading {
+        margin-bottom: 47px;
+    }
+    &--paragraph {
+        opacity: .9;
+    }
+}

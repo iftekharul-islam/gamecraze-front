@@ -81,7 +81,7 @@
                                     <div class="alert alert-info alert-dismissible mt-2">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                         <p>
-                                            If you want to Borrow for more weeks.Then renting price will be cyclic like the given price table.So its start from 1st week.
+                                            If you want to Rent for more weeks.Then renting price will be cyclic like the given price table.So its start from 1st week.
                                         </p>
                                     </div>
                                 </div>

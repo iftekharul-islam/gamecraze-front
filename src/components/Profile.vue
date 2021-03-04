@@ -20,8 +20,8 @@
                             <button type="button" class="close m-0 close-modal" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"></span>
                             </button>
-                        <p>Opps !!! It looks like you are a Rookie member, to access the full features of GameHub you need
-                             to upgrade to <a href="#" class="text-secondery">ELITE.</a> Once upgraded you can also rent physical disks.
+                        <p>Opps !!! It looks like you are a <a href="/rookie" class="text-secondery">Rookie</a> member, to access the full features of GameHub you need
+                             to upgrade to <a href="/elite" class="text-secondery">ELITE.</a> Once upgraded you can also rent physical disks.
                               To upgrade your account please contact us.</p>
                         <div class="modal-content--description--form">
                             <div class="modal-content--description--form--call">
@@ -319,7 +319,7 @@
                                                 <div class="alert alert-info alert-dismissible mt-2">
                                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                                     <p>
-                                                        If you want to Borrow for more weeks.Then renting price will be cyclic like the given price table.So its start from 1st week.
+                                                        If you want to Rent for more weeks.Then renting price will be cyclic like the given price table.So its start from 1st week.
                                                     </p>
                                                 </div>
                                             </div>
@@ -600,7 +600,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <span class="text-center d-block" v-else>No transaction data found</span>
+                                        <span class="text-center d-block" v-else>No transaction history found</span>
 <!--                                        <nav aria-label="Page navigation example" class="my-earning&#45;&#45;payment-history&#45;&#45;pagination">-->
 <!--                                            <ul class="pagination">-->
 <!--                                                <li class="page-item">-->

@@ -25,6 +25,22 @@
                                 </div>
 
                             </div> -->
+
+
+                              <!-- Game Type -->
+                            <div class="select-categories">
+                                <h6>Game type</h6>
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <label class="custom-control-label" >Digital copy</label>
+                                </div>
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="custom-control-input">
+                                    <label class="custom-control-label" >Physical copy</label>
+                                </div>
+
+                            </div>
+
                             <!-- select categories -->
                             <div class="select-categories">
                                 <h6>Select Category</h6>
@@ -43,8 +59,8 @@
                                 </div>
                             </div>
                             <div class="clear">
-                                <a href="javascript:void(0)" class="clear-filters" id="clear-filters" @click="clearFilter()">Clear Filters</a>
-                                <a href="#" class="clear-filters d-block d-sm-none" id="filter-apply" v-on:click="toggleMenu()">Apply</a>
+                                <a href="javascript:void(0)" class="clear-filters btn--secondery" id="clear-filters" @click="clearFilter()"><span>Clear Filters</span></a>
+                                <a href="#" class="clear-filters btn--secondery d-block d-sm-none" id="filter-apply" v-on:click="toggleMenu()"><span>Apply</span></a>
                             </div>
                         </div>
                     </div>
@@ -62,19 +78,21 @@
                                         <div class="display-image" href="#">
                                             <img :src="rent.poster_url" :alt="rent.name" class="img-fluid">
                                         </div>
-                                        <div> <h6>{{rent.name}}</h6></div>
-                                        <div class="d-flex flex-wrap game-card--category">
+                                       <div class="game-card--details">
+                                          <div> <h6>{{rent.name}}</h6></div>
+                                          <div class="d-flex flex-wrap game-card--category">
 
-                                          <span v-for="(genre, index) in rent.genres.data" :key="index" >{{ genre.name }}<span class="mr-2" v-if="index < rent.genres.data.length-1">, </span></span>
+                                            <span v-for="(genre, index) in rent.genres.data" :key="index" >{{ genre.name }}<span class="mr-2" v-if="index < rent.genres.data.length-1">, </span></span>
 
 
-                                        </div>
-                                        <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
+                                          </div>
+                                          <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
 
-                                            <a href="javascript:void(0)" v-for="(platform, index) in rent.platforms.data" :key="index"><img :src="platform.url" alt="ps4"></a>
+                                              <div class="game-card--details--platforms"><a href="javascript:void(0)" v-for="(platform, index) in rent.platforms.data" :key="index"><img :src="platform.url" alt="ps4"></a></div>
 
-                                            <span class="game-rating">{{ rent.rating }}</span>
-                                        </div>
+                                              <span class="game-rating">{{ rent.rating }}</span>
+                                          </div>
+                                       </div>
 
                                     </div>
                                   </router-link>

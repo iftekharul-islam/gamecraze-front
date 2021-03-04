@@ -22,14 +22,13 @@
             cursor: pointer;
         }
         label {
+            padding-left: 10px;
+            opacity: .9;
             &::before {
                 border-radius: 3px;
                 background: transparent;
                 left: -1.1rem;
             }
-        }
-        label {
-            padding-left: 10px;
         }
         .custom-control-input {
             &:checked {
@@ -115,17 +114,13 @@
 }
 .clear {
     &-filters {
-        width: 100%;
-        display: block;
-        text-align: center;
-        font-size: 16px;
         border: 1px solid $secondery;
-        border-radius: 10px;
-        padding: 20px;
-        background: $primary;
+        background: $primary !important;
+        color: $text-light !important;
+        margin: auto;
         &:hover {
-            background: $secondery;
-            color: black;
+            background: $secondery !important;
+            color: $text-dark !important;
         }
         @include for-max-575 {
             padding: 15px;
@@ -145,8 +140,6 @@
 // games
 .game-card {
     border: 7px solid $game-details;
-    padding: 30px;
-    border-radius: 10px;
     cursor: pointer;
     transition: all .3s ease-in;
 
@@ -165,10 +158,7 @@
             text-align: center;
         }
         img {
-            border-radius: 5px;
-            @include for-max-768 {
-                width: 100%;
-            }
+             width: 100%;
         }
     }
     &--category {
@@ -176,27 +166,40 @@
         @include for-max-768 {
             height: initial;
         }
+        span {
+            opacity: .9;
+        }
+    }
+    &--details {
+        padding: 20px;
+        &--platforms {
+            display: flex;
+            flex-wrap: wrap;
+            a {
+                margin-right: 20px;
+            }
+        }
     }
 }
 .game-rating {
-    width: 60px;
-    height: 60px;
-    border-radius: 10px;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
     background: $game-rating;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 32px;
+    font-size: 20px;
     @include for-max-1200 {
         width: 25px;
         height: 25px;
         border-radius: 5px; 
         font-size: 12px;
         @include for-max-768 {
-            width: 60px;
-             height: 60px;
-             border-radius: 10px;
-             font-size: 32px;
+            width: 40px;
+             height: 40px;
+             border-radius: 8px;
+             font-size: 20px;
         }
     }
 }

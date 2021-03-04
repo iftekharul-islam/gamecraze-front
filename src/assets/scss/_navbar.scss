@@ -496,9 +496,8 @@
         flex-direction: column;
         justify-content: flex-start;
         margin: 0;
-        border: 1px solid $secondery;
+        border: 2px solid $secondery;
         width: 185px;
-        border-radius: 10px;
         margin-top: 10px;
         background: $game-details;
         color: $text-light;
@@ -509,25 +508,16 @@
         &::-webkit-scrollbar-track {
             -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
             background-color: $secondery;
-            border-radius: 8px;
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
         }
         &::-webkit-scrollbar {
             width: 10px;
             background: $secondery;
-            border-radius: 5px;
         }
         &::-webkit-scrollbar-thumb {
-            border-radius: 10px;
-            border: 1px solid $secondery;
+            border-left: 1px solid $secondery;
             border-right: 0;
-            // background-image: -webkit-gradient(linear,
-            //                                    left bottom,
-            //                                    left top,
-            //                                    color-stop(0.44, rgb(122,153,217)),
-            //                                    color-stop(0.72, rgb(73,125,189)),
-            //                                    color-stop(0.86, rgb(28,58,148)));
             background: $text-dark;
         }
         @include for-max-575 {
@@ -547,24 +537,28 @@
     > div {
         &:first-of-type {
             transform: skew(-21deg);
-            border: 1px solid $secondery;
+            border: 2px solid $secondery;
             height: 40px;
         }
     }
 }
 // delete moadl
-.swal-overlay--show-modal  {
+
     .swal-modal {
+        background: $game-details;
       @include for-max-575 {
         width: calc(100% - 60px);
       }
     }
     .swal-title {
+        color: $text-light;
         @include for-max-575 {
             font-size: 18px;
         }
     }
     .swal-text {
+        color: $text-light;
+        opacity: .9;
         @include for-max-575 {
             font-size: 15px;
         }
@@ -576,10 +570,37 @@
     }
     .swal-button-container {
         button {
+            background: $secondery;
+            color: $text-dark;
+            border-radius: 0;
+            transition: all .3s ease-in;
+            cursor: pointer;
             @include for-max-575 {
                 height: 48px;
                 width: 100px;
             }
         }
     }
+    .swal-icon--success {
+        background: $game-details;
+        &::before,
+        &::after {
+            background: $game-details;
+        }
+        &__hide-corners {
+            background: $game-details;
+        }
+        &__line {
+            background: $game-rating;
+        }
+        &__ring {
+            border-color: $game-rating;
+        }
+    }
+  .swal-icon--warning {
+      border-color: $gamehub_danger !important;
+      &__body,
+      &__dot {
+          background: $gamehub_danger;
+      }
   }

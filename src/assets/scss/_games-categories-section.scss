@@ -140,6 +140,7 @@
 // games
 .game-card {
     border: 7px solid $game-details;
+    transition: all .3s ease-in;
     cursor: pointer;
     transition: all .3s ease-in;
 
@@ -153,12 +154,14 @@
         }
     }
     .display-image {
+        overflow: hidden;
         @include for-max-768 {
             display: block;
             text-align: center;
         }
         img {
              width: 100%;
+             transition: all .3s ease-in;
         }
     }
     &--category {
@@ -179,6 +182,14 @@
                 margin-right: 20px;
             }
         }
+    }
+    &:hover {
+        .display-image {
+            img {
+                transform: scale(1.3);
+            }
+        }
+        // border-color: $secondery;
     }
 }
 .game-rating {

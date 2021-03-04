@@ -69,7 +69,7 @@
             <div id="owl-favorite" class="owl-carousel owl-theme" v-if="populars.length">
                 <div class="item" v-for="(popular, index) in populars" :key="index">
                     <div class="favorite-games">
-                        <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-if="popular.game.data.trending_url" class="d-block">
+                        <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-if="popular.game.data.trending_url" class="d-block favorite-games--link">
                             <img :src="popular.game.data.poster_url" :alt="popular.game.data.name">
                         </router-link>
                         <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-else>
@@ -336,7 +336,10 @@
                     loop: true,
                     margin: 10,
                     nav: true,
-                    dots:false,
+                    dots: false,
+                    autoplay:true,
+                    autoplayTimeout: 2000,
+                    autoplayHoverPause: true,
                     navText: [
                         '<i class="fas fa-arrow-left arrow"></i>',
                         '<i class="fas fa-arrow-right arrow"></i>'
@@ -383,6 +386,9 @@
                     margin: 10,
                     nav: true,
                     dots:false,
+                    autoplay:true,
+                    autoplayTimeout: 2000,
+                    autoplayHoverPause: true,
                     navText: [
                         '<i class="fas fa-arrow-left arrow"></i>',
                         '<i class="fas fa-arrow-right arrow"></i>'
@@ -429,6 +435,9 @@
                     margin: 10,
                     nav: true,
                     dots:false,
+                    autoplay:true,
+                    autoplayTimeout: 2000,
+                    autoplayHoverPause: true,
                     navText: [
                         '<i class="fas fa-arrow-left arrow"></i>',
                         '<i class="fas fa-arrow-right arrow"></i>'
@@ -505,6 +514,9 @@
 			margin: 10,
 			nav: true,
 			dots:false,
+            autoplay:true,
+            autoplayTimeout: 2000,
+            autoplayHoverPause: true,
 			navText: [
 				'<i class="fas fa-arrow-left arrow"></i>',
 				'<i class="fas fa-arrow-right arrow"></i>'

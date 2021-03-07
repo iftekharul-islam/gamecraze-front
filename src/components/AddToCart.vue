@@ -330,38 +330,36 @@
                 console.log(response.data);
                 if (response.data.lends != 0) {
                     this.totalLends = response.data.lends;
+                    this.itemRemovable = this.totalLends;
                     console.log('my lends');
                     console.log(this.totalLends);
                 }
-            });
-
-            if (this.totalLends != 0)
-            {
-                this.itemRemovable = this.totalLends;
-            }
-            if (this.totalLends >= this.user.rent_limit){
-                this.showRentLimitModal = true;
-            } else if (this.totalItem > this.itemRemovable) {
-                this.itemRemovable = this.totalItem - this.itemRemovable;
-                this.showRentCountModal = true;
-            }
-            else if (token) {
-                if (user.name && user.phone_number && user.address.address && user.identification_number && user.birth_date) {
-                    this.ExistInCart();
+                if (this.totalLends >= this.user.rent_limit){
+                    this.showRentLimitModal = true;
+                }
+                else if (this.totalItem > this.itemRemovable) {
+                    this.itemRemovable = this.totalItem - this.itemRemovable;
+                    this.showRentCountModal = true;
+                }
+                else if (token) {
+                    if (user.name && user.phone_number && user.address.address && user.identification_number && user.birth_date) {
+                        this.ExistInCart();
+                    }
+                    else {
+                        this.$swal("Incomplete Profile", "Please Update Your Profile with all information ");
+                        this.$router.push('/profile').then(res => {
+                                this.$root.$emit('profileEdit');
+                            },
+                        ).catch(err => {
+                        });
+                    }
                 }
                 else {
-                    this.$swal("Incomplete Profile", "Please Update Your Profile with all information ");
-                    this.$router.push('/profile').then(res => {
-                            this.$root.$emit('profileEdit');
-                        },
-                    ).catch(err => {
-                    });
+                    this.$swal("Login First", "Please Login to Lend Games");
+                    this.$router.push('/login').catch(err => {});
                 }
-            }
-            else {
-              this.$swal("Login First", "Please Login to Lend Games");
-                this.$router.push('/login').catch(err => {});
-            }
+
+            });
         },
         ExistInCart() {
             console.log('this.gameIds');
@@ -423,6 +421,7 @@
                     this.$router.push('/profile').then(err => {});
                 }
                 if (response.data.error === true) {
+                    this.isLoading = false;
                     this.message = response.data.message;
                     this.showBackEndModal = true;
 

@@ -366,7 +366,7 @@
 
                                                 <label class="col-sm-3 col-form-label">Game Type</label>
                                                 <div class="col-sm-8 post-rent--delivery">
-
+                                                    <ValidationProvider name="Game type" rules="required" v-slot="{ errors }">
                                                     <div class="custom-radio d-flex">
                                                         <input type="radio" value="0" id="digital_copy" name="disk_type" v-model="rentData.disk_type" class="custom-control-input" checked>
                                                         <label for="digital_copy" class="custom-control-label"> Digital Copy <span></span></label>
@@ -377,6 +377,8 @@
                                                         <label for="physical_copy" class="custom-control-label"> Physical Copy <span></span></label>
 
                                                     </div>
+                                                    <span v-if="errors.length" class="error-message" style="margin-left: -24px">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
                                                 </div>
                                             </div>
                                               
@@ -633,7 +635,7 @@
     import FlipCountdown from 'vue2-flip-countdown'
     export default {
         components: { FlipCountdown },
-        props: ['rentPost'],
+        props: ['rentPost', 'profileEdit'],
         data() {
             return {
                 rents: [],
@@ -1048,6 +1050,19 @@
                 $('#v-pills-post-rent-tab').addClass('active');
                 $('#v-pills-post-rent').addClass('show');
                 $('#v-pills-post-rent').addClass('active');
+                $('#v-pills-dashboard-tab').removeClass('active');
+                $('#v-pills-dashboard').removeClass('active');
+                $('#v-pills-dashboard').removeClass('show');
+
+              });
+
+            this.$root.$on('profileEdit', () => {
+                $('#v-pills-edit-profile-tab').addClass('active');
+                $('#v-pills-edit-profile').addClass('active');
+                $('#v-pills-edit-profile').addClass('show');
+                $('#v-pills-post-rent-tab').removeClass('active');
+                $('#v-pills-post-rent').removeClass('show');
+                $('#v-pills-post-rent').removeClass('active');
                 $('#v-pills-dashboard-tab').removeClass('active');
                 $('#v-pills-dashboard').removeClass('active');
                 $('#v-pills-dashboard').removeClass('show');

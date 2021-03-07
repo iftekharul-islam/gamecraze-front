@@ -149,7 +149,7 @@
                   </div>
                   <!-- Enter Adsress -->
                     <ValidationObserver v-slot="{ handleSubmit }">
-                      <form class="" @submit.prevent="handleSubmit(ExistInCart)" method="post">
+                      <form class="" @submit.prevent="handleSubmit(onCheckout)" method="post">
                           <div class="">
                             <div class="cart-delivery-address">
                                 <label for="address">Enter Address</label>
@@ -196,6 +196,42 @@
                         </div>
                     </transition>
                 </div>
+                <div v-if="showRentLimitModal">
+                    <transition name="modal">
+                        <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal">
+                            <div class="modal-wrapper">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true" @click="showRentLimitModal = false" class="close-modal"></span>
+                                        </button>
+                                        <div class="modal-body-content">
+                                            <p>Opps !!! You exceeded renting limit. Return your current games to rent new ones </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </transition>
+                </div>
+                <div v-if="showRentCountModal">
+                    <transition name="modal">
+                        <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal">
+                            <div class="modal-wrapper">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true" @click="showRentCountModal = false" class="close-modal"></span>
+                                        </button>
+                                        <div class="modal-body-content">
+                                            <p>You can not rent more than two games at a time please remove any {{ itemRemovable }} games to procced to order.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </transition>
+                </div>
                 <!-- rented game modal -->
                 <div class="modal fade seller-information-modal upgrade-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true" v-if="isEnabled">
                     <div class="modal-dialog modal-dialog-centered">
@@ -231,7 +267,14 @@
               gameIds: [],
               id: null,
               showModal: false,
+              showRentLimitModal: false,
+              showRentCountModal: false,
               isEnabled: false,
+              totalItem: 0,
+              user: null,
+              itemRemovable: 0,
+              totalLends: 0,
+
           }
       },
     computed: {
@@ -247,12 +290,62 @@
       }
     },
     methods: {
+        onCheckout() {
+
+            var token = this.$store.state.token;
+            // var user = this.$store.state.user;
+            this.totalItem = this.cart.length;
+            this.itemRemovable = this.user.rent_limit;
+
+            console.log('user: ', user);
+            console.log('item count');
+            console.log(this.totalItem);
+
+            var config = {
+                headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                }
+            };
+            this.$api.get('my-lends', config).then(response => {
+                this.totalLends = response.data.lends;
+                console.log('my lends');
+                console.log(totalLends);
+            });
+
+            if (this.totalLends != 0)
+            {
+                this.itemRemovable = this.totalLends;
+            }
+            if (this.totalLends >= this.user.rent_limit){
+                this.showRentLimitModal = true;
+            } else if (this.totalItem > this.itemRemovable) {
+                this.itemRemovable = this.totalItem - this.itemRemovable;
+                this.showRentCountModal = true;
+            } else if (token) {
+                if (user.name && user.phone_number && user.address.address && user.identification_number && user.birth_date) {
+                    this.ExistInCart();
+                }
+                else {
+                    this.$swal("Incomplete Profile", "Please Update Your Profile with all information ");
+                    this.$router.push('/profile').then(res => {
+                            this.$root.$emit('profileEdit');
+                        },
+                    ).catch(err => {
+                    });
+                }
+            }
+            else {
+              this.$swal("Login First", "Please Login to Lend Games");
+                this.$router.push('/login').catch(err => {});
+            }
+        },
         ExistInCart() {
             console.log('this.gameIds');
             console.log(this.gameIds);
             let data = {
                 ids: this.gameIds,
             };
+
             this.$api.post('check-rented', data).then(response => {
                 console.log(response);
                 if (response.data.id != '') {
@@ -307,24 +400,6 @@
                 }
             });
         },
-        // onCheckout() {
-        //     var token = this.$store.state.token;
-        //     var user = this.$store.state.user;
-        //     console.log('user: ', user);
-        //     if (token) {
-        //         if (user.name && user.phone_number && user.address.address && user.identification_number && user.birth_date) {
-        //           this.$router.push('/payment/' + this.totalPrice).catch(err => {});
-        //         }
-        //         else {
-        //           this.$swal("Incomplete Profile", "Please Update Your Profile with all information ");
-        //           this.$router.push('/profile').catch(err => {});
-        //         }
-        //     }
-        //     else {
-        //       this.$swal("Login First", "Please Login to Lend Games");
-        //         this.$router.push('/login').catch(err => {});
-        //     }
-        // },
         onRemoveCartItem(index) {
           this.$swal({
             title: "Do you want to remove this item?",
@@ -360,29 +435,39 @@
         }
     },
     created() {
-      this.$api.get('delivery-charge').then (response => {
-        if (response.data.data) {
-          this.deliveryCharge = response.data.data.charge;
-          localStorage.setItem('deliveryCharge', response.data.data.charge);
-        }
-      });
+        var config = {
+            headers: {
+                'Authorization': 'Bearer ' + this.$store.state.token
+            }
+        };
+        this.$api.get('user/details', config).then(response => {
+            this.user = response.data.data;
+            console.log('this.user');
+            console.log(this.user);
+        });
+        this.$api.get('delivery-charge').then(response => {
+            if (response.data.data) {
+                this.deliveryCharge = response.data.data.charge;
+                localStorage.setItem('deliveryCharge', response.data.data.charge);
+            }
+        });
 
-      this.$api.get('commission').then (response => {
-        if (response.data.data) {
-          this.commissionAmount = response.data.data.amount;
-        }
-      });
+        this.$api.get('commission').then(response => {
+            if (response.data.data) {
+                this.commissionAmount = response.data.data.amount;
+            }
+        });
 
-      this.getCartItems();
+        this.getCartItems();
 
-      this.$store.watch((state)=>{
-          return this.$store.state.cart 
-        },
-        (newValue, oldValue)=>{
-            this.cart = newValue;
-        },
-        { deep:true }
-      );
+        this.$store.watch((state) => {
+                return this.$store.state.cart
+            },
+            (newValue, oldValue) => {
+                this.cart = newValue;
+            },
+            {deep: true}
+        );
     },
     mounted () {
             document.body.classList.add('body-position')

@@ -293,11 +293,9 @@
         onCheckout() {
 
             var token = this.$store.state.token;
-            // var user = this.$store.state.user;
             this.totalItem = this.cart.length;
             this.itemRemovable = this.user.rent_limit;
 
-            console.log('user: ', user);
             console.log('item count');
             console.log(this.totalItem);
 
@@ -307,9 +305,11 @@
                 }
             };
             this.$api.get('my-lends', config).then(response => {
-                this.totalLends = response.data.lends;
-                console.log('my lends');
-                console.log(totalLends);
+                if (response.data.status === 200) {
+                    this.totalLends = response.data.lends;
+                    console.log('my lends');
+                    console.log(totalLends);
+                }
             });
 
             if (this.totalLends != 0)
@@ -322,7 +322,7 @@
                 this.itemRemovable = this.totalItem - this.itemRemovable;
                 this.showRentCountModal = true;
             } else if (token) {
-                if (user.name && user.phone_number && user.address.address && user.identification_number && user.birth_date) {
+                if (this.user.name && this.user.phone_number && this.user.address.address && this.user.identification_number && this.user.birth_date) {
                     this.ExistInCart();
                 }
                 else {

@@ -300,18 +300,6 @@
             console.log('item count');
             console.log(this.totalItem);
 
-            var config = {
-                headers: {
-                    'Authorization': 'Bearer ' + this.$store.state.token
-                }
-            };
-            this.$api.get('my-lends', config).then(response => {
-                if (response.data.status === 200) {
-                    this.totalLends = response.data.lends;
-                    console.log('my lends');
-                    console.log(totalLends);
-                }
-            });
 
             if (this.totalLends != 0)
             {
@@ -322,7 +310,8 @@
             } else if (this.totalItem > this.itemRemovable) {
                 this.itemRemovable = this.totalItem - this.itemRemovable;
                 this.showRentCountModal = true;
-            } else if (token) {
+            }
+            else if (token) {
                 if (user.name && user.phone_number && user.address.address && user.identification_number && user.birth_date) {
                     this.ExistInCart();
                 }
@@ -441,6 +430,14 @@
                 'Authorization': 'Bearer ' + this.$store.state.token
             }
         };
+        this.$api.get('my-lends', config).then(response => {
+            console.log(response.data);
+            if (response.data.lends != 0) {
+                this.totalLends = response.data.lends;
+                console.log('my lends');
+                console.log(this.totalLends);
+            }
+        });
         this.$api.get('user/details', config).then(response => {
             this.user = response.data.data;
             console.log('this.user');

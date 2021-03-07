@@ -20,7 +20,7 @@
                             <button type="button" class="close m-0 close-modal" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"></span>
                             </button>
-                        <p>Opps !!! It looks like you are a <a href="/rookie" class="text-secondery">Rookie</a> member, to access the full features of GameHub you need
+                        <p>Opps !!! It looks like you are a <a href="/rookie" class="text-secondery"> Rookie</a> member, to access the full features of GameHub you need
                              to upgrade to <a href="/elite" class="text-secondery">ELITE.</a> Once upgraded you can also rent physical disks.
                               To upgrade your account please contact us.</p>
                         <div class="modal-content--description--form">

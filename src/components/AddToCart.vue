@@ -293,6 +293,7 @@
         onCheckout() {
 
             var token = this.$store.state.token;
+            var user = this.$store.state.user;
             this.totalItem = this.cart.length;
             this.itemRemovable = this.user.rent_limit;
 
@@ -322,7 +323,7 @@
                 this.itemRemovable = this.totalItem - this.itemRemovable;
                 this.showRentCountModal = true;
             } else if (token) {
-                if (this.user.name && this.user.phone_number && this.user.address.address && this.user.identification_number && this.user.birth_date) {
+                if (user.name && user.phone_number && user.address.address && user.identification_number && user.birth_date) {
                     this.ExistInCart();
                 }
                 else {

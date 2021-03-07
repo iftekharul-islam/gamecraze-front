@@ -323,7 +323,7 @@
                 this.showRentCountModal = true;
             } else if (token) {
                 if (this.user.name && this.user.phone_number && this.user.address.address && this.user.identification_number && this.user.birth_date) {
-                    // this.ExistInCart();
+                    this.ExistInCart();
                 }
                 else {
                     this.$swal("Incomplete Profile", "Please Update Your Profile with all information ");

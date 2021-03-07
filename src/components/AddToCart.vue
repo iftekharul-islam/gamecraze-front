@@ -232,6 +232,24 @@
                         </div>
                     </transition>
                 </div>
+                <div v-if="showBackEndModal">
+                    <transition name="modal">
+                        <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal">
+                            <div class="modal-wrapper">
+                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal-content">
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true" @click="showBackEndModal = false" class="close-modal"></span>
+                                        </button>
+                                        <div class="modal-body-content">
+                                            <p>{{ message }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </transition>
+                </div>
                 <!-- rented game modal -->
                 <div class="modal fade seller-information-modal upgrade-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true" v-if="isEnabled">
                     <div class="modal-dialog modal-dialog-centered">
@@ -269,11 +287,13 @@
               showModal: false,
               showRentLimitModal: false,
               showRentCountModal: false,
+              showBackEndModal: false,
               isEnabled: false,
               totalItem: 0,
               user: null,
               itemRemovable: 0,
               totalLends: 0,
+              message: '',
 
           }
       },
@@ -299,7 +319,21 @@
 
             console.log('item count');
             console.log(this.totalItem);
-
+            console.log('cart items');
+            console.log(this.cart);
+            var config = {
+                headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                }
+            };
+            this.$api.get('my-lends', config).then(response => {
+                console.log(response.data);
+                if (response.data.lends != 0) {
+                    this.totalLends = response.data.lends;
+                    console.log('my lends');
+                    console.log(this.totalLends);
+                }
+            });
 
             if (this.totalLends != 0)
             {
@@ -388,6 +422,11 @@
                     localStorage.setItem('deliveryCharge', 0);
                     this.$router.push('/profile').then(err => {});
                 }
+                if (response.data.error === true) {
+                    this.message = response.data.message;
+                    this.showBackEndModal = true;
+
+                }
             });
         },
         onRemoveCartItem(index) {
@@ -430,14 +469,6 @@
                 'Authorization': 'Bearer ' + this.$store.state.token
             }
         };
-        this.$api.get('my-lends', config).then(response => {
-            console.log(response.data);
-            if (response.data.lends != 0) {
-                this.totalLends = response.data.lends;
-                console.log('my lends');
-                console.log(this.totalLends);
-            }
-        });
         this.$api.get('user/details', config).then(response => {
             this.user = response.data.data;
             console.log('this.user');

@@ -658,6 +658,8 @@
             }
         },
         created() {
+            window.scrollTo(0,0);
+
             this.getTrendingGames();
             this.getNewGames();
             this.getRentGames();

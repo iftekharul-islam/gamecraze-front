@@ -87,12 +87,20 @@
             padding: 15px 20px;
             border-bottom: 1px solid $secondery;
             font-size: 20px;
+            @include for-max-575 {
+                font-size: 16px;
+            }
             p {
                 margin: 0;
             }
         }
         &--heading {
             color: $secondery;
+        }
+        &--payment-method {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
     }
     .promotional-code {

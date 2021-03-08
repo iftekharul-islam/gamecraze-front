@@ -141,100 +141,105 @@
                             </div>
 
                             <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
-                                        <div class="dashboard-content">
-                                            <div class="d-flex justify-content-center dashboard-tab-button mb-5">
-                                                <button  @click.prevent="onRentedGames()" :disabled="!show" :class="{active: !show}"><img class="active-black" src="../assets/img/rent-icon.png" alt="rent icon"> <img class="active-yellow" src="../assets/img/rent-icon-black.png" alt="rent icon"> Rented Games</button>
-                                                <button  @click.prevent="onOfferedGames()" :disabled="show" :class="{active: show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  Offered Games</button>
-                                            </div>
-
-                                        <div class="dashboard-content--rented dashboard-content--offer pb-5" v-if="rents.length && show">
-                                            <table class="table table-borderless" v-if="rents">
+                                <div class="dashboard-content">
+                                    <div class="d-flex justify-content-center dashboard-tab-button mb-5">
+                                        <button  @click.prevent="onRentedGames()" :disabled="!show" :class="{active: !show}"><img class="active-black" src="../assets/img/rent-icon.png" alt="rent icon"> <img class="active-yellow" src="../assets/img/rent-icon-black.png" alt="rent icon"> Rented Games</button>
+                                        <button  @click.prevent="onOfferedGames()" :disabled="show" :class="{active: show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  Offered Games</button>
+                                    </div>
+                                <!-- Offer -->
+                                <div class="dashboard-content--rented dashboard-content--offer pb-5" v-if="rents.length && show">
+                                    <table class="table table-borderless" v-if="rents">
+                                    <thead>
+                                    <tr>
+                                        <td scope="col">Game</td>
+                                        <td scope="col">Disk condition</td>
+                                        <td scope="col">Platform</td>
+                                        <td scope="col">Renter name</td>
+<!--                                                <td scope="col">Pick Point</td>-->
+                                        <td scope="col">Available From</td>
+                                        <td scope="col">Approvement</td>
+<!--                                                <td scope="col">Action</td>-->
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr v-for="(rent, index) in rents" :key="index">
+                                        <td v-if="rent.game">{{ rent.game.data.name }}</td>
+                                        <td>{{ rent.diskCondition.data.name_of_type }}</td>
+                                        <td>{{ rent.platform.data.name }}</td>
+                                        <td v-if="rent.renter">{{ rent.renter.data.name }}</td>
+                                        <td v-else>N/A</td>
+<!--                                                <td v-if="rent.checkpoint_id">{{rent.checkpoint.data.name}}</td>-->
+                                        <td v-else>Not Set</td>
+                                        <td>{{ formattedDate(rent.availability_from_date) }}</td>
+                                        <td v-if="rent.status === 0">
+                                            <a class="badge-warning badge" >Pending</a>
+                                        </td>
+                                        <td v-else-if="rent.status === 1">
+                                            <a class="badge-success badge" >Approved</a>
+                                        </td>
+                                        <td v-else>
+                                            <a class="badge-danger badge" >Rejected</a>
+                                        </td>
+<!--                                                <td><button type="button" class="btn btn-danger mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button></td>-->
+                                    </tr>
+                                    </tbody>
+                                    </table>
+                                </div>
+                                    <!-- Rented -->
+                                <div v-else-if="lends.length && !show">
+                                    <div class="dashboard-content--rented pb-5">
+                                        <table class="table table-borderless" v-if="lends">
                                             <thead>
                                             <tr>
                                                 <td scope="col">Game</td>
-                                                <td scope="col">Disk condition</td>
-                                                <td scope="col">Platform</td>
-                                                <td scope="col">Renter name</td>
-<!--                                                <td scope="col">Pick Point</td>-->
-                                                <td scope="col">Available From</td>
-                                                <td scope="col">Approvement</td>
-<!--                                                <td scope="col">Action</td>-->
+                                                <td scope="col">Rent Week(s)</td>
+                                                <td scope="col">Rent Start</td>
+                                                <td scope="col">Return Date</td>
+                                                <td scope="col" class="text-center">Remaining Days</td>
+                                                <td scope="col">Cost</td>
+                                                <td scope="col">Status</td>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr v-for="(rent, index) in rents" :key="index">
-                                                <td v-if="rent.game">{{ rent.game.data.name }}</td>
-                                                <td>{{ rent.diskCondition.data.name_of_type }}</td>
-                                                <td>{{ rent.platform.data.name }}</td>
-                                                <td v-if="rent.renter">{{ rent.renter.data.name }}</td>
-                                                <td v-else>N/A</td>
-<!--                                                <td v-if="rent.checkpoint_id">{{rent.checkpoint.data.name}}</td>-->
-                                                <td v-else>Not Set</td>
-                                                <td>{{ formattedDate(rent.availability_from_date) }}</td>
-                                                <td v-if="rent.status === 0">
+                                            <tr v-for="(lend, index) in lends" :key="index">
+                                                <td v-if="lend.rent">{{ lend.rent.game.name }}</td>
+                                                <td>{{ lend.lend_week }}</td>
+                                                <td>{{ formattedDate(lend.lend_date) }}</td>
+                                                <td>{{ returnDate(lend.lend_date, lend.created_at, lend.lend_week) }}</td>
+                                                <td>
+                                                    <flip-countdown :deadline="endDate(lend.lend_date, lend.created_at, lend.lend_week)"></flip-countdown>
+                                                </td>
+                                                <td>{{ lend.lend_cost + Math.floor(lend.commission) }}</td>
+                                                <td v-if="lend.status === 0">
                                                     <a class="badge-warning badge" >Pending</a>
                                                 </td>
-                                                <td v-else-if="rent.status === 1">
-                                                    <a class="badge-success badge" >Approved</a>
+                                                <td v-else-if="lend.status === 1">
+                                                    <a class="badge-success badge" >Completed</a>
                                                 </td>
-                                                <td v-else>
-                                                    <a class="badge-danger badge" >Rejected</a>
+                                                <td v-else-if="lend.status === 2">
+                                                    <a class="badge-success badge" >Arrived at checkpoint</a>
                                                 </td>
-<!--                                                <td><button type="button" class="btn btn-danger mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button></td>-->
+                                                <td v-else-if="lend.status === 3">
+                                                    <a class="badge-success badge" >Delivered</a>
+                                                </td>
+                                                <td v-else-if="lend.status === 4">
+                                                    <a class="badge-success badge" >Rejected</a>
+                                                </td>
+                                                <td v-else-if="lend.status === 5">
+                                                    <a class="badge-success badge" >Processing</a>
+                                                </td>
+<!--                                                        <td><button class="btn btn-primary" @click.prevent="extend">Extent Date</button></td>-->
                                             </tr>
                                             </tbody>
-                                            </table>
-                                        </div>
-                                            <div class="dashboard-content--rented pb-5" v-else-if="lends.length && !show">
-                                                <table class="table table-borderless" v-if="lends">
-                                                    <thead>
-                                                    <tr>
-                                                        <td scope="col">Game</td>
-                                                        <td scope="col">Rent Week(s)</td>
-                                                        <td scope="col">Rent Start</td>
-                                                        <td scope="col">Return Date</td>
-                                                        <td scope="col" class="text-center">Remaining Days</td>
-                                                        <td scope="col">Cost</td>
-                                                        <td scope="col">Status</td>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr v-for="(lend, index) in lends" :key="index">
-                                                        <td v-if="lend.rent">{{ lend.rent.game.name }}</td>
-                                                        <td>{{ lend.lend_week }}</td>
-                                                        <td>{{ formattedDate(lend.lend_date) }}</td>
-                                                        <td>{{ returnDate(lend.lend_date, lend.created_at, lend.lend_week) }}</td>
-                                                        <td>
-                                                            <flip-countdown :deadline="endDate(lend.lend_date, lend.created_at, lend.lend_week)"></flip-countdown>
-                                                        </td>
-                                                        <td>{{ lend.lend_cost + Math.floor(lend.commission) }}</td>
-                                                        <td v-if="lend.status === 0">
-                                                            <a class="badge-warning badge" >Pending</a>
-                                                        </td>
-                                                        <td v-else-if="lend.status === 1">
-                                                            <a class="badge-success badge" >Completed</a>
-                                                        </td>
-                                                        <td v-else-if="lend.status === 2">
-                                                            <a class="badge-success badge" >Arrived at checkpoint</a>
-                                                        </td>
-                                                        <td v-else-if="lend.status === 3">
-                                                            <a class="badge-success badge" >Delivered</a>
-                                                        </td>
-                                                        <td v-else-if="lend.status === 4">
-                                                            <a class="badge-success badge" >Rejected</a>
-                                                        </td>
-                                                        <td v-else-if="lend.status === 5">
-                                                            <a class="badge-success badge" >Processing</a>
-                                                        </td>
-<!--                                                        <td><button class="btn btn-primary" @click.prevent="extend">Extent Date</button></td>-->
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="no-post-found-card mb-0" v-else>
-                                            <h5>Nothing to Show!</h5>
-                                            </div>
-                                        </div>
+                                        </table>
+                                    </div>
+                                        <p class="text-center text-secondery mt-3">Please note that total rent amount is exclusive of 60 taka delivery charge</p>
+                                </div>
+                                <!-- Norhing to show -->
+                                    <div class="no-post-found-card mb-0" v-else>
+                                        <h5>Nothing to Show!</h5>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="tab-pane fade" id="v-pills-post-rent" role="tabpanel" aria-labelledby="v-pills-post-rent-tab">
@@ -316,12 +321,14 @@
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                                <div class="alert alert-info alert-dismissible mt-2">
-                                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                                    <p>
-                                                        If you want to Rent for more weeks.Then renting price will be cyclic like the given price table.So its start from 1st week.
-                                                    </p>
-                                                </div>
+                                                    <div class=" mt-2 offset-sm-3 col-sm-8 game-rent-alert">
+                                                        <div class="alert alert-info alert-dismissible game-rent-alert--box">
+                                                            <button type="button" class="close close-modal" data-dismiss="alert" aria-label="Close"></button>
+                                                            <p>
+                                                                If you want to Rent for more weeks.Then renting price will be cyclic like the given price table.So its start from 1st week.
+                                                            </p>
+                                                        </div>
+                                                    </div>
                                             </div>
 
                                             <div class="form-group row">
@@ -588,8 +595,8 @@
                                                     <tr>
                                                     <th scope="col">Transaction id</th>
                                                     <th scope="col">Date</th>
-                                                    <th scope="col">Widrawl amount</th>
-                                                    <th scope="col">Widrawl method</th>
+                                                    <th scope="col">withdrawal amount</th>
+                                                    <th scope="col">withdrawal method</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

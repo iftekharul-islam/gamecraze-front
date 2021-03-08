@@ -9,6 +9,9 @@
               rent only digital games. The digital version of the games will be delivered 
               to gamers via email. If the members want to rent physical games they need to upgrade to elite membership. 
           </p>
+          <div class="mt-5">
+            <a href="/" class="back-to-home f-s-22">Back To home <i class="fas fa-undo icon"></i></a>
+          </div>
       </div>
   </div>
 </template>

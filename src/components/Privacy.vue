@@ -40,13 +40,18 @@
                                 </div>
                                 <div class="gamehub-policy-section--content--text--heading">
                                     <p> How we use your information</p>
-                                    <p>We use the information we collect in various ways, including to: Provide, operate, 
-                                        and maintain our website Improve, personalize, and expand our website Understand 
-                                        and analyze how you use our website Develop new products, services, features, and 
-                                        functionality Communicate with you, either directly or through one of our partners, 
-                                        including for customer service, to provide you with updates and other information 
-                                        relating to the website, and for marketing and promotional purposes Send you emails 
-                                        Find and prevent fraud</p>
+                                    <p> We use the information we collect in various ways, including to:</p>
+                                        <ul class="bullet-list">
+                                            <li class="bullet-list--item">Provide, operate, and maintain our website</li>
+                                            <li class="bullet-list--item">Improve, personalize, and expand our website</li>
+                                            <li class="bullet-list--item"> Understand and analyze how you use our website</li>
+                                            <li class="bullet-list--item">Develop new products, services, features, and functionality</li>
+                                            <li class="bullet-list--item">Communicate with you, either directly or through one of our partners, 
+                                                including for customer service, to provide you with updates and other information 
+                                                relating to the website, and for marketing and promotional purposes</li>
+                                            <li class="bullet-list--item"> Send you emails</li>
+                                            <li class="bullet-list--item">Find and prevent fraud</li>
+                                        </ul>
                                 </div>
                                  <div class="gamehub-policy-section--content--text--heading"> 
                                      <p>Log Files</p>

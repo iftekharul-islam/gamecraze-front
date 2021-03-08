@@ -213,7 +213,7 @@
                     <div class="row">
                         <div class="col-md-11 ml-auto">
                             <div class="row">
-                                <div class="col-6 col-md-3">
+                                <div class="col-sm-6 col-md-3">
                             <div class="footer-menu-content">
                                 <!-- <ul>
                                     <li><a href="javascript:void(0)">Company</a></li>
@@ -230,7 +230,7 @@
                                 </p>
                             </div>
                         </div>
-                        <div class="col-6 col-md-3">
+                        <div class="col-sm-6 col-md-3">
                             <div class="footer-menu-content">
                                 <!-- <ul>
                                     <li><a href="javascript:void(0)">For You</a></li>
@@ -295,6 +295,7 @@
                          <div class="col-md-11 ml-auto">
                              <div class="footer-bottom">
                                 <p>©2021 Game Hub Inc.</p>
+                                   <p>Powered By: Augnitive</p>
                                 <div class="footer-bottom--social">
                                     <a href="https://www.facebook.com/gamehub.bangladesh" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                     <a href="https://twitter.com/BdGamehub" target="_blank"><i class="fab fa-twitter"></i></a>

@@ -255,12 +255,6 @@
             // this.$store.dispatch('pushCheckpointId', this.form.deliveryType);
             console.log('modal data');
             console.log(this.form.week);
-            this.$store.dispatch('addToCart', {
-              rent: this.modalData,
-              lendWeek: this.form.week,
-              deliveryType: this.form.deliveryType,
-              deliveryAddress: this.form.address
-            });
               var config = {
                   headers: {
                       'Authorization': 'Bearer ' + this.$store.state.token
@@ -276,6 +270,15 @@
               this.$api.post('cart-item/create', data, config).then(response => {
                   console.log('Cart db store response');
                   console.log(response);
+                  if (response.data.error == true){
+                      this.$swal('Game is already in the cart');
+                  }
+                  this.$store.dispatch('addToCart', {
+                      rent: this.modalData,
+                      lendWeek: this.form.week,
+                      deliveryType: this.form.deliveryType,
+                      deliveryAddress: this.form.address
+                  });
               })
           },
             checkIfExistsInCart(gameId) {
@@ -288,7 +291,6 @@
                             console.log('item')
                             console.log(item.rent.data.game_id)
                             if (item.rent.data.game_id === gameId) {
-                                console.log('hello its true');
                                 return true;
                             }
                         });

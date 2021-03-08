@@ -421,7 +421,9 @@
                     localStorage.setItem('cartItems', '');
                     localStorage.setItem('deliveryCharge', 0);
                     this.$router.push('/profile').then(err => {
-                        location.reload();
+                        setTimeout(function () {
+                            location.reload();
+                        }, 1000)
                     });
                 }
                 if (response.data.error === true) {
@@ -456,6 +458,7 @@
                             this.$store.dispatch('removeCartItem', index)
                             swal("The item is removed.", {
                                 icon: "success",
+                                buttons: false,
                             });
                             location.reload();
                         }

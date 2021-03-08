@@ -274,7 +274,7 @@
                                                         <input type="number" class="form-control renten-input" id="rentedWeek" min="1" v-model="rentData.max_week">
                                                        <div @click="adjustRentedWeek('increase')"> <i class="fa fa-angle-up rented-plus" ></i></div>
                                                         <div  @click="adjustRentedWeek('decrease')"><i class="fa fa-angle-down rented-minus"></i></div>
-                                                        <span class="text-danger">{{ errors[0] }}</span>
+                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
@@ -384,7 +384,7 @@
                                                         <label for="physical_copy" class="custom-control-label"> Physical Copy <span></span></label>
 
                                                     </div>
-                                                    <span v-if="errors.length" class="error-message" style="margin-left: -24px">{{ errors[0] }}</span>
+                                                    <span v-if="errors.length" class="error-message platform-error" style="margin-left: -24px">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
                                             </div>

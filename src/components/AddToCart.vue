@@ -316,13 +316,13 @@
 
             var token = this.$store.state.token;
             var user = this.$store.state.user;
-            this.totalItem = this.cart.length;
+            this.totalItem = this.newCartItems.length;
             this.itemRemovable = this.user.rent_limit;
 
             console.log('item count');
             console.log(this.totalItem);
             console.log('cart items');
-            console.log(this.cart);
+            console.log(this.newCartItems);
             var config = {
                 headers: {
                     'Authorization': 'Bearer ' + this.$store.state.token

@@ -86,13 +86,13 @@
 
         <section class="cart-section">
           <div class="container">
-            <div class="cart-heading"  v-if="cart.length">
+            <div class="cart-heading"  v-if="newCartItems.length">
               <h2>YOUR CART</h2>
             </div>
             <div class="cart-heading-empty" v-else>
               <h2>YOUR CART IS EMPTY</h2>
             </div>
-            <div v-if="cart.length" class="row">
+            <div v-if="newCartItems.length" class="row">
               <div class="mb-4 mb-lg-0 col-md-12 col-lg-7">
                 <div class="cart-section--item-details">
                   <table class="table table-borderless cart-section--item-details--table">
@@ -106,13 +106,14 @@
                       </thead>
                       <tbody >
 
-                        <tr v-for="(item, index) in cart" :key="index">
-                            <td scope="col">{{ item.rent.game.data.name }}</td>
-                            <td scope="col">{{ item.price + ((item.price * commissionAmount)/100) }}</td>
-                            <td scope="col">{{ item.lend_week }}</td>
+                        <tr v-for="(item, index) in newCartItems" :key="index">
+                            <td scope="col">{{ item.rent.data.game.data.name }}</td>
+<!--                            <td scope="col">{{ item.rent.data.game.data.basePrice.data.base }}</td>-->
+                            <td scope="col">{{ item.rent.data.game.data.basePrice.data.base + ((item.rent.data.game.data.basePrice.data.base * commissionAmount)/100) }}</td>
+                            <td scope="col">{{ item.rent_week }}</td>
                             <td scope="col">
-                              <div class="d-flex align-items-center justify-content-between">{{ item.price + ((item.price * commissionAmount)/100) }}
-                                <div class="item-del" @click="onRemoveCartItem(index)"><i class="fas fa-trash-alt"></i></div>
+                              <div class="d-flex align-items-center justify-content-between">{{ item.rent.data.game.data.basePrice.data.base + ((item.rent.data.game.data.basePrice.data.base * commissionAmount)/100) }}
+                                <div class="item-del" @click="onRemoveCartItem(index, item.id)"><i class="fas fa-trash-alt"></i></div>
                               </div>
                             </td>
                         </tr>
@@ -280,6 +281,7 @@
               paymentMethod: 'cod',
               isLoading: false,
               price: [],
+              newCartItems: [],
               deliveryCharge: 0,
               commissionAmount: '',
               gameIds: [],
@@ -300,9 +302,9 @@
     computed: {
       totalPrice() {
         var total = 0;
-        if (this.cart) {
-          for (let i = 0; i < this.cart.length; i++) {
-            total += parseFloat(this.cart[i].price) ;
+        if (this.newCartItems) {
+          for (let i = 0; i < this.newCartItems.length; i++) {
+            total += parseFloat(this.newCartItems[i].rent.data.game.data.basePrice.data.base) ;
           }
           total = total + ((total * this.commissionAmount)/100)
         }
@@ -407,7 +409,7 @@
             let data = {
                 address: this.address,
                 paymentMethod: this.paymentMethod,
-                cart_items: this.cart,
+                cart_items: this.newCartItems,
                 delivery_charge: this.deliveryCharge
             };
 
@@ -428,25 +430,59 @@
                 }
             });
         },
-        onRemoveCartItem(index) {
-          this.$swal({
-            title: "Do you want to remove this item?",
-            text: "",
-            icon: "warning",
-            buttons: true,
-            dangerMode: true,
-          }).then((willDelete) => {
-            if (willDelete) {
-              this.cart.splice(index, 1)
-              this.$store.dispatch('removeCartItem', index)
-              swal("The item is removed.", {
-                icon: "success",
-              });
-            } else {
-              swal("The item is not removed.");
-            }
-          });
+        onRemoveCartItem(index,id) {
+            var config = {
+                headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                }
+            };
+            var data = {
+                id: id
+            };
+            this.$swal({
+                title: "Do you want to remove this item?",
+                text: "",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    this.$api.post('cart-item/destroy', data, config).then(response => {
+                        console.log('response');
+                        console.log(response);
+                        if (response.data.error == false){
+                            this.$store.dispatch('removeCartItem', index)
+                            swal("The item is removed.", {
+                                icon: "success",
+                            });
+                            location.reload();
+                        }
+                    });
+                } else {
+                    swal("The item is not removed.");
+                }
+            });
         },
+        // onRemoveCartItem(id) {
+        //     console.log()
+        //   this.$swal({
+        //     title: "Do you want to remove this item?",
+        //     text: "",
+        //     icon: "warning",
+        //     buttons: true,
+        //     dangerMode: true,
+        //   }).then((willDelete) => {
+        //     if (willDelete) {
+        //       this.cart.splice(index, 1)
+        //       this.$store.dispatch('removeCartItem', index)
+        //       swal("The item is removed.", {
+        //         icon: "success",
+        //       });
+        //     } else {
+        //       swal("The item is not removed.");
+        //     }
+        //   });
+        // },
         getCartItems() {
           let cartItems = localStorage.getItem('cartItems');
           if (cartItems != '' && cartItems != null) {
@@ -463,6 +499,7 @@
         }
     },
     created() {
+        window.scrollTo(0,0);
         var config = {
             headers: {
                 'Authorization': 'Bearer ' + this.$store.state.token
@@ -472,6 +509,11 @@
             this.user = response.data.data;
             console.log('this.user');
             console.log(this.user);
+        });
+        this.$api.get('cart-items?include=user,rent.game.basePrice', config).then(response => {
+            this.newCartItems = response.data.data;
+            console.log('this newCartItems');
+            console.log(this.newCartItems);
         });
         this.$api.get('delivery-charge').then(response => {
             if (response.data.data) {

@@ -503,7 +503,9 @@ export const storage = {
                     });
                     commit('setItemsInCart', items.length);
                     localStorage.setItem('cartItems', JSON.stringify(items));
-                    router.push('/cart').then(err => {});
+                    router.push('/cart').then(err => {
+                        location.reload();
+                    });
                 });
 
                 

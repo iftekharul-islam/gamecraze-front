@@ -128,6 +128,7 @@
             }
         },
         created() {
+            window.scrollTo(0,0);
             this.getNews(this.perPage, 'DESC');
             this.getFeaturedNews(1);
         }

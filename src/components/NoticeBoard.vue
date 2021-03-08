@@ -181,6 +181,7 @@
             }
         },
         created() {
+            window.scrollTo(0,0);
             this.user = this.$store.state.user
             console.log(this.user, 'user');
 

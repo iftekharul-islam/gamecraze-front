@@ -115,6 +115,9 @@
                     this.isLoading = false
                 });
             }
+        },
+        created() {
+            window.scrollTo(0,0);
         }
     }
 </script>

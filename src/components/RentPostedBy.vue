@@ -185,7 +185,8 @@
                     address: ''
                 },
                 userDetails: null,
-                isExistsInCart: false
+                isExistsInCart: false,
+                cartItems: [],
             }
         },
         computed: {
@@ -252,38 +253,79 @@
             // this.$store.dispatch('pushPostId', this.modalData.id);
             // this.$store.dispatch('pushLendWeek', this.form.week);
             // this.$store.dispatch('pushCheckpointId', this.form.deliveryType);
-            
-            this.$store.dispatch('addToCart', { 
+            console.log('modal data');
+            console.log(this.form.week);
+            this.$store.dispatch('addToCart', {
               rent: this.modalData,
-              lendWeek: this.form.week, 
-              deliveryType: this.form.deliveryType, 
+              lendWeek: this.form.week,
+              deliveryType: this.form.deliveryType,
               deliveryAddress: this.form.address
             });
-          }, 
-          checkIfExistsInCart(gameId) {
-            let cartItems = localStorage.getItem('cartItems');
-            console.log('cartItems');
-            console.log(cartItems);
-            console.log(gameId);
-            if (cartItems) {
-              cartItems = JSON.parse(cartItems);
-              let isExists = cartItems.some(item => {
-                if (item.rent.game.data.id == gameId) {
-                  return true;
-                }
-              });
+              var config = {
+                  headers: {
+                      'Authorization': 'Bearer ' + this.$store.state.token
+                  }
+              };
 
-              return isExists;
+              let data = {
+                  rent_id: this.modalData.id,
+                  rent_week: this.form.week,
+                  address: this.form.address,
+              };
+
+              this.$api.post('cart-item/create', data, config).then(response => {
+                  console.log('Cart db store response');
+                  console.log(response);
+              })
+          },
+            checkIfExistsInCart(gameId) {
+                    console.log('this cartItems');
+                    console.log(this.cartItems);
+
+                    console.log(gameId);
+                    if (this.cartItems) {
+                        let isExists = this.cartItems.some(item => {
+                            console.log('item')
+                            console.log(item.rent.data.game_id)
+                            if (item.rent.data.game_id === gameId) {
+                                console.log('hello its true');
+                                return true;
+                            }
+                        });
+
+                        return isExists;
+                    }
+                    return false;
             }
-            return false;
-          }
+            // checkIfExistsInCart(gameId) {
+            //     let cartItems = localStorage.getItem('cartItems');
+            //     console.log('cartItems');
+            //     console.log(cartItems);
+            //     console.log(gameId);
+            //     if (cartItems) {
+            //         cartItems = JSON.parse(cartItems);
+            //         let isExists = cartItems.some(item => {
+            //             if (item.rent.game.data.id == gameId) {
+            //                 return true;
+            //             }
+            //         });
+            //
+            //         return isExists;
+            //     }
+            //     return false;
+            // }
         },
         created() {
+            window.scrollTo(0,0);
             let config = {
                 headers: {
                     'Authorization': 'Bearer ' + this.$store.state.token
                 }
-            }
+            };
+            this.$api.get('cart-items?include=user,rent.game', config).then(response => {
+                    this.cartItems = response.data.data;
+            });
+
             this.$api.get('rent-posted-users/' + this.slug + '?include=game,game.basePrice,platform,diskCondition,user,checkpoint.area.thana.district').then(response => {
                 this.rentPosts = response.data.data;
                 console.log('rent posts');

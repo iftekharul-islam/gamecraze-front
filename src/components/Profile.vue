@@ -1035,6 +1035,7 @@
             }
         },
         created() {
+            window.scrollTo(0,0);
             let config = {
                 headers: {
                     'Authorization': 'Bearer ' + this.$store.state.token

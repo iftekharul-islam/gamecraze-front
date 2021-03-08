@@ -186,13 +186,13 @@
           focusMe(e) {
             console.log(e) // FocusEvent
           }, 
-          totalCartItems(){
-            let cartItems = localStorage.getItem('cartItems');
-            if (cartItems) {
-              let cart = JSON.parse(cartItems);
-              this.totalItems = cart.length;
-            }
-          },
+          // totalCartItems(){
+          //   let cartItems = localStorage.getItem('cartItems');
+          //   if (cartItems) {
+          //     let cart = JSON.parse(cartItems);
+          //     this.totalItems = cart.length;
+          //   }
+          // },
           onMenuItemClick() {
             if( window.innerWidth < 992 ) {
                 let elem = this.$refs.btnMenuToggle;
@@ -215,12 +215,18 @@
           }
         },
         created() {
+            // this.$router.go();
             let config = {
                 headers: {
                     'Authorization': 'Bearer ' + this.$store.state.token
                 }
             };
-            this.totalItems = this.$store.state.itemsInCart;
+            this.$api.get('cart-items', config).then(response => {
+                this.totalItems = response.data.data.length;
+                console.log('this totalItems');
+                console.log(this.totalItems);
+            });
+            // this.totalItems = this.$store.state.itemsInCart;
             this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {
                 this.rents = response.data.data;
@@ -249,7 +255,7 @@
                     return this.$store.state.itemsInCart // could also put a Getter here
                 },
                 (newValue, oldValue)=>{
-                  this.totalItems = newValue;
+                  // this.totalItems = newValue;
                 },
                 //Optional Deep if you need it
                 { deep:true }

@@ -482,3 +482,29 @@ input::placeholder {
   margin-bottom: 47px;
   margin-top: 99px;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+            margin: 0;
+    }
+
+input[type=number] {
+    -moz-appearance:textfield;
+}
+
+input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+input[type="date"] {
+  background:$game-details url(../img/calender.png)  97% 50% no-repeat ;
+}
+select option:checked,
+select option:hover {
+  box-shadow: 0 0 10px 100px $secondery inset !important;
+  color:$text-dark;
+  background: $secondery;
+}

@@ -133,7 +133,7 @@
                                             <tr>
                                             <td scope="row">NID Image:</td>
                                                 <td v-if="user.identification_image"><img :src="user.identification_image" alt="nid" class="img-fluid"></td>
-                                                <td v-else><img src="../assets/img/id.jpg" alt="nid" class="img-fluid"></td>
+                                                <td v-else><img src="" alt="nid" class="img-fluid"></td>
                                             </tr>
                                         </tbody>
                                     </table>
@@ -147,7 +147,7 @@
                                         <button  @click.prevent="onOfferedGames()" :disabled="show" :class="{active: show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  Offered Games</button>
                                     </div>
                                 <!-- Offer -->
-                                <div class="dashboard-content--rented dashboard-content--offer pb-5" v-if="rents.length && show">
+                                <div class="dashboard-content--rented dashboard-content--offer" v-if="rents.length && show">
                                     <table class="table table-borderless" v-if="rents">
                                     <thead>
                                     <tr>
@@ -187,7 +187,7 @@
                                 </div>
                                     <!-- Rented -->
                                 <div v-else-if="lends.length && !show">
-                                    <div class="dashboard-content--rented pb-5">
+                                    <div class="dashboard-content--rented">
                                         <table class="table table-borderless" v-if="lends">
                                             <thead>
                                             <tr>
@@ -335,7 +335,7 @@
                                                 <label class="col-sm-3 col-form-label">Disk Condition:</label>
                                                 <div class="col-sm-8 post-rent--input">
                                                     <ValidationProvider name="Disk Condition" rules="required" v-slot="{ errors }">
-                                                        <select class="form-control" id="DiskCondition" v-model="rentData.disk_condition">
+                                                        <select class="form-control js-example-basic-single" id="DiskCondition" v-model="rentData.disk_condition">
                                                             <option value="" selected>Please Select Disk Condition</option>
                                                             <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }} ({{ diskCondition.description }})</option>
                                                         </select>

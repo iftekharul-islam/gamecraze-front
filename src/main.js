@@ -1,13 +1,15 @@
 // import './assets/scss/owl/owl.carousel.min.css'
-import './assets/scss/owl/owl.carousel.min.css'
-import './assets/scss/owl/owl.theme.default.min.css'
+import '@/assets/scss/owl/owl.carousel.min.css'
+import '@/assets/scss/owl/owl.theme.default.min.css'
+// import '@/assets/scss/select2/select2.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/scss/style.css'
 // import './assets/admin/dist/css/adminlte.css'
 import "vue-select/dist/vue-select.css";
 import 'v-toaster/dist/v-toaster.css'
 import '@fortawesome/fontawesome-free/css/all.css'
-import '@fortawesome/fontawesome-free/js/all.js'  
+import '@fortawesome/fontawesome-free/js/all.js'
+// import '@/assets/js/select2/select2.full.min.js'
 
 
 global.jQuery = require('jquery/dist/jquery.min');
@@ -16,6 +18,9 @@ window.$ = $;
 
 import 'popper.js'
 import 'bootstrap'
+
+// let select2 = require('./assets/js/select2/select2.full.min.js');
+// window.fn = select2;
 
 let owl_carousel = require('./assets/js/owl/owl.carousel.min');
 window.fn = owl_carousel;

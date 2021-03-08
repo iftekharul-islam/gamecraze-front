@@ -1422,6 +1422,36 @@ input::placeholder {
   margin-top: 99px;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+input[type="date"] {
+  background: #141A27 url(../img/calender.png) 97% 50% no-repeat;
+}
+
+select option:checked,
+select option:hover {
+  -webkit-box-shadow: 0 0 10px 100px #FFD715 inset !important;
+          box-shadow: 0 0 10px 100px #FFD715 inset !important;
+  color: #000;
+  background: #FFD715;
+}
+
 @media (max-width: 575px) {
   .body-home .gamehub-menu {
     background: transparent;
@@ -2202,6 +2232,10 @@ input::placeholder {
 
 .swal-icon--warning__body, .swal-icon--warning__dot {
   background: #F16A46;
+}
+
+.swal-button:not([disabled]):hover {
+  background: #FFD715;
 }
 
 .slider-section {
@@ -4392,15 +4426,14 @@ html {
 }
 
 .clear-filters {
-  border: 1px solid #FFD715;
-  background: #0B0F18 !important;
-  color: #fff !important;
   margin: auto;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
 }
 
 .clear-filters:hover {
-  background: #FFD715 !important;
-  color: #000 !important;
+  border: 1px solid #FFD715;
+  background: #0B0F18 !important;
 }
 
 @media (max-width: 575px) {
@@ -4955,6 +4988,7 @@ html {
 
 .screenshot-video .owl-item .item {
   margin-right: 10px;
+  overflow: hidden;
 }
 
 .screenshot-video .owl-item .item iframe {
@@ -4963,6 +4997,16 @@ html {
 
 .screenshot-video .owl-item .item img {
   height: 146px;
+}
+
+.screenshot-video .owl-item .item iframe, .screenshot-video .owl-item .item img {
+  -webkit-transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in;
+}
+
+.screenshot-video .owl-item .item:hover iframe, .screenshot-video .owl-item .item:hover img {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .overview {
@@ -5095,6 +5139,12 @@ html {
 @media (min-width: 768px) {
   .game-available-section .modal-dialog-centered {
     max-width: 726px;
+  }
+}
+
+@media (min-width: 992px) {
+  .game-available-section .modal-dialog-centered {
+    max-width: 760px;
   }
 }
 
@@ -5272,6 +5322,12 @@ html {
   vertical-align: middle;
 }
 
+@media (max-width: 575px) {
+  .seller-information-modal--table-bottom tr td:first-of-type {
+    width: 100% !important;
+  }
+}
+
 .seller-information {
   border-top: 0.5px solid #FFD715;
   padding-top: 20px;
@@ -5337,6 +5393,7 @@ html {
   .seller-information table tr td {
     padding-top: 0;
     padding-bottom: 0;
+    padding-left: 0;
   }
 }
 
@@ -5887,6 +5944,26 @@ html {
 .over-view table tr td img {
   width: 260px;
   height: 150px;
+  display: block;
+  position: relative;
+}
+
+.over-view table tr td img::after {
+  content: "Upload Your NID";
+  background: #141A27;
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  top: 0;
 }
 
 .post-rent .form-group {
@@ -5934,18 +6011,6 @@ html {
 
 .post-rent .form-group select option {
   text-transform: capitalize;
-}
-
-.post-rent .form-group [type="date"]::-webkit-inner-spin-button {
-  display: none;
-}
-
-.post-rent .form-group [type="date"]::-webkit-calendar-picker-indicator {
-  opacity: 0;
-}
-
-.post-rent .form-group [type="date"] {
-  background: #141A27 url(../img/calender.png) 97% 50% no-repeat;
 }
 
 .post-rent .form-group label {
@@ -8016,10 +8081,22 @@ html {
   text-align: center;
   border: none;
   font-size: 16px;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+  border: 1px solid #FFD715;
 }
 
 .btn--cart-btn:focus {
   outline: none;
+}
+
+.btn--cart-btn:hover {
+  background: #141A27;
+  color: #fff;
+}
+
+.btn--cart-btn:active {
+  border: 1px solid #66CC33;
 }
 
 .btn--filter {

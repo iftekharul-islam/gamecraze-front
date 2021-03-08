@@ -420,7 +420,9 @@
                     this.isLoading = false;
                     localStorage.setItem('cartItems', '');
                     localStorage.setItem('deliveryCharge', 0);
-                    this.$router.push('/profile').then(err => {});
+                    this.$router.push('/profile').then(err => {
+                        location.reload();
+                    });
                 }
                 if (response.data.error === true) {
                     this.isLoading = false;

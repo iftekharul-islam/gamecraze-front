@@ -7,6 +7,7 @@
                     <div class="col-md-10 mx-auto">
                         <div class="footer-bottom">
                     <p>©2021 Game Hub Inc.</p>
+                     <p>Powered By: Augnitive</p>
                     <div class="footer-bottom--social">
                         <a href="https://www.facebook.com/gamehub.bangladesh" target="_blank"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://twitter.com/BdGamehub" target="_blank"><i class="fab fa-twitter"></i></a>

@@ -453,6 +453,7 @@ input::placeholder {
   align-items: center;
   justify-content: center;
   transition: all .3s ease-in;
+  padding: 0 !important;
   @include for-max-575 {
     right: 16px;
     top: 16px;

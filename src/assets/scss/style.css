@@ -1385,6 +1385,7 @@ input::placeholder {
           justify-content: center;
   -webkit-transition: all .3s ease-in;
   transition: all .3s ease-in;
+  padding: 0 !important;
 }
 
 @media (max-width: 575px) {
@@ -2818,8 +2819,8 @@ input::placeholder {
   background: #141A27;
   -webkit-transform: translate(0px, 60px);
           transform: translate(0px, 60px);
-  -webkit-transition: all .3s ease-in;
-  transition: all .3s ease-in;
+  -webkit-transition: all .5s ease-in;
+  transition: all .5s ease-in;
 }
 
 @media (max-width: 575px) {
@@ -6495,6 +6496,24 @@ html {
   color: #FFD715;
 }
 
+.game-rent-alert {
+  padding-right: 26px;
+  padding-left: 15px;
+}
+
+.game-rent-alert--box {
+  border: 1.5px solid #FFD715;
+  background: rgba(255, 215, 21, 0.25);
+  color: #fff;
+  padding: 25px 40px 20px 20px;
+  border-radius: 0;
+}
+
+.game-rent-alert--box .close-modal {
+  top: 10px;
+  right: 10px;
+}
+
 .set-password {
   padding-bottom: 120px;
   padding-top: 40px;
@@ -6940,12 +6959,30 @@ html {
   font-size: 20px;
 }
 
+@media (max-width: 575px) {
+  .cart-section--item-price-box div {
+    font-size: 16px;
+  }
+}
+
 .cart-section--item-price-box div p {
   margin: 0;
 }
 
 .cart-section--item-price-box--heading {
   color: #FFD715;
+}
+
+.cart-section--item-price-box--payment-method {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
 }
 
 .cart-section .promotional-code--input-group {
@@ -7793,11 +7830,36 @@ html {
   margin-bottom: 32px;
   line-height: 28px;
   opacity: .97;
+  text-transform: capitalize;
 }
 
 .gamehub-policy-section--content--text--heading p:first-of-type {
   color: #FFD715;
   margin-bottom: 4px;
+}
+
+.bullet-list {
+  margin-top: -16px;
+}
+
+.bullet-list--item {
+  position: relative;
+  padding: 0;
+  padding-left: 20px;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.bullet-list--item::after {
+  content: "";
+  width: 10px;
+  height: 10px;
+  background: #FFD715;
+  border-radius: 50%;
+  position: absolute;
+  opacity: .75;
+  left: 0;
+  top: 6px;
 }
 
 .sponsors-section--content {
@@ -8242,6 +8304,10 @@ html {
   margin-bottom: 15px;
 }
 
+.footer-menu-content ul li a {
+  text-transform: capitalize;
+}
+
 .footer-menu-content--address {
   margin-bottom: 24px;
 }
@@ -8270,12 +8336,15 @@ html {
   padding: 25px 0;
 }
 
+@media (max-width: 768px) {
+  .footer-bottom {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+}
+
 @media (max-width: 575px) {
   .footer-bottom {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: reverse;
-        -ms-flex-direction: column-reverse;
-            flex-direction: column-reverse;
     margin-top: 0;
     padding: 18px 0;
   }
@@ -8298,7 +8367,7 @@ html {
   margin-left: 25px;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 768px) {
   .footer-bottom--social a:first-of-type {
     margin-left: 0;
   }

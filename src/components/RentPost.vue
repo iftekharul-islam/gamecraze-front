@@ -78,11 +78,13 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="alert alert-info alert-dismissible mt-2">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <p>
-                                            If you want to Rent for more weeks.Then renting price will be cyclic like the given price table.So its start from 1st week.
-                                        </p>
+                                    <div class=" mt-2 offset-sm-3 col-sm-8 game-rent-alert">
+                                        <div class="alert alert-info alert-dismissible game-rent-alert--box">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                                            <p>
+                                                If you want to Rent for more weeks.Then renting price will be cyclic like the given price table.So its start from 1st week.
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- disk condition -->

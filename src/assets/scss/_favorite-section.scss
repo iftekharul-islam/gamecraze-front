@@ -146,7 +146,7 @@
         bottom: 0;
         background: $game-details;
         transform: translate(0px, 60px);
-        transition: all .3s ease-in;
+        transition: all .5s ease-in;
         @include for-max-575 {
             display: none !important;
         }

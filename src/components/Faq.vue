@@ -244,7 +244,7 @@
                         <!-- end collapse -->
                         <div class="support-bottom">
                             <p class="mb-0 mr-a-6">We hope we got you covered if not feel free to contact us</p>
-                            <a href="#" class="btn--secondery"><span>CONTACT US</span></a>
+                            <a href="/contacts" class="btn--secondery"><span>CONTACT US</span></a>
                         </div>
 
                     </div>

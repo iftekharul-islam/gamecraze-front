@@ -9,6 +9,9 @@
               to rent unlimited games during the period but they can not possess more than two games 
               at the given period. The elite members will be allowed to rent both physical and digital games. 
           </p>
+          <div class="mt-5">
+            <a href="/" class="back-to-home f-s-22">Back To home <i class="fas fa-undo icon"></i></a>
+          </div>
       </div>
   </div>
 </template>

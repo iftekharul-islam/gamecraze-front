@@ -348,7 +348,7 @@
                     this.showRentCountModal = true;
                 }
                 else if (token) {
-                    if (user.name && user.phone_number && user.address.address && user.identification_number && user.birth_date) {
+                    if (user.name && user.phone_number && user.identification_number && user.birth_date) {
                         this.ExistInCart();
                     }
                     else {

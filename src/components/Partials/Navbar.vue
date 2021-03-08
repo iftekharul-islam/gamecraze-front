@@ -115,7 +115,8 @@
                                 <span class="badge gamehub-badge navbar-badge">{{ totalItems }}</span>
                               </i> -->
                               <i class="fas fa-shopping-cart gamehub-input-group--content--cart--icon"></i>
-                              <div class="badge gamehub-badge navbar-badge">{{ totalItems }}</div>
+                              <div class="badge navbar-badge" v-if="totalItems == 0"></div>
+                              <div class="badge gamehub-badge navbar-badge" v-else>{{ totalItems }}</div>
                             </router-link>
 
                         </div>

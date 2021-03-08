@@ -1051,9 +1051,15 @@
                 $('#v-pills-post-rent-tab').addClass('active');
                 $('#v-pills-post-rent').addClass('show');
                 $('#v-pills-post-rent').addClass('active');
+                $('#v-pills-edit-profile-tab').removeClass('active');
+                $('#v-pills-edit-profile').removeClass('active');
+                $('#v-pills-edit-profile').removeClass('show');
                 $('#v-pills-dashboard-tab').removeClass('active');
                 $('#v-pills-dashboard').removeClass('active');
                 $('#v-pills-dashboard').removeClass('show');
+                $('#v-pills-my-earning-tab').removeClass('active');
+                $('#v-pills-my-earning').removeClass('show');
+                $('#v-pills-my-earning').removeClass('show');
 
               });
 
@@ -1061,12 +1067,18 @@
                 $('#v-pills-edit-profile-tab').addClass('active');
                 $('#v-pills-edit-profile').addClass('active');
                 $('#v-pills-edit-profile').addClass('show');
+                $('#v-pills-overview-tab').removeClass('active');
+                $('#v-pills-overview').removeClass('active');
+                $('#v-pills-overview').removeClass('show');
                 $('#v-pills-post-rent-tab').removeClass('active');
                 $('#v-pills-post-rent').removeClass('show');
                 $('#v-pills-post-rent').removeClass('active');
                 $('#v-pills-dashboard-tab').removeClass('active');
                 $('#v-pills-dashboard').removeClass('active');
                 $('#v-pills-dashboard').removeClass('show');
+                $('#v-pills-my-earning-tab').removeClass('active');
+                $('#v-pills-my-earning').removeClass('show');
+                $('#v-pills-my-earning').removeClass('show');
 
               });
 

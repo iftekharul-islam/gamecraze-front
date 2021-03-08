@@ -99,7 +99,6 @@
                                                 <div class="gamehub-dropdown-menu--top">
                                                   <router-link to="/profile" class="dropdown-item" href="#">Dashboard</router-link>
                                                   <router-link to="/profile" class="dropdown-item" @click.native="clickProfile()">Post For Rent</router-link>
-                                                  <router-link to="/support" class="dropdown-item" href="#">Support</router-link>
                                                   <router-link to="/contacts" class="dropdown-item" href="#">Contact Us</router-link>
                                                 </div>
                                                 <div class="gamehub-dropdown-menu--bottom">

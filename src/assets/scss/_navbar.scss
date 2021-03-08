@@ -607,4 +607,7 @@
           background: $gamehub_danger;
       }
   }
+  .swal-button:not([disabled]):hover {
+      background: $secondery;
+  }
   

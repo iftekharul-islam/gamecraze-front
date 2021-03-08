@@ -31,6 +31,9 @@
         @include for-min-768 {
             max-width: 726px;
         }
+        @include for-min-992 {
+            max-width: 760px;
+        }
     }
     .modal-content {
         background: $game-details;
@@ -200,6 +203,11 @@
                     font-size: 16px;
                     vertical-align: middle;
                 }
+                &:first-of-type {
+                    @include for-max-575 {
+                        width: 100% !important;
+                    }
+                }
             }
         }
     }
@@ -248,6 +256,7 @@
                 @include for-max-768 {
                     padding-top: 0;
                     padding-bottom: 0;
+                    padding-left: 0;
                 }
                 &:first-of-type {
                     vertical-align: initial;

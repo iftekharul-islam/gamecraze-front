@@ -99,7 +99,7 @@
                                                             <option value="" selected disabled>Please Select Rent Week...</option>
                                                             <option v-for="n in rent.max_number_of_week" :value="n">For {{n}} Week</option>
                                                         </select>
-                                                        <span class="text-danger">{{ errors[0] }}</span>
+                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
                                             </div>

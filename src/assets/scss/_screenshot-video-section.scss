@@ -66,11 +66,20 @@
     .owl-item {
         .item {
             margin-right: 10px;
+            overflow: hidden;
             iframe {
                 width: 100%;
             }
             img {
                 height: 146px;
+            }
+            iframe,img {
+                transition: all.5s ease-in;
+            }
+            &:hover {
+                iframe,img {
+                    transform: scale(1.1);
+                }
             }
         }
     }

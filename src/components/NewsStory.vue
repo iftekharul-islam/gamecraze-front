@@ -10,9 +10,9 @@
                             <p>{{ newsDetails.created }}</p>
                             <h2>{{ newsDetails.title }}</h2>
                             <div class="news-story-section--heading--icon">
-                                <a target="_blank" :href="'https://www.facebook.com/sharer/sharer.php?u=' + currentPageUrl"><i class="fab fa-facebook-f"></i></a>
-                                <a target="_blank" :href="'https://twitter.com/intent/tweet?url=' + currentPageUrl"><i class="fab fa-twitter"></i></a>
-                                <a target="_blank" href="#"><i class="fab fa-instagram"></i></a>
+                                <a target="_blank" :href="'https://www.facebook.com/sharer/sharer.php?u=' + currentPageUrl"><i class="fab fa-facebook-f icon"></i></a>
+                                <a target="_blank" :href="'https://twitter.com/intent/tweet?url=' + currentPageUrl"><i class="fab fa-twitter icon"></i></a>
+                                <a target="_blank" href="#"><i class="fab fa-linkedin-in  icon"></i></a>
                             </div>
                         </div>
                     </div>

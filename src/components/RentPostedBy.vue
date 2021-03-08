@@ -84,7 +84,7 @@
                                                         <option value="" selected disabled>Please select rent week</option>
                                                         <option v-for="n in modalData.max_number_of_week" :value="n" :key="n">For {{n}} Week</option>
                                                     </select>
-                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                   </ValidationProvider>
                                                 </td>
                                             </tr>
@@ -105,16 +105,16 @@
                                                         <option value="0">Home Delivery</option>
 <!--                                                        <option :value="modalData.checkpoint_id" :disabled="modalData.checkpoint_id == null ">Checkpoint</option>-->
                                                     </select>
-                                                    <span class="text-danger">{{ errors[0] }}</span>
+                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                   </ValidationProvider>
                                                 </td>
                                             </tr>
-<!--                                            <tr v-if="form.deliveryType === '0' && modalData">-->
-<!--                                                <td>Delivery Address:</td>-->
-<!--                                                <td>-->
-<!--                                                  <input type="text" class="form-control" v-model="form.address">-->
-<!--                                                </td>-->
-<!--                                            </tr>-->
+                                              <!--        <tr v-if="form.deliveryType === '0' && modalData">-->
+                                              <!--            <td>Delivery Address:</td>-->
+                                              <!--            <td>-->
+                                              <!--              <input type="text" class="form-control" v-model="form.address">-->
+                                              <!--            </td>-->
+                                              <!--        </tr>-->
                                             <tr v-if="form.deliveryType !== '0' && form.deliveryType !== '' && modalData">
                                                 <td>Checkpoint Details:</td>
                                                 <td>

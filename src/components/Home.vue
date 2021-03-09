@@ -563,7 +563,7 @@
                 });
             },
             getFeaturedArticles: function () {
-                this.$api.get('featured-article?number=4').then(response => {
+                this.$api.get('featured-article?number=1').then(response => {
                     if (response.status == 200) {
                         if ( response.data.data.length > 0) {
                             this.featuredArticle = response.data.data[0];
@@ -573,8 +573,8 @@
                     }
                 });
             },
-            getArticles: function (number) {
-                this.$api.get('top-articles?number=' + number).then(response => {
+            getArticles: function () {
+                this.$api.get('top-articles?number=4').then(response => {
                     if (response.status == 200) {
                        //this.articles = response.data.data;
                         let vm = this;

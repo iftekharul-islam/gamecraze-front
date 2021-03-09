@@ -122,7 +122,7 @@
                 <h6 class="mb-4">You Might Also Like</h6>
                 <div id="owl-related" class="owl-carousel owl-theme" v-if="relatedGames">
                     <div class="item" v-for="(related, index) in relatedGames" :key="index">
-                      <router-link @click.native="scrollToTop()" :to="{ path: '/game-details/' + related.game.data.slug}" class="games-categories-section--games--game-card-box">
+                      <router-link :to="{ path: '/game-details/' + related.game.data.slug}" @click.native="scrollToTop()" class="games-categories-section--games--game-card-box">
                         <div class="game-card">
                             <a class="display-image" href="javascript:void(0)">
                               <img :src="related.game.data.poster_url" :alt="related.game.data.name" class="img-fluid">
@@ -171,9 +171,9 @@
             var match = url.match(regExp);
             return (match && match[1].length==11)? match[1] : false;
           },
-          scrollToTop() {
-            window.scrollTo(0,0);
-          },
+            scrollToTop() {
+                window.scrollTo(0, 0);
+            },
           formattedDate(date) {
             const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
             let formattedDate = new Date(date)
@@ -206,6 +206,7 @@
             });
           },
           screenshotsCarousel() {
+            $('#owl-screenshot-video').trigger('refresh.owl.carousel');
             $('#owl-screenshot-video').owlCarousel({
               loop: true,
               margin: 10,
@@ -236,6 +237,7 @@
             });
           },
           relatedCarousel() {
+            $('#owl-related').trigger('refresh.owl.carousel');
             $('#owl-related').owlCarousel({
               loop: true,
               margin: 10,

@@ -89,7 +89,7 @@
             <div class="cart-heading"  v-if="newCartItems.length">
               <h2>YOUR CART</h2>
             </div>
-            <div class="cart-heading-empty" v-else>
+            <div class="cart-heading-empty" v-if="emptyCart">
               <h2>YOUR CART IS EMPTY</h2>
             </div>
             <div v-if="newCartItems.length" class="row">
@@ -300,6 +300,7 @@
               itemRemovable: 0,
               totalLends: 0,
               message: '',
+              emptyCart: false,
 
           }
       },
@@ -521,6 +522,9 @@
         });
         this.$api.get('cart-items?include=user,rent.game.basePrice', config).then(response => {
             this.newCartItems = response.data.data;
+            if (!this.newCartItems.length) {
+                this.emptyCart = true;
+            }
             console.log('this newCartItems');
             console.log(this.newCartItems);
         });

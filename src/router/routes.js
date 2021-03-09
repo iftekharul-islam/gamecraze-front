@@ -116,7 +116,7 @@ let router = new Router({
             name: 'AddToCart',
             component: AddToCart,
             meta: {
-                requiresAuth: false
+                requiresAuth: true
             }
         },
         {

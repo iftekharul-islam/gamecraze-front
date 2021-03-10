@@ -239,7 +239,7 @@
                                                     <a class="badge-success badge" >Delivered</a>
                                                 </td>
                                                 <td v-else-if="lend.status === 4">
-                                                    <a class="badge-success badge" >Rejected</a>
+                                                    <a class="badge-danger badge" >Rejected</a>
                                                 </td>
                                                 <td v-else-if="lend.status === 5">
                                                     <a class="badge-success badge" >Processing</a>
@@ -257,14 +257,15 @@
                                     </div>
                                 </div>
                             </div>
-
+                                <!-- Post for Rent -->
                             <div class="tab-pane fade" id="v-pills-post-rent" role="tabpanel" aria-labelledby="v-pills-post-rent-tab">
                                 <div class="post-rent">
                                     <ValidationObserver v-slot="{ handleSubmit }">
                                         <form @submit.prevent="handleSubmit(onRentSubmit)" method="post" id="rentPostForm">
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Game Name:</label>
-                                                <div class="col-sm-8 post-rent--input">
+                                            <!-- form-group -->
+                                            <div class="form-group post-rent--form-group">
+                                                <label class=" post-rent--form-group--label">Game Name:</label>
+                                                <div class=" post-rent--form-group--input">
                                                     <ValidationProvider name="game" rules="" v-slot="{ errors }">
                                                         <vue-autosuggest
                                                             v-model="gameName"
@@ -283,17 +284,22 @@
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label for="rentedWeek" class="col-sm-3 col-form-label">Max Rented Week:</label>
-                                                <div class="col-sm-8 post-rent--input">
+                                              <!-- form-group -->
+                                            <div class="form-group post-rent--form-group">
+                                                <label for="rentedWeek" class=" label-padding post-rent--form-group--label">Max Rented Week:</label>
+                                                <div class=" post-rent--form-group--input">
                                                     <ValidationProvider name="rented week" rules="required|min_value:1" v-slot="{ errors }">
                                                         <input type="number" class="form-control renten-input" id="rentedWeek" min="1" v-model="rentData.max_week">
-                                                       <div @click="adjustRentedWeek('increase')"> <i class="fa fa-angle-up rented-plus" ></i></div>
-                                                        <div  @click="adjustRentedWeek('decrease')"><i class="fa fa-angle-down rented-minus"></i></div>
+                                                        <!-- Plus Minus icon -->
+                                                       <div class="post-rent--form-group--input--plus-minus">
+                                                           <div @click="adjustRentedWeek('increase')"> <i class="fa fa-angle-up rented-plus icon" ></i></div>
+                                                            <div  @click="adjustRentedWeek('decrease')"><i class="fa fa-angle-down rented-minus icon"></i></div>
+                                                       </div>
                                                         <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
+
 <!--                                            <div class="form-group row">-->
 <!--                                                <label for="gamendate" class="col-sm-3 col-form-label">Available from:</label>-->
 <!--                                                <div class="col-sm-8 post-rent&#45;&#45;input">-->
@@ -304,40 +310,49 @@
 <!--                                                </div>-->
 <!--                                            </div>-->
                                             <!-- platform -->
-                                            <div class="form-group row" v-if="gamePlatform">
-                                                <label class="col-sm-3 col-form-label">Platform:</label>
-                                                <div class="col-sm-8 post-rent--delivery platform--delivery">
+
+                                              <!-- form-group -->
+                                            <div class="form-group post-rent--form-group" v-if="gamePlatform">
+                                                <label class=" label-padding post-rent--form-group--label mt-0">Platform:</label>
+                                                <div class="post-rent--form-group--input">
                                                 <ValidationProvider name="Platform" rules="required" v-slot="{ errors }">
-                                                    <div class="form-check form-check-inline post-rent--input--platform-input custom-radio" v-for="(platform, index) in rentData.game.platforms.data" :key="index">
-                                                        <input class="custom-control-input platform" :id="'platform-' + index" name="platform" type="radio" :value="platform" v-model="rentData.platform">
-                                                        <label class="custom-control-label ml-2" :for="'platform-' + index">{{ platform.name }}</label>
+                                                    <div class=" post-rent--form-group--input--radio-group ">
+                                                        <div class="form-check form-check-inline custom-radio" v-for="(platform, index) in rentData.game.platforms.data" :key="index">
+                                                            <input class="custom-control-input platform" :id="'platform-' + index" name="platform" type="radio" :value="platform" v-model="rentData.platform">
+                                                            <label class="custom-control-label ml-2" :for="'platform-' + index">{{ platform.name }}</label>
+                                                        </div>
                                                     </div>
+                                                   
+
                                                     <span v-if="errors.length" class="error-message platform-error">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                                 </div>
                                             </div>
+
                                             <!-- earning amount -->
-                                            <div class="form-group row" v-if="basePrices">
-                                                <label class="col-sm-3 col-form-label">Earning Amount:</label>
-                                                <div class="earning-amount col-sm-8 post-rent--input">
-                                                    <table class="table table-borderless">
-                                                        <tbody>
-                                                        <tr class="">
-                                                            <td>Your Estimated earning for 1 week</td>
-                                                            <td>BDT {{ basePrices[1] }}</td>
-                                                        </tr>
-                                                        <tr class="">
-                                                            <td>Your Estimated earning for 2 week</td>
-                                                            <td>BDT {{ basePrices[1] + basePrices[2] }}</td>
-                                                        </tr>
-                                                        <tr class="">
-                                                            <td>Your Estimated earning for 3 week</td>
-                                                            <td>BDT {{ basePrices[1] + basePrices[2] + basePrices[3] }}</td>
-                                                        </tr>
-                                                        </tbody>
+                                              <!-- form-group -->
+                                            <div class="form-group post-rent--form-group" v-if="basePrices">
+                                                <label class="post-rent--form-group--label mt-0">Earning Amount:</label>
+                                                <div class="earning-amount post-rent--form-group--input">
+                                                    <div class="earning-amount--content">
+                                                        <table class="table table-borderless">
+                                                            <tbody>
+                                                            <tr class="">
+                                                                <td>Your Estimated earning for 1 week</td>
+                                                                <td>BDT {{ basePrices[1] }}</td>
+                                                            </tr>
+                                                            <tr class="">
+                                                                <td>Your Estimated earning for 2 week</td>
+                                                                <td>BDT {{ basePrices[1] + basePrices[2] }}</td>
+                                                            </tr>
+                                                            <tr class="">
+                                                                <td>Your Estimated earning for 3 week</td>
+                                                                <td>BDT {{ basePrices[1] + basePrices[2] + basePrices[3] }}</td>
+                                                            </tr>
+                                                            </tbody>
                                                     </table>
-                                                </div>
-                                                    <div class=" mt-2 offset-sm-3 col-sm-8 game-rent-alert">
+                                                    <!-- warning -->
+                                                    <div class=" mt-2 game-rent-alert">
                                                         <div class="alert alert-info alert-dismissible game-rent-alert--box">
                                                             <button type="button" class="close close-modal" data-dismiss="alert" aria-label="Close"></button>
                                                             <p>
@@ -345,11 +360,16 @@
                                                             </p>
                                                         </div>
                                                     </div>
-                                            </div>
 
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Disk Condition:</label>
-                                                <div class="col-sm-8 post-rent--input">
+                                                    </div>
+
+                                                </div>
+                                                    
+                                            </div>
+                                              <!-- form-group -->
+                                            <div class="form-group post-rent--form-group">
+                                                <label class="post-rent--form-group--label">Disk Condition:</label>
+                                                <div class="post-rent--form-group--input">
                                                     <ValidationProvider name="Disk Condition" rules="required" v-slot="{ errors }">
                                                         <select class="form-control js-example-basic-single" id="DiskCondition" v-model="rentData.disk_condition">
                                                             <option value="" selected>Please Select Disk Condition</option>
@@ -360,13 +380,17 @@
                                                 </div>
                                             </div>
                                                   <!-- Delivery type -->
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Delivery type:</label>
-                                                <div class="col-sm-8 post-rent--delivery">
-                                                    <div class="custom-radio d-flex">
-                                                        <input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod" class="custom-control-input" checked>
-                                                        <label for="cod" class="custom-control-label"> Cash on Delivery <span class="checkbox-style"></span></label>
+                                                  <!-- form-group -->
+                                            <div class="form-group post-rent--form-group">
+                                                <label class="post-rent--form-group--label mt-0">Delivery type:</label>
+                                                <div class="post-rent--form-group--input">
+                                                    <div class="post-rent--form-group--input--radio-group">
+                                                        <div class="custom-radio d-flex">
+                                                            <input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod" class="custom-control-input" checked>
+                                                            <label for="cod" class="custom-control-label"> Cash on Delivery <span class="checkbox-style"></span></label>
+                                                        </div>
                                                     </div>
+                                                    
 
 <!--                                                    <div class=" custom-radio d-flex">-->
 <!--                                                        <input type="radio" v-model="x" value="1" name="checkpoint_id" id="checkpoint_true" class="custom-control-input">-->
@@ -375,38 +399,41 @@
                                                 </div>
                                             </div>
                                             <!-- Select Check point -->
-                                           <div class="form-group row" v-show="x === '1'">
-                                                    <label class="col-sm-3 col-form-label">Select checkpont:</label>
-                                                    <div class="col-sm-8 post-rent--input">
+                                              <!-- form-group -->
+                                           <div class="form-group post-rent--form-group" v-show="x === '1'">
+                                                    <label class="post-rent--form-group--label">Select checkpont:</label>
+                                                    <div class="post-rent--form-group--input">
                                                         <select class="form-control" id="checkpoint" v-model="rentData.checkpoint">
                                                             <option value="" disabled>Please Select Near Checkpoint</option>
                                                             <option v-for="(checkpoint, index) in checkpoints" :key="index" :value="checkpoint">{{ checkpoint.name }}, Area: {{ checkpoint.area.data.name }}</option>
                                                         </select>
                                                     </div>
-                                                </div>
+                                            </div>
+                                              <!-- form-group -->
+                                            <div class="form-group post-rent--form-group">
 
-                                            <div class="form-group row">
-
-                                                <label class="col-sm-3 col-form-label">Game Type</label>
-                                                <div class="col-sm-8 post-rent--delivery">
+                                                <label class="post-rent--form-group--label mt-0">Game Type:</label>
+                                                <div class="post-rent--form-group--input">
                                                     <ValidationProvider name="Game type" rules="required" v-slot="{ errors }">
-                                                    <div class="custom-radio d-flex">
-                                                        <input type="radio" value="0" id="digital_copy" name="disk_type" v-model="rentData.disk_type" class="custom-control-input" checked>
-                                                        <label for="digital_copy" class="custom-control-label"> Digital Copy <span></span></label>
+                                                    <div class="post-rent--form-group--input--radio-group">
+                                                        <div class="custom-radio d-flex ">
+                                                            <input type="radio" value="0" id="digital_copy" name="disk_type" v-model="rentData.disk_type" class="custom-control-input" checked>
+                                                            <label for="digital_copy" class="custom-control-label"> Digital Copy <span></span></label>
+                                                        </div>
+
+                                                        <div class="custom-radio d-flex">
+                                                            <input type="radio" value="1" id="physical_copy" name="disk_type" v-model="rentData.disk_type"  class="custom-control-input">
+                                                            <label for="physical_copy" class="custom-control-label"> Physical Copy <span></span></label>
+                                                        </div>
 
                                                     </div>
-                                                    <div class="custom-radio d-flex">
-                                                        <input type="radio" value="1" id="physical_copy" name="disk_type" v-model="rentData.disk_type"  class="custom-control-input">
-                                                        <label for="physical_copy" class="custom-control-label"> Physical Copy <span></span></label>
-
-                                                    </div>
-                                                    <span v-if="errors.length" class="error-message platform-error" style="margin-left: -24px">{{ errors[0] }}</span>
+                                                    <span v-if="errors.length" class="error-message platform-error type-error">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Disk Image:</label>
-                                                <div class="col-sm-8 post-rent--input">
+                                            <div class="form-group post-rent--form-group post-rent--form-group-img">
+                                                <label class="post-rent--form-group--label">Disk Image:</label>
+                                                <div class="post-rent--form-group--input">
                                                     <div class="custom-file">
                                                             <input type="file" class="custom-file-input" id="DiskUpload" accept="image/*" @change="onDiskimageChange">
                                                             <label class="custom-file-label text-light" for="customFile">Disk Image</label>
@@ -417,9 +444,9 @@
                                                         </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Cover Image:</label>
-                                                <div class="col-sm-8 post-rent--input">
+                                            <div class="form-group post-rent--form-group post-rent--form-group-img">
+                                                <label class="post-rent--form-group--label">Cover Image:</label>
+                                                <div class="post-rent--form-group--input">
                                                     <div class="custom-file">
                                                             <input type="file" class="custom-file-input" id="customFile2" accept="image/*" @change="onCoverimageChange">
                                                             <label class="custom-file-label text-light" for="customFile2">Cover Image</label>
@@ -430,14 +457,12 @@
                                                         </div>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <div class="offset-md-3 col-md-8 mt-4 post-rent--input">
-                                                    <button class="btn--secondery w-100 border-0">
+                                            <div class="form-group post-rent--form-group post-rent-btn">
+                                                    <button class="btn--secondery w-100 border-0 post-rent--form-group--btn">
                                                         <span class="mr-2">Submit <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i></span>
-                                                        
                                                     </button>
-                                                </div>
                                             </div>
+
                                         </form>
                                     </ValidationObserver>
                                 </div>

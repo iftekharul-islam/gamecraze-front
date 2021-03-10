@@ -6277,16 +6277,10 @@ html {
   padding: 0 20px;
   position: relative;
   overflow-x: auto;
-  width: 837px;
+  width: 950px;
 }
 
-@media (max-width: 1450px) {
-  .dashboard-content--rented {
-    width: 750px;
-  }
-}
-
-@media (max-width: 1300px) {
+@media (max-width: 1700px) {
   .dashboard-content--rented {
     width: 100%;
   }
@@ -6303,9 +6297,9 @@ html {
   background: #FFD715;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1700px) {
   .dashboard-content--rented::after {
-    width: 860px;
+    width: 990px;
   }
 }
 
@@ -6315,9 +6309,9 @@ html {
   margin-top: -20px;
 }
 
-@media (max-width: 1300px) {
+@media (max-width: 1700px) {
   .dashboard-content--rented table {
-    width: 820px;
+    width: 950px;
   }
 }
 
@@ -6344,18 +6338,18 @@ html {
 .dashboard-content--rented table tr td:first-of-type {
   min-width: 145px;
   border-left: 1px solid #FFD715;
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
 }
 
-.dashboard-content--rented table tr td:nth-of-type(5) {
+.dashboard-content--rented table tr td:nth-of-type(6) {
   min-width: 200px;
 }
 
 .dashboard-content--rented table tr td:last-of-type {
   border-right: 1px solid #FFD715;
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
 }
 
 .dashboard-content--rented table tr td button {
@@ -6367,7 +6361,21 @@ html {
   color: #000;
 }
 
-.dashboard-content--offer table tr td:nth-of-type(5) {
+.dashboard-content--offer::after {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .dashboard-content--offer::after {
+    width: 650px;
+  }
+}
+
+.dashboard-content--offer table {
+  width: 100%;
+}
+
+.dashboard-content--offer table tr td:nth-of-type(6) {
   min-width: initial;
 }
 
@@ -6404,11 +6412,23 @@ html {
   font-size: 10px;
 }
 
+.rented-note,
+.dashboard-tab-button {
+  width: 950px;
+}
+
+@media (max-width: 1700px) {
+  .rented-note,
+  .dashboard-tab-button {
+    width: 100%;
+  }
+}
+
 .dashboard-tab-button button {
   border: 1px solid #FFD715;
   background: #000;
   padding: 10px 50px;
-  border-radius: 10px;
+  border-radius: 0;
   color: #FFD715;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -6428,7 +6448,6 @@ html {
   .dashboard-tab-button button {
     padding: 8px 10px;
     font-size: 15px;
-    border-radius: 5px;
   }
 }
 
@@ -6610,6 +6629,57 @@ html {
 .game-rent-alert--box .close-modal {
   top: 10px;
   right: 10px;
+}
+
+.gamehub-custome-select .vs__dropdown-toggle {
+  border: 1px solid #FFD715;
+  border-radius: 0;
+  height: 40px;
+  background: #141A27;
+}
+
+@media (max-width: 575px) {
+  .gamehub-custome-select .vs__dropdown-toggle {
+    margin-top: 16px;
+  }
+}
+
+.gamehub-custome-select .vs__selected {
+  color: #fff;
+}
+
+.gamehub-custome-select .vs__search {
+  display: none;
+}
+
+.gamehub-custome-select .vs__open-indicator {
+  fill: #FFD715;
+  margin-right: 8px;
+}
+
+.gamehub-custome-select .vs__clear {
+  fill: #F65157;
+}
+
+.gamehub-custome-select .vs__dropdown-option--highlight,
+.gamehub-custome-select .vs__dropdown-option--selected {
+  background: #FFD715;
+  color: #000;
+}
+
+.gamehub-custome-select .vs__dropdown-menu {
+  padding: 0;
+  border-radius: 0;
+  border: 1px solid #FFD715;
+}
+
+.gamehub-custome-select .vs__dropdown-option {
+  border-radius: 0;
+  border-bottom: 1px solid #8080802e;
+}
+
+.gamehub-custome-select .vs__dropdown-option:last-of-type {
+  border-bottom: 0;
 }
 
 .set-password {

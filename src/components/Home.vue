@@ -86,7 +86,7 @@
             <div class="text-center">
                 <h2 class="section-heading">UPCOMING GAMES</h2>
             </div>
-             
+
             <div id="owl-upcoming" class="owl-carousel owl-theme" v-if="upcomingGames">
                 <div class="item" v-for="(game, index) in upcomingGames" :key="index">
                     <div class="owl-upcoming--item">
@@ -125,7 +125,7 @@
                 <div class="row">
                     <div class="col-md-12 mx-auto d-none d-sm-block">
                         <div class="noticed-grid" v-if="articles">
-                            <div class="notice-box" v-if="featuredArticle"> 
+                            <div class="notice-box" v-if="featuredArticle">
                                 <img :src=featuredArticle.thumbnail :alt="featuredArticle.title" class="w-100">
                                 <div class="noticed-details">
                                     <h6>{{ featuredArticle.title.substring(0, 20) }}</h6>
@@ -154,7 +154,7 @@
                 <div class="col-12 p-0">
                      <div id="owl-notice-mobile" class="owl-carousel owl-theme">
                          <div class="item"  v-for="(article, index) in articles" :key="index" v-if="featuredArticle.id !== article.id">
-                             <div class="notice-box"> 
+                             <div class="notice-box">
                                 <img :src=article.thumbnail :alt="article.title" class="w-100">
                                 <div class="noticed-details">
                                     <router-link :to="{ name: 'NewsStory', params: { id: article.id }}" class="small-readmore"><span>Read More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
@@ -563,8 +563,8 @@
                     }.bind(vm));
                 });
             },
-            getFeaturedArticles: function (number) {
-                this.$api.get('featured-article?number=' + number).then(response => {
+            getFeaturedArticles: function () {
+                this.$api.get('featured-article?number=1').then(response => {
                     if (response.status == 200) {
                         if ( response.data.data.length > 0) {
                             this.featuredArticle = response.data.data[0];
@@ -574,14 +574,14 @@
                     }
                 });
             },
-            getArticles: function (number) {
-                this.$api.get('top-articles?number=' + number).then(response => {
+            getArticles: function () {
+                this.$api.get('top-articles?number=4').then(response => {
                     if (response.status == 200) {
                        //this.articles = response.data.data;
                         let vm = this;
                         vm.articles = response.data.data;
-                        console.log('vm.articles');
-                        console.log(vm.articles);
+                        // console.log('vm.articles');
+                        // console.log(vm.articles);
                         Vue.nextTick(function() {
                             vm.carouselNotice();
                         }.bind(vm));
@@ -664,7 +664,7 @@
             this.getTrendingGames();
             this.getNewGames();
             this.getRentGames();
-            this.getArticles(4);
+            this.getArticles();
             this.getFeaturedArticles(1)
             this.getFeturedVideo(5);
             this.featuredPlatforms(4);

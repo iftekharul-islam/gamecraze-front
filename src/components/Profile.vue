@@ -193,7 +193,8 @@
                                             <tr>
                                                 <td scope="col">Game</td>
                                                 <td scope="col">Rent Week(s)</td>
-                                                <td scope="col">Rent Start</td>
+                                                <td scope="col">Rent Date</td>
+                                                <td scope="col">Rent Start Date</td>
                                                 <td scope="col">Return Date</td>
                                                 <td scope="col" class="text-center">Remaining Days</td>
                                                 <td scope="col">Cost</td>
@@ -205,9 +206,24 @@
                                                 <td v-if="lend.rent">{{ lend.rent.game.name }}</td>
                                                 <td>{{ lend.lend_week }}</td>
                                                 <td>{{ formattedDate(lend.lend_date) }}</td>
-                                                <td>{{ returnDate(lend.lend_date, lend.created_at, lend.lend_week) }}</td>
-                                                <td>
-                                                    <flip-countdown :deadline="endDate(lend.lend_date, lend.created_at, lend.lend_week)"></flip-countdown>
+                                                <td v-if="lend.rent.disk_type == 1">
+                                                    {{ startDate(lend.rent.disk_type, lend.updated_at) }}
+                                                </td>
+                                                <td v-if="lend.rent.disk_type == 0">
+                                                    {{ startDate(lend.rent.disk_type, lend.created_at) }}
+                                                </td>
+                                                <td v-if="lend.rent.disk_type == 1">
+                                                    {{ returnDate(lend.rent.disk_type, lend.updated_at, lend.lend_week) }}
+                                                </td>
+                                                <td v-if="lend.rent.disk_type == 0">
+                                                    {{ returnDate(lend.rent.disk_type, lend.created_at, lend.lend_week) }}
+                                                </td>
+                                                <td v-if="lend.rent.disk_type == 1">
+                                                    <flip-countdown :deadline="endDate(lend.rent.disk_type, lend.updated_at, lend.lend_week)" v-if="lend.status === 3"></flip-countdown>
+                                                    <flip-countdown :deadline="lend.created_at" v-else></flip-countdown>
+                                                </td>
+                                                <td v-if="lend.rent.disk_type == 0">
+                                                    <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)"></flip-countdown>
                                                 </td>
                                                 <td>{{ lend.lend_cost + Math.floor(lend.commission) }}</td>
                                                 <td v-if="lend.status === 0">
@@ -415,27 +431,6 @@
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
-                                              
-
-                                            <!-- game copy -->
-                                             <!-- <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Game Copy:</label>
-                                                <div class="col-sm-8 post-rent--delivery">
-                                                    <div class="custom-radio d-flex">
-                                                        <input type="radio" name="checkpoint_id2" id="digital-copy" class="custom-control-input">
-                                                        <label for="digital-copy" class="custom-control-label"> Digital copy <span class="checkbox-style"></span></label>
-                                                    </div>
-
-                                                    <div class=" custom-radio d-flex">
-                                                        <input type="radio" name="checkpoint_id2" id="physical-copy" class="custom-control-input">
-                                                        <label for="physical-copy" class="custom-control-label"> Physical Copy <span class="checkbox-style"></span></label>
-                                                    </div>
-                                                    
-                                                </div>
-                                            </div> -->
-
-                                           
-
                                             <div class="form-group post-rent--form-group post-rent--form-group-img">
                                                 <label class="post-rent--form-group--label">Disk Image:</label>
                                                 <div class="post-rent--form-group--input">
@@ -777,34 +772,59 @@
             onRentedGames() {
                 this.show = false
             },
-            returnDate(lendDate, datetime, week) {
-                let date = new Date(lendDate);
-                var time = new Date(datetime);
-                var hours = time.getHours();
-                if (hours >= 12) {
-                    date.setDate(date.getDate() + 2 + week * 7);
-                } else {
-                    date.setDate(date.getDate() + 1 + week * 7);
-                }
-                const months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
-            },
             formattedDate(date) {
                 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                 let formattedDate = new Date(date)
                 return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
             },
-            endDate(data, datetime, week) {
-                let date = new Date(data);
-
+            startDate(diskType, datetime) {
+                let date = new Date(datetime);
                 var time = new Date(datetime);
+
                 var hours = time.getHours();
-                if (hours >= 12) {
+
+                if (diskType == 0 && hours >= 12) {
+
+                    date.setDate(date.getDate() + 2);
+                } else {
+
+                    date.setDate(date.getDate() + 1);
+                }
+
+                const months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
+            },
+            endDate(diskType, datetime, week) {
+                let date = new Date(datetime);
+                var time = new Date(datetime);
+
+                var hours = time.getHours();
+
+                if (diskType == 0 && hours >= 12) {
+
                     date.setDate(date.getDate() + 2 + week * 7);
                 } else {
+
                     date.setDate(date.getDate() + 1 + week * 7);
                 }
+
                 return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear()
+            },
+            returnDate(diskType, datetime, week) {
+                let date = new Date(datetime);
+                var time = new Date(datetime);
+                var hours = time.getHours();
+
+                if (diskType == 0 && hours >= 12) {
+
+                    date.setDate(date.getDate() + 2 + week * 7);
+                } else {
+
+                    date.setDate(date.getDate() + 1 + week * 7);
+                }
+
+                const months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
             },
             onProfileUpdate: function() {
                 this.validateUserPhoneEmail();

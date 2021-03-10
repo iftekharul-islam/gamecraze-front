@@ -5,6 +5,7 @@
         }
     }
 }
+
 .gamehub-menu {
     background: $primary;
     padding: 8px 0;
@@ -15,8 +16,9 @@
         padding: 20px 0;
     }
 }
+
 .navbar-brand {
-        margin-right: 0;
+    margin-right: 0;
     @include for-max-991 {
         padding-left: 70px;
         padding-top: 0;
@@ -69,7 +71,6 @@
             &:last-child {
                 margin-right: 0;
             }
-           
             a {
                 padding: 0 20px;
                 @include for-max-1200 {
@@ -77,25 +78,25 @@
                     font-size: 14px;
                 }
                 &.router-link-exact-active {
-                            position: relative;
-                            &::after {
-                                content: "";
-                                width: 83px;
-                                height: 4px;
-                                position: absolute;
-                                background: $secondery;
-                                top: 48px;
-                                left: 0;
-                                right: 0;
-                                margin: auto;
-                                transform: skew(-50deg);
-                                @include for-max-1200 {
-                                    width: 50px;
-                                }
-                                @include for-max-992 {
-                                    top: 28px;
-                                }
-                            }
+                    position: relative;
+                    &::after {
+                        content: "";
+                        width: 83px;
+                        height: 4px;
+                        position: absolute;
+                        background: $secondery;
+                        top: 48px;
+                        left: 0;
+                        right: 0;
+                        margin: auto;
+                        transform: skew(-50deg);
+                        @include for-max-1200 {
+                            width: 50px;
+                        }
+                        @include for-max-992 {
+                            top: 28px;
+                        }
+                    }
                 }
                 &:hover {
                     color: $secondery;
@@ -120,69 +121,68 @@
         left: 10px;
     }
     .custom-toggler {
-      cursor: pointer;
-      position: relative;
-      width: 2.5rem;
-      height: 2rem;
-      padding: 0.5rem 0.75rem;
-      font-size: 1.25rem;
-      line-height: 1rem;
-      border-radius: 0.25rem;
-      span {
-        display: block;
-        position: absolute;
-        height: 3px;
-        background: $secondery;
-        border-radius: 10px;
-        opacity: 1;
-        left: 25%;
-        transform: rotate(0deg);
-        transition: all .3s ease-in;
-
-        &:nth-child(1) {
-          top: 34.5%;
-          width: 18px;
+        cursor: pointer;
+        position: relative;
+        width: 2.5rem;
+        height: 2rem;
+        padding: 0.5rem 0.75rem;
+        font-size: 1.25rem;
+        line-height: 1rem;
+        border-radius: 0.25rem;
+        span {
+            display: block;
+            position: absolute;
+            height: 3px;
+            background: $secondery;
+            border-radius: 10px;
+            opacity: 1;
+            left: 25%;
+            transform: rotate(0deg);
+            transition: all .3s ease-in;
+            &:nth-child(1) {
+                top: 34.5%;
+                width: 18px;
+            }
+            &:nth-child(2) {
+                width: 13px;
+            }
+            &:nth-child(2),
+            &:nth-child(3) {
+                top: 50%;
+            }
+            &:nth-child(4) {
+                top: 65.5%;
+                width: 8px;
+            }
         }
-        &:nth-child(2) {
-            width: 13px;
-          }
-        &:nth-child(2),
-        &:nth-child(3) {
-          top: 50%;
+        &:focus {
+            outline: none;
         }
-        &:nth-child(4) {
-          top: 65.5%;
-          width: 8px;
-        }
-      }
-      
-      &:focus {
-        outline: none;
-      }
     }
     .open {
         span {
-          &:nth-child(1) {
-            top: 18px;
-            width: 0%;
-            left: 50%;
-          }
-          &:nth-child(2) {
-            transform: rotate(45deg);
-            width: 18px;
-          }
-          &:nth-child(3) {
-            transform: rotate(-45deg);
-            width: 18px;
-          }
-          &:nth-child(4) {
-            top: 18px;
-            width: 0%;
-            left: 50%;
-          }
+            &:nth-child(1) {
+                top: 18px;
+                width: 0%;
+                left: 50%;
+            }
+            &:nth-child(2) {
+                transform: rotate(45deg);
+                width: 18px;
+            }
+            &:nth-child(3) {
+                transform: rotate(-45deg);
+                width: 18px;
+            }
+            &:nth-child(4) {
+                top: 18px;
+                width: 0%;
+                left: 50%;
+            }
         }
-      }
-  }
+    }
+}
+
 .signin-cart-group {
     @include for-max-991 {
         position: absolute;
@@ -193,60 +193,60 @@
         right: 20px;
     }
 }
+
 .gamehub-input-group-searchbar {
     @include for-max-991 {
         position: absolute;
         top: 20px;
     }
 }
+
 // gamehub input group
 .gamehub-input-group {
     display: flex;
     align-items: center;
     @include for-max-991 {
-       flex-wrap: wrap;
+        flex-wrap: wrap;
     }
     &--content {
-            margin-right: 0;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            &--cart {
-                display: block;
-                position: relative;
-                &--icon {
-                    color: $secondery;
-                    font-size: 25px;
-                   
-                }
-                 // badge
-                .gamehub-badge {
-                    background: $cart-badge;
-                    color: $text-light;
-                    position: absolute;
-                    top: -10px;
-                    right: -6px;
-                    width: 20px;
-                    height: 20px;
-                    border-radius: 50%;
-                    padding: 0;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    font-size: 14px;
-                    font-family: circular-medium;
+        margin-right: 0;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        &--cart {
+            display: block;
+            position: relative;
+            &--icon {
+                color: $secondery;
+                font-size: 25px;
             }
+            // badge
+            .gamehub-badge {
+                background: $cart-badge;
+                color: $text-light;
+                position: absolute;
+                top: -10px;
+                right: -6px;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                padding: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 14px;
+                font-family: circular-medium;
             }
-
-            &:hover {
-                a {
-                    color: $text-dark;
-                    background: $secondery;
-                }
-                .gamehub-input-group--content--cart {
-                    background: none;
-                }
+        }
+        &:hover {
+            a {
+                color: $text-dark;
+                background: $secondery;
             }
+            .gamehub-input-group--content--cart {
+                background: none;
+            }
+        }
         &:hover {
             .complete-sign-in {
                 .gamehub-dropdown-menu {
@@ -255,10 +255,7 @@
                     }
                 }
             }
-           
         }
-        
-        
     }
     // end content
 }
@@ -339,14 +336,14 @@
         height: 35px;
     }
     span {
-        display: inline-block; 
+        display: inline-block;
         transform: skew(21deg);
         @include for-max-991 {
             transform: skew(0deg);
         }
     }
-    
 }
+
 .search-input-design {
     position: relative;
     width: 140px;
@@ -386,12 +383,11 @@
         }
     }
     #autosuggest {
-        > div {
+        >div {
             &:first-of-type {
                 @include for-max-991 {
                     transform: skew(0deg);
                 }
-                
                 input {
                     @include for-max-991 {
                         transform: skew(0deg);
@@ -401,6 +397,7 @@
         }
     }
 }
+
 .gamehub-search-btn {
     width: 45px;
     height: 40px;
@@ -426,6 +423,7 @@
         }
     }
 }
+
 .gamehub-dropdown-menu {
     border-radius: 5px;
     background: $game-details;
@@ -477,6 +475,7 @@
         }
     }
 }
+
 .gamehub-body {
     position: relative;
     min-height: 100vh;
@@ -485,7 +484,7 @@
             max-width: 1180px;
         }
         @include for-min-1400 {
-            max-width: 1230px;
+            max-width: 1200px;
         }
     }
 }
@@ -506,7 +505,7 @@
         height: 187px;
         overflow-y: auto;
         &::-webkit-scrollbar-track {
-            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
             background-color: $secondery;
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
@@ -536,8 +535,9 @@
         }
     }
 }
+
 #autosuggest {
-    > div {
+    >div {
         &:first-of-type {
             transform: skew(-21deg);
             border: 2px solid $secondery;
@@ -545,69 +545,75 @@
         }
     }
 }
-// delete moadl
 
-    .swal-modal {
-        background: $game-details;
-      @include for-max-575 {
+// delete moadl
+.swal-modal {
+    background: $game-details;
+    @include for-max-575 {
         width: calc(100% - 60px);
-      }
     }
-    .swal-title {
-        color: $text-light;
+}
+
+.swal-title {
+    color: $text-light;
+    @include for-max-575 {
+        font-size: 18px;
+    }
+}
+
+.swal-text {
+    color: $text-light;
+    opacity: .9;
+    @include for-max-575 {
+        font-size: 15px;
+    }
+}
+
+.swal-footer {
+    @include for-max-575 {
+        text-align: center;
+    }
+}
+
+.swal-button-container {
+    button {
+        background: $secondery;
+        color: $text-dark;
+        border-radius: 0;
+        transition: all .3s ease-in;
+        cursor: pointer;
         @include for-max-575 {
-            font-size: 18px;
+            height: 48px;
+            width: 100px;
         }
     }
-    .swal-text {
-        color: $text-light;
-        opacity: .9;
-        @include for-max-575 {
-            font-size: 15px;
-        }
-    }
-    .swal-footer {
-        @include for-max-575 {
-            text-align: center;
-        }
-    }
-    .swal-button-container {
-        button {
-            background: $secondery;
-            color: $text-dark;
-            border-radius: 0;
-            transition: all .3s ease-in;
-            cursor: pointer;
-            @include for-max-575 {
-                height: 48px;
-                width: 100px;
-            }
-        }
-    }
-    .swal-icon--success {
+}
+
+.swal-icon--success {
+    background: $game-details;
+    &::before,
+    &::after {
         background: $game-details;
-        &::before,
-        &::after {
-            background: $game-details;
-        }
-        &__hide-corners {
-            background: $game-details;
-        }
-        &__line {
-            background: $game-rating;
-        }
-        &__ring {
-            border-color: $game-rating;
-        }
     }
-  .swal-icon--warning {
-      border-color: $gamehub_danger !important;
-      &__body,
-      &__dot {
-          background: $gamehub_danger;
-      }
-  }
-  .swal-button:not([disabled]):hover {
-      background: $secondery;
-  }
-  
+    &__hide-corners {
+        background: $game-details;
+    }
+    &__line {
+        background: $game-rating;
+    }
+    &__ring {
+        border-color: $game-rating;
+    }
+}
+
+.swal-icon--warning {
+    border-color: $gamehub_danger !important;
+    &__body,
+    &__dot {
+        background: $gamehub_danger;
+    }
+}
+
+.swal-button:not([disabled]):hover {
+    background: $secondery;
+}

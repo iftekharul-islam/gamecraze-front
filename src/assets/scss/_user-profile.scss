@@ -9,7 +9,6 @@
     @include for-max-575 {
         height: 250px;
     }
-    
     .user-profile-bg {
         position: absolute;
         width: 100%;
@@ -17,12 +16,10 @@
         top: 0;
         left: 0;
         z-index: -1;
-
     }
     &--name {
         display: flex;
         align-items: center;
-       
     }
     &--dp {
         width: 160px;
@@ -62,6 +59,7 @@
         }
     }
 }
+
 // avatar edit
 .avatar-edit {
     position: absolute;
@@ -90,19 +88,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            // &::after {
-            //     content: "";
-            //     height: 30px;
-            //     width: 30px;
-            //     background: url(../img/camera-icon.png);
-            //     background-repeat: no-repeat;
-            //     background-position: center;
-            //     position: absolute;
-            //     left: 0;
-            //     right: 0;
-            //     text-align: center;
-            //     margin: auto;
-            // }
             .camera-icon {
                 color: $secondery;
             }
@@ -121,6 +106,7 @@
         justify-content: center;
     }
 }
+
 // cover photo edit
 .cover-edit {
     position: absolute;
@@ -142,13 +128,15 @@
         transform: skew(-21deg);
         width: 200px;
         text-align: center;
-        .camera-icon,span {
+        .camera-icon,
+        span {
             transform: skew(21deg);
             display: inherit;
             color: $secondery;
         }
     }
 }
+
 .users-name {
     margin-left: 20px;
     h3 {
@@ -159,6 +147,7 @@
         font-size: 20px;
     }
 }
+
 .user-rating {
     margin-top: -40px;
     margin-left: 3rem;
@@ -179,7 +168,6 @@
     }
     &--nav {
         flex-direction: column;
-       
         @include for-min-1200 {
             margin-right: 27px;
         }
@@ -220,7 +208,6 @@
                     border-bottom: 0;
                 }
             }
-            
             img {
                 @include for-max-991 {
                     margin-right: 0;
@@ -230,7 +217,6 @@
             &.active {
                 background: transparent !important;
                 color: $text-light;
-                // border-bottom: 2px solid $text-light;
                 img {
                     display: none;
                 }
@@ -243,7 +229,7 @@
             }
         }
         &--img {
-                width: 70px;
+            width: 70px;
             @include for-max-991 {
                 height: 50px;
                 width: initial;
@@ -321,188 +307,203 @@
     }
 }
 
-.post-rent {
-    .form-group {
-        margin-bottom: 25px;
-    .custom-file-input ~.custom-file-label {
-        border: 1px solid $secondery;
-        background: $game-details;
-        cursor: pointer;
-        border-radius: 5px;
-        &::after {
-            font-family:  "Font Awesome 5 Free";
-			font-weight: 900;
-            content: "\f093 \00a0 \00a0 Upload";
-            background: $secondery;
-            color: $text-dark;
-            border-top-left-radius: 5px;
-            border-bottom-left-radius: 5px;
-            cursor: pointer;
-        }
+// post rent
+#v-pills-post-rent {
+    @include for-min-1200 {
+        margin-left: 34px;
     }
-    input,
-    select {
-        border: 1px solid $secondery;
-        background: $game-details;
-        color: $text-light;
-        height: 40px;
-        font-size: 16px;
-    }
-    select {
-        -webkit-box-sizing: border-box;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        position: relative;
-        background: $game-details url(../img/down-arw.png);
-        background-repeat: no-repeat;
-        background-position: 96% center;
-        background-size: 15px;
-        option {
-            text-transform: capitalize;
-        }
-        
-    }
-    
-      label {
-          height: 50px;
-          font-size: 20px;
-          @include for-max-1300 {
-              font-size: 18px;
-          }
-          @include for-max-1200 {
-            font-size: 16px;
-        }
-      }
+}
 
-    }
-    .custom-file {
-        margin-bottom: 25px;
-        label {
-            height: initial;
-            font-size: 16px;
-        }
-        input {
-            cursor: pointer;
-        }
-    }
-    &--input {
-        @include for-min-1200 {
-            padding-right: 26px;
-        }
-        input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button {
-            opacity: 0
-        }
-        .rented-plus {
-            position: absolute;
-            top: 5px;
-            right: 44px;
-            cursor: pointer;
-        }
-        .rented-minus {
-            position: absolute;
-            top: 19px;
-            right: 44px;
-            cursor: pointer;
-        }
-        .rented-plus,
-        .rented-minus {
-            color: $secondery;
-        }
-        #autosuggest {
-            > div {
-                transform: skew(0deg);
-                border: none;
-                input {
-                    border-radius: 5px;
-                    font-size: 16px;
-                }
-            }
-            .autosuggest__results-container {
-                ul {
-                    width: 100%;
-                    margin-left: 0;
-                }
-            }
-        }
-        &--platform-input {
-            margin-right: 20px;
-            input {
-                width: 20px;
-                height: 20px;
-                cursor: pointer;
-            }
-            label {
-                height: auto !important;
-                cursor: pointer;
-                font-size: 16px !important;
-            }
-            
-        }
-    }
-    &--delivery {
+.post-rent {
+    &--form-group {
         display: flex;
-        align-items: center;
-        padding-left: 40px;
+        align-items: flex-start;
+        margin-bottom: 25px;
         @include for-max-575 {
             flex-direction: column;
-            padding-left: 70px;
         }
-        > span {
-            display: flex;
-            flex-wrap: wrap;
+        &--input {
+            position: relative;
+            flex-basis: 456px;
+            margin-left: 20px;
             @include for-max-575 {
-                flex-direction: column;
+                flex-basis: initial;
+                margin-left: 0;
                 width: 100%;
-                padding-left: 34px;
             }
-            > div {
-                flex: 1;
-            }
-            .platform-error {
-                flex-basis: 100%;
-                margin-left: -15px;
+            &--plus-minus {
+                position: absolute;
+                top: 0px;
+                right: 10px;
                 @include for-max-575 {
-                    width: 100%;
-                    
+                    top: 10px;
+                }
+                .icon {
+                    position: absolute;
+                    right: 10px;
+                    cursor: pointer;
+                    color: $secondery;
+                    &.rented-plus {
+                        top: 5px;
+                    }
+                    &.rented-minus {
+                        top: 22px;
+                    }
+                }
+            }
+            // Auto suggest
+            #autosuggest {
+                position: relative;
+                z-index: 9;
+                >div {
+                    transform: skew(0deg);
+                    border: none;
+                    input {
+                        border-radius: 0px;
+                        font-size: 16px;
+                    }
+                }
+                .autosuggest__results-container {
+                    ul {
+                        width: 100%;
+                        margin-left: 0;
+                    }
+                }
+            }
+            // radio group
+            &--radio-group {
+                display: flex;
+                flex-wrap: wrap;
+                padding-left: 20px;
+                margin-top: 5px;
+                .custom-radio {
+                    margin-right: 70px;
+                    @include for-max-1200 {
+                        margin-right: 50px;
+                    }
+                    @include for-max-575 {
+                        margin-right: 40px;
+                    }
+                    &:last-of-type {
+                        margin-right: 0;
+                    }
+                    &:nth-child(n+4) {
+                        margin-top: 16px;
+                    }
+                    .custom-control-label {
+                        cursor: pointer;
+                        &::before {
+                            top: 4px;
+                        }
+                        &::after {
+                            top: 7px !important;
+                        }
+                    }
                 }
             }
         }
-        label {
-            font-size: 16px !important;
-            display: flex !important;
-            align-items: center;
-            height: 20px !important;
+        &--label {
+            margin: 0;
+            flex-basis: 202px;
+            margin-top: 5px;
+            font-size: 20px;
+            @include for-max-1300 {
+                font-size: 18px;
+            }
+            @include for-max-1200 {
+                font-size: 16px;
+            }
+            @include for-max-575 {
+                flex-basis: initial;
+            }
+        }
+        // upload file button
+        .custom-file-input~.custom-file-label {
+            border: 1px solid $secondery;
+            background: $game-details;
             cursor: pointer;
-            padding-top: 5px;
-            &:last-of-type {
-                margin-right: 0;
+            border-radius: 0px;
+            &::after {
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                content: "\f093 \00a0 \00a0 Upload";
+                background: $secondery;
+                color: $text-dark;
+                cursor: pointer;
+                border-radius: 0;
+            }
+        }
+        .custom-file {
+            margin-bottom: 25px;
+            label {
+                height: initial;
+                font-size: 16px;
             }
             input {
-                width: 20px !important;
-                height: 20px !important;
-                margin-right: 10px;
                 cursor: pointer;
             }
         }
-        .custom-radio {
-            margin-right: 50px;
-            width: 180px;
-            @include for-max-1200 {
-                width: 100%;
-                margin-bottom: 20px;
-            }
-            &:last-of-type {
-                @include for-max-575 {
-                    margin-bottom: 0;
-                }
+        // Input and Select
+        input,
+        select {
+            border: 1px solid $secondery;
+            background: $game-details;
+            color: $text-light;
+            height: 40px;
+            font-size: 16px;
+            border-radius: 0;
+            @include for-max-575 {
+                margin-top: 12px;
             }
         }
-        &.platform--delivery {
+        select {
+            box-sizing: border-box;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            position: relative;
+            background: $game-details url(../img/down-arw.png);
+            background-repeat: no-repeat;
+            background-position: 96% center;
+            background-size: 15px;
+            option {
+                text-transform: capitalize;
+            }
+        }
+        &.post-rent-btn {
             @include for-max-575 {
-                padding-left: 0;
+                display: block;
+            }
+        }
+        &--btn {
+            flex-basis: 456px;
+            margin-left: auto;
+            @include for-max-1200 {
+                flex-basis: 391px;
+            }
+            @include for-max-991 {
+                flex-basis: 456px;
+            }
+            @include for-max-768 {
+                flex-basis: 100%;
+            }
+        }
+    }
+    // end form group
+    &--form-group-img {
+        height: initial;
+    }
+    .earning-amount {
+        &--content {
+            display: flex;
+            flex-direction: column;
+            table {
+                tr {
+                    td {
+                        padding: 0;
+                        padding-bottom: 16px;
+                        color: $gray;
+                    }
+                }
             }
         }
     }
@@ -515,24 +516,9 @@
     }
 }
 
-.earning-amount {
-    table {
-        tr {
-            td {
-                &:first-of-type {
-                    width: 75%;
-                    padding-left: 0;
-                }
-                color: $gray;
-            }
-        }
-    }
-}
 .img-prev {
     img {
         width: 100%;
-        // height: 400px;
-        // object-fit: cover;
     }
 }
 
@@ -566,21 +552,18 @@
             border-collapse: separate;
             border-spacing: 0px 20px;
             margin-top: -20px;
-        
             @include for-max-1300 {
                 width: 820px;
             }
             thead {
                 tr {
                     height: 80px;
-                   
                     td {
                         border: none;
                         color: $text-dark;
                         vertical-align: top;
                         background: $secondery;
                         border-radius: 0;
-                        
                     }
                 }
             }
@@ -631,8 +614,6 @@
     .flip-clock {
         display: grid;
         grid-template: wrap;
-        /* align-items: center; */
-        /* justify-content: center; */
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 55px;
         grid-auto-rows: 55px;
@@ -642,12 +623,12 @@
         padding: 5px;
         width: 198px;
         height: 120px;
-        > span {
+        >span {
             &:last-of-type {
                 grid-column-start: 2;
                 grid-column-end: 3;
             }
-            > span {
+            >span {
                 font-size: 1.6rem;
             }
         }
@@ -727,14 +708,14 @@
     }
     [type="date"]::-webkit-inner-spin-button {
         display: none;
-      }
-      [type="date"]::-webkit-calendar-picker-indicator {
+    }
+    [type="date"]::-webkit-calendar-picker-indicator {
         opacity: 0;
-      }
-      [type="date"] {
-        background:$game-details url(../img/calender.png)  97% 50% no-repeat ;
-      }
-      .custom-file-input ~.custom-file-label {
+    }
+    [type="date"] {
+        background: $game-details url(../img/calender.png) 97% 50% no-repeat;
+    }
+    .custom-file-input~.custom-file-label {
         border: 1px solid $secondery;
         background: $game-details;
         cursor: pointer;
@@ -742,8 +723,8 @@
         overflow: hidden;
         border-radius: 5px;
         &::after {
-            font-family:  "Font Awesome 5 Free";
-			font-weight: 900;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
             content: "\f093 \00a0 \00a0 Upload";
             background: $secondery;
             color: $text-dark;
@@ -771,6 +752,7 @@
         }
     }
 }
+
 .edit--input {
     padding-right: 90px;
     @include for-max-1200 {
@@ -780,6 +762,7 @@
         padding-right: 15px;
     }
 }
+
 // No post found
 .no-post-found-card {
     height: 200px;
@@ -798,9 +781,8 @@
         color: $secondery;
     }
 }
+
 .game-rent-alert {
-    padding-right: 26px;
-    padding-left: 15px;
     &--box {
         border: 1.5px solid $secondery;
         background: $game-rent-alert;
@@ -813,6 +795,3 @@
         }
     }
 }
-
-
-

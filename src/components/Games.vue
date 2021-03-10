@@ -31,12 +31,12 @@
                             <div class="select-categories">
                                 <h6>Game type</h6>
                                 <div class="form-group form-check">
-                                    <input type="checkbox" class="custom-control-input">
-                                    <label class="custom-control-label" >Digital copy</label>
+                                    <input type="checkbox" class="custom-control-input" id="digital_copy" :checked="checkedDiskType.includes('digital_copy')" @change="changeCheckedDiskType('digital_copy')">
+                                    <label class="custom-control-label"  for="digital_copy">Digital copy</label>
                                 </div>
                                 <div class="form-group form-check">
-                                    <input type="checkbox" class="custom-control-input">
-                                    <label class="custom-control-label" >Physical copy</label>
+                                    <input type="checkbox" class="custom-control-input" id="physical_copy" :checked="checkedDiskType.includes('physical_copy')" @change="changeCheckedDiskType('physical_copy')">
+                                    <label class="custom-control-label" for="physical_copy">Physical copy</label>
                                 </div>
 
                             </div>
@@ -68,29 +68,31 @@
                       <div class="games-categories-section--tag">
                         <span v-for="(categoryItem, categoryIndex) in checkedCategories" :key="categoryIndex">{{categoryItem}} <div @click="removeCategoryFilter(categoryItem)" class="remove-icon"><i class="fas fa-times"></i></div></span>
                         <span v-for="(platformItem, platformIndex) in checkedPlatforms" :key="platformIndex">{{ platformItem}} <div @click="removePlatformFilter(platformItem)" class="remove-icon"><i class="fas fa-times"></i></div></span>
+                        <span v-for="(diskTypeItem, diskTypeIndex) in checkedDiskType" :key="diskTypeIndex">{{ diskTypeItem == 'digital_copy' ? 'Digital Copy': 'Physical Copy'}} <div @click="removeDiskTypeFilter(diskTypeItem)" class="remove-icon"><i class="fas fa-times"></i></div></span>
                         <span v-if="$route.query.search">{{$route.query.search}} <div @click="removeSearchKey()" class="remove-icon"><i class="fas fa-times"></i></div></span>
                       </div>
                         <div class="games-categories-section--games">
                             <div class="row">
                                 <div v-for="(rent, index) in filteredGames" :key="index" class="col-md-6 col-lg-4 mb-4">
-                                  <router-link :to="{ path: '/game-details/' + rent.slug}" class="games-categories-section--games--game-card-box">
+<!--                                    <p>{{rent }}</p>-->
+                                  <router-link :to="{ path: '/game-details/' + rent.game.data.slug}" class="games-categories-section--games--game-card-box">
                                     <div class="game-card">
                                         <div class="display-image" href="#">
-                                            <img :src="rent.poster_url" :alt="rent.name" class="img-fluid">
+                                            <img :src="rent.game.data.poster_url" :alt="rent.game.data.name" class="img-fluid">
                                         </div>
                                        <div class="game-card--details">
-                                          <div> <h6>{{rent.name}}</h6></div>
+                                          <div> <h6>{{rent.game.data.name}}</h6></div>
                                           <div class="d-flex flex-wrap game-card--category">
 
-                                            <span v-for="(genre, index) in rent.genres.data" :key="index" >{{ genre.name }}<span class="mr-2" v-if="index < rent.genres.data.length-1">, </span></span>
+                                            <span v-for="(genre, index) in rent.game.data.genres.data" :key="index" >{{ genre.name }}<span class="mr-2" v-if="index < rent.game.data.genres.data.length-1">, </span></span>
 
 
                                           </div>
                                           <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
 
-                                              <div class="game-card--details--platforms"><a href="javascript:void(0)" v-for="(platform, index) in rent.platforms.data" :key="index"><img :src="platform.url" alt="ps4"></a></div>
+                                              <div class="game-card--details--platforms"><a href="javascript:void(0)" v-for="(platform, index) in rent.game.data.platforms.data" :key="index"><img :src="platform.url" alt="ps4"></a></div>
 
-                                              <span class="game-rating">{{ rent.rating }}</span>
+                                              <span class="game-rating">{{ rent.game.data.rating }}</span>
                                           </div>
                                        </div>
 
@@ -121,12 +123,15 @@
                 checkedGame: '',
                 categories: [],
                 platforms: [],
+                diskTypes: [],
                 checkedPlatforms: [],
                 checkedCategories: [],
+                checkedDiskType: [],
                 filteredGames: [],
                 searchKey: '',
                 queryCategories: [],
                 queryPlatforms: [],
+                queryDiskType: [],
                 isHidden: false,
                 noGameFound: false
             }
@@ -154,6 +159,12 @@
             this.checkedPlatforms.splice(index, 1);
           }
         },
+          removeDiskTypeFilter(value) {
+              const index = this.checkedDiskType.indexOf(value);
+              if ( index> -1) {
+                  this.checkedDiskType.splice(index, 1);
+              }
+          },
         clearFilter() {
           this.$router.push({query: {}});
           this.checkedPlatforms = [];
@@ -180,6 +191,15 @@
             this.checkedPlatforms.push(value);
           }
         },
+          changeCheckedDiskType(value) {
+              const index = this.checkedDiskType.indexOf(value);
+              if ( index> -1) {
+                  this.checkedDiskType.splice(index, 1);
+              }
+              else {
+                  this.checkedDiskType.push(value);
+              }
+          },
         fetchFilteredGames() {
             this.noGameFound = false;
             if (this.$route.query.search) {
@@ -201,9 +221,16 @@
             else {
               this.queryPlatforms = []
             }
-
+            if (this.$route.query.diskType) {
+                this.queryDiskType = this.$route.query.diskType
+            }
+            else {
+                this.queryDiskType = []
+            }
+            console.log('this.queryDiskType');
+            console.log(this.queryDiskType);
             const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
-            this.$api.get('filter-games/?ids=' + uniqueArr + '&include=assets,genres,platforms&categories=' + this.queryCategories + '&platforms=' + this.queryPlatforms + '&search=' + this.searchKey).then(resp => {
+            this.$api.get('filter-games/?ids=' + uniqueArr + '&include=game.assets,game.genres,game.platforms&categories=' + this.queryCategories + '&platforms=' + this.queryPlatforms + '&diskType=' + this.queryDiskType + '&search=' + this.searchKey).then(resp => {
               this.filteredGames = resp.data.data;
               if (!this.filteredGames.length) {
                 this.noGameFound = true;
@@ -218,26 +245,79 @@
         }
       },
       watch: {
-        checkedCategories: function (val) {
-          if (this.checkedCategories.length) {
-            this.$router.push({ query: Object.assign({}, this.$route.query, {categories: this.checkedCategories.join(), search: this.$route.query.search})  })
-            this.fetchFilteredGames();
+          checkedCategories: function (val) {
+              if (this.checkedCategories.length) {
+                  this.$router.push({
+                      query: Object.assign({}, this.$route.query, {
+                          categories: this.checkedCategories.join(),
+                          search: this.$route.query.search
+                      })
+                  })
+                  this.fetchFilteredGames();
+              } else {
+                  if (this.checkedPlatforms.length || this.checkedDiskType.length) {
+                      this.$router.push({
+                          query: {
+                              search: this.$route.query.search,
+                              platforms: this.checkedPlatforms.join(),
+                              diskType: this.checkedDiskType.join()
+                          }
+                      })
+                  } else {
+                      this.$router.push({query: {search: this.$route.query.search}})
+                  }
+
+                  this.fetchFilteredGames();
+              }
+          },
+          checkedPlatforms: function (val) {
+              if (this.checkedPlatforms.length) {
+                  this.$router.push({
+                      query: Object.assign({}, this.$route.query, {
+                          platforms: this.checkedPlatforms.join(),
+                          search: this.$route.query.search
+                      })
+                  })
+                  this.fetchFilteredGames();
+              } else {
+                  if (this.checkedCategories.length || this.checkedDiskType.length) {
+                      this.$router.push({
+                          query: {
+                              search: this.$route.query.search,
+                              categories: this.checkedCategories.join(),
+                              diskType: this.checkedDiskType.join()
+                          }
+                      })
+                  } else {
+                      this.$router.push({query: {search: this.$route.query.search}})
+                  }
+                  this.fetchFilteredGames();
+              }
+          },
+          checkedDiskType: function (val) {
+              if (this.checkedDiskType.length) {
+                  this.$router.push({
+                      query: Object.assign({}, this.$route.query, {
+                          diskType: this.checkedDiskType.join(),
+                          search: this.$route.query.search
+                      })
+                  })
+                  this.fetchFilteredGames();
+              } else {
+                  if (this.checkedCategories.length || this.checkedPlatforms.length) {
+                      this.$router.push({
+                          query: {
+                              search: this.$route.query.search,
+                              categories: this.checkedCategories.join(),
+                              platforms: this.checkedPlatforms.join()
+                          }
+                      })
+                  } else {
+                      this.$router.push({query: {search: this.$route.query.search}})
+                  }
+              }
+              this.fetchFilteredGames();
           }
-          else {
-            this.$router.push({ query: {  search: this.$route.query.search} })
-            this.fetchFilteredGames();
-          }
-        },
-        checkedPlatforms: function (val) {
-          if (this.checkedPlatforms.length) {
-            this.$router.push({ query: Object.assign({}, this.$route.query, { platforms: this.checkedPlatforms.join(), search: this.$route.query.search})  })
-            this.fetchFilteredGames();
-          }
-          else {
-            this.$router.push({ query: { search: this.$route.query.search} })
-            this.fetchFilteredGames();
-          }
-        }
       },
         computed: {
 
@@ -249,6 +329,7 @@
                 this.fetchFilteredGames();
                 this.checkedCategories = this.queryCategories.split(',');
                 this.checkedPlatforms = this.queryPlatforms.split(',');
+                this.checkedDiskType = this.queryDiskType.split(',');
                 const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
                 this.$api.get('rent-games/?ids=' + uniqueArr + '&include=assets,genres,platforms').then(resp => {
                   this.games = resp.data.data;

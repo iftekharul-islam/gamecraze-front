@@ -327,9 +327,11 @@
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {
                 this.rents = response.data.data;
                 this.fetchFilteredGames();
-                this.checkedCategories = this.queryCategories.split(',');
-                this.checkedPlatforms = this.queryPlatforms.split(',');
-                this.checkedDiskType = this.queryDiskType.split(',');
+                this.checkedCategories = this.queryCategories != [] ? this.queryCategories.split(',') : [];
+                this.checkedPlatforms = this.queryPlatforms != [] ? this.queryPlatforms.split(',') : [];
+                this.checkedDiskType = this.queryDiskType != [] ? this.queryDiskType.split(',') : [];
+                console.log('this.checkedCategories');
+                console.log(this.checkedCategories);
                 const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
                 this.$api.get('rent-games/?ids=' + uniqueArr + '&include=assets,genres,platforms').then(resp => {
                   this.games = resp.data.data;

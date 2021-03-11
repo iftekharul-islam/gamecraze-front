@@ -128,7 +128,7 @@
                                             </tr>
                                             <tr>
                                             <td scope="row">NID No:</td>
-                                                <td>{{ user.identification_number }}</td>
+                                                <td>{{ user.id_number }}</td>
                                             </tr>
                                             <tr>
                                             <td scope="row">NID Image:</td>

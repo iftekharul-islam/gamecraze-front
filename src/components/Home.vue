@@ -191,16 +191,16 @@
                             <div class="footer-top">
                             <a href="/" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
                             <div class="footer-top--right">
-                                <span>Sign up for our newsletter.</span>
-                                <div class="footer-top--right-input-group">
-                                    <div class="footer-top--right-input">
-                                        <input type="email" class="" placeholder="E-mail address" v-model="email">
-                                    </div>
-                                    <button class="btn gamehub-search-btn" @click="subscribe" type="search" :disabled="isSubscring">
-                                        <i v-if="!isSubscring" class="far fa-envelope"></i>
-                                        <i v-if="isSubscring" class="spinner-border spinner-border-sm"></i>
-                                    </button>
-                                </div>
+<!--                                <span>Sign up for our newsletter.</span>-->
+<!--                                <div class="footer-top&#45;&#45;right-input-group">-->
+<!--                                    <div class="footer-top&#45;&#45;right-input">-->
+<!--                                        <input type="email" class="" placeholder="E-mail address" v-model="email">-->
+<!--                                    </div>-->
+<!--                                    <button class="btn gamehub-search-btn" @click="subscribe" type="search" :disabled="isSubscring">-->
+<!--                                        <i v-if="!isSubscring" class="far fa-envelope"></i>-->
+<!--                                        <i v-if="isSubscring" class="spinner-border spinner-border-sm"></i>-->
+<!--                                    </button>-->
+<!--                                </div>-->
                             </div>
                         </div>
                         </div>

@@ -296,7 +296,9 @@ export const storage = {
             localStorage.removeItem('postId')
             localStorage.removeItem('setupPasswordUser')
 
-            router.push('/login').catch(err => {});
+            router.push('/login').then(err => {
+                location.reload();
+            });
         },
         verifyOtp({commit}, payload) {
             commit('setSubmitLoading', true)

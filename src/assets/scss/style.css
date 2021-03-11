@@ -6761,7 +6761,8 @@ html {
 }
 
 .inbox-section {
-  padding: 150px 0;
+  padding-top: 100px;
+  padding-bottom: 150px;
 }
 
 @media (max-width: 992px) {

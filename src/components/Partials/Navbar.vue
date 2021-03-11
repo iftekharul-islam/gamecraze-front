@@ -102,21 +102,18 @@
                                                   <router-link to="/contacts" class="dropdown-item" href="#">Contact Us</router-link>
                                                 </div>
                                                 <div class="gamehub-dropdown-menu--bottom">
-                                                  <a @click="onLogout" to="" class="dropdown-item" href="#">Log out</a>
+                                                  <a @click="onLogout" to="/" class="dropdown-item" href="#">Log out</a>
                                                 </div>
                                             </div>
                                 </div>
                                         
                         </div>
                         <div class="gamehub-input-group--content">
-                            <router-link class="gamehub-input-group--content--cart" to="/cart">
-                              <!-- <i class="fas fa-shopping-cart">
-                                <span class="badge gamehub-badge navbar-badge">{{ totalItems }}</span>
-                              </i> -->
+                            <a class="gamehub-input-group--content--cart"  href="/cart">
                               <i class="fas fa-shopping-cart gamehub-input-group--content--cart--icon"></i>
                               <div class="badge navbar-badge" v-if="totalItems == 0"></div>
                               <div class="badge gamehub-badge navbar-badge" v-else>{{ totalItems }}</div>
-                            </router-link>
+                            </a>
 
                         </div>
 

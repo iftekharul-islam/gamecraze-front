@@ -428,7 +428,7 @@
                     this.$router.push('/profile').then(err => {
                         setTimeout(function () {
                             location.reload();
-                        }, 1000)
+                        }, 2000)
                     });
                 }
                 if (response.data.error === true) {
@@ -465,7 +465,9 @@
                                 icon: "success",
                                 buttons: false,
                             });
-                            location.reload();
+                            setTimeout(function () {
+                                location.reload();
+                            }, 1500)
                         }
                     });
                 } else {

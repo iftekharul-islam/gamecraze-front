@@ -206,17 +206,24 @@
                                                 <td v-if="lend.rent">{{ lend.rent.game.name }}</td>
                                                 <td>{{ lend.lend_week }}</td>
                                                 <td>{{ formattedDate(lend.lend_date) }}</td>
-                                                <td v-if="lend.rent.disk_type == 1">
+                                                <td v-if="lend.rent.disk_type == 1 && lend.status === 3">
                                                     {{ startDate(lend.rent.disk_type, lend.updated_at) }}
                                                 </td>
-                                                <td v-if="lend.rent.disk_type == 0">
+                                                <td v-else-if="lend.rent.disk_type == 0">
                                                     {{ startDate(lend.rent.disk_type, lend.created_at) }}
                                                 </td>
-                                                <td v-if="lend.rent.disk_type == 1">
+                                                <td v-else>
+                                                    -
+                                                </td>
+
+                                                <td v-if="lend.rent.disk_type == 1 && lend.status === 3">
                                                     {{ returnDate(lend.rent.disk_type, lend.updated_at, lend.lend_week) }}
                                                 </td>
-                                                <td v-if="lend.rent.disk_type == 0">
+                                                <td v-else-if="lend.rent.disk_type == 0">
                                                     {{ returnDate(lend.rent.disk_type, lend.created_at, lend.lend_week) }}
+                                                </td>
+                                                <td v-else>
+                                                    -
                                                 </td>
                                                 <td v-if="lend.rent.disk_type == 1">
                                                     <flip-countdown :deadline="endDate(lend.rent.disk_type, lend.updated_at, lend.lend_week)" v-if="lend.status === 3"></flip-countdown>

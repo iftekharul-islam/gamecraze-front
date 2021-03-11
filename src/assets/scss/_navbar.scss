@@ -566,6 +566,7 @@
     opacity: .9;
     @include for-max-575 {
         font-size: 15px;
+        text-align: center;
     }
 }
 

@@ -44,7 +44,7 @@
         right: 106px;
         @include for-max-991 {
             right: 40px;
-            top: 70px;
+            top: 20px;
         }
         &--btn {
             padding: 5px 0;
@@ -643,7 +643,8 @@
 }
 
 .rented-note,
-.dashboard-tab-button {
+.dashboard-tab-button,
+.no-post-found-card {
     width: 950px;
     @include for-max-1700 {
         width: 100%;
@@ -710,6 +711,7 @@
         height: 40px;
         color: $text-light;
         font-size: 16px;
+        border-radius: 0;
     }
     select {
         background: $game-details url(../img/down-arw.png);
@@ -732,16 +734,15 @@
         cursor: pointer;
         font-size: 16px;
         overflow: hidden;
-        border-radius: 5px;
+        border-radius: 0;
         &::after {
             font-family: "Font Awesome 5 Free";
             font-weight: 900;
             content: "\f093 \00a0 \00a0 Upload";
             background: $secondery;
             color: $text-dark;
-            border-top-left-radius: 5px;
-            border-bottom-left-radius: 5px;
             cursor: pointer;
+            border-radius: 0;
         }
     }
     label {
@@ -777,7 +778,7 @@
 // No post found
 .no-post-found-card {
     height: 200px;
-    width: 100%;
+    // width: 100%;
     background: $primary;
     border: 1px solid $secondery;
     border-radius: 0px;

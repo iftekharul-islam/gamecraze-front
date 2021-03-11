@@ -1,7 +1,6 @@
 // import './assets/scss/owl/owl.carousel.min.css'
 import '@/assets/scss/owl/owl.carousel.min.css'
 import '@/assets/scss/owl/owl.theme.default.min.css'
-// import '@/assets/scss/select2/select2.min.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/scss/style.css'
 // import './assets/admin/dist/css/adminlte.css'
@@ -9,7 +8,6 @@ import "vue-select/dist/vue-select.css";
 import 'v-toaster/dist/v-toaster.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
-// import '@/assets/js/select2/select2.full.min.js'
 
 
 global.jQuery = require('jquery/dist/jquery.min');
@@ -18,9 +16,6 @@ window.$ = $;
 
 import 'popper.js'
 import 'bootstrap'
-
-// let select2 = require('./assets/js/select2/select2.full.min.js');
-// window.fn = select2;
 
 let owl_carousel = require('./assets/js/owl/owl.carousel.min');
 window.fn = owl_carousel;
@@ -31,7 +26,7 @@ window.fn = bootstrap_select_js;
 let main = require('./assets/js/main')
 window.fn = main;
 
-let adminLte =  require('./assets/admin/dist/js/adminlte')
+let adminLte = require('./assets/admin/dist/js/adminlte')
 window.fn = adminLte;
 
 
@@ -66,13 +61,13 @@ Vue.prototype.$baseApi = process.env.VUE_APP_BASE_API
 Vue.prototype.$gamehubApi = process.env.VUE_APP_GAMEHUB_BASE_API
 
 //vue swal
-import VueSwal, {swal} from 'vue-swal'
+import VueSwal, { swal } from 'vue-swal'
 Vue.use(VueSwal);
 
 
 // // for v-toaster
 import Toaster from 'v-toaster'
-Vue.use(Toaster, {timeout: 5000});
+Vue.use(Toaster, { timeout: 5000 });
 
 //vue-suggesion
 
@@ -92,33 +87,33 @@ import './validation'
 //vuex
 import Vuex from 'vuex'
 Vue.use(Vuex)
-import {storage} from "./store";
+import { storage } from "./store";
 const store = new Vuex.Store(storage)
 
 //axios
 import axios from 'axios'
 
 Vue.use({
-  install (Vue) {
-    // console.log(process.env.VUE_APP_GAMEHUB_BASE_API, "env", process.env);
-    Vue.prototype.$api = axios.create({
-      baseURL: process.env.VUE_APP_GAMEHUB_BASE_API
-    })
-  }
+    install(Vue) {
+        // console.log(process.env.VUE_APP_GAMEHUB_BASE_API, "env", process.env);
+        Vue.prototype.$api = axios.create({
+            baseURL: process.env.VUE_APP_GAMEHUB_BASE_API
+        })
+    }
 });
 
 
 Vue.config.productionTip = false
 
 new Vue({
-  render: h => h(App),
-  router,
-  store,
-  watch: {
-    '$route'(to) {
-      if (to.name == 'Payment') {
-        location.reload();
-      }
+    render: h => h(App),
+    router,
+    store,
+    watch: {
+        '$route' (to) {
+            if (to.name == 'Payment') {
+                location.reload();
+            }
+        }
     }
-  }
 }).$mount('#app')

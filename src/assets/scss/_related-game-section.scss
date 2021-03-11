@@ -18,7 +18,9 @@
             transition: all .3s ease-in !important;
             &:focus {
                 outline: none !important;
-
+            }
+            &:hover {
+                background: $secondery !important;
             }
         }
     }

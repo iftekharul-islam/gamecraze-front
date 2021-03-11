@@ -2181,6 +2181,7 @@ select option:hover {
 @media (max-width: 575px) {
   .swal-text {
     font-size: 15px;
+    text-align: center;
   }
 }
 
@@ -4263,6 +4264,15 @@ html {
   margin-right: 0;
 }
 
+@media (max-width: 575px) {
+  .copyright-section .footer-bottom--social {
+    position: initial;
+    top: initial;
+    margin: auto;
+    margin-top: 24px;
+  }
+}
+
 .copyright-section .footer-bottom p {
   margin-bottom: 0;
 }
@@ -4273,13 +4283,6 @@ html {
     -webkit-box-direction: initial;
         -ms-flex-direction: initial;
             flex-direction: initial;
-  }
-}
-
-@media (max-width: 575px) {
-  .copyright-section .footer-bottom--social {
-    position: initial;
-    top: initial;
   }
 }
 
@@ -4305,7 +4308,8 @@ html {
   margin-bottom: 17px;
 }
 
-.games-categories-section--categories input, .games-categories-section--categories label {
+.games-categories-section--categories input,
+.games-categories-section--categories label {
   cursor: pointer;
 }
 
@@ -4327,6 +4331,18 @@ html {
   background-repeat: no-repeat !important;
   background-position: center !important;
   background-color: black !important;
+}
+
+.games-categories-section--categories .custom-control-input:checked ~ .custom-control-label::after {
+  background: none !important;
+  left: -18px !important;
+  width: 16px !important;
+  height: 16px !important;
+  top: 4px !important;
+}
+
+.games-categories-section--categories .custom-control-label::after {
+  left: -18px;
 }
 
 .games-categories-section--tag {
@@ -5101,6 +5117,10 @@ html {
   outline: none !important;
 }
 
+.related-game-section .owl-nav button:hover {
+  background: #FFD715 !important;
+}
+
 .game-available-section {
   padding-top: 80px;
   padding-bottom: 150px;
@@ -5133,6 +5153,7 @@ html {
 @media (max-width: 992px) {
   .game-available-section--table::after {
     width: 740px;
+    height: 85px;
   }
 }
 
@@ -5196,7 +5217,8 @@ html {
 
 .game-available-section .modal-content button span {
   position: relative;
-  top: -7px;
+  display: block;
+  margin-top: -7px;
 }
 
 .game-available-section .modal-content button span::after, .game-available-section .modal-content button span::before {
@@ -5620,7 +5642,7 @@ html {
 @media (max-width: 991px) {
   .user-profile-heading--account-verified {
     right: 40px;
-    top: 70px;
+    top: 20px;
   }
 }
 
@@ -6413,13 +6435,15 @@ html {
 }
 
 .rented-note,
-.dashboard-tab-button {
+.dashboard-tab-button,
+.no-post-found-card {
   width: 950px;
 }
 
 @media (max-width: 1700px) {
   .rented-note,
-  .dashboard-tab-button {
+  .dashboard-tab-button,
+  .no-post-found-card {
     width: 100%;
   }
 }
@@ -6504,6 +6528,7 @@ html {
   height: 40px;
   color: #fff;
   font-size: 16px;
+  border-radius: 0;
 }
 
 .edit-profile select {
@@ -6531,7 +6556,7 @@ html {
   cursor: pointer;
   font-size: 16px;
   overflow: hidden;
-  border-radius: 5px;
+  border-radius: 0;
 }
 
 .edit-profile .custom-file-input ~ .custom-file-label::after {
@@ -6540,9 +6565,8 @@ html {
   content: "\f093 \00a0 \00a0 Upload";
   background: #FFD715;
   color: #000;
-  border-top-left-radius: 5px;
-  border-bottom-left-radius: 5px;
   cursor: pointer;
+  border-radius: 0;
 }
 
 .edit-profile label {
@@ -6595,7 +6619,6 @@ html {
 
 .no-post-found-card {
   height: 200px;
-  width: 100%;
   background: #0B0F18;
   border: 1px solid #FFD715;
   border-radius: 0px;
@@ -7151,6 +7174,8 @@ html {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  padding: 20px;
+  background: rgba(255, 215, 21, 0.2);
 }
 
 .cart-section .promotional-code--input-group {
@@ -7500,7 +7525,7 @@ html {
 }
 
 .forget-password-section {
-  padding-top: 100px;
+  padding: 100px 0 160px 0;
 }
 
 .forget-password-section--card {
@@ -7533,7 +7558,8 @@ html {
   width: 20px;
 }
 
-.forget-password-section--card--input-group input, .forget-password-section--card--input-group label {
+.forget-password-section--card--input-group input,
+.forget-password-section--card--input-group label {
   cursor: pointer;
   font-size: 16px;
 }
@@ -8045,12 +8071,13 @@ html {
 
 .rookie-elite-content {
   margin: 100px auto;
+  padding: 0 20px;
+  text-align: center;
 }
 
 @media (min-width: 768px) {
   .rookie-elite-content {
     max-width: 505px;
-    text-align: center;
   }
 }
 
@@ -8560,6 +8587,7 @@ html {
 @media (max-width: 575px) {
   .footer-bottom p {
     text-align: center;
+    font-size: 15px;
   }
 }
 

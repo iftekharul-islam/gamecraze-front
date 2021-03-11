@@ -294,8 +294,8 @@
                      <div class="row">
                          <div class="col-md-11 ml-auto">
                              <div class="footer-bottom">
-                                <p>©2021 Game Hub Inc.</p>
-                                   <p>Powered By: Augnitive</p>
+                                <p>©2021 Game Hub</p>
+                                   <p>Powered By: <a href="https://augnitive.com/?utm_source=GameHub&utm_medium=GH%20Footer&utm_campaign=GH%20Traffic">Augnitive</a></p>
                                 <div class="footer-bottom--social">
                                     <a href="https://www.facebook.com/gamehub.bangladesh" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                     <a href="https://twitter.com/BdGamehub" target="_blank"><i class="fab fa-twitter"></i></a>
@@ -339,7 +339,6 @@
                     nav: true,
                     dots: false,
                     autoplay:true,
-                    autoplayTimeout: 2000,
                     autoplayHoverPause: true,
                     navText: [
                         '<i class="fas fa-arrow-left arrow"></i>',
@@ -351,12 +350,14 @@
                             stagePadding: 50,
                             dots:false,
                             nav: true,
+                             autoplayTimeout: 1500,
                         },
                         590:{
                             stagePadding: 0,
                             items: 2,
                             dots:false,
                             nav: true,
+                             autoplayTimeout: 2000,
                         },
                         768:{
                             stagePadding: 0,
@@ -388,7 +389,6 @@
                     nav: true,
                     dots:false,
                     autoplay:true,
-                    autoplayTimeout: 2000,
                     autoplayHoverPause: true,
                     navText: [
                         '<i class="fas fa-arrow-left arrow"></i>',
@@ -400,12 +400,14 @@
                             stagePadding: 50,
                             dots:false,
                             nav: true,
+                            autoplayTimeout: 1500,
                         },
                         590:{
                             stagePadding: 0,
                             items: 2,
                             dots:false,
                             nav: true,
+                            autoplayTimeout: 2000,
                         },
                         768:{
                             stagePadding: 0,
@@ -437,7 +439,6 @@
                     nav: true,
                     dots:false,
                     autoplay:true,
-                    autoplayTimeout: 2000,
                     autoplayHoverPause: true,
                     navText: [
                         '<i class="fas fa-arrow-left arrow"></i>',
@@ -451,6 +452,7 @@
                             dots:false,
                             nav: true,
                             center: true,
+                            autoplayTimeout: 1500,
                         },
                         600:{
                             items: 3,
@@ -458,6 +460,7 @@
                             center: false,
                             dots:false,
                             nav: true,
+                            autoplayTimeout: 2000,
                         },
                         800:{
                             items: 3,
@@ -516,7 +519,7 @@
 			nav: true,
 			dots:false,
             autoplay:true,
-            autoplayTimeout: 2000,
+            autoplayTimeout: 1500,
             autoplayHoverPause: true,
 			navText: [
 				'<i class="fas fa-arrow-left arrow"></i>',

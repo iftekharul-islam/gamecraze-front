@@ -60,7 +60,7 @@
                             </div>
                             <div class="clear">
                                 <a href="javascript:void(0)" class="clear-filters btn--secondery" id="clear-filters" @click="clearFilter()"><span>Clear Filters</span></a>
-                                <a href="#" class="clear-filters btn--secondery d-block d-sm-none" id="filter-apply" v-on:click="toggleMenu()"><span>Apply</span></a>
+                                <a href="#" class="clear-filters btn--secondery d-flex d-sm-none" id="filter-apply" v-on:click="toggleMenu()"><span>Apply</span></a>
                             </div>
                         </div>
                     </div>

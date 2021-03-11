@@ -128,7 +128,7 @@
                                             </tr>
                                             <tr>
                                             <td scope="row">NID No:</td>
-                                                <td>{{ user.id_number }}</td>
+                                                <td>{{ user.identification_number }}</td>
                                             </tr>
                                             <tr>
                                             <td scope="row">NID Image:</td>
@@ -567,7 +567,7 @@
                                                 <label for="nidno" class="col-sm-3 col-form-label">NID No:</label>
                                                 <div class="col-sm-9 edit--input">
                                                     <ValidationProvider name="NID" rules="required" v-slot="{ errors }">
-                                                    <input type="text" class="form-control" id="nidno" v-model="form.id_number">
+                                                    <input type="text" class="form-control" id="nidno" v-model="form.identification_number">
                                                     <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
@@ -676,7 +676,7 @@
                     birth_date: this.$store.state.user.birth_date,
                     email: this.$store.state.user.email,
                     phone_number: this.$store.state.user.phone_number,
-                    id_number: this.$store.state.user.identification_number,
+                    identification_number: this.$store.state.user.identification_number,
                     address: this.$store.state.user.address ? this.$store.state.user.address.address: '',
                     city: this.$store.state.user.address ? this.$store.state.user.address.city: '',
                     postCode: this.$store.state.user.address ? this.$store.state.user.address.post_code: '',
@@ -1181,6 +1181,8 @@
                 },
                 (newValue, oldValue)=>{
                     this.user = newValue;
+                    console.log('Store user');
+                    console.log(this.user);
                 },
                 //Optional Deep if you need it
                 { deep:true }

@@ -12,7 +12,3 @@ function isNumber(evt) {
     }
     return false;
 }
-
-// $(document).ready(function() {
-//     $('.js-example-basic-single').select2();
-// });

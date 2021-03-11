@@ -356,7 +356,7 @@
                                                         <div class="alert alert-info alert-dismissible game-rent-alert--box">
                                                             <button type="button" class="close close-modal" data-dismiss="alert" aria-label="Close"></button>
                                                             <p>
-                                                                If you want to Rent for more weeks.Then renting price will be cyclic like the given price table.So its start from 1st week.
+                                                                If you want to Rent for more weeks. Then renting price will be cyclic like the given price table. So its start from 1st week.
                                                             </p>
                                                         </div>
                                                     </div>
@@ -371,22 +371,19 @@
                                                 <label class="post-rent--form-group--label">Disk Condition:</label>
                                                 <div class="post-rent--form-group--input">
                                                     <ValidationProvider name="Disk Condition" rules="required" v-slot="{ errors }">
-                                                        <v-select class="gamehub-custome-select" label="name_of_type" :options="diskConditions" v-model="rentData.disk_condition" placholder="Please Select Disk Condition" >
-                                                            <!-- <template :options="options">
-                                                                 Please Select Disk Condition
-                                                            </template> -->
+                                                        <!-- <v-select class="gamehub-custome-select" label="name_of_type" :options="diskConditions" v-model="rentData.disk_condition" placholder="Please Select Disk Condition" >
                                                             <template #selected-option="diskCondition">
                                                                 {{ diskCondition.name_of_type + ' ' + diskCondition.description }}
                                                             </template>
                                                             <template v-slot:option="diskCondition">
                                                                 {{ diskCondition.name_of_type + ' ' + diskCondition.description }}
                                                             </template>
-                                                        </v-select>
+                                                        </v-select> -->
 
-                                                        <!-- <select class="form-control js-example-basic-single" id="DiskCondition" v-model="rentData.disk_condition">
+                                                        <select class="form-control js-example-basic-single" id="DiskCondition" v-model="rentData.disk_condition">
                                                             <option value="" selected>Please Select Disk Condition</option>
                                                             <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }} ({{ diskCondition.description }})</option>
-                                                        </select> -->
+                                                        </select>
                                                         <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
@@ -512,16 +509,16 @@
 
                                         
 
-                                                     <v-select :options="itemsData"  label="Standard" v-model="form.gender" class="gamehub-custome-select"></v-select>
+                                                     <!-- <v-select :options="itemsData"  label="Standard" v-model="form.gender" class="gamehub-custome-select"></v-select> -->
 
 
 
-                                                        <!-- <select class="custom-select" id="gender" v-model="form.gender">
+                                                        <select class="custom-select" id="gender" v-model="form.gender">
                                                             <option selected value="">Choose...</option>
                                                             <option value="male" >Male</option>
                                                             <option value="female">Female</option>
                                                             <option value="others">Others</option>
-                                                        </select> -->
+                                                        </select>
                                                         <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
@@ -686,7 +683,7 @@
         data() {
             
             return {
-                itemsData: ['Male', 'Females', 'Others'],
+                itemsData: ['Male', 'Female', 'Others'],
                 rents: [],
                 lends: [],
                 show: true,

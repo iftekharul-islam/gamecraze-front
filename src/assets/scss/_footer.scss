@@ -1,27 +1,34 @@
 .footer-section {
-    padding-bottom: 50px;
+    // padding-bottom: 50px;
+    // background: $game-details;
     @include for-max-575 {
         padding-bottom: 0px;
     }
 }
+
 .footer-top {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
-        @include for-max-768 {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        @include for-max-575 {
-            flex-direction: column-reverse;
-            text-align: center;
-        }
+    // background: $primary;
+    @include for-max-768 {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    @include for-max-575 {
+        flex-direction: column-reverse;
+        // text-align: center;
+    }
     &--right-input-group {
         display: flex;
         @include for-max-575 {
-            justify-content: center;
+            // justify-content: center;
         }
         .gamehub-search-btn {
+            transform: initial;
+            i {
+                transform: initial;
+            }
             @include for-max-575 {
                 clip-path: initial;
             }
@@ -30,10 +37,12 @@
     &--right {
         @include for-max-575 {
             width: 100%;
+            padding-left: 35px;
         }
         span {
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             display: block;
+            font-family: circular-medium;
             @include for-max-768 {
                 margin-bottom: 0px;
                 margin-top: 20px;
@@ -45,35 +54,39 @@
         }
     }
 }
+
 .footer-top--right-input {
-    transform: skew(-21deg);
+    // transform: skew(-21deg);
     background: $game-details;
     input {
         height: 100%;
         background: transparent;
-        border-color: $game-details;
-        border: none;
+        border: 1px solid $secondery;
         // clip-path: polygon(9% 0, 100% 0%, 100% 100%, 0% 100%);
-        transform: skew(21deg);
-        padding-left: 30px;
+        // transform: skew(21deg);
+        padding-left: 20px;
         color: #fff;
+        opacity: .75;
         &:focus {
             outline: none;
             box-shadow: none;
         }
         @include for-max-575 {
-            clip-path : initial;
+            clip-path: initial;
+        }
+        &::placeholder {
+            color: $text-light;
         }
     }
-    
 }
+
 .footer-middle {
     background: $game-details;
     padding: 60px 90px;
     margin-top: 50px;
-    clip-path: polygon(10% 0, 100% -65%, 89% 100%, 0% 100%);
+    // clip-path: polygon(10% 0, 100% -65%, 89% 100%, 0% 100%);
     @include for-max-768 {
-        clip-path: initial; 
+        clip-path: initial;
         padding: 10px;
     }
     @include for-max-575 {
@@ -83,7 +96,7 @@
 }
 
 .footer-logo {
-    margin-left: 6rem;
+    // margin-left: 6rem;
     @include for-max-768 {
         margin-left: 0;
     }
@@ -92,45 +105,68 @@
         top: 115px;
     }
 }
+
 .footer-menu-content {
     ul {
+        padding-top: 0;
         li {
-            &:first-child {
-                a {
-                    color: $secondery;
-                }
-            }
+            padding: 0;
             margin-bottom: 15px;
+            a {
+                text-transform: capitalize;
+            }
+        }
+    }
+    &--address {
+        margin-bottom: 24px;
+        &--text {
+            margin-bottom: 0;
+            &:first-of-type {
+                margin-bottom: 4px;
+                font-weight: 600;
+            }
+            &:last-child {
+                opacity: .75;
+                font-weight: 400;
+            }
         }
     }
 }
+
 .footer-bottom {
     display: flex;
     justify-content: space-between;
-    margin-top: 50px;
+    padding: 25px 0;
+    @include for-max-768 {
+        flex-wrap: wrap;
+    }
     @include for-max-575 {
-        flex-direction: column-reverse;
+        // flex-direction: column-reverse;
         margin-top: 0;
+        padding: 18px 0;
     }
     &--social {
         margin-right: 6rem;
         @include for-max-575 {
             margin-right: 0;
-            position: relative;
+            position: absolute;
             top: -65px;
+            margin-left: 10px;
         }
         a {
-            margin-left: 10px;
+            margin-left: 25px;
             &:first-of-type {
-                @include for-max-400 {
+                @include for-max-768 {
                     margin-left: 0;
                 }
             }
         }
     }
     p {
+        margin-bottom: 0;
         @include for-max-575 {
             text-align: center;
+            font-size: 15px;
         }
     }
 }

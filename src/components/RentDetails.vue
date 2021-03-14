@@ -95,11 +95,24 @@
                                             <div class="col-sm-8 pb-5">
                                                 <div class="part-right" v-if="rent.platform">
                                                     <ValidationProvider name="Rent Week" rules="required" v-slot="{ errors }">
+                                                        <!-- <v-select class="gamehub-custome-select" label="name_of_type" :options="numberOfWeek" v-model="week" >
+                                                            <template #selected-option="rent.max_number_of_week">
+                                                                {{ 'for' + {n} + ' ' + 'week' }}
+                                                            </template>
+                                                            <template v-slot:option="rent.max_number_of_week">
+                                                                {{ diskCondition.name_of_type + ' ' + diskCondition.description }}
+                                                            </template>
+
+                                                        </v-select> -->
+
+
+
+
                                                         <select class="form-control w-50" v-model="week">
                                                             <option value="" selected disabled>Please Select Rent Week...</option>
                                                             <option v-for="n in rent.max_number_of_week" :value="n">For {{n}} Week</option>
                                                         </select>
-                                                        <span class="text-danger">{{ errors[0] }}</span>
+                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
@@ -639,6 +652,8 @@
         props: ['id'],
         data() {
             return {
+                // rent.max_number_of_week: [for {n} week],
+                numberOfWeek: [],
                 checkpoints: [],
                 rent: null,
                 lends: [],
@@ -675,7 +690,7 @@
                         this.$store.dispatch('pushPostId', this.id)
                         this.$store.dispatch('pushLendWeek', this.week)
                         this.$store.dispatch('pushCheckpointId', this.form.checkpoint.id)
-                        return this.$router.push('/add-to-cart').then(err => {});
+                        return this.$router.push('/cart').then(err => {});
                     }
                     return this.$swal({
                         title: "Rent is Limited",
@@ -687,7 +702,7 @@
                         this.$store.dispatch('pushPostId', this.id)
                         this.$store.dispatch('pushLendWeek', this.week)
                         this.$store.dispatch('pushCheckpointId', this.form.checkpoint.id)
-                        return this.$router.push('/add-to-cart').then(err => {});
+                        return this.$router.push('/cart').then(err => {});
                     }
                     this.$swal({
                         title: "Rent is Limited",
@@ -735,6 +750,10 @@
                 {
                     this.rent = response.data.data
                     console.log(this.rent, 'rent-details');
+                    var count = this.rent.max_number_of_week
+                    for (let i = 1; i == count; i++) {
+                        this.numberOfWeek.push(i);
+                    }
                 }),
             this.$api.get('checkpoints?include=area')
                 .then (response =>

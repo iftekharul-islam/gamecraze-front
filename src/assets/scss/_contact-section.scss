@@ -1,11 +1,26 @@
 .contact-section {
-    padding-top: 80px; 
+    padding-top: 80px;
     padding-bottom: 150px;
+    @include for-max-991 {
+        padding-top: 50px;
+    }
+    @include for-max-575 {
+        padding-bottom: 120px;
+    }
+    .error-message {
+        display: inline-block;
+        margin-top: 10px;
+        &::after {
+            top: 2px;
+        }
+    }
 }
+
 .contact-form {
     h2 {
         font-style: italic;
         font-size: 22px;
+        margin-bottom: 25px;
         @include for-min-992 {
             font-size: 40px;
             margin-bottom: 30px;
@@ -30,23 +45,23 @@
 
 .copyright-section {
     background: $game-details;
-    padding: 20px 0;
+    // padding: 20px 0;
     .footer-bottom {
         margin-top: 0;
         &--social {
             margin-right: 0;
+            @include for-max-575 {
+                position: initial;
+                top: initial;
+                margin: auto;
+                margin-top: 24px;
+            }
         }
         p {
             margin-bottom: 0;
         }
         @include for-max-575 {
             flex-direction: initial;
-        }
-        &--social {
-            @include for-max-575 {
-                position: initial;
-                top: initial;
-            }
         }
     }
 }

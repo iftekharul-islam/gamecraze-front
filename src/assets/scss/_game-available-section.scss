@@ -5,48 +5,116 @@
         padding: 0 20px;
         border: 1px solid $secondery;
         position: relative;
+        overflow: auto;
+        table {
+            @include for-max-992 {
+                width: 700px;
+            }
+        }
         &::after {
             content: "";
-            height: 48px;
+            height: 60px;
             width: 100%;
             position: absolute;
             top: 0;
             left: 0;
             z-index: -1;
             background: $secondery;
+            @include for-max-992 {
+                width: 740px;
+                height: 85px;
+            }
         }
-        
     }
-    
+    .modal-dialog-centered {
+        @include for-min-768 {
+            max-width: 726px;
+        }
+        @include for-min-992 {
+            max-width: 760px;
+        }
+    }
     .modal-content {
         background: $game-details;
-        border: 1px solid $secondery;
-        .modal-header,.modal-footer {
+        border: .5px solid $secondery;
+        border-radius: 0;
+        @include for-min-768 {
+            padding: 0 93px;
+        }
+        .modal-header,
+        .modal-footer {
             border: none;
         }
+        .modal-header {
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
         button {
+            font-weight: normal !important;
+            font-size: 20px;
+            padding: 0;
+            width: 20px;
+            height: 20px;
+            border: 1px solid $secondery;
+            border-radius: 50%;
+            position: absolute;
+            right: 32px;
+            top: 32px;
+            @include for-max-575 {
+                right: 16px;
+                top: 16px;
+            }
             &:focus {
                 outline: none !important;
             }
             span {
-                width: 30px !important;
-                height: 30px !important;
-                border: 1px solid $secondery;
-                color: $secondery;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+                // width: 20px !important;
+                // height: 20px !important;
+                position: relative;
+                // top: -7px;
+                display: block;
+                margin-top: -7px;
+                &::after,
+                &::before {
+                    position: absolute;
+                    content: ' ';
+                    height: 14px;
+                    width: 1px;
+                    background-color: $secondery;
+                }
+                &::after {
+                    transform: rotate(45deg);
+                }
+                &::before {
+                    transform: rotate(-45deg);
+                }
             }
         }
         table {
             tr {
-                td,th {
+                td,
+                th {
                     color: $text-light;
+                    @include for-max-575 {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+        .modal-footer {
+            padding-bottom: 40px;
+            a {
+                &:hover {
+                    background: $primary;
                 }
             }
         }
     }
+}
+
+.disablePost {
+    opacity: .3;
+    cursor: not-allowed !important;
 }
 
 .rented-dashbord {
@@ -58,9 +126,9 @@
             th {
                 background: $secondery !important;
                 color: $text-dark !important;
+                padding: 18px 20px;
             }
         }
-
     }
     tbody {
         tr {
@@ -72,18 +140,18 @@
                 border-top: 1px solid $game-details;
                 border-bottom: 1px solid $game-details;
                 transition: all .3s ease-in;
+                padding: 10px 20px;
                 &:first-of-type {
-                    border-top-left-radius: 10px;
-                    border-bottom-left-radius: 10px;
                     border-left: 1px solid $game-details;
                 }
                 &:last-of-type {
-                    border-top-right-radius: 10px;
-                    border-bottom-right-radius: 10px;
                     border-right: 1px solid $game-details;
                 }
                 img {
                     margin-right: 20px;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 4px;
                 }
             }
             &:hover {
@@ -94,12 +162,19 @@
         }
     }
 }
+
 .seller-information-modal {
     table {
         tr {
             td {
                 &:first-of-type {
-                    width: 180px;
+                    width: 250px;
+                    font-size: 20px;
+                    padding-left: 0;
+                    vertical-align: middle;
+                    @include for-max-575 {
+                        width: 145px;
+                    }
                 }
             }
         }
@@ -109,23 +184,99 @@
         color: $text-light;
         border: 1px solid $secondery;
         cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        position: relative;
+        background: #141A27 url(../img/down-arw.png);
+        background-repeat: no-repeat;
+        background-position: 96% center;
+        background-size: 16px;
+        border-radius: 0;
+        font-family: circular-book;
+        option {
+            font-family: circular-book !important;
+        }
+    }
+    &--table-top {
+        tr {
+            td {
+                font-size: 20px;
+            }
+        }
+    }
+    &--table-bottom {
+        tr {
+            td {
+                &:last-of-type {
+                    font-size: 16px;
+                    vertical-align: middle;
+                }
+                &:first-of-type {
+                    @include for-max-575 {
+                        width: 100% !important;
+                    }
+                }
+            }
+        }
     }
 }
+
 .seller-information {
-    border-top: 1px solid $secondery;
+    border-top: .5px solid $secondery;
     padding-top: 20px;
     h2 {
         margin-bottom: 35px;
+        @include for-min-992 {
+            font-size: 32px;
+        }
     }
     .seller-address {
-        width: 80%;
+        width: 100%;
         border: 1px solid $secondery;
         padding: 10px;
         border-radius: 10px;
-        i {
+        font-size: 12px;
+        .fa-map-marker-alt {
             display: block;
             color: $secondery;
             margin-bottom: 15px;
+            font-size: 20px;
         }
+    }
+    table {
+        tr {
+            @include for-max-768 {
+                display: flex;
+                flex-direction: column;
+                padding-bottom: 0px;
+            }
+            td {
+                select,
+                input,
+                .seller-address {
+                    @include for-max-991 {
+                        width: 63%;
+                    }
+                    @include for-max-768 {
+                        width: 67%;
+                    }
+                    @include for-max-575 {
+                        width: 43%;
+                    }
+                }
+                @include for-max-768 {
+                    padding-top: 0;
+                    padding-bottom: 0;
+                    padding-left: 0;
+                }
+                &:first-of-type {
+                    vertical-align: initial;
+                    padding-top: 21px;
+                }
+            }
+        }
+    }
+    .error-message {
+        top: 8px;
     }
 }

@@ -1,9 +1,10 @@
 .games-header-section {
-    background:  linear-gradient(90deg, rgba(0, 0, 0, 0.85) 18.75%, rgba(0, 0, 0, 0) 100%), url(../img/game-details.png);
+    
     height: 600px;
     background-size: cover;
     padding-top: 150px;
     padding-bottom: 110px;
+    position: relative;
     @include for-max-575 {
         background-position: center;
         height: initial;
@@ -15,6 +16,7 @@
             font-weight: normal;
             margin-bottom: 0;
             font-family: circular-book;
+            opacity: .97;
         }
         .read-more {
             color: $secondery;
@@ -33,7 +35,154 @@
             margin-right: 10px;
         }
     }
+    &--display-image {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: 100%;
+        }
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background:  linear-gradient(90deg, rgba(0, 0, 0, 0.85) 18.75%, rgba(0, 0, 0, 0) 100%);
+        }
+        &--photo-credit {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            background: $photo-credit-bg;
+            padding: 5px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9;
+            h3 {
+                font-size: 18px;
+                margin: 0;
+                color: $secondery;
+                opacity: .7;
+                &:first-of-type {
+                    margin-right: 5px;
+                }
+                @include for-max-575 {
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+    
 }
 .game-name-img {
     margin-bottom: 20px;
+    h2 {
+        font-size: 50px;
+        text-transform: uppercase;
+        color: $secondery;
+        @include for-max-575 {
+            font-size: 28px;
+        }
+    }
+}
+
+// modal
+.upgrade-modal {
+    .modal-dialog {
+        @include for-max-991 {
+            max-width: 100% !important;
+        }
+        @include for-min-992 {
+            max-width: 800px !important;
+        }
+        @include for-min-1200 {
+            max-width: 960px !important;
+            background: transparent;
+        }
+        .modal-content {
+            background: $game-details; 
+            border: 2px solid $secondery !important;
+            border-radius: 0;
+            border: none;
+            max-width: 100%;
+            margin: auto;
+            text-align: center;
+            height: 500px;
+            padding: 93px;
+            justify-content: center;
+            @include for-max-991 {
+                padding: 80px;
+                max-width: 90%;
+            }
+            @include for-max-575 {
+                padding: 60px 20px;
+                height: initial;
+            }
+            p {
+                font-size: 28px;
+                @include for-max-768 {
+                    font-size: 20px;
+                }
+                @include for-max-575 {
+                    font-size: 16px;
+                }
+            }
+            &--description {
+                max-width: 642px;
+                margin: auto;
+                &--form {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-top: 76px;
+                    @include for-max-575 {
+                        flex-direction: column;
+                        margin-top: 44px;
+                    }
+                    &--call {
+                        p {
+                            &:first-of-type {
+                                font-size: 20px;
+                                color: $text-light;
+                                @include for-max-768 {
+                                    font-size: 16px;
+                                }
+                            }
+                            &:last-of-type {
+                                @include for-max-575 {
+                                    margin-bottom: 0;
+                                }
+                            }
+                            
+                            color: $secondery;
+                        }
+                        
+                    }
+                    
+                }
+            }
+        }
+    }
+}
+.modal-or {
+    margin: 0 48px;
+    font-size: 28px;
+    text-transform: capitalize;
+    font-family: 'Roboto', sans-serif;
+    @include for-max-768 {
+        margin: 0 28px;
+        font-size: 20px;
+    }
+    @include for-max-575 {
+        margin: 24px 0;
+        font-size: 20px;
+    }
 }

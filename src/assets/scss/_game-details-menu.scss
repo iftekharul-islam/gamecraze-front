@@ -3,10 +3,26 @@
     ul {
         display: flex;
         align-items: center;
-        justify-content: space-evenly;
+        justify-content: center;
+        @include for-max-575 {
+            justify-content: space-between;
+        }
         li {
             padding: 20px 0;
             position: relative;
+            margin-right: 104px;
+            @include for-max-992 {
+                margin-right: 60px;
+            }
+            @include for-max-768 {
+                margin-right: 25px;
+            }
+            @include for-max-575 {
+                margin-right: 0px;
+            }
+            &:last-of-type {
+                margin-right: 0;
+            }
             &::before {
                 content: "";
                 position: absolute;

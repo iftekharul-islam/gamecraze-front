@@ -11,7 +11,7 @@
 
                 <!-- Toggle button for small device -->
                 <div class="toggler-position">
-                    <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <button v-bind:class="{ open: isNavOpen }" @click="isNavOpen = !isNavOpen" ref="btnMenuToggle" id="removeClass" class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span></span>
                         <span></span>
                         <span></span>
@@ -21,126 +21,111 @@
                 <div class="collapse navbar-collapse custom-collapse gamehub-menu-collapse" id="navbarSupportedContent" @click="modal = false">
                     <ul class="">
                         <li class="active">
-                            <router-link class="nav-link active router_link" to="/">Home<span class="sr-only">(current)</span></router-link>
+                            <router-link @click.native="onMenuItemClick()" class="nav-link active router_link" to="/" >Home<span class="sr-only">(current)</span></router-link>
                         </li>
                         <li>
-                            <router-link class="router_link" to="/games">Games</router-link>
+                            <router-link @click.native="onMenuItemClick()" class="router_link" to="/games" >Games</router-link>
                         </li>
                         <li>
-                            <router-link class="router_link" to="/support">Supports</router-link>
+                            <router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">Post For Rent</router-link>
                         </li>
                         <li>
-                            <router-link class="router_link" to="/contacts">Contact us</router-link>
+                            <router-link @click.native="onMenuItemClick()" class="router_link" to="/notice-board">Notice Board</router-link>
                         </li>
                     </ul>
-                    <div class="gamehub-input-group">
-                        <div class="gamehub-input-group--content">
+                   <!-- search bar -->
+                   <div class="gamehub-input-group gamehub-input-group-searchbar">
+                   <div class="gamehub-input-group--content">
+
                             <div class="search-input-design">
-                                <input type="search" class="">
+                              <vue-autosuggest
+                                  v-model="query"
+                                  :suggestions="filteredOptions"
+                                  @focus="focusMe"
+                                  @keyup.enter="searchGame"
+                                  @click="clickHandler"
+                                  @input="onInputChange"
+                                  @selected="onSelected"
+                                  :get-suggestion-value="getSuggestionValue"
+                                  :input-props="{id:'autosuggest__input',class:'auto-suggest-menu'}">
+                                <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
+                                  {{suggestion.item.name}}
+                                </div>
+                              </vue-autosuggest>
                             </div>
-                            <button class="btn gamehub-search-btn" type="search">
-                                <i class="fa fa-search"></i>
+                            
+                            <button class="btn gamehub-search-btn" @click="onMenuItemClick()" type="search" @click.prevent="searchGame">
+                                <i class="fa fa-search gamehub-search-btn--icon"></i>
                             </button>
                         </div>
+                </div>
+                </div>
+                <!-- sign in button and cart icon out side of collapse -->
+                 <div class="gamehub-input-group signin-cart-group">
+                        <!-- <div class="gamehub-input-group--content">
+
+                            <div class="search-input-design">
+                              <vue-autosuggest
+                                  v-model="query"
+                                  :suggestions="filteredOptions"
+                                  @focus="focusMe"
+                                  @keyup.enter="searchGame"
+                                  @click="clickHandler"
+                                  @input="onInputChange"
+                                  @selected="onSelected"
+                                  :get-suggestion-value="getSuggestionValue"
+                                  :input-props="{id:'autosuggest__input',class:'auto-suggest-menu'}">
+                                <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
+                                  {{suggestion.item.name}}
+                                </div>
+                              </vue-autosuggest>
+                            </div>
+                            
+                            <button class="btn gamehub-search-btn" type="search" @click.prevent="searchGame">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div> -->
                         <div class="gamehub-input-group--content">
                             <router-link v-if="!auth" class="sign-in" to="/login"><span>Sign in</span></router-link>
-                                <div v-if="auth" class="dropdown-toggle complete-sign-in" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span><span v-else>{{ this.$store.state.user.phone_number }}</span>
-                                 <img src="../../assets/img/sss.jpg" alt="profile" class="img-fluid">
-                                            <div class="dropdown-menu">
-                                                <router-link to="/profile" class="dropdown-item" href="#">Profile</router-link>
-                                                <router-link to="/profile" class="dropdown-item" href="#">Another action</router-link>
-                                                <router-link to="/profile" class="dropdown-item" href="#">Something else here</router-link>
+                                <div v-if="auth" class="dropdown-toggle complete-sign-in" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                  <span class="user-name" v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span>
+                                  <span class="user-name" v-else>{{ this.$store.state.user.phone_number }}</span>
+                                    <span class="complete-sign-in--badge" v-if="user.is_verified == 1"></span>
+                                      <div class="complete-sign-in--nav-profile-img">
+                                          <img v-if="$store.state.user.image" :src="$store.state.user.image" :alt="$store.state.user.name">
+                                          <img v-else src="../../assets/img/avatar.png" alt="profile">
+                                      </div>
+                                            <div class="dropdown-menu gamehub-dropdown-menu">
+                                                <div class="gamehub-dropdown-menu--top">
+                                                  <router-link to="/profile" class="dropdown-item" href="#">Dashboard</router-link>
+                                                  <router-link to="/profile" class="dropdown-item" @click.native="clickProfile()">Post For Rent</router-link>
+                                                  <router-link to="/contacts" class="dropdown-item" href="#">Contact Us</router-link>
+                                                </div>
+                                                <div class="gamehub-dropdown-menu--bottom">
+                                                  <a @click="onLogout" to="/" class="dropdown-item" href="#">Log out</a>
+                                                </div>
                                             </div>
                                 </div>
-<!--                                <div class="log-out">-->
-<!--                                    <a @click.prevent="onLogout" class="sign-out">-->
-<!--                                        <span class="mr-2">Sign Out</span>-->
-<!--                                        <i class="fas fa-sign-out-alt"></i>-->
-<!--                                    </a>-->
-<!--                                </div>-->
                                         
                         </div>
                         <div class="gamehub-input-group--content">
-                            <a href="#"><i class="fas fa-shopping-cart"></i></a>
+                            <a class="gamehub-input-group--content--cart"  href="/cart">
+                              <i class="fas fa-shopping-cart gamehub-input-group--content--cart--icon"></i>
+                              <div class="badge navbar-badge" v-if="totalItems == 0"></div>
+                              <div class="badge gamehub-badge navbar-badge" v-else>{{ totalItems }}</div>
+                            </a>
+
                         </div>
+
+                        
                     </div>
-                </div>
             </div>
         </nav>
-<!--        <nav class="navbar navbar-expand-xl navbar-light sign-in-bg">-->
-<!--            <div class="container-fluid nav-width">-->
-<!--                <router-link class="navbar-brand mr-5" to="/"><img src="../../assets/img/logo/logo.jpg" alt="Game-logo"></router-link>-->
-<!--                <div class="toggler-pos">-->
-<!--                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar" aria-controls="exCollapsingNavbar" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--                        &lt;!&ndash;just add these span here&ndash;&gt;-->
-<!--                        <span></span>-->
-<!--                        <span></span>-->
-<!--                        <span></span>-->
-<!--                        <span></span>-->
-<!--                        &lt;!&ndash;/end span&ndash;&gt;-->
-<!--                    </button>-->
-<!--                </div>-->
-<!--                <div class="collapse navbar-collapse" id="exCollapsingNavbar" @click="modal = false">-->
-<!--                    &lt;!&ndash; menu-list &ndash;&gt;-->
-<!--                    <div class="menu-list">-->
-<!--                        <ul class="navbar-nav menu-list-bottom">-->
-<!--                            <li class="nav-item mr-3 for-active">-->
-<!--                                <router-link class="nav-link active router_link" to="/">Home</router-link>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item mr-3 for-active">-->
-<!--                                <router-link class="router_link" to="/games">Games</router-link>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item mr-3 for-active">-->
-<!--                                <router-link class="router_link" to="/supports">Supports</router-link>-->
-<!--                            </li>-->
-<!--                            <li class="nav-item mr-3 for-active">-->
-<!--                                <router-link class="router_link" to="/contacts">Contact us</router-link>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--                <div class="search">-->
-<!--                    <form class="my-2 my-lg-0 menu-search">-->
-<!--                        <div class="input-group">-->
-<!--                            <div class="about">-->
-<!--                                <input type="text" class="form-control main-search-bar" autocomplete="off" v-model="result" @input="filterResults" @focus="modal = true">-->
-<!--                                <button class="btn btn-secondary menu-search-icon" type="button" @click.prevent="searchGame">-->
-<!--                                    <i class="fa fa-search "></i>-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                            <div v-if="filteredResults && modal" class=" z-10">-->
-<!--                                <ul class="my-list">-->
-<!--                                    <li v-for="filteredResult in filteredResults" @click="setResult(filteredResult.name)" class="text-black">{{ filteredResult.name }}-->
-<!--                                        <hr></li>-->
-<!--                                </ul>-->
-<!--                            </div>-->
-<!--                            <router-link v-if="!auth" class="btn btn-danger ml-4 sign-in-btn" to="/login">Sign in</router-link>-->
 
-<!--                            <div class="sign-logout ml-4">-->
-<!--                                <router-link v-if="auth" class="btn btn-danger sign-in-btn" to="/profile"><span v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span><span v-else>{{ this.$store.state.user.phone_number }}</span></router-link>-->
-<!--                                <div class="log-out">-->
-<!--                                    <a @click.prevent="onLogout" class="sign-out">-->
-<!--                                        <span class="mr-2">Sign Out</span>-->
-<!--                                        <i class="fas fa-sign-out-alt"></i>-->
-<!--                                    </a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-
-<!--                            <div class="cart-icon ml-3">-->
-<!--                                <router-link to="/add-to-cart"> <i class="material-icons text-yellow"> shopping_cart </i></router-link>-->
-<!--                                <div class="badges">{{ $store.state.postId.length }}</div>-->
-<!--                            </div>-->
-
-<!--                        </div>-->
-<!--                    </form>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </nav>-->
     </div>
 </template>
 
 <script>
-
     export default {
         data() {
             return {
@@ -153,112 +138,136 @@
                 games: [],
                 results: [],
                 filteredResults: [],
+                query: "",
+                selected: "",
+                totalItems: 0,
+                isNavOpen: false,
+                user: {}
             }
         },
         methods: {
-            searchGame() {
-                console.log(this.result)
-                if(this.result !== '') {
-                    this.$api.get('/rent-posts'+ '?include=game.assets,game.genres,platform').then(response => {
-                        let games = response.data.data;
-                        console.log(games);
-                        var gameName = this.result;
-                        let filtered = games.filter(function (data) {
-                            return data.game.data.name.toLowerCase().includes(gameName.toLowerCase())
-                        })
-                        this.$store.commit('addToSearchResult', filtered);
-                        this.$router.push('/search').catch(err => {});
-                    });
-                }
-            },filterResults() {
-                 this.filteredResults = this.results.filter(result => {
-                     return result.name.toLowerCase().startsWith(this.result.toLowerCase())
-                });
-            },setResult(result) {
-                this.result = result;
-                this.modal = false;
-            },
-            onLogout() {
-                // this.$store.dispatch('clearCart');
-                this.$store.dispatch('logout');
-                this.$store.state.postId = [];
-                console.log(this.$store.state.postId, 'postId');
-
+          clickProfile() {
+            this.$root.$emit('rentPost');
+          },
+          searchGame() {
+              if(this.query !== '') {
+                this.$router.push({name: 'games', query: {categories: this.$route.query.categories, platforms: this.$route.query.platforms, search: this.query}})
+                this.$root.$emit('searchEvent')
+              }
+              else {
+                this.$router.push({name: 'games', query: {categories: this.$route.query.categories, platforms: this.$route.query.platforms}})
+                this.$root.$emit('searchEvent')
+              }
+          },
+          onLogout() {
+              this.$store.dispatch('logout');
+          },
+          clickHandler(item) {
+            // event fired when clicking on the input
+          },
+          onSelected(item) {
+            this.selected = item.item;
+            this.query = this.selected.name;
+            this.$router.push('/game-details/' + this.selected.slug);
+          },
+          onInputChange(text) {
+            // event fired when the input changes
+            console.log(text)
+          },
+          /**
+           * This is what the <input/> value is set to when you are selecting a suggestion.
+           */
+          getSuggestionValue(suggestion) {
+            return suggestion.item.name;
+          },
+          focusMe(e) {
+            console.log(e) // FocusEvent
+          }, 
+          // totalCartItems(){
+          //   let cartItems = localStorage.getItem('cartItems');
+          //   if (cartItems) {
+          //     let cart = JSON.parse(cartItems);
+          //     this.totalItems = cart.length;
+          //   }
+          // },
+          onMenuItemClick() {
+            if( window.innerWidth < 992 ) {
+                let elem = this.$refs.btnMenuToggle;
+                    elem.click();
             }
+          }
         },
         computed: {
-            auth () {
-                return this.$store.getters.ifAuthenticated
-            }
+          auth () {
+              return this.$store.getters.ifAuthenticated
+          },
+          filteredOptions() {
+            return [
+              {
+                data: this.games.filter(option => {
+                  return option.name.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
+                })
+              }
+            ];
+          }
         },
         created() {
+            // this.$router.go();
+            let config = {
+                headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                }
+            };
+            this.$api.get('cart-items', config).then(response => {
+                this.totalItems = response.data.data.length;
+                console.log('this totalItems');
+                console.log(this.totalItems);
+            });
+            // this.totalItems = this.$store.state.itemsInCart;
             this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {
                 this.rents = response.data.data;
-                console.log(this.rents, 'rents')
+                // console.log(this.rents, 'rents')
                 const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
                 this.$api.get('rent-games/?ids=' + uniqueArr + '&include=assets,genres,platforms').then(resp => {
                     this.results = resp.data.data;
-                    console.log(this.results, 'results');
+                    // console.log(this.results, 'results');
                 })
-                console.log(uniqueArr)
             });
+            
+            this.$api.get('games?include=platforms').then(response =>{
+              this.games = response.data.data;
+            });
+
+            this.$root.$on('clearSearchKey', () => {
+              this.query = '';
+            });
+
+            this.$api.get('user/details', config).then(response =>{
+                this.user = response.data.data;
+            });
+
+            this.$store.watch(
+                (state)=>{
+                    return this.$store.state.itemsInCart // could also put a Getter here
+                },
+                (newValue, oldValue)=>{
+                  // this.totalItems = newValue;
+                },
+                //Optional Deep if you need it
+                { deep:true }
+            );
         },
         mounted() {
             this.$root.$on("loggedIn", () => {
                 this.token = localStorage.getItem('token')
                 this.userProfile = JSON.parse(localStorage.getItem('userProfile'))
             })
-        }
+        },
+
     }
 </script>
 
 <style scoped>
-    .router_link {
-        color: white;
-    }
-    .about {
-        display: flex;
-    }
-    .main-search-bar {
-        border-top-left-radius: 20px;
-        border-bottom-left-radius: 20px;
-        border-top-right-radius: 0;
-        border-bottom-right-radius: 0;
-        background: #2d2061;
-        border-color: #2d2061;
-        color: #ffffff !important;
-        padding-left: 20px;
-        -webkit-transition: all 0.3s ease-in;
-        transition: all 0.3s ease-in;
-    }
-    .menu-search-icon {
-        border-top-right-radius: 20px;
-        border-bottom-right-radius: 20px;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        background: #fcd700;
-        border-color: #fcd700;
-        width: 20%;
-        -webkit-transition: all 0.3s ease-in;
-        transition: all 0.3s ease-in;
-    }
-    .my-postion {
-        position: absolute;
-        z-index: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-    }
-    .my-list {
-        position: absolute;
-        left: 0;
-        background: #fcd700;
-        top: 44px;
-        z-index: 10;
-        width: 244px;
-        padding: 0;
 
-    }
 </style>

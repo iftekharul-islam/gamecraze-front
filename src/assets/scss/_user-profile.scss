@@ -3,7 +3,12 @@
     height: 370px;
     display: flex;
     align-items: flex-end;
-    
+    @include for-max-991 {
+        margin-top: 20px;
+    }
+    @include for-max-575 {
+        height: 250px;
+    }
     .user-profile-bg {
         position: absolute;
         width: 100%;
@@ -11,21 +16,127 @@
         top: 0;
         left: 0;
         z-index: -1;
-
     }
     &--name {
         display: flex;
         align-items: center;
+    }
+    &--dp {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        border: 2px solid $text-light;
+        @include for-max-575 {
+            width: 100px;
+            height: 100px;
+        }
         img {
-            width: 160px;
-            height: 160px;
+            width: 100%;
+            height: 100%;
             border-radius: 50%;
-            border: 1px solid $text-light;
             object-fit: cover;
-            
+        }
+    }
+    // account veryfied
+    &--account-verified {
+        position: absolute;
+        bottom: 90px;
+        right: 106px;
+        @include for-max-991 {
+            right: 40px;
+            top: 20px;
+        }
+        &--btn {
+            padding: 5px 0;
+            transform: skew(-21deg);
+            display: inline-block;
+            width: 200px;
+            text-align: center;
+            span {
+                transform: skew(21deg);
+                display: inline-block;
+            }
         }
     }
 }
+
+// avatar edit
+.avatar-edit {
+    position: absolute;
+    right: 4px;
+    bottom: 15px;
+    @include for-max-575 {
+        right: 15px;
+        bottom: 3px;
+    }
+    form {
+        input {
+            display: none;
+        }
+        label {
+            display: inline-block;
+            width: 34px;
+            height: 34px;
+            margin-bottom: 0;
+            border-radius: 100%;
+            background: $game-details;
+            border: 1px solid $secondery;
+            cursor: pointer;
+            font-weight: normal;
+            transition: all 0.2s ease-in-out;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            .camera-icon {
+                color: $secondery;
+            }
+        }
+    }
+    &--spinner {
+        position: absolute;
+        bottom: 2px;
+        right: 2px;
+        background: $game-details;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+// cover photo edit
+.cover-edit {
+    position: absolute;
+    bottom: 20px;
+    right: 125px;
+    @include for-max-991 {
+        top: 10px;
+        right: 20px;
+        bottom: initial;
+    }
+    input {
+        display: none;
+    }
+    label {
+        position: relative;
+        cursor: pointer;
+        border: 2px solid $secondery;
+        padding: 5px 19px;
+        transform: skew(-21deg);
+        width: 200px;
+        text-align: center;
+        .camera-icon,
+        span {
+            transform: skew(21deg);
+            display: inherit;
+            color: $secondery;
+        }
+    }
+}
+
 .users-name {
     margin-left: 20px;
     h3 {
@@ -36,9 +147,14 @@
         font-size: 20px;
     }
 }
+
 .user-rating {
     margin-top: -40px;
     margin-left: 3rem;
+    @include for-max-575 {
+        margin-top: 0;
+        margin-left: 0;
+    }
     i {
         color: $secondery;
     }
@@ -47,60 +163,731 @@
 .user-profile-details {
     padding-top: 50px;
     padding-bottom: 150px;
+    @include for-max-992 {
+        // padding-bottom: 150px;
+    }
     &--nav {
+        flex-direction: column;
+        // @include for-min-992 {
+        //     max-width: 250px;
+        // }
+        @include for-min-1200 {
+            margin-right: 27px;
+        }
+        @include for-max-991 {
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            @include for-max-575 {
+                margin-bottom: 20px;
+            }
+        }
         a {
             color: $gray;
             font-size: 24px;
             border-bottom: 1px solid $gray;
             border-radius: 0 !important;
-            &:last-of-type {
-                border-bottom: 0;
+            padding: 20px 0;
+            display: flex;
+            align-items: center;
+            &:first-of-type {
+                padding-top: 0;
             }
-            i {
-                font-size: 40px;
-                width: 45px;
-                margin-right: 20px;
+            @include for-max-1200 {
+                font-size: 20px;
+            }
+            @include for-max-991 {
+                font-size: 14px;
+                flex-direction: column;
+                align-items: center;
+                padding: 0;
+            }
+            @include for-max-575 {
+                font-size: 12px;
+            }
+            @include for-min-992 {
+                &:last-of-type {
+                    border-bottom: 0;
+                }
+            }
+            img {
+                @include for-max-991 {
+                    margin-right: 0;
+                    margin-bottom: 10px;
+                }
             }
             &.active {
                 background: transparent !important;
                 color: $text-light;
+                img {
+                    display: none;
+                }
+                .img-active {
+                    display: inline-block;
+                }
+            }
+            .img-active {
+                display: none;
+            }
+        }
+        &--img {
+            width: 70px;
+            @include for-max-991 {
+                height: 50px;
+                width: initial;
+            }
+            img {
+                margin-right: 0;
+                @include for-max-991 {
+                    height: 70%;
+                }
             }
         }
     }
     .tab-content {
-        margin-left: 3rem;
+        margin-left: 57px;
+        @include for-max-1200 {
+            margin-left: 25px;
+        }
+        @include for-max-991 {
+            margin-left: 0;
+        }
     }
 }
 
 .over-view {
     table {
         tr {
+            &:first-of-type {
+                td {
+                    @include for-min-1200 {
+                        padding-top: 0;
+                    }
+                }
+            }
+            &:nth-of-type(2) {
+                td {
+                    &:last-of-type {
+                        text-transform: capitalize;
+                    }
+                }
+            }
             td {
                 color: $text-light;
+                font-size: 20px;
+                @include for-max-1300 {
+                    font-size: 18px;
+                }
+                @include for-max-1200 {
+                    font-size: 16px;
+                }
                 &:nth-child(1) {
                     width: 200px;
+                    @include for-max-575 {
+                        width: 138px;
+                    }
                 }
                 img {
                     width: 260px;
-                    height: 150px;
+                    height: auto;
+                    display: block;
+                    position: relative;
+                    &::after {
+                        content: "";
+                        background: $primary;
+                        width: 100%;
+                        height: 50px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        position: absolute;
+                        top: 0;
+                    }
                 }
             }
         }
     }
 }
 
-.post-rent {
-    .form-group {
-        margin-bottom: 25px;
-    }
-    .custom-file {
-        margin-bottom: 25px;
+// post rent
+#v-pills-post-rent {
+    @include for-min-1200 {
+        margin-left: 34px;
     }
 }
+
+.post-rent {
+    &--form-group {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 25px;
+        @include for-max-575 {
+            flex-direction: column;
+        }
+        &--input {
+            position: relative;
+            flex-basis: 456px;
+            margin-left: 20px;
+            @include for-max-575 {
+                flex-basis: initial;
+                margin-left: 0;
+                width: 100%;
+            }
+            &--plus-minus {
+                position: absolute;
+                top: 0px;
+                right: 10px;
+                @include for-max-575 {
+                    top: 10px;
+                }
+                .icon {
+                    position: absolute;
+                    right: 10px;
+                    cursor: pointer;
+                    color: $secondery;
+                    &.rented-plus {
+                        top: 5px;
+                    }
+                    &.rented-minus {
+                        top: 22px;
+                    }
+                }
+            }
+            // Auto suggest
+            #autosuggest {
+                position: relative;
+                z-index: 9;
+                >div {
+                    transform: skew(0deg);
+                    border: none;
+                    input {
+                        border-radius: 0px;
+                        font-size: 16px;
+                    }
+                }
+                .autosuggest__results-container {
+                    ul {
+                        width: 100%;
+                        margin-left: 0;
+                    }
+                }
+            }
+            // radio group
+            &--radio-group {
+                display: flex;
+                flex-wrap: wrap;
+                padding-left: 20px;
+                margin-top: 5px;
+                .custom-radio {
+                    margin-right: 70px;
+                    @include for-max-1200 {
+                        margin-right: 50px;
+                    }
+                    @include for-max-575 {
+                        margin-right: 40px;
+                    }
+                    &:last-of-type {
+                        margin-right: 0;
+                    }
+                    &:nth-child(n+4) {
+                        margin-top: 16px;
+                    }
+                    .custom-control-label {
+                        cursor: pointer;
+                        &::before {
+                            top: 4px;
+                        }
+                        &::after {
+                            top: 7px !important;
+                        }
+                    }
+                }
+            }
+        }
+        &--label {
+            margin: 0;
+            flex-basis: 202px;
+            margin-top: 5px;
+            font-size: 20px;
+            @include for-max-1300 {
+                font-size: 18px;
+            }
+            @include for-max-1200 {
+                font-size: 16px;
+            }
+            @include for-max-575 {
+                flex-basis: initial;
+            }
+        }
+        // upload file button
+        .custom-file-input~.custom-file-label {
+            border: 1px solid $secondery;
+            background: $game-details;
+            cursor: pointer;
+            border-radius: 0px;
+            &::after {
+                font-family: "Font Awesome 5 Free";
+                font-weight: 900;
+                content: "\f093 \00a0 \00a0 Upload";
+                background: $secondery;
+                color: $text-dark;
+                cursor: pointer;
+                border-radius: 0;
+            }
+        }
+        .custom-file {
+            margin-bottom: 25px;
+            label {
+                height: initial;
+                font-size: 16px;
+            }
+            input {
+                cursor: pointer;
+            }
+        }
+        // Input and Select
+        input,
+        select {
+            border: 1px solid $secondery;
+            background: $game-details;
+            color: $text-light;
+            height: 40px;
+            font-size: 16px;
+            border-radius: 0;
+            @include for-max-575 {
+                margin-top: 12px;
+            }
+        }
+        select {
+            box-sizing: border-box;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            position: relative;
+            background: $game-details url(../img/down-arw.png);
+            background-repeat: no-repeat;
+            background-position: 96% center;
+            background-size: 15px;
+            option {
+                text-transform: capitalize;
+            }
+        }
+        &.post-rent-btn {
+            @include for-max-575 {
+                display: block;
+            }
+        }
+        &--btn {
+            flex-basis: 456px;
+            @include for-min-768 {
+                margin-left: 222px;
+            }
+            // max width
+            @include for-max-1200 {
+                flex-basis: 447px;
+            }
+            @include for-max-991 {
+                flex-basis: 456px;
+            }
+            @include for-max-768 {
+                flex-basis: 100%;
+            }
+        }
+    }
+    // end form group
+    &--form-group-img {
+        height: initial;
+    }
+    .earning-amount {
+        &--content {
+            display: flex;
+            flex-direction: column;
+            table {
+                tr {
+                    td {
+                        padding: 0;
+                        padding-bottom: 16px;
+                        color: $gray;
+                    }
+                }
+            }
+        }
+    }
+    .error-message {
+        display: inline-block;
+        margin-top: 10px;
+        &::after {
+            top: 2px;
+        }
+    }
+}
+
 .img-prev {
     img {
         width: 100%;
-        height: 400px;
-        object-fit: cover;
+    }
+}
+
+.dashboard-content {
+    @include for-min-1200 {
+        margin-left: -80px;
+    }
+    @include for-min-1400 {
+        margin-left: -40px;
+    }
+    @include for-min-1600 {
+        margin-left: 0px;
+    }
+    &--rented {
+        border: 1px solid $secondery;
+        padding: 0 20px;
+        position: relative;
+        overflow-x: auto;
+        width: 950px;
+        @include for-max-1400 {
+            width: 880px;
+        }
+        @include for-max-1200 {
+            width: 100%;
+        }
+        &::after {
+            content: "";
+            height: 80px;
+            width: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: $secondery;
+            @include for-max-1200 {
+                width: 890px;
+            }
+        }
+        table {
+            border-collapse: separate;
+            border-spacing: 0px 20px;
+            margin-top: -20px;
+            @include for-max-1200 {
+                width: 850px;
+            }
+            thead {
+                tr {
+                    height: 80px;
+                    td {
+                        border: none;
+                        color: $text-dark;
+                        vertical-align: top;
+                        background: $secondery;
+                        border-radius: 0;
+                    }
+                }
+            }
+            tr {
+                td {
+                    background: $game-details;
+                    color: $text-light;
+                    border-top: 1px solid $secondery;
+                    border-bottom: 1px solid $secondery;
+                    padding: 16px 9px;
+                    &:first-of-type {
+                        min-width: 145px;
+                        border-left: 1px solid $secondery;
+                        border-top-left-radius: 0px;
+                        border-bottom-left-radius: 0px;
+                    }
+                    &:nth-of-type(6) {
+                        min-width: 200px;
+                        @include for-max-1400 {
+                            min-width: 180px;
+                        }
+                    }
+                    &:last-of-type {
+                        border-right: 1px solid $secondery;
+                        border-top-right-radius: 0px;
+                        border-bottom-right-radius: 0px;
+                    }
+                    button {
+                        width: 60px;
+                        height: 60px;
+                        font-size: 12px;
+                        background: $secondery;
+                        border: none;
+                        color: $text-dark;
+                    }
+                }
+            }
+        }
+    }
+    &--offer {
+        &::after {
+            width: 100%;
+            @include for-max-768 {
+                width: 650px;
+            }
+        }
+        table {
+            width: 100%;
+            tr {
+                td {
+                    &:nth-of-type(6) {
+                        min-width: initial;
+                    }
+                }
+            }
+        }
+    }
+    .flip-clock {
+        display: grid;
+        grid-template: wrap;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 55px;
+        grid-auto-rows: 55px;
+        justify-items: center;
+        justify-content: center;
+        background: $timer;
+        padding: 5px;
+        width: 198px;
+        height: 120px;
+        @include for-max-1400 {
+            width: 160px;
+            height: 90px;
+            grid-template-rows: 45px;
+            grid-auto-rows: 45px;
+        }
+        >span {
+            &:last-of-type {
+                grid-column-start: 2;
+                grid-column-end: 3;
+            }
+            >span {
+                font-size: 1.6rem;
+                @include for-max-1400 {
+                    font-size: 12px;
+                }
+            }
+        }
+        .flip-clock__slot {
+            font-size: 10px;
+        }
+        &__piece {
+            display: flex !important;
+            flex-direction: column;
+            align-items: center;
+        }
+    }
+}
+
+.rented-note,
+.dashboard-tab-button,
+.no-post-found-card {
+    width: 950px;
+    @include for-max-1700 {
+        width: 100%;
+    }
+}
+
+.dashboard-tab-button {
+    button {
+        border: 1px solid $secondery;
+        background: $text-dark;
+        padding: 10px 50px;
+        border-radius: 0;
+        color: $secondery;
+        display: flex;
+        align-items: center;
+        @include for-max-768 {
+            padding: 10px 30px;
+        }
+        @include for-max-575 {
+            padding: 8px 10px;
+            font-size: 15px;
+        }
+        img {
+            margin-right: 15px;
+            @include for-max-575 {
+                width: 25px;
+                margin-right: 5px;
+            }
+        }
+        .active-black {
+            display: none;
+        }
+        .active-yellow {
+            display: inline-block;
+        }
+        &.active {
+            background: $secondery;
+            color: $text-dark;
+            .active-black {
+                display: inline-block;
+            }
+            .active-yellow {
+                display: none;
+            }
+        }
+        &:first-of-type {
+            margin-right: 20px;
+            @include for-max-575 {
+                margin-right: 10px;
+            }
+        }
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+// edit profile
+.edit-profile {
+    input,
+    select {
+        background: $game-details;
+        border: 0.5px solid $secondery;
+        height: 40px;
+        color: $text-light;
+        font-size: 16px;
+        border-radius: 0;
+    }
+    select {
+        background: $game-details url(../img/down-arw.png);
+        background-repeat: no-repeat;
+        background-position: 96% center;
+        background-size: 15px;
+    }
+    [type="date"]::-webkit-inner-spin-button {
+        display: none;
+    }
+    [type="date"]::-webkit-calendar-picker-indicator {
+        opacity: 0;
+    }
+    [type="date"] {
+        background: $game-details url(../img/calender.png) 97% 50% no-repeat;
+    }
+    .custom-file-input~.custom-file-label {
+        border: 1px solid $secondery;
+        background: $game-details;
+        cursor: pointer;
+        font-size: 16px;
+        overflow: hidden;
+        border-radius: 0;
+        &::after {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            content: "\f093 \00a0 \00a0 Upload";
+            background: $secondery;
+            color: $text-dark;
+            cursor: pointer;
+            border-radius: 0;
+        }
+    }
+    label {
+        font-size: 20px;
+        @include for-max-1300 {
+            font-size: 18px;
+        }
+        @include for-max-1200 {
+            font-size: 16px;
+        }
+        @include for-max-991 {
+            font-size: 18px;
+        }
+    }
+    .error-message {
+        top: 8px;
+        @include for-max-575 {
+            top: 11px;
+        }
+    }
+}
+
+.edit--input {
+    padding-right: 90px;
+    @include for-max-1200 {
+        padding-right: 0;
+    }
+    @include for-max-575 {
+        padding-right: 15px;
+    }
+}
+
+// No post found
+.no-post-found-card {
+    height: 200px;
+    // width: 100%;
+    background: $primary;
+    border: 1px solid $secondery;
+    border-radius: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    h5 {
+        font-size: 24px;
+        font-style: italic;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: $secondery;
+    }
+}
+
+.game-rent-alert {
+    &--box {
+        border: 1.5px solid $secondery;
+        background: $game-rent-alert;
+        color: $text-light;
+        padding: 25px 40px 20px 20px;
+        border-radius: 0;
+        .close-modal {
+            top: 10px;
+            right: 10px;
+        }
+    }
+}
+
+// v select
+.gamehub-custome-select {
+    .vs__dropdown-toggle {
+        border: 1px solid $secondery;
+        border-radius: 0;
+        height: 40px;
+        background: $game-details;
+        @include for-max-575 {
+            margin-top: 16px;
+        }
+    }
+    // selected
+    .vs__selected {
+        color: $text-light;
+    }
+    .vs__search {
+        display: none;
+    }
+    // arrow
+    .vs__open-indicator {
+        fill: $secondery;
+        margin-right: 8px;
+    }
+    // clear icon 
+    .vs__clear {
+        fill: $cart-badge;
+    }
+    // mouse hover and leave
+    .vs__dropdown-option--highlight,
+    .vs__dropdown-option--selected {
+        background: $secondery;
+        color: $text-dark;
+    }
+    // selected menu
+    .vs__dropdown-menu {
+        padding: 0;
+        border-radius: 0;
+        border: 1px solid $secondery;
+    }
+    // Option
+    .vs__dropdown-option {
+        border-radius: 0;
+        border-bottom: 1px solid $gray-opacity;
+        &:last-of-type {
+            border-bottom: 0;
+        }
     }
 }

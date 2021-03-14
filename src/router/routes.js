@@ -9,16 +9,21 @@ import Dashboard from '../components/Dashboard';
 import Game from '../components/Games';
 import Login from "../components/Login/Login";
 import Registration from "../components/Login/Registration";
+import EmailRegistration from "../components/Login/EmailRegistration";
 import GameDetails from '../components/GameDetails';
 import Search from "../components/Search";
 import Profile from "../components/Profile";
 import Contacts from "../components/Contacts";
+import NoticeBoard from "../components/NoticeBoard";
+import NewsRoom from "../components/Newsroom";
+import NewsStory from "../components/NewsStory";
 import OTP from "../components/Login/OTP";
 import RentView from "../components/RentView";
 import Password from "../components/Login/Password";
 import ForgotPassword from "../components/ForgotPassword/ForgotPassword";
 import ResetPassword from "../components/ForgotPassword/ResetPassword";
 import ProfileUpdate from "../components/ProfileUpdate";
+import UpdatePassword from '../components/Login/UpdatePassword';
 
 import NotFoundPage from "../components/NotFoundPage";
 import AddToCart from "../components/AddToCart";
@@ -29,6 +34,18 @@ import Fail from "../components/payment/Fail";
 import RentDetails from "../components/RentDetails";
 import RentPostedUser from "@/components/RentPostedUser";
 import Support from "../components/Support";
+import Faq from "../components/Faq";
+import About from '../components/About';
+import Join from '../components/JoinUs';
+import Sponsors from '../components/Sponsors';
+import Shop from '../components/Shop';
+import Privacy from '../components/Privacy';
+import Terms from '../components/Terms';
+import Forum from '../components/Forum';
+import Stats from '../components/Stats';
+import RentPostedBy from '../components/RentPostedBy';
+import Elite from '../components/Elite';
+import Rookie from '../components/Rookie';
 
 let router = new Router({
     mode: 'history',
@@ -41,8 +58,10 @@ let router = new Router({
             }
         },
         {
+            name: 'games',
             path: '/games',
             component: Game,
+            props: true,
             meta: {
                 requiresAuth: false
             }
@@ -63,13 +82,20 @@ let router = new Router({
             }
         },
         {
+            path: '/email-registration',
+            component: EmailRegistration,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
             path: '/search',
             name: 'Search',
             component: Search,
             props: true
         },
         {
-            path: '/game-details/:id',
+            path: '/game-details/:slug',
             name: 'GameDetails',
             component: GameDetails,
             props: true,
@@ -82,15 +108,15 @@ let router = new Router({
             name: 'Profile',
             component: Profile,
             meta: {
-                requiresAuth: false
+                requiresAuth: true
             }
         },
         {
-            path: '/add-to-cart',
+            path: '/cart',
             name: 'AddToCart',
             component: AddToCart,
             meta: {
-                requiresAuth: false
+                requiresAuth: true
             }
         },
         {
@@ -102,9 +128,122 @@ let router = new Router({
             }
         },
         {
+            path: '/frequently-asked-questions',
+            name: 'Faq',
+            component: Faq,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/about-us',
+            name: 'About',
+            component: About,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/join-us',
+            name: 'Join',
+            component: Join,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/sponsors',
+            name: 'Sponsors',
+            component: Sponsors,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/shop',
+            name: 'Shop',
+            component: Shop,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/privacy',
+            name: 'Privacy',
+            component: Privacy,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/terms',
+            name: 'Terms',
+            component: Terms,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/elite',
+            name: 'Elite',
+            component: Elite,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/rookie',
+            name: 'Rookie',
+            component: Rookie,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/forum',
+            name: 'Forum',
+            component: Forum,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/stats',
+            name: 'Stats',
+            component: Stats,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
             path: '/contacts',
             name: 'Contacts',
             component: Contacts,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/notice-board',
+            name: 'NoticeBoard',
+            component: NoticeBoard,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/news',
+            name: 'Newsroom',
+            component: NewsRoom,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/news/:id',
+            name: 'NewsStory',
+            component: NewsStory,
+            props: true,
             meta: {
                 requiresAuth: false
             }
@@ -123,6 +262,15 @@ let router = new Router({
             component: Password,
             meta: {
                 requiresAuth: true
+            }
+        },
+        {
+            path: '/update-password/:token',
+            name: 'UpdatePassword',
+            component: UpdatePassword,
+            props: true,
+            meta: {
+                requiresAuth: false
             }
         },
         {
@@ -214,9 +362,9 @@ let router = new Router({
             }
         },
         {
-            path: '/rent-posted-users/:id',
-            name: 'RentPostedUser',
-            component: RentPostedUser,
+            path: '/rent-posted-users/:slug',
+            name: 'RentPostedBy',
+            component: RentPostedBy,
             props: true,
             meta: {
                 requiresAuth: false

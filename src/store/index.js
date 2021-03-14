@@ -1,7 +1,7 @@
 import axios from 'axios'
 import router from "../router/routes";
-
-import {swal} from 'vue-swal'
+import {swal} from 'vue-swal';
+import {toaster} from 'v-toaster';
 
 export const storage = {
     state: {
@@ -13,19 +13,31 @@ export const storage = {
             name: '',
             phoneNumber: ''
         },
+        email:'',
         rentPostDetails: {},
         //auth user info
         token: null,
         userId: null,
         user: null,
+        notSetPassword: true,
         notFoundEmail: false,
+        setPasswordPopUp: false,
         isSubmitLoading: false,
+        isEmailLoading: false,
+        numberExists: false,
         wrongOTP: false,
         inactiveUser: false,
         timeout: false,
+        isProfileUpdating: false,
         postId: [],
         cart: null,
-        totalAmount: 0
+        deliveryCharge: 0,
+        itemsInCart: 0,
+        totalAmount: 0,
+        setupPasswordUser: null,
+        otpNotFound: '',
+        totalPrice: 0,
+        isOTPEmpty: false
     },
     getters: {
         user (state) {
@@ -79,7 +91,7 @@ export const storage = {
             localStorage.setItem('postId', JSON.stringify(state.postId))
             localStorage.setItem('lendWeek', JSON.stringify(state.lendWeek))
             localStorage.setItem('checkpointId', JSON.stringify(state.lendWeek))
-
+            localStorage.setItem('cartItems', '');
         },
         addToSearchResult (state, payload) {
             state.searchResult = payload
@@ -93,6 +105,9 @@ export const storage = {
         },
         setPhoneNumber (state, payload) {
             state.signup.phoneNumber = payload
+        },
+        setEmail (state, payload) {
+            state.email = payload
         },
         setRentPostDetails (state, payload) {
             state.rentPostDetails = payload
@@ -109,15 +124,31 @@ export const storage = {
             state.wrongOTP = false
             state.timeout = false
             state.isSubmitLoading = false
+            state.numberExists = false
         },
         setNotFoundEmail (state, payload) {
             state.notFoundEmail = payload
         },
+        setNotSetPassword (state, payload) {
+            state.notSetPassword = payload
+        },
+        setPasswordPopUp (state, payload) {
+            state.setPasswordPopUp = payload
+        },
         setSubmitLoading (state, payload) {
             state.isSubmitLoading = payload
         },
+        setEmailLoader (state, payload) {
+            state.isEmailLoading = payload
+        },
+        setNumberExist (state, payload) {
+            state.numberExists = payload
+        },
         setWrongOTP (state, payload) {
             state.wrongOTP = payload
+        },
+        setEmptyOTP (state, payload) {
+            state.isOTPEmpty = payload
         },
         setInactiveUser (state, payload) {
             state.inactiveUser = payload
@@ -128,6 +159,27 @@ export const storage = {
         setUser (state, payload) {
             state.user = payload
         },
+        setUserId (state, payload) {
+            state.userId = payload
+        },
+        setSetupPasswordUser (state, payload) {
+            state.setupPasswordUser = payload
+        },
+        setSetupPasswordUserFromStorage (state, payload) {
+            state.setupPasswordUser = payload
+        },
+        setOTPNotFound (state, payload) {
+            state.otpNotFound = payload
+        },
+        setTotalPrice(state, payload) {
+            state.totalPrice = payload
+        },
+        setIsProfileUpdateing(state, payload) {
+            state.isProfileUpdating = payload
+        },
+        setItemsInCart(state, payload) {
+            state.itemsInCart = payload
+        }
     },
     actions: {
         pushPostId (context, payload) {
@@ -175,8 +227,17 @@ export const storage = {
         setPhoneNumber (context, payload) {
             context.commit('setPhoneNumber', payload)
         },
+        setNumberExist (context, payload) {
+            context.commit('setNumberExist', payload);
+        },
+        setEmail (context, payload) {
+            context.commit('setEmail', payload)
+        },
         setRentPostDetails(context, payload) {
             context.commit('setRentPostDetails', payload)
+        },
+        setEmailLoader(context, payload) {
+            context.commit('setEmailLoader', payload)
         },
         login ({commit}, authData) {
             axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'login', {
@@ -185,10 +246,17 @@ export const storage = {
                 returnSecureToken: true
         })
         .then(res => {
-            console.log(res, 'response')
+            console.log(res, 'login response')
             if (!res.data.error) {
-                commit('setInactiveUser', false)
-                commit('setNotFoundEmail', false)
+                if (res.data.message && res.data.message == "inactiveUser") {
+                    commit('setInactiveUser', true);
+                    commit('setNotFoundEmail', true);
+                    commit('setEmailLoader', false);
+                    return;
+                }
+                commit('setInactiveUser', false);
+                commit('setNotFoundEmail', false);
+                commit('setEmailLoader', false);
                 commit('authUser', {
                     token: res.data.token,
                     user: res.data.user
@@ -196,11 +264,13 @@ export const storage = {
                 localStorage.setItem('token', res.data.token)
                 localStorage.setItem('userId', JSON.stringify(res.data.user.id))
                 localStorage.setItem('user', JSON.stringify(res.data.user))
+                localStorage.removeItem('setupPasswordUser')
                 router.push('/').catch(err => {});
             }
             else {
                 commit('setInactiveUser', res.data.message === 'inactiveUser')
-                commit('setNotFoundEmail', true)
+                commit('setNotFoundEmail', true);
+                commit('setEmailLoader', false);
             }
         })
         .catch(error => console.log(error))
@@ -224,13 +294,17 @@ export const storage = {
             localStorage.removeItem('userId')
             localStorage.removeItem('user')
             localStorage.removeItem('postId')
+            localStorage.removeItem('setupPasswordUser')
 
-            router.push('/login').catch(err => {});
+            router.push('/login').then(err => {
+                location.reload();
+            });
         },
         verifyOtp({commit}, payload) {
             commit('setSubmitLoading', true)
             axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'verify-otp', payload).then(response => {
-                console.log(response);
+                console.log('otp-verification: ', response);
+
                 if (response.data.error === false) {
                     commit('authUser', {
                         token: response.data.token,
@@ -239,8 +313,8 @@ export const storage = {
                     localStorage.setItem('token', response.data.token)
                     localStorage.setItem('userId', JSON.stringify(response.data.user.id))
                     localStorage.setItem('user', JSON.stringify(response.data.user))
-                    commit('setSubmitLoading', false)
-                    commit('setInactiveUser', false)
+                    commit('setSubmitLoading', false);
+                    commit('setInactiveUser', false);
                     if (response.data.newUser === false) {
                         if (payload.email) {
                             router.push('/reset-password').catch(err => {});
@@ -256,11 +330,34 @@ export const storage = {
                         router.push('/password-setup').catch(err => {});
                     }
                 }
+                commit('setEmptyOTP', false)
                 commit('setInactiveUser', response.data.message === 'inactiveUser')
                 commit('setWrongOTP', response.data.message === 'wrongOtp')
                 commit('setTimeout', response.data.message === 'timeout')
-                commit('setSubmitLoading', false)
-
+                commit('setOTPNotFound', response.data.message === 'otpNotFound')
+                commit('setSubmitLoading', false);
+            });
+        },
+        emailVerify({commit}, payload) {
+            commit('setSubmitLoading', true)
+            commit('setNumberExist', false)
+            axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'verify-email', payload).then(response => {
+                if (response.data.error === false) {
+                    commit('authUser', {
+                        token: response.data.token,
+                        user: response.data.user
+                    })
+                    localStorage.setItem('token', response.data.token)
+                    localStorage.setItem('userId', JSON.stringify(response.data.user.id))
+                    localStorage.setItem('user', JSON.stringify(response.data.user))
+                    commit('setSubmitLoading', false)
+                    commit('setInactiveUser', false)
+                    router.push('/').catch(err => {});
+                } else {
+                    console.log(response.data.message);
+                    commit('setNumberExist', true)
+                    commit('setSubmitLoading', false)
+                }
             });
         },
         verifyPasswordResetCode ({commit, dispatch}, payload) {
@@ -275,7 +372,7 @@ export const storage = {
                         localStorage.setItem('token', response.data.token)
                         localStorage.setItem('userId', JSON.stringify(response.data.user.id))
                         localStorage.setItem('user', JSON.stringify(response.data.user))
-                        router.push('/reset-password').catch(err => {});
+                        router.push('/').catch(err => {});
                     }
                     commit('setWrongOTP', response.data.message === 'wrongOtp')
                     commit('setTimeout', response.data.message === 'timeout')
@@ -292,19 +389,145 @@ export const storage = {
                     'Authorization': 'Bearer ' + this.state.token
                 }
             }
+
+            commit('setIsProfileUpdateing', true);
             axios.put(process.env.VUE_APP_GAMEHUB_BASE_API + 'users', payload, config).then(response => {
+                commit('setIsProfileUpdateing', false);
                 if (response.data) {
-                    commit('setUser', response.data);
-                    localStorage.setItem('user', JSON.stringify(response.data));
-                    if (payload.name || payload.gender || payload.birth_date || payload.email || payload.phone_number || payload.id_number || payload.id_image || payload.address || payload.city || payload.postCode || payload.image) {
-                        swal("Profile Updated!", "Profile Update Successful!", "success");
-                        router.push('/profile').catch(err => {});
+                    if (response.data.data) {
+                        commit('setUser', response.data.data);
+                        commit('setUserId', response.data.data.id);
+                        localStorage.setItem('userId', JSON.stringify(response.data.data.id))
+                        localStorage.setItem('user', JSON.stringify(response.data.data));
+                    } else {
+                        commit('setUser', response.data);
+                        commit('setUserId', response.data.id);
+                        localStorage.setItem('userId', JSON.stringify(response.data.id))
+                        localStorage.setItem('user', JSON.stringify(response.data));
+                    }
+                    // commit('setUser', response.data);
+                    // commit('setUserId', response.data.id);
+                    // localStorage.setItem('userId', JSON.stringify(response.data.id))
+                    // localStorage.setItem('user', JSON.stringify(response.data));
+
+                    if (payload.name || payload.lastName || payload.gender || payload.birth_date || payload.email || payload.phone_number || payload.identification_number || payload.id_image || payload.address || payload.city || payload.postCode || payload.image) {
+                        // swal("Profile Updated!", "Profile Update Successful!", "success");
+                        // this.$root.$emit('profileUpdate');
+                        // router.push('/profile').catch(err => {});
+
                     }
                     else {
                         router.push('/').catch(err => {});
                     }
                 }
             });
+        },
+        checkPassword ({commit, dispatch}, payload) {
+            axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'check-email-exist', payload).then(response => {
+                if (response.data.error === false) {
+                    axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'check-password', payload).then(response => {
+                        console.log('check if password exists: ', response.data);
+                        if (response.data.error === true) {
+                            commit('setNotSetPassword', false);
+                            commit('setEmailLoader', false);
+                        }
+                        else {
+                            commit('setSetupPasswordUser', response.data.user);
+                            localStorage.setItem('setupPasswordUser', JSON.stringify(response.data.user))
+                            // commit('setPasswordPopUp', true);
+                            commit('setEmailLoader', false);
+                            if (response.data.isPaswordEmpty) {
+                                commit('setPasswordPopUp', true);
+                            }
+                        }
+                    })
+                }
+                else {
+                    console.log("Email is not registered")
+                    router.push('/email-registration')
+                }
+
+            })
+
+        },
+        setSetupPasswordUserFromStorage (context) {
+            const user = JSON.parse(localStorage.getItem('setupPasswordUser'))
+            if (!user) {
+                return;
+            }
+            context.commit('setSetupPasswordUserFromStorage', user)
+        },
+        loginUserAfterVerification ({ commit }, authData) {
+            commit('authUser', {
+                token: authData.token,
+                user: authData.user
+            })
+            localStorage.setItem('token', authData.token)
+            localStorage.setItem('userId', JSON.stringify(authData.user.id))
+            localStorage.setItem('user', JSON.stringify(authData.user))
+            localStorage.removeItem('setupPasswordUser')
+            router.push('/').catch(err => { });
+        },
+        setTotalPrice({ commit }, price) {
+            commit('setTotalPrice', price)
+        },
+        hidePasswordResetPopup({ commit }, payload) {
+            commit('setPasswordPopUp', payload);
+        },
+        addToCart({commit, dispatch }, rentDetails) {
+            let items = [];
+            dispatch('getCartItems').then(res => {
+                if (res.length > 0) {
+                    items = res;
+                }
+
+                axios.get(process.env.VUE_APP_GAMEHUB_BASE_API + 'base-price/game-calculation/' + rentDetails.rent.game.data.id + '/' + rentDetails.lendWeek ).then (response => {
+                    if (response.status != 200) {
+                            toaster.warning('Could not add to cart');
+                            return;
+                    }
+
+                    let days = parseInt(rentDetails.lendWeek) * 7;
+                    let startDate = new Date(rentDetails.rent.availability_from_date);
+                    startDate.setDate(startDate.getDate() + days);
+                    let date  = startDate.getDate() < 9  ? '0' + startDate.getDate() : startDate.getDate();
+                    let month = startDate.getMonth() + 1 < 9 ? '0' + parseInt(startDate.getMonth() + 1) : startDate.getMonth();
+                    let year  = startDate.getFullYear();
+
+                    items.push({
+                        rent: rentDetails.rent,
+                        price: response.data,
+                        rent_start_date: rentDetails.rent.availability_from_date,
+                        rent_end_date: year + '-' + month + '-' + date,
+                        lend_week: rentDetails.lendWeek,
+                        delivery_type: rentDetails.deliveryType,
+                        address: rentDetails.deliveryAddress
+                    });
+                    commit('setItemsInCart', items.length);
+                    localStorage.setItem('cartItems', JSON.stringify(items));
+                    router.push('/cart').then(err => {
+                        location.reload();
+                    });
+                });
+
+                
+            });
+        },
+        getCartItems() {
+            let items = localStorage.getItem('cartItems');
+            if (items) {
+                return JSON.parse(items);
+            }
+            return [];
+        },
+        removeCartItem({commit, dispatch }, index) {
+            let items = localStorage.getItem('cartItems');
+            if (items) {
+                items = JSON.parse(items);
+                items.splice(index, 1);
+                localStorage.setItem('cartItems', JSON.stringify(items));
+                commit('setItemsInCart', items.length);
+            }
         }
     },
 }

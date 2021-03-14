@@ -1,16 +1,22 @@
 // google fonts
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;300;400;500;600;700&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;0,700;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
 // bootstrap import
 // @import "../node_modules/bootstrap/scss/bootstrap.scss";
 // @import "../node_modules/bootstrap/scss/bootstrap-grid.scss";
 // @import "../node_modules/bootstrap/scss/bootstrap-reboot.scss";
+// select 2
+// @import "../scss/select2/select2.min.css";
 // variables
 @import "../scss/variables";
-// utility
-@import "../scss/utilities";
 //media query
 @import "../scss/media-queries";
+// utility
+@import "../scss/utilities";
+// mixin
+@import "../scss/mixin";
+
 // navbar
 @import "../scss/navbar";
 // slider-section
@@ -55,6 +61,30 @@
 @import "../scss/user-profile";
 // set password
 @import "../scss/set-password";
+// noticeboard section
+@import "../scss/notice-board";
+// event-result section
+@import "../scss/event-results";
+// add cart section
+@import "../scss/add-cart-section";
+// newsroom section
+@import "../scss/newsroom-section";
+// news story section
+@import "../scss/news-story-section";
+// forget password section
+@import "../scss/forget-password-section";
+// payment section
+@import "../scss/payment-section";
+// my earning tab 
+@import "../scss/my-earning-tab";
+// about us section
+@import "../scss/about-us-section";
+// Gamehub Policy section
+@import "../scss/gamehub-policy-section";
+// Sponsors section
+@import "../scss/sponsors-section";
+// Rookie Elite section
+@import "../scss/rookie-elite";
 
 // button
 @import "../scss/buttons";
@@ -62,8 +92,7 @@
 @import "../scss/generic";
 // back to top
 @import "../scss/back-to-top";
-// mixin
-@import "../scss/mixin";
+
 // footer
 @import "../scss/footer";
 
@@ -78,6 +107,9 @@ body {
   color: $text-light;
   padding-top: 80px;
   font-family: circular-medium;
+  @include for-max-991 {
+    padding-top: 56px;
+  }
 }
 h1,h2,h3,h4,h5 {
   font-family: 'Roboto Condensed', sans-serif;
@@ -89,7 +121,14 @@ h1 {
     font-size: 72px;
   }
 }
-
+h2 {
+  font-size: 28px;
+  font-style: italic;
+  @include for-min-992 {
+    font-size: 40px;
+    
+  }
+}
 h3 {
   font-size: 22px;
   @include for-min-992 {
@@ -127,6 +166,10 @@ h6 {
   font-family: circular-book;
   src: url(../fonts/CircularStd-Book.ttf);
 }
+@font-face {
+  font-family: circular-std;
+  src: url(../fonts/Circular-Std.otf);
+}
 
 
 .section-heading {
@@ -142,4 +185,3 @@ h6 {
     margin-bottom: 30px;
   }
 }
-

@@ -5,69 +5,50 @@
             <div class="container-fluid sign-in-width">
                 <div class="row">
                     <div class="col-md-6 col-lg-4 mx-auto">
-                        <div class="text-center login-logo">
+                        <!-- <div class="text-center login-logo">
                             <img src="../../assets/img/logo/gamehublogo.svg" alt="gamehublogo" class="text-center">
-                        </div>
+                        </div> -->
                         <div class="card mt-5">
                             <h3 class="card-title text-center">SIGN UP</h3>
                             <!-- form -->
                             <ValidationObserver v-slot="{ handleSubmit }">
                                 <form method="post">
-                                    <!-- user email -->
-                                     <div class="form-group">
-                                        
-                                        <label for="email">Email address</label>
-                                        <ValidationProvider name="email" rules="email" v-slot="{ errors }">
-                                            <input type="email" class="form-control gray" id="email" value="" v-model="form.email">
-                                            <span class="error-message">{{ errors[0] }}</span>
+                                   <!-- Mobile No. -->
+                                    <div class="form-group">
+                                        <label for="Phone">Phone number</label>
+                                        <ValidationProvider name="Phone" rules="required" v-slot="{ errors }">
+                                            <input type="text" class="form-control gray cursor-none" id="Phone" value="" v-model="form.phone_number" readonly>
+                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                            <span v-if="isPhoneExists" class="error-message">Phone number already taken</span>
                                         </ValidationProvider>
-
                                     </div>
-                                         <!-- First Name -->
+                                    <!-- First Name -->
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                           
                                             <label for="firstName">First name</label>
-                                            <ValidationProvider name="firstName" rules="required" v-slot="{ errors }">
-                                                <input type="text" class="form-control" id="firstName" value="" v-model="form.name">
-                                                <span class="error-message">{{ errors[0] }}</span>
+                                            <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
+                                                <input @keypress="isValidString($event)" type="text" class="form-control" id="firstName" value="" v-model="form.name">
+                                                <span v-if="errors.length" class="error-message first-name-error">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
-                                               <!-- Last Name -->
-                                            <div class="form-group col-md-6">
-                                            
-                                                <label for="LastName">Last name</label>
-                                                <ValidationProvider name="LastName" rules="required" v-slot="{ errors }">
-                                                    <input type="text" class="form-control" id="LastName" value="" v-model="form.LastName">
-                                                    <span class="error-message">{{ errors[0] }}</span>
-                                                </ValidationProvider>
-                                            </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="LastName">Last name</label>
+                                            <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
+                                                <input @keypress="isValidString($event)" type="text" class="form-control" id="LastName" value="" v-model="form.last_name">
+                                                <span v-if="errors.length" class="error-message last-name-error">{{ errors[0] }}</span>
+                                            </ValidationProvider>
+                                        </div>
                                     </div>
-                                         <!-- Mobile No. -->
-                                            <div class="form-group">
-                                                <label for="Phone">Phone number</label>
-                                                <ValidationProvider name="Phone" rules="required" v-slot="{ errors }">
-                                                    <input type="text" class="form-control" id="Phone" value="" v-model="form.Phone">
-                                                    <span class="error-message">{{ errors[0] }}</span>
-                                                </ValidationProvider>
-                                            </div>
-                                   
-                                    <!-- password -->
-                                    <div class="form-group">
-                                        <label for="gamepassword1">Password</label>
-                                        <ValidationProvider name="password" rules="min:8" v-slot="{ errors }">
-                                            <input type="password" class="form-control" id="gamepassword1" placeholder="Password" v-model="form.password">
-                                            <span class="error-message">{{ errors[0] }}</span>
-                                        </ValidationProvider>
-                                    </div>
+                                         
+                                     <div class="form-group">
+                                        <label for="email">Email address</label>
 
-                                    <!-- confirm password -->
-                                    <div class="form-group">
-                                        <label for="gamepassword2">Confirm Password</label>
-                                        <ValidationProvider name="confirm" rules="password:@password" v-slot="{ errors }">
-                                            <input type="password" class="form-control" id="gamepassword2" placeholder="Confirm Password" v-model="form.confirmPassword">
-                                            <span class="error-message">{{ errors[0] }}</span>
+                                        <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
+                                            <input @focus="onEmailChange" type="email" class="form-control" id="email" value="" v-model="form.email">
+                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                            <span v-if="isEmailExists" class="error-message">Email address already taken</span>
                                         </ValidationProvider>
+
                                     </div>
 
                                     <!-- sign in button -->
@@ -96,30 +77,60 @@
             return {
                 form: {
                     name: '',
+                    last_name: '',
                     email: '',
-                    password: '',
-                    confirmPassword: '',
                     phone_number: JSON.parse(localStorage.getItem('user')).phone_number
                 },
-                isLoading: false
+                isLoading: false,
+                isEmailExists: false,
+                isPhoneExists: false
             }
         },
         methods: {
             onSubmit: function () {
-                this.isLoading = true
-                this.$store.dispatch('updateUserDetails', this.form)
+                this.isLoading = true;
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                }
+                this.$api.put('update-users-by-phone', this.form, config).then(response => {
+                    this.isLoading = false;
+                    if (response.data.error === false) {
+                        this.$store.commit('setUser', response.data.data);
+                        this.$store.commit('setUserId', response.data.data.id);
+                        localStorage.setItem('userId', JSON.stringify(response.data.data.id))
+                        localStorage.setItem('user', JSON.stringify(response.data.data));
+                        this.$router.push('/profile');
+                        return
+                    }
+                    if (response.data.error === true) {
+                        if (response.data.data.isEmailExists) {
+                            this.isEmailExists = true;
+                        }
+                        if (response.data.data.isPhoneExists) {
+                            this.isPhoneExists = true;
+                        }
+                        return;
+                    }
+
+                    this.$swal("Warning", response.message, 'warning');
+                });
+            },
+            isValidString: function(evt) {
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0)){
+                    event.preventDefault();
+                }
+            },
+            onEmailChange: function() {
+                this.isEmailExists = false;
             }
         },
         created () {
             this.$toaster.success('Welcome to Game Hub');
         },
-        
-       mounted () {
-        document.body.classList.add('body-position')
-        },
-        destroyed () {
-        document.body.classList.remove('body-position')
-        }
 
     }
 </script>

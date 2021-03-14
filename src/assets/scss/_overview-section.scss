@@ -1,6 +1,9 @@
 .overview {
     padding-top: 70px;
     padding-bottom: 60px;
+    @include for-max-575 {
+        padding-top: 20px;
+    }
 }
 .overview-content {
     background: $game-details;

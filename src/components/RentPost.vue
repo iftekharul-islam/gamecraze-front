@@ -78,11 +78,13 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <div class="alert alert-info alert-dismissible mt-2">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                        <p>
-                                            If you want to Borrow for more weeks.Then renting price will be cyclic like the given price table.So its start from 1st week.
-                                        </p>
+                                    <div class=" mt-2 offset-sm-3 col-sm-8 game-rent-alert">
+                                        <div class="alert alert-info alert-dismissible game-rent-alert--box">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+                                            <p>
+                                                If you want to Rent for more weeks. Then renting price will be cyclic like the given price table. So its start from 1st week.
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- disk condition -->
@@ -303,7 +305,7 @@
                         'Authorization': 'Bearer ' + this.$store.state.token
                     }
                 }
-                console.log(uploadInfo);
+                // console.log(uploadInfo);
                 this.$api.post('rents', uploadInfo, config)
                     .then(response => {
                         this.$swal({
@@ -319,13 +321,14 @@
             },
             onSelected(item) {
               this.form.game = item.item;
+              console.log(this.form.game);
               this.gamePlatform = true;
                 this.$api.get('base-price/calculate/' + this.form.game.id)
                     .then (response =>
                     {
                         this.basePrices = response.data;
-                        console.log(response);
-                        console.log(this.basePrices);
+                        // console.log(response);
+                        // console.log(this.basePrices);
                     })
             },
             onInputChange(text) {
@@ -339,7 +342,7 @@
               return suggestion.item.name;
             },
             focusMe(e) {
-              console.log(e) // FocusEvent
+              // console.log(e) // FocusEvent
             },
             formattedDate(date) {
               const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];

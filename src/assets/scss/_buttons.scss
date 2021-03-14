@@ -6,12 +6,12 @@
     width: 196px;
     height: 50px;
     background: $secondery;
-    clip-path: polygon(10% 0, 100% 0%, 90% 100%, 0% 100%);
+    // clip-path: polygon(10% 0, 100% 0%, 90% 100%, 0% 100%);
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all .3s ease-in;
-
+    transform: skew(-21deg);
     color: #000;
     &:hover {
       background: $game-details;
@@ -20,6 +20,24 @@
     @include for-max-992 {
       width: 160px;
       height: 40px;
+    }
+    @include for-max-575 {
+      transform: skew(-16deg);
+    }
+    span {
+      transform: skew(21deg);
+      @include for-max-575 {
+        transform: skew(16deg);
+      }
+      // &.loader-skew {
+      //   transform: skew(21deg);
+      // @include for-max-575 {
+      //   transform: skew(-16deg);
+      // }
+      // }
+    }
+    &:focus {
+      outline: none;
     }
   }
   &--login {
@@ -64,6 +82,44 @@
       &:hover {
         background: $secondery;
       }
+  }
+  &--cart-btn {
+    background: $secondery;
+    color: $text-dark;
+    padding: 10px 30px;
+    text-align: center;
+    border: none;
+    font-size: 16px;
+    transition: all .3s ease-in;
+    border: 1px solid $secondery;
+    &:focus {
+      outline: none;
+    }
+    &:hover {
+      background: $game-details;
+      color: $text-light;
+    }
+    &:active {
+      border: 1px solid $game-rating;
+    }
+    
+  }
+  &--filter {
+    width: 100%;
+    background: transparent;
+    border: 1px solid $secondery;
+    height: 50px;
+    margin-bottom: 20px;
+    span {
+      color: $text-light;
+      font-size: 20px;
+    }
+    &:focus {
+      outline: none;
+    }
+    @include for-min-768 {
+      display: none;
+    }
   }
 }
 // owl dots

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button class="btn btn-primary btn-lg btn-block m-auto" id="sslczPayBtn" :disabled="!$store.state.postId.length"
+        <button class="btn btn-primary btn-lg btn-block m-auto" id="sslczPayBtn"
                 token=""
                 postdata=""
                 order="If you already have the transaction generated for current order"
@@ -14,22 +14,31 @@
         props: ['amount'],
       data() {
           return {
-            data: {}
+            data: {},
           }
       },
       mounted() {
-        this.data = {
-          cus_name: this.$store.state.user.name,
-          cus_phone: this.$store.state.user.phone_number,
-          cus_email: this.$store.state.user.email,
-          cus_addr1: this.$store.state.user.address.address,
-          amount: this.amount
-        };
+        // this.data = {
+        //   cus_name: this.$store.state.user.name,
+        //   cus_phone: this.$store.state.user.phone_number,
+        //   cus_email: this.$store.state.user.email,
+        //   cus_addr1: this.$store.state.user.address.address,
+        //   amount: this.amount
+        // };
         this.loadSSLCdn();
       },
       methods: {
         loadData() {
-            $('#sslczPayBtn').prop('postdata',  this.data );
+          let data = {
+            cus_name: this.$store.state.user.name,
+            cus_phone: this.$store.state.user.phone_number,
+            cus_email: this.$store.state.user.email,
+            cus_addr1: this.$store.state.user.address.address,
+            amount: this.amount
+          };
+          console.log('data; ', data)
+          this.$store.dispatch('setTotalPrice', this.amount)|
+          $('#sslczPayBtn').prop('postdata',  data );
         },
 
         loadSSLCdn() {
@@ -42,7 +51,24 @@
 
             window.addEventListener ? window.addEventListener("load", loader, false) : window.attachEvent("onload", loader);
           })(window, document);
+        },
+        getCartItems() {
+          this.$store.dispatch('getCartItems').then(response => {
+              if (response) {
+                let amount = 0;
+                for (let i = 0; i < response.length; i++) {
+                    amount += parseFloat(response[i].price);
+                }
+
+                let deliveryCharge = localStorage.getItem('deliveryCharge');
+
+                this.amount = amount + parseFloat(deliveryCharge);
+              }
+          });
         }
       },
+      created() {
+        this.getCartItems();
+      }
     }
 </script>

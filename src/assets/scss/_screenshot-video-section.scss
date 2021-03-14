@@ -6,8 +6,11 @@
     }
     .owl-nav {
         position: absolute;
-        top: -90px;
+        top: -85px;
         right: 0;
+        @include for-max-575 {
+            top: -75px;
+        }
         button {
             width: 50px;
             height: 50px;
@@ -15,14 +18,32 @@
             border: 1px solid #FFD715 !important;
             border-radius: 0 !important;
             transition: all .3s ease-in !important;
+            @include for-max-575 {
+                width: 40px;
+                height: 40px;
+            }
             &:focus {
                 outline: none !important;
             }
-           
+           &:hover {
+               background: $secondery !important;
+               i {
+                   color: $text-dark;
+               }
+           }
+        }
+    }
+    .owl-nav,
+    .owl-dots {
+        &.disabled {
+            display: block;
         }
     }
     .owl-dots {
-        margin-top: 30px;
+        margin-top: 30px !important;
+        @include for-max-575 {
+            display: none !important;
+        }
         button {
             span {
                 width: 60px !important;
@@ -39,6 +60,26 @@
             }
             &:focus {
                 outline: none !important;
+            }
+        }
+    }
+    .owl-item {
+        .item {
+            margin-right: 10px;
+            overflow: hidden;
+            iframe {
+                width: 100%;
+            }
+            img {
+                height: 146px;
+            }
+            iframe,img {
+                transition: all.5s ease-in;
+            }
+            &:hover {
+                iframe,img {
+                    transform: scale(1.1);
+                }
             }
         }
     }

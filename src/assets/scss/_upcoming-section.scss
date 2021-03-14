@@ -12,29 +12,8 @@
     }
 
     .item {
-        margin-left: -69px;
-        @include for-max-1800 {
-            margin-left: -77px;
-        }
-        @include for-max-1600 {
-            margin-left: -69px;
-        }
-        @include for-max-1500 {
-            margin-left: -82px;
-        }
-        @include for-max-1400 {
-            margin-left: -74px;
-        }
-        @include for-max-1300 {
-            margin-left: -69px;
-        }
-        @include for-max-1200 {
-            margin-left: -90px;
-        }
-        @include for-max-992 {
-            margin-left: -69px;
-        }
-        @include for-max-900 {
+        margin-left: -11px;
+        @include for-max-768 {
             margin-left: 0;
         }
         &:hover {
@@ -44,13 +23,49 @@
             }
         }
         .upcoming-image {
+            position: relative;
+            // transform: skew(-30deg, 0deg);
+            // width: 350px;
+            height: 238px;
+            overflow: hidden;
+            display: block;
+            border-radius: 0;
             img {
-                clip-path: polygon(15% 0, 100% 0, 85% 100%, 0% 100%);
+                position: absolute;
+                left: -75px;
+                width: 450px;
                 height: 238px;
-                object-fit: cover;
-               
-                @include for-max-900 {
-                    clip-path: polygon(0% 0, 100% 0, 100% 100%, 0% 100%);
+                transform: skew(21deg, 0deg);
+                transition: all .5s ease-in;
+                @include for-max-1800 {
+                    left: -46px;
+                    width: 470px;
+                }
+                @include for-max-1500 {
+                    left: -46px;
+                    width: 495px;
+                }
+                @include for-max-1300 {
+                    width: 430px;
+                }
+                @include for-max-1200 {
+                    width: 597px;
+                }
+                @include for-max-992 {
+                        left: -60px;
+                        width: 506px;
+                    
+                }
+                @include for-max-768 {
+                    transform: skew(0deg, 0deg);
+                }
+            }
+            &:hover {
+                img {
+                    transform: skew(21deg, 0deg) scale(1.1);
+                    @include for-max-768 {
+                        transform: skew(0deg, 0deg) scale(1.1);
+                    }
                 }
             }
         }
@@ -59,35 +74,30 @@
         position: relative;
         &.disabled {
             display: block !important;
-            @include for-max-575 {
-                display: none !important;
-            }
         }
 
         button {
             position: absolute;
-            top: -270px;
+            top: -242px;
             width: 50px;
             height: 50px;
             transform: skewX(-13deg);
             border: 1px solid $secondery !important;
             border-radius: 0 !important;
             transition: all .3s ease-in !important;
-            @include for-max-900 {
-
-            }
             @include for-max-590 {
-                top: 0;
                 width: 35px;
                  height: 35px;
+                 transform: skewX(0deg);
+                 top: -242px;
             }
             &:hover {
                 background: $secondery !important;
-                i {
+                .arrow {
                     color: black;
                 }
             }
-            i {
+            .arrow {
                 transition: all .3s ease-in;
             }
             &:focus {
@@ -96,15 +106,15 @@
             }
         }
         .owl-prev {
-            left: 20px;
+            left: 45px;
             @include for-max-590 {
-                left: 35%;
+                left: 0%;
             }
         }
         .owl-next {
-            right: 20px;
+            right: 45px;
             @include for-max-590 {
-                right: 35%;
+                right: 0%;
             }
         }
     }
@@ -117,8 +127,8 @@
 }
 .upcoming-game--name-price,
 .upcoming-game--categories {
-    margin-left: 2rem;
-    margin-right: 6rem;
+    margin-left: -2rem;
+    margin-right: 8rem;
     @include for-max-900 {
         margin-left: 1rem;
          margin-right: 1rem;
@@ -131,7 +141,9 @@
         font-size: 20px;
     }
     a {
-        height: 60px;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
     }
 }
 
@@ -148,61 +160,38 @@
 }
 .owl-upcoming--item {
     position: relative;
+    transform: skew(-21deg);
+    @include for-max-768 {
+        transform: skew(0deg);
+    }
+    
 }
 .upcoming-order {
-    bottom: -1px;
+    bottom: 0px;
     position: absolute;
     width: 100%;
     visibility: hidden;
     opacity: 0;
     transition: all .3s ease-in;
-    // @include for-max-1700 {
-    //     top: 128px;
-    // }
-    // @include for-max-1600 {
-    //     top: 110px;
-    // }
-    // @include for-max-1500 {
-    //     top: 146px;
-    // }
-    // @include for-max-1400 {
-    //     top: 139px;
-    // }
-    // @include for-max-1300 {
-    //     top: 121px;
-    // }
-    // @include for-max-1200 {
-    //     top: 174px;
-    // }
-    // @include for-max-1100 {
-    //     top: 140px;
-    // }
-    // @include for-max-992 {
-    //     top: 110px;
-    // }
-    // @include for-max-768 {
-    //     top: initial;
-    //     bottom: 94px;
-    // }
     a {
         width: 100%;
         text-align: center;
         padding: 15px 0;
         text-transform: uppercase;
-        clip-path: polygon(7% 0, 100% 0, 92% 100%, 0% 100%);
+        // clip-path: polygon(7% 0, 100% 0, 92% 100%, 0% 100%);
         @include for-max-900 {
             clip-path: initial;
         }
         &:first-of-type {
             background: $game-details;
-            margin-left: -1px;
-            margin-right: -7px;
+            // margin-left: -1px;
+            // margin-right: -7px;
             @include for-max-1700 {
-                margin-left: -1px;
+                // margin-left: -1px;
             }
             @include for-max-1200 {
-                margin-left: -1px;
-                margin-right: -6px;
+                // margin-left: -1px;
+                // margin-right: -6px;
             }
             @include for-max-900 {
                 margin-right: 0;
@@ -211,33 +200,41 @@
         }
         &:last-of-type {
             background: $secondery;
-            margin-right: 45px;
-            margin-left: -7px;
+            // margin-right: 45px;
+            // margin-left: -7px;
             transition: all .3s ease-in;
             &:hover {
                 color: black;
-            }
-            @include for-max-1500 {
-                margin-right: 53px;
-                margin-left: -12px;
-            }
-            @include for-max-1400 {
-                margin-right: 49px;
-            }
-            @include for-max-1300 {
-                margin-right: 45px;
-            }
-            @include for-max-1200 {
-                margin-right: 65px;
-                margin-left: -12px;
-            }
-            @include for-max-992 {
-                margin-right: 46px;
             }
             @include for-max-900 {
                 margin-right: 0;
                 margin-left: 0;
             }
         }
+        span {
+            transform: skew(21deg);
+            display: block;
+            @include for-max-768 {
+                transform: skew(0deg);
+            }
+        }
+    }
+}
+
+.set-reminder {
+    position: relative;
+    width: 50px;
+    height: 40px;
+    border: 1px solid $secondery;
+    background: $game-details;
+    color: $text-light;
+    i {
+        transform: skew(21deg);
+        @include for-max-768 {
+            transform: skew(0deg);
+        }
+    }
+    &:focus {
+        outline: none;
     }
 }

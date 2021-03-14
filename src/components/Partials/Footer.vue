@@ -3,13 +3,18 @@
         <!-- footer -->
         <section class="copyright-section">
             <div class="container">
-                <div class="footer-bottom">
-                    <p>©2020 Game Hub Inc.</p>
+                <div class="row">
+                    <div class="col-md-10 mx-auto">
+                        <div class="footer-bottom">
+                    <p>©2021 Game Hub</p>
+                     <p>Powered By: <a href="https://augnitive.com/?utm_source=GameHub&utm_medium=GH%20Footer&utm_campaign=GH%20Traffic"> Augnitive</a></p>
                     <div class="footer-bottom--social">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.facebook.com/gamehub.bangladesh" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://twitter.com/BdGamehub" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com/gamehub.bd" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/channel/UCEtVjE3POZd-DKXpjpjJ53g" target="_blank"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
                     </div>
                 </div>
             </div>

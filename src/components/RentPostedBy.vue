@@ -354,12 +354,5 @@
           // }
           // localStorage.setItem('cartItems', '');
         },
-        
-    mounted() {
-        document.body.classList.add('body-position')
-    },
-    destroyed() {
-        document.body.classList.remove('body-position')
-    }
     }
 </script>

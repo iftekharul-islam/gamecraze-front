@@ -26,7 +26,6 @@
             padding-left: 10px;
             opacity: .9;
             &::before {
-                border-radius: 3px;
                 background: transparent;
                 left: -1.1rem;
             }
@@ -35,19 +34,24 @@
             &:checked {
                 &~.custom-control-label {
                     &:before {
-                        border: none;
-                        background: url(../img/check.png)!important;
-                        background-size: 16px 16px !important;
-                        background-repeat: no-repeat !important;
-                        background-position: center !important;
-                        background-color: black !important;
+                        border: solid $secondery !important;
+                        border-width: 0 0px 2px 2px !important;
+                        transform: rotate(-45deg);
+                        top: 9px !important;
+                        background: transparent !important;
+                        width: 10px;
+                        height: 5px;
+                        left: -14px;
+                        box-shadow: none;
                     }
                     &::after {
                         background: none !important;
                         left: -18px !important;
-                        width: 16px !important;
-                        height: 16px !important;
+                        width: 18px !important;
+                        height: 18px !important;
                         top: 4px !important;
+                        border: 1px solid $secondery;
+                        border-radius: 0 !important;
                     }
                 }
             }
@@ -55,6 +59,12 @@
         .custom-control-label {
             &::after {
                 left: -18px;
+                width: 18px !important;
+                height: 18px;
+            }
+            &::before {
+                width: 18px;
+                height: 18px;
             }
         }
     }
@@ -175,7 +185,6 @@
         }
     }
     &--category {
-        height: 55px;
         @include for-max-768 {
             height: initial;
         }

@@ -1277,6 +1277,8 @@
   background: #66CC33;
   border: 2px solid #66CC33;
   padding-left: 30px !important;
+  pointer-events: none;
+  cursor: default;
 }
 
 .account-verified::before {
@@ -1348,6 +1350,11 @@ html {
   border-radius: 50% !important;
   top: 7px !important;
   left: -21px !important;
+}
+
+.custom-control-input:not(:disabled):active ~ .custom-control-label::before {
+  background: transparent;
+  border-color: #FFD715;
 }
 
 input::-webkit-input-placeholder {
@@ -4315,30 +4322,43 @@ html {
 }
 
 .games-categories-section--categories label::before {
-  border-radius: 3px;
   background: transparent;
   left: -1.1rem;
 }
 
 .games-categories-section--categories .custom-control-input:checked ~ .custom-control-label:before {
-  border: none;
-  background: url(../img/check.png) !important;
-  background-size: 16px 16px !important;
-  background-repeat: no-repeat !important;
-  background-position: center !important;
-  background-color: black !important;
+  border: solid #FFD715 !important;
+  border-width: 0 0px 2px 2px !important;
+  -webkit-transform: rotate(-45deg);
+          transform: rotate(-45deg);
+  top: 9px !important;
+  background: transparent !important;
+  width: 10px;
+  height: 5px;
+  left: -14px;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .games-categories-section--categories .custom-control-input:checked ~ .custom-control-label::after {
   background: none !important;
   left: -18px !important;
-  width: 16px !important;
-  height: 16px !important;
+  width: 18px !important;
+  height: 18px !important;
   top: 4px !important;
+  border: 1px solid #FFD715;
+  border-radius: 0 !important;
 }
 
 .games-categories-section--categories .custom-control-label::after {
   left: -18px;
+  width: 18px !important;
+  height: 18px;
+}
+
+.games-categories-section--categories .custom-control-label::before {
+  width: 18px;
+  height: 18px;
 }
 
 .games-categories-section--tag {
@@ -4500,10 +4520,6 @@ html {
   width: 100%;
   -webkit-transition: all .5s ease-in;
   transition: all .5s ease-in;
-}
-
-.game-card--category {
-  height: 55px;
 }
 
 @media (max-width: 768px) {
@@ -5434,6 +5450,10 @@ html {
   padding-top: 21px;
 }
 
+.seller-information .error-message {
+  top: 8px;
+}
+
 .support-faq {
   padding-bottom: 150px;
 }
@@ -5976,16 +5996,16 @@ html {
 
 .over-view table tr td img {
   width: 260px;
-  height: 150px;
+  height: auto;
   display: block;
   position: relative;
 }
 
 .over-view table tr td img::after {
-  content: "Upload Your NID";
-  background: #141A27;
+  content: "";
+  background: #0B0F18;
   width: 100%;
-  height: 100%;
+  height: 50px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -6233,13 +6253,18 @@ html {
 .post-rent--form-group--btn {
   -ms-flex-preferred-size: 456px;
       flex-basis: 456px;
-  margin-left: auto;
+}
+
+@media (min-width: 768px) {
+  .post-rent--form-group--btn {
+    margin-left: 222px;
+  }
 }
 
 @media (max-width: 1200px) {
   .post-rent--form-group--btn {
-    -ms-flex-preferred-size: 391px;
-        flex-basis: 391px;
+    -ms-flex-preferred-size: 447px;
+        flex-basis: 447px;
   }
 }
 
@@ -6290,6 +6315,24 @@ html {
   width: 100%;
 }
 
+@media (min-width: 1200px) {
+  .dashboard-content {
+    margin-left: -80px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .dashboard-content {
+    margin-left: -40px;
+  }
+}
+
+@media (min-width: 1600px) {
+  .dashboard-content {
+    margin-left: 0px;
+  }
+}
+
 .dashboard-content--rented {
   border: 1px solid #FFD715;
   padding: 0 20px;
@@ -6298,7 +6341,13 @@ html {
   width: 950px;
 }
 
-@media (max-width: 1700px) {
+@media (max-width: 1400px) {
+  .dashboard-content--rented {
+    width: 880px;
+  }
+}
+
+@media (max-width: 1200px) {
   .dashboard-content--rented {
     width: 100%;
   }
@@ -6315,9 +6364,9 @@ html {
   background: #FFD715;
 }
 
-@media (max-width: 1700px) {
+@media (max-width: 1200px) {
   .dashboard-content--rented::after {
-    width: 990px;
+    width: 890px;
   }
 }
 
@@ -6327,9 +6376,9 @@ html {
   margin-top: -20px;
 }
 
-@media (max-width: 1700px) {
+@media (max-width: 1200px) {
   .dashboard-content--rented table {
-    width: 950px;
+    width: 850px;
   }
 }
 
@@ -6362,6 +6411,12 @@ html {
 
 .dashboard-content--rented table tr td:nth-of-type(6) {
   min-width: 200px;
+}
+
+@media (max-width: 1400px) {
+  .dashboard-content--rented table tr td:nth-of-type(6) {
+    min-width: 180px;
+  }
 }
 
 .dashboard-content--rented table tr td:last-of-type {
@@ -6416,6 +6471,16 @@ html {
   height: 120px;
 }
 
+@media (max-width: 1400px) {
+  .dashboard-content .flip-clock {
+    width: 160px;
+    height: 90px;
+    -ms-grid-rows: 45px;
+        grid-template-rows: 45px;
+    grid-auto-rows: 45px;
+  }
+}
+
 .dashboard-content .flip-clock > span:last-of-type {
   -ms-grid-column: 2;
       grid-column-start: 2;
@@ -6426,8 +6491,27 @@ html {
   font-size: 1.6rem;
 }
 
+@media (max-width: 1400px) {
+  .dashboard-content .flip-clock > span > span {
+    font-size: 12px;
+  }
+}
+
 .dashboard-content .flip-clock .flip-clock__slot {
   font-size: 10px;
+}
+
+.dashboard-content .flip-clock__piece {
+  display: -webkit-box !important;
+  display: -ms-flexbox !important;
+  display: flex !important;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .rented-note,

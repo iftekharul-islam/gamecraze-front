@@ -744,10 +744,7 @@
         },
         methods: {
             validationCheck (advanced) {
-                console.log('this is a out errors');
-                console.log(this.$refs.observer);
                 if (this.errors != null) {
-                    console.log('this is a in errors');
                 }
                 // this.$validate.validate().then(isValid => {
                 //     console.log('isValid', isValid); // false
@@ -1091,7 +1088,6 @@
               return yyyy + '-' + mm + '-' + dd;
             },
             adjustRentedWeek: function(adjustmentType) {
-                console.log(this.rentData.max_week);
                 if (adjustmentType == 'increase') {
                     this.rentData.max_week = parseInt(this.rentData.max_week) + 1;
                     return;
@@ -1237,7 +1233,6 @@
 
             this.$api.get('transaction-details', config).then (response =>
             {
-                console.log(response);
                 this.total_earn = response.data.transactions_details.total_earning;
                 this.payable_amount = response.data.transactions_details.due;
             });
@@ -1248,8 +1243,6 @@
             });
             this.$api.get('user/details', config).then(response =>{
                 this.user = response.data.data;
-                console.log('this.user');
-                console.log(this.user);
             });
 
 
@@ -1259,8 +1252,6 @@
                 },
                 (newValue, oldValue)=>{
                     this.user = newValue;
-                    console.log('Store user');
-                    console.log(this.user);
                 },
                 //Optional Deep if you need it
                 { deep:true }

@@ -9,9 +9,6 @@ html {
     @include for-max-575 {
         padding-bottom: 100px;
     }
-    // .form-check {
-    //     padding-left: 0;
-    // }
 }
 
 .registration-form {
@@ -69,7 +66,6 @@ html {
         label {
             font-size: 20px;
             font-weight: normal;
-            // font-family: 'circular-normal';
         }
     }
     .error-message {
@@ -187,25 +183,6 @@ html {
     }
 }
 
-// .otp-outer{
-//     // width: 190px; 
-//     overflow: hidden;
-//     .otp-inner{
-//         left: 0;
-//         position: sticky;
-//       }
-//   }
-//   .otp-input {
-//     padding-left: 32px;
-//     letter-spacing: 99px;
-//     border: 0;
-//     background-image: linear-gradient(to left, black 70%, rgba(255, 255, 255, 0) 0%);
-//     background-position: bottom;
-//     background-size: 107px 60px;
-//     background-repeat: repeat-x;
-//     background-position-x: 75px;
-//     color: $text-light;
-// }
 .otp-input-group {
     margin-top: 15px;
     margin-bottom: 15px;

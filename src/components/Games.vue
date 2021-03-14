@@ -216,7 +216,7 @@
               this.queryCategories = []
             }
             if (this.$route.query.platforms) {
-              this.queryPlatforms = this.$route.query.platforms
+              this.queryPlatforms = this.$route.query.platforms;
             }
             else {
               this.queryPlatforms = []
@@ -227,8 +227,6 @@
             else {
                 this.queryDiskType = []
             }
-            console.log('this.queryDiskType');
-            console.log(this.queryDiskType);
             const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
             this.$api.get('filter-games/?ids=' + uniqueArr + '&include=game.assets,game.genres,game.platforms&categories=' + this.queryCategories + '&platforms=' + this.queryPlatforms + '&diskType=' + this.queryDiskType + '&search=' + this.searchKey).then(resp => {
               this.filteredGames = resp.data.data;
@@ -254,21 +252,20 @@
                       })
                   })
                   this.fetchFilteredGames();
-              } else {
-                  if (this.checkedPlatforms.length || this.checkedDiskType.length) {
-                      this.$router.push({
-                          query: {
-                              search: this.$route.query.search,
-                              platforms: this.checkedPlatforms.join(),
-                              diskType: this.checkedDiskType.join()
-                          }
-                      })
-                  } else {
-                      this.$router.push({query: {search: this.$route.query.search}})
-                  }
+              } else if (this.checkedPlatforms.length || this.checkedDiskType.length) {
+                  this.$router.push({
+                      query: {
+                          search: this.$route.query.search,
+                          platforms: this.checkedPlatforms.join(),
+                          diskType: this.checkedDiskType.join()
+                      }
+                  })
+              } else if (this.$route.query.search) {
+                  this.$router.push({query: {search: this.$route.query.search}})
 
-                  this.fetchFilteredGames();
               }
+
+              this.fetchFilteredGames();
           },
           checkedPlatforms: function (val) {
               if (this.checkedPlatforms.length) {
@@ -279,21 +276,21 @@
                       })
                   })
                   this.fetchFilteredGames();
-              } else {
-                  if (this.checkedCategories.length || this.checkedDiskType.length) {
-                      this.$router.push({
-                          query: {
-                              search: this.$route.query.search,
-                              categories: this.checkedCategories.join(),
-                              diskType: this.checkedDiskType.join()
-                          }
-                      })
-                  } else {
-                      this.$router.push({query: {search: this.$route.query.search}})
-                  }
-                  this.fetchFilteredGames();
+              } else if (this.checkedCategories.length || this.checkedDiskType.length) {
+                  this.$router.push({
+                      query: {
+                          search: this.$route.query.search,
+                          categories: this.checkedCategories.join(),
+                          diskType: this.checkedDiskType.join()
+                      }
+                  })
+              } else if (this.$route.query.search) {
+                  this.$router.push({query: {search: this.$route.query.search}})
+
               }
+              this.fetchFilteredGames();
           },
+
           checkedDiskType: function (val) {
               if (this.checkedDiskType.length) {
                   this.$router.push({
@@ -303,19 +300,18 @@
                       })
                   })
                   this.fetchFilteredGames();
-              } else {
-                  if (this.checkedCategories.length || this.checkedPlatforms.length) {
-                      this.$router.push({
-                          query: {
-                              search: this.$route.query.search,
-                              categories: this.checkedCategories.join(),
-                              platforms: this.checkedPlatforms.join()
-                          }
-                      })
-                  } else {
-                      this.$router.push({query: {search: this.$route.query.search}})
-                  }
+              } else if (this.checkedCategories.length || this.checkedPlatforms.length) {
+                  this.$router.push({
+                      query: {
+                          search: this.$route.query.search,
+                          categories: this.checkedCategories.join(),
+                          platforms: this.checkedPlatforms.join()
+                      }
+                  })
+              } else if (this.$route.query.search) {
+                  this.$router.push({query: {search: this.$route.query.search}})
               }
+
               this.fetchFilteredGames();
           }
       },
@@ -327,15 +323,12 @@
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {
                 this.rents = response.data.data;
                 this.fetchFilteredGames();
-                this.checkedCategories = this.queryCategories != [] ? this.queryCategories.split(',') : [];
-                this.checkedPlatforms = this.queryPlatforms != [] ? this.queryPlatforms.split(',') : [];
-                this.checkedDiskType = this.queryDiskType != [] ? this.queryDiskType.split(',') : [];
-                console.log('this.checkedCategories');
-                console.log(this.checkedCategories);
+                this.checkedCategories = typeof this.queryCategories == 'string'? this.queryCategories.split(',') : [];
+                this.checkedPlatforms = typeof this.queryPlatforms == 'string' ? this.queryPlatforms.split(',') : [];
+                this.checkedDiskType = typeof this.queryDiskType == 'string' ? this.queryDiskType.split(',') : [];
                 const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
                 this.$api.get('rent-games/?ids=' + uniqueArr + '&include=assets,genres,platforms').then(resp => {
                   this.games = resp.data.data;
-                  console.log(this.games)
                 })
                 
             });

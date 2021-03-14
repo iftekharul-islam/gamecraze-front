@@ -248,7 +248,7 @@
                 var charCode = (evt.which) ? evt.which : evt.keyCode;
                 //if enter pressed
                 if (charCode == 13) {
-                    console.log('in', charCode);
+                    // console.log('in', charCode);
                     if (this.phone_number == '' || this.phone_number.length < 11) {
                         return;
                     }
@@ -263,13 +263,13 @@
                 if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.phone_number.length > 10) {
                     evt.preventDefault();
                 } else {
-                    console.log('return')
+                    // console.log('return')
                     return true;
                 }
             },
             handleOnComplete(value) {
                 this.otp = value;
-                console.log('OTP completed: ', value);
+                // console.log('OTP completed: ', value);
             },
             handleOnChange(value) {
                 console.log('OTP changed: ', value);
@@ -290,7 +290,7 @@
                     this.$store.dispatch('setPhoneNumber', this.phone_number);
                     this.clearErrorMessages();
                     this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
-                         console.log('send otp: ', response.data);
+                         // console.log('send otp: ', response.data);
                         if (response.data.error === false) {
                             this.isLoading = false
                             setTimeout(() => {
@@ -303,7 +303,7 @@
                         this.isLoading = false
                     });
                 } else {
-                    console.log('otp login')
+                    // console.log('otp login')
                     if (this.$store.state.notSetPassword) {
                         localStorage.setItem('email', this.form.email)
                         this.$store.dispatch('setEmail', this.form.email)
@@ -325,7 +325,7 @@
               this.isLoading = false
             },
             onOtpVerification: function () {
-                console.log('verify otp');
+                // console.log('verify otp');
                 if (this.otp == '' || this.otp == null) {
                     this.$store.commit('setEmptyOTP', true);
                     return;
@@ -339,7 +339,7 @@
                 this.$store.dispatch('setPhoneNumber', this.phone_number);
                 this.clearErrorMessages();
                 this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
-                    console.log('resent otp: ', response.data);
+                    // console.log('resent otp: ', response.data);
                     if (response.data.error === false) {
                         this.isResendLoading = false
                         this.resend = true

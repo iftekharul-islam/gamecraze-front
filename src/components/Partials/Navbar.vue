@@ -146,6 +146,23 @@
             }
         },
         methods: {
+            authData () {
+                var auth = this.$store.getters.ifAuthenticated;
+                if (auth) {
+                    let config = {
+                        headers: {
+                            'Authorization': 'Bearer ' + this.$store.state.token
+                        }
+                    };
+                    this.$api.get('cart-items', config).then(response => {
+                        this.totalItems = response.data.data.length;
+                    });
+
+                    this.$api.get('user/details', config).then(response =>{
+                        this.user = response.data.data;
+                    });
+                }
+            },
           clickProfile() {
             this.$root.$emit('rentPost');
           },
@@ -212,26 +229,25 @@
           }
         },
         created() {
-            // this.$router.go();
-            let config = {
-                headers: {
-                    'Authorization': 'Bearer ' + this.$store.state.token
-                }
-            };
-            this.$api.get('cart-items', config).then(response => {
-                this.totalItems = response.data.data.length;
-                console.log('this totalItems');
-                console.log(this.totalItems);
-            });
-            // this.totalItems = this.$store.state.itemsInCart;
+            // let config = {
+            //     headers: {
+            //         'Authorization': 'Bearer ' + this.$store.state.token
+            //     }
+            // };
+            // this.$api.get('cart-items', config).then(response => {
+            //     this.totalItems = response.data.data.length;
+            // });
+            //
+            // this.$api.get('user/details', config).then(response =>{
+            //     this.user = response.data.data;
+            // });
+            this.authData();
             this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {
                 this.rents = response.data.data;
-                // console.log(this.rents, 'rents')
                 const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
                 this.$api.get('rent-games/?ids=' + uniqueArr + '&include=assets,genres,platforms').then(resp => {
                     this.results = resp.data.data;
-                    // console.log(this.results, 'results');
                 })
             });
             
@@ -241,10 +257,6 @@
 
             this.$root.$on('clearSearchKey', () => {
               this.query = '';
-            });
-
-            this.$api.get('user/details', config).then(response =>{
-                this.user = response.data.data;
             });
 
             this.$store.watch(

@@ -318,6 +318,31 @@
       }
     },
     methods: {
+        authData () {
+            var auth = this.$store.getters.ifAuthenticated;
+            if (auth){
+                var config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+                this.$api.get('user/details', config).then(response => {
+                    this.user = response.data.data;
+                })
+                    .catch( err => {
+                    console.log(err);
+                });
+                this.$api.get('cart-items?include=user,rent.game.basePrice', config).then(response => {
+                    this.newCartItems = response.data.data;
+                    if (!this.newCartItems.length) {
+                        this.emptyCart = true;
+                    }
+                })
+                    .catch( err => {
+                    console.log(err);
+                });
+            }
+        },
         onCheckout() {
 
             var token = this.$store.state.token;
@@ -325,22 +350,15 @@
             this.totalItem = this.newCartItems.length;
             this.itemRemovable = this.user.rent_limit;
 
-            console.log('item count');
-            console.log(this.totalItem);
-            console.log('cart items');
-            console.log(this.newCartItems);
             var config = {
                 headers: {
                     'Authorization': 'Bearer ' + this.$store.state.token
                 }
             };
             this.$api.get('my-lends', config).then(response => {
-                console.log(response.data);
                 if (response.data.lends != 0) {
                     this.totalLends = response.data.lends;
                     this.itemRemovable = this.totalLends;
-                    console.log('my lends');
-                    console.log(this.totalLends);
                 }
                 if (this.totalLends >= this.user.rent_limit){
                     this.showRentLimitModal = true;
@@ -370,18 +388,14 @@
             });
         },
         ExistInCart() {
-            console.log('this.gameIds');
-            console.log(this.gameIds);
             let data = {
                 ids: this.gameIds,
             };
 
             this.$api.post('check-rented', data).then(response => {
-                console.log(response);
                 if (response.data.id != '') {
                     this.id = response.data.id;
                     this.showModal = true;
-                    console.log(this.id, 'id');
                 } else {
                     this.placeOrder();
                 }
@@ -458,8 +472,6 @@
             }).then((willDelete) => {
                 if (willDelete) {
                     this.$api.post('cart-item/destroy', data, config).then(response => {
-                        console.log('response');
-                        console.log(response);
                         if (response.data.error == false){
                             this.$store.dispatch('removeCartItem', index)
                             swal("The item is removed.", {
@@ -476,61 +488,21 @@
                 }
             });
         },
-        // onRemoveCartItem(id) {
-        //     console.log()
-        //   this.$swal({
-        //     title: "Do you want to remove this item?",
-        //     text: "",
-        //     icon: "warning",
-        //     buttons: true,
-        //     dangerMode: true,
-        //   }).then((willDelete) => {
-        //     if (willDelete) {
-        //       this.cart.splice(index, 1)
-        //       this.$store.dispatch('removeCartItem', index)
-        //       swal("The item is removed.", {
-        //         icon: "success",
-        //       });
-        //     } else {
-        //       swal("The item is not removed.");
-        //     }
-        //   });
-        // },
         getCartItems() {
           let cartItems = localStorage.getItem('cartItems');
           if (cartItems != '' && cartItems != null) {
             this.cart = JSON.parse(cartItems);
               if (this.cart) {
                   for (let i = 0; i < this.cart.length; i++) {
-                      console.log('cart data');
                       this.gameIds.push(this.cart);
                   }
               }
-            console.log('this.cart');
-            console.log(this.cart);
           }
         }
     },
     created() {
         window.scrollTo(0,0);
-        var config = {
-            headers: {
-                'Authorization': 'Bearer ' + this.$store.state.token
-            }
-        };
-        this.$api.get('user/details', config).then(response => {
-            this.user = response.data.data;
-            console.log('this.user');
-            console.log(this.user);
-        });
-        this.$api.get('cart-items?include=user,rent.game.basePrice', config).then(response => {
-            this.newCartItems = response.data.data;
-            if (!this.newCartItems.length) {
-                this.emptyCart = true;
-            }
-            console.log('this newCartItems');
-            console.log(this.newCartItems);
-        });
+        this.authData();
         this.$api.get('delivery-charge').then(response => {
             if (response.data.data) {
                 this.deliveryCharge = response.data.data.charge;

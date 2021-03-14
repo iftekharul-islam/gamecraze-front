@@ -1,3 +1,7 @@
+<head>
+    <meta name="Description" content="Games rent in Dhaka Bangladesh for Playstation games, PS4 Games, PS5 Games, Xbox, and PC games. Game Hub is an online game exchanging, renting & selling platform for all kinds of game discs">
+    <meta name="Keywords" content="Game Hub, Games rent in Bangladesh, Sell Games, Rent Games, PlayStation games rent 2021, Game exchange near me, Games for PS4, PS5, Xbox and PC, Game Exchanging platform,  Game renting platform, Games selling platform">
+</head>
 <template>
     <div>
         <!-- slider section -->
@@ -134,7 +138,7 @@
                                 </div>
                             </div>
 
-                            <div class="notice-box" v-for="(article, index) in articles" :key="index" v-if="featuredArticle.id !== article.id">
+                            <div class="notice-box" v-for="(article, index) in articles" :key="index">
                                 <img :src=article.thumbnail :alt="article.title" class="w-100">
                                 <div class="noticed-details">
                                     <router-link :to="{ name: 'NewsStory', params: { id: article.id }}" class="small-readmore"><span>Read More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
@@ -153,7 +157,7 @@
             <div class="container">
                 <div class="col-12 p-0">
                      <div id="owl-notice-mobile" class="owl-carousel owl-theme">
-                         <div class="item"  v-for="(article, index) in articles" :key="index" v-if="featuredArticle.id !== article.id">
+                         <div class="item"  v-for="(article, index) in articles" :key="index">
                              <div class="notice-box">
                                 <img :src=article.thumbnail :alt="article.title" class="w-100">
                                 <div class="noticed-details">
@@ -191,16 +195,6 @@
                             <div class="footer-top">
                             <a href="/" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
                             <div class="footer-top--right">
-<!--                                <span>Sign up for our newsletter.</span>-->
-<!--                                <div class="footer-top&#45;&#45;right-input-group">-->
-<!--                                    <div class="footer-top&#45;&#45;right-input">-->
-<!--                                        <input type="email" class="" placeholder="E-mail address" v-model="email">-->
-<!--                                    </div>-->
-<!--                                    <button class="btn gamehub-search-btn" @click="subscribe" type="search" :disabled="isSubscring">-->
-<!--                                        <i v-if="!isSubscring" class="far fa-envelope"></i>-->
-<!--                                        <i v-if="isSubscring" class="spinner-border spinner-border-sm"></i>-->
-<!--                                    </button>-->
-<!--                                </div>-->
                             </div>
                         </div>
                         </div>
@@ -214,16 +208,7 @@
                         <div class="col-md-11 ml-auto">
                             <div class="row">
                                 <div class="col-sm-6 col-md-3">
-                            <div class="footer-menu-content">
-                                <!-- <ul>
-                                    <li><a href="javascript:void(0)">Company</a></li>
-                                    <li><a href="/about-us">About Gamehub</a></li>
-                                    <li><a href="/join-us">Join Us</a></li>
-                                    <li><a href="/sponsors">Sponsors</a></li>
-                                    <li><a href="/contacts">Contact Us</a></li>
-                                </ul> -->
-
-                                <p class="footer-menu-content--about-gamehub">
+                            <div class="footer-menu-content"><p class="footer-menu-content--about-gamehub">
                                     Game Hub is Bangladesh's First
                                      Online Platform for lending &
                                     renting games for PlayStation, Xbox And PC.
@@ -232,13 +217,6 @@
                         </div>
                         <div class="col-sm-6 col-md-3">
                             <div class="footer-menu-content">
-                                <!-- <ul>
-                                    <li><a href="javascript:void(0)">For You</a></li>
-                                    <li><router-link to="/frequently-asked-questions">FAQs</router-link></li>
-                                    <li><router-link to="/shop">Shop</router-link></li>
-                                    <li><router-link to="/privacy">Privacy</router-link></li>
-                                    <li><router-link to="/terms">Terms</router-link></li>
-                                </ul> -->
                                 <div class="footer-menu-content--address">
                                     <p class="footer-menu-content--address--text">Email Us</p>
                                     <p class="footer-menu-content--address--text">contact@augnitive.com</p>
@@ -255,32 +233,31 @@
                         <div class="col-6 col-md-3">
                             <div class="footer-menu-content">
                                 <ul>
-                                    <!-- <li><a href="javascript:void(0)">Help</a></li>
-                                    <li><router-link to="/support">Support</router-link></li>
-                                    <li><router-link to="/forum">Forum</router-link></li>
-                                    <li><router-link to="/stats">Stats</router-link></li> -->
-
                                     <li><router-link to="/about-us">About Gamehub</router-link></li>
                                     <li><router-link to="/profile">Rent Games</router-link></li>
                                     <li><router-link to="/games">Lend Games</router-link></li>
                                     <li><router-link to="/terms">Terms & condition</router-link></li>
-                                    
-
                                 </ul>
                             </div>
                         </div>
                         <div class="col-6 col-md-3">
                             <div class="footer-menu-content" v-if="platforms">
                                 <ul>
-                                    <!-- <li><a href="javascript:void(0)">Platforms</a></li>
-                                    <li v-for="platform in platforms" :key="'platform-' + platform.id">
-                                        <a :href="'/games?platforms=' + platform.slug">{{ platform.name }}</a>
-                                    </li> -->
-                                     <li><router-link to="/sponsors">Ask for sponsorship</router-link></li>
-                                     <li><router-link to="/contacts">Contact Us</router-link></li>
-                                     <li><router-link to="/frequently-asked-questions">FAQ</router-link></li>
-                                     <li><router-link to="/news">News & blogs</router-link></li>
-                                      <li><router-link to="/privacy">Privacy</router-link></li>
+                                    <li>
+                                        <router-link to="/sponsors">Ask for sponsorship</router-link>
+                                    </li>
+                                    <li>
+                                        <router-link to="/contacts">Contact Us</router-link>
+                                    </li>
+                                    <li>
+                                        <router-link to="/frequently-asked-questions">FAQ</router-link>
+                                    </li>
+                                    <li>
+                                        <router-link to="/news">News & blogs</router-link>
+                                    </li>
+                                    <li>
+                                        <router-link to="/privacy">Privacy</router-link>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -535,6 +512,7 @@
 				}
 			}
         });
+
             },
             getTrendingGames: function () {
                 this.$api.get('games/trending?include=game,game.assets,game.genres,game.platforms').then(response => {
@@ -550,8 +528,6 @@
                 this.$api.get('games/popular-games?include=game.assets,platform').then(response => {
                     var vm = this;
                     vm.populars = response.data.data;
-                    console.log("populars posts");
-                    console.log(vm.populars);
                     Vue.nextTick(function(){
                         vm.carouselFour();
                     }.bind(vm));
@@ -571,8 +547,6 @@
                     if (response.status == 200) {
                         if ( response.data.data.length > 0) {
                             this.featuredArticle = response.data.data[0];
-                            console.log('this.featuredArticle');
-                            console.log(this.featuredArticle);
                         }
                     }
                 });
@@ -580,11 +554,8 @@
             getArticles: function () {
                 this.$api.get('top-articles?number=4').then(response => {
                     if (response.status == 200) {
-                       //this.articles = response.data.data;
                         let vm = this;
                         vm.articles = response.data.data;
-                        // console.log('vm.articles');
-                        // console.log(vm.articles);
                         Vue.nextTick(function() {
                             vm.carouselNotice();
                         }.bind(vm));
@@ -668,7 +639,7 @@
             this.getNewGames();
             this.getRentGames();
             this.getArticles();
-            this.getFeaturedArticles(1)
+            this.getFeaturedArticles(1);
             this.getFeturedVideo(5);
             this.featuredPlatforms(4);
 

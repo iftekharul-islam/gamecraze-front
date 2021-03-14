@@ -4,7 +4,7 @@
         <div class="container">
             <div class="inbox-section--content" v-if="notices.length">
                 <div class="inbox-section--content--heading text-center">
-                    <h6>Inbox</h6>
+                    <h6>Notice Board</h6>
                 </div>
 
                 <div class="inbox-section--content--according">

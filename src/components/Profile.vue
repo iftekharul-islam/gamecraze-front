@@ -256,7 +256,7 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                        <p class="text-center text-secondery mt-3">Please note that total rent amount is exclusive of 60 taka delivery charge</p>
+                                        <p class="text-center text-secondery mt-3 rented-note">Please note that total rent amount is exclusive of 60 taka delivery charge</p>
                                 </div>
                                 <!-- Norhing to show -->
                                     <div class="no-post-found-card mb-0" v-else>
@@ -363,7 +363,7 @@
                                                         <div class="alert alert-info alert-dismissible game-rent-alert--box">
                                                             <button type="button" class="close close-modal" data-dismiss="alert" aria-label="Close"></button>
                                                             <p>
-                                                                If you want to Rent for more weeks.Then renting price will be cyclic like the given price table.So its start from 1st week.
+                                                                If you want to Rent for more weeks. Then renting price will be cyclic like the given price table. So its start from 1st week.
                                                             </p>
                                                         </div>
                                                     </div>
@@ -378,6 +378,15 @@
                                                 <label class="post-rent--form-group--label">Disk Condition:</label>
                                                 <div class="post-rent--form-group--input">
                                                     <ValidationProvider name="Disk Condition" rules="required" v-slot="{ errors }">
+                                                        <!-- <v-select class="gamehub-custome-select" label="name_of_type" :options="diskConditions" v-model="rentData.disk_condition" placholder="Please Select Disk Condition" >
+                                                            <template #selected-option="diskCondition">
+                                                                {{ diskCondition.name_of_type + ' ' + diskCondition.description }}
+                                                            </template>
+                                                            <template v-slot:option="diskCondition">
+                                                                {{ diskCondition.name_of_type + ' ' + diskCondition.description }}
+                                                            </template>
+                                                        </v-select> -->
+
                                                         <select class="form-control js-example-basic-single" id="DiskCondition" v-model="rentData.disk_condition">
                                                             <option value="" selected>Please Select Disk Condition</option>
                                                             <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }} ({{ diskCondition.description }})</option>
@@ -505,6 +514,13 @@
                                                 <label for="gender" class="col-sm-3 col-form-label">Gender:</label>
                                                 <div class="col-sm-9 edit--input">
                                                     <ValidationProvider name="gender" rules="required" v-slot="{ errors }">
+
+                                        
+
+                                                     <!-- <v-select :options="itemsData"  label="Standard" v-model="form.gender" class="gamehub-custome-select"></v-select> -->
+
+
+
                                                         <select class="custom-select" id="gender" v-model="form.gender">
                                                             <option selected value="">Choose...</option>
                                                             <option value="male" >Male</option>
@@ -672,7 +688,9 @@
         components: { FlipCountdown},
         props: ['rentPost', 'profileEdit'],
         data() {
+            
             return {
+                itemsData: ['Male', 'Female', 'Others'],
                 rents: [],
                 lends: [],
                 show: true,
@@ -707,7 +725,7 @@
                     // availability: '',
                     max_week: 1,
                     platform: null,
-                    disk_condition: "",
+                    disk_condition: null,
                     disk_image: '',
                     cover_image: '',
                     checkpoint: {},
@@ -1259,13 +1277,6 @@
             ];
           }
         },
-
-        mounted() {
-            document.body.classList.add('body-position')
-        },
-        destroyed() {
-            document.body.classList.remove('body-position')
-        }
     }
 </script>
 <style>

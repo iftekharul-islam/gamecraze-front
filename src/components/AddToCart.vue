@@ -142,16 +142,17 @@
 <!--                          <button class="btn&#45;&#45;cart-btn">APPLY</button>-->
 <!--                        </div>-->
 <!--                      </div>-->
-                      <div class="cart-section--item-price-box--payment-method">
-                        <p>Payment Method</p>
-                        <p>Cash on Delivery</p>
-                      </div>
+                     
                       <div class="total d-flex align-items-center justify-content-between">
                         <p>Total</p>
                         <span class="total-price">৳ {{ totalPrice + parseFloat(deliveryCharge)}}</span>
                       </div>
                       </form>
                   </div>
+                   <div class="cart-section--item-price-box--payment-method secondery-border mt-a-6">
+                            <p class="mb-0">Payment Method</p>
+                            <p class="mb-0">Cash on Delivery</p>
+                      </div>
                   <!-- Enter Adsress -->
                     <ValidationObserver v-slot="{ handleSubmit }">
                       <form class="" @submit.prevent="handleSubmit(onCheckout)" method="post">
@@ -554,12 +555,6 @@
             {deep: true}
         );
     },
-    mounted () {
-            document.body.classList.add('body-position')
-        },
-        destroyed () {
-            document.body.classList.remove('body-position')
-        }
   }
 </script>
 

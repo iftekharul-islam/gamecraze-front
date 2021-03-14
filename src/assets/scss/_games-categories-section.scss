@@ -2,14 +2,14 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-  
+}
+
 .games-categories-section {
     padding-top: 60px;
     padding-bottom: 100px;
-     @include for-max-768 {
+    @include for-max-768 {
         padding-top: 35px;
-     }
+    }
     &--categories {
         background: $game-details;
         border-radius: 10px;
@@ -18,7 +18,8 @@
             font-size: 20px;
             margin-bottom: 17px;
         }
-        input,label {
+        input,
+        label {
             cursor: pointer;
         }
         label {
@@ -40,9 +41,20 @@
                         background-repeat: no-repeat !important;
                         background-position: center !important;
                         background-color: black !important;
-                    
+                    }
+                    &::after {
+                        background: none !important;
+                        left: -18px !important;
+                        width: 16px !important;
+                        height: 16px !important;
+                        top: 4px !important;
                     }
                 }
+            }
+        }
+        .custom-control-label {
+            &::after {
+                left: -18px;
             }
         }
     }
@@ -102,6 +114,7 @@
         }
     }
 }
+
 .not-matching {
     display: flex;
     align-items: center;
@@ -112,6 +125,7 @@
         height: 200px;
     }
 }
+
 .clear {
     &-filters {
         margin: auto;
@@ -122,7 +136,7 @@
         }
         @include for-max-575 {
             padding: 15px;
-          }
+        }
     }
     margin-top: 30px;
     @include for-max-768 {
@@ -140,7 +154,6 @@
     border: 7px solid $game-details;
     cursor: pointer;
     transition: all .5s ease-in;
-
     h6 {
         margin-top: 10px;
         font-size: 20px;
@@ -157,8 +170,8 @@
             text-align: center;
         }
         img {
-             width: 100%;
-             transition: all .5s ease-in;
+            width: 100%;
+            transition: all .5s ease-in;
         }
     }
     &--category {
@@ -189,6 +202,7 @@
         // border-color: $secondery;
     }
 }
+
 .game-rating {
     width: 40px;
     height: 40px;
@@ -201,16 +215,17 @@
     @include for-max-1200 {
         width: 25px;
         height: 25px;
-        border-radius: 5px; 
+        border-radius: 5px;
         font-size: 12px;
         @include for-max-768 {
             width: 40px;
-             height: 40px;
-             border-radius: 8px;
-             font-size: 20px;
+            height: 40px;
+            border-radius: 8px;
+            font-size: 20px;
         }
     }
 }
+
 .game-card-platform {
     .d-flex {
         span {

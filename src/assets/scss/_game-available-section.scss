@@ -22,7 +22,7 @@
             background: $secondery;
             @include for-max-992 {
                 width: 740px;
-                // height: 84px;
+                height: 85px;
             }
         }
     }
@@ -71,7 +71,9 @@
                 // width: 20px !important;
                 // height: 20px !important;
                 position: relative;
-                top: -7px;
+                // top: -7px;
+                display: block;
+                margin-top: -7px;
                 &::after,
                 &::before {
                     position: absolute;

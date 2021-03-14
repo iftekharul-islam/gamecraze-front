@@ -244,8 +244,8 @@
               nav: true,
               dots:false,
               navText: [
-                '<i class="fas fa-arrow-left"></i>',
-                '<i class="fas fa-arrow-right"></i>'
+                '<i class="fas fa-arrow-left icon"></i>',
+                '<i class="fas fa-arrow-right icon"></i>'
               ],
               responsive:{
                 0:{

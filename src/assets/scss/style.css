@@ -2073,7 +2073,7 @@ select option:hover {
 
 .gamehub-body {
   position: relative;
-  min-height: 100vh;
+  min-height: 100%;
 }
 
 @media (min-width: 1200px) {
@@ -2086,6 +2086,12 @@ select option:hover {
   .gamehub-body .container {
     max-width: 1200px;
   }
+}
+
+.gamehub-body .copyright-section {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
 
 .autosuggest__results-container ul {
@@ -3650,17 +3656,6 @@ html {
   height: 100% !important;
 }
 
-.body-position {
-  position: relative;
-  min-height: 100% !important;
-}
-
-.body-position .copyright-section {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-}
-
 .login-section,
 .registration-section {
   padding-top: 40px;
@@ -3773,7 +3768,8 @@ html {
   top: 2px;
 }
 
-.remember-me input, .remember-me label {
+.remember-me input,
+.remember-me label {
   cursor: pointer;
 }
 
@@ -6784,8 +6780,7 @@ html {
 }
 
 .inbox-section {
-  padding-top: 100px;
-  padding-bottom: 150px;
+  padding: 150px 0;
 }
 
 @media (max-width: 992px) {

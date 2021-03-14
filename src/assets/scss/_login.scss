@@ -1,15 +1,7 @@
 html {
     height: 100% !important;
 }
-.body-position {
-    position: relative;
-    min-height: 100% !important;
-    .copyright-section {
-        position: absolute;
-        width: 100%;
-        bottom: 0;
-    }
-}
+
 .login-section,
 .registration-section {
     padding-top: 40px;
@@ -21,16 +13,17 @@ html {
     //     padding-left: 0;
     // }
 }
+
 .registration-form {
     margin-top: 100px;
     padding-bottom: 200px;
     ul {
         li {
-                 font-size: 24px;
-                font-style: italic;
-                padding: 0;
-                color: $secondery;
-                margin-top: 100px;
+            font-size: 24px;
+            font-style: italic;
+            padding: 0;
+            color: $secondery;
+            margin-top: 100px;
         }
     }
     .form-group {
@@ -50,14 +43,13 @@ html {
     ul {
         margin-bottom: 30px;
         li {
-                font-family: 'Roboto Condensed', sans-serif;
-                font-style: italic;
-                padding: 0;
-                color: $secondery;
-                background: none;
-                font-size: 24px;
-                cursor: text;
-            
+            font-family: 'Roboto Condensed', sans-serif;
+            font-style: italic;
+            padding: 0;
+            color: $secondery;
+            background: none;
+            font-size: 24px;
+            cursor: text;
         }
     }
     .form-group {
@@ -88,20 +80,24 @@ html {
         }
     }
 }
+
 .remember-me {
-    input,label {
+    input,
+    label {
         cursor: pointer;
     }
     input {
         width: initial;
     }
 }
+
 .login-logo {
     margin-bottom: 90px;
     img {
         width: 182px;
     }
 }
+
 .floating-label-group {
     position: relative;
     .floating-label {
@@ -122,9 +118,11 @@ html {
         padding-left: 55px;
     }
 }
+
 .success-message {
     font-size: 20px;
 }
+
 .error-message {
     color: $gamehub-danger;
     position: relative;
@@ -142,6 +140,7 @@ html {
         top: -2px;
     }
 }
+
 .custom-checkbox {
     input,
     label {
@@ -153,11 +152,13 @@ html {
     margin-top: 40px;
     margin-bottom: 20px;
 }
+
 .or {
     margin-bottom: 20px;
     margin-top: 20px;
     font-size: 14px;
 }
+
 .form-group {
     input {
         font-size: 20px;
@@ -166,6 +167,7 @@ html {
         }
     }
 }
+
 // otp button
 .otpbtn {
     display: flex;
@@ -191,7 +193,6 @@ html {
 //     .otp-inner{
 //         left: 0;
 //         position: sticky;
-        
 //       }
 //   }
 //   .otp-input {
@@ -206,10 +207,9 @@ html {
 //     color: $text-light;
 // }
 .otp-input-group {
-  
     margin-top: 15px;
     margin-bottom: 15px;
-    > div {
+    >div {
         display: flex;
         justify-content: space-between;
     }
@@ -225,6 +225,7 @@ html {
         }
     }
 }
+
 .cursor-none {
     cursor: not-allowed;
 }
@@ -294,7 +295,7 @@ html {
             }
         }
     }
-  }
+}
 
 //   floating-mail
 .floating-email {

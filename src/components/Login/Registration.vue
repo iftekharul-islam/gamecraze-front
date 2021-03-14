@@ -151,13 +151,6 @@
                 });
             },
         },
-        mounted () {
-          console.log(this.$store.state.setupPasswordUser)
-          document.body.classList.add('body-position')
-        },
-        destroyed () {
-          document.body.classList.remove('body-position')
-        }
     }
 
 </script>

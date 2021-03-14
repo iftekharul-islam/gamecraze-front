@@ -131,7 +131,7 @@
                                     </div>
                                 </div>
                                 <div v-if="!isExistsInCart" class="modal-footer justify-content-center">
-                                    <a href="javascript:void(0)" class="btn--secondery" @click.prevent="handleSubmit(onAddToCart)" data-dismiss="modal">
+                                    <a href="javascript:void(0)" class="btn--secondery" @click.prevent="handleSubmit(onAddToCart)">
                                       <span><i class="fas fa-shopping-cart"></i> ADD TO CART</span>
                                     </a>
                                 </div>
@@ -279,6 +279,7 @@
                       deliveryType: this.form.deliveryType,
                       deliveryAddress: this.form.address
                   });
+                  this.modalData = false;
               })
           },
             checkIfExistsInCart(gameId) {

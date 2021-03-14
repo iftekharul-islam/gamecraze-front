@@ -1308,6 +1308,8 @@
     background: $account-verified;
     border: 2px solid $account-verified;
     padding-left: 30px !important;
+    pointer-events: none;
+    cursor: default;
     &::before {
         border: 1px solid $text-light;
         border-width: 3px 2px 0 0;
@@ -1370,12 +1372,17 @@ html {
 }
 
 .custom-control-input:checked~.custom-control-label::after {
-    background: #141a27 !important;
+    background: $input-bg !important;
     width: 10px !important;
     height: 10px !important;
     border-radius: 50% !important;
     top: 7px !important;
     left: -21px !important;
+}
+
+.custom-control-input:not(:disabled):active~.custom-control-label::before {
+    background: transparent;
+    border-color: $secondery;
 }
 
 input::placeholder {

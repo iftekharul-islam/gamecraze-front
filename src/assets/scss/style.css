@@ -2652,7 +2652,8 @@ select option:hover {
   overflow: hidden;
 }
 
-.trending-game--name-price a, .trending-game--name-price span {
+.trending-game--name-price a,
+.trending-game--name-price span {
   font-size: 20px;
 }
 
@@ -3143,7 +3144,8 @@ select option:hover {
   margin-top: 20px;
 }
 
-.upcoming-game--name-price a, .upcoming-game--name-price span {
+.upcoming-game--name-price a,
+.upcoming-game--name-price span {
   font-size: 20px;
 }
 

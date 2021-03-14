@@ -54,7 +54,6 @@
                 grid-auto-rows: 48px;
                 grid-template-columns: 1fr 156px;
                 grid-column-gap: 15px;
-                // max-width: 450px;
                 margin-bottom: 30px;
                 @include for-max-991 {
                     max-width: initial;
@@ -66,7 +65,6 @@
                 }
                 &--input {
                     display: flex;
-                   
                     label {
                         background: $secondery;
                         height: 100%;
@@ -97,12 +95,6 @@
                     }
                 }
             }
-            // &--map {
-               
-            //     @include for-max-991 {
-            //         max-width: initial;
-            //     }
-            // }
             &--method-btn {
                 display: flex;
                 .payment-option {
@@ -143,7 +135,6 @@
                             font-size: 14px;
                         }
                     }
-
                 }
             }
         }
@@ -162,6 +153,7 @@
         }
     }
 }
+
 .method-btn {
     width: 194px;
     height: 48px;

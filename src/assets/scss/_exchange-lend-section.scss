@@ -5,7 +5,6 @@
         padding-top: 70px;
         padding-bottom: 0px;
     }
-
     &--exchange {
         background: url(../img/exchange.png);
         @include for-max-575 {
@@ -17,7 +16,6 @@
         @include for-max-575 {
             background: url(../img/lendmbl.png);
         }
-        
     }
     &--exchange,
     &--lend {
@@ -29,7 +27,6 @@
         background-repeat: no-repeat;
         background-size: 100%;
         min-height: 300px;
-        // clip-path: polygon(10% 0, 100% 0, 90% 100%, 0% 100%);
         @include for-max-992 {
             background-size: 100% 200px;
         }
@@ -52,6 +49,7 @@
         }
     }
 }
+
 .exchange-lend-section--exchange-btn {
     margin: auto;
     margin-top: 30px;

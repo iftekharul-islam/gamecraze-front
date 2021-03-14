@@ -267,8 +267,8 @@
                                 <!-- Post for Rent -->
                             <div class="tab-pane fade" id="v-pills-post-rent" role="tabpanel" aria-labelledby="v-pills-post-rent-tab">
                                 <div class="post-rent">
-                                    <ValidationObserver v-slot="{ handleSubmit }">
-                                        <form @submit.prevent="handleSubmit(onRentSubmit)" method="post" id="rentPostForm">
+                                    <ValidationObserver ref="form">
+                                        <form @submit.prevent="onRentSubmit" method="post" id="rentPostForm">
                                             <!-- form-group -->
                                             <div class="form-group post-rent--form-group">
                                                 <label class=" post-rent--form-group--label">Game Name:</label>
@@ -295,7 +295,7 @@
                                             <div class="form-group post-rent--form-group">
                                                 <label for="rentedWeek" class=" label-padding post-rent--form-group--label">Max Rented Week:</label>
                                                 <div class=" post-rent--form-group--input">
-                                                    <ValidationProvider name="rented week" rules="required|min_value:1" v-slot="{ errors }">
+                                                    <ValidationProvider name="rented week" rules="required|integer|min_value:1" v-slot="{ errors }">
                                                         <input type="number" class="form-control renten-input" id="rentedWeek" min="1" v-model="rentData.max_week">
                                                         <!-- Plus Minus icon -->
                                                        <div class="post-rent--form-group--input--plus-minus">
@@ -474,6 +474,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group post-rent--form-group post-rent-btn">
+<!--                                                    <button class="btn&#45;&#45;secondery w-100 border-0 post-rent&#45;&#45;form-group&#45;&#45;btn" @click.prevent="validationCheck(true)">-->
                                                     <button class="btn--secondery w-100 border-0 post-rent--form-group--btn">
                                                         <span class="mr-2">Submit <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i></span>
                                                     </button>
@@ -549,16 +550,16 @@
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label">Mobile No:</label>
-                                                <div class="col-sm-9 edit--input">
-                                                    <ValidationProvider name="phone number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
-                                                        <input type="text" @focus="onPhoneFocus" @keypress="isNumber($event)" class="form-control" id="phone_number" v-model="form.phone_number">
-                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                        <span class="error-message d-block" v-if="isPhoneExists">Phone number already exists</span>
-                                                    </ValidationProvider>
-                                                </div>
-                                            </div>
+<!--                                            <div class="form-group row">-->
+<!--                                                <label class="col-sm-3 col-form-label">Mobile No:</label>-->
+<!--                                                <div class="col-sm-9 edit&#45;&#45;input">-->
+<!--                                                    <ValidationProvider name="phone number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">-->
+<!--                                                        <input type="text" @focus="onPhoneFocus" @keypress="isNumber($event)" class="form-control" id="phone_number" v-model="form.phone_number">-->
+<!--                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>-->
+<!--                                                        <span class="error-message d-block" v-if="isPhoneExists">Phone number already exists</span>-->
+<!--                                                    </ValidationProvider>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
                                             <div class="form-group row">
                                                 <label for="address" class="col-sm-3 col-form-label">Address:</label>
                                                 <div class="col-sm-9 edit--input">
@@ -682,10 +683,9 @@
 </template>
 
 <script>
-    import FlipCountdown from 'vue2-flip-countdown'
+    import FlipCountdown from 'vue2-flip-countdown';
     export default {
-
-        components: { FlipCountdown },
+        components: { FlipCountdown},
         props: ['rentPost', 'profileEdit'],
         data() {
             
@@ -743,6 +743,49 @@
             }
         },
         methods: {
+            validationCheck (advanced) {
+                console.log('this is a out errors');
+                console.log(this.$refs.observer);
+                if (this.errors != null) {
+                    console.log('this is a in errors');
+                }
+                // this.$validate.validate().then(isValid => {
+                //     console.log('isValid', isValid); // false
+                //     // will be updated
+                //     console.log(this.$refs.observerRef.errors);
+                // });
+                // this.validator().then(result => {
+                //     if (!result) {
+                //         if (advanced) {
+                //             return this.handleValidationErrorBasic();
+                //         }
+                //
+                //         return this.handleValidationErrorAdvanced();
+                //     }
+                //
+                //
+                //     // submit or something
+                // });
+            },
+            handleValidationErrorAdvanced () {
+                const firstField = Object.keys(this.errors)[0];
+
+                // this assumes you have a conviention of ref and field name here I just add the
+                // Input suffix to the field name as you can see in the template.
+                this.$refs.form[`${firstField}Input`].scrollIntoView();
+            },
+            handleValidationErrorBasic() {
+                // if there is an email error, scroll into the field.
+                // but you shouldn't chain if there are multiple fields.
+                // this is annoying and repetitive because you always have
+                // to specify the order of scrolling.
+                // check the advanced method above
+                if (this.errors.has('email')) {
+                    this.$refs.emailInput.focus();
+                } else if (this.errors.has('name')) {
+                    this.$refs.nameInput.focus();
+                }
+            },
             onDelete(rent) {
                 this.$swal({
                     title: "Rent Post Delete!",
@@ -964,6 +1007,14 @@
                 this.form.checkpoint = '';
             },
             onRentSubmit () {
+                this.$refs.form.validate().then(success => {
+                        if (!success) {
+                            window.scrollTo({
+                                top: 400,
+                                behavior: 'smooth',
+                            })
+                            return;
+                        }
                 if ( this.rentData.game == '' || this.rentData.game == null) {
                     this.$toaster.warning('Select Game');
                     return;
@@ -1001,6 +1052,7 @@
                             // $('#v-pills-dashboard').addClass('show');
                         }, 2000);
                     });
+                })
             },
             clickHandler(item) {
               // event fired when clicking on the input

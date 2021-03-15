@@ -9,12 +9,12 @@
         height: 550px;
     }
     @include for-max-768 {
-        height:400px;
+        height: 400px;
     }
     @include for-max-575 {
         background-position: center;
         margin-top: -56px;
-        height:600px;
+        height: 600px;
         position: relative;
     }
     h1 {
@@ -34,14 +34,21 @@
             font-weight: 400;
             font-size: 16px;
         }
+        br {
+            @include for-max-575 {
+                display: none;
+            }
+        }
     }
     &::after {
         @include for-max-575 {
             content: "";
             position: absolute;
-            left: 0; right: 0;
-            top: 0; bottom: 0;
-            background: rgba(0,0,0,.7);
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, .7);
         }
     }
     .container {
@@ -57,6 +64,7 @@
         }
     }
 }
+
 .gamehub-heading {
     color: #fff;
     text-transform: uppercase;

@@ -144,11 +144,7 @@
                                 </div>
                                 <div v-if="showOTP">
                                     <div class="form-group">
-                                        <span class="success-message mt-5" v-if="resend">Insert 6 digits code sent to your phone <strong
-                                                style="color: white;">{{ form.phone_number }}</strong></span>
-                                        <span class="success-message mt-5 d-block"
-                                              v-if="!resend && !$store.state.wrongOTP && !$store.state.timeout && !$store.state.inactiveUser">Insert 6 digits code sent to your phone <strong
-                                                style="color: white;">{{ form.phone_number }}</strong></span>
+                                        <span class="success-message mt-5 d-block">Insert 6 digits code sent to your phone</span>
                                         <div class="otp-input-group">
                                             <v-otp-input
                                                     ref="otpInput"
@@ -248,7 +244,6 @@
                 var charCode = (evt.which) ? evt.which : evt.keyCode;
                 //if enter pressed
                 if (charCode == 13) {
-                    // console.log('in', charCode);
                     if (this.phone_number == '' || this.phone_number.length < 11) {
                         return;
                     }
@@ -263,16 +258,14 @@
                 if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.phone_number.length > 10) {
                     evt.preventDefault();
                 } else {
-                    // console.log('return')
                     return true;
                 }
             },
             handleOnComplete(value) {
                 this.otp = value;
-                // console.log('OTP completed: ', value);
             },
             handleOnChange(value) {
-                console.log('OTP changed: ', value);
+                // console.log('OTP changed: ', value);
             },
             handler(val) {
                 if (val != '0') {
@@ -290,7 +283,6 @@
                     this.$store.dispatch('setPhoneNumber', this.phone_number);
                     this.clearErrorMessages();
                     this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
-                         // console.log('send otp: ', response.data);
                         if (response.data.error === false) {
                             this.isLoading = false
                             setTimeout(() => {
@@ -303,7 +295,6 @@
                         this.isLoading = false
                     });
                 } else {
-                    // console.log('otp login')
                     if (this.$store.state.notSetPassword) {
                         localStorage.setItem('email', this.form.email)
                         this.$store.dispatch('setEmail', this.form.email)
@@ -325,7 +316,6 @@
               this.isLoading = false
             },
             onOtpVerification: function () {
-                // console.log('verify otp');
                 if (this.otp == '' || this.otp == null) {
                     this.$store.commit('setEmptyOTP', true);
                     return;
@@ -339,12 +329,10 @@
                 this.$store.dispatch('setPhoneNumber', this.phone_number);
                 this.clearErrorMessages();
                 this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
-                    // console.log('resent otp: ', response.data);
                     if (response.data.error === false) {
                         this.isResendLoading = false
                         this.resend = true
                     }
-                    console.log(response.data);
                 });
             },
             changeErrorMessage() {

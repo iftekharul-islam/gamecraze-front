@@ -109,12 +109,6 @@
                                                   </ValidationProvider>
                                                 </td>
                                             </tr>
-                                              <!--        <tr v-if="form.deliveryType === '0' && modalData">-->
-                                              <!--            <td>Delivery Address:</td>-->
-                                              <!--            <td>-->
-                                              <!--              <input type="text" class="form-control" v-model="form.address">-->
-                                              <!--            </td>-->
-                                              <!--        </tr>-->
                                             <tr v-if="form.deliveryType !== '0' && form.deliveryType !== '' && modalData">
                                                 <td>Checkpoint Details:</td>
                                                 <td>
@@ -228,15 +222,9 @@
         },
         methods: {
           setModalData(rent) {
-              console.log('set modeldata')
-              console.log(rent);
             if (this.checkIfExistsInCart(rent.game.data.id)) {
               this.isExistsInCart = true;
-              // console.log('this.isExistsInCart');
-              // console.log(this.isExistsInCart);
             }
-            console.log('isExistsInCart');
-            console.log(this.isExistsInCart);
             this.modalData = rent;
           },
           formattedDate(date) {
@@ -245,16 +233,6 @@
               return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
           },
           onAddToCart() {
-            // console.log(this.id, 'id');
-            // console.log(this.$store.state.userId, 'user id');
-            // console.log(this.$store.state.postId.length, 'post length');
-            // console.log(this.lends.length, 'lends');
-
-            // this.$store.dispatch('pushPostId', this.modalData.id);
-            // this.$store.dispatch('pushLendWeek', this.form.week);
-            // this.$store.dispatch('pushCheckpointId', this.form.deliveryType);
-            console.log('modal data');
-            console.log(this.form.week);
               var config = {
                   headers: {
                       'Authorization': 'Bearer ' + this.$store.state.token
@@ -268,8 +246,6 @@
               };
 
               this.$api.post('cart-item/create', data, config).then(response => {
-                  console.log('Cart db store response');
-                  console.log(response);
                   if (response.data.error == true){
                       this.$swal('Game is already in the cart');
                   }
@@ -283,14 +259,8 @@
               })
           },
             checkIfExistsInCart(gameId) {
-                    console.log('this cartItems');
-                    console.log(this.cartItems);
-
-                    console.log(gameId);
                     if (this.cartItems) {
                         let isExists = this.cartItems.some(item => {
-                            console.log('item')
-                            console.log(item.rent.data.game_id)
                             if (item.rent.data.game_id === gameId) {
                                 return true;
                             }
@@ -331,28 +301,12 @@
 
             this.$api.get('rent-posted-users/' + this.slug + '?include=game,game.basePrice,platform,diskCondition,user,checkpoint.area.thana.district').then(response => {
                 this.rentPosts = response.data.data;
-                console.log('rent posts');
-                console.log(this.rentPosts);
             });
 
             this.$api.get('user/details', config).then(response => {
                 this.user_type = response.data.data.is_verified;
-                // console.log(this.user_type);
             });
 
-          // let config = {
-          //   headers: {
-          //     'Authorization': 'Bearer ' + this.$store.state.token
-          //   }
-          // };
-          // if (this.$store.state.userId != null) {
-          //   this.$api.get('user/details', config)
-          //       .then (response =>
-          //       {
-          //         this.userDetails = response.data.data;
-          //         console.log(this.userDetails, 'User details');
-          //       })
-          // }
           // localStorage.setItem('cartItems', '');
         },
     }

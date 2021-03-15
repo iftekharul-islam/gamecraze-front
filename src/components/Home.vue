@@ -627,6 +627,21 @@
                 this.$root.$emit('rentPost');
             },
         },
+        watch: {
+            '$route' (to) {
+                if (to.name == 'Home') {
+                    console.log('hello from watch');
+                    // location.reload();
+                    this.getTrendingGames();
+                    this.getNewGames();
+                    this.getRentGames();
+                    this.getArticles();
+                    this.getFeaturedArticles(1);
+                    this.getFeturedVideo(5);
+                    this.featuredPlatforms(4);
+                }
+            }
+        },
         computed: {
             auth () {
                 return this.$store.getters.ifAuthenticated;

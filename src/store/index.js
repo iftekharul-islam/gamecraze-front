@@ -246,7 +246,6 @@ export const storage = {
                 returnSecureToken: true
         })
         .then(res => {
-            console.log(res, 'login response')
             if (!res.data.error) {
                 if (res.data.message && res.data.message == "inactiveUser") {
                     commit('setInactiveUser', true);
@@ -303,7 +302,6 @@ export const storage = {
         verifyOtp({commit}, payload) {
             commit('setSubmitLoading', true)
             axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'verify-otp', payload).then(response => {
-                console.log('otp-verification: ', response);
 
                 if (response.data.error === false) {
                     commit('authUser', {
@@ -354,7 +352,6 @@ export const storage = {
                     commit('setInactiveUser', false)
                     router.push('/').catch(err => {});
                 } else {
-                    console.log(response.data.message);
                     commit('setNumberExist', true)
                     commit('setSubmitLoading', false)
                 }
@@ -426,7 +423,6 @@ export const storage = {
             axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'check-email-exist', payload).then(response => {
                 if (response.data.error === false) {
                     axios.post(process.env.VUE_APP_GAMEHUB_BASE_API + 'check-password', payload).then(response => {
-                        console.log('check if password exists: ', response.data);
                         if (response.data.error === true) {
                             commit('setNotSetPassword', false);
                             commit('setEmailLoader', false);

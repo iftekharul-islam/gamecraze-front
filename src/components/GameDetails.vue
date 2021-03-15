@@ -58,7 +58,7 @@
                     <div class="item" v-for="(screenshot, index) in game.screenshots.data" :key="index">
                         <a href="#"><img :src="screenshot.url" alt="screenshot"></a>
                     </div>
-                  <div class="item" v-for="(video, index) in game.videoUrls.data" :key="index">
+                  <div class="item" v-for="(video, index) in game.videoUrls.data" :key="'A' + index">
                     <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
 <!--                        <a href="#">< :src="video.url" alt="screenshot"></a>-->
                     </div>
@@ -130,7 +130,7 @@
                             <div class="game-card--details">
                               <a href="javascript:void(0)"> <h6>{{related.game.data.name}}</h6></a>
                               <div class="d-flex">
-                                <span v-for="(genre, index) in related.game.data.genres.data" :key="index" >{{ genre.name }}<span class="mr-1" v-if="index < related.game.data.genres.data.length-1">, </span></span>
+                                <span v-for="(genre, index) in related.game.data.genres.data" :key="'B' +index" >{{ genre.name }}<span class="mr-1" v-if="index < related.game.data.genres.data.length-1">, </span></span>
                               </div>
                               <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
                                  <div class="game-card--details--platforms"> <a href="javascript:void(0)" v-for="(platform, index) in related.game.data.platforms.data" :key="index"><img :src="platform.url" alt="ps4"></a> </div>
@@ -161,11 +161,28 @@
             }
         },
         watch: {
-          '$route.params': function (value) {
-            this.fetchGame();
-          },
+            "$route.params.slug": {
+                handler: function(value) {
+                    this.fetchGame();
+                },
+                deep: true,
+                immediate: true,
+            },
         },
         methods: {
+            authData () {
+                var auth = this.$store.getters.ifAuthenticated;
+                if (auth){
+                    this.$api.get('rent-limit', config).then (response =>
+                    {
+                        this.rentLimit = response.data.rent_limit;
+                    });
+                    this.$api.get('my-lends', config).then (response =>
+                    {
+                        this.myLends = response.data.lends;
+                    });
+                }
+            },
           getVideoIdByURL: function(url) {
             var regExp = /^https?\:\/\/(?:www\.youtube(?:\-nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*\&)?vi?=|\&vi?=|\?(?:.*\&)?vi?=)([^#\&\?\n\/<>"']*)/i;
             var match = url.match(regExp);
@@ -183,7 +200,6 @@
             this.$api.get('games/slug/' + this.slug + '?include=assets,genres,platforms,screenshots,videoUrls').then(response => {
               var vm = this;
               vm.game = response.data.data;
-              console.log(vm.game, 'game');
               Vue.nextTick(function(){
                 vm.screenshotsCarousel();
               }.bind(vm));
@@ -195,11 +211,9 @@
             this.game.genres.data.forEach(genre => {
               genres.push(genre.slug);
             })
-            console.log(genres, 'genres')
             this.$api.get('games/related/' + genres.join() + '?include=game.assets,game.genres,game.platforms').then(response => {
               var vm = this;
               vm.relatedGames = response.data.data;
-              console.log(vm.relatedGames, 'related');
               Vue.nextTick(function(){
                 vm.relatedCarousel();
               }.bind(vm));
@@ -273,24 +287,8 @@
         },
         created() {
             window.scrollTo(0,0);
-            let config = {
-                headers: {
-                    'Authorization': 'Bearer ' + this.$store.state.token
-                }
-            };
 
             this.fetchGame();
-
-            this.$api.get('rent-limit', config).then (response =>
-            {
-                this.rentLimit = response.data.rent_limit;
-            });
-            this.$api.get('my-lends', config).then (response =>
-            {
-                this.myLends = response.data.lends;
-                console.log('this.myLends');
-                console.log(this.myLends);
-            });
 
         },
         filters: {

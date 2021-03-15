@@ -5,6 +5,9 @@
         padding: 50px 36px;
         border: 1px solid $secondery;
         margin-bottom: 64px;
+        @include for-max-575 {
+            padding: 40px 20px;
+        }
         &--content {
             h4 {
                 color: $gray;
@@ -21,7 +24,8 @@
                     font-size: 18px;
                 }
             }
-            h4,h2 {
+            h4,
+            h2 {
                 font-family: circular-medium;
                 font-style: normal;
             }
@@ -51,10 +55,14 @@
                 }
             }
             tr {
-                td,th {
+                td,
+                th {
                     padding-left: 0;
                     border-color: $gray;
                 }
+            }
+            @include for-max-768 {
+                width: 600px;
             }
         }
         &--pagination {

@@ -170,7 +170,7 @@
                                         <span class="error-message" v-if="$store.state.wrongOTP && !resend">Wrong OTP</span>
                                         <span class="error-message" v-if="$store.state.timeout && !resend">This OTP expired</span>
                                         <span class="error-message" v-if="$store.state.inactiveUser && !resend">This User is inactive, please contact to helpline</span>
-                                        <span class="error-message" v-if="$store.state.otpNotFound && !resend">The OTP no found. Please recheck.</span>
+                                        <span class="error-message" v-if="$store.state.otpNotFound && !resend">The OTP not found. Please recheck.</span>
 
                                         <!--                                            </ValidationProvider>-->
                                     </div>

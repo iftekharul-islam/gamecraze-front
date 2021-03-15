@@ -173,6 +173,11 @@
             authData () {
                 var auth = this.$store.getters.ifAuthenticated;
                 if (auth){
+                    var config = {
+                        headers: {
+                            'Authorization': 'Bearer ' + this.$store.state.token
+                        }
+                    };
                     this.$api.get('rent-limit', config).then (response =>
                     {
                         this.rentLimit = response.data.rent_limit;
@@ -287,7 +292,7 @@
         },
         created() {
             window.scrollTo(0,0);
-
+            this.authData();
             this.fetchGame();
 
         },

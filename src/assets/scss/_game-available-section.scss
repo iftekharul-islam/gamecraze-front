@@ -22,7 +22,7 @@
             background: $secondery;
             @include for-max-992 {
                 width: 740px;
-                height: 85px;
+                height: 61px;
             }
         }
     }
@@ -92,9 +92,6 @@
                 td,
                 th {
                     color: $text-light;
-                    @include for-max-575 {
-                        font-size: 14px;
-                    }
                 }
             }
         }
@@ -169,9 +166,6 @@
                     font-size: 20px;
                     padding-left: 0;
                     vertical-align: middle;
-                    @include for-max-575 {
-                        width: 145px;
-                    }
                 }
             }
         }
@@ -198,6 +192,25 @@
         tr {
             td {
                 font-size: 20px;
+                @include for-max-768 {
+                    padding-left: 0;
+                }
+                &:last-of-type {
+                    @include for-max-768 {
+                        padding-top: 0;
+                        opacity: .7;
+                    }
+                }
+                &:first-of-type {
+                    @include for-max-768 {
+                        padding-bottom: 0;
+                    }
+                }
+            }
+            @include for-max-768 {
+                display: flex;
+                flex-direction: column;
+                padding-bottom: 0px;
             }
         }
     }

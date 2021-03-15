@@ -1433,6 +1433,22 @@ input::placeholder {
     margin-top: 99px;
 }
 
+// section heading 
+.section-heading {
+    margin-bottom: 85px;
+    font-size: 32px;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-style: italic;
+    @include for-min-992 {
+        margin-bottom: 85px;
+        font-size: 40px;
+    }
+    @include for-max-575 {
+        margin-bottom: 30px;
+    }
+}
+
+//   input default arrow
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
@@ -1460,4 +1476,18 @@ select option:hover {
     box-shadow: 0 0 10px 100px $secondery inset !important;
     color: $text-dark;
     background: $secondery;
+}
+
+// All slider icon hover
+.owl-nav {
+    button {
+        .arrow {
+            transition: all .3s ease-in;
+        }
+        &:hover {
+            .arrow {
+                color: $primary;
+            }
+        }
+    }
 }

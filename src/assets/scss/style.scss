@@ -16,7 +16,6 @@
 @import "../scss/utilities";
 // mixin
 @import "../scss/mixin";
-
 // navbar
 @import "../scss/navbar";
 // slider-section
@@ -85,103 +84,99 @@
 @import "../scss/sponsors-section";
 // Rookie Elite section
 @import "../scss/rookie-elite";
-
 // button
 @import "../scss/buttons";
 // generic
 @import "../scss/generic";
 // back to top
 @import "../scss/back-to-top";
-
 // footer
 @import "../scss/footer";
-
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
 body {
-  font-size: 16px;
-  background:$primary;
-  color: $text-light;
-  padding-top: 80px;
-  font-family: circular-medium;
-  @include for-max-991 {
-    padding-top: 56px;
-  }
+    font-size: 16px;
+    background: $primary;
+    color: $text-light;
+    padding-top: 80px;
+    font-family: circular-medium;
+    @include for-max-991 {
+        padding-top: 56px;
+    }
 }
-h1,h2,h3,h4,h5 {
-  font-family: 'Roboto Condensed', sans-serif;
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Roboto Condensed', sans-serif;
 }
+
 h1 {
-  font-size: 36px;
-  
-  @include for-min-992 {
-    font-size: 72px;
-  }
+    font-size: 36px;
+    @include for-min-992 {
+        font-size: 72px;
+    }
 }
+
 h2 {
-  font-size: 28px;
-  font-style: italic;
-  @include for-min-992 {
-    font-size: 40px;
-    
-  }
+    font-size: 28px;
+    font-style: italic;
+    @include for-min-992 {
+        font-size: 40px;
+    }
 }
+
 h3 {
-  font-size: 22px;
-  @include for-min-992 {
-    font-size: 48px;
-  }
+    font-size: 22px;
+    @include for-min-992 {
+        font-size: 48px;
+    }
 }
 
 h6 {
-  font-size: 20px;
-  @include for-min-992 {
-    font-size: 24px;
-  }
+    font-size: 20px;
+    @include for-min-992 {
+        font-size: 24px;
+    }
 }
+
 // transition mixin
 @mixin transition-3 {
-  transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in;
 }
+
 @mixin transition-5 {
-  transition: all 0.5s ease-in;
+    transition: all 0.5s ease-in;
 }
+
 // fonts
 @font-face {
-  font-family: circular-medium;
-  src: url(../fonts/CircularStd-Medium.ttf);
-}
-@font-face {
-  font-family: circular-bold;
-  src: url(../fonts/CircularStd-Bold.ttf);
-}
-@font-face {
-  font-family: circular-italic;
-  src: url(../fonts/CircularStd-BookItalic.ttf);
-}
-@font-face {
-  font-family: circular-book;
-  src: url(../fonts/CircularStd-Book.ttf);
-}
-@font-face {
-  font-family: circular-std;
-  src: url(../fonts/Circular-Std.otf);
+    font-family: circular-medium;
+    src: url(../fonts/CircularStd-Medium.ttf);
 }
 
+@font-face {
+    font-family: circular-bold;
+    src: url(../fonts/CircularStd-Bold.ttf);
+}
 
-.section-heading {
-  margin-bottom: 85px;
-  font-size: 32px;
-  font-family: 'Roboto Condensed', sans-serif;
-  font-style: italic;
-  @include for-min-992 {
-    margin-bottom: 85px;
-    font-size: 40px;
-  }
-  @include for-max-575 {
-    margin-bottom: 30px;
-  }
+@font-face {
+    font-family: circular-italic;
+    src: url(../fonts/CircularStd-BookItalic.ttf);
+}
+
+@font-face {
+    font-family: circular-book;
+    src: url(../fonts/CircularStd-Book.ttf);
+}
+
+@font-face {
+    font-family: circular-std;
+    src: url(../fonts/Circular-Std.otf);
 }

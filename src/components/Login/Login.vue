@@ -1,57 +1,11 @@
 <template>
     <div>
         <!-- sign in  -->
-        <!-- <section class="login-section">
-            <div class="container">
-                <div class="col-md-6 mx-auto">
-                    <div class="login-form">
-                        <div class="text-center login-logo">
-                            <img src="../../assets/img/logo/gamehublogo.svg" alt="gamehublogo" class="text-center">
-                        </div>
-                        <ul class="mb-3 d-flex justify-content-between">
-                            <li>
-                                <a class="active">LOG IN</a>
-                            </li>
-                            <li>
-                                <a>CREATE AN ACCOUNT</a>
-                            </li>
-                        </ul>
-
-                                <form action="index.html">
-
-                                    <div class="form-group">
-                                        <label for="loginuser">Phone/Email Address</label>
-                                        <input type="text" class="form-control" id="loginuser" aria-describedby="emailHelp" required>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="loginpass">Password</label>
-                                        <input type="password" class="form-control" id="loginpass" required>
-                                    </div>
-
-                                    <div class="form-group form-check d-flex justify-content-between">
-                                        <div class="remember-me">
-                                            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                            <label class="form-check-label" for="exampleCheck1">Remember me</label>
-                                        </div>
-                                        <u><a href="#">Forgot your password?</a></u>
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary w-100 btn--login">LOG IN</button>
-                                </form>
-
-                    </div>
-                </div>
-            </div>
-        </section> -->
 
         <section class="login-section">
             <div class="container-fluid sign-in-width">
                 <div class="row login-form">
                     <div class="col-md-6 col-xl-4 mx-auto">
-                        <!-- <div class="text-center login-logo">
-                            <img src="../../assets/img/logo/gamehublogo.svg" alt="gamehublogo" class="text-center">
-                        </div> -->
                         <ul class="d-flex justify-content-center align-items-center p-0">
                             <li>
                                 SIGN IN
@@ -127,9 +81,7 @@
                                         <ValidationProvider name="number"
                                                             :rules="`required|user-number:${phone_number}`"
                                                             v-slot="{ errors }">
-                                            <!--                                            <ValidationProvider name="number" rules="{ required: true, digits:11, regex:^(?=\d{10,11}$)(01)\d+ }" v-slot="{ errors }">-->
-                                            <!--                                                <input type="tel" v-validate="{ regex: /^(?=\d{10,11}$)(01)\d+/ }" id="user-number" class="form-control country-number mb-2" v-model="phone_number"  placeholder="Mobile Number" autofocus />-->
-                                            <!-- <input type="tel" id="user-number" class="form-control country-number mb-2" v-model="phone_number" name="user-number"  placeholder="Mobile Number" /> -->
+
                                             <input type="tel" class="form-control country-number mb-2 cursor-none"
                                                    v-model="phone_number" name="user-number" v-if="showOTP === true"
                                                    disabled/>
@@ -175,8 +127,7 @@
                                         <span class="error-message" v-if="$store.state.timeout && !resend">This OTP expired</span>
                                         <span class="error-message" v-if="$store.state.inactiveUser && !resend">This User is inactive, please contact to helpline</span>
                                         <span class="error-message" v-if="$store.state.otpNotFound && !resend">The OTP no found. Please recheck.</span>
-
-                                        <!--                                            </ValidationProvider>-->
+                                        
                                     </div>
                                     <div class="otpbtn">
                                         <button class="btn btn-link mb-2 resend-code" type="button"

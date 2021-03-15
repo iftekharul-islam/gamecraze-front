@@ -213,8 +213,8 @@
               nav: true,
               dots:true,
               navText: [
-                '<i class="fas fa-arrow-left"></i>',
-                '<i class="fas fa-arrow-right"></i>'
+                '<i class="fas fa-arrow-left arrow"></i>',
+                '<i class="fas fa-arrow-right arrow"></i>'
               ],
               responsive:{
                 0:{
@@ -244,8 +244,8 @@
               nav: true,
               dots:false,
               navText: [
-                '<i class="fas fa-arrow-left icon"></i>',
-                '<i class="fas fa-arrow-right icon"></i>'
+                '<i class="fas fa-arrow-left arrow"></i>',
+                '<i class="fas fa-arrow-right arrow"></i>'
               ],
               responsive:{
                 0:{

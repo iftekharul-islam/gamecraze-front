@@ -6216,6 +6216,11 @@ html {
       flex-basis: 202px;
   margin-top: 5px;
   font-size: 20px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 @media (max-width: 1300px) {

@@ -17,7 +17,7 @@
                     </div>
                 </div>
             </div>
-            <div class="cart-heading-empty" v-else>
+            <div class="cart-heading-empty" v-if="emptyNotice">
                 <h2>INBOX IS EMPTY</h2>
             </div>
         </div>
@@ -31,7 +31,8 @@
                 user: {},
                 isToggle: false,
                 show: -1,
-                notices: {}
+                notices: {},
+                emptyNotice: false,
             }
         },
         methods: {
@@ -52,13 +53,13 @@
         created() {
             window.scrollTo(0,0);
             this.user = this.$store.state.user
-            console.log(this.user, 'user');
 
             this.$api.get('notice').then(response =>
             {
-                console.log("notice");
-                console.log(response.data.data);
                 this.notices = response.data.data;
+                if (!this.notices.length) {
+                    this.emptyNotice = true;
+                }
 
             });
         }

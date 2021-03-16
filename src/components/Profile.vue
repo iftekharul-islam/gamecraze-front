@@ -450,33 +450,34 @@
                                             <div class="form-group post-rent--form-group post-rent--form-group-img">
                                                 <label class="post-rent--form-group--label">Disk Image:</label>
                                                 <div class="post-rent--form-group--input">
-                                                    <ValidationProvider name="Disk Image" rules="required" v-slot="{ errors }">
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="DiskUpload" accept="image/*" @change="onDiskimageChange">
-                                                            <label class="custom-file-label text-light" for="customFile">Disk Image</label>
-                                                        </div>
-                                                        <div class="img-prev">
-                                                            <img v-if="rentData.disk_image" :src="rentData.disk_image" alt="Disk image preview">
-                                                            <img v-else src="../assets/img/disk.png" alt="Disk image preview">
-                                                        </div>
-                                                         <span v-if="errors.length && !diskValidation" class="error-message">{{ errors[0] }}</span>
+                                                    <ValidationProvider name="Disk Image" rules="required" v-slot="{ validate, errors }">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="DiskUpload"  accept="image/*" @change="onDiskimageChange($event)|| validate($event)">
+<!--                                                        <input type="file" class="custom-file-input" id="DiskUpload"  accept="image/*" @change="onDiskimageChange">-->
+                                                        <label class="custom-file-label text-light" for="customFile">Disk Image</label>
+                                                    </div>
+                                                    <div class="img-prev">
+                                                        <img v-if="rentData.disk_image" :src="rentData.disk_image" alt="Disk image preview">
+                                                        <img v-else src="../assets/img/disk.png" alt="Disk image preview">
+                                                    </div>
+                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
                                             <div class="form-group post-rent--form-group post-rent--form-group-img">
                                                 <label class="post-rent--form-group--label">Cover Image:</label>
                                                 <div class="post-rent--form-group--input">
-                                                     <ValidationProvider name="Cover Image" rules="required" v-slot="{ errors }">
-                                                        <div class="custom-file">
-                                                            <input type="file" class="custom-file-input" id="customFile2" accept="image/*" @change="onCoverimageChange">
-                                                            <label class="custom-file-label text-light" for="customFile2">Cover Image</label>
-                                                        </div>
-                                                        <div class="img-prev">
-                                                            <img v-if="rentData.cover_image" :src="rentData.cover_image" alt="Cover image preview">
-                                                            <img v-else src="../assets/img/cover.png" alt="Cover image preview">
-                                                        </div>
-                                                         <span v-if="errors.length && !coverValidation" class="error-message">{{ errors[0] }}</span>
-                                                     </ValidationProvider>
+                                                    <ValidationProvider name="Cover Image" rules="required" v-slot="{ validate, errors }">
+                                                    <div class="custom-file">
+                                                        <input type="file" class="custom-file-input" id="customFile2" accept="image/*" @change="onCoverimageChange($event)|| validate($event)">
+                                                        <label class="custom-file-label text-light" for="customFile2">Cover Image</label>
+                                                    </div>
+                                                    <div class="img-prev">
+                                                        <img v-if="rentData.cover_image" :src="rentData.cover_image" alt="Cover image preview">
+                                                        <img v-else src="../assets/img/cover.png" alt="Cover image preview">
+                                                    </div>
+                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
                                                 </div>
                                             </div>
                                             <div class="form-group post-rent--form-group post-rent-btn">
@@ -528,7 +529,7 @@
 
 
                                                         <select class="custom-select" id="gender" v-model="form.gender">
-                                                            <option value="">Choose...</option>
+                                                            <option value="">Select Gender</option>
                                                             <option value="male" >Male</option>
                                                             <option value="female">Female</option>
                                                             <option value="others">Others</option>
@@ -605,13 +606,13 @@
                                             <div class="form-group row">
                                                 <label class="col-sm-3 col-form-label">NID Image:</label>
                                                 <div class="col-sm-9 edit--input">
-                                                      <ValidationProvider name="NID Image" rules="required" v-slot="{ errors }">
-                                                        <div class="custom-file">
-                                                            <input @change="onIdChange" accept=".png, .jpg, .jpeg" type="file" class="custom-file-input" id="customFile">
-                                                            <label class="custom-file-label text-light" for="customFile">{{ selectedFile }}</label>
-                                                        </div>
-                                                         <span v-if="errors.length && !imgValidation" class="error-message">{{ errors[0] }}</span>
-                                                      </ValidationProvider>
+                                                <div class="custom-file">
+                                                    <ValidationProvider name="NID Image" rules="required" v-slot="{ validate, errors }">
+                                                        <input @change="onIdChange($event) || validate($event)" accept=".png, .jpg, .jpeg" type="file" class="custom-file-input" id="customFile">
+                                                        <label class="custom-file-label text-light" for="customFile">{{ selectedFile }}</label>
+                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
@@ -749,52 +750,9 @@
                 total_earn: 0,
                 payable_amount: 0,
                 transactions: [],
-                imgValidation:'',
-                diskValidation:'',
-                coverValidation:'',
             }
         },
         methods: {
-            validationCheck (advanced) {
-                if (this.errors != null) {
-                }
-                // this.$validate.validate().then(isValid => {
-                //     console.log('isValid', isValid); // false
-                //     // will be updated
-                //     console.log(this.$refs.observerRef.errors);
-                // });
-                // this.validator().then(result => {
-                //     if (!result) {
-                //         if (advanced) {
-                //             return this.handleValidationErrorBasic();
-                //         }
-                //
-                //         return this.handleValidationErrorAdvanced();
-                //     }
-                //
-                //
-                //     // submit or something
-                // });
-            },
-            handleValidationErrorAdvanced () {
-                const firstField = Object.keys(this.errors)[0];
-
-                // this assumes you have a conviention of ref and field name here I just add the
-                // Input suffix to the field name as you can see in the template.
-                this.$refs.form[`${firstField}Input`].scrollIntoView();
-            },
-            handleValidationErrorBasic() {
-                // if there is an email error, scroll into the field.
-                // but you shouldn't chain if there are multiple fields.
-                // this is annoying and repetitive because you always have
-                // to specify the order of scrolling.
-                // check the advanced method above
-                if (this.errors.has('email')) {
-                    this.$refs.emailInput.focus();
-                } else if (this.errors.has('name')) {
-                    this.$refs.nameInput.focus();
-                }
-            },
             onDelete(rent) {
                 this.$swal({
                     title: "Rent Post Delete!",
@@ -970,7 +928,6 @@
                         this.form.id_image = e.target.result;
                     }
                     fileReader.readAsDataURL(event.target.files[0]);
-                    this.imgValidation='Nid image uploaded';
                 }
             },
             //rent post
@@ -992,7 +949,8 @@
                         this.rentData.disk_image = e.target.result;
                     }
                     fileReader.readAsDataURL(event.target.files[0]);
-                    this.diskValidation = 'Disk Image Uploaded';
+                    console.log('this.rentData.disk_image');
+                    console.log(this.rentData.disk_image);
                 }
             },
             onCoverimageChange (event) {
@@ -1012,7 +970,6 @@
                         this.rentData.cover_image = e.target.result;
                     }
                     fileReader.readAsDataURL(event.target.files[0]);
-                    this.coverValidation = 'Cover Image Uploaded';
                 }
             },
             onEmpty () {

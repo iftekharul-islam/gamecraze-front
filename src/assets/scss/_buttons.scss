@@ -13,6 +13,7 @@
         transition: all .3s ease-in;
         transform: skew(-21deg);
         color: #000;
+        @include gil-medium;
         &:hover {
             background: $game-details;
             color: #fff;

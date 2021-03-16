@@ -1320,7 +1320,5 @@ li:hover {
 }
 
 #autosuggest { width: 100%; display: block;}
-.autosuggest__results-item--highlighted {
-  background-color: rgba(51, 217, 178,0.2);
-}
+
 </style>

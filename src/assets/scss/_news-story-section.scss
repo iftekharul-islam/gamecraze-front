@@ -59,9 +59,6 @@
 
 .related-article-section {
     padding-bottom: 150px;
-    @include for-max-991 {
-        padding-bottom: 50px;
-    }
     h2 {
         margin-bottom: 40px;
     }

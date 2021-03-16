@@ -103,7 +103,7 @@ body {
     background: $primary;
     color: $text-light;
     padding-top: 80px;
-    font-family: circular-medium;
+    @include gil-regular;
     @include for-max-991 {
         padding-top: 56px;
     }
@@ -112,9 +112,13 @@ body {
 h1,
 h2,
 h3,
-h4,
-h5 {
-    font-family: 'Roboto Condensed', sans-serif;
+h4 {
+    @include gil-bold;
+}
+
+h5,
+h6 {
+    @include gil-medium;
 }
 
 h1 {
@@ -155,28 +159,17 @@ h6 {
     transition: all 0.5s ease-in;
 }
 
-// fonts
 @font-face {
-    font-family: circular-medium;
-    src: url(../fonts/CircularStd-Medium.ttf);
+    font-family: gilroy-regular;
+    src: url(../fonts/gilroy-regular.ttf);
 }
 
 @font-face {
-    font-family: circular-bold;
-    src: url(../fonts/CircularStd-Bold.ttf);
+    font-family: gilroy-medium;
+    src: url(../fonts/gilroy-medium.ttf);
 }
 
 @font-face {
-    font-family: circular-italic;
-    src: url(../fonts/CircularStd-BookItalic.ttf);
-}
-
-@font-face {
-    font-family: circular-book;
-    src: url(../fonts/CircularStd-Book.ttf);
-}
-
-@font-face {
-    font-family: circular-std;
-    src: url(../fonts/Circular-Std.otf);
+    font-family: gilroy-bold;
+    src: url(../fonts/gilroy-bold.ttf);
 }

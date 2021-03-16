@@ -1,22 +1,19 @@
-
 .description {
     padding-bottom: 60px;
     h6 {
         margin-bottom: 30px;
     }
 }
+
 .description-content {
     background: $game-details;
     padding: 30px;
-    
     p {
         margin-bottom: 20px;
-        font-family: circular-book;
     }
     ul {
         li {
             margin-bottom: 20px;
-            font-family: circular-book;
             font-size: 16px;
             position: relative;
             color: $text-light;

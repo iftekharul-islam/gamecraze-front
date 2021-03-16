@@ -5,6 +5,7 @@
     padding-left: 20px;
     color: $text-light;
     margin-bottom: 16px;
+    opacity: .8;
     &::after {
         content: "";
         width: 10px;
@@ -16,4 +17,16 @@
         left: 0;
         top: 6px;
     }
+}
+
+@mixin gil-regular {
+    font-family: gilroy-regular;
+}
+
+@mixin gil-medium {
+    font-family: gilroy-medium;
+}
+
+@mixin gil-bold {
+    font-family: gilroy-bold;
 }

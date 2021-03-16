@@ -2,8 +2,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-  }
-  
+}
 
 .newsroom-section {
     padding-top: 80px;
@@ -25,44 +24,44 @@
                 transform: scale(1.1);
             }
         }
-       &--text {
-        background: $game-details;
-        padding: 10px 30px;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-       
-        p {
-            margin-bottom: 10px;
-            font-size: 14px;
-            &:last-of-type{
-                color: $silver;
+        &--text {
+            background: $game-details;
+            padding: 10px 30px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            p {
+                margin-bottom: 10px;
+                font-size: 14px;
+                &:last-of-type {
+                    color: $silver;
+                }
+            }
+            h6 {
+                font-size: 20px;
+                @include oneline-text;
             }
         }
-        h6 {
-            font-size: 20px;
-            @include oneline-text;
-        }
-       }
-       &--img {
-           overflow: hidden;
-           height: 238px;
-           border-top-left-radius: 10px;
-           border-top-right-radius: 10px;
-           @include for-max-992 {
-               height: 160px;
-           }
-           @include for-max-768 {
+        &--img {
+            overflow: hidden;
             height: 238px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            @include for-max-992 {
+                height: 160px;
+            }
+            @include for-max-768 {
+                height: 238px;
+            }
+            img {
+                transition: all .3s ease-in;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                height: 100%;
+            }
         }
-           img {
-               transition: all .3s ease-in;
-               border-top-left-radius: 10px;
-               border-top-right-radius: 10px;
-               height: 100%;
-           }
-       }
     }
 }
+
 .trending-news {
     height: 420px;
     border-radius: 10px;
@@ -95,10 +94,10 @@
         }
         h2 {
             font-size: 40px;
-            font-family: circular-medium;
         }
     }
 }
+
 .newsroom-pagination {
     ul {
         justify-content: center;

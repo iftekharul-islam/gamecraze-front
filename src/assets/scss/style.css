@@ -1594,6 +1594,7 @@ select option:hover {
 
 .gamehub-menu-collapse ul li a {
   padding: 0 20px;
+  font-family: gilroy-medium;
 }
 
 @media (max-width: 1200px) {
@@ -1605,6 +1606,7 @@ select option:hover {
 
 .gamehub-menu-collapse ul li a.router-link-exact-active {
   position: relative;
+  font-family: gilroy-bold;
 }
 
 .gamehub-menu-collapse ul li a.router-link-exact-active::after {
@@ -1807,7 +1809,6 @@ select option:hover {
       -ms-flex-pack: center;
           justify-content: center;
   font-size: 14px;
-  font-family: circular-medium;
 }
 
 .gamehub-input-group--content:hover a {
@@ -2334,7 +2335,6 @@ select option:hover {
 .slider-section h6 {
   margin-bottom: 40px;
   line-height: 24px;
-  font-family: circular-medium;
 }
 
 @media (max-width: 575px) {
@@ -4346,6 +4346,7 @@ html {
 .games-categories-section--categories h6 {
   font-size: 20px;
   margin-bottom: 17px;
+  text-transform: capitalize;
 }
 
 .games-categories-section--categories input,
@@ -5111,12 +5112,10 @@ html {
 
 .description-content p {
   margin-bottom: 20px;
-  font-family: circular-book;
 }
 
 .description-content ul li {
   margin-bottom: 20px;
-  font-family: circular-book;
   font-size: 16px;
   position: relative;
   color: #fff;
@@ -5372,11 +5371,6 @@ html {
   background-position: 96% center;
   background-size: 16px;
   border-radius: 0;
-  font-family: circular-book;
-}
-
-.seller-information-modal select option {
-  font-family: circular-book !important;
 }
 
 .seller-information-modal--table-top tr td {
@@ -5562,7 +5556,6 @@ html {
   text-decoration: none !important;
   color: #fff;
   font-size: 16px;
-  font-family: circular-medium;
   padding: 9px 32px;
   width: 85%;
 }
@@ -5618,6 +5611,10 @@ html {
     margin-bottom: 20px !important;
     margin-right: 0;
   }
+}
+
+.support-bottom .btn--secondery {
+  font-family: gilroy-medium;
 }
 
 .accordion .card-header button::after {
@@ -7585,7 +7582,6 @@ html {
 
 .trending-news--text-content h2 {
   font-size: 40px;
-  font-family: circular-medium;
 }
 
 .newsroom-pagination ul {
@@ -7640,7 +7636,6 @@ html {
 
 .news-story-section--heading h2 {
   font-size: 40px;
-  font-family: circular-medium;
   margin-bottom: 30px;
 }
 
@@ -7685,6 +7680,7 @@ html {
   padding-left: 20px;
   color: #fff;
   margin-bottom: 16px;
+  opacity: .8;
 }
 
 .news-story-section--article ul li::after {
@@ -7710,7 +7706,6 @@ html {
 }
 
 .related-article-section h2 {
-  font-family: circular-medium;
   margin-bottom: 40px;
 }
 
@@ -7830,7 +7825,6 @@ html {
 .payment-section--item--content p {
   margin-bottom: 20px;
   font-size: 20px;
-  font-family: circular-medium;
 }
 
 @media (max-width: 575px) {
@@ -8103,7 +8097,6 @@ html {
 
 .my-earning--dashboard--content h4,
 .my-earning--dashboard--content h2 {
-  font-family: circular-medium;
   font-style: normal;
 }
 
@@ -8196,6 +8189,10 @@ html {
   padding-bottom: 150px;
 }
 
+.gamehub-policy-section h2 {
+  text-transform: capitalize;
+}
+
 .gamehub-policy-section--content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -8227,13 +8224,13 @@ html {
 .gamehub-policy-section--content--text p {
   margin-bottom: 32px;
   line-height: 28px;
-  opacity: .97;
-  text-transform: capitalize;
+  opacity: .8;
 }
 
 .gamehub-policy-section--content--text--heading p:first-of-type {
   color: #FFD715;
   margin-bottom: 4px;
+  font-family: gilroy-medium;
 }
 
 .bullet-list {
@@ -8246,6 +8243,7 @@ html {
   padding-left: 20px;
   color: #fff;
   margin-bottom: 16px;
+  opacity: .8;
 }
 
 .bullet-list--item::after {
@@ -8613,7 +8611,6 @@ html {
 .footer-top--right span {
   margin-bottom: 10px;
   display: block;
-  font-family: circular-medium;
 }
 
 @media (max-width: 768px) {
@@ -8717,6 +8714,7 @@ html {
 
 .footer-menu-content ul li a {
   text-transform: capitalize;
+  opacity: .75;
 }
 
 .footer-menu-content--address {
@@ -8729,7 +8727,7 @@ html {
 
 .footer-menu-content--address--text:first-of-type {
   margin-bottom: 4px;
-  font-weight: 600;
+  font-family: gilroy-medium;
 }
 
 .footer-menu-content--address--text:last-child {
@@ -8807,7 +8805,7 @@ body {
   background: #0B0F18;
   color: #fff;
   padding-top: 80px;
-  font-family: circular-medium;
+  font-family: gilroy-regular;
 }
 
 @media (max-width: 991px) {
@@ -8819,9 +8817,13 @@ body {
 h1,
 h2,
 h3,
-h4,
-h5 {
-  font-family: 'Roboto Condensed', sans-serif;
+h4 {
+  font-family: gilroy-bold;
+}
+
+h5,
+h6 {
+  font-family: gilroy-medium;
 }
 
 h1 {
@@ -8866,27 +8868,17 @@ h6 {
 }
 
 @font-face {
-  font-family: circular-medium;
-  src: url(../fonts/CircularStd-Medium.ttf);
+  font-family: gilroy-regular;
+  src: url(../fonts/gilroy-regular.ttf);
 }
 
 @font-face {
-  font-family: circular-bold;
-  src: url(../fonts/CircularStd-Bold.ttf);
+  font-family: gilroy-medium;
+  src: url(../fonts/gilroy-medium.ttf);
 }
 
 @font-face {
-  font-family: circular-italic;
-  src: url(../fonts/CircularStd-BookItalic.ttf);
-}
-
-@font-face {
-  font-family: circular-book;
-  src: url(../fonts/CircularStd-Book.ttf);
-}
-
-@font-face {
-  font-family: circular-std;
-  src: url(../fonts/Circular-Std.otf);
+  font-family: gilroy-bold;
+  src: url(../fonts/gilroy-bold.ttf);
 }
 /*# sourceMappingURL=style.css.map */

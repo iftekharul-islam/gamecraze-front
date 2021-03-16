@@ -16,7 +16,6 @@
                 margin-bottom: 10px;
             }
         }
-        
         h2 {
             font-size: 40px;
             font-family: circular-medium;
@@ -50,6 +49,11 @@
         }
         h6 {
             margin-bottom: 40px;
+        }
+        ul {
+            li {
+                @include bullet-list;
+            }
         }
     }
 }

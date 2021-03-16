@@ -296,11 +296,11 @@
                                                 <label for="rentedWeek" class=" label-padding post-rent--form-group--label">Max Rented Week:</label>
                                                 <div class=" post-rent--form-group--input">
                                                     <ValidationProvider name="rented week" rules="required|integer|min_value:1" v-slot="{ errors }">
-                                                        <input type="number" class="form-control renten-input" id="rentedWeek" min="1" v-model="rentData.max_week">
+                                                        <input type="number" class="form-control renten-input" id="rentedWeek" min="1" max="5" v-model="rentData.max_week">
                                                         <!-- Plus Minus icon -->
                                                        <div class="post-rent--form-group--input--plus-minus">
                                                            <div @click="adjustRentedWeek('increase')"> <i class="fa fa-angle-up rented-plus icon" ></i></div>
-                                                            <div  @click="adjustRentedWeek('decrease')"><i class="fa fa-angle-down rented-minus icon"></i></div>
+                                                            <div @click="adjustRentedWeek('decrease')"><i class="fa fa-angle-down rented-minus icon"></i></div>
                                                        </div>
                                                         <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                     </ValidationProvider>
@@ -375,7 +375,7 @@
                                             </div>
                                               <!-- form-group -->
                                             <div class="form-group post-rent--form-group">
-                                                <label class="post-rent--form-group--label">Disk Condition:</label>
+                                                <label class="post-rent--form-group--label" for="DiskCondition">Disk Condition:</label>
                                                 <div class="post-rent--form-group--input">
                                                     <ValidationProvider name="Disk Condition" rules="required" v-slot="{ errors }">
                                                         <!-- <v-select class="gamehub-custome-select" label="name_of_type" :options="diskConditions" v-model="rentData.disk_condition" placholder="Please Select Disk Condition" >
@@ -1103,7 +1103,7 @@
               return yyyy + '-' + mm + '-' + dd;
             },
             adjustRentedWeek: function(adjustmentType) {
-                if (adjustmentType == 'increase') {
+                if (adjustmentType == 'increase' && parseInt(this.rentData.max_week) < 5) {
                     this.rentData.max_week = parseInt(this.rentData.max_week) + 1;
                     return;
                 }

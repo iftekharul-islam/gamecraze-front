@@ -17,7 +17,6 @@
             p {
                 margin-bottom: 20px;
                 font-size: 20px;
-                font-family: circular-medium;
                 @include for-max-575 {
                     margin-bottom: 10px;
                     font-size: 18px;

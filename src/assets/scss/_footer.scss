@@ -35,7 +35,6 @@
         span {
             margin-bottom: 10px;
             display: block;
-            font-family: circular-medium;
             @include for-max-768 {
                 margin-bottom: 0px;
                 margin-top: 20px;
@@ -102,6 +101,7 @@
             margin-bottom: 15px;
             a {
                 text-transform: capitalize;
+                opacity: .75;
             }
         }
     }
@@ -111,7 +111,7 @@
             margin-bottom: 0;
             &:first-of-type {
                 margin-bottom: 4px;
-                font-weight: 600;
+                @include gil-medium;
             }
             &:last-child {
                 opacity: .75;

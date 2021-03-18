@@ -621,3 +621,13 @@
 .swal-button:not([disabled]):hover {
     background: $secondery;
 }
+
+// Notification
+.promo-notification {
+    .alert {
+        @include for-max-991 {
+            top: 75px;
+            ;
+        }
+    }
+}

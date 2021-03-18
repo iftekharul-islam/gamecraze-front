@@ -1224,6 +1224,10 @@
     color: $game-rating;
 }
 
+.text-black {
+    color: $text-dark;
+}
+
 // **************Opacity***********//
 .gamehub-warning-bg {
     background: $gamehub-warning-alert;
@@ -1355,6 +1359,28 @@ a:hover {
 
 html {
     scroll-behavior: smooth;
+}
+
+// **************Font family***********//
+.gil-bold {
+    @include gil-bold;
+}
+
+.gil-medium {
+    @include gil-medium;
+}
+
+.gil-regular {
+    @include gil-regular;
+}
+
+// **************z-index***********//
+.z-index-9 {
+    z-index: 9;
+}
+
+.z-index-99 {
+    z-index: 99;
 }
 
 // height

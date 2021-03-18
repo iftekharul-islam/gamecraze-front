@@ -27,9 +27,6 @@
             }
             @include for-max-768 {
                 width: 590px;
-                height: 75px;
-            }
-            @include for-max-575 {
                 height: 55px;
             }
         }
@@ -44,13 +41,13 @@
             }
             tr {
                 td {
+                    vertical-align: middle;
+                    font-size: 16px;
                     &:not(:first-of-type) {
                         text-align: center;
                     }
-                    font-size: 20px;
                     @include for-max-575 {
                         font-size: 16px;
-                        vertical-align: middle;
                     }
                     &:last-of-type {
                         text-align: left;
@@ -61,24 +58,13 @@
                 tr {
                     background: $game-details;
                     color: $text-light;
-                    td {
-                        &:first-of-type {
-                            border-top-left-radius: 10px;
-                            border-bottom-left-radius: 10px;
-                            width: 250px;
-                        }
-                        &:last-of-type {
-                            border-top-right-radius: 10px;
-                            border-bottom-right-radius: 10px;
-                        }
-                    }
                 }
             }
             .item-del {
-                background: $secondery;
-                width: 35px;
-                height: 35px;
-                border-radius: 5px;
+                background: $del-bg;
+                box-shadow: $del-shadow;
+                width: 25px;
+                height: 25px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
@@ -86,8 +72,8 @@
                     margin-left: 15px;
                 }
                 cursor: pointer;
-                i {
-                    color: $game-details;
+                .icon {
+                    color: $text-light;
                 }
             }
         }

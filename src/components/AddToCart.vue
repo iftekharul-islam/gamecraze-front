@@ -109,11 +109,13 @@
                         <tr v-for="(item, index) in newCartItems" :key="index">
                             <td scope="col">{{ item.rent.data.game.data.name }}</td>
 <!--                            <td scope="col">{{ item.rent.data.game.data.basePrice.data.base }}</td>-->
-                            <td scope="col">{{ item.rent.data.game.data.basePrice.data.base + ((item.rent.data.game.data.basePrice.data.base * commissionAmount)/100) }}</td>
+                            <td scope="col"><span>৳</span> {{ item.rent.data.game.data.basePrice.data.base + ((item.rent.data.game.data.basePrice.data.base * commissionAmount)/100) }}</td>
                             <td scope="col">{{ item.rent_week }}</td>
                             <td scope="col">
-                              <div class="d-flex align-items-center justify-content-between">{{ item.rent.data.game.data.basePrice.data.base + ((item.rent.data.game.data.basePrice.data.base * commissionAmount)/100) }}
-                                <div class="item-del" @click="onRemoveCartItem(index, item.id)"><i class="fas fa-trash-alt"></i></div>
+                              <div class="d-flex align-items-center justify-content-between">
+                                  <del><span>৳</span> {{ item.rent.data.game.data.basePrice.data.base + ((item.rent.data.game.data.basePrice.data.base * commissionAmount)/100) }}</del>
+                                  <div class="new-price"><span>৳</span> 80</div>
+                                <div class="item-del" @click="onRemoveCartItem(index, item.id)"><i class="fas fa-trash-alt icon"></i></div>
                               </div>
                             </td>
                         </tr>

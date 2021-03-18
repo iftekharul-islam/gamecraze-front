@@ -121,6 +121,15 @@
                     </div>
             </div>
         </nav>
+        <!-- promotion Notification -->
+        <div class="promo-notification">
+            <div class="alert gamehub-warning-bg alert-dismissible fade show mb-0 br-0 text-center text-dark" role="alert">
+               Holy guacamole! <strong> 10% Promotion.</strong> 
+              <button type="button" class="close opa-10" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true" class="x-icon"></span>
+              </button>
+            </div>
+        </div>
 
     </div>
 </template>

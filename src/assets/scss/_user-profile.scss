@@ -470,6 +470,9 @@
             background-size: 15px;
             option {
                 text-transform: capitalize;
+                &:hover {
+                    background: $secondery !important;
+                }
             }
         }
         &.post-rent-btn {

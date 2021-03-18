@@ -624,10 +624,14 @@
 
 // Notification
 .promo-notification {
+    height: 56px;
     .alert {
         @include for-max-991 {
             top: 75px;
             ;
+        }
+        button {
+            top: 5px;
         }
     }
 }

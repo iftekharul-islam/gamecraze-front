@@ -335,44 +335,6 @@
                                                 </ValidationProvider>
                                                 </div>
                                             </div>
-
-                                            <!-- earning amount -->
-                                              <!-- form-group -->
-                                            <div class="form-group post-rent--form-group" v-if="basePrices">
-                                                <label class="post-rent--form-group--label mt-0">Earning Amount:</label>
-                                                <div class="earning-amount post-rent--form-group--input">
-                                                    <div class="earning-amount--content">
-                                                        <table class="table table-borderless">
-                                                            <tbody>
-                                                            <tr class="">
-                                                                <td>Your Estimated earning for 1 week</td>
-                                                                <td>BDT {{ basePrices[1] }}</td>
-                                                            </tr>
-                                                            <tr class="">
-                                                                <td>Your Estimated earning for 2 week</td>
-                                                                <td>BDT {{ basePrices[1] + basePrices[2] }}</td>
-                                                            </tr>
-                                                            <tr class="">
-                                                                <td>Your Estimated earning for 3 week</td>
-                                                                <td>BDT {{ basePrices[1] + basePrices[2] + basePrices[3] }}</td>
-                                                            </tr>
-                                                            </tbody>
-                                                    </table>
-                                                    <!-- warning -->
-                                                    <div class=" mt-2 game-rent-alert">
-                                                        <div class="alert alert-info alert-dismissible game-rent-alert--box">
-                                                            <button type="button" class="close close-modal" data-dismiss="alert" aria-label="Close"></button>
-                                                            <p>
-                                                                If you want to Rent for more weeks. Then renting price will be cyclic like the given price table. So its start from 1st week.
-                                                            </p>
-                                                        </div>
-                                                    </div>
-
-                                                    </div>
-
-                                                </div>
-                                                    
-                                            </div>
                                               <!-- form-group -->
                                             <div class="form-group post-rent--form-group">
                                                 <label class="post-rent--form-group--label" for="DiskCondition">Disk Condition:</label>
@@ -433,12 +395,12 @@
                                                     <ValidationProvider name="Game type" rules="required" v-slot="{ errors }">
                                                     <div class="post-rent--form-group--input--radio-group">
                                                         <div class="custom-radio d-flex ">
-                                                            <input type="radio" value="0" id="digital_copy" name="disk_type" v-model="rentData.disk_type" class="custom-control-input" checked>
+                                                            <input type="radio" value="0" id="digital_copy" name="disk_type" v-model="rentData.disk_type" @click="basePriceSelect(1)" class="custom-control-input">
                                                             <label for="digital_copy" class="custom-control-label"> Digital Copy <span></span></label>
                                                         </div>
 
                                                         <div class="custom-radio d-flex">
-                                                            <input type="radio" value="1" id="physical_copy" name="disk_type" v-model="rentData.disk_type"  class="custom-control-input">
+                                                            <input type="radio" value="1" id="physical_copy" name="disk_type" v-model="rentData.disk_type" @click="basePriceSelect(2)" class="custom-control-input">
                                                             <label for="physical_copy" class="custom-control-label"> Physical Copy <span></span></label>
                                                         </div>
 
@@ -446,6 +408,44 @@
                                                     <span v-if="errors.length" class="error-message platform-error type-error">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
+                                            </div>
+                                            <!-- earning amount -->
+                                            <!-- form-group -->
+<!--                                            <div class="form-group post-rent&#45;&#45;form-group" v-if="basePrices">-->
+                                            <div class="form-group post-rent--form-group" v-if="gameTypePricingState && basePrices">
+                                                <label class="post-rent--form-group--label mt-0">Earning Amount:</label>
+                                                <div class="earning-amount post-rent--form-group--input">
+                                                    <div class="earning-amount--content">
+                                                        <table class="table table-borderless">
+                                                            <tbody>
+                                                            <tr class="">
+                                                                <td>Your Estimated earning for 1 week</td>
+                                                                <td>BDT {{ (basePrices[1] - ( basePrices[1] * gameTypePricing ) /100) }}</td>
+                                                            </tr>
+                                                            <tr class="">
+                                                                <td>Your Estimated earning for 2 week</td>
+                                                                <td>BDT {{ basePrices[1] + basePrices[2] - gameTypePricing  - ((basePrices[1] + basePrices[2] - gameTypePricing)  * gameTypePricing ) /100}}</td>
+                                                            </tr>
+                                                            <tr class="">
+                                                                <td>Your Estimated earning for 3 week</td>
+                                                                <td>BDT {{ basePrices[1] + basePrices[2] + basePrices[3] - gameTypePricing - ((basePrices[1] + basePrices[2] + basePrices[3]) * gameTypePricing)/100 }}</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                        <!-- warning -->
+                                                        <div class=" mt-2 game-rent-alert">
+                                                            <div class="alert alert-info alert-dismissible game-rent-alert--box">
+                                                                <button type="button" class="close close-modal" data-dismiss="alert" aria-label="Close"></button>
+                                                                <p>
+                                                                    If you want to Rent for more weeks. Then renting price will be cyclic like the given price table. So its start from 1st week.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
                                             </div>
                                             <div class="form-group post-rent--form-group post-rent--form-group-img">
                                                 <label class="post-rent--form-group--label">Disk Image:</label>
@@ -727,6 +727,8 @@
                 gamesName: {},
                 platformsName: {},
                 basePrices: false,
+                gameTypePricing: 0,
+                gameTypePricingState: false,
                 diskConditionsName: {},
                 gameName: '',
                 gamePlatform: false,
@@ -753,6 +755,19 @@
             }
         },
         methods: {
+            basePriceSelect(value) {
+                this.gameTypePricingState = true;
+
+                this.gameTypePricing = 0;
+
+                if (value == 1) {
+                    this.gameTypePricing = 20;
+                }
+
+                console.log('gameTypePricing 2');
+                console.log(this.gameTypePricing);
+
+            },
             onDelete(rent) {
                 this.$swal({
                     title: "Rent Post Delete!",
@@ -1032,6 +1047,8 @@
                 this.$api.get('base-price/calculate/' + this.rentData.game.id).then (response =>
                 {
                     this.basePrices = response.data;
+                    console.log('base Prices')
+                    console.log(this.basePrices)
                 })
             },
             onInputChange(text) {

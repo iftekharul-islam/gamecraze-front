@@ -219,7 +219,11 @@
                             <div class="footer-menu-content">
                                 <div class="footer-menu-content--address">
                                     <p class="footer-menu-content--address--text">Email Us</p>
-                                    <p class="footer-menu-content--address--text">contact@augnitive.com</p>
+                                    <p class="footer-menu-content--address--text"><a href="mailto:contact@augnitive.com">contact@augnitive.com</a></p>
+                                </div>
+                                 <div class="footer-menu-content--address">
+                                    <p class="footer-menu-content--address--text">Cell number</p>
+                                    <p class="footer-menu-content--address--text"><a href="tel:+8801823 33654155">01823 33654155</a></p>
                                 </div>
                                 <div class="footer-menu-content--address">
                                     <p class="footer-menu-content--address--text">Office</p>

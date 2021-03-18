@@ -12,3 +12,9 @@ function isNumber(evt) {
     }
     return false;
 }
+
+$(document).ready(function() {
+    $(".x-close").click(function() {
+        $(".promo-notification").remove();
+    });
+});

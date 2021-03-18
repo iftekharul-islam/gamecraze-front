@@ -2306,10 +2306,18 @@ select option:hover {
   background: #FFD715;
 }
 
+.promo-notification {
+  height: 56px;
+}
+
 @media (max-width: 991px) {
   .promo-notification .alert {
     top: 75px;
   }
+}
+
+.promo-notification .alert button {
+  top: 5px;
 }
 
 .slider-section {
@@ -5788,7 +5796,7 @@ html {
   right: 106px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 575px) {
   .user-profile-heading--account-verified {
     right: 40px;
     top: 20px;

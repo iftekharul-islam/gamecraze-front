@@ -6255,7 +6255,7 @@ html {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  padding-left: 20px;
+  padding-left: 19px;
   margin-top: 5px;
 }
 
@@ -6293,6 +6293,10 @@ html {
 
 .post-rent--form-group--input--radio-group .custom-radio .custom-control-label::after {
   top: 7px !important;
+}
+
+.post-rent--form-group--input--radio-group.delivery-radio-group {
+  padding-left: 27px;
 }
 
 .post-rent--form-group--label {

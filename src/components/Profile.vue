@@ -362,7 +362,7 @@
                                             <div class="form-group post-rent--form-group">
                                                 <label class="post-rent--form-group--label mt-0">Delivery type:</label>
                                                 <div class="post-rent--form-group--input">
-                                                    <div class="post-rent--form-group--input--radio-group">
+                                                    <div class="post-rent--form-group--input--radio-group delivery-radio-group">
                                                         <div class="custom-radio d-flex">
                                                             <input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod" class="custom-control-input" checked>
                                                             <label for="cod" class="custom-control-label"> Cash on Delivery <span class="checkbox-style"></span></label>
@@ -393,7 +393,7 @@
                                                 <label class="post-rent--form-group--label mt-0">Game Type:</label>
                                                 <div class="post-rent--form-group--input">
                                                     <ValidationProvider name="Game type" rules="required" v-slot="{ errors }">
-                                                    <div class="post-rent--form-group--input--radio-group">
+                                                    <div class="post-rent--form-group--input--radio-group delivery-radio-group">
                                                         <div class="custom-radio d-flex ">
                                                             <input type="radio" value="0" id="digital_copy" name="disk_type" v-model="rentData.disk_type" @click="basePriceSelect(1)" class="custom-control-input">
                                                             <label for="digital_copy" class="custom-control-label"> Digital Copy <span></span></label>

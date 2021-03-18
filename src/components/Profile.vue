@@ -757,16 +757,11 @@
         methods: {
             basePriceSelect(value) {
                 this.gameTypePricingState = true;
-
                 this.gameTypePricing = 0;
 
                 if (value == 1) {
                     this.gameTypePricing = 20;
                 }
-
-                console.log('gameTypePricing 2');
-                console.log(this.gameTypePricing);
-
             },
             onDelete(rent) {
                 this.$swal({

@@ -424,11 +424,11 @@
                                                             </tr>
                                                             <tr class="">
                                                                 <td>Your Estimated earning for 2 week</td>
-                                                                <td>BDT {{ basePrices[1] + basePrices[2] - gameTypePricing  - ((basePrices[1] + basePrices[2] - gameTypePricing)  * gameTypePricing ) /100}}</td>
+                                                                <td>BDT {{ basePrices[1] + basePrices[2]  - ((basePrices[1] + basePrices[2])  * gameTypePricing )/100}}</td>
                                                             </tr>
                                                             <tr class="">
                                                                 <td>Your Estimated earning for 3 week</td>
-                                                                <td>BDT {{ basePrices[1] + basePrices[2] + basePrices[3] - gameTypePricing - ((basePrices[1] + basePrices[2] + basePrices[3]) * gameTypePricing)/100 }}</td>
+                                                                <td>BDT {{ basePrices[1] + basePrices[2] + basePrices[3] - ((basePrices[1] + basePrices[2] + basePrices[3]) * gameTypePricing)/100 }}</td>
                                                             </tr>
                                                             </tbody>
                                                         </table>

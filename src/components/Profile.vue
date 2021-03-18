@@ -649,8 +649,8 @@
                                                     <tr>
                                                     <th scope="col">Transaction id</th>
                                                     <th scope="col">Date</th>
-                                                    <th scope="col">withdrawal amount</th>
-                                                    <th scope="col">withdrawal method</th>
+                                                    <th scope="col">Withdrawal amount</th>
+                                                    <th scope="col">Withdrawal method</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>

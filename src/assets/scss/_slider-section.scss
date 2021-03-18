@@ -28,7 +28,7 @@
     }
     h6 {
         margin-bottom: 40px;
-        line-height: 24px;
+        line-height: 30px;
         @include for-max-575 {
             font-weight: 400;
             font-size: 16px;
@@ -70,6 +70,7 @@
     font-style: italic;
     font-weight: bold;
     text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
+    @include roboto-con;
     span {
         color: $secondery;
     }

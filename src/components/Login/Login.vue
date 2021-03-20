@@ -296,6 +296,7 @@
             },
             hidePopUp() {
                 this.$store.dispatch('hidePasswordResetPopup', false)
+                this.$router.push('/')
             },
             clearErrorMessages () {
                 this.$store.commit('setWrongOTP', false);

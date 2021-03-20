@@ -80,13 +80,17 @@
                                                 <td>Select Rent Week:</td>
                                                 <td>
                                                   <ValidationProvider name="Rent Week" rules="required" v-slot="{ errors }">
-                                                    <select class="form-control" id="exampleFormControlSelect1" v-if="modalData" v-model="form.week">
+                                                    <select class="form-control" id="exampleFormControlSelect1" v-if="modalData" @change="rentCost(form.week, modalData.disk_type, modalData.game_id)" v-model="form.week">
                                                         <option value="" selected disabled>Please select rent week</option>
                                                         <option v-for="n in modalData.max_number_of_week" :value="n" :key="n">For {{n}} Week</option>
                                                     </select>
                                                     <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                   </ValidationProvider>
                                                 </td>
+                                            </tr>
+                                            <tr v-if="form.week">
+                                                <td>Rent Cost:</td>
+                                                <td><span>৳ </span>{{ price }}</td>
                                             </tr>
                                             <tr v-if="form.week">
                                                 <td>Rent Start Date:</td>
@@ -169,6 +173,7 @@
             return {
                 rentPosts: [],
                 user_type: 0,
+                price: 0,
                 rents: [],
                 lends: [],
                 show: false,
@@ -221,54 +226,67 @@
           }
         },
         methods: {
-          setModalData(rent) {
-            if (this.checkIfExistsInCart(rent.game.data.id)) {
-              this.isExistsInCart = true;
-            }
-            this.modalData = rent;
-          },
-          formattedDate(date) {
-              const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-              let formattedDate = new Date(date)
-              return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
-          },
-          onAddToCart() {
-              var config = {
-                  headers: {
-                      'Authorization': 'Bearer ' + this.$store.state.token
-                  }
-              };
-
-              let data = {
-                  rent_id: this.modalData.id,
-                  rent_week: this.form.week,
-                  address: this.form.address,
-              };
-
-              this.$api.post('cart-item/create', data, config).then(response => {
-                  if (response.data.error == true){
-                      this.$swal('Game is already in the cart');
-                  }
-                  this.$store.dispatch('addToCart', {
-                      rent: this.modalData,
-                      lendWeek: this.form.week,
-                      deliveryType: this.form.deliveryType,
-                      deliveryAddress: this.form.address
-                  });
-                  this.modalData = false;
-              })
-          },
-            checkIfExistsInCart(gameId) {
-                    if (this.cartItems) {
-                        let isExists = this.cartItems.some(item => {
-                            if (item.rent.data.game_id === gameId) {
-                                return true;
-                            }
-                        });
-
-                        return isExists;
+            rentCost(week, disk_type, game_id) {
+                this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
+                    this.price = response.data.price.discount_price;
+                })
+            },
+            setModalData(rent) {
+                if (this.checkIfExistsInCart(rent.game.data.id)) {
+                    this.isExistsInCart = true;
+                }
+                this.modalData = rent;
+                console.log('modal data');
+                console.log(this.modalData);
+            },
+            formattedDate(date) {
+                const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                let formattedDate = new Date(date)
+                return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
+            },
+            onAddToCart() {
+                var config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
                     }
-                    return false;
+                };
+
+                let data = {
+                    rent_id: this.modalData.id,
+                    rent_week: this.form.week,
+                    address: this.form.address,
+                };
+
+                this.$api.post('cart-item/create', data, config).then(response => {
+                    if (response.data.error == true) {
+                        this.$swal('Game is already in the cart');
+                    }
+                    this.$store.dispatch('addToCart', {
+                        rent: this.modalData,
+                        lendWeek: this.form.week,
+                        deliveryType: this.form.deliveryType,
+                        deliveryAddress: this.form.address
+                    });
+                    // $('#rent_now').prop('aria-modal', false);
+                    // $('#rent_now').prop('aria-hidden', true);
+                    // $('#rent_now').modal('hide');
+                    // this.$emit('save');
+                    this.modalData = false;
+                })
+            },
+            checkIfExistsInCart(gameId) {
+                console.log('in the check exists section');
+                console.log(this.cartItems);
+                if (this.cartItems != null) {
+                    let isExists = this.cartItems.some(item => {
+                        if (item.game_id === gameId) {
+                            return true;
+                        }
+                    });
+
+                    return isExists;
+                }
+                return false;
             }
             // checkIfExistsInCart(gameId) {
             //     let cartItems = localStorage.getItem('cartItems');
@@ -295,8 +313,9 @@
                     'Authorization': 'Bearer ' + this.$store.state.token
                 }
             };
-            this.$api.get('cart-items?include=user,rent.game', config).then(response => {
-                    this.cartItems = response.data.data;
+            this.$api.get('cart-items', config).then(response => {
+                console.log(this.cartItems)
+                    this.cartItems = response.data.data.cartItems;
             });
 
             this.$api.get('rent-posted-users/' + this.slug + '?include=game,game.basePrice,platform,diskCondition,user,checkpoint.area.thana.district').then(response => {

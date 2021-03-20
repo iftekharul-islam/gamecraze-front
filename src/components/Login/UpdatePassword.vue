@@ -126,7 +126,6 @@
             validateToken() {
                 if (this.token) {
                     this.$api.get('validate-token/' +  this.token).then(response => {
-                        console.log('verify: ', response);
                         if (response.data.error === false) {
                             this.isTokenValid = true;
                             this.show = true;

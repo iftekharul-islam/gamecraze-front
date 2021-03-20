@@ -169,6 +169,7 @@
           this.$router.push({query: {}});
           this.checkedPlatforms = [];
           this.checkedCategories = [];
+          this.checkedDiskType = [];
           this.fetchFilteredGames();
           this.$root.$emit('clearSearchKey');
           this.toggleMenu();

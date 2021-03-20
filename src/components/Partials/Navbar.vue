@@ -109,11 +109,11 @@
                                         
                         </div>
                         <div class="gamehub-input-group--content">
-                            <a class="gamehub-input-group--content--cart"  href="/cart">
+                            <router-link class="gamehub-input-group--content--cart" to="/cart">
                               <i class="fas fa-shopping-cart gamehub-input-group--content--cart--icon"></i>
                               <div class="badge navbar-badge" v-if="totalItems == 0"></div>
-                              <div class="badge gamehub-badge navbar-badge" v-else>{{ totalItems }}</div>
-                            </a>
+                              <div class="badge gamehub-badge navbar-badge" v-if="totalItems !== 0">{{ totalItems }}</div>
+                            </router-link>
 
                         </div>
 
@@ -164,13 +164,25 @@
                         }
                     };
                     this.$api.get('cart-items', config).then(response => {
-                        this.totalItems = response.data.data.length;
+                        this.totalItems = response.data.data.cartItems.length;
                     });
 
                     this.$api.get('user/details', config).then(response =>{
                         this.user = response.data.data;
                     });
+
+                    this.$store.watch(
+                        (state)=>{
+                            return this.totalItems // could also put a Getter here
+                        },
+                        (newValue, oldValue)=>{
+                            this.totalItems = newValue;
+                        },
+                        //Optional Deep if you need it
+                        { deep:true }
+                    );
                 }
+                this.totalItems = 0;
             },
           clickProfile() {
             this.$root.$emit('rentPost');
@@ -223,6 +235,15 @@
             }
           }
         },
+        watch: {
+            "$route": {
+                handler: function(value) {
+                    this.authData()
+                },
+                deep: true,
+                immediate: true,
+            },
+        },
         computed: {
           auth () {
               return this.$store.getters.ifAuthenticated
@@ -238,18 +259,6 @@
           }
         },
         created() {
-            // let config = {
-            //     headers: {
-            //         'Authorization': 'Bearer ' + this.$store.state.token
-            //     }
-            // };
-            // this.$api.get('cart-items', config).then(response => {
-            //     this.totalItems = response.data.data.length;
-            // });
-            //
-            // this.$api.get('user/details', config).then(response =>{
-            //     this.user = response.data.data;
-            // });
             this.authData();
             this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {
@@ -267,17 +276,6 @@
             this.$root.$on('clearSearchKey', () => {
               this.query = '';
             });
-
-            this.$store.watch(
-                (state)=>{
-                    return this.$store.state.itemsInCart // could also put a Getter here
-                },
-                (newValue, oldValue)=>{
-                  // this.totalItems = newValue;
-                },
-                //Optional Deep if you need it
-                { deep:true }
-            );
         },
         mounted() {
             this.$root.$on("loggedIn", () => {

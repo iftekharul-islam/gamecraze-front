@@ -296,7 +296,6 @@ export const storage = {
             localStorage.removeItem('setupPasswordUser')
 
             router.push('/login').then(err => {
-                location.reload();
             });
         },
         verifyOtp({commit}, payload) {
@@ -369,7 +368,7 @@ export const storage = {
                         localStorage.setItem('token', response.data.token)
                         localStorage.setItem('userId', JSON.stringify(response.data.user.id))
                         localStorage.setItem('user', JSON.stringify(response.data.user))
-                        router.push('/').catch(err => {});
+                        router.push('/reset-password').catch(err => {});
                     }
                     commit('setWrongOTP', response.data.message === 'wrongOtp')
                     commit('setTimeout', response.data.message === 'timeout')
@@ -477,7 +476,7 @@ export const storage = {
                     items = res;
                 }
 
-                axios.get(process.env.VUE_APP_GAMEHUB_BASE_API + 'base-price/game-calculation/' + rentDetails.rent.game.data.id + '/' + rentDetails.lendWeek ).then (response => {
+                axios.get(process.env.VUE_APP_GAMEHUB_BASE_API + 'base-price/game-calculation/' + rentDetails.rent.game.data.id + '/' + rentDetails.lendWeek + '/' + rentDetails.rent.disk_type).then (response => {
                     if (response.status != 200) {
                             toaster.warning('Could not add to cart');
                             return;

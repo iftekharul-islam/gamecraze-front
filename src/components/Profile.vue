@@ -203,7 +203,7 @@
                                             </thead>
                                             <tbody>
                                             <tr v-for="(lend, index) in lends" :key="index">
-                                                <td v-if="lend.rent">{{ lend.rent.game.name }}</td>
+                                                <td v-if="lend.rent">{{ lend.rent.game.name }} <div class="disk-type mt-4 text-secondery">Digital Copy</div></td>
                                                 <td>{{ lend.lend_week }}</td>
                                                 <td>{{ formattedDate(lend.lend_date) }}</td>
                                                 <td v-if="lend.rent.disk_type == 1 && lend.status === 3">

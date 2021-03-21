@@ -122,8 +122,8 @@
                 <h6 class="mb-4">You Might Also Like</h6>
                 <div id="owl-related" class="owl-carousel owl-theme" v-if="relatedGames">
                     <div class="item" v-for="(related, index) in relatedGames" :key="index">
-                      <router-link :to="{ path: '/game-details/' + related.game.data.slug}" @click.native="scrollToTop()" class="games-categories-section--games--game-card-box">
-                        <div class="game-card">
+                      <router-link :to="{ path: '/game-details/' + related.game.data.slug}" @click.native="scrollToTop()" class="games-categories-section--games--game-card-box game-card-hover-outer">
+                        <div class="game-card game-card-hover-inner">
                             <a class="display-image" href="javascript:void(0)">
                               <img :src="related.game.data.poster_url" :alt="related.game.data.name" class="img-fluid">
                             </a>

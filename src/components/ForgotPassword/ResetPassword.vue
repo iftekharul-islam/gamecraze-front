@@ -5,9 +5,7 @@
                 <div class="row">
                     <div class="col-md-6 col-xl-4 mx-auto">
                         <div class="registration-form">
-                            <ul class="mb-3 d-flex justify-content-center align-items-center">
-                                <h3 class="card-title text-center text-white">Reset Password</h3>
-                            </ul>
+                                <h2 class=" text-center text-white mb-5">Reset Password</h2>
                             <ValidationObserver v-slot="{ handleSubmit }">
                                 <form method="post" @submit.prevent="handleSubmit(onReset)">
                                     <!-- password -->
@@ -30,8 +28,8 @@
 
                                     <!-- sign in button -->
                                     <div class="text-center sign-btn">
-                                        <button class="btn btn-primary mb-2" type="submit" :disabled=false>
-                                            Reset
+                                        <button class="btn btn--secondery mb-2 br-0 m-auto" type="submit" :disabled=false>
+                                            <span>Reset password</span>
                                             <span v-if=false class="spinner-border spinner-border-sm"></span>
                                         </button>
                                     </div>

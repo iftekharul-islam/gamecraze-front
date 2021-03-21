@@ -80,7 +80,7 @@
                                 <img src="../assets/img/rented/dummy-image.jpg" alt="no-image">
                         </router-link>
                         <div class="favorite-games-categories d-flex justify-content-center align-items-center">
-                            <a :href="'/games?platforms=' + popular.platform.data.slug"><img :src="popular.platform.data.url" :alt="popular.platform.data.name" class="img-fluid"></a>
+                            <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in popular.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>
                         </div>
                     </div>
                 </div>
@@ -138,7 +138,7 @@
                                 </div>
                             </div>
 
-                            <div class="notice-box" v-for="(article, index) in articles" :key="index">
+                            <div class="notice-box" v-for="(article, index) in articles" :key="index" v-if="featuredArticle.id !== article.id">
                                 <img :src=article.thumbnail :alt="article.title" class="w-100">
                                 <div class="noticed-details">
                                     <router-link :to="{ name: 'NewsStory', params: { id: article.id }}" class="small-readmore"><span>Read More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
@@ -157,7 +157,7 @@
             <div class="container">
                 <div class="col-12 p-0">
                      <div id="owl-notice-mobile" class="owl-carousel owl-theme">
-                         <div class="item"  v-for="(article, index) in articles" :key="index">
+                         <div class="item"  v-for="(article, index) in articles" :key="index" v-if="featuredArticle.id !== article.id">
                              <div class="notice-box">
                                 <img :src=article.thumbnail :alt="article.title" class="w-100">
                                 <div class="noticed-details">
@@ -527,7 +527,7 @@
                 });
             },
             getRentGames: function () {
-                this.$api.get('games/popular-games?include=game.assets,platform').then(response => {
+                this.$api.get('games/popular-games?include=game.assets,game.platforms').then(response => {
                     var vm = this;
                     vm.populars = response.data.data;
                     Vue.nextTick(function(){
@@ -554,7 +554,7 @@
                 });
             },
             getArticles: function () {
-                this.$api.get('top-articles?number=4').then(response => {
+                this.$api.get('top-articles?number=5').then(response => {
                     if (response.status == 200) {
                         let vm = this;
                         vm.articles = response.data.data;
@@ -637,8 +637,8 @@
                     this.getTrendingGames();
                     this.getNewGames();
                     this.getRentGames();
+                    this.getFeaturedArticles();
                     this.getArticles();
-                    this.getFeaturedArticles(1);
                     this.getFeturedVideo(5);
                     this.featuredPlatforms(4);
                 }
@@ -655,8 +655,8 @@
             this.getTrendingGames();
             this.getNewGames();
             this.getRentGames();
+            this.getFeaturedArticles();
             this.getArticles();
-            this.getFeaturedArticles(1);
             this.getFeturedVideo(5);
             this.featuredPlatforms(4);
 

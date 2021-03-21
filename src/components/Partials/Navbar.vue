@@ -24,7 +24,7 @@
                             <router-link @click.native="onMenuItemClick()" class="nav-link active router_link" to="/" >Home<span class="sr-only">(current)</span></router-link>
                         </li>
                         <li>
-                            <router-link @click.native="onMenuItemClick()" class="router_link" to="/games" >Games</router-link>
+                            <router-link @click.native="onMenuItemClick()" class="router_link" to="/games" >My Game</router-link>
                         </li>
                         <li>
                             <router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">Post For Rent</router-link>
@@ -49,7 +49,7 @@
                                   :get-suggestion-value="getSuggestionValue"
                                   :input-props="{id:'autosuggest__input',class:'auto-suggest-menu'}">
                                 <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
-                                  {{suggestion.item.name}}
+                                  {{suggestion.item.game.data.name}}
                                 </div>
                               </vue-autosuggest>
                             </div>
@@ -204,22 +204,22 @@
             // event fired when clicking on the input
           },
           onSelected(item) {
-            this.selected = item.item;
+            this.selected = item.item.game.data;
             this.query = this.selected.name;
             this.$router.push('/game-details/' + this.selected.slug);
           },
           onInputChange(text) {
             // event fired when the input changes
-            console.log(text)
+            // console.log(text)
           },
           /**
            * This is what the <input/> value is set to when you are selecting a suggestion.
            */
           getSuggestionValue(suggestion) {
-            return suggestion.item.name;
+            return suggestion.item.game.data.name;
           },
           focusMe(e) {
-            console.log(e) // FocusEvent
+            // console.log(e) // FocusEvent
           }, 
           // totalCartItems(){
           //   let cartItems = localStorage.getItem('cartItems');
@@ -252,7 +252,7 @@
             return [
               {
                 data: this.games.filter(option => {
-                  return option.name.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
+                  return option.game.data.name.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
                 })
               }
             ];
@@ -269,7 +269,7 @@
                 })
             });
             
-            this.$api.get('games?include=platforms').then(response =>{
+            this.$api.get('all-rent-games?include=game.platforms').then(response =>{
               this.games = response.data.data;
             });
 

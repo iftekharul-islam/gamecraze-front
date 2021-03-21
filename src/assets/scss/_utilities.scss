@@ -1591,3 +1591,61 @@ select {
         }
     }
 }
+
+// game hover effect
+.game-card-hover-outer {
+    position: relative;
+    display: block;
+    // after
+    // before
+    &::after,
+    &::before {
+        content: "";
+        width: 0;
+        height: 4px;
+        position: absolute;
+        transition: all 0.5s ease-in;
+        background: $secondery;
+    }
+    &::before {
+        right: 0;
+        top: 0;
+    }
+    &::after {
+        left: 0;
+        bottom: 0;
+    }
+    // .game-card
+    .game-card-hover-inner {
+        &::after,
+        &::before {
+            content: "";
+            width: 4px;
+            height: 0;
+            position: absolute;
+            transition: all 0.5s ease-in;
+            background: $secondery;
+        }
+        &::before {
+            left: 0;
+            bottom: 0;
+        }
+        &::after {
+            right: 0;
+            top: 0;
+        }
+    }
+    &:hover {
+        color: inherit;
+        &::after,
+        &::before {
+            width: 100%;
+        }
+        .game-card-hover-inner {
+            &::after,
+            &::before {
+                height: 100%;
+            }
+        }
+    }
+}

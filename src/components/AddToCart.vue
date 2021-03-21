@@ -15,6 +15,7 @@
                       <thead>
                         <tr>
                             <td scope="col">Item</td>
+                            <td scope="col">Type</td>
                             <td scope="col">Rent Week</td>
                              <td scope="col">Price</td>
                         </tr>
@@ -23,9 +24,7 @@
 
                         <tr v-for="(item, index) in newCartItems" :key="index">
                             <td scope="col">{{ item.game_name }}</td>
-                            <!-- <td scope="col"><span>৳ </span>
-                                {{ item.discount_price }}
-                            </td> -->
+                            <td scope="col">Digital</td>
                             <td scope="col">{{ item.rent_week }}</td>
                             <td scope="col">
                               <div class="d-flex align-items-center justify-content-between">

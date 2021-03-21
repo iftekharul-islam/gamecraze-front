@@ -1489,6 +1489,10 @@ select option:hover {
   background: #FFD715;
 }
 
+select option {
+  font-family: roboto;
+}
+
 .owl-nav button .arrow {
   -webkit-transition: all .3s ease-in;
   transition: all .3s ease-in;
@@ -4702,7 +4706,6 @@ html {
 .games-header-section--content p {
   font-weight: normal;
   margin-bottom: 0;
-  font-family: circular-book;
   opacity: .97;
 }
 
@@ -4717,7 +4720,6 @@ html {
 
 .games-header-section--platforms p {
   margin-right: 10px;
-  font-family: circular-book;
 }
 
 .games-header-section--platforms a {

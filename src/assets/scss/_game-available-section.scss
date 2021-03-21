@@ -250,3 +250,9 @@
         top: 8px;
     }
 }
+
+// new price
+.new-price {
+    color: $secondery;
+    @include gil-bold;
+}

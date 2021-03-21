@@ -1535,6 +1535,13 @@ select option:hover {
     background: $secondery;
 }
 
+// select option
+select {
+    option {
+        font-family: roboto;
+    }
+}
+
 // All slider icon hover
 .owl-nav {
     button {

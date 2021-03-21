@@ -34,7 +34,7 @@
                                             <label for="firstName">First name</label>
                                             <ValidationProvider name="firstName" rules="required" v-slot="{ errors }">
                                                 <input type="text" class="form-control" id="firstName" value="" v-model="form.name">
-                                                <span class="error-message">{{ errors[0] }}</span>
+                                                <span v-if="errors.length" class="error-message top-6">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
                                                <!-- Last Name -->
@@ -43,7 +43,7 @@
                                                 <label for="LastName">Last name</label>
                                                 <ValidationProvider name="LastName" rules="required" v-slot="{ errors }">
                                                     <input type="text" class="form-control" id="LastName" value="" v-model="form.lastName">
-                                                    <span class="error-message">{{ errors[0] }}</span>
+                                                    <span v-if="errors.length" class="error-message top-6">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
                                     </div>

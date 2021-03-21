@@ -554,7 +554,7 @@
                 });
             },
             getArticles: function () {
-                this.$api.get('top-articles?number=5').then(response => {
+                this.$api.get('top-articles?number=4').then(response => {
                     if (response.status == 200) {
                         let vm = this;
                         vm.articles = response.data.data;

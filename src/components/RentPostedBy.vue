@@ -235,12 +235,12 @@
                 })
             },
             setModalData(rent) {
+                this.form.week = '';
+
                 if (this.checkIfExistsInCart(rent.game.data.id)) {
                     this.isExistsInCart = true;
                 }
                 this.modalData = rent;
-                console.log('modal data');
-                console.log(this.modalData);
             },
             formattedDate(date) {
                 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];

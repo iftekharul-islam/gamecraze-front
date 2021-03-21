@@ -21,10 +21,10 @@
                 <div class="collapse navbar-collapse custom-collapse gamehub-menu-collapse" id="navbarSupportedContent" @click="modal = false">
                     <ul class="">
                         <li class="active">
-                            <router-link @click.native="onMenuItemClick()" class="nav-link active router_link" to="/" >Home<span class="sr-only">(current)</span></router-link>
+                            <router-link @click.native="onMenuItemClick()" class="nav-link active router_link" to="/" >My Game<span class="sr-only">(current)</span></router-link>
                         </li>
                         <li>
-                            <router-link @click.native="onMenuItemClick()" class="router_link" to="/games" >My Game</router-link>
+                            <router-link @click.native="onMenuItemClick()" class="router_link" to="/games" >Games</router-link>
                         </li>
                         <li>
                             <router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">Post For Rent</router-link>

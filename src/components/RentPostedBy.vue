@@ -47,7 +47,7 @@
                                         <tr>
                                             <td>Platform:</td>
                                             <td v-if="modalData">
-                                                <img :src="modalData.platform.data.url" alt="ps4">
+                                                <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in modalData.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name" class="mr-2"></a>
                                             </td>
                                         </tr>
                                         <tr>
@@ -318,7 +318,7 @@
                     this.cartItems = response.data.data.cartItems;
             });
 
-            this.$api.get('rent-posted-users/' + this.slug + '?include=game,game.basePrice,platform,diskCondition,user,checkpoint.area.thana.district').then(response => {
+            this.$api.get('rent-posted-users/' + this.slug + '?include=game,game.basePrice,game.platforms,diskCondition,user,checkpoint.area.thana.district').then(response => {
                 this.rentPosts = response.data.data;
             });
 

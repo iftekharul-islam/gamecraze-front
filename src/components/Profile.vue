@@ -296,7 +296,7 @@
                                                 <label for="rentedWeek" class=" label-padding post-rent--form-group--label">Max Rented Week:</label>
                                                 <div class=" post-rent--form-group--input">
                                                     <ValidationProvider name="rented week" rules="required|integer|min_value:1" v-slot="{ errors }">
-                                                        <input type="number" class="form-control renten-input" id="rentedWeek" min="1" max="5" v-model="rentData.max_week">
+                                                        <input type="number" class="form-control renten-input" id="rentedWeek" min="1" max="10" v-model="rentData.max_week">
                                                         <!-- Plus Minus icon -->
                                                        <div class="post-rent--form-group--input--plus-minus">
                                                            <div @click="adjustRentedWeek('increase')"> <i class="fa fa-angle-up rented-plus icon" ></i></div>
@@ -892,7 +892,7 @@
                     }
                     
                     this.$store.dispatch('updateUserDetails', this.form);
-                    this.$toaster.success("Profile Update Successful!");
+                    this.$toaster.success("Profile Updated!");
                     setTimeout(function(){
                         // window.location.reload();
                         $('#v-pills-edit-profile-tab').removeClass('active');

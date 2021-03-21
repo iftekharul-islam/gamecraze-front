@@ -19,7 +19,7 @@
                 </div>
                 <!-- row -->
                 <div class="row">
-                    <div v-for="(item, index) in news" :key="item.id" :class="{ 'col-md-6 mb-4': (index == 1 || index == 2) , 'col-md-4 mb-4' : (index != 1 || index != 2) }" v-if="featured.id !== item.id">
+                    <div v-for="(item, index) in news" :key="item.id" class="col-md-4 mb-4" v-if="featured.id !== item.id">
                         <router-link :to="{ name: 'NewsStory', params: { id: item.id }}" class="newsroom-section--content-box">
                             <div class="newsroom-section--content-box--img">
                                 <img :src=item.thumbnail :alt=item.title class="w-100 img-fluid">
@@ -36,26 +36,26 @@
                     </div>
                 </div>
             </div>
-            <div class="view-all-btn newsroom-pagination mt-5" v-if="totalPage > 1">
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <li v-if="currentPage > 1" class="page-item">
-                            <a class="page-link" href="javascript:void()" @click="prevPage" aria-label="Previous">
-                                <span aria-hidden="true"><i class="fas fa-arrow-left"></i></span>
-                            </a>
-                        </li>
-                        <li class="page-item" v-for="index in totalPage" :key="index">
-                            <a :class="{ 'page-link active': currentPage == index , 'page-link': currentPage != index }" href="javascript:void(0)" @click="setPage(index)">{{ index }}</a>
-                        </li>
+<!--            <div class="view-all-btn newsroom-pagination mt-5" v-if="totalPage > 1">-->
+<!--                <nav aria-label="Page navigation example">-->
+<!--                    <ul class="pagination">-->
+<!--                        <li v-if="currentPage > 1" class="page-item">-->
+<!--                            <a class="page-link" href="javascript:void()" @click="prevPage" aria-label="Previous">-->
+<!--                                <span aria-hidden="true"><i class="fas fa-arrow-left"></i></span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                        <li class="page-item" v-for="index in totalPage" :key="index">-->
+<!--                            <a :class="{ 'page-link active': currentPage == index , 'page-link': currentPage != index }" href="javascript:void(0)" @click="setPage(index)">{{ index }}</a>-->
+<!--                        </li>-->
 
-                        <li  v-if="currentPage < totalPage" class="page-item">
-                            <a class="page-link" href="javascript:void(0)" @click="nextPage" aria-label="Next">
-                                <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-            </div>
+<!--                        <li  v-if="currentPage < totalPage" class="page-item">-->
+<!--                            <a class="page-link" href="javascript:void(0)" @click="nextPage" aria-label="Next">-->
+<!--                                <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>-->
+<!--                            </a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </nav>-->
+<!--            </div>-->
         </section>
     </div>
 </template>
@@ -75,11 +75,12 @@
         },
         methods: {
             getNews: function(perPage, order = 'DESC') {
-                this.$api.get('articles?perPage=' + perPage + '&order=' + order + '&page=' + this.currentPage).then(response => {
+                // this.$api.get('articles?perPage=' + perPage + '&order=' + order + '&page=' + this.currentPage).then(response => {
+                this.$api.get('articles').then(response => {
                     if (response.status == 200) {
                         this.news = response.data.data;
-                        this.currentPage = response.data.meta.pagination.current_page;
-                        this.totalPage = response.data.meta.pagination.total_pages;
+                        // this.currentPage = response.data.meta.pagination.current_page;
+                        // this.totalPage = response.data.meta.pagination.total_pages;
                         return;
                     }
 
@@ -129,8 +130,8 @@
         },
         created() {
             window.scrollTo(0,0);
-            this.getNews(this.perPage, 'DESC');
             this.getFeaturedNews(1);
+            this.getNews(this.perPage, 'DESC');
         }
     }
 </script>

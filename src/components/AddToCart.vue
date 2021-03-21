@@ -15,18 +15,17 @@
                       <thead>
                         <tr>
                             <td scope="col">Item</td>
-                            <td scope="col">Price</td>
                             <td scope="col">Rent Week</td>
-                            <td scope="col">Subtotal</td>
+                             <td scope="col">Price</td>
                         </tr>
                       </thead>
                       <tbody >
 
                         <tr v-for="(item, index) in newCartItems" :key="index">
                             <td scope="col">{{ item.game_name }}</td>
-                            <td scope="col"><span>৳ </span>
+                            <!-- <td scope="col"><span>৳ </span>
                                 {{ item.discount_price }}
-                            </td>
+                            </td> -->
                             <td scope="col">{{ item.rent_week }}</td>
                             <td scope="col">
                               <div class="d-flex align-items-center justify-content-between">
@@ -90,7 +89,7 @@
                           </div>
                            <!-- Place Order button -->
                             <div class="checkout-btn">
-                                <button class="btn--cart-btn w-100" :disabled="isLoading">
+                                <button class="btn--cart-btn w-100 gil-bold" :disabled="isLoading">
                                     Place order
                                     <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
                                 </button>

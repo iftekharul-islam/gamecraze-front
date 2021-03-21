@@ -1393,6 +1393,16 @@ html {
     height: 100%;
 }
 
+// text-area
+textarea {
+    &:focus {
+        background: $secondery;
+        color: $text-light;
+        @include gil-medium;
+        opacity: 1;
+    }
+}
+
 // text select color
 ::selection {
     background-color: $secondery;
@@ -1426,6 +1436,27 @@ html {
 
 input::placeholder {
     color: $gray;
+}
+
+// input auto fill
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px $game-details inset !important;
+    -webkit-text-fill-color: $text-light !important;
+}
+
+// table
+table {
+    thead {
+        tr {
+            td,
+            th {
+                @include gil-bold;
+            }
+        }
+    }
 }
 
 // MOdal clode button

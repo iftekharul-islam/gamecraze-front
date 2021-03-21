@@ -60,6 +60,11 @@
                     color: $text-light;
                 }
             }
+            thead {
+                td {
+                    @include gil-bold;
+                }
+            }
             .item-del {
                 background: $del-bg;
                 box-shadow: $del-shadow;

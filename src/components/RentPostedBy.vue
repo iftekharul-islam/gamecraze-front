@@ -2,6 +2,7 @@
     <div>
         <section class="game-available-section">
             <div class="container">
+                <h2 class="text-center mb-5">Available Right Now!</h2>
                 <div class="game-available-section--table">
                     <table class="table table-borderless rented-dashbord">
                         <thead class="thead-dark">
@@ -12,6 +13,7 @@
                             <th scope="col">Disk type</th>
                             <th scope="col">Available From</th>
                             <th scope="col">Available For</th>
+                            <th scope="col">Price for 1st week</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -27,6 +29,7 @@
                             <td scope="col" v-else>Digital Disk</td>
                             <td scope="col">{{ formattedDate(rent.availability_from_date) }}</td>
                             <td scope="col">{{ rent.max_number_of_week}} week(s)</td>
+                            <td> <del class="mr-4"><span> ৳</span> 250</del> <span class="new-price"><span>৳</span> 200</span></td>
                         </tr>
                         </tbody>
                     </table>

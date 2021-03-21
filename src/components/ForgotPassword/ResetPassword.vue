@@ -15,7 +15,7 @@
                                         <label for="gamepassword1" class="sr-only">Password</label>
                                         <ValidationProvider name="password" rules="required|min:8" v-slot="{ errors }">
                                             <input type="password" class="form-control mb-2" id="gamepassword1" placeholder="Password" v-model="form.password">
-                                            <span class="error-message">{{ errors[0] }}</span>
+                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                     </div>
 
@@ -24,7 +24,7 @@
                                         <label for="gamepassword2" class="sr-only">Confirm Password</label>
                                         <ValidationProvider name="confirm" rules="required|min:8|confirmed:password" v-slot="{ errors }">
                                             <input type="password" class="form-control mb-2" id="gamepassword2" placeholder="Confirm Password" v-model="form.confirmPassword">
-                                            <span class="error-message">{{ errors[0] }}</span>
+                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                     </div>
 

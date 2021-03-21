@@ -1160,6 +1160,10 @@
   padding-bottom: 3.125rem;
 }
 
+.top-6 {
+  top: 6px;
+}
+
 .br-0 {
   border-radius: 0;
 }

@@ -340,9 +340,8 @@
                 paymentMethod: this.paymentMethod,
                 cartItems: this.newCartItems,
                 deliveryCharge: this.deliveryCharge,
-                totalAmount: this.totalAmount,
+                totalAmount: this.totalPrice,
             };
-
             this.$api.post('lend-game', data, config).then(response => {
                 if (response.data.error === false) {
                     this.$store.dispatch('clearCart');

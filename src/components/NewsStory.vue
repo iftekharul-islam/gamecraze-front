@@ -12,7 +12,7 @@
                             <div class="news-story-section--heading--icon">
                                 <a target="_blank" :href="'https://www.facebook.com/sharer/sharer.php?u=' + currentPageUrl"><i class="fab fa-facebook-f icon"></i></a>
                                 <a target="_blank" :href="'https://twitter.com/intent/tweet?url=' + currentPageUrl"><i class="fab fa-twitter icon"></i></a>
-                                <a target="_blank" href="https://www.linkedin.com/sharing/share-offsite/?url="><i class="fab fa-linkedin-in  icon"></i></a>
+                                <a target="_blank" :href="'https://www.linkedin.com/sharing/share-offsite/?url=' + currentPageUrl"><i class="fab fa-linkedin-in  icon"></i></a>
                             </div>
                         </div>
                     </div>

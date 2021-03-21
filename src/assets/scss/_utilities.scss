@@ -1606,6 +1606,9 @@ select {
         position: absolute;
         transition: all 0.5s ease-in;
         background: $secondery;
+        @include for-max-575 {
+            transition: all 0.3s ease-in;
+        }
     }
     &::before {
         right: 0;
@@ -1625,6 +1628,9 @@ select {
             position: absolute;
             transition: all 0.5s ease-in;
             background: $secondery;
+            @include for-max-575 {
+                transition: all 0.3s ease-in;
+            }
         }
         &::before {
             left: 0;
@@ -1646,6 +1652,56 @@ select {
             &::before {
                 height: 100%;
             }
+        }
+    }
+}
+
+// checkbox custom
+.checkbox-parents {
+    position: relative;
+    &--input {
+        position: absolute;
+        left: 0;
+        z-index: -1;
+        width: 1rem;
+        height: 1.25rem;
+        opacity: 0;
+        &:checked {
+            &~.checkbox-parents--label {
+                &::after {
+                    // border-color: red;
+                    // background: red;
+                }
+                &::before {
+                    border: solid $secondery;
+                    border-width: 0 0px 2px 2px;
+                    transform: rotate(-45deg);
+                    top: 9px;
+                    background: transparent;
+                    width: 10px;
+                    height: 5px;
+                    left: -26px;
+                    box-shadow: none;
+                    z-index: 9;
+                }
+            }
+        }
+    }
+    &--label {
+        position: relative;
+        cursor: pointer;
+        &::after,
+        &::before {
+            position: absolute;
+            content: '';
+            width: 20px;
+            height: 20px;
+            left: -31px;
+            top: 2px;
+        }
+        &::after {
+            border: 1px solid $secondery;
+            background: $game-details;
         }
     }
 }

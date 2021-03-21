@@ -352,7 +352,4 @@
 
 
 <style scoped>
-    .promo-notification {
-        display: none;
-    }
 </style>

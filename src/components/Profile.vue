@@ -191,6 +191,7 @@
                                         <table class="table table-borderless" v-if="lends">
                                             <thead>
                                             <tr>
+                                                <td scope="col">Order Id</td>
                                                 <td scope="col">Game</td>
                                                 <td scope="col">Rent Week(s)</td>
                                                 <td scope="col">Rent Date</td>
@@ -203,6 +204,7 @@
                                             </thead>
                                             <tbody>
                                             <tr v-for="(lend, index) in lends" :key="index">
+                                                <td>#2321443</td>
                                                 <td v-if="lend.rent">{{ lend.rent.game.name }} <div class="disk-type mt-4 text-secondery">Digital Copy</div></td>
                                                 <td>{{ lend.lend_week }}</td>
                                                 <td>{{ formattedDate(lend.lend_date) }}</td>
@@ -478,6 +480,12 @@
                                                     </div>
                                                     <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                     </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="form-group post-rent--form-group post-rent--form-group--agree">
+                                                <div class="checkbox-parents">
+                                                    <input type="checkbox" id="terms-agree" class="checkbox-parents--input">
+                                                    <label for="terms-agree" class="checkbox-parents--label">I agree with all <router-link to="/terms" target="_blank" class="text-secondery"><u> term & conditions</u></router-link></label>
                                                 </div>
                                             </div>
                                             <div class="form-group post-rent--form-group post-rent-btn">
@@ -1072,7 +1080,7 @@
               return yyyy + '-' + mm + '-' + dd;
             },
             adjustRentedWeek: function(adjustmentType) {
-                if (adjustmentType == 'increase' && parseInt(this.rentData.max_week) < 5) {
+                if (adjustmentType == 'increase' && parseInt(this.rentData.max_week) < 10) {
                     this.rentData.max_week = parseInt(this.rentData.max_week) + 1;
                     return;
                 }

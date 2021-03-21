@@ -499,6 +499,14 @@
                 flex-basis: 100%;
             }
         }
+        &--agree {
+            @include for-min-768 {
+                margin-left: 253px;
+            }
+            @include for-max-768 {
+                margin-left: 33px;
+            }
+        }
     }
     // end form group
     &--form-group-img {
@@ -550,8 +558,8 @@
         padding: 0 20px;
         position: relative;
         overflow-x: auto;
-        width: 950px;
-        @include for-max-1400 {
+        width: 1000px;
+        @include for-max-1500 {
             width: 880px;
         }
         @include for-max-1200 {
@@ -566,16 +574,16 @@
             left: 0;
             z-index: -1;
             background: $secondery;
-            @include for-max-1200 {
-                width: 890px;
+            @include for-max-1500 {
+                width: 990px;
             }
         }
         table {
             border-collapse: separate;
             border-spacing: 0px 20px;
             margin-top: -20px;
-            @include for-max-1200 {
-                width: 850px;
+            @include for-max-1500 {
+                width: 950px;
             }
             thead {
                 tr {
@@ -597,12 +605,14 @@
                     border-bottom: 1px solid $secondery;
                     padding: 16px 9px;
                     &:first-of-type {
-                        min-width: 145px;
                         border-left: 1px solid $secondery;
                         border-top-left-radius: 0px;
                         border-bottom-left-radius: 0px;
                     }
-                    &:nth-of-type(6) {
+                    &:nth-of-type(2) {
+                        min-width: 145px;
+                    }
+                    &:nth-of-type(7) {
                         min-width: 200px;
                         @include for-max-1400 {
                             min-width: 180px;
@@ -636,7 +646,7 @@
             width: 100%;
             tr {
                 td {
-                    &:nth-of-type(6) {
+                    &:nth-of-type(7) {
                         min-width: initial;
                     }
                 }
@@ -687,7 +697,7 @@
 .rented-note,
 .dashboard-tab-button,
 .no-post-found-card {
-    width: 950px;
+    width: 990px;
     @include for-max-1700 {
         width: 100%;
     }

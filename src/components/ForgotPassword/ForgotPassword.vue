@@ -46,10 +46,10 @@
                                                     <input class="custom-control-input" type="radio" name="resetradio" id="emailreset" value="email" v-model="form.resetOption">
                                                     <label class="custom-control-label" for="emailreset"> Email </label>
                                                 </div>
-                                                <div class="forget-password-section--card--input-group custom-radio">
-                                                    <input class="custom-control-input" type="radio" name="resetradio" id="phonereset" value="phone" v-model="form.resetOption">
-                                                    <label class="custom-control-label" for="phonereset"> Phone Number </label>
-                                                </div>
+<!--                                                <div class="forget-password-section&#45;&#45;card&#45;&#45;input-group custom-radio">-->
+<!--                                                    <input class="custom-control-input" type="radio" name="resetradio" id="phonereset" value="phone" v-model="form.resetOption">-->
+<!--                                                    <label class="custom-control-label" for="phonereset"> Phone Number </label>-->
+<!--                                                </div>-->
                                             </div>
                                             <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
@@ -107,7 +107,6 @@
             onSendResetPasswordCode: function () {
                 this.isLoading = true
                 this.$api.post('send-reset-code', this.form).then(response => {
-                    console.log(response)
                     if (response.data.error) {
                         this.codeSent = false
                         this.invalidEmail = response.data.error
@@ -128,7 +127,6 @@
             onResendOtp: function () {
                 this.isResendLoading = true
                 this.$api.post('send-reset-code', this.form).then(response => {
-                    console.log(response)
                     if (response.data.error) {
                         this.codeSent = false
                         this.invalidEmail = response.data.error

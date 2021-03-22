@@ -593,6 +593,10 @@
     margin-bottom: 3.125rem;
 }
 
+.m-a-auto {
+    margin: auto;
+}
+
 // padding top
 // incresing:5px
 .pt-a-1 {
@@ -1393,6 +1397,11 @@ html {
     height: 100%;
 }
 
+// width
+.w-fit {
+    width: fit-content;
+}
+
 // text-area
 textarea {
     &:focus {
@@ -1704,4 +1713,37 @@ select {
             background: $game-details;
         }
     }
+}
+
+// Animation
+@keyframes shake-animation {
+    0% {
+        transform: translate(0, 0)
+    }
+    1.78571% {
+        transform: translate(5px, 0)
+    }
+    3.57143% {
+        transform: translate(0, 0)
+    }
+    5.35714% {
+        transform: translate(5px, 0)
+    }
+    7.14286% {
+        transform: translate(0, 0)
+    }
+    8.92857% {
+        transform: translate(5px, 0)
+    }
+    10.71429% {
+        transform: translate(0, 0)
+    }
+    100% {
+        transform: translate(0, 0)
+    }
+}
+
+.shake-infinite {
+    animation: shake-animation 3s ease infinite;
+    transform-origin: 50% 50%;
 }

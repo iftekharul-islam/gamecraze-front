@@ -38,10 +38,12 @@
             </div>
             <div class="container">
                 <div class="user-profile-heading--name">
-                    <div class="user-profile-heading--dp position-relative">
-                        <img v-if="user.image" :src="user.image" :alt="user.name" class="img-fluid">
-                        <img v-else src="../assets/img/avatar.png" :alt="user.name" class="img-fluid">
-                        
+                    <div class="position-relative">
+                        <div class="user-profile-heading--dp">
+                            <img v-if="user.image" :src="user.image" :alt="user.name" class="img-fluid">
+                            <img v-else src="../assets/img/avatar.png" :alt="user.name" class="img-fluid"> 
+                        </div>
+                    <!-- avatar icon -->
                         <div class="avatar-edit">
                             <form action="" method="post" id="profile-image-form">
                                 <input @change="onProfileImageChange($event, 'profile')" type="file" id="profileUpload" accept=".png, .jpg, .jpeg">
@@ -158,7 +160,7 @@
 <!--                                                <td scope="col">Pick Point</td>-->
                                         <td scope="col">Available From</td>
                                         <td scope="col">Approvement</td>
-<!--                                                <td scope="col">Action</td>-->
+                                        <td scope="col">Action</td>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -180,6 +182,7 @@
                                         <td v-else>
                                             <a class="badge-danger badge" >Rejected</a>
                                         </td>
+                                        <td><a href="#"><img src="../assets/img/editbtn.png" alt="Edit Button"></a></td>
 <!--                                                <td><button type="button" class="btn btn-danger mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button></td>-->
                                     </tr>
                                     </tbody>

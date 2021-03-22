@@ -86,6 +86,13 @@
                                 </ValidationProvider>
                             </div>
                           </div>
+                        <!-- Agree terms condition -->
+                        <div class="post-rent--form-group--agree pl-a-6 mt-a-3">
+                            <div class="checkbox-parents">
+                                <input type="checkbox" id="terms-agree" class="checkbox-parents--input">
+                                <label for="terms-agree" class="checkbox-parents--label">I agree with all <router-link to="/terms" target="_blank" class="text-secondery"><u> term & conditions</u></router-link></label>
+                            </div>
+                        </div>
                            <!-- Place Order button -->
                             <div class="checkout-btn">
                                 <button class="btn--cart-btn w-100 gil-bold" :disabled="isLoading">

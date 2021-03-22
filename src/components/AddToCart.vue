@@ -24,7 +24,8 @@
 
                         <tr v-for="(item, index) in newCartItems" :key="index">
                             <td scope="col">{{ item.game_name }}</td>
-                            <td scope="col">Digital</td>
+                            <td scope="col" v-if="item.disk_type == 0">Digital</td>
+                            <td scope="col" v-if="item.disk_type == 1">Physical</td>
                             <td scope="col">{{ item.rent_week }}</td>
                             <td scope="col">
                               <div class="d-flex align-items-center justify-content-between">
@@ -246,7 +247,6 @@
                     console.log(err);
                 });
                 this.$api.get('cart-items', config).then(response => {
-                    console.log(response.data.data.cartItems);
                     this.newCartItems = response.data.data.cartItems;
                     this.totalPrice = response.data.data.totalDiscountPrice;
                     this.deliveryCharge = response.data.data.deliveryCharge;

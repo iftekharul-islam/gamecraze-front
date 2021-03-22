@@ -207,8 +207,12 @@
                                             </thead>
                                             <tbody>
                                             <tr v-for="(lend, index) in lends" :key="index">
-                                                <td>#2321443</td>
-                                                <td v-if="lend.rent">{{ lend.rent.game.name }} <div class="disk-type mt-4 text-secondery">Digital Copy</div></td>
+                                                <td v-if="lend.order">{{ lend.order.order_no }}</td>
+                                                <td v-else>N/A</td>
+                                                <td v-if="lend.rent">{{ lend.rent.game.name }}
+                                                    <div class="disk-type mt-4 text-secondery" v-if="lend.rent.disk_type == 1">Physical Copy</div>
+                                                    <div class="disk-type mt-4 text-secondery" v-if="lend.rent.disk_type == 0">Digital Copy</div>
+                                                </td>
                                                 <td>{{ lend.lend_week }}</td>
                                                 <td>{{ formattedDate(lend.lend_date) }}</td>
                                                 <td v-if="lend.rent.disk_type == 1 && lend.status === 3">
@@ -235,7 +239,8 @@
                                                     <flip-countdown :deadline="lend.created_at" v-else></flip-countdown>
                                                 </td>
                                                 <td v-if="lend.rent.disk_type == 0">
-                                                    <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)"></flip-countdown>
+                                                    <flip-countdown :deadline="lend.created_at" v-if="lend.status === 1 || lend.status === 4"></flip-countdown>
+                                                    <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)" v-else></flip-countdown>
                                                 </td>
                                                 <td>{{ lend.lend_cost + Math.floor(lend.commission) }}</td>
                                                 <td v-if="lend.status === 0">
@@ -1182,6 +1187,7 @@
             this.$api.get('lends', config).then(response =>
             {
                 this.lends = response.data;
+                console.log(this.lends);
             });
 
             this.$root.$on('rentPost', () => {

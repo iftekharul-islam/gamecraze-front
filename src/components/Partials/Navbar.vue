@@ -238,9 +238,7 @@
         watch: {
             "$route": {
                 handler: function(value) {
-                    console.log(value.name);
                     if (value.name !== 'Profile'){
-                        console.log('in the route name action');
                         this.authData()
                     }
 

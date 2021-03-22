@@ -548,9 +548,12 @@
         margin-left: -80px;
     }
     @include for-min-1400 {
-        margin-left: -40px;
+        margin-left: -85px;
     }
     @include for-min-1600 {
+        margin-left: -40px;
+    }
+    @include for-min-1700 {
         margin-left: 0px;
     }
     &--rented {
@@ -558,11 +561,11 @@
         padding: 0 20px;
         position: relative;
         overflow-x: auto;
-        width: 1000px;
-        @include for-max-1500 {
-            width: 880px;
+        width: 1050px;
+        @include for-max-1600 {
+            width: 1000px;
         }
-        @include for-max-1200 {
+        @include for-max-1400 {
             width: 100%;
         }
         &::after {
@@ -574,16 +577,16 @@
             left: 0;
             z-index: -1;
             background: $secondery;
-            @include for-max-1500 {
-                width: 990px;
+            @include for-max-1600 {
+                width: 1150px;
             }
         }
         table {
             border-collapse: separate;
             border-spacing: 0px 20px;
             margin-top: -20px;
-            @include for-max-1500 {
-                width: 950px;
+            @include for-max-1600 {
+                width: 1110px;
             }
             thead {
                 tr {
@@ -693,8 +696,11 @@
 .rented-note,
 .dashboard-tab-button,
 .no-post-found-card {
-    width: 990px;
-    @include for-max-1700 {
+    width: 1050px;
+    @include for-max-1600 {
+        width: 1000px;
+    }
+    @include for-max-1400 {
         width: 100%;
     }
 }

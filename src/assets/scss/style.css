@@ -5524,6 +5524,7 @@ html {
   left: 0;
   z-index: -1;
   background: #FFD715;
+  border: 1px solid #FFD715;
 }
 
 @media (max-width: 992px) {
@@ -6738,11 +6739,17 @@ html {
 
 @media (min-width: 1400px) {
   .dashboard-content {
-    margin-left: -40px;
+    margin-left: -85px;
   }
 }
 
 @media (min-width: 1600px) {
+  .dashboard-content {
+    margin-left: -40px;
+  }
+}
+
+@media (min-width: 1800px) {
   .dashboard-content {
     margin-left: 0px;
   }
@@ -6753,16 +6760,16 @@ html {
   padding: 0 20px;
   position: relative;
   overflow-x: auto;
-  width: 1000px;
+  width: 1050px;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1600px) {
   .dashboard-content--rented {
-    width: 880px;
+    width: 1000px;
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1400px) {
   .dashboard-content--rented {
     width: 100%;
   }
@@ -6779,9 +6786,9 @@ html {
   background: #FFD715;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1600px) {
   .dashboard-content--rented::after {
-    width: 990px;
+    width: 1150px;
   }
 }
 
@@ -6791,9 +6798,9 @@ html {
   margin-top: -20px;
 }
 
-@media (max-width: 1500px) {
+@media (max-width: 1600px) {
   .dashboard-content--rented table {
-    width: 950px;
+    width: 1110px;
   }
 }
 
@@ -6925,10 +6932,18 @@ html {
 .rented-note,
 .dashboard-tab-button,
 .no-post-found-card {
-  width: 990px;
+  width: 1050px;
 }
 
-@media (max-width: 1700px) {
+@media (max-width: 1600px) {
+  .rented-note,
+  .dashboard-tab-button,
+  .no-post-found-card {
+    width: 1000px;
+  }
+}
+
+@media (max-width: 1400px) {
   .rented-note,
   .dashboard-tab-button,
   .no-post-found-card {

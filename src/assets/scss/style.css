@@ -6593,13 +6593,13 @@ html {
 }
 
 @media (min-width: 768px) {
-  .post-rent--form-group--agree {
+  .post-rent--form-group--agree-profile {
     margin-left: 253px;
   }
 }
 
 @media (max-width: 768px) {
-  .post-rent--form-group--agree {
+  .post-rent--form-group--agree-profile {
     margin-left: 33px;
   }
 }

@@ -131,6 +131,13 @@
                                         </table>
                                     </div>
                                 </div>
+                                <!-- Agree terms condition -->
+                                <div class="post-rent--form-group--agree pl-a-9 mb-a-7">
+                                    <div class="checkbox-parents">
+                                        <input type="checkbox" id="terms-agree" class="checkbox-parents--input">
+                                        <label for="terms-agree" class="checkbox-parents--label">I agree with all <router-link to="/terms" target="_blank" class="text-secondery"><u> term & conditions</u></router-link></label>
+                                    </div>
+                                 </div>
                                 <div v-if="!isExistsInCart" class="modal-footer justify-content-center">
                                     <a href="javascript:void(0)" class="btn--secondery" @click.prevent="handleSubmit(onAddToCart)">
                                       <span><i class="fas fa-shopping-cart"></i> ADD TO CART</span>

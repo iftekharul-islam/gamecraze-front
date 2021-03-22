@@ -482,7 +482,7 @@
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
-                                            <div class="form-group post-rent--form-group post-rent--form-group--agree">
+                                            <div class="form-group post-rent--form-group post-rent--form-group--agree post-rent--form-group--agree-profile">
                                                 <div class="checkbox-parents">
                                                     <input type="checkbox" id="terms-agree" class="checkbox-parents--input">
                                                     <label for="terms-agree" class="checkbox-parents--label">I agree with all <router-link to="/terms" target="_blank" class="text-secondery"><u> term & conditions</u></router-link></label>

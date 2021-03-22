@@ -20,6 +20,7 @@
             left: 0;
             z-index: -1;
             background: $secondery;
+            border: 1px solid $secondery;
             @include for-max-992 {
                 width: 740px;
                 height: 61px;

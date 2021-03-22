@@ -252,7 +252,6 @@
                           search: this.$route.query.search
                       })
                   })
-                  this.fetchFilteredGames();
               } else if (this.checkedPlatforms.length || this.checkedDiskType.length) {
                   this.$router.push({
                       query: {
@@ -261,11 +260,10 @@
                           diskType: this.checkedDiskType.join()
                       }
                   })
-              } else if (this.$route.query.search) {
+              } else {
                   this.$router.push({query: {search: this.$route.query.search}})
 
               }
-
               this.fetchFilteredGames();
           },
           checkedPlatforms: function (val) {
@@ -276,7 +274,6 @@
                           search: this.$route.query.search
                       })
                   })
-                  this.fetchFilteredGames();
               } else if (this.checkedCategories.length || this.checkedDiskType.length) {
                   this.$router.push({
                       query: {
@@ -285,7 +282,7 @@
                           diskType: this.checkedDiskType.join()
                       }
                   })
-              } else if (this.$route.query.search) {
+              } else {
                   this.$router.push({query: {search: this.$route.query.search}})
 
               }
@@ -300,7 +297,6 @@
                           search: this.$route.query.search
                       })
                   })
-                  this.fetchFilteredGames();
               } else if (this.checkedCategories.length || this.checkedPlatforms.length) {
                   this.$router.push({
                       query: {
@@ -309,10 +305,9 @@
                           platforms: this.checkedPlatforms.join()
                       }
                   })
-              } else if (this.$route.query.search) {
+              } else {
                   this.$router.push({query: {search: this.$route.query.search}})
               }
-
               this.fetchFilteredGames();
           }
       },

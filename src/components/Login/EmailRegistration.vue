@@ -65,6 +65,13 @@
                                             <span class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                     </div> -->
+                                     <!-- Agree terms and condition -->
+                                    <div class="post-rent--form-group post-rent--form-group--agree ml-a-6 mt-4">
+                                        <div class="checkbox-parents">
+                                            <input type="checkbox" id="terms-agree" class="checkbox-parents--input">
+                                            <label for="terms-agree" class="checkbox-parents--label">I agree with all <router-link to="/terms" target="_blank" class="text-secondery"><u> term & conditions</u></router-link></label>
+                                        </div>
+                                    </div>
 
                                     <!-- sign in button -->
                                     <div class="text-center sign-btn">

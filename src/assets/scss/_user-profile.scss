@@ -24,8 +24,9 @@
     &--dp {
         width: 160px;
         height: 160px;
-        border-radius: 50%;
+        border-radius: 100%;
         border: 2px solid $text-light;
+        overflow: hidden;
         @include for-max-575 {
             width: 100px;
             height: 100px;
@@ -33,7 +34,6 @@
         img {
             width: 100%;
             height: 100%;
-            border-radius: 50%;
             object-fit: cover;
         }
     }
@@ -636,18 +636,14 @@
         }
     }
     &--offer {
-        &::after {
-            width: 100%;
-            @include for-max-768 {
-                width: 650px;
-            }
-        }
         table {
-            width: 100%;
             tr {
                 td {
                     &:nth-of-type(7) {
                         min-width: initial;
+                    }
+                    &:first-of-type {
+                        min-width: 145px;
                     }
                 }
             }

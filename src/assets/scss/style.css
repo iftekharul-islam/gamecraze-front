@@ -2123,7 +2123,8 @@ select option {
 .complete-sign-in--nav-profile-img {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
+  border-radius: 100%;
+  overflow: hidden;
   border: 1px solid #fff;
   margin-left: 15px;
 }
@@ -2131,7 +2132,8 @@ select option {
 .complete-sign-in--nav-profile-img img {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .sign-in {
@@ -6014,8 +6016,9 @@ html {
 .user-profile-heading--dp {
   width: 160px;
   height: 160px;
-  border-radius: 50%;
+  border-radius: 100%;
   border: 2px solid #fff;
+  overflow: hidden;
 }
 
 @media (max-width: 575px) {
@@ -6028,7 +6031,6 @@ html {
 .user-profile-heading--dp img {
   width: 100%;
   height: 100%;
-  border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
 }
@@ -6850,22 +6852,12 @@ html {
   color: #000;
 }
 
-.dashboard-content--offer::after {
-  width: 100%;
-}
-
-@media (max-width: 768px) {
-  .dashboard-content--offer::after {
-    width: 650px;
-  }
-}
-
-.dashboard-content--offer table {
-  width: 100%;
-}
-
 .dashboard-content--offer table tr td:nth-of-type(7) {
   min-width: initial;
+}
+
+.dashboard-content--offer table tr td:first-of-type {
+  min-width: 145px;
 }
 
 .dashboard-content .flip-clock {
@@ -8066,6 +8058,11 @@ html {
   border-radius: 0;
   border: none;
   color: #000 !important;
+}
+
+.forget-password-section--card form input:-webkit-autofill, .forget-password-section--card form input:-webkit-autofill:hover, .forget-password-section--card form input:-webkit-autofill:focus, .forget-password-section--card form input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+  -webkit-text-fill-color: #000 !important;
 }
 
 .forget-password-section--card--input-group {

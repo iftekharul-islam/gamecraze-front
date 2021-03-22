@@ -253,7 +253,7 @@
             }
         },
         onCheckout() {
-
+            this.isLoading = true;
             var token = this.$store.state.token;
             var user = this.$store.state.user;
             this.totalItem = this.newCartItems.length;
@@ -270,10 +270,12 @@
                     this.itemRemovable = this.totalLends;
                 }
                 if (this.totalLends >= this.user.rent_limit){
+                    this.isLoading = false
                     this.showRentLimitModal = true;
                 }
                 else if (this.totalItem > this.itemRemovable) {
                     this.itemRemovable = this.totalItem - this.itemRemovable;
+                    this.isLoading = false
                     this.showRentCountModal = true;
                 }
                 else if (token) {
@@ -304,6 +306,7 @@
             this.$api.post('check-rented', data).then(response => {
                 if (response.data.id != '') {
                     this.id = response.data.id;
+                    this.isLoading = false
                     this.showModal = true;
                 } else {
                     this.placeOrder();
@@ -328,7 +331,6 @@
             }
         },
         placeOrder() {
-            this.isLoading = true
             var config = {
                 headers: {
                     'Authorization': 'Bearer ' + this.$store.state.token

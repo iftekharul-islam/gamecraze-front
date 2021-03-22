@@ -460,17 +460,17 @@
 
                                             </div>
                                              <!-- form-group -->
-                                            <div class="form-group post-rent--form-group">
+                                            <div class="form-group post-rent--form-group" v-if="isDigital">
                                                 <label for="game-user-id" class=" label-padding post-rent--form-group--label">Game user id</label>
                                                 <div class=" post-rent--form-group--input">
-                                                    <input type="text" class="form-control renten-input" id="game-user-id" placeholder="Enter game user id">
+                                                    <input type="text" class="form-control renten-input" id="game-user-id" placeholder="Enter game user id" v-model="rentData.gameUserId">
                                                 </div>
                                             </div>
                                             <!-- form-group -->
-                                            <div class="form-group post-rent--form-group">
+                                            <div class="form-group post-rent--form-group" v-if="isDigital">
                                                 <label for="game-user-pass" class=" label-padding post-rent--form-group--label">Game password</label>
                                                 <div class=" post-rent--form-group--input">
-                                                    <input type="text" class="form-control renten-input" id="game-user-pass" placeholder="Enter game user password">
+                                                    <input type="text" class="form-control renten-input" id="game-user-pass" placeholder="Enter game user password" v-model="rentData.gamePassword">
                                                 </div>
                                             </div>
                                             <!-- disk image -->
@@ -737,6 +737,7 @@
         props: ['rentPost', 'profileEdit'],
         data() {
             return {
+                isDigital: false,
                 itemsData: ['Male', 'Female', 'Others'],
                 rents: [],
                 lends: [],
@@ -779,7 +780,9 @@
                     disk_image: '',
                     cover_image: '',
                     checkpoint: {},
-                    disk_type: ''
+                    disk_type: '',
+                    gameUserId: '',
+                    gamePassword: '',
                 },
                 isRentLoading: false,
                 image: null,
@@ -802,8 +805,10 @@
             basePriceSelect(value) {
                 this.gameTypePricingState = true;
                 this.gameTypePricing = 0;
+                this.isDigital = false;
 
                 if (value == 1) {
+                    this.isDigital = true;
                     this.gameTypePricing = 20;
                 }
             },
@@ -1054,7 +1059,9 @@
                     disk_image: this.rentData.disk_image,
                     cover_image: this.rentData.cover_image,
                     checkpoint_id: this.rentData.checkpoint.id,
-                    disk_type: this.rentData.disk_type
+                    disk_type: this.rentData.disk_type,
+                    game_user_id: this.rentData.gameUserId,
+                    game_password: this.rentData.gamePassword,
                 }
                 let config = {
                     headers: {

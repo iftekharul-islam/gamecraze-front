@@ -584,6 +584,10 @@
   margin-bottom: 3.125rem;
 }
 
+.m-a-auto {
+  margin: auto;
+}
+
 .pt-a-1 {
   padding-top: 0.313rem;
 }
@@ -1359,6 +1363,12 @@ html {
   height: 100%;
 }
 
+.w-fit {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
 textarea:focus {
   background: #FFD715;
   color: #fff;
@@ -1642,6 +1652,83 @@ select option {
 .checkbox-parents--label::after {
   border: 1px solid #FFD715;
   background: #141A27;
+}
+
+@-webkit-keyframes shake-animation {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  1.78571% {
+    -webkit-transform: translate(5px, 0);
+            transform: translate(5px, 0);
+  }
+  3.57143% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  5.35714% {
+    -webkit-transform: translate(5px, 0);
+            transform: translate(5px, 0);
+  }
+  7.14286% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  8.92857% {
+    -webkit-transform: translate(5px, 0);
+            transform: translate(5px, 0);
+  }
+  10.71429% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+
+@keyframes shake-animation {
+  0% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  1.78571% {
+    -webkit-transform: translate(5px, 0);
+            transform: translate(5px, 0);
+  }
+  3.57143% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  5.35714% {
+    -webkit-transform: translate(5px, 0);
+            transform: translate(5px, 0);
+  }
+  7.14286% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  8.92857% {
+    -webkit-transform: translate(5px, 0);
+            transform: translate(5px, 0);
+  }
+  10.71429% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+
+.shake-infinite {
+  -webkit-animation: shake-animation 3s ease infinite;
+          animation: shake-animation 3s ease infinite;
+  -webkit-transform-origin: 50% 50%;
+          transform-origin: 50% 50%;
 }
 
 @media (max-width: 575px) {

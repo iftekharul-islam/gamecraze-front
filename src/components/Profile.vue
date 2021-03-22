@@ -271,6 +271,8 @@
                                 <div class="post-rent">
                                     <ValidationObserver ref="form">
                                         <form @submit.prevent="onRentSubmit" method="post" id="rentPostForm">
+                                            <!-- Error text -->
+                                            <span class="error-message mb-a-5 shake-infinite top-error-rent-post d-flex justify-content-center w-fit m-a-auto pb-a-5">Please fill up all required field</span>
                                             <!-- form-group -->
                                             <div class="form-group post-rent--form-group">
                                                 <label class=" post-rent--form-group--label">Game Name:</label>
@@ -449,6 +451,21 @@
                                                 </div>
 
                                             </div>
+                                             <!-- form-group -->
+                                            <div class="form-group post-rent--form-group">
+                                                <label for="game-user-id" class=" label-padding post-rent--form-group--label">Game user id</label>
+                                                <div class=" post-rent--form-group--input">
+                                                    <input type="text" class="form-control renten-input" id="game-user-id" placeholder="Enter game user id">
+                                                </div>
+                                            </div>
+                                            <!-- form-group -->
+                                            <div class="form-group post-rent--form-group">
+                                                <label for="game-user-pass" class=" label-padding post-rent--form-group--label">Game password</label>
+                                                <div class=" post-rent--form-group--input">
+                                                    <input type="text" class="form-control renten-input" id="game-user-pass" placeholder="Enter game user password">
+                                                </div>
+                                            </div>
+                                            <!-- disk image -->
                                             <div class="form-group post-rent--form-group post-rent--form-group-img">
                                                 <label class="post-rent--form-group--label">Disk Image:</label>
                                                 <div class="post-rent--form-group--input">
@@ -482,6 +499,8 @@
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
+                                             
+                                            <!-- Agree terms and condition -->
                                             <div class="form-group post-rent--form-group post-rent--form-group--agree post-rent--form-group--agree-profile">
                                                 <div class="checkbox-parents">
                                                     <input type="checkbox" id="terms-agree" class="checkbox-parents--input">

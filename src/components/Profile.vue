@@ -236,10 +236,10 @@
                                                 </td>
                                                 <td v-if="lend.rent.disk_type == 1">
                                                     <flip-countdown :deadline="endDate(lend.rent.disk_type, lend.updated_at, lend.lend_week)" v-if="lend.status === 3"></flip-countdown>
-                                                    <flip-countdown :deadline="lend.created_at" v-else></flip-countdown>
+                                                    <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-else></flip-countdown>
                                                 </td>
                                                 <td v-if="lend.rent.disk_type == 0">
-                                                    <flip-countdown :deadline="lend.created_at" v-if="lend.status === 1 || lend.status === 4"></flip-countdown>
+                                                    <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-if="lend.status === 1 || lend.status === 4"></flip-countdown>
                                                     <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)" v-else></flip-countdown>
                                                 </td>
                                                 <td>{{ lend.lend_cost + Math.floor(lend.commission) }}</td>
@@ -279,8 +279,8 @@
                                 <div class="post-rent">
                                     <ValidationObserver ref="form">
                                         <form @submit.prevent="onRentSubmit" method="post" id="rentPostForm">
-                                            <!-- Error text -->
-                                            <span class="error-message mb-a-5 shake-infinite top-error-rent-post d-flex justify-content-center w-fit m-a-auto pb-a-5">Please fill up all required field</span>
+<!--                                            &lt;!&ndash; Error text &ndash;&gt;-->
+<!--                                            <span class="error-message mb-a-5 shake-infinite top-error-rent-post d-flex justify-content-center w-fit m-a-auto pb-a-5" v-if="errors.length">Please fill up all required field</span>-->
                                             <!-- form-group -->
                                             <div class="form-group post-rent--form-group">
                                                 <label class=" post-rent--form-group--label">Game Name:</label>
@@ -511,8 +511,11 @@
                                             <!-- Agree terms and condition -->
                                             <div class="form-group post-rent--form-group post-rent--form-group--agree post-rent--form-group--agree-profile">
                                                 <div class="checkbox-parents">
-                                                    <input type="checkbox" id="terms-agree" class="checkbox-parents--input">
+                                                <ValidationProvider name="Term & Conditions" rules="required" v-slot="{ errors }">
+                                                    <input type="checkbox" id="terms-agree" class="checkbox-parents--input" v-model="agreement" @change="onAgreement($event)">
                                                     <label for="terms-agree" class="checkbox-parents--label">I agree with all <router-link to="/terms" target="_blank" class="text-secondery"><u> term & conditions</u></router-link></label>
+                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                </ValidationProvider>
                                                 </div>
                                             </div>
                                             <div class="form-group post-rent--form-group post-rent-btn">
@@ -733,11 +736,11 @@
         components: { FlipCountdown},
         props: ['rentPost', 'profileEdit'],
         data() {
-            
             return {
                 itemsData: ['Male', 'Female', 'Others'],
                 rents: [],
                 lends: [],
+                agreement: '',
                 show: true,
                 user: {},
                 form: {
@@ -790,6 +793,12 @@
             }
         },
         methods: {
+            onAgreement(event){
+                this.agreement = '';
+                if (event.target.checked == true){
+                    this.agreement = 1
+                }
+            },
             basePriceSelect(value) {
                 this.gameTypePricingState = true;
                 this.gameTypePricing = 0;
@@ -852,6 +861,10 @@
             },
             onRentedGames() {
                 this.show = false
+            },
+            formattedDateForTimer(date) {
+                let formattedDate = new Date(date)
+                return formattedDate.getMonth()+1 + "/" + formattedDate.getDate() + "/" + formattedDate.getFullYear()
             },
             formattedDate(date) {
                 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -994,8 +1007,6 @@
                         this.rentData.disk_image = e.target.result;
                     }
                     fileReader.readAsDataURL(event.target.files[0]);
-                    console.log('this.rentData.disk_image');
-                    console.log(this.rentData.disk_image);
                 }
             },
             onCoverimageChange (event) {
@@ -1077,8 +1088,6 @@
                 this.$api.get('base-price/calculate/' + this.rentData.game.id).then (response =>
                 {
                     this.basePrices = response.data;
-                    console.log('base Prices')
-                    console.log(this.basePrices)
                 })
             },
             onInputChange(text) {
@@ -1187,7 +1196,6 @@
             this.$api.get('lends', config).then(response =>
             {
                 this.lends = response.data;
-                console.log(this.lends);
             });
 
             this.$root.$on('rentPost', () => {

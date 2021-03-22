@@ -181,6 +181,7 @@
         props: ['slug'],
         data() {
             return {
+                agreement: '',
                 rentPosts: [],
                 user_type: 0,
                 price: 0,
@@ -201,18 +202,18 @@
         computed: {
           returnDate() {
             let today = new Date();
-            let available = new Date(this.modalData.availability_from_date);
-            if (today > available)
-            {
-              today.setDate(today.getDate() + this.form.week * 7);
+            var hours = today.getHours();
+
+              if (this.modalData.disk_type == 0 && hours >= 12) {
+
+                  today.setDate(today.getDate() + 2 + this.form.week * 7 );
+              } else {
+
+                  today.setDate(today.getDate() + 1 + this.form.week * 7 );
+              }
+
               const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
               return today.getDate() + " " + months[today.getMonth()] + " " + today.getFullYear()
-            }
-            else {
-              available.setDate(available.getDate() + this.form.week * 7);
-              const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-              return available.getDate() + " " + months[available.getMonth()] + " " + available.getFullYear()
-            }
           },
           availableRentPosts() {
             return this.rentPosts.filter(post => {
@@ -223,16 +224,17 @@
           },
           rentStartDate() {
             let today = new Date();
-            let available = new Date(this.modalData.availability_from_date);
-            if (today > available)
-            {
+            var hours = today.getHours();
+
+              if (this.modalData.disk_type == 0 && hours >= 12) {
+
+                  today.setDate(today.getDate() + 2 );
+              } else {
+
+                  today.setDate(today.getDate() + 1 );
+              }
               const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
               return today.getDate() + " " + months[today.getMonth()] + " " + today.getFullYear()
-            }
-            else {
-              const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
-              return available.getDate() + " " + months[available.getMonth()] + " " + available.getFullYear()
-            }
           }
         },
         methods: {
@@ -285,8 +287,6 @@
                 })
             },
             checkIfExistsInCart(gameId) {
-                console.log('in the check exists section');
-                console.log(this.cartItems);
                 if (this.cartItems != null) {
                     let isExists = this.cartItems.some(item => {
                         if (item.game_id === gameId) {
@@ -324,7 +324,6 @@
                 }
             };
             this.$api.get('cart-items', config).then(response => {
-                console.log(this.cartItems)
                     this.cartItems = response.data.data.cartItems;
             });
 

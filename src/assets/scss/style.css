@@ -250,6 +250,18 @@
   margin-left: 12.5rem;
 }
 
+.ml--16 {
+  margin-left: -16px;
+}
+
+.ml--28 {
+  margin-left: -28px;
+}
+
+.ml--30 {
+  margin-left: -30px;
+}
+
 .mr-a-1 {
   margin-right: 0.313rem;
 }
@@ -1286,6 +1298,10 @@
 
 .f-s-26 {
   font-size: 26px;
+}
+
+.f-s-28 {
+  font-size: 28px;
 }
 
 .account-not-verified {
@@ -5202,6 +5218,22 @@ html {
           transform: rotate(-45deg);
 }
 
+.upgrade-modal .modal-dialog .modal-content .offer-edit-btn .btn--secondery {
+  width: 100%;
+  border-radius: 0;
+  height: 50px;
+  position: initial;
+  margin-top: 45px;
+}
+
+.upgrade-modal .modal-dialog .modal-content .offer-edit-btn .btn--secondery span {
+  margin-top: initial;
+}
+
+.upgrade-modal .modal-dialog .modal-content .offer-edit-btn .btn--secondery span::after, .upgrade-modal .modal-dialog .modal-content .offer-edit-btn .btn--secondery span::before {
+  display: none !important;
+}
+
 .modal-or {
   margin: 0 48px;
   font-size: 28px;
@@ -5502,6 +5534,12 @@ html {
   padding-bottom: 150px;
 }
 
+@media (max-width: 575px) {
+  .game-available-section {
+    padding-bottom: 230px;
+  }
+}
+
 .game-available-section--table {
   padding: 0 20px;
   border: 1px solid #FFD715;
@@ -5511,7 +5549,7 @@ html {
 
 @media (max-width: 992px) {
   .game-available-section--table table {
-    width: 700px;
+    width: 860px;
   }
 }
 
@@ -5529,7 +5567,7 @@ html {
 
 @media (max-width: 992px) {
   .game-available-section--table::after {
-    width: 740px;
+    width: 900px;
     height: 61px;
   }
 }
@@ -7712,6 +7750,10 @@ html {
   background: rgba(255, 215, 21, 0.2);
 }
 
+.cart-section .error-message::after {
+  top: 1px;
+}
+
 .cart-heading {
   text-align: center;
   margin-bottom: 60px;
@@ -7810,6 +7852,23 @@ html {
 
 .multiple-user-warning-modal .modal-wrapper {
   height: 100%;
+}
+
+.multiple-user-warning-modal button span {
+  margin-top: -1px;
+  width: 20px;
+  height: 25px;
+  margin-left: -1px;
+}
+
+.multiple-user-warning-modal button span::before {
+  -webkit-transform: rotate(-45deg) translate(-6px, 6px) !important;
+          transform: rotate(-45deg) translate(-6px, 6px) !important;
+}
+
+.multiple-user-warning-modal button span::after {
+  -webkit-transform: rotate(45deg) translate(6px, 6px) !important;
+          transform: rotate(45deg) translate(6px, 6px) !important;
 }
 
 .newsroom-section {

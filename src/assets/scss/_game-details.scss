@@ -165,6 +165,22 @@
             }
             // x icon
             @include x-icon;
+            .offer-edit-btn {
+                .btn--secondery {
+                    width: 100%;
+                    border-radius: 0;
+                    height: 50px;
+                    position: initial;
+                    margin-top: 45px;
+                    span {
+                        margin-top: initial;
+                        &::after,
+                        &::before {
+                            display: none !important;
+                        }
+                    }
+                }
+            }
         }
     }
 }

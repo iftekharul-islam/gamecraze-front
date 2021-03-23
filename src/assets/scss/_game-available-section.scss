@@ -1,6 +1,9 @@
 .game-available-section {
     padding-top: 80px;
     padding-bottom: 150px;
+    @include for-max-575 {
+        padding-bottom: 230px;
+    }
     &--table {
         padding: 0 20px;
         border: 1px solid $secondery;
@@ -8,7 +11,7 @@
         overflow: auto;
         table {
             @include for-max-992 {
-                width: 700px;
+                width: 860px;
             }
         }
         &::after {
@@ -22,7 +25,7 @@
             background: $secondery;
             border: 1px solid $secondery;
             @include for-max-992 {
-                width: 740px;
+                width: 900px;
                 height: 61px;
             }
         }

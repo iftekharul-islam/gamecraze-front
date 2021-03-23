@@ -125,6 +125,11 @@
     .total {
         background: $total;
     }
+    .error-message {
+        &::after {
+            top: 1px;
+        }
+    }
 }
 
 .cart-heading {
@@ -204,5 +209,19 @@
     width: 100%;
     .modal-wrapper {
         height: 100%;
+    }
+    button {
+        span {
+            margin-top: -1px;
+            width: 20px;
+            height: 25px;
+            margin-left: -1px;
+            &::before {
+                transform: rotate( -45deg) translate(-6px, 6px) !important;
+            }
+            &::after {
+                transform: rotate( 45deg) translate(6px, 6px) !important;
+            }
+        }
     }
 }

@@ -182,8 +182,43 @@
                                         <td v-else>
                                             <a class="badge-danger badge" >Rejected</a>
                                         </td>
-                                        <td><a href="#"><img src="../assets/img/editbtn.png" alt="Edit Button"></a></td>
+                                        <td><a href="#" data-toggle="modal" data-target="#offeredit"><img src="../assets/img/editbtn.png" alt="Edit Button"></a></td>
 <!--                                                <td><button type="button" class="btn btn-danger mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button></td>-->
+                                            <!-- modal edit game -->
+                                                <div class="modal fade seller-information-modal upgrade-modal" id="offeredit" tabindex="-1" aria-labelledby="offereditModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                                <button type="button" class="close m-0 close-modal" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true"></span>
+                                                                </button>
+                                                            <h4 class="text-secondery mb-a-12 f-s-28">Enter your digital disk’s credentials.</h4>
+                                                              <!-- form-group -->
+                                                            <form action="">
+                                                                 <div class="form-group post-rent--form-group">
+                                                                    <label for="game-user-id" class=" label-padding post-rent--form-group--label text-light">Game user id</label>
+                                                                    <div class=" post-rent--form-group--input">
+                                                                        <input type="text" class="form-control renten-input" id="game-user-id" placeholder="Enter game user id" v-model="rentData.gameUserId">
+                                                                    </div>
+                                                                </div>
+                                                                <!-- form-group -->
+                                                                <div class="form-group post-rent--form-group">
+                                                                    <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light">Game password</label>
+                                                                    <div class=" post-rent--form-group--input">
+                                                                        <input type="text" class="form-control renten-input" id="game-user-pass" placeholder="Enter game user password" v-model="rentData.gamePassword">
+                                                                    </div>
+                                                                </div>
+                                                                 <!-- form-group Button -->
+                                                                <div class="form-group post-rent--form-group offer-edit-btn">
+                                                                    <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light"></label>
+                                                                    <div class=" post-rent--form-group--input">
+                                                                        <button class="btn--secondery"><span>Submit</span></button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                     </tr>
                                     </tbody>
                                     </table>
@@ -509,12 +544,12 @@
                                             </div>
                                              
                                             <!-- Agree terms and condition -->
-                                            <div class="form-group post-rent--form-group post-rent--form-group--agree post-rent--form-group--agree-profile">
+                                            <div class="form-group post-rent--form-group post-rent--form-group--agree post-rent--form-group--agree-profile mt-a-7">
                                                 <div class="checkbox-parents">
                                                 <ValidationProvider name="Term & Conditions" rules="required" v-slot="{ errors }">
                                                     <input type="checkbox" id="terms-agree" class="checkbox-parents--input" v-model="agreement" @change="onAgreement($event)">
-                                                    <label for="terms-agree" class="checkbox-parents--label">I agree with all <router-link to="/terms" target="_blank" class="text-secondery"><u> term & conditions</u></router-link></label>
-                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                    <label for="terms-agree" class="checkbox-parents--label">I agree with all <router-link to="/terms" target="_blank" class="text-secondery"><u> Terms and Conditions</u></router-link></label>
+                                                    <span v-if="errors.length" class="error-message d-block ml--28">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                                 </div>
                                             </div>

@@ -121,7 +121,7 @@
                                                 <span aria-hidden="true" @click="showModal = false" class="close-modal"></span>
                                             </button>
                                         <div class="modal-body-content">
-                                            <p>Opps !!! The game <span v-for="(item, index) in cart" v-if="item.rent.id == id">{{ item.rent.game.data.name }}</span> you wanted to rent is not available at this moment.</p>
+                                            <p>Opps !!! The game(S) {{ id }} you wanted to rent is not available at this moment.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -217,8 +217,8 @@
               newCartItems: [],
               deliveryCharge: 0,
               commissionAmount: '',
-              gameIds: [],
-              id: null,
+              rentIds: [],
+              id: '',
               showModal: false,
               showRentLimitModal: false,
               showRentCountModal: false,
@@ -254,6 +254,11 @@
                     this.newCartItems = response.data.data.cartItems;
                     this.totalPrice = response.data.data.totalDiscountPrice;
                     this.deliveryCharge = response.data.data.deliveryCharge;
+                    if (this.newCartItems) {
+                        for (let i = 0; i < this.newCartItems.length; i++) {
+                            this.rentIds.push(this.newCartItems[i].rent_id);
+                        }
+                    }
                     if (!this.newCartItems.length) {
                         this.emptyCart = true;
                     }
@@ -317,12 +322,12 @@
         },
         ExistInCart() {
             let data = {
-                ids: this.gameIds,
+                ids: this.rentIds,
             };
 
             this.$api.post('check-rented', data).then(response => {
-                if (response.data.id != '') {
-                    this.id = response.data.id;
+                if (response.data.data != '') {
+                    this.id = response.data.data;
                     this.isLoading = false
                     this.showModal = true;
                 } else {
@@ -417,12 +422,13 @@
             });
         },
         getCartItems() {
-          let cartItems = localStorage.getItem('cartItems');
-          if (cartItems != '' && cartItems != null) {
-            this.cart = JSON.parse(cartItems);
-              if (this.cart) {
-                  for (let i = 0; i < this.cart.length; i++) {
-                      this.gameIds.push(this.cart);
+          // let cartItems = localStorage.getItem('cartItems');
+          if (this.newCartItems != '' && this.newCartItems != null) {
+            this.newCartItems = JSON.parse(this.newCartItems);
+              if (this.newCartItems) {
+                  for (let i = 0; i < this.newCartItems.length; i++) {
+                      console.log(this.newCartItems[i])
+                      this.gameIds.push(this.newCartItems[i]);
                   }
               }
           }
@@ -444,7 +450,7 @@
             }
         });
 
-        this.getCartItems();
+        // this.getCartItems();
 
         this.$store.watch((state) => {
                 return this.$store.state.cart

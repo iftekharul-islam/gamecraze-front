@@ -6872,12 +6872,12 @@ html {
   min-width: 145px;
 }
 
-.dashboard-content--rented table tr td:nth-of-type(7) {
+.dashboard-content--rented table tr td:nth-of-type(6) {
   min-width: 200px;
 }
 
 @media (max-width: 1400px) {
-  .dashboard-content--rented table tr td:nth-of-type(7) {
+  .dashboard-content--rented table tr td:nth-of-type(6) {
     min-width: 180px;
   }
 }
@@ -6897,7 +6897,7 @@ html {
   color: #000;
 }
 
-.dashboard-content--offer table tr td:nth-of-type(7) {
+.dashboard-content--offer table tr td:nth-of-type(6) {
   min-width: initial;
 }
 

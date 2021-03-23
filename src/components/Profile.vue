@@ -166,7 +166,8 @@
                                     <tbody>
                                     <tr v-for="(rent, index) in rents" :key="index">
                                         <td v-if="rent.game">{{ rent.game.data.name }}</td>
-                                        <td>{{ rent.diskCondition.data.name_of_type }}</td>
+                                        <td v-if="rent.diskCondition">{{ rent.diskCondition.data.name_of_type }}</td>
+                                        <td v-else>N/A</td>
                                         <td>{{ rent.platform.data.name }}</td>
                                         <td v-if="rent.renter">{{ rent.renter.data.name }}</td>
                                         <td v-else>N/A</td>
@@ -401,28 +402,6 @@
                                                 </ValidationProvider>
                                                 </div>
                                             </div>
-                                              <!-- form-group -->
-                                            <div class="form-group post-rent--form-group">
-                                                <label class="post-rent--form-group--label" for="DiskCondition">Disk Condition:</label>
-                                                <div class="post-rent--form-group--input">
-                                                    <ValidationProvider name="Disk Condition" rules="required" v-slot="{ errors }">
-                                                        <!-- <v-select class="gamehub-custome-select" label="name_of_type" :options="diskConditions" v-model="rentData.disk_condition" placholder="Please Select Disk Condition" >
-                                                            <template #selected-option="diskCondition">
-                                                                {{ diskCondition.name_of_type + ' ' + diskCondition.description }}
-                                                            </template>
-                                                            <template v-slot:option="diskCondition">
-                                                                {{ diskCondition.name_of_type + ' ' + diskCondition.description }}
-                                                            </template>
-                                                        </v-select> -->
-
-                                                        <select class="form-control js-example-basic-single" id="DiskCondition" v-model="rentData.disk_condition">
-                                                            <option disabled value="" >Please Select Disk Condition</option>
-                                                            <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }} ({{ diskCondition.description }})</option>
-                                                        </select>
-                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                    </ValidationProvider>
-                                                </div>
-                                            </div>
                                                   <!-- Delivery type -->
                                                   <!-- form-group -->
                                             <div class="form-group post-rent--form-group">
@@ -527,11 +506,24 @@
                                                     <input type="text" class="form-control renten-input" id="rent-game-user-pass" placeholder="Enter game user password" v-model="rentData.gamePassword">
                                                 </div>
                                             </div>
+                                            <!-- form-group -->
+                                            <div class="form-group post-rent--form-group" v-if="diskImageRequired">
+                                                <label class="post-rent--form-group--label" for="DiskCondition">Disk Condition:</label>
+                                                <div class="post-rent--form-group--input">
+                                                    <ValidationProvider name="Disk Condition" :rules='{required: diskImageRequired}' v-slot="{ errors }">
+                                                        <select class="form-control js-example-basic-single" id="DiskCondition" v-model="rentData.disk_condition">
+                                                            <option disabled value="" >Please Select Disk Condition</option>
+                                                            <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }} ({{ diskCondition.description }})</option>
+                                                        </select>
+                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
                                             <!-- disk image -->
-                                            <div class="form-group post-rent--form-group post-rent--form-group-img">
+                                            <div class="form-group post-rent--form-group post-rent--form-group-img" v-if="diskImageRequired">
                                                 <label class="post-rent--form-group--label">Disk Image:</label>
                                                 <div class="post-rent--form-group--input">
-                                                    <ValidationProvider name="Disk Image" rules="required" v-slot="{ validate, errors }">
+                                                    <ValidationProvider name="Disk Image" :rules='{required: diskImageRequired}' v-slot="{ validate, errors }">
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="DiskUpload"  accept="image/*" @change="onDiskimageChange($event)|| validate($event)">
 <!--                                                        <input type="file" class="custom-file-input" id="DiskUpload"  accept="image/*" @change="onDiskimageChange">-->
@@ -545,10 +537,10 @@
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
-                                            <div class="form-group post-rent--form-group post-rent--form-group-img">
+                                            <div class="form-group post-rent--form-group post-rent--form-group-img" v-if="diskImageRequired">
                                                 <label class="post-rent--form-group--label">Cover Image:</label>
                                                 <div class="post-rent--form-group--input">
-                                                    <ValidationProvider name="Cover Image" rules="required" v-slot="{ validate, errors }">
+                                                    <ValidationProvider name="Cover Image" :rules='{required: diskImageRequired}' v-slot="{ validate, errors }">
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="customFile2" accept="image/*" @change="onCoverimageChange($event)|| validate($event)">
                                                         <label class="custom-file-label text-light" for="customFile2">Cover Image</label>
@@ -792,6 +784,7 @@
         data() {
             return {
                 credentialModalShow: false,
+                diskImageRequired: false,
                 userGameId: '',
                 userPassword: '',
                 isDigital: false,
@@ -900,10 +893,13 @@
                 this.gameTypePricingState = true;
                 this.gameTypePricing = 0;
                 this.isDigital = false;
+                this.diskImageRequired = true;
+
 
                 if (value == 1) {
                     this.isDigital = true;
                     this.gameTypePricing = 20;
+                    this.diskImageRequired = false;
                 }
             },
             onDelete(rent) {

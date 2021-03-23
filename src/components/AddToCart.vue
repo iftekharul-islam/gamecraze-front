@@ -93,7 +93,7 @@
                                 <ValidationProvider name="Term & Conditions" rules="required" v-slot="{ errors }">
                                 <input type="checkbox" id="terms-agree" class="checkbox-parents--input" v-model="agreement" @change="onAgreement($event)">
                                 <label for="terms-agree" class="checkbox-parents--label">I agree with all <router-link to="/terms" target="_blank" class="text-secondery"><u> term & conditions</u></router-link></label>
-                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                <span v-if="errors.length" class="error-message d-block ml--30">{{ errors[0] }}</span>
                             </ValidationProvider>
                             </div>
                         </div>
@@ -113,12 +113,12 @@
                
                 <div v-if="showModal">
                     <transition name="modal">
-                        <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal">
+                        <div class="modal-mask seller-information-modal upgrade-modal cart-warning-modal multiple-user-warning-modal z-index-99">
                             <div class="modal-wrapper">
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true" @click="showModal = false" class="close-modal"></span>
+                                                <span aria-hidden="true" @click="showModal = false" class=""></span>
                                             </button>
                                         <div class="modal-body-content">
                                             <p>Opps !!! The game(S) {{ id }} you wanted to rent is not available at this moment.</p>

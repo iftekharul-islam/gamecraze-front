@@ -157,7 +157,7 @@
             <div class="container">
                 <div class="col-12 p-0">
                      <div id="owl-notice-mobile" class="owl-carousel owl-theme">
-                         <div class="item"  v-for="(article, index) in articles" :key="index" v-if="featuredArticle.id !== article.id">
+                         <div class="item"  v-for="(article, index) in articles" :key="index">
                              <div class="notice-box">
                                 <img :src=article.thumbnail :alt="article.title" class="w-100">
                                 <div class="noticed-details">

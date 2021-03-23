@@ -182,43 +182,59 @@
                                         <td v-else>
                                             <a class="badge-danger badge" >Rejected</a>
                                         </td>
-                                        <td><a href="#" data-toggle="modal" data-target="#offeredit"><img src="../assets/img/editbtn.png" alt="Edit Button"></a></td>
-<!--                                                <td><button type="button" class="btn btn-danger mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button></td>-->
-                                            <!-- modal edit game -->
-                                                <div class="modal fade seller-information-modal upgrade-modal" id="offeredit" tabindex="-1" aria-labelledby="offereditModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered">
-                                                        <div class="modal-content">
-                                                                <button type="button" class="close m-0 close-modal" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true"></span>
+                                        <td>
+                                            <a href="#" @click.prevent="credentialModal(rent)"><img src="../assets/img/editbtn.png" alt="Edit Button" v-if="rent.disk_type != 1"></a>
+                                        </td>
+                                        <!-- modal edit game -->
+                                        <div v-if="credentialModalShow">
+                                            <transition name="modal">
+                                                <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal">
+                                                    <div class="modal-wrapper">
+                                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                                            <div class="modal-content">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true" @click="credentialModalShow = false" class="close-modal"></span>
                                                                 </button>
-                                                            <h4 class="text-secondery mb-a-12 f-s-28">Enter your digital disk’s credentials.</h4>
-                                                              <!-- form-group -->
-                                                            <form action="">
-                                                                 <div class="form-group post-rent--form-group">
-                                                                    <label for="game-user-id" class=" label-padding post-rent--form-group--label text-light">Game user id</label>
-                                                                    <div class=" post-rent--form-group--input">
-                                                                        <input type="text" class="form-control renten-input" id="game-user-id" placeholder="Enter game user id" v-model="rentData.gameUserId">
-                                                                    </div>
-                                                                </div>
+                                                                <h4 class="text-secondery mb-a-12 f-s-28">Enter your digital disk’s credentials.</h4>
                                                                 <!-- form-group -->
-                                                                <div class="form-group post-rent--form-group">
-                                                                    <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light">Game password</label>
-                                                                    <div class=" post-rent--form-group--input">
-                                                                        <input type="text" class="form-control renten-input" id="game-user-pass" placeholder="Enter game user password" v-model="rentData.gamePassword">
-                                                                    </div>
-                                                                </div>
-                                                                 <!-- form-group Button -->
-                                                                <div class="form-group post-rent--form-group offer-edit-btn">
-                                                                    <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light"></label>
-                                                                    <div class=" post-rent--form-group--input">
-                                                                        <button class="btn--secondery"><span>Submit</span></button>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
+                                                                <ValidationObserver v-slot="{ invalid }">
+                                                                    <form @submit.prevent="gameCredentialUpdate(rent.id, userGameId, userPassword)" method="post">
+                                                                        <div class="form-group post-rent--form-group">
+                                                                            <label for="game-user-id" class=" label-padding post-rent--form-group--label text-light">Game user id</label>
+                                                                            <div class=" post-rent--form-group--input">
+                                                                                <ValidationProvider name="Game user id" rules="required" v-slot="{ errors }">
+                                                                                <input type="text" class="form-control renten-input" id="game-user-id" placeholder="Enter game user id" v-model="userGameId">
+                                                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                            </ValidationProvider>
+                                                                            </div>
 
+                                                                        </div>
+                                                                        <!-- form-group -->
+                                                                        <div class="form-group post-rent--form-group">
+                                                                            <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light">Game password</label>
+                                                                            <div class=" post-rent--form-group--input">
+                                                                            <ValidationProvider name="Game password" rules="required" v-slot="{ errors }">
+                                                                                <input type="text" class="form-control renten-input" id="game-user-pass" placeholder="Enter game user password" v-model="userPassword">
+                                                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                            </ValidationProvider>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- form-group Button -->
+                                                                        <div class="form-group post-rent--form-group offer-edit-btn">
+                                                                            <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light"></label>
+                                                                            <div class=" post-rent--form-group--input">
+                                                                                <button type="submit" class="btn--secondery" :disabled="invalid">Submit</button>
+<!--                                                                                <button type="submit" href="javascript:void(0)" class="btn&#45;&#45;secondery" @click.prevent="handleSubmit(gameCredentialUpdate(rent.id, rent.game_user_id, rent.game_password))">Submit</button>-->
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </ValidationObserver>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </transition>
+                                        </div>
                                     </tr>
                                     </tbody>
                                     </table>
@@ -429,7 +445,7 @@
                                             <!-- Select Check point -->
                                               <!-- form-group -->
                                            <div class="form-group post-rent--form-group" v-show="x === '1'">
-                                                    <label class="post-rent--form-group--label">Select checkpont:</label>
+                                                    <label class="post-rent--form-group--label">Select checkpoint:</label>
                                                     <div class="post-rent--form-group--input">
                                                         <select class="form-control" id="checkpoint" v-model="rentData.checkpoint">
                                                             <option value="" disabled>Please Select Near Checkpoint</option>
@@ -499,16 +515,16 @@
                                             </div>
                                              <!-- form-group -->
                                             <div class="form-group post-rent--form-group" v-if="isDigital">
-                                                <label for="game-user-id" class=" label-padding post-rent--form-group--label">Game user id</label>
+                                                <label for="rent-game-user-id" class=" label-padding post-rent--form-group--label">Game user id</label>
                                                 <div class=" post-rent--form-group--input">
-                                                    <input type="text" class="form-control renten-input" id="game-user-id" placeholder="Enter game user id" v-model="rentData.gameUserId">
+                                                    <input type="text" class="form-control renten-input" id="rent-game-user-id" placeholder="Enter game user id" v-model="rentData.gameUserId">
                                                 </div>
                                             </div>
                                             <!-- form-group -->
                                             <div class="form-group post-rent--form-group" v-if="isDigital">
-                                                <label for="game-user-pass" class=" label-padding post-rent--form-group--label">Game password</label>
+                                                <label for="rent-game-user-pass" class=" label-padding post-rent--form-group--label">Game password</label>
                                                 <div class=" post-rent--form-group--input">
-                                                    <input type="text" class="form-control renten-input" id="game-user-pass" placeholder="Enter game user password" v-model="rentData.gamePassword">
+                                                    <input type="text" class="form-control renten-input" id="rent-game-user-pass" placeholder="Enter game user password" v-model="rentData.gamePassword">
                                                 </div>
                                             </div>
                                             <!-- disk image -->
@@ -775,6 +791,9 @@
         props: ['rentPost', 'profileEdit'],
         data() {
             return {
+                credentialModalShow: false,
+                userGameId: '',
+                userPassword: '',
                 isDigital: false,
                 itemsData: ['Male', 'Female', 'Others'],
                 rents: [],
@@ -833,7 +852,44 @@
                 transactions: [],
             }
         },
+        watch: {
+            credentialModalShow: {
+                handler: function () {
+                    this.rentCheck()
+                }
+            },
+        },
         methods: {
+            credentialModal(rent){
+                this.userGameId = rent.game_user_id;
+                this.userPassword = rent.game_password;
+
+                this.credentialModalShow = true;
+            },
+            gameCredentialUpdate(rentId, userId, gamePassword){
+
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+                let data = {
+                    game_user_id: userId,
+                    game_password: gamePassword,
+                    rent_id: rentId
+                };
+
+                this.$api.post('game-credential-update', data, config).then(response => {
+                    // console.log(response)
+                    if (response.data.error == false) {
+                        this.credentialModalShow = false;
+                        this.$toaster.success("Game Credential Updated!");
+                    }else {
+                        this.$toaster.fail(response.data.message);
+                    }
+
+                });
+            },
             onAgreement(event){
                 this.agreement = '';
                 if (event.target.checked == true){
@@ -1229,25 +1285,34 @@
             },
             onEmailFocus: function() {
                 this.isEmailExists = false;
+            },
+            rentCheck: function() {
+
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+
+                this.$api.get('rents?include=game,platform,diskCondition,checkpoint,renter', config).then(response =>
+                {
+                    this.rents = response.data.data;
+                });
+
+                this.$api.get('lends', config).then(response =>
+                {
+                    this.lends = response.data;
+                });
             }
         },
         created() {
-            window.scrollTo(0,0);
             let config = {
                 headers: {
                     'Authorization': 'Bearer ' + this.$store.state.token
                 }
             };
-            this.$api.get('rents?include=game,platform,diskCondition,checkpoint,renter', config).then(response =>
-            {
-                this.rents = response.data.data;
-            });
-
-            this.$api.get('lends', config).then(response =>
-            {
-                this.lends = response.data;
-            });
-
+            window.scrollTo(0,0);
+            this.rentCheck();
             this.$root.$on('rentPost', () => {
                 $('#v-pills-overview-tab').removeClass('active');
                 $('#v-pills-overview').removeClass('active');

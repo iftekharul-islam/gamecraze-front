@@ -264,7 +264,7 @@
                                                     {{ returnDate(lend.rent.disk_type, lend.updated_at, lend.lend_week) }}
                                                 </td>
                                                 <td v-else-if="lend.rent.disk_type == 1 && lend.status === 1">
-                                                    {{ formattedDate(lend.updated_at) }}
+                                                    {{ formattedReturnDate(lend.updated_at) }}
                                                 </td>
                                                 <td v-else-if="lend.rent.disk_type == 0">
                                                     {{ returnDate(lend.rent.disk_type, lend.created_at, lend.lend_week) }}
@@ -913,6 +913,11 @@
                 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                 let formattedDate = new Date(date)
                 return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
+            },
+            formattedReturnDate(date) {
+                const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+                let formattedDate = new Date(date)
+                return formattedDate.getDate()+1 + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
             },
             startDate(diskType, datetime) {
                 let date = new Date(datetime);

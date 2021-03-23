@@ -75,7 +75,6 @@
             },
             getRelatedNews: function(id, number) {
                 this.$api.get('article/related/' + id + '?number=' + number).then(response => {
-                    console.log(response.data.data);
                     if (response.status == 200) {
                         this.relatedNews = response.data.data;
                     }

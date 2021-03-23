@@ -615,7 +615,7 @@
                     &:nth-of-type(2) {
                         min-width: 145px;
                     }
-                    &:nth-of-type(7) {
+                    &:nth-of-type(6) {
                         min-width: 200px;
                         @include for-max-1400 {
                             min-width: 180px;
@@ -642,7 +642,7 @@
         table {
             tr {
                 td {
-                    &:nth-of-type(7) {
+                    &:nth-of-type(6) {
                         min-width: initial;
                     }
                     &:first-of-type {

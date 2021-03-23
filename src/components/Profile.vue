@@ -198,7 +198,7 @@
                                                 <td scope="col">Game</td>
                                                 <td scope="col">Rent Week(s)</td>
                                                 <td scope="col">Rent Date</td>
-                                                <td scope="col">Rent Start Date</td>
+<!--                                                <td scope="col">Rent Start Date</td>-->
                                                 <td scope="col">Return Date</td>
                                                 <td scope="col" class="text-center">Remaining Days</td>
                                                 <td scope="col">Cost</td>
@@ -215,18 +215,21 @@
                                                 </td>
                                                 <td>{{ lend.lend_week }}</td>
                                                 <td>{{ formattedDate(lend.lend_date) }}</td>
-                                                <td v-if="lend.rent.disk_type == 1 && lend.status === 3">
-                                                    {{ startDate(lend.rent.disk_type, lend.updated_at) }}
-                                                </td>
-                                                <td v-else-if="lend.rent.disk_type == 0">
-                                                    {{ startDate(lend.rent.disk_type, lend.created_at) }}
-                                                </td>
-                                                <td v-else>
-                                                    -
-                                                </td>
+<!--                                                <td v-if="lend.rent.disk_type == 1 && lend.status === 3">-->
+<!--                                                    {{ startDate(lend.rent.disk_type, lend.updated_at) }}-->
+<!--                                                </td>-->
+<!--                                                <td v-else-if="lend.rent.disk_type == 0">-->
+<!--                                                    {{ startDate(lend.rent.disk_type, lend.created_at) }}-->
+<!--                                                </td>-->
+<!--                                                <td v-else>-->
+<!--                                                    - -->
+<!--                                                </td>-->
 
                                                 <td v-if="lend.rent.disk_type == 1 && lend.status === 3">
                                                     {{ returnDate(lend.rent.disk_type, lend.updated_at, lend.lend_week) }}
+                                                </td>
+                                                <td v-else-if="lend.rent.disk_type == 1 && lend.status === 1">
+                                                    {{ formattedDate(lend.updated_at) }}
                                                 </td>
                                                 <td v-else-if="lend.rent.disk_type == 0">
                                                     {{ returnDate(lend.rent.disk_type, lend.created_at, lend.lend_week) }}

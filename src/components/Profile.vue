@@ -194,14 +194,14 @@
                                                             <h4 class="text-secondery mb-a-12 f-s-28">Enter your digital disk’s credentials.</h4>
                                                               <!-- form-group -->
                                                             <form action="">
-                                                                 <div class="form-group post-rent--form-group">
+                                                                 <div class="form-group post-rent--form-group text-left">
                                                                     <label for="game-user-id" class=" label-padding post-rent--form-group--label text-light">Game user id</label>
                                                                     <div class=" post-rent--form-group--input">
                                                                         <input type="text" class="form-control renten-input" id="game-user-id" placeholder="Enter game user id" v-model="rentData.gameUserId">
                                                                     </div>
                                                                 </div>
                                                                 <!-- form-group -->
-                                                                <div class="form-group post-rent--form-group">
+                                                                <div class="form-group post-rent--form-group text-left">
                                                                     <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light">Game password</label>
                                                                     <div class=" post-rent--form-group--input">
                                                                         <input type="text" class="form-control renten-input" id="game-user-pass" placeholder="Enter game user password" v-model="rentData.gamePassword">

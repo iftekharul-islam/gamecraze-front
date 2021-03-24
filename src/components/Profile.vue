@@ -149,15 +149,15 @@
                                         <button  @click.prevent="onOfferedGames()" :disabled="show" :class="{active: show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  Offered Games</button>
                                     </div>
                                 <!-- Offer -->
-                                <div class="dashboard-content--rented dashboard-content--offer" v-if="rents.length && show">
-                                    <table class="table table-borderless" v-if="rents">
+                                <div class="dashboard-content--rented" v-if="rents.length && show">
+                                    <!-- <table class="table table-borderless" v-if="rents">
                                     <thead>
                                     <tr>
                                         <td scope="col">Game</td>
                                         <td scope="col">Disk condition</td>
                                         <td scope="col">Platform</td>
                                         <td scope="col">Renter name</td>
-<!--                                                <td scope="col">Pick Point</td>-->
+                                               <td scope="col">Pick Point</td>
                                         <td scope="col">Available From</td>
                                         <td scope="col">Approvement</td>
                                         <td scope="col">Action</td>
@@ -166,11 +166,12 @@
                                     <tbody>
                                     <tr v-for="(rent, index) in rents" :key="index">
                                         <td v-if="rent.game">{{ rent.game.data.name }}</td>
+
                                         <td>{{ rent.diskCondition.data.name_of_type }}</td>
                                         <td>{{ rent.platform.data.name }}</td>
                                         <td v-if="rent.renter">{{ rent.renter.data.name }}</td>
                                         <td v-else>N/A</td>
-<!--                                                <td v-if="rent.checkpoint_id">{{rent.checkpoint.data.name}}</td>-->
+                                               <td v-if="rent.checkpoint_id">{{rent.checkpoint.data.name}}</td>
                                         <td v-else>Not Set</td>
                                         <td>{{ formattedDate(rent.availability_from_date) }}</td>
                                         <td v-if="rent.status === 0">
@@ -183,7 +184,85 @@
                                             <a class="badge-danger badge" >Rejected</a>
                                         </td>
                                         <td><a href="#" data-toggle="modal" data-target="#offeredit"><img src="../assets/img/editbtn.png" alt="Edit Button"></a></td>
-<!--                                                <td><button type="button" class="btn btn-danger mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button></td>-->
+                                               <td><button type="button" class="btn btn-danger mb-2" @click.prevent="onDelete(rent)" ><i class="fa fa-trash" aria-hidden="true"></i></button></td>
+                                            modal edit game
+                                                <div class="modal fade seller-information-modal upgrade-modal" id="offeredit" tabindex="-1" aria-labelledby="offereditModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content">
+                                                                <button type="button" class="close m-0 close-modal" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true"></span>
+                                                                </button>
+                                                            <h4 class="text-secondery mb-a-12 f-s-28">Enter your digital disk’s credentials.</h4>
+                                                              form-group
+                                                            <form action="">
+                                                                 <div class="form-group post-rent--form-group text-left">
+                                                                    <label for="game-user-id" class=" label-padding post-rent--form-group--label text-light">Game user id</label>
+                                                                    <div class=" post-rent--form-group--input">
+                                                                        <input type="text" class="form-control renten-input" id="game-user-id" placeholder="Enter game user id" v-model="rentData.gameUserId">
+                                                                    </div>
+                                                                </div>
+                                                                form-group
+                                                                <div class="form-group post-rent--form-group text-left">
+                                                                    <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light">Game password</label>
+                                                                    <div class=" post-rent--form-group--input">
+                                                                        <input type="text" class="form-control renten-input" id="game-user-pass" placeholder="Enter game user password" v-model="rentData.gamePassword">
+                                                                    </div>
+                                                                </div>
+                                                                 form-group Button
+                                                                <div class="form-group post-rent--form-group offer-edit-btn">
+                                                                    <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light"></label>
+                                                                    <div class=" post-rent--form-group--input">
+                                                                        <button class="btn--secondery"><span>Submit</span></button>
+                                                                    </div>
+                                                                </div>
+                                                            </form>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                    </tr>
+                                    </tbody>
+                                    </table> -->
+                                    <!-- new offter design -->
+                                    <div class="d-flex flex-wrap"  v-if="rents">
+                                        <div class="dashboard-content--rented--box position-relative bg-game-details border-2 warning-border" v-for="(rent, index) in rents" :key="index">
+                                            <div class="position-absolute top-0 right-0 bg-secondery p-2 gil-bold">
+                                                    <div class="disk-type text-black" >Physical Copy</div>
+                                                </div>
+
+                                             <div class="dashboard-content--rented--box--order-id">
+                                                <p>GH: 1223</p>
+                                            </div>
+
+                                             <div class="dashboard-content--rented--box--order-name">
+                                                    <p v-if="rent.game" class="f-s-20 gil-bold mb-a-3 h-60">{{ rent.game.data.name }}</p>
+                                            </div>
+                                            <div class="d-flex">
+                                                <div class="left flex-1">
+                                                    <div class="disk-condition">
+                                                        <p class="mb-2">Disk condition</p>
+                                                        <p class="text-secondery">{{ rent.diskCondition.data.name_of_type }}</p>
+                                                    </div>
+                                                    <div class="renter-name">
+                                                        <p class="mb-2">Renter Name</p>
+                                                        <p class="text-secondery" v-if="rent.renter">{{ rent.renter.data.name }}</p>
+                                                        <p class="text-secondery" v-else>N/A</p>
+                                                    </div>
+                                                </div>
+                                                <div class="right flex-1">
+                                                    <div class="platform">
+                                                        <p class="mb-2">Platform</p>
+                                                        <p class="text-secondery">{{ rent.platform.data.name }}</p>
+                                                    </div>
+                                                    <div class="status">
+                                                        <p class="mb-2">Status</p>
+                                                        <p class="text-secondery">Availabe for 1 week</p>
+                                                    </div>
+                                                    <div class="action">
+                                                        <a href="#" class="btn--secondery h-40 w-80" data-toggle="modal" data-target="#offeredit"><span>Edit</span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
                                             <!-- modal edit game -->
                                                 <div class="modal fade seller-information-modal upgrade-modal" id="offeredit" tabindex="-1" aria-labelledby="offereditModalLabel" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered">
@@ -219,21 +298,21 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                    </tr>
-                                    </tbody>
-                                    </table>
+                                        </div>
+                                        
+                                    </div>
                                 </div>
                                     <!-- Rented -->
                                 <div v-else-if="lends.length && !show">
                                     <div class="dashboard-content--rented">
-                                        <table class="table table-borderless" v-if="lends">
+                                        <!-- <table class="table table-borderless" v-if="lends">
                                             <thead>
                                             <tr>
                                                 <td scope="col">Order Id</td>
                                                 <td scope="col">Game</td>
                                                 <td scope="col">Rent Week(s)</td>
                                                 <td scope="col">Rent Date</td>
-<!--                                                <td scope="col">Rent Start Date</td>-->
+                                               <td scope="col">Rent Start Date</td>
                                                 <td scope="col">Return Date</td>
                                                 <td scope="col" class="text-center">Remaining Days</td>
                                                 <td scope="col">Cost</td>
@@ -250,15 +329,15 @@
                                                 </td>
                                                 <td>{{ lend.lend_week }}</td>
                                                 <td>{{ formattedDate(lend.lend_date) }}</td>
-<!--                                                <td v-if="lend.rent.disk_type == 1 && lend.status === 3">-->
-<!--                                                    {{ startDate(lend.rent.disk_type, lend.updated_at) }}-->
-<!--                                                </td>-->
-<!--                                                <td v-else-if="lend.rent.disk_type == 0">-->
-<!--                                                    {{ startDate(lend.rent.disk_type, lend.created_at) }}-->
-<!--                                                </td>-->
-<!--                                                <td v-else>-->
-<!--                                                    - -->
-<!--                                                </td>-->
+                                               <td v-if="lend.rent.disk_type == 1 && lend.status === 3">
+                                                   {{ startDate(lend.rent.disk_type, lend.updated_at) }}
+                                               </td>
+                                               <td v-else-if="lend.rent.disk_type == 0">
+                                                   {{ startDate(lend.rent.disk_type, lend.created_at) }}
+                                               </td>
+                                               <td v-else>
+                                                   -
+                                               </td>
 
                                                 <td v-if="lend.rent.disk_type == 1 && lend.status === 3">
                                                     {{ returnDate(lend.rent.disk_type, lend.updated_at, lend.lend_week) }}
@@ -281,6 +360,7 @@
                                                     <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)" v-else></flip-countdown>
                                                 </td>
                                                 <td>{{ lend.lend_cost + Math.floor(lend.commission) }}</td>
+
                                                 <td v-if="lend.status === 0">
                                                     <a class="badge-warning badge" >Pending</a>
                                                 </td>
@@ -299,10 +379,77 @@
                                                 <td v-else-if="lend.status === 5">
                                                     <a class="badge-success badge" >Processing</a>
                                                 </td>
-<!--                                                        <td><button class="btn btn-primary" @click.prevent="extend">Extent Date</button></td>-->
+                                                       <td><button class="btn btn-primary" @click.prevent="extend">Extent Date</button></td>
                                             </tr>
                                             </tbody>
-                                        </table>
+                                        </table> -->
+                                        <!-- new rented design -->
+                                        <div class="d-flex flex-wrap" v-if="lends">
+                                            <div class="dashboard-content--rented--box position-relative bg-game-details border-2 warning-border" v-for="(lend, index) in lends" :key="index">
+                                                <!-- disk type -->
+                                                <div class="dashboard-content--rented--box--disk-type position-absolute top-0 right-0 bg-secondery p-2 gil-bold">
+                                                    <div class="disk-type text-black" v-if="lend.rent.disk_type == 1">Physical Copy</div>
+                                                    <div class="disk-type text-black" v-if="lend.rent.disk_type == 0">Digital Copy</div>
+                                                </div>
+                                                <div class="dashboard-content--rented--box--order-id">
+                                                    <p v-if="lend.order">{{ lend.order.order_no }}</p>
+                                                    <p v-else>N/A</p>
+                                                </div>
+                                                <div class="dashboard-content--rented--box--order-name">
+                                                    <p v-if="lend.rent" class="f-s-20 gil-bold mb-a-3 h-60">{{ lend.rent.game.name }}</p>
+                                                </div>
+                                                <div class="d-flex justify-content-between dashboard-content--rented--box--order-description">
+                                                        <div class="cost">
+                                                            <p>Coast</p>
+                                                            <p class="text-secondery">{{ lend.lend_cost + Math.floor(lend.commission) }}</p>
+                                                        </div>
+                                                        <div class="duration">
+                                                            <p>Rent duration</p>
+                                                            <div class="d-flex flex-column align-items-center duration--date text-secondery">
+                                                                <p class="mb-1">{{ formattedDate(lend.lend_date) }} </p>
+                                                                <p class="mb-1">to</p>
+                                                                <p class="mb-1" v-if="lend.rent.disk_type == 1 && lend.status === 3">{{ returnDate(lend.rent.disk_type, lend.updated_at, lend.lend_week) }}</p>
+                                                                <p class="mb-1" v-else-if="lend.rent.disk_type == 1 && lend.status === 1">{{ formattedReturnDate(lend.updated_at) }}</p>
+                                                                <p class="mb-1" v-else-if="lend.rent.disk_type == 0"> {{ returnDate(lend.rent.disk_type, lend.created_at, lend.lend_week) }}</p>
+                                                            </div>
+                                                        </div>
+                                                </div>
+                                                <div class="mt-a-6 d-flex justify-content-between">                                                       
+                                                        <div class="timer">
+                                                            <p class="mb-1">Remaining time</p>
+                                                            <div v-if="lend.rent.disk_type == 1">
+                                                                <flip-countdown :deadline="endDate(lend.rent.disk_type, lend.updated_at, lend.lend_week)" v-if="lend.status === 3"></flip-countdown>
+                                                                <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-else></flip-countdown>
+                                                            </div>
+                                                            <div v-if="lend.rent.disk_type == 0">
+                                                                <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-if="lend.status === 1 || lend.status === 4"></flip-countdown>
+                                                                <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)" v-else></flip-countdown>
+                                                            </div>
+                                                        </div>
+                                                        <div class="status">
+                                                            <p class="mb-1">Status</p>
+                                                            <div v-if="lend.status === 0">
+                                                                <span class="bg-secondery text-black badge br-0 p-2 f-s-16" >Pending</span>
+                                                            </div>
+                                                            <div v-else-if="lend.status === 1">
+                                                                <span class="badge-success badge br-0 p-2 f-s-16" >Completed</span>
+                                                            </div>
+                                                            <div v-else-if="lend.status === 2">
+                                                                <span class="badge-success badge br-0 p-2 f-s-16" >Arrived at checkpoint</span>
+                                                            </div>
+                                                            <div v-else-if="lend.status === 3">
+                                                                <span class="badge-success badge br-0 p-2 f-s-16" >Delivered</span>
+                                                            </div>
+                                                            <div v-else-if="lend.status === 4">
+                                                                <span class="badge-danger badge br-0 p-2 f-s-16" >Rejected</span>
+                                                            </div>
+                                                            <div v-else-if="lend.status === 5">
+                                                                <span class="badge-success badge br-0 p-2 f-s-16" >Processing</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </div>
                                     </div>
                                         <p class="text-center text-secondery mt-3 rented-note">Please note that total rent amount is exclusive of 60 taka delivery charge</p>
                                 </div>

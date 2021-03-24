@@ -54,7 +54,7 @@
     grid-auto-rows: 200px;
     grid-gap: 20px;
     justify-content: center;
-    @include for-max-1200 {
+    @include for-max-1199 {
         grid-template-columns: 1fr 1fr 1fr;
     }
     @include for-max-575 {

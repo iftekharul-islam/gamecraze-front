@@ -1176,8 +1176,100 @@
   padding-bottom: 3.125rem;
 }
 
+.right-0 {
+  right: 0;
+}
+
+.right-2 {
+  right: 2px;
+}
+
+.right-4 {
+  right: 4px;
+}
+
+.right-6 {
+  right: 6px;
+}
+
+.right-8 {
+  right: 8px;
+}
+
+.right-10 {
+  right: 10px;
+}
+
+.right-12 {
+  right: 12px;
+}
+
+.right-14 {
+  right: 14px;
+}
+
+.left-0 {
+  left: 0;
+}
+
+.left-2 {
+  left: 2px;
+}
+
+.left-4 {
+  left: 4px;
+}
+
+.left-6 {
+  left: 6px;
+}
+
+.left-8 {
+  left: 8px;
+}
+
+.left-10 {
+  left: 10px;
+}
+
+.left-12 {
+  left: 12px;
+}
+
+.left-14 {
+  left: 14px;
+}
+
+.top-0 {
+  top: 0;
+}
+
+.top-2 {
+  top: 2px;
+}
+
+.top-4 {
+  top: 4px;
+}
+
 .top-6 {
   top: 6px;
+}
+
+.top-8 {
+  top: 8px;
+}
+
+.top-10 {
+  top: 10px;
+}
+
+.top-12 {
+  top: 12px;
+}
+
+.top-14 {
+  top: 14px;
 }
 
 .br-0 {
@@ -1204,8 +1296,32 @@
   border: none;
 }
 
+.border-1 {
+  border: 1px solid;
+}
+
+.border-2 {
+  border: 2px solid;
+}
+
+.border-3 {
+  border: 3px solid;
+}
+
 .secondery-border {
   border: 1px solid #FFD715;
+}
+
+.success-border {
+  border-color: #28a745;
+}
+
+.danger-border {
+  border-color: #dc3545;
+}
+
+.warning-border {
+  border-color: #FFD715;
 }
 
 .gamehub-danger {
@@ -1218,6 +1334,14 @@
 
 .text-black {
   color: #000;
+}
+
+.bg-secondery {
+  background: #FFD715;
+}
+
+.bg-game-details {
+  background: #141A27;
 }
 
 .gamehub-warning-bg {
@@ -1379,10 +1503,58 @@ html {
   height: 100%;
 }
 
+.h-40 {
+  height: 40px !important;
+}
+
+.h-50 {
+  height: 50px !important;
+}
+
+.h-60 {
+  height: 60px !important;
+}
+
+.h-70 {
+  height: 70px !important;
+}
+
+.h-80 {
+  height: 80px !important;
+}
+
+.h-90 {
+  height: 90px !important;
+}
+
 .w-fit {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+}
+
+.w-40 {
+  width: 40px !important;
+}
+
+.w-50 {
+  width: 50px !important;
+}
+
+.w-60 {
+  width: 60px !important;
+}
+
+.w-70 {
+  width: 70px !important;
+}
+
+.w-80 {
+  width: 80px !important;
+}
+
+.w-90 {
+  width: 90px !important;
 }
 
 textarea:focus {
@@ -1747,6 +1919,12 @@ select option {
           transform-origin: 50% 50%;
 }
 
+.flex-1 {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
 @media (max-width: 575px) {
   .body-home .gamehub-menu {
     background: transparent;
@@ -1789,7 +1967,7 @@ select option {
   width: 120px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .navbar-brand img {
     width: 100px;
   }
@@ -1856,7 +2034,7 @@ select option {
   font-family: gilroy-medium;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .gamehub-menu-collapse ul li a {
     padding: 0 10px;
     font-size: 14px;
@@ -1882,7 +2060,7 @@ select option {
           transform: skew(-50deg);
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .gamehub-menu-collapse ul li a.router-link-exact-active::after {
     width: 50px;
   }
@@ -2173,7 +2351,7 @@ select option {
   margin: 0 20px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .sign-in {
     width: 100px;
   }
@@ -2212,7 +2390,7 @@ select option {
   height: 40px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .search-input-design {
     width: 120px;
   }
@@ -2253,7 +2431,7 @@ select option {
           box-shadow: none;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .search-input-design input {
     width: 115px;
   }
@@ -2744,7 +2922,7 @@ select option {
   color: #FFD715;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .exchange-lend-section--exchange h3, .exchange-lend-section--lend h3 {
     font-size: 26px;
   }
@@ -2839,7 +3017,7 @@ select option {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .trending-section .item .trending-image img {
     width: 547px;
   }
@@ -3342,7 +3520,7 @@ select option {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .upcoming-section .item .upcoming-image img {
     width: 597px;
   }
@@ -3677,7 +3855,7 @@ select option {
           justify-content: center;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .noticed-grid {
     -ms-grid-columns: 1fr 1fr 1fr;
         grid-template-columns: 1fr 1fr 1fr;
@@ -3864,7 +4042,7 @@ select option {
   margin-left: -30px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .featured-section .owl-item.center .item {
     height: 363px;
     width: 500px;
@@ -4906,7 +5084,7 @@ html {
   transition: all .5s ease-in;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .game-rating {
     width: 25px;
     height: 25px;
@@ -4915,7 +5093,7 @@ html {
   }
 }
 
-@media (max-width: 1200px) and (max-width: 768px) {
+@media (max-width: 1199px) and (max-width: 768px) {
   .game-rating {
     width: 40px;
     height: 40px;
@@ -4928,7 +5106,7 @@ html {
   margin-right: 17px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .game-card-platform .d-flex span {
     margin-right: 8px;
   }
@@ -6289,7 +6467,7 @@ html {
   padding-top: 0;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .user-profile-details--nav a {
     font-size: 20px;
   }
@@ -6370,7 +6548,7 @@ html {
   margin-left: 57px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .user-profile-details .tab-content {
     margin-left: 25px;
   }
@@ -6403,7 +6581,7 @@ html {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .over-view table tr td {
     font-size: 16px;
   }
@@ -6547,7 +6725,7 @@ html {
   margin-right: 70px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .post-rent--form-group--input--radio-group .custom-radio {
     margin-right: 50px;
   }
@@ -6602,7 +6780,7 @@ html {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .post-rent--form-group--label {
     font-size: 16px;
   }
@@ -6699,7 +6877,7 @@ html {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .post-rent--form-group--btn {
     -ms-flex-preferred-size: 447px;
         flex-basis: 447px;
@@ -6793,7 +6971,7 @@ html {
   }
 }
 
-.dashboard-content--rented {
+.dashboard-content--offer {
   border: 1px solid #FFD715;
   padding: 0 20px;
   position: relative;
@@ -6802,18 +6980,18 @@ html {
 }
 
 @media (max-width: 1600px) {
-  .dashboard-content--rented {
+  .dashboard-content--offer {
     width: 1000px;
   }
 }
 
 @media (max-width: 1400px) {
-  .dashboard-content--rented {
+  .dashboard-content--offer {
     width: 100%;
   }
 }
 
-.dashboard-content--rented::after {
+.dashboard-content--offer::after {
   content: "";
   height: 80px;
   width: 100%;
@@ -6825,28 +7003,28 @@ html {
 }
 
 @media (max-width: 1600px) {
-  .dashboard-content--rented::after {
+  .dashboard-content--offer::after {
     width: 1150px;
   }
 }
 
-.dashboard-content--rented table {
+.dashboard-content--offer table {
   border-collapse: separate;
   border-spacing: 0px 20px;
   margin-top: -20px;
 }
 
 @media (max-width: 1600px) {
-  .dashboard-content--rented table {
+  .dashboard-content--offer table {
     width: 1110px;
   }
 }
 
-.dashboard-content--rented table thead tr {
+.dashboard-content--offer table thead tr {
   height: 80px;
 }
 
-.dashboard-content--rented table thead tr td {
+.dashboard-content--offer table thead tr td {
   border: none;
   color: #000;
   vertical-align: top;
@@ -6854,7 +7032,7 @@ html {
   border-radius: 0;
 }
 
-.dashboard-content--rented table tr td {
+.dashboard-content--offer table tr td {
   background: #141A27;
   color: #fff;
   border-top: 1px solid #FFD715;
@@ -6862,33 +7040,33 @@ html {
   padding: 16px 9px;
 }
 
-.dashboard-content--rented table tr td:first-of-type {
+.dashboard-content--offer table tr td:first-of-type {
   border-left: 1px solid #FFD715;
   border-top-left-radius: 0px;
   border-bottom-left-radius: 0px;
 }
 
-.dashboard-content--rented table tr td:nth-of-type(2) {
+.dashboard-content--offer table tr td:nth-of-type(2) {
   min-width: 145px;
 }
 
-.dashboard-content--rented table tr td:nth-of-type(6) {
+.dashboard-content--offer table tr td:nth-of-type(6) {
   min-width: 200px;
 }
 
 @media (max-width: 1400px) {
-  .dashboard-content--rented table tr td:nth-of-type(6) {
+  .dashboard-content--offer table tr td:nth-of-type(6) {
     min-width: 180px;
   }
 }
 
-.dashboard-content--rented table tr td:last-of-type {
+.dashboard-content--offer table tr td:last-of-type {
   border-right: 1px solid #FFD715;
   border-top-right-radius: 0px;
   border-bottom-right-radius: 0px;
 }
 
-.dashboard-content--rented table tr td button {
+.dashboard-content--offer table tr td button {
   width: 60px;
   height: 60px;
   font-size: 12px;
@@ -6903,6 +7081,35 @@ html {
 
 .dashboard-content--offer table tr td:first-of-type {
   min-width: 145px;
+}
+
+@media (min-width: 1200px) {
+  .dashboard-content--rented {
+    width: 950px;
+  }
+}
+
+.dashboard-content--rented--box {
+  padding: 10px 30px 20px 20px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.dashboard-content--rented--box:nth-child(even) {
+  margin-right: 0;
+}
+
+@media (min-width: 1200px) {
+  .dashboard-content--rented--box {
+    width: 446px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .dashboard-content--rented--box {
+    margin-right: 0;
+  }
 }
 
 .dashboard-content .flip-clock {
@@ -6924,7 +7131,7 @@ html {
   height: 120px;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 400px) {
   .dashboard-content .flip-clock {
     width: 160px;
     height: 90px;
@@ -6944,7 +7151,7 @@ html {
   font-size: 1.6rem;
 }
 
-@media (max-width: 1400px) {
+@media (max-width: 400px) {
   .dashboard-content .flip-clock > span > span {
     font-size: 12px;
   }
@@ -7120,7 +7327,7 @@ html {
   }
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .edit-profile label {
     font-size: 16px;
   }
@@ -7146,7 +7353,7 @@ html {
   padding-right: 90px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .edit--input {
     padding-right: 0;
   }
@@ -7604,7 +7811,7 @@ html {
   background: #FFD715;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .cart-section--item-details::after {
     height: 70px;
   }
@@ -7683,7 +7890,7 @@ html {
   cursor: pointer;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .cart-section--item-details--table .item-del {
     margin-left: 15px;
   }
@@ -8252,7 +8459,7 @@ html {
   padding-left: 102px;
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .payment-section--item--content:last-of-type p {
     padding-left: 60px;
   }
@@ -8269,7 +8476,7 @@ html {
   border-left: 1px solid rgba(255, 215, 21, 0.7);
 }
 
-@media (max-width: 1200px) {
+@media (max-width: 1199px) {
   .payment-section--item--content form {
     padding-left: 60px;
   }
@@ -8727,6 +8934,7 @@ html {
 .btn--secondery:hover {
   background: #141A27;
   color: #fff;
+  border: 1px solid #FFD715;
 }
 
 @media (max-width: 992px) {

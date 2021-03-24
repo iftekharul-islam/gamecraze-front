@@ -112,8 +112,8 @@
      }
  }
  
- @mixin for-max-1200 {
-     @media (max-width: 1200px) {
+ @mixin for-max-1199 {
+     @media (max-width: 1199px) {
          @content;
      }
  }

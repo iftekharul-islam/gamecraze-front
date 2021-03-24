@@ -225,7 +225,7 @@
     font-size: 20px;
     @include gil-bold;
     transition: all .5s ease-in;
-    @include for-max-1200 {
+    @include for-max-1199 {
         width: 25px;
         height: 25px;
         border-radius: 5px;
@@ -243,7 +243,7 @@
     .d-flex {
         span {
             margin-right: 17px;
-            @include for-max-1200 {
+            @include for-max-1199 {
                 margin-right: 8px;
             }
             @include for-max-768 {

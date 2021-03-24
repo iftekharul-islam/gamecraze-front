@@ -56,7 +56,7 @@
                                                 <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in modalData.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name" class="mr-2"></a>
                                             </td>
                                         </tr>
-                                        <tr>
+                                        <tr v-if="modalData.diskCondition">
                                             <td>Disk Condition:</td>
                                             <td v-if="modalData">{{ modalData.diskCondition.data.name_of_type }} ({{ modalData.diskCondition.data.description }})</td>
 

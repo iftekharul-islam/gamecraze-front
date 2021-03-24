@@ -68,8 +68,11 @@
                                      <!-- Agree terms and condition -->
                                     <div class="post-rent--form-group post-rent--form-group--agree ml-a-6 mt-4">
                                         <div class="checkbox-parents">
-                                            <input type="checkbox" id="terms-agree" class="checkbox-parents--input">
+                                            <ValidationProvider name="Term & Conditions" rules="required" v-slot="{ errors }">
+                                            <input type="checkbox" id="terms-agree" class="checkbox-parents--input" v-model="agreement" @change="onAgreement($event)">
                                             <label for="terms-agree" class="checkbox-parents--label">I agree with all <router-link to="/terms" target="_blank" class="text-secondery"><u> term & conditions</u></router-link></label>
+                                            <span v-if="errors.length" class="error-message d-block ml--30">{{ errors[0] }}</span>
+                                        </ValidationProvider>
                                         </div>
                                     </div>
 
@@ -97,6 +100,7 @@
     export default {
         data () {
             return {
+                agreement: '',
                 form: {
                     name: '',
                     lastName: '',
@@ -110,6 +114,12 @@
             }
         },
         methods: {
+            onAgreement(event){
+                this.agreement = '';
+                if (event.target.checked == true){
+                    this.agreement = 1
+                }
+            },
             isNumber: function(evt) {
                 evt = (evt) ? evt : window.event;
                 var charCode = (evt.which) ? evt.which : evt.keyCode;

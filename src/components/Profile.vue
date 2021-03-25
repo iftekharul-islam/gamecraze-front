@@ -741,7 +741,7 @@
                                                     <tr v-for="item in transactions">
                                                         <td>{{ item.transaction_id }}</td>
                                                         <td>{{ item.create }}</td>
-                                                        <td>{{ item.amount }} Taka</td>
+                                                        <td>{{ Math.ceil(item.amount) }} Taka</td>
                                                         <td>{{ item.payment_type }}</td>
                                                     </tr>
                                                 </tbody>
@@ -1138,6 +1138,7 @@
                                 top: 400,
                                 behavior: 'smooth',
                             })
+                            this.$toaster.error("Complete the required fields !");
                             return;
                         }
                 if ( this.rentData.game == '' || this.rentData.game == null) {

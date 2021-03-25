@@ -120,6 +120,18 @@
                 </div>
             </div>
         </section>
+<!--        <section>-->
+<!--            <carousel :loop="true">-->
+<!--&lt;!&ndash;                <img src="https://placeimg.com/200/200/any?1">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <img src="https://placeimg.com/200/200/any?2">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <img src="https://placeimg.com/200/200/any?3">&ndash;&gt;-->
+
+<!--&lt;!&ndash;                <img src="https://placeimg.com/200/200/any?4">&ndash;&gt;-->
+
+<!--            </carousel>-->
+<!--        </section>-->
         <!-- notice board -->
         <section class="noticed-board-section">
             <div class="text-center">
@@ -294,8 +306,10 @@
 
 <script>
     import Vue from 'vue';
+    import carousel from 'vue-owl-carousel';
 
     export default {
+        components: { carousel },
         data() {
             return {
                 trendingGames: [],
@@ -631,9 +645,8 @@
         },
         watch: {
             '$route' (to) {
+                console.log(to);
                 if (to.name == 'Home') {
-                    console.log('hello from watch');
-                    // location.reload();
                     this.getTrendingGames();
                     this.getNewGames();
                     this.getRentGames();

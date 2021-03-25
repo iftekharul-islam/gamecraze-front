@@ -12,22 +12,7 @@
                             </button>
                       </div>
                         <div v-if="isHidden" class="games-categories-section--categories" id="games-categories-list">
-                           <!-- Gamehub -->
-                            <!-- <div class="select-categories">
-                                <h6>Game Hub</h6>
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="custom-control-input" id="gamehub-name" >
-                                    <label class="custom-control-label" for="gamehub-name">Trending</label>
-                                </div>
-                                <div class="form-group form-check">
-                                    <input type="checkbox" class="custom-control-input" id="gamehub-name2" >
-                                    <label class="custom-control-label" for="gamehub-name2">Upcoming</label>
-                                </div>
-
-                            </div> -->
-
-
-                              <!-- Game Type -->
+                            <!-- Game Type -->
                             <div class="select-categories">
                                 <h6>Game type</h6>
                                 <div class="form-group form-check">
@@ -319,9 +304,9 @@
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {
                 this.rents = response.data.data;
                 this.fetchFilteredGames();
-                this.checkedCategories = typeof this.queryCategories == 'string'? this.queryCategories.split(',') : [];
-                this.checkedPlatforms = typeof this.queryPlatforms == 'string' ? this.queryPlatforms.split(',') : [];
-                this.checkedDiskType = typeof this.queryDiskType == 'string' ? this.queryDiskType.split(',') : [];
+                // this.checkedCategories = typeof this.queryCategories == 'string'? this.queryCategories.split(',') : [];
+                // this.checkedPlatforms = typeof this.queryPlatforms == 'string' ? this.queryPlatforms.split(',') : [];
+                // this.checkedDiskType = typeof this.queryDiskType == 'string' ? this.queryDiskType.split(',') : [];
                 const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
                 this.$api.get('rent-games/?ids=' + uniqueArr + '&include=assets,genres,platforms').then(resp => {
                   this.games = resp.data.data;

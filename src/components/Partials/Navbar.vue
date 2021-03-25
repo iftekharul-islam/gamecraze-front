@@ -24,7 +24,7 @@
                             <router-link @click.native="onMenuItemClick()" class="nav-link active router_link" to="/" >Home<span class="sr-only">(current)</span></router-link>
                         </li>
                         <li>
-                            <router-link @click.native="onMenuItemClick()" class="router_link" to="/games" >Games</router-link>
+                            <router-link @click.native="onMenuItemClick()" class="router_link" to="/games" :class="{ 'router-link-exact-active router-link-active active': this.$route.path == '/games' }">Games</router-link>
                         </li>
                         <li>
                             <router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">Post For Rent</router-link>

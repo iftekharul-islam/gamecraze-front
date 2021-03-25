@@ -29,7 +29,7 @@
                             <!-- select categories -->
                             <div class="select-categories">
                                 <h6>Select Category</h6>
-                                <div class="form-group form-check" v-for="(category, index) in categories" :key="index">
+                                <div class="form-group form-check" v-for="(category, index) in categories" :key="'category' + index">
                                     <input type="checkbox" class="custom-control-input" :id="category.name + '-game'" :checked="checkedCategories.includes(category.slug)" @change="changeCheckedCategories(category.slug)">
                                     <label class="custom-control-label" :for="category.name + '-game'">{{category.name}}</label>
                                 </div>
@@ -38,7 +38,7 @@
                             <!-- platform -->
                             <div class="select-platforms">
                                 <h6>Select Platforms</h6>
-                                <div class="form-group form-check" v-for="(platform, index) in platforms" :key="index">
+                                <div class="form-group form-check" v-for="(platform, index) in platforms" :key="'platform' + index">
                                     <input type="checkbox" class="custom-control-input" :id="platform.name + '-game'" :checked="checkedPlatforms.includes(platform.slug)" @change="changeCheckedPlatforms(platform.slug)">
                                     <label class="custom-control-label" :for="platform.name + '-game'">{{platform.name}}</label>
                                 </div>
@@ -51,9 +51,9 @@
                     </div>
                     <div class="col-md-8 col-lg-9 mb-3">
                       <div class="games-categories-section--tag">
-                        <span v-for="(categoryItem, categoryIndex) in checkedCategories" :key="categoryIndex">{{categoryItem}} <div @click="removeCategoryFilter(categoryItem)" class="remove-icon"><i class="fas fa-times"></i></div></span>
-                        <span v-for="(platformItem, platformIndex) in checkedPlatforms" :key="platformIndex">{{ platformItem}} <div @click="removePlatformFilter(platformItem)" class="remove-icon"><i class="fas fa-times"></i></div></span>
-                        <span v-for="(diskTypeItem, diskTypeIndex) in checkedDiskType" :key="diskTypeIndex">{{ diskTypeItem == 'digital_copy' ? 'Digital Copy': 'Physical Copy'}} <div @click="removeDiskTypeFilter(diskTypeItem)" class="remove-icon"><i class="fas fa-times"></i></div></span>
+                        <span v-for="(categoryItem, categoryIndex) in checkedCategories" :key="categoryItem + categoryIndex">{{categoryItem}} <div @click="removeCategoryFilter(categoryItem)" class="remove-icon"><i class="fas fa-times"></i></div></span>
+                        <span v-for="(platformItem, platformIndex) in checkedPlatforms" :key="platformItem + platformIndex">{{ platformItem}} <div @click="removePlatformFilter(platformItem)" class="remove-icon"><i class="fas fa-times"></i></div></span>
+                        <span v-for="(diskTypeItem, diskTypeIndex) in checkedDiskType" :key="diskTypeItem + diskTypeIndex">{{ diskTypeItem == 'digital_copy' ? 'Digital Copy': 'Physical Copy'}} <div @click="removeDiskTypeFilter(diskTypeItem)" class="remove-icon"><i class="fas fa-times"></i></div></span>
                         <span v-if="$route.query.search">{{$route.query.search}} <div @click="removeSearchKey()" class="remove-icon"><i class="fas fa-times"></i></div></span>
                       </div>
                         <div class="games-categories-section--games">

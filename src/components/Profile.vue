@@ -229,11 +229,12 @@
                                         <div class="d-flex flex-wrap"  v-if="rents">
                                         <div class="dashboard-content--rented--box position-relative bg-game-details border-2 warning-border" v-for="(rent, index) in rents" :key="index">
                                             <div class="position-absolute top-0 right-0 bg-secondery p-2 gil-bold">
-                                                    <div class="disk-type text-black" >Physical Copy</div>
+                                                    <div class="disk-type text-black" v-if="rent.disk_type == 1">Physical Copy</div>
+                                                    <div class="disk-type text-black" v-else>Digital Copy</div>
                                                 </div>
 
                                              <div class="dashboard-content--rented--box--order-id">
-                                                <p>GH: 1223</p>
+<!--                                                <p>GH: 1223</p>-->
                                             </div>
 
                                              <div class="dashboard-content--rented--box--order-name">
@@ -259,7 +260,7 @@
                                                     </div>
                                                     <div class="status">
                                                         <p class="mb-2">Status</p>
-                                                        <p class="text-secondery">Availabe for 1 week</p>
+                                                        <p class="text-secondery">Available for {{ rent.max_number_of_week }} week</p>
                                                     </div>
                                                     <div class="action">
                                                         <a href="#" class="btn--secondery h-40 w-80" @click.prevent="credentialModal(rent)">Edit</a>
@@ -418,7 +419,7 @@
                                                     </div>
                                                     <div class="d-flex justify-content-between dashboard-content--rented--box--order-description">
                                                             <div class="cost">
-                                                                <p>Coast</p>
+                                                                <p>Cost</p>
                                                                 <p class="text-secondery">{{ lend.lend_cost + Math.floor(lend.commission) }}</p>
                                                             </div>
                                                             <div class="duration">

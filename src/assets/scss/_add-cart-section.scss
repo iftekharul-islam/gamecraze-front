@@ -19,7 +19,7 @@
             left: 0;
             z-index: -1;
             background: $secondery;
-            @include for-max-1200 {
+            @include for-max-1199 {
                 height: 70px;
             }
             @include for-max-992 {
@@ -73,7 +73,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                @include for-max-1200 {
+                @include for-max-1199 {
                     margin-left: 15px;
                 }
                 cursor: pointer;

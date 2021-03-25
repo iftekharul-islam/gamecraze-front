@@ -28,7 +28,7 @@
     }
     img {
         width: 120px;
-        @include for-max-1200 {
+        @include for-max-1199 {
             width: 100px;
         }
         @include for-max-575 {
@@ -68,7 +68,7 @@
             a {
                 padding: 0 20px;
                 @include gil-medium;
-                @include for-max-1200 {
+                @include for-max-1199 {
                     padding: 0 10px;
                     font-size: 14px;
                 }
@@ -86,7 +86,7 @@
                         right: 0;
                         margin: auto;
                         transform: skew(-50deg);
-                        @include for-max-1200 {
+                        @include for-max-1199 {
                             width: 50px;
                         }
                         @include for-max-992 {
@@ -320,7 +320,7 @@
     justify-content: center;
     transform: skew(-21deg);
     margin: 0 20px;
-    @include for-max-1200 {
+    @include for-max-1199 {
         width: 100px;
     }
     @include for-max-991 {
@@ -343,7 +343,7 @@
     position: relative;
     width: 140px;
     height: 40px;
-    @include for-max-1200 {
+    @include for-max-1199 {
         width: 120px;
     }
     @include for-max-991 {
@@ -370,7 +370,7 @@
             border: none;
             box-shadow: none;
         }
-        @include for-max-1200 {
+        @include for-max-1199 {
             width: 115px;
         }
         @include for-max-991 {

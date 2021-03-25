@@ -28,7 +28,7 @@
                 }
                 p {
                     padding-left: 102px;
-                    @include for-max-1200 {
+                    @include for-max-1199 {
                         padding-left: 60px;
                     }
                     @include for-max-991 {
@@ -39,7 +39,7 @@
             form {
                 padding-left: 102px;
                 border-left: 1px solid $secondery-opa;
-                @include for-max-1200 {
+                @include for-max-1199 {
                     padding-left: 60px;
                 }
                 @include for-max-991 {

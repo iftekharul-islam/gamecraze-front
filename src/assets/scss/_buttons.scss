@@ -17,6 +17,7 @@
         &:hover {
             background: $game-details;
             color: #fff;
+            border: 1px solid $secondery;
         }
         @include for-max-992 {
             width: 160px;

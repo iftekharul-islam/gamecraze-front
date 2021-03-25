@@ -188,7 +188,7 @@
             &:first-of-type {
                 padding-top: 0;
             }
-            @include for-max-1200 {
+            @include for-max-1199 {
                 font-size: 20px;
             }
             @include for-max-991 {
@@ -241,7 +241,7 @@
     }
     .tab-content {
         margin-left: 57px;
-        @include for-max-1200 {
+        @include for-max-1199 {
             margin-left: 25px;
         }
         @include for-max-991 {
@@ -273,7 +273,7 @@
                 @include for-max-1300 {
                     font-size: 18px;
                 }
-                @include for-max-1200 {
+                @include for-max-1199 {
                     font-size: 16px;
                 }
                 &:nth-child(1) {
@@ -375,7 +375,7 @@
                 margin-top: 5px;
                 .custom-radio {
                     margin-right: 70px;
-                    @include for-max-1200 {
+                    @include for-max-1199 {
                         margin-right: 50px;
                     }
                     @include for-max-575 {
@@ -416,7 +416,7 @@
             @include for-max-1300 {
                 font-size: 18px;
             }
-            @include for-max-1200 {
+            @include for-max-1199 {
                 font-size: 16px;
             }
             @include for-max-575 {
@@ -489,7 +489,7 @@
                 margin-left: 222px;
             }
             // max width
-            @include for-max-1200 {
+            @include for-max-1199 {
                 flex-basis: 447px;
             }
             @include for-max-991 {
@@ -556,7 +556,7 @@
     @include for-min-1700 {
         margin-left: 0px;
     }
-    &--rented {
+    &--offer {
         border: 1px solid $secondery;
         padding: 0 20px;
         position: relative;
@@ -652,6 +652,26 @@
             }
         }
     }
+    &--rented {
+        @include for-min-1200 {
+            width: 950px;
+        }
+        &--box {
+            padding: 10px 30px 20px 20px;
+            margin-right: 20px;
+            margin-bottom: 20px;
+            width: 100%;
+            &:nth-child(even) {
+                margin-right: 0;
+            }
+            @include for-min-1200 {
+                width: 446px;
+            }
+            @include for-max-1199 {
+                margin-right: 0;
+            }
+        }
+    }
     .flip-clock {
         display: grid;
         grid-template: wrap;
@@ -664,7 +684,7 @@
         padding: 5px;
         width: 198px;
         height: 120px;
-        @include for-max-1400 {
+        @include for-max-400 {
             width: 160px;
             height: 90px;
             grid-template-rows: 45px;
@@ -677,7 +697,7 @@
             }
             >span {
                 font-size: 1.6rem;
-                @include for-max-1400 {
+                @include for-max-400 {
                     font-size: 12px;
                 }
             }
@@ -804,7 +824,7 @@
         @include for-max-1300 {
             font-size: 18px;
         }
-        @include for-max-1200 {
+        @include for-max-1199 {
             font-size: 16px;
         }
         @include for-max-991 {
@@ -821,7 +841,7 @@
 
 .edit--input {
     padding-right: 90px;
-    @include for-max-1200 {
+    @include for-max-1199 {
         padding-right: 0;
     }
     @include for-max-575 {

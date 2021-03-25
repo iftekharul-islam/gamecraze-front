@@ -167,7 +167,9 @@
                                     <tr v-for="(rent, index) in rents" :key="index">
                                         <td v-if="rent.game">{{ rent.game.data.name }}</td>
 
-                                        <td>{{ rent.diskCondition.data.name_of_type }}</td>
+                                        <td v-if="rent.diskCondition">{{ rent.diskCondition.data.name_of_type }}</td>
+                                         <td v-else>N/A</td>
+
                                         <td>{{ rent.platform.data.name }}</td>
                                         <td v-if="rent.renter">{{ rent.renter.data.name }}</td>
                                         <td v-else>N/A</td>
@@ -270,31 +272,41 @@
                                                                 <button type="button" class="close m-0 close-modal" data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true"></span>
                                                                 </button>
-                                                            <h4 class="text-secondery mb-a-12 f-s-28">Enter your digital disk’s credentials.</h4>
-                                                              <!-- form-group -->
-                                                            <form action="">
-                                                                 <div class="form-group post-rent--form-group text-left">
-                                                                    <label for="game-user-id" class=" label-padding post-rent--form-group--label text-light">Game user id</label>
-                                                                    <div class=" post-rent--form-group--input">
-                                                                        <input type="text" class="form-control renten-input" id="game-user-id" placeholder="Enter game user id" v-model="rentData.gameUserId">
-                                                                    </div>
-                                                                </div>
+                                                                <h4 class="text-secondery mb-a-12 f-s-28">Enter your digital disk’s credentials.</h4>
                                                                 <!-- form-group -->
-                                                                <div class="form-group post-rent--form-group text-left">
-                                                                    <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light">Game password</label>
-                                                                    <div class=" post-rent--form-group--input">
-                                                                        <input type="text" class="form-control renten-input" id="game-user-pass" placeholder="Enter game user password" v-model="rentData.gamePassword">
-                                                                    </div>
-                                                                </div>
-                                                                 <!-- form-group Button -->
-                                                                <div class="form-group post-rent--form-group offer-edit-btn">
-                                                                    <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light"></label>
-                                                                    <div class=" post-rent--form-group--input">
-                                                                        <button class="btn--secondery"><span>Submit</span></button>
-                                                                    </div>
-                                                                </div>
-                                                            </form>
+                                                                <ValidationObserver v-slot="{ invalid }">
+                                                                    <form @submit.prevent="gameCredentialUpdate(rent.id, userGameId, userPassword)" method="post">
+                                                                        <div class="form-group post-rent--form-group">
+                                                                            <label for="game-user-id" class=" label-padding post-rent--form-group--label text-light">Game user id</label>
+                                                                            <div class=" post-rent--form-group--input">
+                                                                                <ValidationProvider name="Game user id" rules="required" v-slot="{ errors }">
+                                                                                <input type="text" class="form-control renten-input" id="game-user-id" placeholder="Enter game user id" v-model="userGameId">
+                                                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                            </ValidationProvider>
+                                                                            </div>
 
+                                                                        </div>
+                                                                        <!-- form-group -->
+                                                                        <div class="form-group post-rent--form-group">
+                                                                            <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light">Game password</label>
+                                                                            <div class=" post-rent--form-group--input">
+                                                                            <ValidationProvider name="Game password" rules="required" v-slot="{ errors }">
+                                                                                <input type="text" class="form-control renten-input" id="game-user-pass" placeholder="Enter game user password" v-model="userPassword">
+                                                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                            </ValidationProvider>
+                                                                            </div>
+                                                                        </div>
+                                                                        <!-- form-group Button -->
+                                                                        <div class="form-group post-rent--form-group offer-edit-btn">
+                                                                            <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light"></label>
+                                                                            <div class=" post-rent--form-group--input">
+                                                                                <button type="submit" class="btn--secondery" :disabled="invalid">Submit</button>
+<!--                                                                                <button type="submit" href="javascript:void(0)" class="btn&#45;&#45;secondery" @click.prevent="handleSubmit(gameCredentialUpdate(rent.id, rent.game_user_id, rent.game_password))">Submit</button>-->
+                                                                            </div>
+                                                                        </div>
+                                                                    </form>
+                                                                </ValidationObserver>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -532,28 +544,6 @@
                                                 </ValidationProvider>
                                                 </div>
                                             </div>
-                                              <!-- form-group -->
-                                            <div class="form-group post-rent--form-group">
-                                                <label class="post-rent--form-group--label" for="DiskCondition">Disk Condition:</label>
-                                                <div class="post-rent--form-group--input">
-                                                    <ValidationProvider name="Disk Condition" rules="required" v-slot="{ errors }">
-                                                        <!-- <v-select class="gamehub-custome-select" label="name_of_type" :options="diskConditions" v-model="rentData.disk_condition" placholder="Please Select Disk Condition" >
-                                                            <template #selected-option="diskCondition">
-                                                                {{ diskCondition.name_of_type + ' ' + diskCondition.description }}
-                                                            </template>
-                                                            <template v-slot:option="diskCondition">
-                                                                {{ diskCondition.name_of_type + ' ' + diskCondition.description }}
-                                                            </template>
-                                                        </v-select> -->
-
-                                                        <select class="form-control js-example-basic-single" id="DiskCondition" v-model="rentData.disk_condition">
-                                                            <option disabled value="" >Please Select Disk Condition</option>
-                                                            <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }} ({{ diskCondition.description }})</option>
-                                                        </select>
-                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                    </ValidationProvider>
-                                                </div>
-                                            </div>
                                                   <!-- Delivery type -->
                                                   <!-- form-group -->
                                             <div class="form-group post-rent--form-group">
@@ -576,7 +566,7 @@
                                             <!-- Select Check point -->
                                               <!-- form-group -->
                                            <div class="form-group post-rent--form-group" v-show="x === '1'">
-                                                    <label class="post-rent--form-group--label">Select checkpont:</label>
+                                                    <label class="post-rent--form-group--label">Select checkpoint:</label>
                                                     <div class="post-rent--form-group--input">
                                                         <select class="form-control" id="checkpoint" v-model="rentData.checkpoint">
                                                             <option value="" disabled>Please Select Near Checkpoint</option>
@@ -617,15 +607,15 @@
                                                             <tbody>
                                                             <tr class="">
                                                                 <td>Your Estimated earning for 1 week</td>
-                                                                <td>BDT {{ (basePrices[1] - ( basePrices[1] * gameTypePricing ) /100) }}</td>
+                                                                <td>BDT {{ Math.ceil((basePrices[1] - ( basePrices[1] * gameTypePricing ) /100)) }}</td>
                                                             </tr>
                                                             <tr class="">
                                                                 <td>Your Estimated earning for 2 week</td>
-                                                                <td>BDT {{ basePrices[1] + basePrices[2]  - ((basePrices[1] + basePrices[2])  * gameTypePricing )/100}}</td>
+                                                                <td>BDT {{ Math.ceil(basePrices[1] + basePrices[2]  - ((basePrices[1] + basePrices[2])  * gameTypePricing )/100) }}</td>
                                                             </tr>
                                                             <tr class="">
                                                                 <td>Your Estimated earning for 3 week</td>
-                                                                <td>BDT {{ basePrices[1] + basePrices[2] + basePrices[3] - ((basePrices[1] + basePrices[2] + basePrices[3]) * gameTypePricing)/100 }}</td>
+                                                                <td>BDT {{ Math.ceil(basePrices[1] + basePrices[2] + basePrices[3] - ((basePrices[1] + basePrices[2] + basePrices[3]) * gameTypePricing)/100) }}</td>
                                                             </tr>
                                                             </tbody>
                                                         </table>
@@ -646,23 +636,36 @@
                                             </div>
                                              <!-- form-group -->
                                             <div class="form-group post-rent--form-group" v-if="isDigital">
-                                                <label for="game-user-id" class=" label-padding post-rent--form-group--label">Game user id</label>
+                                                <label for="rent-game-user-id" class=" label-padding post-rent--form-group--label">Game user id</label>
                                                 <div class=" post-rent--form-group--input">
-                                                    <input type="text" class="form-control renten-input" id="game-user-id" placeholder="Enter game user id" v-model="rentData.gameUserId">
+                                                    <input type="text" class="form-control renten-input" id="rent-game-user-id" placeholder="Enter game user id" v-model="rentData.gameUserId">
                                                 </div>
                                             </div>
                                             <!-- form-group -->
                                             <div class="form-group post-rent--form-group" v-if="isDigital">
-                                                <label for="game-user-pass" class=" label-padding post-rent--form-group--label">Game password</label>
+                                                <label for="rent-game-user-pass" class=" label-padding post-rent--form-group--label">Game password</label>
                                                 <div class=" post-rent--form-group--input">
-                                                    <input type="text" class="form-control renten-input" id="game-user-pass" placeholder="Enter game user password" v-model="rentData.gamePassword">
+                                                    <input type="text" class="form-control renten-input" id="rent-game-user-pass" placeholder="Enter game user password" v-model="rentData.gamePassword">
+                                                </div>
+                                            </div>
+                                            <!-- form-group -->
+                                            <div class="form-group post-rent--form-group" v-if="diskImageRequired">
+                                                <label class="post-rent--form-group--label" for="DiskCondition">Disk Condition:</label>
+                                                <div class="post-rent--form-group--input">
+                                                    <ValidationProvider name="Disk Condition" :rules='{required: diskImageRequired}' v-slot="{ errors }">
+                                                        <select class="form-control js-example-basic-single" id="DiskCondition" v-model="rentData.disk_condition">
+                                                            <option disabled value="" >Please Select Disk Condition</option>
+                                                            <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }} ({{ diskCondition.description }})</option>
+                                                        </select>
+                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
                                                 </div>
                                             </div>
                                             <!-- disk image -->
-                                            <div class="form-group post-rent--form-group post-rent--form-group-img">
+                                            <div class="form-group post-rent--form-group post-rent--form-group-img" v-if="diskImageRequired">
                                                 <label class="post-rent--form-group--label">Disk Image:</label>
                                                 <div class="post-rent--form-group--input">
-                                                    <ValidationProvider name="Disk Image" rules="required" v-slot="{ validate, errors }">
+                                                    <ValidationProvider name="Disk Image" :rules='{required: diskImageRequired}' v-slot="{ validate, errors }">
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="DiskUpload"  accept="image/*" @change="onDiskimageChange($event)|| validate($event)">
 <!--                                                        <input type="file" class="custom-file-input" id="DiskUpload"  accept="image/*" @change="onDiskimageChange">-->
@@ -676,10 +679,10 @@
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
-                                            <div class="form-group post-rent--form-group post-rent--form-group-img">
+                                            <div class="form-group post-rent--form-group post-rent--form-group-img" v-if="diskImageRequired">
                                                 <label class="post-rent--form-group--label">Cover Image:</label>
                                                 <div class="post-rent--form-group--input">
-                                                    <ValidationProvider name="Cover Image" rules="required" v-slot="{ validate, errors }">
+                                                    <ValidationProvider name="Cover Image" :rules='{required: diskImageRequired}' v-slot="{ validate, errors }">
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="customFile2" accept="image/*" @change="onCoverimageChange($event)|| validate($event)">
                                                         <label class="custom-file-label text-light" for="customFile2">Cover Image</label>
@@ -922,6 +925,10 @@
         props: ['rentPost', 'profileEdit'],
         data() {
             return {
+                credentialModalShow: false,
+                diskImageRequired: false,
+                userGameId: '',
+                userPassword: '',
                 isDigital: false,
                 itemsData: ['Male', 'Female', 'Others'],
                 rents: [],
@@ -980,7 +987,44 @@
                 transactions: [],
             }
         },
+        watch: {
+            credentialModalShow: {
+                handler: function () {
+                    this.rentCheck()
+                }
+            },
+        },
         methods: {
+            credentialModal(rent){
+                this.userGameId = rent.game_user_id;
+                this.userPassword = rent.game_password;
+
+                this.credentialModalShow = true;
+            },
+            gameCredentialUpdate(rentId, userId, gamePassword){
+
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+                let data = {
+                    game_user_id: userId,
+                    game_password: gamePassword,
+                    rent_id: rentId
+                };
+
+                this.$api.post('game-credential-update', data, config).then(response => {
+                    // console.log(response)
+                    if (response.data.error == false) {
+                        this.credentialModalShow = false;
+                        this.$toaster.success("Game Credential Updated!");
+                    }else {
+                        this.$toaster.fail(response.data.message);
+                    }
+
+                });
+            },
             onAgreement(event){
                 this.agreement = '';
                 if (event.target.checked == true){
@@ -991,10 +1035,13 @@
                 this.gameTypePricingState = true;
                 this.gameTypePricing = 0;
                 this.isDigital = false;
+                this.diskImageRequired = true;
+
 
                 if (value == 1) {
                     this.isDigital = true;
                     this.gameTypePricing = 20;
+                    this.diskImageRequired = false;
                 }
             },
             onDelete(rent) {
@@ -1376,25 +1423,34 @@
             },
             onEmailFocus: function() {
                 this.isEmailExists = false;
+            },
+            rentCheck: function() {
+
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+
+                this.$api.get('rents?include=game,platform,diskCondition,checkpoint,renter', config).then(response =>
+                {
+                    this.rents = response.data.data;
+                });
+
+                this.$api.get('lends', config).then(response =>
+                {
+                    this.lends = response.data;
+                });
             }
         },
         created() {
-            window.scrollTo(0,0);
             let config = {
                 headers: {
                     'Authorization': 'Bearer ' + this.$store.state.token
                 }
             };
-            this.$api.get('rents?include=game,platform,diskCondition,checkpoint,renter', config).then(response =>
-            {
-                this.rents = response.data.data;
-            });
-
-            this.$api.get('lends', config).then(response =>
-            {
-                this.lends = response.data;
-            });
-
+            window.scrollTo(0,0);
+            this.rentCheck();
             this.$root.$on('rentPost', () => {
                 $('#v-pills-overview-tab').removeClass('active');
                 $('#v-pills-overview').removeClass('active');

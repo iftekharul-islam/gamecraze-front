@@ -260,9 +260,10 @@
                                                     </div>
                                                     <div class="status">
                                                         <p class="mb-2">Status</p>
-                                                        <p class="text-secondery">Available for {{ rent.max_number_of_week }} week</p>
+                                                        <p v-if="rent.status ==2"><span class="badge-danger badge br-0 p-2 f-s-16">Rejected</span></p>
+                                                        <p class="text-secondery" v-else>Available for {{ rent.max_number_of_week }} week</p>
                                                     </div>
-                                                    <div class="action">
+                                                    <div class="action" v-if="rent.disk_type != 1">
                                                         <a href="#" class="btn--secondery h-40 w-80" @click.prevent="credentialModal(rent)">Edit</a>
                                                     </div>
                                                 </div>

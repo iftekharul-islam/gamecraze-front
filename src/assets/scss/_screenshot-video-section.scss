@@ -4,12 +4,15 @@
     h6 {
         margin-bottom: 30px;
     }
-    .owl-nav {
+    .vue-owl-nav {
         position: absolute;
-        top: -85px;
-        right: 0;
+        top: -70px;
+        right: 0px;
         @include for-max-575 {
-            top: -75px;
+            top: -60px;
+        }
+        &.vue-owl-nav-left {
+            right: 70px;
         }
         button {
             width: 50px;
@@ -18,29 +21,41 @@
             border: 1px solid #FFD715 !important;
             border-radius: 0 !important;
             transition: all .3s ease-in !important;
+            background: transparent;
             @include for-max-575 {
                 width: 40px;
                 height: 40px;
+                transform: skewX(0deg);
             }
             &:focus {
                 outline: none !important;
             }
-           &:hover {
-               background: $secondery !important;
-               i {
-                   color: $text-dark;
-               }
-           }
-        }
-    }
-    .owl-nav,
-    .owl-dots {
-        &.disabled {
-            display: block;
+            &:hover {
+                background: $secondery !important;
+                .arrow {
+                    color: $text-dark;
+                }
+                i {
+                    color: $text-dark;
+                }
+            }
+            &.owl-prev {
+                left: -70px;
+                @include for-max-575 {
+                    left: -60px;
+                }
+            }
+            .arrow {
+                color: $text-light;
+                transition: all .3s ease-in;
+            }
         }
     }
     .owl-dots {
         margin-top: 30px !important;
+        &.disabled {
+            display: block;
+        }
         @include for-max-575 {
             display: none !important;
         }
@@ -73,14 +88,21 @@
             img {
                 height: 146px;
             }
-            iframe,img {
+            iframe,
+            img {
                 transition: all.5s ease-in;
             }
             &:hover {
-                iframe,img {
+                iframe,
+                img {
                     transform: scale(1.1);
                 }
             }
+        }
+    }
+    >div {
+        span[style] {
+            display: block !important;
         }
     }
 }

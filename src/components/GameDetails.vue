@@ -54,14 +54,40 @@
         <section class="screenshot-video" id="screenshot-video">
             <div class="container">
                 <h6>Screenshots & Videos</h6>
-                <div id="owl-screenshot-video" class="owl-carousel owl-theme" v-if="game">
+                <!-- <div id="owl-screenshot-video" class="owl-carousel owl-theme" v-if="game">
                     <div class="item" v-for="(screenshot, index) in game.screenshots.data" :key="index">
                         <a href="#"><img :src="screenshot.url" alt="screenshot"></a>
                     </div>
                   <div class="item" v-for="(video, index) in game.videoUrls.data" :key="'A' + index">
                     <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
-<!--                        <a href="#">< :src="video.url" alt="screenshot"></a>-->
+                       <a href="#">< :src="video.url" alt="screenshot"></a>
                     </div>
+                </div> -->
+                 <div class="position-relative">
+                  <carousel
+                  :autoplay ="false"
+                  :loop ="true"
+                  :nav ="false"
+                  :dots ="true"
+                  :center ="false"
+                  :margin ="32"
+                  :responsive="{ 0:{items:1, stagePadding:0, center:false,},
+                                600:{items:2, stagePadding:0, center:false,},
+                                1000:{items:3, stagePadding:0,},
+                                1400:{items:4, stagePadding:0, center:false,}}">
+                    <template slot="prev"><div class="vue-owl-nav vue-owl-nav-left "><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
+
+                    <template slot="next"><div class="vue-owl-nav vue-owl-nav-right"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
+
+                      <div class="item" v-for="(screenshot, index) in game.screenshots.data" :key="index">
+                            <a href="#"><img :src="screenshot.url" alt="screenshot"></a>
+                        </div>
+                      <div class="item" v-for="(video, index) in game.videoUrls.data" :key="'A' + index">
+                        <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
+                          <!-- <a href="#">< :src="video.url" alt="screenshot"></a> -->
+                    </div>
+                  
+                  </carousel>
                 </div>
 
             </div>
@@ -120,7 +146,7 @@
         <section class="related-game-section" id="related-game">
             <div class="container">
                 <h6 class="mb-4">You Might Also Like</h6>
-                <div id="owl-related" class="owl-carousel owl-theme" v-if="relatedGames">
+                <!-- <div id="owl-related" class="owl-carousel owl-theme" v-if="relatedGames">
                     <div class="item" v-for="(related, index) in relatedGames" :key="index">
                       <router-link :to="{ path: '/game-details/' + related.game.data.slug}" @click.native="scrollToTop()" class="games-categories-section--games--game-card-box game-card-hover-outer">
                         <div class="game-card game-card-hover-inner">
@@ -140,6 +166,45 @@
                         </div>
                       </router-link>
                     </div>
+                </div> -->
+                <!-- new carousel -->
+                <div class="position-relative">
+                  <carousel
+                  :autoplay ="false"
+                  :loop ="true"
+                  :center ="false"
+                  :nav ="false"
+                  :dots ="false"
+                  :margin ="32"
+                  :responsive="{ 0:{items:1, stagePadding:0, center:false,},
+                                600:{items:2, stagePadding:0, center:false,},
+                                1000:{items:3, stagePadding:0,},
+                                1400:{items:4, stagePadding:0, center:false,}}">
+                    <template slot="prev"><div class="vue-owl-nav vue-owl-nav-left "><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
+
+                    <template slot="next"><div class="vue-owl-nav vue-owl-nav-right"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
+
+                      <div class="item" v-for="(related, index) in relatedGames" :key="index">
+                        <router-link :to="{ path: '/game-details/' + related.game.data.slug}" @click.native="scrollToTop()" class="games-categories-section--games--game-card-box game-card-hover-outer">
+                          <div class="game-card game-card-hover-inner">
+                              <a class="display-image" href="javascript:void(0)">
+                                <img :src="related.game.data.poster_url" :alt="related.game.data.name" class="img-fluid">
+                              </a>
+                              <div class="game-card--details">
+                                <a href="javascript:void(0)"> <h6>{{related.game.data.name}}</h6></a>
+                                <div class="d-flex">
+                                  <span v-for="(genre, index) in related.game.data.genres.data" :key="'B' +index" >{{ genre.name }}<span class="mr-1" v-if="index < related.game.data.genres.data.length-1">, </span></span>
+                                </div>
+                                <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
+                                  <div class="game-card--details--platforms"> <a href="javascript:void(0)" v-for="(platform, index) in related.game.data.platforms.data" :key="index"><img :src="platform.url" alt="ps4"></a> </div>
+                                    <span class="game-rating">{{ related.game.data.rating }}</span>
+                                </div>
+                              </div>
+                          </div>
+                        </router-link>
+                      </div>
+                  
+                  </carousel>
                 </div>
             </div>
         </section>
@@ -148,15 +213,18 @@
 
 <script>
     import Vue from "vue";
+    import carousel from 'vue-owl-carousel';
 
     export default {
         name: 'GameDetails',
         props: ['slug'],
+        components: { carousel },
         data() {
             return {
+               loaded: false,
                 rentButton: false,
-                game: null,
-                relatedGames: null,
+                game: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+                relatedGames: [1, 2, 3, 4, 5, 6, 7, 8, 9],
                 rentLimit: '',
                 myLends: ''
             }
@@ -221,6 +289,7 @@
             this.$api.get('games/related/' + genres.join() + '?include=game.assets,game.genres,game.platforms').then(response => {
               var vm = this;
               vm.relatedGames = response.data.data;
+              // this.loaded = true;
               Vue.nextTick(function(){
                 vm.relatedCarousel();
               }.bind(vm));

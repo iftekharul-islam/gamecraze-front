@@ -706,7 +706,7 @@
                                             <!-- Agree terms and condition -->
                                             <div class="form-group post-rent--form-group post-rent--form-group--agree post-rent--form-group--agree-profile mt-a-7">
                                                 <div class="checkbox-parents">
-                                                <ValidationProvider name="Term & Conditions" rules="required" v-slot="{ errors }">
+                                                <ValidationProvider name="Terms & Conditions" rules="required" v-slot="{ errors }">
                                                     <input type="checkbox" id="terms-agree" class="checkbox-parents--input" v-model="agreement" @change="onAgreement($event)">
                                                     <label for="terms-agree" class="checkbox-parents--label">I agree with all <router-link to="/terms" target="_blank" class="text-secondery"><u> Terms and Conditions</u></router-link></label>
                                                     <span v-if="errors.length" class="error-message d-block ml--28">{{ errors[0] }}</span>

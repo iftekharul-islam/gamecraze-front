@@ -48,14 +48,8 @@
             margin-top: 16px;
         }
     }
-    .owl-nav {
+    .vue-owl-nav {
         position: relative;
-        &.disabled {
-            display: block !important;
-            @include for-max-575 {
-                display: none !important;
-            }
-        }
         button {
             position: absolute;
             top: -182px;
@@ -65,22 +59,28 @@
             border: 1px solid $secondery !important;
             border-radius: 0 !important;
             transition: all .3s ease-in !important;
+            background: transparent;
             @include for-max-1300 {
                 top: -170px;
             }
+            @include for-max-1100 {
+                top: -189px;
+            }
             @include for-max-590 {
-                top: -124px;
+                top: -155px;
                 width: 35px;
                 height: 35px;
+                transform: skewX(0deg);
             }
             &:hover {
                 background: $secondery !important;
                 .arrow {
-                    color: black;
+                    color: $text-dark;
                 }
             }
             .arrow {
                 transition: all .3s ease-in;
+                color: $text-light;
             }
             &:focus {
                 outline: none !important;
@@ -89,8 +89,13 @@
         }
         .owl-prev {
             left: 20px;
+            top: 90px;
+            @include for-max-1800 {
+                top: 118px;
+            }
             @include for-max-590 {
                 left: 5%;
+                top: 82px;
             }
         }
         .owl-next {
@@ -102,6 +107,11 @@
     }
     .owl-stage-outer {
         max-height: 280px;
+    }
+    >div {
+        span[style] {
+            display: block !important;
+        }
     }
 }
 

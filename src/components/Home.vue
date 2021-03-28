@@ -46,7 +46,7 @@
             <div class="text-center">
                 <h2 class="section-heading">TRENDING GAMES</h2>
             </div>
-            <div id="owl-trending" class="owl-carousel owl-theme" v-if="trendingGames">
+            <!-- <div id="owl-trending" class="owl-carousel owl-theme" v-if="trendingGames">
                 <div class="item" v-for="(trending, index) in trendingGames" :key="index">
                     <router-link :to="{ path: '/game-details/' + trending.game.data.slug}" class="trending-image">
                         <img :src="trending.game.data.trending_url" alt="trending.game.data.name">
@@ -63,14 +63,50 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
+            <carousel v-if ="loaded"
+                :autoplay ="false"
+                :loop ="true"
+                :center ="false"
+                :nav ="false"
+                :margin ="5"
+                :items ="3"
+                :stagePadding ="150"
+                :responsive="{ 0:{items:1, stagePadding:0},
+                               590:{items:2, dots:false, nav:false, stagePadding:0,},
+                               768:{items:3, stagePadding:0,},
+                               900:{items:3, stagePadding:0},
+                               1200:{items:3, stagePadding:100},
+                               1500:{items:3,},
+                               1800:{items:5}}">
+                  <template slot="prev"><div class="vue-owl-nav "><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
+
+                  <template slot="next"><div class="vue-owl-nav"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
+
+                <div class="item" v-for="(trending, index) in trendingGames" :key="index">
+                    <router-link :to="{ path: '/game-details/' + trending.game.data.slug}" class="trending-image">
+                        <img :src="trending.game.data.trending_url" alt="trending.game.data.name">
+                    </router-link>
+                    <div class="trending-game--name-price d-flex justify-content-between">
+                         <router-link :to="{ path: '/game-details/' + trending.game.data.slug}" class="">{{ trending.game.data.name }}</router-link>
+                    </div>
+                    <div class="trending-game--categories d-flex justify-content-between" v-if="trending">
+                        <div class="home-categories">
+                            <a :href="'/games?categories=' + genre.slug" v-for="(genre) in trending.game.data.genres.data" :key="genre.id">{{ genre.name }}</a>
+                        </div>
+                        <div class="d-flex home-platform">
+                            <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in trending.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>
+                        </div>
+                    </div>
+                </div>
+           </carousel>
         </section>
         <!-- favorite-section -->
         <section class="favorite-section">
             <div class="text-center">
                  <h2 class="section-heading">RENT YOUR FAVORITE GAMES</h2>
             </div>
-            <div id="owl-favorite" class="owl-carousel owl-theme" v-if="populars.length">
+            <!-- <div id="owl-favorite" class="owl-carousel owl-theme" v-if="populars.length">
                 <div class="item" v-for="(popular, index) in populars" :key="index">
                     <div class="favorite-games">
                         <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-if="popular.game.data.trending_url" class="d-block favorite-games--link">
@@ -84,14 +120,43 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-        <section class="upcoming-section">
-            <div class="text-center">
-                <h2 class="section-heading">UPCOMING GAMES</h2>
-            </div>
+            </div> -->
+            <carousel v-if ="loaded"
+                :autoplay ="false"
+                :loop ="true"
+                :center ="false"
+                :nav ="false"
+                :margin ="10"
+                :stagePadding = "0"
+                :responsive="{ 0:{items:3, stagePadding:0, nav:false, dots:true, center:true,},
+                               600:{items:3, stagePadding:0, center:false, dots:false,},
+                               800:{items:3, stagePadding:50},
+                               1026:{items:3, stagePadding:100},
+                               1200:{items:5, stagePadding:100,},
+                               1300:{items:5, stagePadding:100,},
+                               1800:{items:7, stagePadding:100,}}"
+                 >
+                  <template slot="prev"><div class="vue-owl-nav "><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
 
-            <div id="owl-upcoming" class="owl-carousel owl-theme" v-if="upcomingGames">
+                  <template slot="next"><div class="vue-owl-nav"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
+
+                <div class="item" v-for="(popular, index) in populars" :key="index">
+                    <div class="favorite-games">
+                        <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-if="popular.game.data.trending_url" class="d-block favorite-games--link">
+                            <img :src="popular.game.data.poster_url" :alt="popular.game.data.name">
+                        </router-link>
+                        <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-else>
+                                <img src="../assets/img/rented/dummy-image.jpg" alt="no-image">
+                        </router-link>
+                        <div class="favorite-games-categories d-flex justify-content-center align-items-center">
+                            <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in popular.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>
+                        </div>
+                    </div>
+                </div>
+           </carousel>
+        </section>
+        <!-- <section class="upcoming-section"> -->
+            <!-- <div id="owl-upcoming" class="owl-carousel owl-theme" v-if="upcomingGames">
                 <div class="item" v-for="(game, index) in upcomingGames" :key="index">
                     <div class="owl-upcoming--item">
                         <router-link :to="{ path: '/game-details/' + game.slug}" class="upcoming-image">
@@ -118,20 +183,62 @@
                         </div>
                     </div>
                 </div>
+            </div> -->
+        <!-- </section> -->
+
+       <section class="upcoming-section">
+            <div class="text-center">
+                <h2 class="section-heading">UPCOMING GAMES</h2>
             </div>
-        </section>
-<!--        <section>-->
-<!--            <carousel :loop="true">-->
-<!--&lt;!&ndash;                <img src="https://placeimg.com/200/200/any?1">&ndash;&gt;-->
+           <carousel v-if ="loaded"
+                :autoplay ="true"
+                :loop ="true"
+                :center ="getFeaturedArticles"
+                :nav ="false"
+                :margin ="5"
+                :items ="3"
+                :stagePadding ="150"
+                :responsive="{ 0:{items:1, stagePadding:0},
+                               590:{items:2, dots:false, nav:false, stagePadding:0,},
+                               768:{items:3, stagePadding:0,},
+                               900:{items:3, stagePadding:0},
+                               1200:{items:3, stagePadding:100},
+                               1500:{items:3,},
+                               1800:{items:5}}"
+                 >
+                  <template slot="prev"><div class="vue-owl-nav "><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
 
-<!--&lt;!&ndash;                <img src="https://placeimg.com/200/200/any?2">&ndash;&gt;-->
+                  <template slot="next"><div class="vue-owl-nav"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
 
-<!--&lt;!&ndash;                <img src="https://placeimg.com/200/200/any?3">&ndash;&gt;-->
+                <div class="item" v-for="(game, index) in upcomingGames" :key="index">
+                   
+                    <div class="owl-upcoming--item">
+                        <router-link :to="{ path: '/game-details/' + game.slug}" class="upcoming-image">
+                            <img class="card-img-top" :src="game.upcoming_url" :alt="game.name"  v-if="game.upcoming_url">
+                            <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
+                        </router-link>
+                        <div class="d-flex upcoming-order">
+                            <router-link :to="{ path: '/game-details/' + game.slug}"><span>View Details</span></router-link>
+                            <a href="javascript:void(0)"  @click.prevent="setReminder(game.id)"><span class="text-black">Remind me</span></a>
+                        </div>
+                    </div>
+                    <div class="upcoming-game--name-price d-flex justify-content-between">
+                        <router-link :to="{ path: '/game-details/' + game.slug}">{{ game.name }}</router-link>
+                    </div>
+                    <div class="upcoming-game--categories d-flex justify-content-between">
+                        <div class="home-categories">
+                            <a :href="'/games?categories=' + genre.slug" v-for="(genre, index) in game.genres.data" :key="index">{{ genre.name }}</a>
+                        </div>
 
-<!--&lt;!&ndash;                <img src="https://placeimg.com/200/200/any?4">&ndash;&gt;-->
-
-<!--            </carousel>-->
-<!--        </section>-->
+                        <div class="d-flex">
+                            <a :href="'/games?platforms=' + platform.slug" v-for="(platform, index) in game.platforms.data" :key="index">
+                                <img :src=platform.url :alt="platform.name">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+           </carousel>
+       </section>
         <!-- notice board -->
         <section class="noticed-board-section">
             <div class="text-center">
@@ -188,13 +295,33 @@
             </div>
             <div class="container">
                 <div class="col-12">
-                    <div id="owl-video" class="owl-carousel owl-theme" v-if="videos">
+                    <!-- <div id="owl-video" class="owl-carousel owl-theme" v-if="videos">
                         <div class="item" v-for="(video, index) in videos" :key="index">
                             <div class="featured-videos">
                                 <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
                             </div>
                        </div>
-                    </div>
+                    </div> -->
+                    <carousel v-if ="loaded"
+                        :autoplay ="false"
+                        :loop ="true"
+                        :center ="true"
+                        :nav ="false"
+                        :dots ="false"
+                        :margin ="10"
+                        :stagePadding ="150"
+                        :responsive="{ 0:{items:1, stagePadding:0},
+                                    768:{items:2, stagePadding:0,}}">
+                  <template slot="prev"><div class="vue-owl-nav "><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
+
+                  <template slot="next"><div class="vue-owl-nav"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
+
+                        <div class="item" v-for="(video, index) in videos" :key="index">
+                            <div class="featured-videos">
+                                <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
+                            </div>
+                       </div>
+           </carousel>
                 </div>
             </div>
         </section>
@@ -312,13 +439,14 @@
         components: { carousel },
         data() {
             return {
-                trendingGames: [],
-                upcomingGames: [],
-                populars: [],
+                loaded: false,
+                trendingGames: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+                upcomingGames: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+                populars: [1, 2, 3, 4, 5, 6, 7, 8, 9],
                 articles: [],
                 featuredArticle: null,
                 isLoggedIn: false,
-                videos: [],
+                videos: [1, 2, 3, 4, 5, 6, 7, 8, 9],
                 platforms: [],
                 email: '',
                 reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
@@ -553,9 +681,7 @@
                 this.$api.get('games/upcoming-games?include=assets,genres,platforms').then(response => {
                     var vm = this;
                     vm.upcomingGames = response.data.data;
-                    Vue.nextTick(function(){
-                        vm.carouselTwo();
-                    }.bind(vm));
+                    this.loaded = true;
                 });
             },
             getFeaturedArticles: function () {
@@ -677,8 +803,8 @@
                 this.isLoggedIn = true;
             }
         },
-        mounted () {
-            document.body.classList.add('body-home')
+         mounted () {
+            document.body.classList.add('body-home');
         },
         destroyed () {
             document.body.classList.remove('body-home')

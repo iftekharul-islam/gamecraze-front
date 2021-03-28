@@ -282,7 +282,7 @@
                                                                 <h4 class="text-secondery mb-a-12 f-s-28">Enter your digital disk’s credentials.</h4>
                                                                 <!-- form-group -->
                                                                 <ValidationObserver v-slot="{ invalid }">
-                                                                    <form @submit.prevent="gameCredentialUpdate(rent.id, userGameId, userPassword)" method="post">
+                                                                    <form @submit.prevent="gameCredentialUpdate(userRentId, userGameId, userPassword)" method="post">
                                                                         <div class="form-group post-rent--form-group">
                                                                             <label for="game-user-id" class=" label-padding post-rent--form-group--label text-light">Game user id</label>
                                                                             <div class=" post-rent--form-group--input">
@@ -940,6 +940,7 @@
                 diskImageRequired: false,
                 userGameId: '',
                 userPassword: '',
+                userRentId: '',
                 isDigital: false,
                 itemsData: ['Male', 'Female', 'Others'],
                 rents: [],
@@ -1009,6 +1010,7 @@
             credentialModal(rent){
                 this.userGameId = rent.game_user_id;
                 this.userPassword = rent.game_password;
+                this.userRentId = rent.id;
 
                 this.credentialModalShow = true;
             },
@@ -1026,7 +1028,6 @@
                 };
 
                 this.$api.post('game-credential-update', data, config).then(response => {
-                    // console.log(response)
                     if (response.data.error == false) {
                         this.credentialModalShow = false;
                         this.$toaster.success("Game Credential Updated!");

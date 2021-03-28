@@ -483,6 +483,7 @@
 
             },
             getTrendingGames: function () {
+                this.loadedTrending = false;
                 this.$api.get('games/trending?include=game,game.assets,game.genres,game.platforms').then(response => {
                     var vm = this;
                     vm.trendingGames = response.data.data;
@@ -490,6 +491,7 @@
                 });
             },
             getRentGames: function () {
+                this.loadedPopular = false;
                 this.$api.get('games/popular-games?include=game.assets,game.platforms').then(response => {
                     var vm = this;
                     vm.populars = response.data.data;
@@ -497,6 +499,7 @@
                 });
             },
             getNewGames: function () {
+                this.loadedUpcoming = false;
                 this.$api.get('games/upcoming-games?include=assets,genres,platforms').then(response => {
                     var vm = this;
                     vm.upcomingGames = response.data.data;
@@ -524,6 +527,7 @@
                 });
             },
             getFeturedVideo: function (number) {
+                this.loadedVideos = false;
                 this.$api.get('featured-videos?number=' + number).then(response => {
                     if (response.status == 200) {
                         let vm = this;

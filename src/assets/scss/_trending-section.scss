@@ -10,7 +10,7 @@
         padding-right: 15px;
     }
     .item {
-        margin-left: -11px;
+        margin-left: -7px;
         @include for-max-768 {
             margin-left: 0;
         }
@@ -33,14 +33,14 @@
                 transition: all .5s ease-in;
                 @include for-max-1800 {
                     left: -46px;
-                    width: 470px;
+                    width: 597px;
                 }
                 @include for-max-1500 {
                     left: -46px;
                     width: 495px;
                 }
                 @include for-max-1300 {
-                    width: 430px;
+                    width: 460px;
                 }
                 @include for-max-1199 {
                     width: 547px;
@@ -63,14 +63,8 @@
             }
         }
     }
-    .owl-nav {
+    .vue-owl-nav {
         position: relative;
-        &.disabled {
-            display: block !important;
-            @include for-max-575 {
-                display: none !important;
-            }
-        }
         button {
             position: absolute;
             top: -242px;
@@ -80,19 +74,31 @@
             border: 1px solid $secondery !important;
             border-radius: 0 !important;
             transition: all .3s ease-in !important;
+            background: transparent;
+            @include for-max-1800 {
+                top: -276px;
+            }
+            @include for-max-992 {
+                top: -299px;
+            }
+            @include for-max-768 {
+                top: -238px;
+            }
             @include for-max-590 {
                 width: 35px;
                 height: 35px;
                 transform: skewX(0deg);
+                top: -270px;
             }
             &:hover {
                 background: $secondery !important;
                 .arrow {
-                    color: black;
+                    color: $text-dark;
                 }
             }
             .arrow {
                 transition: all .3s ease-in;
+                color: $text-light;
             }
             &:focus {
                 outline: none !important;
@@ -101,8 +107,10 @@
         }
         .owl-prev {
             left: 45px;
+            top: 90px;
             @include for-max-590 {
                 left: 0%;
+                top: 95px;
             }
         }
         .owl-next {
@@ -112,12 +120,15 @@
             }
         }
     }
-}
-
-.owl-item {
-    opacity: .3;
-    &.active {
-        opacity: 1;
+    >div {
+        span[style] {
+            display: block !important;
+        }
+    }
+    .owl-item {
+        @include for-max-1199 {
+            opacity: 1;
+        }
     }
 }
 

@@ -166,7 +166,7 @@
 
                     <template slot="next"><div class="vue-owl-nav vue-owl-nav-right"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
 
-                      <div class="item" v-for="(related, index) in relatedGames" :key="index">
+                      <div class="item" v-for="(related, index) in relatedGames" :key="index" v-if="game.id != related.game.data.id">
                         <router-link :to="{ path: '/game-details/' + related.game.data.slug}" @click.native="scrollToTop()" class="games-categories-section--games--game-card-box game-card-hover-outer">
                           <div class="game-card game-card-hover-inner">
                               <a class="display-image" href="javascript:void(0)">
@@ -277,9 +277,11 @@
               genres.push(genre.slug);
             })
             this.$api.get('games/related/' + genres.join() + '?include=game.assets,game.genres,game.platforms').then(response => {
-              var vm = this;
-              vm.relatedGames = response.data.data;
-              vm.loadedRelated = true;
+                if (response.data.data.length) {
+                    var vm = this;
+                    vm.relatedGames = response.data.data;
+                    vm.loadedRelated = true;
+                }
             });
           },
         },

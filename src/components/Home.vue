@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div> -->
-            <carousel v-if ="loaded"
+            <carousel v-if ="loadedTrending"
                 :autoplay ="false"
                 :loop ="true"
                 :center ="false"
@@ -121,7 +121,7 @@
                     </div>
                 </div>
             </div> -->
-            <carousel v-if ="loaded"
+            <carousel v-if ="loadedPopular"
                 :autoplay ="false"
                 :loop ="true"
                 :center ="false"
@@ -190,10 +190,10 @@
             <div class="text-center">
                 <h2 class="section-heading">UPCOMING GAMES</h2>
             </div>
-           <carousel v-if ="loaded"
+           <carousel v-if ="loadedUpcoming"
                 :autoplay ="true"
                 :loop ="true"
-                :center ="getFeaturedArticles"
+                :center ="false"
                 :nav ="false"
                 :margin ="5"
                 :items ="3"
@@ -302,7 +302,7 @@
                             </div>
                        </div>
                     </div> -->
-                    <carousel v-if ="loaded"
+                    <carousel v-if ="loadedVideos"
                         :autoplay ="false"
                         :loop ="true"
                         :center ="true"
@@ -439,14 +439,17 @@
         components: { carousel },
         data() {
             return {
-                loaded: false,
-                trendingGames: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-                upcomingGames: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-                populars: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+                loadedUpcoming: false,
+                loadedTrending: false,
+                loadedPopular: false,
+                loadedVideos: false,
+                trendingGames: [],
+                upcomingGames: [],
+                populars: [],
                 articles: [],
                 featuredArticle: null,
                 isLoggedIn: false,
-                videos: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+                videos: [],
                 platforms: [],
                 email: '',
                 reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
@@ -454,185 +457,6 @@
             }
         },
         methods: {
-            carouselOne: function () {
-                $('#owl-trending').owlCarousel({
-                    stagePadding: 150,
-                    loop: true,
-                    margin: 10,
-                    nav: true,
-                    dots: false,
-                    autoplay:true,
-                    autoplayHoverPause: true,
-                    navText: [
-                        '<i class="fas fa-arrow-left arrow"></i>',
-                        '<i class="fas fa-arrow-right arrow"></i>'
-                    ],
-                    responsive:{
-                        0:{
-                            items: 1,
-                            stagePadding: 50,
-                            dots:false,
-                            nav: true,
-                             autoplayTimeout: 2000,
-                        },
-                        590:{
-                            stagePadding: 0,
-                            items: 2,
-                            dots:false,
-                            nav: true,
-                        },
-                        768:{
-                            stagePadding: 0,
-                            items: 3,
-                            dots:false,
-                            nav: true,
-                        },
-                        900:{
-                            items: 2,
-                            stagePadding: 150,
-                        },
-                        1200:{
-                            items: 3,
-                        },
-                        1500:{
-                            items: 4,
-                        },
-                        1800:{
-                            items: 5
-                        }
-                    }
-                });
-            },
-            carouselTwo: function() {
-                $('#owl-upcoming').owlCarousel({
-                    stagePadding: 150,
-                    loop: true,
-                    margin: 10,
-                    nav: true,
-                    dots:false,
-                    autoplay:true,
-                    autoplayHoverPause: true,
-                    navText: [
-                        '<i class="fas fa-arrow-left arrow"></i>',
-                        '<i class="fas fa-arrow-right arrow"></i>'
-                    ],
-                    responsive:{
-                        0:{
-                            items: 1,
-                            stagePadding: 50,
-                            dots:false,
-                            nav: true,
-                            autoplayTimeout: 2000,
-                        },
-                        590:{
-                            stagePadding: 0,
-                            items: 2,
-                            dots:false,
-                            nav: true,
-                            autoplayTimeout: 2000,
-                        },
-                        768:{
-                            stagePadding: 0,
-                            items: 3,
-                            dots:false,
-                            nav: true,
-                        },
-                        900:{
-                            items: 2,
-                            stagePadding: 100,
-                        },
-                        1200:{
-                            items: 3,
-                        },
-                        1500:{
-                            items: 4,
-                        },
-                        1800:{
-                            items: 5
-                        }
-                    }
-                });
-            },
-            carouselFour: function () {
-                $('#owl-favorite').owlCarousel({
-                    stagePadding: 150,
-                    loop: true,
-                    margin: 10,
-                    nav: true,
-                    dots:false,
-                    autoplay:true,
-                    autoplayHoverPause: true,
-                    navText: [
-                        '<i class="fas fa-arrow-left arrow"></i>',
-                        '<i class="fas fa-arrow-right arrow"></i>'
-                    ],
-                    responsive:{
-                        0:{
-                            items: 3,
-                            stagePadding: 0,
-                            dots:true,
-                            dots:false,
-                            nav: true,
-                            autoplayTimeout: 2000,
-                        },
-                        600:{
-                            items: 3,
-                            stagePadding: 0,
-                            center: false,
-                            dots:false,
-                            nav: true,
-                            autoplayTimeout: 2000,
-                        },
-                        800:{
-                            items: 3,
-                            stagePadding: 100,
-                        },
-                        1026:{
-                            items: 4,
-                            stagePadding: 100,
-                        },
-                        1100:{
-                            items: 5,
-                            stagePadding: 100,
-                        },
-                          1300:{
-                            items: 6,
-                            stagePadding: 100,
-                        },
-                        1800:{
-                            items: 8,
-                             stagePadding: 100,
-                        }
-                    }
-                });
-            },
-            
-            carouselVideo: function () {
-                $('#owl-video').owlCarousel({
-                    // stagePadding: 150,
-                    center: true,
-                    loop: true,
-                    margin: 10,
-                    nav: true,
-                    // autoplay:true,
-                    dots:false,
-                    navText: [
-                        '<i class="fas fa-arrow-left arrow"></i>',
-                        '<i class="fas fa-arrow-right arrow"></i>'
-                    ],
-                    responsive:{
-                        0:{
-                            items: 1,
-                            dots:false,
-                            nav: true,
-                        },
-                        768:{
-                            items: 2,
-
-                        }
-                    }
-                });
-            },
             carouselNotice: function () {
             $('#owl-notice-mobile').owlCarousel({
 			loop: true,
@@ -662,26 +486,21 @@
                 this.$api.get('games/trending?include=game,game.assets,game.genres,game.platforms').then(response => {
                     var vm = this;
                     vm.trendingGames = response.data.data;
-
-                    Vue.nextTick(function(){
-                        vm.carouselOne();
-                    }.bind(vm));
+                    vm.loadedTrending = true
                 });
             },
             getRentGames: function () {
                 this.$api.get('games/popular-games?include=game.assets,game.platforms').then(response => {
                     var vm = this;
                     vm.populars = response.data.data;
-                    Vue.nextTick(function(){
-                        vm.carouselFour();
-                    }.bind(vm));
+                    vm.loadedPopular = true;
                 });
             },
             getNewGames: function () {
                 this.$api.get('games/upcoming-games?include=assets,genres,platforms').then(response => {
                     var vm = this;
                     vm.upcomingGames = response.data.data;
-                    this.loaded = true;
+                    this.loadedUpcoming = true;
                 });
             },
             getFeaturedArticles: function () {
@@ -709,9 +528,7 @@
                     if (response.status == 200) {
                         let vm = this;
                         vm.videos = response.data.data;
-                        Vue.nextTick(function() {
-                            vm.carouselVideo();
-                        }.bind(vm));
+                        vm.loadedVideos = true;
                     }
                 });
             },

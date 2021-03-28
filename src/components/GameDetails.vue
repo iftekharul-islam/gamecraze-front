@@ -65,6 +65,7 @@
                 </div> -->
                  <div class="position-relative">
                   <carousel
+                          v-if="loadedScreenshots"
                   :autoplay ="false"
                   :loop ="true"
                   :nav ="false"
@@ -170,6 +171,7 @@
                 <!-- new carousel -->
                 <div class="position-relative">
                   <carousel
+                          v-if="loadedRelated"
                   :autoplay ="false"
                   :loop ="true"
                   :center ="false"
@@ -221,10 +223,11 @@
         components: { carousel },
         data() {
             return {
-               loaded: false,
+                loadedScreenshots: false,
+                loadedRelated: false,
                 rentButton: false,
-                game: [1, 2, 3, 4, 5, 6, 7, 8, 9],
-                relatedGames: [1, 2, 3, 4, 5, 6, 7, 8, 9],
+                game: [],
+                relatedGames: [],
                 rentLimit: '',
                 myLends: ''
             }
@@ -272,12 +275,12 @@
             return  months[formattedDate.getMonth()] + " " + formattedDate.getDate() + ", " + formattedDate.getFullYear()
           },
           fetchGame() {
+              this.loadedScreenshots = false;
+                  this.loadedRelated = false;
             this.$api.get('games/slug/' + this.slug + '?include=assets,genres,platforms,screenshots,videoUrls').then(response => {
               var vm = this;
               vm.game = response.data.data;
-              Vue.nextTick(function(){
-                vm.screenshotsCarousel();
-              }.bind(vm));
+              vm.loadedScreenshots = true;
               this.fetchRelatedGame();
             });
           },
@@ -289,72 +292,69 @@
             this.$api.get('games/related/' + genres.join() + '?include=game.assets,game.genres,game.platforms').then(response => {
               var vm = this;
               vm.relatedGames = response.data.data;
-              // this.loaded = true;
-              Vue.nextTick(function(){
-                vm.relatedCarousel();
-              }.bind(vm));
+              vm.loadedRelated = true;
             });
           },
-          screenshotsCarousel() {
-            $('#owl-screenshot-video').trigger('refresh.owl.carousel');
-            $('#owl-screenshot-video').owlCarousel({
-              loop: true,
-              margin: 10,
-              nav: true,
-              dots:true,
-              navText: [
-                '<i class="fas fa-arrow-left arrow"></i>',
-                '<i class="fas fa-arrow-right arrow"></i>'
-              ],
-              responsive:{
-                0:{
-                  items: 1,
-                  dots:false,
-                  nav: false,
-                  stagePadding: 50,
-                },
-                600:{
-                  items: 2,
-                  dots:true,
-                  nav: true,
-                  stagePadding: 0,
-
-                },
-                1000:{
-                  items: 4
-                }
-              }
-            });
-          },
-          relatedCarousel() {
-            $('#owl-related').trigger('refresh.owl.carousel');
-            $('#owl-related').owlCarousel({
-              loop: true,
-              margin: 10,
-              nav: true,
-              dots:false,
-              navText: [
-                '<i class="fas fa-arrow-left arrow"></i>',
-                '<i class="fas fa-arrow-right arrow"></i>'
-              ],
-              responsive:{
-                0:{
-                  items: 1,
-                  nav: false,
-                  stagePadding: 50,
-                },
-                600:{
-                  items: 2,
-                  nav: true,
-                     stagePadding: 0,
-
-                },
-                1000:{
-                  items: 4
-                }
-              }
-            });
-          },
+          // screenshotsCarousel() {
+          //   $('#owl-screenshot-video').trigger('refresh.owl.carousel');
+          //   $('#owl-screenshot-video').owlCarousel({
+          //     loop: true,
+          //     margin: 10,
+          //     nav: true,
+          //     dots:true,
+          //     navText: [
+          //       '<i class="fas fa-arrow-left arrow"></i>',
+          //       '<i class="fas fa-arrow-right arrow"></i>'
+          //     ],
+          //     responsive:{
+          //       0:{
+          //         items: 1,
+          //         dots:false,
+          //         nav: false,
+          //         stagePadding: 50,
+          //       },
+          //       600:{
+          //         items: 2,
+          //         dots:true,
+          //         nav: true,
+          //         stagePadding: 0,
+          //
+          //       },
+          //       1000:{
+          //         items: 4
+          //       }
+          //     }
+          //   });
+          // },
+          // relatedCarousel() {
+          //   $('#owl-related').trigger('refresh.owl.carousel');
+          //   $('#owl-related').owlCarousel({
+          //     loop: true,
+          //     margin: 10,
+          //     nav: true,
+          //     dots:false,
+          //     navText: [
+          //       '<i class="fas fa-arrow-left arrow"></i>',
+          //       '<i class="fas fa-arrow-right arrow"></i>'
+          //     ],
+          //     responsive:{
+          //       0:{
+          //         items: 1,
+          //         nav: false,
+          //         stagePadding: 50,
+          //       },
+          //       600:{
+          //         items: 2,
+          //         nav: true,
+          //            stagePadding: 0,
+          //
+          //       },
+          //       1000:{
+          //         items: 4
+          //       }
+          //     }
+          //   });
+          // },
         },
         computed: {
             auth () {

@@ -233,7 +233,7 @@
                                                     <div class="disk-type text-black" v-else>Digital Copy</div>
                                                 </div>
 
-                                             <div class="dashboard-content--rented--box--order-id">
+                                             <div class="dashboard-content--rented--box--order-id h-30">
 <!--                                                <p>GH: 1223</p>-->
                                             </div>
 
@@ -265,7 +265,7 @@
                                                         <p class="text-secondery" v-else>Available for {{ rent.max_number_of_week }} week(s)</p>
                                                     </div>
                                                     <div class="action" v-if="rent.disk_type != 1">
-                                                        <a href="#" class="btn--secondery h-40 w-80" @click.prevent="credentialModal(rent)">Edit</a>
+                                                        <a href="#" class="btn--secondery h-40 w-80" @click.prevent="credentialModal(rent)"><span>Edit</span></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -284,22 +284,22 @@
                                                                 <ValidationObserver v-slot="{ invalid }">
                                                                     <form @submit.prevent="gameCredentialUpdate(userRentId, userGameId, userPassword)" method="post">
                                                                         <div class="form-group post-rent--form-group">
-                                                                            <label for="game-user-id" class=" label-padding post-rent--form-group--label text-light">Game user id</label>
+                                                                            <label for="game-user-id" class=" label-padding post-rent--form-group--label text-light text-left">Game user id</label>
                                                                             <div class=" post-rent--form-group--input">
                                                                                 <ValidationProvider name="Game user id" rules="required" v-slot="{ errors }">
                                                                                 <input type="text" class="form-control renten-input" id="game-user-id" placeholder="Enter game user id" v-model="userGameId">
-                                                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                                <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
                                                                             </ValidationProvider>
                                                                             </div>
 
                                                                         </div>
                                                                         <!-- form-group -->
                                                                         <div class="form-group post-rent--form-group">
-                                                                            <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light">Game password</label>
+                                                                            <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light text-left">Game password</label>
                                                                             <div class=" post-rent--form-group--input">
                                                                             <ValidationProvider name="Game password" rules="required" v-slot="{ errors }">
                                                                                 <input type="text" class="form-control renten-input" id="game-user-pass" placeholder="Enter game user password" v-model="userPassword">
-                                                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                                <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
                                                                             </ValidationProvider>
                                                                             </div>
                                                                         </div>
@@ -307,7 +307,7 @@
                                                                         <div class="form-group post-rent--form-group offer-edit-btn">
                                                                             <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light"></label>
                                                                             <div class=" post-rent--form-group--input">
-                                                                                <button type="submit" class="btn--secondery" :disabled="invalid">Submit</button>
+                                                                                <button type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid"><span>Submit</span></button>
 <!--                                                                                <button type="submit" href="javascript:void(0)" class="btn&#45;&#45;secondery" @click.prevent="handleSubmit(gameCredentialUpdate(rent.id, rent.game_user_id, rent.game_password))">Submit</button>-->
                                                                             </div>
                                                                         </div>
@@ -412,7 +412,7 @@
                                                         <div class="disk-type text-black" v-if="lend.rent.disk_type == 1">Physical Copy</div>
                                                         <div class="disk-type text-black" v-if="lend.rent.disk_type == 0">Digital Copy</div>
                                                     </div>
-                                                    <div class="dashboard-content--rented--box--order-id">
+                                                    <div class="dashboard-content--rented--box--order-id h-30">
                                                         <p v-if="lend.order">{{ lend.order.order_no }}</p>
                                                         <p v-else>N/A</p>
                                                     </div>

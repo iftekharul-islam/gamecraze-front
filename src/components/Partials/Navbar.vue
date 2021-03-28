@@ -29,8 +29,14 @@
                         <li>
                             <router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">Post For Rent</router-link>
                         </li>
-                        <li>
-                            <router-link @click.native="onMenuItemClick()" class="router_link" to="/notice-board">Notice Board</router-link>
+                        <li class="dropdown position-relative dropdown-hover">
+                            <router-link @click.native="onMenuItemClick()" class="router_link" to="#">More</router-link>
+                            <ul class="dropdown--sub-menu p-0">
+                                <li><router-link class="router_link" to="/about-us">About us</router-link></li>
+                                <li><router-link class="router_link" to="/terms">Terms & conditions</router-link></li>
+                                <li><router-link class="router_link" to="/privacy">Privacy policies</router-link></li>
+                                <li><router-link class="router_link" to="/frequently-asked-questions">FAQ</router-link></li>
+                            </ul>
                         </li>
                     </ul>
                    <!-- search bar -->
@@ -99,6 +105,7 @@
                                                 <div class="gamehub-dropdown-menu--top">
                                                   <router-link to="/profile" class="dropdown-item" href="#">Dashboard</router-link>
                                                   <router-link to="/profile" class="dropdown-item" @click.native="clickProfile()">Post For Rent</router-link>
+                                                  <router-link class="router_link dropdown-item" to="/notice-board">Notice Board</router-link>
                                                   <router-link to="/contacts" class="dropdown-item" href="#">Contact Us</router-link>
                                                 </div>
                                                 <div class="gamehub-dropdown-menu--bottom">
@@ -123,7 +130,7 @@
         </nav>
         <!-- promotion Notification -->
         <div class="promo-notification mt-1">
-            <div class="alert gamehub-warning-bg alert-dismissible fade show mb-0 br-0 text-center text-black gil-bold f-s-20 position-fixed w-100 z-index-99" role="alert">
+            <div class="alert gamehub-warning-bg alert-dismissible fade show mb-0 br-0 text-center text-black gil-bold f-s-20 position-fixed w-100 z-index-999" role="alert">
                15% off - Just for you! <router-link to="/games" class="text-dark"><u>Rent Now</u></router-link>
               <button type="button" class="close opa-10 x-close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true" class="x-icon"></span>

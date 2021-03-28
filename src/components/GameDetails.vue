@@ -17,6 +17,7 @@
                             <p>{{game.description.substring(0, 300) | strippedContent}} . . .</p>
                             <a href="#description" class="read-more">Read More</a>
                             <router-link to="/login" class="btn--secondery rent-now border-0" v-if="!auth"><span>RENT NOW</span></router-link>
+                            <router-link to="/login" class="border-0" v-if="!rentExist"><span></span></router-link>
                             <button class="btn--secondery rent-now border-0"  data-toggle="modal" data-target="#warning" v-else-if="rentLimit <= myLends && rentButton"><span>RENT NOW</span></button>
                             <router-link :to="{ path: '/rent-posted-users/' + game.slug}" class="btn--secondery rent-now border-0" v-else-if="rentButton"><span>RENT NOW</span></router-link>
                             <div class="d-flex games-header-section--platforms">
@@ -147,31 +148,10 @@
         <section class="related-game-section" id="related-game">
             <div class="container">
                 <h6 class="mb-4">You Might Also Like</h6>
-                <!-- <div id="owl-related" class="owl-carousel owl-theme" v-if="relatedGames">
-                    <div class="item" v-for="(related, index) in relatedGames" :key="index">
-                      <router-link :to="{ path: '/game-details/' + related.game.data.slug}" @click.native="scrollToTop()" class="games-categories-section--games--game-card-box game-card-hover-outer">
-                        <div class="game-card game-card-hover-inner">
-                            <a class="display-image" href="javascript:void(0)">
-                              <img :src="related.game.data.poster_url" :alt="related.game.data.name" class="img-fluid">
-                            </a>
-                            <div class="game-card--details">
-                              <a href="javascript:void(0)"> <h6>{{related.game.data.name}}</h6></a>
-                              <div class="d-flex">
-                                <span v-for="(genre, index) in related.game.data.genres.data" :key="'B' +index" >{{ genre.name }}<span class="mr-1" v-if="index < related.game.data.genres.data.length-1">, </span></span>
-                              </div>
-                              <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                                 <div class="game-card--details--platforms"> <a href="javascript:void(0)" v-for="(platform, index) in related.game.data.platforms.data" :key="index"><img :src="platform.url" alt="ps4"></a> </div>
-                                  <span class="game-rating">{{ related.game.data.rating }}</span>
-                              </div>
-                            </div>
-                        </div>
-                      </router-link>
-                    </div>
-                </div> -->
                 <!-- new carousel -->
                 <div class="position-relative">
                   <carousel
-                          v-if="loadedRelated"
+                  v-if="loadedRelated"
                   :autoplay ="false"
                   :loop ="true"
                   :center ="false"
@@ -229,7 +209,8 @@
                 game: [],
                 relatedGames: [],
                 rentLimit: '',
-                myLends: ''
+                myLends: '',
+                rentExist: false,
             }
         },
         watch: {
@@ -281,6 +262,12 @@
               var vm = this;
               vm.game = response.data.data;
               vm.loadedScreenshots = true;
+
+            this.$api.get('game-exist-in-rent/' + this.slug).then(response => {
+                if (response.data.data != 0){
+                    this.rentExist = true;
+                }
+            });
               this.fetchRelatedGame();
             });
           },
@@ -295,66 +282,6 @@
               vm.loadedRelated = true;
             });
           },
-          // screenshotsCarousel() {
-          //   $('#owl-screenshot-video').trigger('refresh.owl.carousel');
-          //   $('#owl-screenshot-video').owlCarousel({
-          //     loop: true,
-          //     margin: 10,
-          //     nav: true,
-          //     dots:true,
-          //     navText: [
-          //       '<i class="fas fa-arrow-left arrow"></i>',
-          //       '<i class="fas fa-arrow-right arrow"></i>'
-          //     ],
-          //     responsive:{
-          //       0:{
-          //         items: 1,
-          //         dots:false,
-          //         nav: false,
-          //         stagePadding: 50,
-          //       },
-          //       600:{
-          //         items: 2,
-          //         dots:true,
-          //         nav: true,
-          //         stagePadding: 0,
-          //
-          //       },
-          //       1000:{
-          //         items: 4
-          //       }
-          //     }
-          //   });
-          // },
-          // relatedCarousel() {
-          //   $('#owl-related').trigger('refresh.owl.carousel');
-          //   $('#owl-related').owlCarousel({
-          //     loop: true,
-          //     margin: 10,
-          //     nav: true,
-          //     dots:false,
-          //     navText: [
-          //       '<i class="fas fa-arrow-left arrow"></i>',
-          //       '<i class="fas fa-arrow-right arrow"></i>'
-          //     ],
-          //     responsive:{
-          //       0:{
-          //         items: 1,
-          //         nav: false,
-          //         stagePadding: 50,
-          //       },
-          //       600:{
-          //         items: 2,
-          //         nav: true,
-          //            stagePadding: 0,
-          //
-          //       },
-          //       1000:{
-          //         items: 4
-          //       }
-          //     }
-          //   });
-          // },
         },
         computed: {
             auth () {

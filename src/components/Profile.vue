@@ -261,8 +261,8 @@
                                                     <div class="status">
                                                         <p class="mb-2">Status</p>
                                                         <p v-if="rent.status ==2"><span class="badge-danger badge br-0 p-2 f-s-16">Rejected</span></p>
-                                                        <p v-else-if="rent.lend != null"><span class="badge-danger badge br-0 p-2 f-s-16">Rented for {{ rent.lend.data.lend_week }} week</span></p>
-                                                        <p class="text-secondery" v-else>Available for {{ rent.max_number_of_week }} week</p>
+                                                        <p v-else-if="rent.lend != null"><span class="badge-danger badge br-0 p-2 f-s-16">Rented for {{ rent.lend.data.lend_week }} week(s)</span></p>
+                                                        <p class="text-secondery" v-else>Available for {{ rent.max_number_of_week }} week(s)</p>
                                                     </div>
                                                     <div class="action" v-if="rent.disk_type != 1">
                                                         <a href="#" class="btn--secondery h-40 w-80" @click.prevent="credentialModal(rent)">Edit</a>
@@ -432,6 +432,7 @@
                                                                     <p class="mb-1" v-if="lend.rent.disk_type == 1 && lend.status === 3">{{ returnDate(lend.rent.disk_type, lend.updated_at, lend.lend_week) }}</p>
                                                                     <p class="mb-1" v-else-if="lend.rent.disk_type == 1 && lend.status === 1">{{ formattedReturnDate(lend.updated_at) }}</p>
                                                                     <p class="mb-1" v-else-if="lend.rent.disk_type == 0"> {{ returnDate(lend.rent.disk_type, lend.created_at, lend.lend_week) }}</p>
+                                                                    <p class="mb-1" v-else>-</p>
                                                                 </div>
                                                             </div>
                                                     </div>

@@ -44,7 +44,7 @@
         position: relative;
         background: $trans-nav-bg;
     }
-    ul {
+    >ul {
         margin: auto;
         display: flex;
         justify-content: center;
@@ -67,6 +67,7 @@
             }
             a {
                 padding: 0 20px;
+                color: $gray-border;
                 @include gil-medium;
                 @include for-max-1199 {
                     padding: 0 10px;
@@ -634,5 +635,78 @@
         button {
             top: 5px;
         }
+    }
+}
+
+.dropdown {
+    @include for-max-991 {
+        width: 100% !important;
+    }
+    &--sub-menu {
+        position: absolute;
+        top: 37px;
+        width: 200px;
+        padding: 0;
+        height: 0;
+        visibility: hidden;
+        transition: all 0.3s ease-in;
+        background: $game-details;
+        overflow: hidden;
+        flex-direction: column;
+        justify-content: flex-start;
+        @include for-max-991 {
+            width: 100%;
+        }
+        @include for-max-575 {
+            left: -15px;
+        }
+        li {
+            padding: 0;
+            border-radius: 0;
+            border-bottom: 1px solid $text-dark;
+            @include for-max-991 {
+                width: 100% !important;
+            }
+            &:last-of-type {
+                border-bottom: 0;
+            }
+            a {
+                padding: 10px 20px !important;
+                width: 100%;
+                display: block;
+                transition: all .3s ease-in;
+                color: $text-light !important;
+                &:hover {
+                    color: $text-dark !important;
+                }
+            }
+            &:hover {
+                background: $secondery;
+                a {
+                    color: $text-dark;
+                }
+            }
+        }
+    }
+    &:hover {
+        .dropdown--sub-menu {
+            height: initial;
+            visibility: visible;
+            @include for-max-991 {
+                height: 260px;
+            }
+        }
+        &::after {
+            transform: rotate(185deg);
+        }
+    }
+    &::after {
+        width: 0;
+        height: 0;
+        border-left: 5px solid transparent;
+        border-right: 5px solid transparent;
+        border-bottom: 5px solid $gray-border;
+        content: '';
+        transition: all .3s ease-in;
     }
 }

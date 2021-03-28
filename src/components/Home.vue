@@ -331,11 +331,11 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-11 ml-auto">
-                            <div class="footer-top">
+                            <!-- <div class="footer-top">
                             <a href="/" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
                             <div class="footer-top--right">
                             </div>
-                        </div>
+                        </div> -->
                         </div>
                     </div>
                 </div>
@@ -347,7 +347,13 @@
                         <div class="col-md-11 ml-auto">
                             <div class="row">
                                 <div class="col-sm-6 col-md-3">
-                            <div class="footer-menu-content"><p class="footer-menu-content--about-gamehub">
+                            <div class="footer-menu-content">
+                                <div class="footer-top mb-5">
+                                    <a href="/" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
+                                    <div class="footer-top--right">
+                                    </div>
+                                </div>
+                                <p class="footer-menu-content--about-gamehub">
                                     Game Hub is Bangladesh's First
                                      Online Platform for lending &
                                     renting games for PlayStation, Xbox And PC.
@@ -362,7 +368,7 @@
                                 </div>
                                  <div class="footer-menu-content--address">
                                     <p class="footer-menu-content--address--text">Cell number</p>
-                                    <p class="footer-menu-content--address--text"><a href="tel:+8801823 33654155">01823 33654155</a></p>
+                                    <p class="footer-menu-content--address--text"><a href="tel:+8801886-614533">01886-614533</a></p>
                                 </div>
                                 <div class="footer-menu-content--address">
                                     <p class="footer-menu-content--address--text">Office</p>

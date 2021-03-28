@@ -1302,6 +1302,14 @@
     top: 14px;
 }
 
+.top-20 {
+    top: 20px;
+}
+
+.top-50 {
+    top: 50px;
+}
+
 // ******************Border Radius***************//
 .br-0 {
     border-radius: 0;
@@ -1537,9 +1545,25 @@ html {
     z-index: 99;
 }
 
+.z-index-999 {
+    z-index: 999;
+}
+
 // height
+.h-0 {
+    height: 0;
+}
+
 .h-100 {
     height: 100%;
+}
+
+.h-25 {
+    height: 25px !important;
+}
+
+.h-30 {
+    height: 30px !important;
 }
 
 .h-40 {
@@ -1593,6 +1617,10 @@ html {
 
 .w-90 {
     width: 90px !important;
+}
+
+.w-200 {
+    width: 200px !important;
 }
 
 // text-area
@@ -1858,6 +1886,35 @@ select {
     }
 }
 
+// hover
+.secondery-hover {
+    transition: all .3s ease-in;
+    &:hover {
+        background: $secondery;
+        a {
+            color: $text-dark;
+        }
+    }
+    a {
+        &:hover {
+            color: $text-dark !important;
+        }
+    }
+}
+
+.dropdown-hover {
+    .dropdown--sub-menu {
+        transition: all .3s ease-in;
+    }
+    &:hover {
+        .dropdown--sub-menu {
+            height: initial;
+            overflow: visible !important;
+            visibility: visible !important;
+        }
+    }
+}
+
 // checkbox custom
 .checkbox-parents {
     position: relative;
@@ -1944,4 +2001,28 @@ select {
 // flex
 .flex-1 {
     flex: 1;
+}
+
+// After
+.no-after {
+    &::after {
+        display: none;
+    }
+}
+
+// transition ease in
+.transition-3 {
+    transition: all .3s ease-in;
+}
+
+.transition-5 {
+    transition: all .5s ease-in;
+}
+
+.transition-7 {
+    transition: all .7s ease-in;
+}
+
+.transition-9 {
+    transition: all .9s ease-in;
 }

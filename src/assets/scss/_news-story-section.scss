@@ -54,6 +54,17 @@
                 @include bullet-list;
             }
         }
+        table {
+            tr {
+                td {
+                    border-color: $text-light !important;
+                    padding: 15px;
+                    p {
+                        margin: 0;
+                    }
+                }
+            }
+        }
     }
 }
 

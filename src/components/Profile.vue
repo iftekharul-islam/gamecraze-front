@@ -592,7 +592,7 @@
                                                     <ValidationProvider name="Game type" rules="required" v-slot="{ errors }">
                                                     <div class="post-rent--form-group--input--radio-group delivery-radio-group">
                                                         <div class="custom-radio d-flex ">
-                                                            <input type="radio" value="0" id="digital_copy" name="disk_type" v-model="rentData.disk_type" @click="basePriceSelect(1)" class="custom-control-input" checked>
+                                                            <input type="radio" value="0" id="digital_copy" name="disk_type" v-model="rentData.disk_type" @click="basePriceSelect(1)" class="custom-control-input">
                                                             <label for="digital_copy" class="custom-control-label"> Digital Copy <span></span></label>
                                                         </div>
 
@@ -983,7 +983,7 @@
                     disk_image: '',
                     cover_image: '',
                     checkpoint: {},
-                    disk_type: null,
+                    disk_type: '',
                     gameUserId: '',
                     gamePassword: '',
                 },

@@ -261,6 +261,7 @@
                                                     <div class="status">
                                                         <p class="mb-2">Status</p>
                                                         <p v-if="rent.status ==2"><span class="badge-danger badge br-0 p-2 f-s-16">Rejected</span></p>
+                                                        <p v-else-if="rent.lend != null"><span class="badge-danger badge br-0 p-2 f-s-16">Rented for {{ rent.lend.data.lend_week }} week</span></p>
                                                         <p class="text-secondery" v-else>Available for {{ rent.max_number_of_week }} week</p>
                                                     </div>
                                                     <div class="action" v-if="rent.disk_type != 1">
@@ -1443,7 +1444,7 @@
                     }
                 };
 
-                this.$api.get('rents?include=game,platform,diskCondition,checkpoint,renter', config).then(response =>
+                this.$api.get('rents?include=game,platform,diskCondition,checkpoint,renter,lend', config).then(response =>
                 {
                     this.rents = response.data.data;
                 });

@@ -445,8 +445,6 @@
                 this.$api.get('games/upcoming-games?include=assets,genres,platforms').then(response => {
                     var vm = this;
                     vm.upcomingGames = response.data.data;
-                    console.log('vm.upcomingGames');
-                    console.log(vm.upcomingGames);
                     this.loadedUpcoming = true;
                 });
             },

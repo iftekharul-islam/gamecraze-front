@@ -14,7 +14,7 @@ global.jQuery = require('jquery/dist/jquery.min');
 let $ = global.jQuery;
 window.$ = $;
 
-import 'popper.js'
+// import 'popper.js'
 import 'bootstrap'
 
 let owl_carousel = require('./assets/js/owl/owl.carousel.min');

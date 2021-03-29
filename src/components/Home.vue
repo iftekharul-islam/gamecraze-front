@@ -18,7 +18,7 @@
                 </div>
             </div>
         </section>
-        <!-- exchange and lend sectio -->
+        <!-- exchange and lend section -->
         <section class="exchange-lend-section">
             <div class="container">
                 <div class="row">
@@ -46,24 +46,6 @@
             <div class="text-center">
                 <h2 class="section-heading">TRENDING GAMES</h2>
             </div>
-            <!-- <div id="owl-trending" class="owl-carousel owl-theme" v-if="trendingGames">
-                <div class="item" v-for="(trending, index) in trendingGames" :key="index">
-                    <router-link :to="{ path: '/game-details/' + trending.game.data.slug}" class="trending-image">
-                        <img :src="trending.game.data.trending_url" alt="trending.game.data.name">
-                    </router-link>
-                    <div class="trending-game--name-price d-flex justify-content-between">
-                         <router-link :to="{ path: '/game-details/' + trending.game.data.slug}" class="">{{ trending.game.data.name }}</router-link>
-                    </div>
-                    <div class="trending-game--categories d-flex justify-content-between" v-if="trending">
-                        <div class="home-categories">
-                            <a :href="'/games?categories=' + genre.slug" v-for="(genre) in trending.game.data.genres.data" :key="genre.id">{{ genre.name }}</a>
-                        </div>
-                        <div class="d-flex home-platform">
-                            <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in trending.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <carousel v-if ="loadedTrending"
                 :autoplay ="false"
                 :loop ="true"
@@ -106,21 +88,6 @@
             <div class="text-center">
                  <h2 class="section-heading">RENT YOUR FAVORITE GAMES</h2>
             </div>
-            <!-- <div id="owl-favorite" class="owl-carousel owl-theme" v-if="populars.length">
-                <div class="item" v-for="(popular, index) in populars" :key="index">
-                    <div class="favorite-games">
-                        <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-if="popular.game.data.trending_url" class="d-block favorite-games--link">
-                            <img :src="popular.game.data.poster_url" :alt="popular.game.data.name">
-                        </router-link>
-                        <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-else>
-                                <img src="../assets/img/rented/dummy-image.jpg" alt="no-image">
-                        </router-link>
-                        <div class="favorite-games-categories d-flex justify-content-center align-items-center">
-                            <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in popular.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
             <carousel v-if ="loadedPopular"
                 :autoplay ="false"
                 :loop ="true"
@@ -146,7 +113,10 @@
                             <img :src="popular.game.data.poster_url" :alt="popular.game.data.name">
                         </router-link>
                         <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-else>
-                                <img src="../assets/img/rented/dummy-image.jpg" alt="no-image">
+                            <picture class="picture">
+                                <source srcset="../assets/img/webp-image/dummy-image.webp" type="image/webp" class="picture__img">
+                                <img src="../assets/img/webp-image/dummy-image.webp" alt="no-image" class="picture__img">
+                            </picture>
                         </router-link>
                         <div class="favorite-games-categories d-flex justify-content-center align-items-center">
                             <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in popular.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>
@@ -155,36 +125,6 @@
                 </div>
            </carousel>
         </section>
-        <!-- <section class="upcoming-section"> -->
-            <!-- <div id="owl-upcoming" class="owl-carousel owl-theme" v-if="upcomingGames">
-                <div class="item" v-for="(game, index) in upcomingGames" :key="index">
-                    <div class="owl-upcoming--item">
-                        <router-link :to="{ path: '/game-details/' + game.slug}" class="upcoming-image">
-                            <img class="card-img-top" :src="game.upcoming_url" :alt="game.name"  v-if="game.upcoming_url">
-                            <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
-                        </router-link>
-                        <div class="d-flex upcoming-order">
-                            <router-link :to="{ path: '/game-details/' + game.slug}"><span>View Details</span></router-link>
-                            <a href="javascript:void(0)"  @click.prevent="setReminder(game.id)"><span>Remind me</span></a>
-                        </div>
-                    </div>
-                    <div class="upcoming-game--name-price d-flex justify-content-between">
-                        <router-link :to="{ path: '/game-details/' + game.slug}">{{ game.name }}</router-link>
-                    </div>
-                    <div class="upcoming-game--categories d-flex justify-content-between">
-                        <div class="home-categories">
-                            <a :href="'/games?categories=' + genre.slug" v-for="(genre, index) in game.genres.data" :key="index">{{ genre.name }}</a>
-                        </div>
-
-                        <div class="d-flex">
-                            <a :href="'/games?platforms=' + platform.slug" v-for="(platform, index) in game.platforms.data" :key="index">
-                                <img :src=platform.url :alt="platform.name">
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-        <!-- </section> -->
 
        <section class="upcoming-section">
             <div class="text-center">
@@ -215,7 +155,10 @@
                     <div class="owl-upcoming--item">
                         <router-link :to="{ path: '/game-details/' + game.slug}" class="upcoming-image">
                             <img class="card-img-top" :src="game.upcoming_url" :alt="game.name"  v-if="game.upcoming_url">
-                            <img class="card-img-top" src="../assets/img/rented/dummy-image.jpg" alt="no-image" v-else>
+                            <picture class="picture" v-else>
+                                <source srcset="../assets/img/webp-image/dummy-image.webp" type="image/webp" class="card-img-top">
+                                <img src="../assets/img/webp-image/dummy-image.webp" alt="no-image" class="card-img-top">
+                            </picture>
                         </router-link>
                         <div class="d-flex upcoming-order">
                             <router-link :to="{ path: '/game-details/' + game.slug}"><span>View Details</span></router-link>
@@ -295,13 +238,6 @@
             </div>
             <div class="container">
                 <div class="col-12">
-                    <!-- <div id="owl-video" class="owl-carousel owl-theme" v-if="videos">
-                        <div class="item" v-for="(video, index) in videos" :key="index">
-                            <div class="featured-videos">
-                                <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
-                            </div>
-                       </div>
-                    </div> -->
                     <carousel v-if ="loadedVideos"
                         :autoplay ="false"
                         :loop ="true"
@@ -503,6 +439,8 @@
                 this.$api.get('games/upcoming-games?include=assets,genres,platforms').then(response => {
                     var vm = this;
                     vm.upcomingGames = response.data.data;
+                    console.log('vm.upcomingGames');
+                    console.log(vm.upcomingGames);
                     this.loadedUpcoming = true;
                 });
             },

@@ -2933,7 +2933,7 @@ select option {
 }
 
 .slider-section {
-  background: url(../img/Juggernaut.png);
+  background: url(../img/webp-image/Juggernaut.webp);
   background-repeat: no-repeat;
   background-size: cover;
   display: -webkit-box;
@@ -3057,7 +3057,7 @@ select option {
 
 @media (max-width: 575px) {
   .exchange-lend-section--exchange {
-    background: url(../img/exchangembl.png);
+    background: url(../img/webp-image/exchangembl.webp);
   }
 }
 
@@ -3067,7 +3067,7 @@ select option {
 
 @media (max-width: 575px) {
   .exchange-lend-section--lend {
-    background: url(../img/lendmbl.png);
+    background: url(../img/webp-image/lendmbl.webp);
   }
 }
 

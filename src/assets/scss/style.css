@@ -1531,6 +1531,16 @@ html {
   height: 40px !important;
 }
 
+.h-48-32 {
+  height: 48px;
+}
+
+@media (max-width: 575px) {
+  .h-48-32 {
+    height: 32px;
+  }
+}
+
 .h-50 {
   height: 50px !important;
 }
@@ -1579,6 +1589,20 @@ html {
 
 .w-90 {
   width: 90px !important;
+}
+
+.w-148-100 {
+  width: 148px;
+}
+
+@media (max-width: 575px) {
+  .w-148-100 {
+    width: 100px;
+  }
+}
+
+.w-172 {
+  width: 172px;
 }
 
 .w-200 {
@@ -9229,6 +9253,141 @@ html {
 
 .rookie-elite-content--paragraph {
   opacity: .9;
+}
+
+.tournament-nav {
+  background: url(../img/Header.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 20px 0;
+}
+
+.tournament-nav a:hover {
+  color: #000;
+}
+
+.tournament-nav .button a {
+  width: 148px;
+}
+
+@media (max-width: 575px) {
+  .tournament-nav .button a {
+    width: 85px;
+  }
+}
+
+.tournament-display {
+  position: relative;
+}
+
+.tournament-display--button {
+  position: absolute;
+  bottom: 150px;
+  left: 25%;
+}
+
+@media (max-width: 1500px) {
+  .tournament-display--button img {
+    width: 80%;
+  }
+}
+
+@media (max-width: 1300px) {
+  .tournament-display--button img {
+    width: 60%;
+  }
+}
+
+@media (max-width: 991px) {
+  .tournament-display--button img {
+    width: 40%;
+  }
+}
+
+@media (max-width: 991px) {
+  .tournament-display--button {
+    bottom: 90px;
+  }
+}
+
+@media (max-width: 575px) {
+  .tournament-display--button {
+    bottom: 20px;
+    left: 15%;
+  }
+}
+
+.tournament-display a:hover {
+  color: #000;
+}
+
+.tournament-body {
+  padding-top: 0;
+}
+
+.tournament-body nav {
+  display: none;
+}
+
+.tournament-body .copyright-section {
+  display: none;
+}
+
+.tournament-body .promo-notification {
+  display: none;
+}
+
+.tournament-content__top {
+  margin-top: 60px;
+  margin-bottom: 42px;
+}
+
+.tournament-content__top p {
+  opacity: .85;
+  max-width: 380px;
+}
+
+.tournament-content__button {
+  margin-bottom: 48px;
+}
+
+@media (max-width: 575px) {
+  .tournament-content__button a {
+    width: 100%;
+  }
+}
+
+.tournament-content__text {
+  margin-bottom: 32px;
+}
+
+.tournament-content__text ol {
+  padding-left: 16px;
+  opacity: .85;
+}
+
+.tournament-content__text ol li {
+  display: list-item;
+  padding: 0;
+  margin-bottom: 16px;
+}
+
+.tournament-content__text ol.no-bullet {
+  list-style: none;
+}
+
+.tournament-content__text p {
+  opacity: .85;
+}
+
+.tournament-content__text h6 {
+  font-size: 20px;
+  font-family: gilroy-bold;
+  margin-bottom: 16px;
+}
+
+.tournament-content a:hover {
+  color: #000;
 }
 
 .btn:focus {

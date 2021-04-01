@@ -46,11 +46,11 @@ import Stats from '../components/Stats';
 import RentPostedBy from '../components/RentPostedBy';
 import Elite from '../components/Elite';
 import Rookie from '../components/Rookie';
+import Tournament from '../components/Tournament';
 
 let router = new Router({
     mode: 'history',
-    routes: [
-        {
+    routes: [{
             path: '',
             name: 'Home',
             component: Home,
@@ -367,6 +367,14 @@ let router = new Router({
             name: 'RentPostedBy',
             component: RentPostedBy,
             props: true,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/tournament',
+            name: 'Tournament',
+            component: Tournament,
             meta: {
                 requiresAuth: false
             }

@@ -9323,6 +9323,8 @@ html {
 
 .tournament-body {
   padding-top: 0;
+  padding-bottom: 100px;
+  background: #191919;
 }
 
 .tournament-body nav {
@@ -9330,7 +9332,7 @@ html {
 }
 
 .tournament-body .copyright-section {
-  display: none;
+  background: #191919;
 }
 
 .tournament-body .promo-notification {
@@ -9862,6 +9864,9 @@ html {
 
 .footer-bottom--social {
   margin-right: 6rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 @media (max-width: 575px) {
@@ -9875,6 +9880,25 @@ html {
 
 .footer-bottom--social a {
   margin-left: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
+.footer-bottom--social a:hover {
+  background: #F9383D;
 }
 
 @media (max-width: 768px) {

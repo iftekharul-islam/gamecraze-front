@@ -53,11 +53,13 @@
 
 .tournament-body {
     padding-top: 0;
+    padding-bottom: 100px;
+    background: $tournament-bg;
     nav {
         display: none;
     }
     .copyright-section {
-        display: none;
+        background: $tournament-bg;
     }
     .promo-notification {
         display: none;

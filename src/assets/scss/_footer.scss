@@ -134,6 +134,7 @@
     }
     &--social {
         margin-right: 6rem;
+        display: flex;
         @include for-max-575 {
             margin-right: 0;
             position: absolute;
@@ -142,6 +143,17 @@
         }
         a {
             margin-left: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: transparent;
+            transition: all .3s ease-in;
+            &:hover {
+                background: $social-bg;
+            }
             &:first-of-type {
                 @include for-max-768 {
                     margin-left: 0;

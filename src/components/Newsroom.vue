@@ -18,9 +18,9 @@
                     </div>
                 </div>
                 <!-- row -->
-                <div class="row">
+                <div class="row" v-if="featured">
                     <div v-for="(item, index) in news" :key="item.id" class="col-md-4 mb-4" v-if="featured.id !== item.id">
-                        <router-link :to="{ name: 'NewsStory', params: { id: item.id }}" class="newsroom-section--content-box">
+                        <router-link :to="{ name: 'NewsStory', params: { slug: item.slug }}" class="newsroom-section--content-box">
                             <div class="newsroom-section--content-box--img">
                                 <img :src=item.thumbnail :alt=item.title class="w-100 img-fluid">
                             </div>

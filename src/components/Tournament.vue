@@ -6,8 +6,8 @@
               <div class="d-flex justify-content-between align-items-center">
                    <a href="#"> <img src="../assets/img/logo/gamehublogo.svg" class="img-fluid gamehub--logo" alt="Gamehub Logo logo"></a>
                    <div class="button d-flex">
-                       <a href="" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black mr-1 mr-sm-3">Lend game</a>
-                       <a href="" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black">Rent game</a>
+                       <a href="https://www.gamehub.com.bd/games" target="_blank" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black mr-1 mr-sm-3">Lend game</a>
+                       <a href="https://www.gamehub.com.bd/profile" target="_blank" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black">Rent game</a>
                    </div>
               </div>
            </div>
@@ -16,9 +16,9 @@
            <img src="../assets/img/display.webp" alt="display image" class="img-fluid tournament-display">
            <div class="tournament-display--button">
                <img src="../assets/img/pubgtext.webp" class="img-fluid" alt="pubg text">
-               <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center mt-2 mt-sm-4">
-                   <a href="#" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black mb-2 mb-sm-0 m-0 mr-sm-3 w-172">Register for play</a>
-                   <a href="#rules" class="secondery-border d-flex align-items-center justify-content-center h-48-32 text-secondery w-172">Rules & regulations</a>
+               <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center mt-2 mt-sm-4 btn-rules">
+                   <a href="#" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black mb-2 mb-sm-0 m-0 mr-sm-3">Register for play</a>
+                   <a href="#rules" class=" d-flex align-items-center justify-content-center h-48-32 text-secondery">Rules & regulations</a>
                </div>
            </div>
        </div>
@@ -38,11 +38,8 @@
                                 prerequisites to join the tournament. You need to complete the prerequisites 
                                 first then all you need to do is click on the ‘Register for play’ button. </p>
                     </div>
-                    <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center mt-4 tournament-content__button">
-                        <a href="#" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black mb-2 mb-sm-0 m-0 mr-sm-3 px-4">Fillup form</a>
-                         <a href="#" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black px-4">Register for play</a>
-                    </div>
-                    <div class="mt-5">
+                  
+                    <div class="mt-5 mb-5">
                         <p>As you know the tournament will be played as a 4 member squad & all the squad members need to complete the prerequisites. If any squad member does not fulfill the prerequisites the whole squad will be disqualified.  </p>
                     </div>
                     <div class="tournament-content__txet">
@@ -81,7 +78,7 @@
                     </div>
                       <div class="tournament-content__text">
                         <h6>General rules :</h6>
-                        <ol>
+                        <ol class="tournament-content__text__list">
                             <li> First 25 Registrations are allowed.</li>
                             <li>Only mobile phones are allowed, no Emulators. </li>
                             <li> Teaming with other teams will result in permanent ban from Tournaments and may result in Ban from Game for 7-day period.</li>
@@ -113,7 +110,9 @@
 
                         </ol>
                     </div>
-
+                      <div class="mt-4 tournament-content__button">
+                         <a href="https://forms.gle/J6pg3UEcLfDkmjJi8" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black px-4">Register for play</a>
+                    </div>
 
 
 

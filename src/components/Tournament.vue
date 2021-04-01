@@ -6,8 +6,8 @@
               <div class="d-flex justify-content-between align-items-center">
                    <a href="#"> <img src="../assets/img/logo/gamehublogo.svg" class="img-fluid gamehub--logo" alt="Gamehub Logo logo"></a>
                    <div class="button d-flex">
-                       <a href="https://www.gamehub.com.bd/games" target="_blank" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black mr-1 mr-sm-3">Lend game</a>
-                       <a href="https://www.gamehub.com.bd/profile" target="_blank" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black">Rent game</a>
+                       <a href="https://www.gamehub.com.bd/profile" target="_blank" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black mr-1 mr-sm-3">Lend game</a>
+                       <a href="https://www.gamehub.com.bd/games" target="_blank" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black">Rent game</a>
                    </div>
               </div>
            </div>
@@ -27,41 +27,50 @@
            <div class="container">
                <div class="row">
                    <div class="col-md-8 mx-auto">
-                       <div class="d-flex tournament-content__top">
-                            <p class="flex-1 mr-2 mr-sm-5">
-                                Game Hub is arranging a FREE PUBG tournament & one team will take away 4 
-                                Elite Royal Pass along with lifetime Verified Membership of GameHub. 
-                                If you want to join please make sure you  follow the rules & regulations. 
-                            </p>
-                            <p class="flex-1">The tournament arranged by GameHub is 100% free & you do not need to 
-                                pay any kind of fee to participate in the tournament. But there are few 
-                                prerequisites to join the tournament. You need to complete the prerequisites 
-                                first then all you need to do is click on the ‘Register for play’ button. </p>
-                    </div>
+                       <div class="tournament-content__top">
+                            <p>Game Hub is arranging a FREE PUBG tournament & one team will take away 4 Elite Royal Pass along with lifetime Verified Membership of GameHub. If you want to join please make sure you  follow the rules & regulations.</p>
+                        </div>
                   
-                    <div class="mt-5 mb-5">
-                        <p>As you know the tournament will be played as a 4 member squad & all the squad members need to complete the prerequisites. If any squad member does not fulfill the prerequisites the whole squad will be disqualified.  </p>
+                    <div class="tournament-content__txet">
+                        <h6>Join Tournament:</h6>
+                        <p>The tournament arranged by GameHub is 100% free & you do not need to pay any kind of fee to participate in the tournament. But there are few prerequisites to join the tournament. You need to complete the prerequisites & to do that just click the ' Register for play’ button. </p>
                     </div>
                     <div class="tournament-content__txet">
-                        <h6>Tournament prize</h6>
-                        <p>There will be only one winner & all the members of the team will be given Elite Royal Pass & GameHub Elite membership.  </p>
+                        <h6>Registration deadline:</h6>
+                        <p>The last day for registration is 8th April. After the registration is over the tournament date will be announced on GameHub’s official Facebook page. </p>
                     </div>
                     <div class="tournament-content__txet">
                         <h6>How to join a room:</h6>
-                        <p>1. In PUBG below the ‘Start’ section at the upper left corner of your screen in the game (where you choose Classic/Arcade), there is a room icon.</p>
+                        <p>1. In PUBG below the ‘Start’ section at the upper left corner of your screen in the game (where you choose Classic/Arcade), there is a room icon. </p>
                         <p>2. Click on the room icon and enter room id and password to join the room.</p>
                     </div>
                     <div class="tournament-content__txet">
-                        <h6>Game play:</h6>
-                        <p>Check in for the tournament. Please note that the Check-In window is open 15 minutes before the tournament starts.  </p>
+                        <h6>Game Play:</h6>
+                        
+                        <p>Check in for the tournament. Please note that the Check-In window is open 15 minutes before the tournament starts.</p>
+                    </div>
+                     <div class="tournament-content__txet">
+                        <h6>Join the Game Room:</h6>
+                        <p>The information of the Game Room will be sent to participants through email 15 minutes before the game time. In case you need help please contact us.</p>
+                        <p>Play the Match 
+                            Now you’re ready to play your game. Do-follow the rules to ensure fair play.</p>
                     </div>
                     <div class="tournament-content__txet">
-                        <h6>Join the Game Room:</h6>
-                        <p>The information of the Game Room will be sent to participants through email 15 minutes before the game time. In case you need help please contact us. </p>
-                        <p>Play the Match Now you’re ready to play your game. Do-follow the rules to ensure fair play. </p>
+                        <h6>Prize: </h6>
+                        <p>There will be only one winner & all the members of the team will be given Elite Royal Pass & GameHub Elite membership. </p>
                     </div>
+                     <div class="tournament-content__txet">
+                        <h6>Prize: </h6>
+                        <p>There will be only one winner & all the members of the team will be given Elite Royal Pass & GameHub Elite membership. </p>
+                    </div>
+                    
+
+
+
+
+       
                     <div class="tournament-content__text" id="rules">
-                        <h6>General rules :</h6>
+                        <h6>General rules:</h6>
                         <ol>
                             <li> These Official Rules establish the rules of tournament play, including rules governing player eligibility, tournament structure, point structure, prize awards, and player conduct.</li>
                             <li>Read and perceive these Official Rules before you’ll participate within the tournament. You must settle for these Official Rules so as to participate within the tournament, and you must abide by these Official Rules in order to remain eligible to play in the Tournament and receive prizes. All of this is explained below.</li>
@@ -77,7 +86,7 @@
                         </ol>
                     </div>
                       <div class="tournament-content__text">
-                        <h6>General rules :</h6>
+                        <h6>TOURNAMENT RULES:</h6>
                         <ol class="tournament-content__text__list">
                             <li> First 25 Registrations are allowed.</li>
                             <li>Only mobile phones are allowed, no Emulators. </li>
@@ -113,11 +122,6 @@
                       <div class="mt-4 tournament-content__button">
                          <a href="https://forms.gle/J6pg3UEcLfDkmjJi8" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black px-4">Register for play</a>
                     </div>
-
-
-
-
-
 
                    </div>
                </div>

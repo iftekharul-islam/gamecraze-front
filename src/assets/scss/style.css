@@ -1840,17 +1840,6 @@ select option {
   color: #000 !important;
 }
 
-.dropdown-hover .dropdown--sub-menu {
-  -webkit-transition: all .3s ease-in;
-  transition: all .3s ease-in;
-}
-
-.dropdown-hover:hover .dropdown--sub-menu {
-  height: initial;
-  overflow: visible !important;
-  visibility: visible !important;
-}
-
 .checkbox-parents {
   position: relative;
 }
@@ -2838,13 +2827,9 @@ select option {
 
 .dropdown--sub-menu {
   position: absolute;
-  top: 37px;
+  top: 47px;
   width: 200px;
   padding: 0;
-  height: 0;
-  visibility: hidden;
-  -webkit-transition: all 0.3s ease-in;
-  transition: all 0.3s ease-in;
   background: #141A27;
   overflow: hidden;
   -webkit-box-orient: vertical;
@@ -2854,6 +2839,8 @@ select option {
   -webkit-box-pack: start;
       -ms-flex-pack: start;
           justify-content: flex-start;
+  border: 1px solid #FFD715;
+  display: none;
 }
 
 @media (max-width: 991px) {
@@ -2872,6 +2859,8 @@ select option {
   padding: 0;
   border-radius: 0;
   border-bottom: 1px solid #000;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
 }
 
 @media (max-width: 991px) {
@@ -2891,10 +2880,15 @@ select option {
   -webkit-transition: all .3s ease-in;
   transition: all .3s ease-in;
   color: #fff !important;
+  opacity: .95;
 }
 
 .dropdown--sub-menu li a:hover {
   color: #000 !important;
+}
+
+.dropdown--sub-menu li a::after {
+  display: none;
 }
 
 .dropdown--sub-menu li:hover {
@@ -2906,8 +2900,7 @@ select option {
 }
 
 .dropdown:hover .dropdown--sub-menu {
-  height: initial;
-  visibility: visible;
+  display: block;
 }
 
 @media (max-width: 991px) {
@@ -2933,7 +2926,7 @@ select option {
 }
 
 .slider-section {
-  background: url(../img/webp-image/Juggernaut.webp);
+  background: url(../img/Juggernaut.png);
   background-repeat: no-repeat;
   background-size: cover;
   display: -webkit-box;
@@ -3057,7 +3050,7 @@ select option {
 
 @media (max-width: 575px) {
   .exchange-lend-section--exchange {
-    background: url(../img/webp-image/exchangembl.webp);
+    background: url(../img/exchangembl.png);
   }
 }
 
@@ -3067,7 +3060,7 @@ select option {
 
 @media (max-width: 575px) {
   .exchange-lend-section--lend {
-    background: url(../img/webp-image/lendmbl.webp);
+    background: url(../img/lendmbl.png);
   }
 }
 

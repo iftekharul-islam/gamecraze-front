@@ -30,13 +30,13 @@
                             <router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">Post For Rent</router-link>
                         </li>
                         <li class="dropdown position-relative dropdown-hover">
-                            <router-link @click.native="onMenuItemClick()" class="router_link" to="#">More</router-link>
-                            <ul class="dropdown--sub-menu p-0">
-                                <li><router-link class="router_link" to="/about-us">About us</router-link></li>
-                                <li><router-link class="router_link" to="/terms">Terms & conditions</router-link></li>
-                                <li><router-link class="router_link" to="/privacy">Privacy policies</router-link></li>
-                                <li><router-link class="router_link" to="/frequently-asked-questions">FAQ</router-link></li>
-                            </ul>
+                            <router-link class="router_link no-after" to="#">More</router-link>
+                                <ul class="dropdown--sub-menu p-0">
+                                  <li><router-link @click.native="onMenuItemClick()" class="router_link" to="/about-us">About us</router-link></li>
+                                  <li><router-link @click.native="onMenuItemClick()" class="router_link" to="/terms">Terms & conditions</router-link></li>
+                                  <li><router-link @click.native="onMenuItemClick()" class="router_link" to="/privacy">Privacy policies</router-link></li>
+                                  <li><router-link @click.native="onMenuItemClick()" class="router_link" to="/frequently-asked-questions">FAQ</router-link></li>
+                              </ul>
                         </li>
                     </ul>
                    <!-- search bar -->

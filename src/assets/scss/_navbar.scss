@@ -644,16 +644,15 @@
     }
     &--sub-menu {
         position: absolute;
-        top: 37px;
+        top: 47px;
         width: 200px;
         padding: 0;
-        height: 0;
-        visibility: hidden;
-        transition: all 0.3s ease-in;
         background: $game-details;
         overflow: hidden;
         flex-direction: column;
         justify-content: flex-start;
+        border: 1px solid $secondery;
+        display: none;
         @include for-max-991 {
             width: 100%;
         }
@@ -664,6 +663,7 @@
             padding: 0;
             border-radius: 0;
             border-bottom: 1px solid $text-dark;
+            transition: all .3s ease-in;
             @include for-max-991 {
                 width: 100% !important;
             }
@@ -676,8 +676,12 @@
                 display: block;
                 transition: all .3s ease-in;
                 color: $text-light !important;
+                opacity: .95;
                 &:hover {
                     color: $text-dark !important;
+                }
+                &::after {
+                    display: none;
                 }
             }
             &:hover {
@@ -690,8 +694,7 @@
     }
     &:hover {
         .dropdown--sub-menu {
-            height: initial;
-            visibility: visible;
+            display: block;
             @include for-max-991 {
                 height: 260px;
             }

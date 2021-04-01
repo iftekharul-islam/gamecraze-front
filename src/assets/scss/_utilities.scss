@@ -1902,19 +1902,6 @@ select {
     }
 }
 
-.dropdown-hover {
-    .dropdown--sub-menu {
-        transition: all .3s ease-in;
-    }
-    &:hover {
-        .dropdown--sub-menu {
-            height: initial;
-            overflow: visible !important;
-            visibility: visible !important;
-        }
-    }
-}
-
 // checkbox custom
 .checkbox-parents {
     position: relative;

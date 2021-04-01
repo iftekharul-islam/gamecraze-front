@@ -4,6 +4,7 @@
     background-size: cover;
     padding: 20px 0;
     a {
+        font-weight: bold;
         &:hover {
             color: $text-dark;
         }
@@ -13,6 +14,7 @@
             width: 148px;
             @include for-max-575 {
                 width: 85px;
+                font-size: 12px;
             }
         }
     }
@@ -42,6 +44,24 @@
         @include for-max-575 {
             bottom: 20px;
             left: 15%;
+        }
+        a {
+            width: 220px;
+            font-weight: bold;
+            @include for-max-575 {
+                width: 178px;
+            }
+            &:first-of-type {
+                border: 2px solid $text-dark;
+            }
+            &:last-of-type {
+                border: 2px solid $secondery
+            }
+        }
+        .btn-rules {
+            @include for-min-992 {
+                margin-left: 20px;
+            }
         }
     }
     a {
@@ -78,20 +98,25 @@
     &__button {
         margin-bottom: 48px;
         a {
+            width: 220px;
+            margin: auto;
+            margin-top: 70px;
+            font-weight: bold;
             @include for-max-575 {
                 width: 100%;
+                margin-top: 40px;
             }
         }
     }
     &__text {
-        margin-bottom: 32px;
+        margin-bottom: 48px;
         ol {
             padding-left: 16px;
             opacity: .85;
             li {
                 display: list-item;
                 padding: 0;
-                margin-bottom: 16px;
+                margin-bottom: 20px;
             }
             &.no-bullet {
                 list-style: none;
@@ -104,6 +129,22 @@
             font-size: 20px;
             font-family: gilroy-bold;
             margin-bottom: 16px;
+        }
+        &__list {
+            li {
+                &:nth-child(10) {
+                    position: relative;
+                    padding-left: 10px;
+                    &::marker {
+                        content: '';
+                    }
+                    &::before {
+                        content: '10.';
+                        position: absolute;
+                        left: -12px;
+                    }
+                }
+            }
         }
     }
     a {

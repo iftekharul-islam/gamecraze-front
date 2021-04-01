@@ -152,7 +152,8 @@
             background: transparent;
             transition: all .3s ease-in;
             &:hover {
-                background: $social-bg;
+                background: $secondery;
+                color: $text-dark;
             }
             &:first-of-type {
                 @include for-max-768 {

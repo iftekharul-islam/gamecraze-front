@@ -17,7 +17,7 @@
            <div class="tournament-display--button">
                <img src="../assets/img/pubgtext.webp" class="img-fluid" alt="pubg text">
                <div class="d-flex flex-column flex-sm-row align-items-start align-items-sm-center mt-2 mt-sm-4 btn-rules">
-                   <a href="#" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black mb-2 mb-sm-0 m-0 mr-sm-3">Register for play</a>
+                   <a href="https://forms.gle/5gXkahd1GDJe7Hq3A" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black mb-2 mb-sm-0 m-0 mr-sm-3" target="_blank">Register for play</a>
                    <a href="#rules" class=" d-flex align-items-center justify-content-center h-48-32 text-secondery">Rules & regulations</a>
                </div>
            </div>
@@ -120,7 +120,7 @@
                         </ol>
                     </div>
                       <div class="mt-4 tournament-content__button">
-                         <a href="https://forms.gle/J6pg3UEcLfDkmjJi8" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black px-4">Register for play</a>
+                         <a href="https://forms.gle/5gXkahd1GDJe7Hq3A" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black px-4" target="_blank">Register for play</a>
                     </div>
 
                    </div>

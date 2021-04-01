@@ -4,7 +4,7 @@
        <div class="tournament-nav">
            <div class="container">
               <div class="d-flex justify-content-between align-items-center">
-                   <a href="#"> <img src="../assets/img/logo/gamehublogo.svg" class="img-fluid gamehub--logo" alt="Gamehub Logo logo"></a>
+                   <a href="https://www.gamehub.com.bd" target="_blank"> <img src="../assets/img/logo/gamehublogo.svg" class="img-fluid gamehub--logo" alt="Gamehub Logo logo"></a>
                    <div class="button d-flex">
                        <a href="https://www.gamehub.com.bd/profile" target="_blank" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black mr-1 mr-sm-3">Lend game</a>
                        <a href="https://www.gamehub.com.bd/games" target="_blank" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black">Rent game</a>
@@ -59,15 +59,7 @@
                         <h6>Prize: </h6>
                         <p>There will be only one winner & all the members of the team will be given Elite Royal Pass & GameHub Elite membership. </p>
                     </div>
-                     <div class="tournament-content__txet">
-                        <h6>Prize: </h6>
-                        <p>There will be only one winner & all the members of the team will be given Elite Royal Pass & GameHub Elite membership. </p>
-                    </div>
                     
-
-
-
-
        
                     <div class="tournament-content__text" id="rules">
                         <h6>General rules:</h6>

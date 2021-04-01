@@ -241,7 +241,7 @@ let router = new Router({
             }
         },
         {
-            path: '/news/:id',
+            path: '/news/:slug',
             name: 'NewsStory',
             component: NewsStory,
             props: true,

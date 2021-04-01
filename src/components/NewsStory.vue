@@ -32,7 +32,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-4 mb-4" v-for="(item, index) in relatedNews" :key="index">
-                        <router-link :to="{ name: 'NewsStory', params: { id: item.id }}" @click.native="loadData" class="newsroom-section--content-box">
+                        <router-link :to="{ name: 'NewsStory', params: { slug: item.slug }}" @click.native="loadData" class="newsroom-section--content-box">
                             <div class="newsroom-section--content-box--img">
                                 <img :src=item.thumbnail :alt=item.title class="w-100 img-fluid">
                             </div>
@@ -60,10 +60,10 @@
                 relatedNews: []
             }
         },
-        props: ['id'],
+        props: ['slug'],
         methods: {
-            getNewsDetails: function(id) {
-                this.$api.get('article/' + id).then(response => {
+            getNewsDetails: function(slug) {
+                this.$api.get('article/' + slug).then(response => {
                     if (response.status == 200) {
                         this.newsDetails = response.data.data;
                         return;
@@ -81,7 +81,7 @@
                 });
             },
             loadData: function() {
-                this.getNewsDetails(this.id);
+                this.getNewsDetails(this.slug);
                 this.getRelatedNews(this.id, 3);
                 this.currentPageUrl = window.location.href;
             }

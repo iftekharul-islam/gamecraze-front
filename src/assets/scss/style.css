@@ -9426,18 +9426,8 @@ html {
 }
 
 .tournament-content__text__list li:nth-child(10) {
-  position: relative;
-  padding-left: 10px;
-}
-
-.tournament-content__text__list li:nth-child(10)::marker {
-  content: '';
-}
-
-.tournament-content__text__list li:nth-child(10)::before {
-  content: '10.';
-  position: absolute;
-  left: -12px;
+  -webkit-transform: translate(10px, 0px);
+          transform: translate(10px, 0px);
 }
 
 .tournament-content a:hover {

@@ -653,6 +653,7 @@
         justify-content: flex-start;
         border: 1px solid $secondery;
         display: none;
+        right: 0;
         @include for-max-991 {
             width: 100%;
         }

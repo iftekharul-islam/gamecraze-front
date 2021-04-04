@@ -132,16 +132,7 @@
         &__list {
             li {
                 &:nth-child(10) {
-                    position: relative;
-                    padding-left: 10px;
-                    &::marker {
-                        content: '';
-                    }
-                    &::before {
-                        content: '10.';
-                        position: absolute;
-                        left: -12px;
-                    }
+                    transform: translate(10px, 0px);
                 }
             }
         }

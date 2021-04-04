@@ -31,8 +31,8 @@
                     <h2>Related Articles</h2>
                 </div>
                 <div class="row">
-                    <div class="col-md-4 mb-4" v-for="(item, index) in relatedNews" :key="index">
-                        <router-link :to="{ name: 'NewsStory', params: { slug: item.slug }}" @click.native="loadData" class="newsroom-section--content-box">
+                    <div class="col-md-4 mb-4" v-for="(item, index) in relatedNews" :key="index" v-if="newsDetails.id != item.id">
+                        <router-link :to="{ name: 'NewsStory', params: { slug: item.slug }}" @click.native="loadData"  class="newsroom-section--content-box">
                             <div class="newsroom-section--content-box--img">
                                 <img :src=item.thumbnail :alt=item.title class="w-100 img-fluid">
                             </div>
@@ -84,6 +84,7 @@
                 this.getNewsDetails(this.slug);
                 this.getRelatedNews(this.id, 3);
                 this.currentPageUrl = window.location.href;
+                window.scrollTo(0, 0);
             }
         },
         created() {

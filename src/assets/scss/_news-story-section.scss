@@ -54,6 +54,14 @@
                 @include bullet-list;
             }
         }
+        ol {
+            li {
+                &::marker {
+                    color: $secondery;
+                    opacity: .75;
+                }
+            }
+        }
         table {
             @include for-max-575 {
                 width: 100% !important;

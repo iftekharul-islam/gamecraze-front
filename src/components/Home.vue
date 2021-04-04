@@ -12,7 +12,7 @@
                         <h1 class="gamehub-heading">
                                 Largest <span>Online</span><br> <span>Platform</span> For Games rent in <span>Bangladesh</span>
                             </h1>
-                        <h6>Rent Sell buy PlayStation, Xbox, PC games online<br> and join the largest gaming community in Bangladesh</h6>
+                        <h6>Rent-Lend-Sell-buy PlayStation, Xbox, PC games online and join the largest gaming platform in Bangladesh.</h6>
                         <router-link to="/games" class="btn--secondery"><span>BEGIN JOURNEY</span></router-link>
                     </div>
                 </div>
@@ -321,9 +321,7 @@
                                     </div>
                                 </div>
                                 <p class="footer-menu-content--about-gamehub">
-                                    Game Hub is Bangladesh's First
-                                     Online Platform for lending &
-                                    renting games for PlayStation, Xbox And PC.
+                                    GameHub is Bangladesh’s first online platform for lending & renting games for playstation, Xbox, PC & more.
                                 </p>
                             </div>
                         </div>

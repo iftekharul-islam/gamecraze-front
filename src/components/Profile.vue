@@ -398,7 +398,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="text-center text-secondery mt-3 rented-note">Please note that total rent amount is exclusive of 60 taka delivery charge</p>
+                                        <p class="text-center text-secondery mt-3 rented-note">Please note that total rent amount is exclusive of 60 taka delivery charge only for physical disk.</p>
                                     </div>
                                     <!-- Norhing to show -->
                                     <div class="no-post-found-card mb-0" v-else>

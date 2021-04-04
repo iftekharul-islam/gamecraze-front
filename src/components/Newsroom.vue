@@ -1,7 +1,7 @@
 <template>
     <div>
         <section class="newsroom-section">
-            <div class="text-center newsroom-section--heading"> <h2>NEWSROOM</h2></div>
+            <div class="text-center newsroom-section--heading"> <h2>Latest news & updates from GameHub </h2></div>
             <div class="container">
                 <div class="row" v-if="featured">
                     <div class="col-12 mb-4">

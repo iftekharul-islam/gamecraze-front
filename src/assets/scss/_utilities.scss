@@ -1508,6 +1508,14 @@ ul {
 }
 
 // **************ul***********//
+// **************ol***********//
+ol {
+    li {
+        display: list-item;
+    }
+}
+
+// **************ol***********//
 a {
     text-decoration: none;
     color: $text-light;

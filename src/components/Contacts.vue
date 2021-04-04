@@ -3,7 +3,7 @@
         <!-- contact-section -->
         <section class="title-section">
             <div class="contact-title text-center">
-                <h2 class="mb-3">CONTACT INFO</h2>
+                <h2 class="mb-3">CONTACT US</h2>
                 <p>This page contains all the methods to contact GameHub Support.</p>
             </div>
         </section>

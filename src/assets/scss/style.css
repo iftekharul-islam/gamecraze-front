@@ -1471,6 +1471,10 @@ ul {
   list-style: none;
 }
 
+ol li {
+  display: list-item;
+}
+
 a {
   text-decoration: none;
   color: #fff;
@@ -8653,6 +8657,11 @@ html {
   opacity: .75;
   left: 0;
   top: 6px;
+}
+
+.news-story-section--article ol li::marker {
+  color: #FFD715;
+  opacity: .75;
 }
 
 @media (max-width: 575px) {

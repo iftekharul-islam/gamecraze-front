@@ -307,7 +307,7 @@
                                                                         <div class="form-group post-rent--form-group offer-edit-btn">
                                                                             <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light"></label>
                                                                             <div class=" post-rent--form-group--input">
-                                                                                <button type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid"><span>Submit</span></button>
+                                                                                <button type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid"><span class="w-100">Submit</span></button>
 <!--                                                                                <button type="submit" href="javascript:void(0)" class="btn&#45;&#45;secondery" @click.prevent="handleSubmit(gameCredentialUpdate(rent.id, rent.game_user_id, rent.game_password))">Submit</button>-->
                                                                             </div>
                                                                         </div>

@@ -55,10 +55,19 @@
             }
         }
         table {
+            @include for-max-575 {
+                width: 100% !important;
+                display: table;
+            }
             tr {
                 td {
                     border-color: $text-light !important;
                     padding: 15px;
+                    vertical-align: top !important;
+                    @include for-max-575 {
+                        padding: 5px;
+                        font-size: 14px;
+                    }
                     p {
                         margin: 0;
                     }

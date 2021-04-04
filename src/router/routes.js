@@ -47,6 +47,7 @@ import RentPostedBy from '../components/RentPostedBy';
 import Elite from '../components/Elite';
 import Rookie from '../components/Rookie';
 import Tournament from '../components/Tournament';
+import LendNotice from '../components/LendNotice';
 
 let router = new Router({
     mode: 'history',
@@ -375,6 +376,14 @@ let router = new Router({
             path: '/tournament',
             name: 'Tournament',
             component: Tournament,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/lend-notice',
+            name: 'lend-notice',
+            component: LendNotice,
             meta: {
                 requiresAuth: false
             }

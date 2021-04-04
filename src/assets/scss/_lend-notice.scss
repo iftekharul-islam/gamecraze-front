@@ -1,0 +1,59 @@
+.profile-header {
+    height: 450px;
+}
+
+.lend-notice-content {
+    padding-bottom: 150px;
+    padding-top: 72px;
+    p {
+        margin-bottom: 32px;
+        opacity: .95;
+    }
+    .main-text {
+        margin-bottom: 90px;
+    }
+    &--text {
+        p {
+            &:first-of-type {
+                color: $secondery;
+            }
+        }
+    }
+    ul {
+        li {
+            color: $text-light;
+            opacity: .95;
+            position: relative;
+            padding-left: 24px;
+            &::before {
+                content: '';
+                width: 12px;
+                height: 12px;
+                background: $secondery;
+                border-radius: 50%;
+                display: block;
+                position: absolute;
+                top: 18px;
+                left: -6px;
+            }
+        }
+    }
+    .post-rent--form-group-width {
+        width: 90%;
+        margin-left: 48px;
+        label {
+            font-size: 14px;
+        }
+    }
+    .form-width {
+        width: 80%;
+        margin-left: 60px;
+    }
+    img {
+        width: 295px;
+        margin-bottom: 26px;
+    }
+    &-btn {
+        margin-top: 80px;
+    }
+}

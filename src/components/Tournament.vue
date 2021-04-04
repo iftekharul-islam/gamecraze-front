@@ -6,7 +6,7 @@
               <div class="d-flex justify-content-between align-items-center">
                    <a href="https://www.gamehub.com.bd" target="_blank"> <img src="../assets/img/logo/gamehublogo.svg" class="img-fluid gamehub--logo" alt="Gamehub Logo logo"></a>
                    <div class="button d-flex">
-                       <a href="https://www.gamehub.com.bd/profile" target="_blank" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black mr-1 mr-sm-3">Lend game</a>
+                       <a href="https://www.gamehub.com.bd/lend-notice" target="_blank" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black mr-1 mr-sm-3">Lend game</a>
                        <a href="https://www.gamehub.com.bd/games" target="_blank" class="bg-secondery d-flex align-items-center justify-content-center h-48-32 text-black">Rent game</a>
                    </div>
               </div>

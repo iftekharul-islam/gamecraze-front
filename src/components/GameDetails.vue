@@ -82,14 +82,35 @@
                     <template slot="next"><div class="vue-owl-nav vue-owl-nav-right"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
 
                       <div class="item" v-for="(screenshot, index) in game.screenshots.data" :key="index">
-                            <a href="#"><img :src="screenshot.url" alt="screenshot"></a>
+                            <a href="#">
+                                <img :src="screenshot.url" alt="screenshot" @click="setModalData(screenshot.url, 'image')">
+                            </a>
                         </div>
                       <div class="item" v-for="(video, index) in game.videoUrls.data" :key="'A' + index">
-                        <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
+                        <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo" @click="setModalData(video.url, 'video')"></iframe>
                           <!-- <a href="#">< :src="video.url" alt="screenshot"></a> -->
                     </div>
                   
                   </carousel>
+                     <div v-if="showImageModal">
+                         <transition name="modal">
+                             <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal">
+                                 <div class="modal-wrapper">
+                                     <div class="modal-dialog modal-dialog-centered" role="document">
+                                         <div class="modal-content">
+                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                 <span aria-hidden="true" @click="showImageModal = false" class="close-modal"></span>
+                                             </button>
+                                             <div class="modal-body-content">
+                                                 <img :src="this.modalScreenShot" alt="screenshot" v-if="isImage" width="800px">
+                                                 <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(this.modalScreenShot)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo" v-if="isVideo"></iframe>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </div>
+                             </div>
+                         </transition>
+                     </div>
                 </div>
 
             </div>
@@ -203,6 +224,7 @@
         components: { carousel },
         data() {
             return {
+                showImageModal: false,
                 loadedScreenshots: false,
                 loadedRelated: false,
                 rentButton: false,
@@ -211,6 +233,9 @@
                 rentLimit: '',
                 myLends: '',
                 rentExist: false,
+                modalScreenShot: null,
+                isImage: false,
+                isVideo: false,
             }
         },
         watch: {
@@ -223,6 +248,15 @@
             },
         },
         methods: {
+            setModalData(screenShot, type) {
+                this.isImage = true;
+                this.modalScreenShot = screenShot;
+                if (type == 'video') {
+                    this.isVideo = true;
+                    this.modalScreenShot = screenShot;
+                }
+                this.showImageModal = true;
+            },
             authData () {
                 var auth = this.$store.getters.ifAuthenticated;
                 if (auth){

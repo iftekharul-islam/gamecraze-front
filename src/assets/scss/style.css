@@ -4924,6 +4924,13 @@ html {
   }
 }
 
+@media (min-width: 768px) {
+  .contact-title p {
+    width: 70%;
+    margin: auto;
+  }
+}
+
 .support-input-design {
   width: 500px;
   -webkit-transform: skew(-21deg);

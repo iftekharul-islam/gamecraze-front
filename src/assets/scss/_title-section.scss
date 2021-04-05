@@ -18,6 +18,12 @@
             font-size: 40px;
         }
     }
+    p {
+        @include for-min-768 {
+            width: 70%;
+            margin: auto;
+        }
+    }
 }
 
 .support-input-design {

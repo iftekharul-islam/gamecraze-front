@@ -9510,8 +9510,20 @@ html {
   height: 450px;
 }
 
+@media (max-width: 575px) {
+  .profile-header {
+    height: 250px;
+  }
+}
+
+@media (max-width: 575px) {
+  .profile-header--btn {
+    right: 20px;
+  }
+}
+
 .lend-notice-content {
-  padding-bottom: 150px;
+  padding-bottom: 180px;
   padding-top: 72px;
 }
 
@@ -9520,19 +9532,73 @@ html {
   opacity: .95;
 }
 
-.lend-notice-content .main-text {
+@media (max-width: 575px) {
+  .lend-notice-content p {
+    margin-bottom: 16px;
+  }
+}
+
+.lend-notice-content p:last-of-type {
+  margin-bottom: 0;
+}
+
+.lend-notice-content p.main-text {
   margin-bottom: 90px;
+}
+
+@media (max-width: 575px) {
+  .lend-notice-content p.main-text {
+    margin-bottom: 60px;
+  }
+}
+
+.lend-notice-content--text {
+  max-width: 505px;
 }
 
 .lend-notice-content--text p:first-of-type {
   color: #FFD715;
+  font-weight: 700;
+}
+
+.lend-notice-content--text ul {
+  max-width: 450px;
+}
+
+@media (min-width: 992px) {
+  .lend-notice-content--text input {
+    max-width: 248px;
+    height: 32px;
+  }
+}
+
+.lend-notice-content--text-margin {
+  margin-top: 60px;
+}
+
+@media (max-width: 575px) {
+  .lend-notice-content--text-margin {
+    margin-top: 32px;
+  }
+}
+
+.lend-notice-content--text-right {
+  max-width: 505px;
 }
 
 .lend-notice-content ul li {
   color: #fff;
   opacity: .95;
   position: relative;
+  padding: 0;
   padding-left: 24px;
+  margin-bottom: 32px;
+}
+
+@media (max-width: 575px) {
+  .lend-notice-content ul li {
+    margin-bottom: 16px;
+  }
 }
 
 .lend-notice-content ul li::before {
@@ -9543,13 +9609,13 @@ html {
   border-radius: 50%;
   display: block;
   position: absolute;
-  top: 18px;
+  top: 6px;
   left: -6px;
 }
 
 .lend-notice-content .post-rent--form-group-width {
   width: 90%;
-  margin-left: 48px;
+  margin-left: 32px;
 }
 
 .lend-notice-content .post-rent--form-group-width label {
@@ -9568,6 +9634,28 @@ html {
 
 .lend-notice-content-btn {
   margin-top: 80px;
+}
+
+@media (min-width: 992px) {
+  .lend-notice-content-btn {
+    max-width: 437px;
+  }
+}
+
+@media (max-width: 575px) {
+  .lend-notice-content-btn {
+    margin-top: 48px;
+  }
+}
+
+.lend-notice-content .img-margin {
+  margin-top: 74px;
+}
+
+@media (max-width: 575px) {
+  .lend-notice-content .img-margin {
+    margin-top: 32px;
+  }
 }
 
 .btn:focus {

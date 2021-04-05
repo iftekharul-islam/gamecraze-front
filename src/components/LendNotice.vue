@@ -1,7 +1,7 @@
 <template>
    <div>
           <div class="profile-header position-relative">
-              <div class="position-absolute w-100">
+              <div class="position-absolute w-100 h-100">
                    <img src="../assets/img/profile-bg.webp" alt="profile bg" class="img-fluid w-100 h-100 user-profile-bg">
               </div>
               <div class="container position-relative h-100">
@@ -15,7 +15,7 @@
                       some extra money while enjoying gaming.</i> </p>
                   <div class="row">
                       <div class="col-sm-6">
-                          <div class="lend-notice-content--text">
+                          <div class="lend-notice-content--text ">
                               <p>How Lend For Post Works:</p>
                               <p>This is the most common question we get & to be honest the answer is quite straightforward. 
                                   All you need to do is post your unused Playstation, Xbox or Pc games for rent. In other words 
@@ -26,9 +26,9 @@
                                   you with a brand new game.</p>
                           </div>
                            <div class="lend-notice-content--text">
-                              <p>How To Post For Lend:</p>
+                              <p class="mb-3 lend-notice-content--text-margin">How To Post For Lend:</p>
                               <ul>
-                                  <li>First you need to search the game you want to post for rent in the Game Name box. If you do not find the game you are looking to post for rent you need contact us.</li>
+                                  <li class="d-block">First you need to search the game you want to post for rent in the Game Name box. If you do not find the game you are looking to post for rent you need <u><a href="https://www.gamehub.com.bd/contacts" class="text-secondery">contact us.</a></u></li>
                                   <li>In the next step you need to decide how many weeks you want to post for renting. You need to lend your disk minimum 1 week & maximum of 10 weeks.</li>
                                   <li> Now you need to provide a method of delivery which is currently by default cash on delivery.</li>
                                   <li>In this stage you need to select the game type there can be either physical or digital games.</li>
@@ -57,11 +57,15 @@
                           </div>
                       </div>
                       <div class="col-sm-6">
-                          <p>Finally you need to provide us your consent that you agree with the mentioned terms & conditions set by the GameHub authority & click submit.</p>
-                          <p>Once you submit the games it will take 1-2 hours max to approve the games you posted. Once approved other gamers will be able to take your games for rent & you will start earning. Your payment will be provided to you via digital payment methods or via bank transfer.</p>
-                          <p>It is the easiest way to make money online don't you think & most importantly you are not only earning money you are also helping out all the gamers in our small community. So what are you waiting for? Post your games for rent today </p>
-                          <img src="../assets/img/disk.png" alt="Disk image preview" class="img-fluid">
-                          <img src="../assets/img/cover.png" alt="Cover image preview" class="img-fluid">
+                          <div class="lend-notice-content--text-right ">
+                            <p class="">Finally you need to provide us your consent that you agree with the mentioned terms & conditions set by the GameHub authority & click submit.</p>
+                            <p>Once you submit the games it will take 1-2 hours max to approve the games you posted. Once approved other gamers will be able to take your games for rent & you will start earning. Your payment will be provided to you via digital payment methods or via bank transfer.</p>
+                            <p>It is the easiest way to make money online don't you think & most importantly you are not only earning money you are also helping out all the gamers in our small community. So what are you waiting for? Post your games for rent today </p>
+                            <div class="img-margin">
+                                <img src="../assets/img/disk.png" alt="Disk image preview" class="img-fluid">
+                                    <img src="../assets/img/cover.png" alt="Cover image preview" class="img-fluid">
+                            </div>
+                        </div>
                       </div>
                       <div class="col-md-5 mx-auto">
                          <div class="lend-notice-content-btn">

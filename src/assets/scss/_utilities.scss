@@ -1690,6 +1690,10 @@ html {
     width: 200px !important;
 }
 
+.w-380 {
+    width: 380px;
+}
+
 // text-area
 textarea {
     &:focus {
@@ -2055,6 +2059,10 @@ select {
 // flex
 .flex-1 {
     flex: 1;
+}
+
+.flex-2 {
+    flex: 2;
 }
 
 // After

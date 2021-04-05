@@ -756,7 +756,7 @@
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
+                                            <div class="form-group row" v-if="nid_verification == 0">
                                                 <label for="nidno" class="col-sm-3 col-form-label">NID No:</label>
                                                 <div class="col-sm-9 edit--input">
                                                     <ValidationProvider name="NID" rules="required" v-slot="{ errors }">
@@ -765,7 +765,7 @@
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
-                                            <div class="form-group row">
+                                            <div class="form-group row" v-if="nid_verification == 0">
                                                 <label class="col-sm-3 col-form-label">NID Image:</label>
                                                 <div class="col-sm-9 edit--input">
                                                 <div class="custom-file">
@@ -885,8 +885,9 @@
                     address: this.$store.state.user.address ? this.$store.state.user.address.address: '',
                     city: this.$store.state.user.address ? this.$store.state.user.address.city: '',
                     postCode: this.$store.state.user.address ? this.$store.state.user.address.post_code: '',
-                    id_image: ""
+                    id_image: "",
                 },
+                nid_verification: 0,
                 selectedFile: 'Select NID',
                 x: '',
                 diskConditions: [],
@@ -1463,6 +1464,7 @@
             });
             this.$api.get('user/details', config).then(response =>{
                 this.user = response.data.data;
+                this.nid_verification = this.user.id_verified;
             });
 
 

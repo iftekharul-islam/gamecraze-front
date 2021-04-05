@@ -345,13 +345,13 @@
                                                         <p v-if="lend.rent" class="f-s-20 gil-bold mb-a-3 h-60">{{ lend.rent.game.name }}</p>
                                                     </div>
                                                     <div class="d-flex justify-content-between dashboard-content--rented--box--order-description">
-                                                            <div class="cost">
+                                                            <div class="cost flex-2">
                                                                 <p>Cost</p>
                                                                 <p class="text-secondery">{{ lend.lend_cost + Math.floor(lend.commission) }}</p>
                                                             </div>
-                                                            <div class="duration">
+                                                            <div class="duration flex-1">
                                                                 <p>Rent duration</p>
-                                                                <div class="d-flex flex-column align-items-center duration--date text-secondery">
+                                                                <div class="d-flex flex-column align-items-center duration--date text-secondery w-fit">
                                                                     <p class="mb-1">{{ formattedDate(lend.lend_date) }} </p>
                                                                     <p class="mb-1">to</p>
                                                                     <p class="mb-1" v-if="lend.rent.disk_type == 1 && lend.status === 3">{{ returnDate(lend.rent.disk_type, lend.updated_at, lend.lend_week) }}</p>
@@ -362,7 +362,7 @@
                                                             </div>
                                                     </div>
                                                     <div class="mt-a-6 d-flex justify-content-between">
-                                                            <div class="timer">
+                                                            <div class="timer flex-2">
                                                                 <p class="mb-1">Remaining time</p>
                                                                 <div v-if="lend.rent.disk_type == 1">
                                                                     <flip-countdown :deadline="endDate(lend.rent.disk_type, lend.updated_at, lend.lend_week)" v-if="lend.status === 3"></flip-countdown>
@@ -373,7 +373,7 @@
                                                                     <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)" v-else></flip-countdown>
                                                                 </div>
                                                             </div>
-                                                            <div class="status">
+                                                            <div class="status flex-1">
                                                                 <p class="mb-1">Status</p>
                                                                 <div v-if="lend.status === 0">
                                                                     <span class="bg-secondery text-black badge br-0 p-2 f-s-16" >Pending</span>

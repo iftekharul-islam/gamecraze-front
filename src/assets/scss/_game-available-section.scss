@@ -11,7 +11,7 @@
         overflow: auto;
         table {
             @include for-max-992 {
-                width: 860px;
+                width: 950px;
             }
         }
         &::after {
@@ -25,7 +25,7 @@
             background: $secondery;
             border: 1px solid $secondery;
             @include for-max-992 {
-                width: 900px;
+                width: 990px;
                 height: 61px;
             }
         }

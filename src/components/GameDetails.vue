@@ -82,19 +82,19 @@
                     <template slot="next"><div class="vue-owl-nav vue-owl-nav-right"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
 
                       <div class="item" v-for="(screenshot, index) in game.screenshots.data" :key="index">
-                            <a href="#">
-                                <img :src="screenshot.url" alt="screenshot" @click="setModalData(screenshot.url, 'image')">
-                            </a>
+                            <span @click="setModalData(screenshot.url, 'image')">
+                                <img :src="screenshot.url" alt="screenshot" >
+                            </span>
                         </div>
                       <div class="item" v-for="(video, index) in game.videoUrls.data" :key="'A' + index">
-                        <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo" @click="setModalData(video.url, 'video')"></iframe>
+                        <span class="d-block screenshot-video--video" @click="setModalData(video.url, 'video')"><iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo" ></iframe></span>
                           <!-- <a href="#">< :src="video.url" alt="screenshot"></a> -->
                     </div>
                   
                   </carousel>
                      <div v-if="showImageModal">
                          <transition name="modal">
-                             <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal">
+                             <div class="modal-mask upgrade-modal multiple-user-warning-modal screenshot-modal">
                                  <div class="modal-wrapper">
                                      <div class="modal-dialog modal-dialog-centered" role="document">
                                          <div class="modal-content">
@@ -102,7 +102,7 @@
                                                  <span aria-hidden="true" @click="showImageModal = false" class="close-modal"></span>
                                              </button>
                                              <div class="modal-body-content">
-                                                 <img :src="this.modalScreenShot" alt="screenshot" v-if="isImage" width="800px">
+                                                 <img :src="this.modalScreenShot" alt="screenshot" v-if="isImage" class="img-fluid">
                                                  <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(this.modalScreenShot)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo" v-if="isVideo"></iframe>
                                              </div>
                                          </div>

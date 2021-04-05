@@ -3,8 +3,8 @@
         <!-- contact-section -->
         <section class="title-section">
             <div class="contact-title text-center">
-                <h2 class="mb-3">CONTACT US</h2>
-                <p>This page contains all the methods to contact GameHub Support.</p>
+                <h2 class="mb-3">Don't Be Shy, Let's Get In Touch!</h2>
+                <p>If you need any assistance, require any information, or want to upgrade your membership please contact us via the below form.</p>
             </div>
         </section>
         <section class="contact-section">

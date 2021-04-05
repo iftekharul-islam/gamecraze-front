@@ -48,6 +48,7 @@ import Elite from '../components/Elite';
 import Rookie from '../components/Rookie';
 import Tournament from '../components/Tournament';
 import LendNotice from '../components/LendNotice';
+import PricePlan from '../components/PricePlan';
 
 let router = new Router({
     mode: 'history',
@@ -384,6 +385,14 @@ let router = new Router({
             path: '/lend-notice',
             name: 'lend-notice',
             component: LendNotice,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/pricing',
+            name: 'pricing',
+            component: PricePlan,
             meta: {
                 requiresAuth: false
             }

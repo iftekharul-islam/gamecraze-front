@@ -1360,6 +1360,10 @@
   border: 1px solid #FFD715;
 }
 
+.gray-header-border {
+  border: 1px solid #c7c7c7;
+}
+
 .success-border {
   border-color: #28a745;
 }
@@ -1390,6 +1394,10 @@
 
 .bg-game-details {
   background: #141A27;
+}
+
+.gray-header {
+  background: #c7c7c7;
 }
 
 .gamehub-warning-bg {
@@ -1583,6 +1591,10 @@ html {
   .h-48-32 {
     height: 32px;
   }
+}
+
+.h-48 {
+  height: 48px !important;
 }
 
 .h-50 {
@@ -9712,6 +9724,131 @@ html {
   .lend-notice-content .img-margin {
     margin-top: 32px;
   }
+}
+
+.pricing-plan {
+  padding-bottom: 180px;
+  padding-top: 100px;
+}
+
+.pricing-plan--content {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (min-width: 768px) {
+  .pricing-plan--content {
+    -webkit-box-align: initial;
+        -ms-flex-align: initial;
+            align-items: initial;
+  }
+}
+
+.pricing-plan--card {
+  background: #141A27;
+  margin-bottom: 20px;
+  width: 380px;
+}
+
+@media (max-width: 575px) {
+  .pricing-plan--card {
+    max-width: 380px;
+    width: initial;
+  }
+}
+
+@media (min-width: 768px) {
+  .pricing-plan--card {
+    margin-right: 40px;
+    margin-bottom: 0;
+  }
+  .pricing-plan--card:last-of-type {
+    margin-right: 0;
+  }
+}
+
+.pricing-plan--card--main {
+  padding: 0 32px 20px 32px;
+}
+
+.pricing-plan--card--price {
+  margin-top: 32px;
+  height: 80px;
+}
+
+.pricing-plan--card--price h2 {
+  font-style: normal;
+}
+
+.pricing-plan--card--list {
+  margin-top: 20px;
+  margin-bottom: 28px;
+}
+
+.pricing-plan--card--list--item {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 16px;
+}
+
+.pricing-plan--card--list--item .box {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  margin-right: 16px;
+  position: relative;
+}
+
+.pricing-plan--card--list--item .box::after, .pricing-plan--card--list--item .box::before {
+  content: '';
+  position: absolute;
+}
+
+.pricing-plan--card--list--item .eligible {
+  background: #FFD715;
+}
+
+.pricing-plan--card--list--item .eligible::before {
+  -webkit-transform: rotate(-48deg);
+          transform: rotate(-48deg);
+  background: transparent;
+  border: solid #0B0F18;
+  width: 12px;
+  height: 7px;
+  border-width: 0 0px 3px 3px;
+  top: 5px;
+  left: 4px;
+}
+
+.pricing-plan--card--list--item .not-eligible {
+  background: #E3364A;
+}
+
+.pricing-plan--card--list--item .not-eligible::before, .pricing-plan--card--list--item .not-eligible::after {
+  width: 12px;
+  height: 3px;
+  background: #0B0F18;
+  top: 9px;
+  left: 4px;
+}
+
+.pricing-plan--card--list--item .not-eligible::after {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
+.pricing-plan--card--list--item .not-eligible::before {
+  -webkit-transform: rotate(135deg);
+          transform: rotate(135deg);
+}
+
+.pricing-plan--card--description {
+  margin-bottom: 20px;
 }
 
 .btn:focus {

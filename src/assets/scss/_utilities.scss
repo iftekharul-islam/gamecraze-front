@@ -1393,6 +1393,10 @@
     border: 1px solid $secondery;
 }
 
+.gray-header-border {
+    border: 1px solid $gray-header;
+}
+
 .success-border {
     border-color: $success-border;
 }
@@ -1425,6 +1429,10 @@
 
 .bg-game-details {
     background: $game-details;
+}
+
+.gray-header {
+    background: $gray-header;
 }
 
 // **************Opacity***********//
@@ -1624,6 +1632,10 @@ html {
     @include for-max-575 {
         height: 32px;
     }
+}
+
+.h-48 {
+    height: 48px !important;
 }
 
 .h-50 {

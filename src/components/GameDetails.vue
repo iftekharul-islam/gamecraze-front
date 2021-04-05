@@ -249,10 +249,12 @@
         },
         methods: {
             setModalData(screenShot, type) {
+                this.isVideo = false;
                 this.isImage = true;
                 this.modalScreenShot = screenShot;
                 if (type == 'video') {
                     this.isVideo = true;
+                    this.isImage = false;
                     this.modalScreenShot = screenShot;
                 }
                 this.showImageModal = true;

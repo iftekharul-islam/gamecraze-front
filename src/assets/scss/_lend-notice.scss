@@ -1,30 +1,72 @@
 .profile-header {
     height: 450px;
+    @include for-max-575 {
+        height: 250px;
+    }
+    &--btn {
+        @include for-max-575 {
+            right: 20px;
+        }
+    }
 }
 
 .lend-notice-content {
-    padding-bottom: 150px;
+    padding-bottom: 180px;
     padding-top: 72px;
     p {
         margin-bottom: 32px;
         opacity: .95;
-    }
-    .main-text {
-        margin-bottom: 90px;
+        @include for-max-575 {
+            margin-bottom: 16px;
+        }
+        &:last-of-type {
+            margin-bottom: 0;
+        }
+        &.main-text {
+            margin-bottom: 90px;
+            @include for-max-575 {
+                margin-bottom: 60px;
+            }
+        }
     }
     &--text {
+        max-width: 505px;
         p {
             &:first-of-type {
                 color: $secondery;
+                font-weight: 700;
             }
         }
+        ul {
+            max-width: 450px;
+        }
+        input {
+            @include for-min-992 {
+                max-width: 248px;
+                height: 32px;
+            }
+        }
+        &-margin {
+            margin-top: 60px;
+            @include for-max-575 {
+                margin-top: 32px;
+            }
+        }
+    }
+    &--text-right {
+        max-width: 505px;
     }
     ul {
         li {
             color: $text-light;
             opacity: .95;
             position: relative;
+            padding: 0;
             padding-left: 24px;
+            margin-bottom: 32px;
+            @include for-max-575 {
+                margin-bottom: 16px;
+            }
             &::before {
                 content: '';
                 width: 12px;
@@ -33,14 +75,14 @@
                 border-radius: 50%;
                 display: block;
                 position: absolute;
-                top: 18px;
+                top: 6px;
                 left: -6px;
             }
         }
     }
     .post-rent--form-group-width {
         width: 90%;
-        margin-left: 48px;
+        margin-left: 32px;
         label {
             font-size: 14px;
         }
@@ -55,5 +97,17 @@
     }
     &-btn {
         margin-top: 80px;
+        @include for-min-992 {
+            max-width: 437px;
+        }
+        @include for-max-575 {
+            margin-top: 48px;
+        }
+    }
+    .img-margin {
+        margin-top: 74px;
+        @include for-max-575 {
+            margin-top: 32px;
+        }
     }
 }

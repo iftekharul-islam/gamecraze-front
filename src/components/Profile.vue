@@ -210,6 +210,14 @@
                                                         <p class="text-secondery" v-if="rent.renter">{{ rent.renter.data.name }}</p>
                                                         <p class="text-secondery" v-else>N/A</p>
                                                     </div>
+                                                    <label class="toggle-switch">
+                                                        <input type="checkbox" checked />
+                                                        <span>
+                                                            <span>Inactive</span>
+                                                            <span>Active</span>
+                                                        </span>
+                                                        <a class="toggle-ball"></a>
+                                                    </label>
                                                 </div>
                                                 <div class="right flex-1">
                                                     <div class="platform">

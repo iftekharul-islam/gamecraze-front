@@ -2084,6 +2084,146 @@ select option {
   transition: all .9s ease-in;
 }
 
+.toggle-switch {
+  height: 18px;
+  position: relative;
+  overflow: visible;
+  padding: 0;
+  margin-left: 80px;
+  cursor: pointer;
+  width: 40px;
+}
+
+.toggle-switch label,
+.toggle-switch > span {
+  line-height: 20px;
+  height: 20px;
+  vertical-align: middle;
+}
+
+.toggle-switch > span {
+  position: absolute;
+  left: -50px;
+  width: 100%;
+  margin: 0;
+  padding-right: 50px;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.toggle-switch > span::before {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 24px;
+  position: absolute;
+  left: 50px;
+  top: -2px;
+  background: #768791;
+  border: 0.5px solid #768791;
+  -webkit-box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.06);
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.06);
+  border-radius: 30px;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+@media (max-width: 575px) {
+  .toggle-switch > span::before {
+    left: -30px;
+    top: 26px;
+  }
+}
+
+.toggle-switch > span span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 5;
+  display: block;
+  width: 50%;
+  margin-left: 50px;
+  text-align: left;
+  font-size: 0.9em;
+  width: 100%;
+  left: -78px;
+  top: -1px;
+  opacity: 0;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.toggle-switch > span span:first-of-type {
+  color: #ccc;
+  opacity: 1;
+  left: -78px;
+}
+
+.toggle-switch input {
+  position: absolute;
+  opacity: 0;
+  z-index: 5;
+}
+
+.toggle-switch input:focus ~ a {
+  outline: none;
+}
+
+.toggle-switch input:focus + label {
+  outline: none;
+}
+
+.toggle-switch input:checked ~ .toggle-ball {
+  left: 100%;
+  margin-left: -14px;
+  background: #403608;
+}
+
+@media (max-width: 575px) {
+  .toggle-switch input:checked ~ .toggle-ball {
+    left: -40px;
+  }
+}
+
+.toggle-switch input:checked ~ span:before {
+  background: #FFD715;
+}
+
+.toggle-switch input:checked ~ span span:first-of-type {
+  opacity: 0;
+}
+
+.toggle-switch input:checked ~ span span:last-of-type {
+  opacity: 1;
+}
+
+.toggle-switch .toggle-ball {
+  position: absolute;
+  z-index: 4;
+  display: block;
+  height: 20px;
+  left: 2px;
+  width: 20px;
+  background: #fff;
+  border-radius: 100%;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+@media (max-width: 575px) {
+  .toggle-switch .toggle-ball {
+    top: 28px;
+    left: -77px;
+  }
+}
+
+.toggleSwitch * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
 @media (max-width: 575px) {
   .body-home .gamehub-menu {
     background: transparent;
@@ -2232,8 +2372,12 @@ select option {
   }
 }
 
-.gamehub-menu-collapse > ul li a:hover {
+.gamehub-menu-collapse > ul li:hover a {
   color: #FFD715;
+}
+
+.gamehub-menu-collapse > ul li:hover::after {
+  border-bottom-color: #FFD715;
 }
 
 .toggler-position {
@@ -7544,9 +7688,15 @@ html {
   min-width: 145px;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
   .dashboard-content--rented {
     width: 950px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .dashboard-content--rented {
+    width: 880px;
   }
 }
 
@@ -7561,9 +7711,15 @@ html {
   margin-right: 0;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
   .dashboard-content--rented--box {
     width: 446px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .dashboard-content--rented--box {
+    width: 415px;
   }
 }
 

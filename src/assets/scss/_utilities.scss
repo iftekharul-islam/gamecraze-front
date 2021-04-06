@@ -2100,3 +2100,127 @@ select {
 .transition-9 {
     transition: all .9s ease-in;
 }
+
+// switch button
+.toggle-switch {
+    height: 18px;
+    position: relative;
+    overflow: visible;
+    padding: 0;
+    margin-left: 80px;
+    cursor: pointer;
+    width: 40px;
+    label,
+    >span {
+        line-height: 20px;
+        height: 20px;
+        vertical-align: middle;
+    }
+    // span
+    >span {
+        position: absolute;
+        left: -50px;
+        width: 100%;
+        margin: 0;
+        padding-right: 50px;
+        text-align: left;
+        white-space: nowrap;
+        &::before {
+            content: '';
+            display: block;
+            width: 48px;
+            height: 24px;
+            position: absolute;
+            left: 50px;
+            top: -2px;
+            background: $inactive-toggle;
+            border: .5px solid $inactive-toggle;
+            box-shadow: $toggle-shadow;
+            border-radius: 30px;
+            transition: all 0.2s ease-out;
+            @include for-max-575 {
+                left: -30px;
+                top: 26px;
+            }
+        }
+        span {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 5;
+            display: block;
+            width: 50%;
+            margin-left: 50px;
+            text-align: left;
+            font-size: 0.9em;
+            width: 100%;
+            left: -78px;
+            top: -1px;
+            opacity: 0;
+            user-select: none;
+            // display: none;
+            &:first-of-type {
+                color: #ccc;
+                opacity: 1;
+                left: -78px;
+            }
+        }
+    }
+    // label
+    // input
+    input {
+        position: absolute;
+        opacity: 0;
+        z-index: 5;
+        &:focus~a {
+            outline: none;
+        }
+        &:focus+label {
+            outline: none;
+        }
+        &:checked~.toggle-ball {
+            left: 100%;
+            margin-left: -14px;
+            background: $active-toggle-ball;
+            @include for-max-575 {
+                left: -40px;
+            }
+        }
+        &:checked~span {
+            &:before {
+                background: $secondery;
+            }
+            span {
+                &:first-of-type {
+                    opacity: 0;
+                }
+                &:last-of-type {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    // end input
+    // a
+    .toggle-ball {
+        position: absolute;
+        z-index: 4;
+        display: block;
+        height: 20px;
+        left: 2px;
+        width: 20px;
+        background: $text-light;
+        border-radius: 100%;
+        transition: all 0.2s ease-out;
+        @include for-max-575 {
+            top: 28px;
+            left: -77px;
+        }
+    }
+}
+
+.toggleSwitch * {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}

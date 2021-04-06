@@ -177,6 +177,17 @@
                                                 <td v-if="user.identification_image"><img :src="user.identification_image" alt="nid" class="img-fluid"></td>
                                                 <td v-else><img src="" alt="nid" class="img-fluid"></td>
                                             </tr>
+                                            <tr>
+                                                <td scope="row">Generate Link:</td>
+                                                <td v-if="user.referral_code">{{ user.referral_url }}</td>
+                                                <button class="btn-success"
+                                                        v-clipboard:copy="user.referral_url"
+                                                        v-clipboard:success="onCopy"
+                                                        v-clipboard:error="onError">
+                                                    Copy to clipboard
+                                                </button>
+
+                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -906,7 +917,7 @@
 <script>
     import FlipCountdown from 'vue2-flip-countdown';
     export default {
-        components: { FlipCountdown},
+        components: { FlipCountdown, Clipboard},
         props: ['rentPost', 'profileEdit'],
         data() {
             return {
@@ -988,6 +999,13 @@
             },
         },
         methods: {
+            onCopy: function (e) {
+                this.$toaster.success("Link successfully copied !");
+            },
+            onError: function (e) {
+                this.$toaster.fail('Failed to copy the text to the clipboard');
+                console.log(e);
+            },
             postStatusChange(event, id) {
                 var status = event.target.checked;
                 let config = {

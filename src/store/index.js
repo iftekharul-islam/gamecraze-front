@@ -14,6 +14,7 @@ export const storage = {
             phoneNumber: ''
         },
         email:'',
+        referral: '',
         rentPostDetails: {},
         //auth user info
         token: null,
@@ -108,6 +109,9 @@ export const storage = {
         },
         setEmail (state, payload) {
             state.email = payload
+        },
+        setReferral (state, payload) {
+            state.referral = payload
         },
         setRentPostDetails (state, payload) {
             state.rentPostDetails = payload
@@ -233,6 +237,9 @@ export const storage = {
         setEmail (context, payload) {
             context.commit('setEmail', payload)
         },
+        setReferral (context, payload) {
+            context.commit('setReferral', payload)
+        },
         setRentPostDetails(context, payload) {
             context.commit('setRentPostDetails', payload)
         },
@@ -349,6 +356,8 @@ export const storage = {
                     localStorage.setItem('user', JSON.stringify(response.data.user))
                     commit('setSubmitLoading', false)
                     commit('setInactiveUser', false)
+                    localStorage.removeItem('email');
+                    localStorage.removeItem('referral');
                     router.push('/').catch(err => {});
                 } else {
                     commit('setNumberExist', true)

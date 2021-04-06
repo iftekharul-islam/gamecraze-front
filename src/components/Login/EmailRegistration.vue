@@ -105,6 +105,7 @@
                     name: '',
                     lastName: '',
                     email: localStorage.getItem('email'),
+                    referral: localStorage.getItem('referral') ?? '',
                     // password: '',
                     // confirmPassword: '',
                     phone_number: '',

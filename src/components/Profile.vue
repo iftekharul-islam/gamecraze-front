@@ -9,7 +9,7 @@
             </div>
             <div v-if="coverModal">
                 <transition name="modal">
-                    <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal">
+                    <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal bg-image-gallery-modal">
                         <div class="modal-wrapper">
                             <div class="modal-dialog modal-dialog-centered" role="document">
                                 <div class="modal-content">
@@ -18,17 +18,20 @@
                                     </button>
                                     <div class="modal-body-content">
                                         <ValidationObserver v-slot="{ invalid }">
-                                    <form action="" class="row">
+                                    <form action="">
                                         <ValidationProvider name="Cover" rules="required" v-slot="{ errors }">
-                                        <div class="col-4 mt-4 d-flex" v-for="(item, index) in coverImages" :key="index">
-                                            <input type="radio" :value="item.url" name="image-checkbox" :id="item.id" v-model="coverUrl" />
-                                            <label :for="item.id">
-                                                <img :src="item.url" width="80%">
-                                            </label>
-
-                                        </div>
+                                            <!-- Background Image Gallery -->
+                                       <div class="bg-image-gallery">
+                                            <div class="bg-image-gallery--item position-relative" v-for="(item, index) in coverImages" :key="index">
+                                                <input type="radio" :value="item.url" name="image-checkbox" :id="item.id" v-model="coverUrl" class="w-100 h-100" />
+                                                <label :for="item.id">
+                                                    <img :src="item.url" class="img-fluid">
+                                                </label>
+                                            </div>
+                                       </div>
+                                        <!-- End Background Image Gallery -->
                                         </ValidationProvider>
-                                        <div class="modal-footer justify-content-center">
+                                        <div class="modal-footer justify-content-center border-0">
                                             <a type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid" @click.prevent="coverImageSelect(user.id)"><span class="w-100">Submit</span></a>
                                         </div>
                                     </form>

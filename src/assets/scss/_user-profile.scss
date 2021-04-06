@@ -936,3 +936,67 @@
         }
     }
 }
+
+// background image gallery
+.bg-image-gallery-modal {
+    .modal-dialog {
+        background: $screenshot-modal-bg;
+        width: 100%;
+        height: 100%;
+        max-width: initial !important;
+        .modal-content {
+            justify-content: initial;
+            padding: 50px 10px 10px 10px;
+            min-height: 300px;
+            overflow-y: auto;
+            @include for-min-992 {
+                max-width: 960px;
+            }
+            @include for-min-768 {
+                min-height: 500px;
+                padding: 70px;
+            }
+            .modal-body-content {
+                height: 100%;
+                form {
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+            .modal-footer {
+                margin-top: 50px;
+                @include for-min-768 {
+                    margin-top: auto;
+                }
+            }
+        }
+    }
+    .bg-image-gallery {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-gap: 20px;
+        @include for-min-768 {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+        &--item {
+            position: relative;
+            input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                &:checked {
+                    &~label {
+                        border: 2px solid $secondery;
+                        opacity: 1;
+                    }
+                }
+            }
+            label {
+                border: 2px solid transparent;
+                opacity: .9;
+                cursor: pointer;
+            }
+        }
+    }
+}

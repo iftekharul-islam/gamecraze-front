@@ -1,9 +1,8 @@
 <template>
     <div>
         <section class="user-profile-heading">
-<!--            <img v-if="user.cover" :src="user.cover" alt="profile bg" class="img-fluid user-profile-bg">-->
             <img v-if="activeCoverImage" :src="activeCoverImage" alt="profile bg" class="img-fluid user-profile-bg">
-            <img v-else src="../assets/img/profile-bg.png" alt="profile bg" class="img-fluid user-profile-bg">
+            <img v-if="dummyCover" src="../assets/img/profile-bg.png" alt="profile bg" class="img-fluid user-profile-bg">
             <div class="cover-edit" @click="coverModal = true">
                 <label><i class="fas fa-camera camera-icon"></i>  <span>Edit Cover Photo</span></label>
                 <i v-if="isCoverImgUpdating" class="spinner-border spinner-border-sm"></i>
@@ -961,6 +960,8 @@
                 coverModal: false,
                 coverUrl: '',
                 activeCoverImage: '',
+                dummyCover: false
+
             }
         },
         watch: {
@@ -1531,6 +1532,9 @@
                 this.user = response.data.data;
                 this.nid_verification = this.user.id_verified;
                 this.activeCoverImage = this.user.cover;
+                if (!this.activeCoverImage.length){
+                    this.dummyCover = true;
+                }
             });
 
 

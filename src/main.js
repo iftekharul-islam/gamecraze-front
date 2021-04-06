@@ -65,12 +65,15 @@ import VueSwal, { swal } from 'vue-swal'
 Vue.use(VueSwal);
 
 
-// // for v-toaster
+// for v-toaster
 import Toaster from 'v-toaster'
 Vue.use(Toaster, { timeout: 5000 });
 
-//vue-suggesion
+//vue-clipboard
+import VueClipboard from 'vue-clipboard2'
+Vue.use(VueClipboard)
 
+//vue-suggesion
 import VueSuggestion from 'vue-suggestion'
 Vue.use(VueSuggestion)
 

@@ -187,7 +187,8 @@
                 wrongOTP: false,
                 isLoading: false,
                 isResendLoading: false,
-                isLoggingIn: false
+                isLoggingIn: false,
+                referral: ''
             }
         },
         methods: {
@@ -249,6 +250,7 @@
                 } else {
                     if (this.$store.state.notSetPassword) {
                         localStorage.setItem('email', this.form.email)
+                        localStorage.setItem('referral', this.referral)
                         this.$store.dispatch('setEmail', this.form.email)
                         this.$store.dispatch('checkPassword', this.form)
                     } else {
@@ -274,7 +276,7 @@
                 }
                 this.isLoading = true;
                 this.resend = false;
-                this.$store.dispatch('verifyOtp', {phone_number: this.phone_number, otp: this.otp})
+                this.$store.dispatch('verifyOtp', {phone_number: this.phone_number, otp: this.otp, referral_code: this.referral})
             },
             onResendOtp: function () {
                 this.isResendLoading = true;
@@ -329,6 +331,7 @@
             }
         },
         created() {
+            this.referral = this.$route.query.referred_code ?? '';
             if(this.$store.getters.ifAuthenticated) {
                 this.$router.push('/profile');
             }

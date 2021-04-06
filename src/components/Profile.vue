@@ -213,8 +213,7 @@
                                                         <p class="text-secondery" v-else>N/A</p>
                                                     </div>
                                                     <label class="toggle-switch">
-<!--                                                        <input type="checkbox" @change="postStatusChange(rent.id)"/>-->
-                                                        <input type="checkbox" @change="postStatusChange($event,rent.id)" :checked="rent.status_by_user == 1"/>
+                                                        <input type="checkbox" @change="postStatusChange($event,rent.id)" :checked="rent.status_by_user == 1" :disabled="rent.renter"/>
                                                         <span>
                                                             <span>Inactive</span>
                                                             <span>Active</span>

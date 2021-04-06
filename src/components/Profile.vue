@@ -210,7 +210,8 @@
                                                         <p class="text-secondery" v-else>N/A</p>
                                                     </div>
                                                     <label class="toggle-switch">
-                                                        <input type="checkbox" checked />
+<!--                                                        <input type="checkbox" @change="postStatusChange(rent.id)"/>-->
+                                                        <input type="checkbox" @change="postStatusChange($event,rent.id)" :checked="rent.status_by_user == 1"/>
                                                         <span>
                                                             <span>Inactive</span>
                                                             <span>Active</span>
@@ -968,7 +969,7 @@
                 coverModal: false,
                 coverUrl: '',
                 activeCoverImage: '',
-                dummyCover: false
+                dummyCover: false,
 
             }
         },
@@ -980,6 +981,28 @@
             },
         },
         methods: {
+            postStatusChange(event, id) {
+                var status = event.target.checked;
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+                let data = {
+                    id: id,
+                    status: status,
+                };
+
+                this.$api.post('post-status-update', data, config).then(response => {
+                    if (response.data.error == false) {
+                        this.coverModal = false;
+                        this.$toaster.success("Post Status Updated !");
+                    }else {
+                        this.$toaster.fail(response.data.message);
+                    }
+
+                });
+            },
             credentialModal(rent){
                 this.userGameId = rent.game_user_id;
                 this.userPassword = rent.game_password;

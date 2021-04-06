@@ -2224,3 +2224,63 @@ select {
     -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
+
+// Rejected
+.rejected,
+.pending,
+.completed {
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    &::after {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        content: '!';
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transform: rotate( 180deg);
+        margin-left: 12px;
+        font-weight: normal;
+    }
+}
+
+.rejected {
+    color: $rejected;
+    &::after {
+        background: $rejected;
+        color: $text-light;
+    }
+}
+
+.pending {
+    color: $secondery;
+    &::after {
+        background: $secondery;
+        color: $text-dark;
+    }
+}
+
+.completed {
+    color: $success-border;
+    position: relative;
+    &::after {
+        background: $success-border;
+        content: '';
+    }
+    &::before {
+        border: solid $secondery;
+        border-width: 0 0px 2px 2px;
+        transform: rotate( -45deg);
+        top: 9px;
+        background: transparent;
+        width: 10px;
+        height: 5px;
+        z-index: 9;
+        content: '';
+        display: block;
+        position: absolute;
+        right: 10px;
+    }
+}

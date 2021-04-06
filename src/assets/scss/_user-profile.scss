@@ -548,7 +548,7 @@
         margin-left: -80px;
     }
     @include for-min-1400 {
-        margin-left: -85px;
+        margin-left: -25px;
     }
     @include for-min-1600 {
         margin-left: -40px;
@@ -653,11 +653,11 @@
         }
     }
     &--rented {
-        @include for-min-1400 {
-            width: 950px;
-        }
         @include for-min-1200 {
             width: 880px;
+        }
+        @include for-min-1400 {
+            width: 855px;
         }
         &--box {
             padding: 10px 30px 20px 20px;
@@ -676,7 +676,18 @@
             @include for-max-1199 {
                 margin-right: 0;
             }
+            @include for-max-575 {
+                padding: 10px 30px 30px 20px;
+            }
+            .status,
+            .renter-name {
+                height: 65px;
+                margin-bottom: 24px;
+            }
         }
+    }
+    .timer {
+        margin-top: -60px;
     }
     .flip-clock {
         display: grid;
@@ -723,12 +734,11 @@
 .rented-note,
 .dashboard-tab-button,
 .no-post-found-card {
-    width: 1050px;
-    @include for-max-1600 {
-        width: 1000px;
+    @include for-min-1200 {
+        width: 880px;
     }
-    @include for-max-1400 {
-        width: 100%;
+    @include for-min-1400 {
+        width: 855px;
     }
 }
 

@@ -27,16 +27,16 @@
                             <router-link @click.native="onMenuItemClick()" class="router_link" to="/games" :class="{ 'router-link-exact-active router-link-active active': this.$route.path == '/games' }">Games</router-link>
                         </li>
                         <li>
-                            <router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">Post For Rent</router-link>
+                            <router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">Post for Lend</router-link>
                         </li>
                         <li class="dropdown position-relative dropdown-hover">
                             <router-link class="router_link no-after" to="#">More</router-link>
-                                <ul class="dropdown--sub-menu p-0">
-                                  <li><router-link @click.native="onMenuItemClick()" class="router_link" to="/about-us">About us</router-link></li>
-                                  <li><router-link @click.native="onMenuItemClick()" class="router_link" to="/terms">Terms & conditions</router-link></li>
-                                  <li><router-link @click.native="onMenuItemClick()" class="router_link" to="/privacy">Privacy policies</router-link></li>
-                                  <li><router-link @click.native="onMenuItemClick()" class="router_link" to="/frequently-asked-questions">FAQ</router-link></li>
-                              </ul>
+                                <div class="dropdown--sub-menu p-0">
+                                  <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/about-us">About us</router-link></div>
+                                  <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/terms">Terms & conditions</router-link></div>
+                                  <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/privacy">Privacy policies</router-link></div>
+                                  <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/frequently-asked-questions">FAQ</router-link></div>
+                              </div>
                         </li>
                     </ul>
                    <!-- search bar -->

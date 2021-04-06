@@ -112,7 +112,7 @@
                         <div class="nav nav-pills user-profile-details--nav" id="v-pills-tab" role="tablist" aria-orientation="vertical">
                         <a class="nav-link" id="v-pills-overview-tab" data-toggle="pill" href="#v-pills-overview" role="tab" aria-controls="v-pills-overview" aria-selected="true"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon1.png" alt="profile icon"> <img src="../assets/img/active-profile-icon1.png" class="img-active" alt="profile icon"></div> <span>Overview</span></a>
                         <a class="nav-link active" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon2.png" alt="profile icon"> <img src="../assets/img/active-profile-icon2.png" class="img-active" alt="profile icon"></div> <span>Dashboard</span></a>
-                        <a class="nav-link" id="v-pills-post-rent-tab" data-toggle="pill" href="#v-pills-post-rent" role="tab" aria-controls="v-pills-post-rent" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon3.png" alt="profile icon"> <img src="../assets/img/active-profile-icon3.png" class="img-active" alt="profile icon"></div> <span>Post for Rent</span></a>
+                        <a class="nav-link" id="v-pills-post-rent-tab" data-toggle="pill" href="#v-pills-post-rent" role="tab" aria-controls="v-pills-post-rent" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon3.png" alt="profile icon"> <img src="../assets/img/active-profile-icon3.png" class="img-active" alt="profile icon"></div> <span>Post for Lend</span></a>
                         <a class="nav-link" id="v-pills-edit-profile-tab" data-toggle="pill" href="#v-pills-edit-profile" role="tab" aria-controls="v-pills-edit-profile" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon4.png" alt="profile icon"> <img src="../assets/img/active-profile-icon4.png" class="img-active" alt="profile icon"></div> <span>Edit Profile</span></a>
                         <a class="nav-link" id="v-pills-my-earning-tab" data-toggle="pill" href="#v-pills-my-earning" role="tab" aria-controls="v-pills-my-earning" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/earn.png" alt="profile icon"> <img src="../assets/img/active-earn.png" class="img-active" alt="profile icon"></div> <span>My Earning</span></a>
                         </div>
@@ -212,7 +212,7 @@
                                                         <p class="text-secondery" v-if="rent.renter">{{ rent.renter.data.name }}</p>
                                                         <p class="text-secondery" v-else>N/A</p>
                                                     </div>
-                                                    <label class="toggle-switch">
+                                                    <label class="toggle-switch mt-0 mt-sm-2">
                                                         <input type="checkbox" @change="postStatusChange($event,rent.id)" :checked="rent.status_by_user == 1" :disabled="rent.renter"/>
                                                         <span>
                                                             <span>Inactive</span>
@@ -228,12 +228,12 @@
                                                     </div>
                                                     <div class="status">
                                                         <p class="mb-2">Status</p>
-                                                        <p v-if="rent.status ==2"><span class="badge-danger badge br-0 p-2 f-s-16">Rejected</span></p>
+                                                        <p v-if="rent.status ==2"><span class="rejected br-0 f-s-16">Rejected</span></p>
                                                         <p v-else-if="rent.lend != null"><span class="badge-danger badge br-0 p-2 f-s-16">Rented for {{ rent.lend.data.lend_week }} week(s)</span></p>
                                                         <p class="text-secondery" v-else>Available for {{ rent.max_number_of_week }} week(s)</p>
                                                     </div>
                                                     <div class="action" v-if="rent.disk_type != 1">
-                                                        <a href="#" class="btn--secondery h-40 w-80" @click.prevent="credentialModal(rent)"><span>Edit</span></a>
+                                                        <a href="#" class="btn--secondery h-40 w-80 ml-2" @click.prevent="credentialModal(rent)"><span>Edit</span></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -419,22 +419,22 @@
                                                             <div class="status flex-1">
                                                                 <p class="mb-1">Status</p>
                                                                 <div v-if="lend.status === 0">
-                                                                    <span class="bg-secondery text-black badge br-0 p-2 f-s-16" >Pending</span>
+                                                                    <span class="pending br-0 f-s-16" >Pending</span>
                                                                 </div>
                                                                 <div v-else-if="lend.status === 1">
-                                                                    <span class="badge-success badge br-0 p-2 f-s-16" >Completed</span>
+                                                                    <span class="completed br-0 f-s-16" >Completed</span>
                                                                 </div>
                                                                 <div v-else-if="lend.status === 2">
-                                                                    <span class="badge-success badge br-0 p-2 f-s-16" >Arrived at checkpoint</span>
+                                                                    <span class="completed br-0  f-s-16" >Arrived at checkpoint</span>
                                                                 </div>
                                                                 <div v-else-if="lend.status === 3">
-                                                                    <span class="badge-success badge br-0 p-2 f-s-16" >Delivered</span>
+                                                                    <span class="completed br-0 f-s-16" >Delivered</span>
                                                                 </div>
                                                                 <div v-else-if="lend.status === 4">
-                                                                    <span class="badge-danger badge br-0 p-2 f-s-16" >Rejected</span>
+                                                                    <span class="rejected br-0  f-s-16" >Rejected</span>
                                                                 </div>
                                                                 <div v-else-if="lend.status === 5">
-                                                                    <span class="badge-success badge br-0 p-2 f-s-16" >Processing</span>
+                                                                    <span class="completed br-0 f-s-16" >Processing</span>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -702,10 +702,9 @@
                                                 </div>
                                             </div>
                                             <div class="form-group post-rent--form-group post-rent-btn">
-<!--                                                    <button class="btn&#45;&#45;secondery w-100 border-0 post-rent&#45;&#45;form-group&#45;&#45;btn" @click.prevent="validationCheck(true)">-->
-                                                    <button class="btn--secondery w-100 border-0 post-rent--form-group--btn">
-                                                        <span class="mr-2">Submit <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i></span>
-                                                    </button>
+                                                <button class="btn--secondery w-100 border-0 post-rent--form-group--btn" :disabled="isRentLoading">
+                                                    <span class="mr-2">Submit <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i></span>
+                                                </button>
                                             </div>
 
                                         </form>
@@ -1331,6 +1330,7 @@
                 this.form.checkpoint = '';
             },
             onRentSubmit () {
+                this.isRentLoading = true;
                 this.$refs.form.validate().then(success => {
                         if (!success) {
                             window.scrollTo({
@@ -1342,9 +1342,9 @@
                         }
                 if ( this.rentData.game == '' || this.rentData.game == null) {
                     this.$toaster.warning('Select Game');
+                    this.isRentLoading = false;
                     return;
                 }
-                this.isRentLoading = true;
                 let  uploadInfo = {
                     game_id: this.rentData.game.id,
                     // availability: this.rentData.availability,
@@ -1366,9 +1366,7 @@
 
                 this.$api.post('rents', uploadInfo, config)
                     .then(response => {
-                        this.isRentLoading = false;
                         this.$toaster.success('Post submitted');
-                        // this.show = true;
                         setTimeout(function () {
                             window.location.reload();
                             // $('#v-pills-post-rent-tab').removeClass('active');

@@ -68,7 +68,7 @@
                   <carousel
                           v-if="loadedScreenshots"
                   :autoplay ="false"
-                  :loop ="true"
+                  :loop ="false"
                   :nav ="false"
                   :dots ="true"
                   :center ="false"

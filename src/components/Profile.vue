@@ -988,7 +988,7 @@
                 this.credentialModalShow = true;
             },
             coverImageSelect(userId){
-                console.log(this.activeCoverImage);
+                this.dummyCover = false;
                 this.activeCoverImage = this.coverUrl;
 
                 let config = {

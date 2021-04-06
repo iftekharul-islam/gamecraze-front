@@ -62,6 +62,13 @@ html {
                     font-size: 16px;
                 }
             }
+            &:-webkit-autofill,
+            &:-webkit-autofill:hover,
+            &:-webkit-autofill:focus,
+            &:-webkit-autofill:active {
+                -webkit-box-shadow: 0 0 0 30px $text-light inset !important;
+                -webkit-text-fill-color: $text-dark !important;
+            }
         }
         label {
             font-size: 20px;

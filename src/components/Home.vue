@@ -46,84 +46,88 @@
             <div class="text-center">
                 <h2 class="section-heading">TRENDING GAMES</h2>
             </div>
-            <carousel v-if ="loadedTrending"
-                :autoplay ="false"
-                :loop ="true"
-                :center ="false"
-                :nav ="false"
-                :margin ="5"
-                :items ="3"
-                :stagePadding ="150"
-                :responsive="{ 0:{items:1, stagePadding:0, dots:true},
-                               590:{items:2, dots:false, nav:false, stagePadding:0,},
-                               768:{items:3, stagePadding:0, dots:false,},
-                               900:{items:3, stagePadding:0, dots:false,},
-                               1200:{items:3, stagePadding:100, dots:false,},
-                               1500:{items:3, dots:false,},
-                               1800:{items:5, dots:false,}}">
-                  <template slot="prev"><div class="vue-owl-nav "><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
+            <div class="position-relative">
+                <carousel v-if ="loadedTrending"
+                    :autoplay ="false"
+                    :loop ="true"
+                    :center ="false"
+                    :nav ="false"
+                    :margin ="5"
+                    :items ="3"
+                    :stagePadding ="150"
+                    :responsive="{ 0:{items:1, stagePadding:0, dots:true},
+                                590:{items:2, dots:false, nav:false, stagePadding:0,},
+                                768:{items:3, stagePadding:0, dots:false,},
+                                900:{items:3, stagePadding:0, dots:false,},
+                                1200:{items:3, stagePadding:100, dots:false,},
+                                1500:{items:3, dots:false,},
+                                1800:{items:5, dots:false,}}">
+                    <template slot="prev"><div class="vue-owl-nav vue-owl-nav-prev"><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
 
-                  <template slot="next"><div class="vue-owl-nav"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
+                    <template slot="next"><div class="vue-owl-nav vue-owl-nav-next"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
 
-                <div class="item" v-for="(trending, index) in trendingGames" :key="index">
-                    <router-link :to="{ path: '/game-details/' + trending.game.data.slug}" class="trending-image">
-                        <img :src="trending.game.data.trending_url" alt="trending.game.data.name">
-                    </router-link>
-                    <div class="trending-game--name-price d-flex justify-content-between">
-                         <router-link :to="{ path: '/game-details/' + trending.game.data.slug}" class="">{{ trending.game.data.name }}</router-link>
-                    </div>
-                    <div class="trending-game--categories d-flex justify-content-between" v-if="trending">
-                        <div class="home-categories">
-                            <a :href="'/games?categories=' + genre.slug" v-for="(genre) in trending.game.data.genres.data" :key="genre.id">{{ genre.name }}</a>
+                    <div class="item" v-for="(trending, index) in trendingGames" :key="index">
+                        <router-link :to="{ path: '/game-details/' + trending.game.data.slug}" class="trending-image">
+                            <img :src="trending.game.data.trending_url" alt="trending.game.data.name">
+                        </router-link>
+                        <div class="trending-game--name-price d-flex justify-content-between">
+                            <router-link :to="{ path: '/game-details/' + trending.game.data.slug}" class="">{{ trending.game.data.name }}</router-link>
                         </div>
-                        <div class="d-flex home-platform">
-                            <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in trending.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>
+                        <div class="trending-game--categories d-flex justify-content-between" v-if="trending">
+                            <div class="home-categories">
+                                <a :href="'/games?categories=' + genre.slug" v-for="(genre) in trending.game.data.genres.data" :key="genre.id">{{ genre.name }}</a>
+                            </div>
+                            <div class="d-flex home-platform">
+                                <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in trending.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>
+                            </div>
                         </div>
                     </div>
-                </div>
-           </carousel>
+            </carousel>
+           </div>
         </section>
         <!-- favorite-section -->
         <section class="favorite-section">
             <div class="text-center">
                  <h2 class="section-heading">RENT YOUR FAVORITE GAMES</h2>
             </div>
-            <carousel v-if ="loadedPopular"
-                :autoplay ="false"
-                :loop ="true"
-                :center ="false"
-                :nav ="false"
-                :margin ="10"
-                :stagePadding = "0"
-                :responsive="{ 0:{items:3, stagePadding:0, nav:false, dots:true, center:true,},
-                               600:{items:3, stagePadding:0, center:false, dots:false,},
-                               800:{items:3, stagePadding:50, dots:false,},
-                               1026:{items:3, stagePadding:100, dots:false,},
-                               1200:{items:5, stagePadding:100, dots:false,},
-                               1300:{items:5, stagePadding:100, dots:false,},
-                               1800:{items:7, stagePadding:100, dots:false,}}"
-                 >
-                  <template slot="prev"><div class="vue-owl-nav "><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
+              <div class="position-relative">
+                    <carousel v-if ="loadedPopular"
+                        :autoplay ="false"
+                        :loop ="true"
+                        :center ="false"
+                        :nav ="false"
+                        :margin ="10"
+                        :stagePadding = "0"
+                        :responsive="{ 0:{items:3, stagePadding:0, nav:false, dots:true, center:true,},
+                                    600:{items:3, stagePadding:0, center:false, dots:false,},
+                                    800:{items:3, stagePadding:50, dots:false,},
+                                    1026:{items:3, stagePadding:100, dots:false,},
+                                    1200:{items:5, stagePadding:100, dots:false,},
+                                    1300:{items:5, stagePadding:100, dots:false,},
+                                    1800:{items:7, stagePadding:100, dots:false,}}"
+                        >
+                        <template slot="prev"><div class="vue-owl-nav vue-owl-nav-prev"><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
 
-                  <template slot="next"><div class="vue-owl-nav"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
+                        <template slot="next"><div class="vue-owl-nav vue-owl-nav-next"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
 
-                <div class="item" v-for="(popular, index) in populars" :key="index">
-                    <div class="favorite-games">
-                        <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-if="popular.game.data.trending_url" class="d-block favorite-games--link">
-                            <img :src="popular.game.data.poster_url" :alt="popular.game.data.name">
-                        </router-link>
-                        <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-else>
-                            <picture class="picture">
-                                <source srcset="../assets/img/webp-image/dummy-image.webp" type="image/webp" class="picture__img">
-                                <img src="../assets/img/webp-image/dummy-image.webp" alt="no-image" class="picture__img">
-                            </picture>
-                        </router-link>
-                        <div class="favorite-games-categories d-flex justify-content-center align-items-center">
-                            <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in popular.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>
+                        <div class="item" v-for="(popular, index) in populars" :key="index">
+                            <div class="favorite-games">
+                                <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-if="popular.game.data.trending_url" class="d-block favorite-games--link">
+                                    <img :src="popular.game.data.poster_url" :alt="popular.game.data.name">
+                                </router-link>
+                                <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-else>
+                                    <picture class="picture">
+                                        <source srcset="../assets/img/webp-image/dummy-image.webp" type="image/webp" class="picture__img">
+                                        <img src="../assets/img/webp-image/dummy-image.webp" alt="no-image" class="picture__img">
+                                    </picture>
+                                </router-link>
+                                <div class="favorite-games-categories d-flex justify-content-center align-items-center">
+                                    <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in popular.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-           </carousel>
+                </carousel>
+             </div>
         </section>
 
        <section class="upcoming-section">

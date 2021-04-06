@@ -95,8 +95,13 @@
                         }
                     }
                 }
-                &:hover {
+            }
+            &:hover {
+                a {
                     color: $secondery;
+                }
+                &::after {
+                    border-bottom-color: $secondery;
                 }
             }
         }

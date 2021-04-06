@@ -653,8 +653,11 @@
         }
     }
     &--rented {
-        @include for-min-1200 {
+        @include for-min-1400 {
             width: 950px;
+        }
+        @include for-min-1200 {
+            width: 880px;
         }
         &--box {
             padding: 10px 30px 20px 20px;
@@ -664,8 +667,11 @@
             &:nth-child(even) {
                 margin-right: 0;
             }
-            @include for-min-1200 {
+            @include for-min-1400 {
                 width: 446px;
+            }
+            @include for-min-1200 {
+                width: 415px;
             }
             @include for-max-1199 {
                 margin-right: 0;

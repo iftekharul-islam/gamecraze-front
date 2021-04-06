@@ -1,13 +1,46 @@
 <template>
     <div>
         <section class="user-profile-heading">
-            <img v-if="user.cover" :src="user.cover" alt="profile bg" class="img-fluid user-profile-bg">
+<!--            <img v-if="user.cover" :src="user.cover" alt="profile bg" class="img-fluid user-profile-bg">-->
+            <img v-if="activeCoverImage" :src="activeCoverImage" alt="profile bg" class="img-fluid user-profile-bg">
             <img v-else src="../assets/img/profile-bg.png" alt="profile bg" class="img-fluid user-profile-bg">
-<!--            <div class="cover-edit">-->
-<!--                <input type="file" @change="onProfileImageChange($event, 'cover')" id="imageUpload" accept=".png, .jpg, .jpeg">-->
-<!--                <label for="imageUpload"><i class="fas fa-camera camera-icon"></i>  <span>Edit Cover Photo</span></label>-->
-<!--                <i v-if="isCoverImgUpdating" class="spinner-border spinner-border-sm"></i>-->
-<!--            </div>-->
+            <div class="cover-edit" @click="coverModal = true">
+                <label><i class="fas fa-camera camera-icon"></i>  <span>Edit Cover Photo</span></label>
+                <i v-if="isCoverImgUpdating" class="spinner-border spinner-border-sm"></i>
+            </div>
+            <div v-if="coverModal">
+                <transition name="modal">
+                    <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal">
+                        <div class="modal-wrapper">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true" @click="coverModal = false" class="close-modal"></span>
+                                    </button>
+                                    <div class="modal-body-content">
+                                        <ValidationObserver v-slot="{ invalid }">
+                                    <form action="" class="row">
+                                        <ValidationProvider name="Cover" rules="required" v-slot="{ errors }">
+                                        <div class="col-4 mt-4 d-flex" v-for="(item, index) in coverImages" :key="index">
+                                            <input type="radio" :value="item.url" name="image-checkbox" :id="item.id" v-model="coverUrl" />
+                                            <label :for="item.id">
+                                                <img :src="item.url" width="80%">
+                                            </label>
+
+                                        </div>
+                                        </ValidationProvider>
+                                        <div class="modal-footer justify-content-center">
+                                            <a type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid" @click.prevent="coverImageSelect(user.id)"><span class="w-100">Submit</span></a>
+                                        </div>
+                                    </form>
+                                        </ValidationObserver>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </transition>
+            </div>
             <!-- Account verified -->
             <div class="user-profile-heading--account-verified">
                 <a href="#" class="user-profile-heading--account-verified--btn account-verified" v-if="user.is_verified == 1"><span>Account verified</span></a>
@@ -924,6 +957,10 @@
                 total_earn: 0,
                 payable_amount: 0,
                 transactions: [],
+                coverImages: [],
+                coverModal: false,
+                coverUrl: '',
+                activeCoverImage: '',
             }
         },
         watch: {
@@ -940,6 +977,30 @@
                 this.userRentId = rent.id;
 
                 this.credentialModalShow = true;
+            },
+            coverImageSelect(userId){
+                console.log(this.activeCoverImage);
+                this.activeCoverImage = this.coverUrl;
+
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+                let data = {
+                    user_id: userId,
+                    cover: this.coverUrl,
+                };
+
+                this.$api.post('user-cover-update', data, config).then(response => {
+                    if (response.data.error == false) {
+                        this.coverModal = false;
+                        this.$toaster.success("User Cover Updated!");
+                    }else {
+                        this.$toaster.fail(response.data.message);
+                    }
+
+                });
             },
             gameCredentialUpdate(rentId, userId, gamePassword){
 
@@ -1428,7 +1489,11 @@
                 $('#v-pills-my-earning').removeClass('show');
 
               });
-
+            //Cover image
+            this.$api.get('cover-image').then(response =>
+            {
+                this.coverImages = response.data.data;
+            });
             //rent posts
             this.$api.get('games/released-games?include=platforms').then(response =>
             {
@@ -1465,6 +1530,7 @@
             this.$api.get('user/details', config).then(response =>{
                 this.user = response.data.data;
                 this.nid_verification = this.user.id_verified;
+                this.activeCoverImage = this.user.cover;
             });
 
 

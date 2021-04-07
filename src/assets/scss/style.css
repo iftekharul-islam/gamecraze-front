@@ -2939,7 +2939,7 @@ select option {
 
 .gamehub-body {
   position: relative;
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 @media (min-width: 1200px) {

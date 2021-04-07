@@ -21,8 +21,8 @@
                                     <form action="">
                                         <ValidationProvider name="Cover" rules="required" v-slot="{ errors }">
                                             <!-- Background Image Gallery -->
-                                           <div class="bg-image-gallery">
-                                               <div class=""v-if="coverImages.length">
+                                           <div class="">
+                                               <div class="bg-image-gallery" v-if="coverImages.length">
                                                 <div class="bg-image-gallery--item position-relative" v-for="(item, index) in coverImages" :key="index">
                                                     <input type="radio" :value="item.url" name="image-checkbox" :id="item.id" v-model="coverUrl" class="w-100 h-100" />
                                                     <label :for="item.id">

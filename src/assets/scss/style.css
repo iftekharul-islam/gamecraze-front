@@ -9730,15 +9730,9 @@ html {
 }
 
 .rookie-elite-content {
-  margin: 100px auto;
-  padding: 0 20px;
-  text-align: center;
-}
-
-@media (min-width: 768px) {
-  .rookie-elite-content {
-    max-width: 505px;
-  }
+  margin: 50px auto;
+  padding-bottom: 180px;
+  padding-top: 20px;
 }
 
 .rookie-elite-content--heading {
@@ -9747,6 +9741,23 @@ html {
 
 .rookie-elite-content--paragraph {
   opacity: .9;
+}
+
+.rookie-elite-content .back-home {
+  width: 380px;
+  margin: auto;
+  text-align: center;
+}
+
+.rookie-elite-content .pricing-plan--card {
+  margin: auto;
+}
+
+@media (max-width: 575px) {
+  .rookie-elite-content .pricing-plan--card {
+    width: 100%;
+    max-width: 90%;
+  }
 }
 
 .tournament-nav {
@@ -10152,6 +10163,11 @@ html {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 16px;
+  position: relative;
+}
+
+.pricing-plan--card--list--item span:last-of-type {
+  padding-left: 40px;
 }
 
 .pricing-plan--card--list--item .box {
@@ -10159,7 +10175,8 @@ html {
   height: 20px;
   display: inline-block;
   margin-right: 16px;
-  position: relative;
+  position: absolute;
+  top: 3px;
 }
 
 .pricing-plan--card--list--item .box::after, .pricing-plan--card--list--item .box::before {

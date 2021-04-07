@@ -179,7 +179,7 @@
                                             </tr>
                                             <tr>
                                                 <td scope="row">Generate Link:</td>
-                                                <td v-if="user.referral_code">{{ user.referral_url }}</td>
+                                                <td v-if="user.referral_url">{{ user.referral_url }}</td>
                                                 <button class="btn-success"
                                                         v-clipboard:copy="user.referral_url"
                                                         v-clipboard:success="onCopy"

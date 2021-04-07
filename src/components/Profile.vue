@@ -204,7 +204,7 @@
                                     <!-- new offter design -->
                                         <div class="d-flex flex-wrap"  v-if="rents">
                                         <div class="dashboard-content--rented--box position-relative bg-game-details border-2 warning-border" v-for="(rent, index) in rents" :key="index">
-                                            <div class="position-absolute top-0 right-0 bg-secondery p-2 gil-bold">
+                                            <div class="position-absolute top--1 right--1 bg-secondery p-2 gil-bold">
                                                     <div class="disk-type text-black" v-if="rent.disk_type == 1">Physical Copy</div>
                                                     <div class="disk-type text-black" v-else>Digital Copy</div>
                                                 </div>
@@ -392,7 +392,7 @@
                                             <div class="d-flex flex-wrap" v-if="lends">
                                                 <div class="dashboard-content--rented--box position-relative bg-game-details border-2 warning-border" v-for="(lend, index) in lends" :key="index">
                                                     <!-- disk type -->
-                                                    <div class="dashboard-content--rented--box--disk-type position-absolute top-0 right-0 bg-secondery p-2 gil-bold">
+                                                    <div class="dashboard-content--rented--box--disk-type position-absolute top--1 right--1 bg-secondery p-2 gil-bold">
                                                         <div class="disk-type text-black" v-if="lend.rent.disk_type == 1">Physical Copy</div>
                                                         <div class="disk-type text-black" v-if="lend.rent.disk_type == 0">Digital Copy</div>
                                                     </div>

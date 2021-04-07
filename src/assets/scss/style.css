@@ -1176,6 +1176,10 @@
   padding-bottom: 3.125rem;
 }
 
+.right--1 {
+  right: -1px;
+}
+
 .right-0 {
   right: 0;
 }
@@ -1238,6 +1242,10 @@
 
 .left-14 {
   left: 14px;
+}
+
+.top--1 {
+  top: -1px;
 }
 
 .top-0 {
@@ -6921,8 +6929,8 @@ html {
 
 @media (max-width: 575px) {
   .user-profile-heading--account-verified {
-    right: 40px;
-    top: 20px;
+    right: 15px;
+    bottom: -20px;
   }
 }
 
@@ -6935,6 +6943,14 @@ html {
   text-align: center;
 }
 
+@media (max-width: 575px) {
+  .user-profile-heading--account-verified--btn {
+    width: 130px;
+    font-size: 14px;
+    padding: 3px 0;
+  }
+}
+
 .user-profile-heading--account-verified--btn span {
   -webkit-transform: skew(21deg);
           transform: skew(21deg);
@@ -6945,12 +6961,14 @@ html {
   position: absolute;
   right: 4px;
   bottom: 15px;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
 }
 
 @media (max-width: 575px) {
   .avatar-edit {
-    right: 15px;
-    bottom: 3px;
+    right: 11px;
+    bottom: -2px;
   }
 }
 
@@ -6982,8 +7000,21 @@ html {
           justify-content: center;
 }
 
+@media (max-width: 575px) {
+  .avatar-edit form label {
+    width: 25px;
+    height: 25px;
+  }
+}
+
 .avatar-edit form label .camera-icon {
   color: #FFD715;
+}
+
+@media (max-width: 575px) {
+  .avatar-edit form label .camera-icon {
+    font-size: 12px;
+  }
 }
 
 .avatar-edit--spinner {
@@ -7032,6 +7063,14 @@ html {
           transform: skew(-21deg);
   width: 200px;
   text-align: center;
+}
+
+@media (max-width: 575px) {
+  .cover-edit label {
+    padding: 3px 0px;
+    width: 170px;
+    font-size: 14px;
+  }
 }
 
 .cover-edit label .camera-icon,

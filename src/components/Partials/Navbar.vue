@@ -192,6 +192,11 @@
                 this.totalItems = 0;
             },
           clickProfile() {
+            var auth = this.$store.getters.ifAuthenticated;
+            if (!auth) {
+                this.$router.push('/lend-notice');
+                return
+            }
             this.$root.$emit('rentPost');
           },
           searchGame() {

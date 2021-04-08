@@ -43,8 +43,8 @@
         bottom: 90px;
         right: 106px;
         @include for-max-575 {
-            right: 40px;
-            top: 20px;
+            right: 15px;
+            bottom: -20px;
         }
         &--btn {
             padding: 5px 0;
@@ -52,6 +52,11 @@
             display: inline-block;
             width: 200px;
             text-align: center;
+            @include for-max-575 {
+                width: 130px;
+                font-size: 14px;
+                padding: 3px 0;
+            }
             span {
                 transform: skew(21deg);
                 display: inline-block;
@@ -65,9 +70,10 @@
     position: absolute;
     right: 4px;
     bottom: 15px;
+    transition: all .3s ease-in;
     @include for-max-575 {
-        right: 15px;
-        bottom: 3px;
+        right: 11px;
+        bottom: -2px;
     }
     form {
         input {
@@ -88,8 +94,15 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            @include for-max-575 {
+                width: 25px;
+                height: 25px;
+            }
             .camera-icon {
                 color: $secondery;
+                @include for-max-575 {
+                    font-size: 12px;
+                }
             }
         }
     }
@@ -128,6 +141,11 @@
         transform: skew(-21deg);
         width: 200px;
         text-align: center;
+        @include for-max-575 {
+            padding: 3px 0px;
+            width: 170px;
+            font-size: 14px;
+        }
         .camera-icon,
         span {
             transform: skew(21deg);

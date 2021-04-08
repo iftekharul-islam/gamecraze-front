@@ -1,14 +1,23 @@
 .rookie-elite-content {
-    margin: 100px auto;
-    padding: 0 20px;
-    text-align: center;
-    @include for-min-768 {
-        max-width: 505px;
-    }
+    margin: 50px auto;
+    padding-bottom: 180px;
+    padding-top: 20px;
     &--heading {
         margin-bottom: 47px;
     }
     &--paragraph {
         opacity: .9;
+    }
+    .back-home {
+        width: 380px;
+        margin: auto;
+        text-align: center;
+    }
+    .pricing-plan--card {
+        margin: auto;
+        @include for-max-575 {
+            width: 100%;
+            max-width: 90%;
+        }
     }
 }

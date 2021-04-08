@@ -1176,6 +1176,10 @@
   padding-bottom: 3.125rem;
 }
 
+.right--1 {
+  right: -1px;
+}
+
 .right-0 {
   right: 0;
 }
@@ -1238,6 +1242,10 @@
 
 .left-14 {
   left: 14px;
+}
+
+.top--1 {
+  top: -1px;
 }
 
 .top-0 {
@@ -2234,6 +2242,10 @@ select option {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
 }
 
 .rejected::after,
@@ -2256,6 +2268,8 @@ select option {
           transform: rotate(180deg);
   margin-left: 12px;
   font-weight: normal;
+  position: absolute;
+  right: -40px;
 }
 
 .rejected {
@@ -2299,7 +2313,7 @@ select option {
   content: '';
   display: block;
   position: absolute;
-  right: 10px;
+  right: -35px;
 }
 
 @media (max-width: 575px) {
@@ -2931,7 +2945,7 @@ select option {
 
 .gamehub-body {
   position: relative;
-  min-height: 100%;
+  min-height: 100vh;
 }
 
 @media (min-width: 1200px) {
@@ -6921,8 +6935,8 @@ html {
 
 @media (max-width: 575px) {
   .user-profile-heading--account-verified {
-    right: 40px;
-    top: 20px;
+    right: 15px;
+    bottom: -20px;
   }
 }
 
@@ -6935,6 +6949,14 @@ html {
   text-align: center;
 }
 
+@media (max-width: 575px) {
+  .user-profile-heading--account-verified--btn {
+    width: 130px;
+    font-size: 14px;
+    padding: 3px 0;
+  }
+}
+
 .user-profile-heading--account-verified--btn span {
   -webkit-transform: skew(21deg);
           transform: skew(21deg);
@@ -6945,12 +6967,14 @@ html {
   position: absolute;
   right: 4px;
   bottom: 15px;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
 }
 
 @media (max-width: 575px) {
   .avatar-edit {
-    right: 15px;
-    bottom: 3px;
+    right: 11px;
+    bottom: -2px;
   }
 }
 
@@ -6982,8 +7006,21 @@ html {
           justify-content: center;
 }
 
+@media (max-width: 575px) {
+  .avatar-edit form label {
+    width: 25px;
+    height: 25px;
+  }
+}
+
 .avatar-edit form label .camera-icon {
   color: #FFD715;
+}
+
+@media (max-width: 575px) {
+  .avatar-edit form label .camera-icon {
+    font-size: 12px;
+  }
 }
 
 .avatar-edit--spinner {
@@ -7032,6 +7069,14 @@ html {
           transform: skew(-21deg);
   width: 200px;
   text-align: center;
+}
+
+@media (max-width: 575px) {
+  .cover-edit label {
+    padding: 3px 0px;
+    width: 170px;
+    font-size: 14px;
+  }
 }
 
 .cover-edit label .camera-icon,
@@ -8266,6 +8311,11 @@ html {
 
 .set-password form .form-group input.gray {
   color: #808080;
+}
+
+.set-password form .form-group input:-webkit-autofill, .set-password form .form-group input:-webkit-autofill:hover, .set-password form .form-group input:-webkit-autofill:focus, .set-password form .form-group input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+  -webkit-text-fill-color: #000 !important;
 }
 
 .set-password form .form-group label {
@@ -9691,15 +9741,9 @@ html {
 }
 
 .rookie-elite-content {
-  margin: 100px auto;
-  padding: 0 20px;
-  text-align: center;
-}
-
-@media (min-width: 768px) {
-  .rookie-elite-content {
-    max-width: 505px;
-  }
+  margin: 50px auto;
+  padding-bottom: 180px;
+  padding-top: 20px;
 }
 
 .rookie-elite-content--heading {
@@ -9708,6 +9752,23 @@ html {
 
 .rookie-elite-content--paragraph {
   opacity: .9;
+}
+
+.rookie-elite-content .back-home {
+  width: 380px;
+  margin: auto;
+  text-align: center;
+}
+
+.rookie-elite-content .pricing-plan--card {
+  margin: auto;
+}
+
+@media (max-width: 575px) {
+  .rookie-elite-content .pricing-plan--card {
+    width: 100%;
+    max-width: 90%;
+  }
 }
 
 .tournament-nav {
@@ -10113,6 +10174,11 @@ html {
       -ms-flex-align: center;
           align-items: center;
   margin-bottom: 16px;
+  position: relative;
+}
+
+.pricing-plan--card--list--item span:last-of-type {
+  padding-left: 40px;
 }
 
 .pricing-plan--card--list--item .box {
@@ -10120,7 +10186,8 @@ html {
   height: 20px;
   display: inline-block;
   margin-right: 16px;
-  position: relative;
+  position: absolute;
+  top: 3px;
 }
 
 .pricing-plan--card--list--item .box::after, .pricing-plan--card--list--item .box::before {

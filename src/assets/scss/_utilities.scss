@@ -1204,6 +1204,10 @@
 
 // for position relative and absolute right left
 // right
+.right--1 {
+    right: -1px;
+}
+
 .right-0 {
     right: 0;
 }
@@ -1270,6 +1274,10 @@
 }
 
 // top
+.top--1 {
+    top: -1px;
+}
+
 .top-0 {
     top: 0;
 }
@@ -2232,6 +2240,8 @@ select {
     font-weight: 700;
     display: flex;
     align-items: center;
+    position: relative;
+    width: fit-content;
     &::after {
         width: 20px;
         height: 20px;
@@ -2243,6 +2253,8 @@ select {
         transform: rotate( 180deg);
         margin-left: 12px;
         font-weight: normal;
+        position: absolute;
+        right: -40px;
     }
 }
 
@@ -2281,6 +2293,6 @@ select {
         content: '';
         display: block;
         position: absolute;
-        right: 10px;
+        right: -35px;
     }
 }

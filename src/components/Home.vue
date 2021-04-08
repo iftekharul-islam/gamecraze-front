@@ -137,7 +137,7 @@
             <div class="position-relative">
                 <carousel v-if ="loadedUpcoming"
                         :autoplay ="true"
-                        :loop ="true"
+                        :loop ="false"
                         :center ="false"
                         :nav ="false"
                         :margin ="5"

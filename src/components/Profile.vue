@@ -17,30 +17,22 @@
                                         <span aria-hidden="true" @click="coverModal = false" class="close-modal"></span>
                                     </button>
                                     <div class="modal-body-content">
-                                        <ValidationObserver v-slot="{ invalid }">
-                                    <form action="">
-                                        <ValidationProvider name="Cover" rules="required" v-slot="{ errors }">
-                                            <!-- Background Image Gallery -->
-                                           <div class="bg-image-gallery">
-                                               <div class=""v-if="coverImages.length">
-                                                <div class="bg-image-gallery--item position-relative" v-for="(item, index) in coverImages" :key="index">
-                                                    <input type="radio" :value="item.url" name="image-checkbox" :id="item.id" v-model="coverUrl" class="w-100 h-100" />
-                                                    <label :for="item.id">
-                                                        <img :src="item.url" class="img-fluid">
-                                                    </label>
-                                                </div>
-                                               </div>
-                                               <div v-else>
-                                                   <p>No image available</p>
-                                               </div>
-                                           </div>
+                                        <!-- Background Image Gallery -->
+                                       <div class="bg-image-gallery" v-if="coverImages.length">
+                                            <div class="bg-image-gallery--item position-relative" v-for="(item, index) in coverImages" :key="index">
+                                                <input type="radio" :value="item.url" name="image-checkbox" :id="item.id" v-model="coverUrl" @click="submitAcitve == true" class="w-100 h-100" />
+                                                <label :for="item.id">
+                                                    <img :src="item.url" class="img-fluid">
+                                                </label>
+                                            </div>
+                                       </div>
                                         <!-- End Background Image Gallery -->
-                                        </ValidationProvider>
-                                        <div class="modal-footer justify-content-center border-0" v-if="coverImages.length">
-                                            <a type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid" @click.prevent="coverImageSelect(user.id)" ><span class="w-100">Submit</span></a>
+                                        <div v-else>
+                                            <p class="text-secondery">No image available</p>
                                         </div>
-                                    </form>
-                                        </ValidationObserver>
+                                        <div class="modal-footer justify-content-center border-0" v-if="coverImages.length">
+                                            <a type="submit" class="btn--secondery user-id-edit-btn" disabled @click.prevent="coverImageSelect(user.id)" ><span class="w-100">Submit</span></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1002,7 +994,7 @@
                 this.$toaster.success("Link successfully copied !");
             },
             onError: function (e) {
-                this.$toaster.fail('Failed to copy the text to the clipboard');
+                this.$toaster.success('Failed to copy the text to the clipboard');
                 console.log(e);
             },
             postStatusChange(event, id) {
@@ -1036,8 +1028,10 @@
             },
             coverImageSelect(userId){
                 this.dummyCover = false;
+                if (this.coverUrl == '') {
+                    return
+                }
                 this.activeCoverImage = this.coverUrl;
-
                 let config = {
                     headers: {
                         'Authorization': 'Bearer ' + this.$store.state.token
@@ -1236,7 +1230,8 @@
                          this.$store.commit('setIsProfileUpdateing', false);
                         return;
                     }
-                    
+                    console.log('this form');
+                    console.log(this.form);
                     this.$store.dispatch('updateUserDetails', this.form);
                     this.$toaster.success("Profile Updated!");
                     setTimeout(function(){
@@ -1500,6 +1495,7 @@
             }
         },
         created() {
+            console.log(this.$store.state.user);
             let config = {
                 headers: {
                     'Authorization': 'Bearer ' + this.$store.state.token

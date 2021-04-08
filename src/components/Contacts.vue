@@ -105,7 +105,9 @@
                     if (response.data.error === false) {
                         this.isLoading = false;
                         this.$toaster.success(response.data.message);
-                        document.querySelector("#contactForm").reset();
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 2000);
                         return;
                     }
 

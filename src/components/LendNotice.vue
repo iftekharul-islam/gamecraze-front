@@ -5,7 +5,10 @@
                    <img src="../assets/img/profile-bg.webp" alt="profile bg" class="img-fluid w-100 h-100 user-profile-bg">
               </div>
               <div class="container position-relative h-100">
-                  <div class="profile-header--btn position-absolute right-0 bottom-50"><a href="https://www.gamehub.com.bd/profile" class="btn--secondery"><span>Post for lend</span></a></div>
+                  <div class="profile-header--btn position-absolute right-0 bottom-50">
+                      <router-link  class="btn--secondery" to="/profile" @click.native="clickProfile()"><span>Post for lend</span></router-link>
+<!--                      <a href="https://www.gamehub.com.bd/profile" class="btn&#45;&#45;secondery"></a>-->
+                  </div>
               </div>
           </div>
           <div class="lend-notice-content">
@@ -85,6 +88,16 @@
             return {
 
             }
+        },
+        methods: {
+            clickProfile() {
+                var auth = this.$store.getters.ifAuthenticated;
+                if (!auth) {
+                    this.$router.push('/login');
+                    return
+                }
+                this.$root.$emit('rentPost');
+            },
         },
         created() {
             window.scrollTo(0,0);

@@ -1237,8 +1237,6 @@
                          this.$store.commit('setIsProfileUpdateing', false);
                         return;
                     }
-                    console.log('this form');
-                    console.log(this.form);
                     this.$store.dispatch('updateUserDetails', this.form);
                     this.$toaster.success("Profile Updated!");
                     setTimeout(function(){
@@ -1502,7 +1500,6 @@
             }
         },
         created() {
-            console.log(this.$store.state.user);
             let config = {
                 headers: {
                     'Authorization': 'Bearer ' + this.$store.state.token

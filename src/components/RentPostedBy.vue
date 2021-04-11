@@ -4,9 +4,9 @@
             <div class="container">
                 <h2 class="text-center mb-5">Available Right Now!</h2>
                 <!-- Remind me -->
-                <div class="game-remind-me">
-                    <input id="remindme" type="checkbox">
-                    <label for="remindme">Remind me when available</label>
+                <div class="game-remind-me" v-if="reminder">
+                    <input id="reminder" type="checkbox"  @change="submitReminder($event)" :checked="reminderChecked">
+                    <label for="reminder">Remind me when available</label>
                 </div>
                 <div class="game-available-section--table">
                     <table class="table table-borderless rented-dashbord">
@@ -199,6 +199,9 @@
                 userDetails: null,
                 isExistsInCart: false,
                 cartItems: [],
+                reminder: false,
+                isChecked: '',
+                reminderChecked: false,
             }
         },
         computed: {
@@ -217,13 +220,6 @@
               const months = ["JAN", "FEB", "MAR","APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
               return today.getDate() + " " + months[today.getMonth()] + " " + today.getFullYear()
           },
-          availableRentPosts() {
-            return this.rentPosts.filter(post => {
-              let today = new Date();
-              let available = new Date(post.availability_from_date);
-              return today < available;
-            })
-          },
           rentStartDate() {
             let today = new Date();
             var hours = today.getHours();
@@ -240,6 +236,33 @@
           }
         },
         methods: {
+            submitReminder(event) {
+               var checkStatus = event.target.checked;
+               var gameId = this.gameId;
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                }
+               if (checkStatus == true) {
+                   this.$api.post('set-reminder/' + gameId, {game_id: gameId}, config).then(response => {
+                       if (response.status === 200) {
+                           this.$toaster.success(response.data.message);
+                           return;
+                       }
+                       this.$toaster.warning(response.data.message);
+                   })
+               }
+                if (checkStatus == false) {
+                    this.$api.post('remove-reminder/' + gameId, {game_id: gameId}, config).then(response => {
+                        if (response.status === 200) {
+                            this.$toaster.success(response.data.message);
+                            return;
+                        }
+                        this.$toaster.warning(response.data.message);
+                    })
+                }
+            },
             rentCost(week, disk_type, game_id) {
                 this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
                     this.price = response.data.price.discount_price;
@@ -281,10 +304,6 @@
                         deliveryType: this.form.deliveryType,
                         deliveryAddress: this.form.address
                     });
-                    // $('#rent_now').prop('aria-modal', false);
-                    // $('#rent_now').prop('aria-hidden', true);
-                    // $('#rent_now').modal('hide');
-                    // this.$emit('save');
                     this.modalData = false;
                 })
             },
@@ -300,23 +319,6 @@
                 }
                 return false;
             }
-            // checkIfExistsInCart(gameId) {
-            //     let cartItems = localStorage.getItem('cartItems');
-            //     console.log('cartItems');
-            //     console.log(cartItems);
-            //     console.log(gameId);
-            //     if (cartItems) {
-            //         cartItems = JSON.parse(cartItems);
-            //         let isExists = cartItems.some(item => {
-            //             if (item.rent.game.data.id == gameId) {
-            //                 return true;
-            //             }
-            //         });
-            //
-            //         return isExists;
-            //     }
-            //     return false;
-            // }
         },
         created() {
             window.scrollTo(0,0);
@@ -331,13 +333,24 @@
 
             this.$api.get('rent-posted-users/' + this.slug + '?include=game,game.basePrice,game.platforms,diskCondition,user,checkpoint.area.thana.district').then(response => {
                 this.rentPosts = response.data.data;
+                this.gameId = this.rentPosts[0].game_id;
+                if (this.gameId) {
+                    this.$api.get('check-reminder/' + this.gameId, config).then(response => {
+                        if (response.data.reminder == true) {
+                            this.reminderChecked = true
+                        }
+                    });
+                }
             });
 
             this.$api.get('user/details', config).then(response => {
                 this.user_type = response.data.data.is_verified;
             });
-
-          // localStorage.setItem('cartItems', '');
+            this.$api.get('available-rent/' + this.slug, config).then(response => {
+                if (response.data.available == true) {
+                    this.reminder = true
+                }
+            });
         },
     }
 </script>

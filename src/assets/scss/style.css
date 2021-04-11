@@ -6729,6 +6729,55 @@ html {
   font-family: gilroy-bold;
 }
 
+.game-remind-me {
+  text-align: right;
+  margin-bottom: 24px;
+}
+
+@media (max-width: 991px) {
+  .game-remind-me {
+    margin-right: 150px;
+  }
+}
+
+.game-remind-me input {
+  position: absolute;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.game-remind-me input:checked ~ label::before {
+  border: solid #FFD715;
+  border-width: 0 0 2px 2px;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  top: 8px;
+  background: transparent;
+  width: 10px;
+  height: 6px;
+  left: 7px;
+  z-index: 9;
+}
+
+.game-remind-me label {
+  position: relative;
+  padding-left: 50px;
+  cursor: pointer;
+}
+
+.game-remind-me label::after, .game-remind-me label::before {
+  content: '';
+  position: absolute;
+}
+
+.game-remind-me label::after {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #FFD715;
+  background: #411925;
+  left: 0px;
+}
+
 .support-faq {
   padding-bottom: 150px;
 }
@@ -8215,6 +8264,18 @@ html {
   height: 100%;
 }
 
+@media (min-width: 768px) {
+  .bg-image-gallery-modal .modal-dialog .modal-content .modal-body-content {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 .bg-image-gallery-modal .modal-dialog .modal-content .modal-body-content form {
   height: 100%;
   display: -webkit-box;
@@ -9521,6 +9582,10 @@ html {
 .method-btn:hover {
   background: transparent;
   color: #fff;
+}
+
+.my-earning {
+  padding-bottom: 50px;
 }
 
 .my-earning--dashboard {

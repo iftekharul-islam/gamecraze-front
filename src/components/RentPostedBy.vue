@@ -3,6 +3,11 @@
         <section class="game-available-section">
             <div class="container">
                 <h2 class="text-center mb-5">Available Right Now!</h2>
+                <!-- Remind me -->
+                <div class="game-remind-me">
+                    <input id="remindme" type="checkbox">
+                    <label for="remindme">Remind me when available</label>
+                </div>
                 <div class="game-available-section--table">
                     <table class="table table-borderless rented-dashbord">
                         <thead class="thead-dark">

@@ -986,6 +986,10 @@
             }
             .modal-body-content {
                 height: 100%;
+                @include for-min-768 {
+                    display: flex;
+                    flex-direction: column;
+                }
                 form {
                     height: 100%;
                     display: flex;

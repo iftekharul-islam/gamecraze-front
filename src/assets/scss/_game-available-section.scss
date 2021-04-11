@@ -260,3 +260,50 @@
     color: $secondery;
     @include gil-bold;
 }
+
+// remind me
+.game-remind-me {
+    text-align: right;
+    margin-bottom: 24px;
+    @include for-max-991 {
+        margin-right: 150px;
+    }
+    input {
+        position: absolute;
+        cursor: pointer;
+        opacity: 0;
+        &:checked~ {
+            label {
+                &::before {
+                    border: solid $secondery;
+                    border-width: 0 0 2px 2px;
+                    -webkit-transform: rotate( -45deg);
+                    transform: rotate( -45deg);
+                    top: 8px;
+                    background: transparent;
+                    width: 10px;
+                    height: 6px;
+                    left: 7px;
+                    z-index: 9;
+                }
+            }
+        }
+    }
+    label {
+        position: relative;
+        padding-left: 50px;
+        cursor: pointer;
+        &::after,
+        &::before {
+            content: '';
+            position: absolute;
+        }
+        &::after {
+            width: 24px;
+            height: 24px;
+            border: 1px solid $secondery;
+            background: $remind-bg;
+            left: 0px;
+        }
+    }
+}

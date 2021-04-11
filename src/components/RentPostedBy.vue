@@ -10,7 +10,7 @@
                 </div>
                 <div class="game-available-section--table">
                     <table class="table table-borderless rented-dashbord">
-                        <thead class="thead-dark">
+                        <thead class="">
                         <tr>
                             <th scope="col">Game Owner </th>
                             <th scope="col">Status</th>
@@ -25,7 +25,7 @@
                         <tr v-for="(rent, index) in rentPosts" :key="index"  data-toggle="modal" :data-target="(user_type == false & rent.disk_type == true) ? '#warning' : '#rent_now'" @click="setModalData(rent)" :class="{disablePost: rent.user_id === $store.state.userId || rent.rented_user_id !== null}">
                             <td scope="col" v-if="rent.user.data.image"><img :src="rent.user.data.image" alt="renter">{{ rent.user.data.name }}</td>
                             <td scope="col" v-else><img width="80px" v-if="rent.user.data.gender === 'Male'" src="../assets/img/male.png" alt="renter"><img width="80px" v-else-if="rent.user.data.gender === 'Female'" src="../assets/img/female.png" alt="renter"><img v-else src="../assets/img/avatar.png" width="80px" alt="renter">{{ rent.user.data.name }}</td>
-                            <td scope="col" v-if="rent.rented_user_id !== null">Rented</td>
+                            <td scope="col" v-if="rent.rented_user_id !== null"><span>Rented</span></td>
                             <td scope="col" v-else-if="rent.user_id === $store.state.userId">Owner</td>
                             <td scope="col" v-else>Available</td>
 <!--                            <td scope="col" v-if="rent.checkpoint">{{ rent.checkpoint.data.area.data.name }}</td>-->
@@ -33,7 +33,7 @@
                             <td scope="col" v-if="rent.disk_type == 1">Physical Disk</td>
                             <td scope="col" v-else>Digital Disk</td>
                             <td scope="col">{{ formattedDate(rent.availability_from_date) }}</td>
-                            <td scope="col">{{ rent.max_number_of_week}} week(s)</td>
+                            <td scope="col"><span>{{ rent.max_number_of_week}} week(s)</span></td>
                             <td>
                                 <del class="mr-4"><span> ৳</span> {{ rent.price_combination.regular_price}}</del>
                                 <span class="new-price"><span>৳</span> {{ rent.price_combination.discount_price}}</span>

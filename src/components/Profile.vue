@@ -469,7 +469,7 @@
                                              <div class="form-group post-rent--form-group">
                                                 <label class=" post-rent--form-group--label"></label>
                                                 <div class=" post-rent--form-group--input">
-                                                    <a href="/lend-notice" target="_blank" class="secondery-border text-secondery d-flex align-items-center justify-content-center h-48 game-rent-bg">Learn about how to create a post</a>
+                                                    <router-link  class="secondery-border text-secondery d-flex align-items-center justify-content-center h-48 game-rent-bg" to="/lend-notice" >Learn about how to create a post</router-link>
                                                 </div>
                                             </div>
 
@@ -1330,7 +1330,6 @@
                 this.form.checkpoint = '';
             },
             onRentSubmit () {
-                this.isRentLoading = true;
                 this.$refs.form.validate().then(success => {
                         if (!success) {
                             window.scrollTo({
@@ -1345,6 +1344,7 @@
                     this.isRentLoading = false;
                     return;
                 }
+                this.isRentLoading = true;
                 let  uploadInfo = {
                     game_id: this.rentData.game.id,
                     // availability: this.rentData.availability,

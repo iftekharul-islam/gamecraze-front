@@ -469,7 +469,7 @@
                                              <div class="form-group post-rent--form-group">
                                                 <label class=" post-rent--form-group--label"></label>
                                                 <div class=" post-rent--form-group--input">
-                                                    <router-link  class="secondery-border text-secondery d-flex align-items-center justify-content-center h-48 game-rent-bg" to="/lend-notice" >Learn about how to create a post</router-link>
+                                                    <router-link  class="secondery-border text-secondery d-flex align-items-center justify-content-center h-48 game-rent-bg" to="/lend-notice" target="_blank">Learn about how to create a post</router-link>
                                                 </div>
                                             </div>
 
@@ -1297,7 +1297,7 @@
                         return;
                     }
                     let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
-                    if (fileSzie > 5120) { //2mb
+                    if (fileSzie > 5120) { //5mb
                         this.$toaster.warning('Maximum allowed file size 5MB');
                         return;
                     }
@@ -1316,7 +1316,7 @@
                         return;
                     }
                     let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
-                    if (fileSzie > 5120) { //2mb
+                    if (fileSzie > 5120) { //5mb
                         this.$toaster.warning('Maximum allowed file size 5MB');
                         return;
                     }

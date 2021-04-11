@@ -1408,6 +1408,10 @@
   background: #c7c7c7;
 }
 
+.game-rent-bg {
+  background: rgba(255, 215, 21, 0.25);
+}
+
 .gamehub-warning-bg {
   background: rgba(255, 215, 21, 0.7);
 }

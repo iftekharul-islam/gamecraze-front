@@ -466,6 +466,13 @@
 <!--                                            &lt;!&ndash; Error text &ndash;&gt;-->
 <!--                                            <span class="error-message mb-a-5 shake-infinite top-error-rent-post d-flex justify-content-center w-fit m-a-auto pb-a-5" v-if="errors.length">Please fill up all required field</span>-->
                                             <!-- form-group -->
+                                             <div class="form-group post-rent--form-group">
+                                                <label class=" post-rent--form-group--label"></label>
+                                                <div class=" post-rent--form-group--input">
+                                                    <a href="/lend-notice" target="_blank" class="secondery-border text-secondery d-flex align-items-center justify-content-center h-48 game-rent-bg">Learn about how to create a post</a>
+                                                </div>
+                                            </div>
+
                                             <div class="form-group post-rent--form-group">
                                                 <label class=" post-rent--form-group--label">Game Name:</label>
                                                 <div class=" post-rent--form-group--input">

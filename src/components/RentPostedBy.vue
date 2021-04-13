@@ -28,7 +28,7 @@
                             <td scope="col" v-if="rent.rented_user_id !== null"><span>Rented</span></td>
                             <td scope="col" v-else-if="rent.user_id === $store.state.userId">Owner</td>
                             <td scope="col" v-else>Available</td>
-<!--                            <td scope="col" v-if="rent.checkpoint">{{ rent.checkpoint.data.area.data.name }}</td>-->
+                            <!--                            <td scope="col" v-if="rent.checkpoint">{{ rent.checkpoint.data.area.data.name }}</td>-->
                             <td scope="col" v-else>Not Set</td>
                             <td scope="col" v-if="rent.disk_type == 1">Physical Disk</td>
                             <td scope="col" v-else>Digital Disk</td>
@@ -347,7 +347,7 @@
                 this.user_type = response.data.data.is_verified;
             });
             this.$api.get('available-rent/' + this.slug, config).then(response => {
-                if (response.data.available == true) {
+                if (response.data.available == false) {
                     this.reminder = true
                 }
             });

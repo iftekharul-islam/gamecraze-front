@@ -44,6 +44,7 @@ import Terms from '../components/Terms';
 import Forum from '../components/Forum';
 import Stats from '../components/Stats';
 import RentPostedBy from '../components/RentPostedBy';
+import RentPricing from '../components/RentPostedByPriceList';
 import Elite from '../components/Elite';
 import Rookie from '../components/Rookie';
 import Tournament from '../components/Tournament';
@@ -368,6 +369,15 @@ let router = new Router({
             path: '/rent-posted-users/:slug',
             name: 'RentPostedBy',
             component: RentPostedBy,
+            props: true,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/rent-price/:slug',
+            name: 'RentPricing',
+            component: RentPricing,
             props: true,
             meta: {
                 requiresAuth: false

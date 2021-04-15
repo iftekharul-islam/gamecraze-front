@@ -347,6 +347,7 @@
                 this.user_type = response.data.data.is_verified;
             });
             this.$api.get('available-rent/' + this.slug, config).then(response => {
+                console.log(response.data.available);
                 if (response.data.available == false) {
                     this.reminder = true
                 }

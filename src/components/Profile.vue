@@ -107,11 +107,12 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="nav nav-pills user-profile-details--nav" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link" id="v-pills-overview-tab" data-toggle="pill" href="#v-pills-overview" role="tab" aria-controls="v-pills-overview" aria-selected="true"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon1.png" alt="profile icon"> <img src="../assets/img/active-profile-icon1.png" class="img-active" alt="profile icon"></div> <span>Overview</span></a>
-                        <a class="nav-link active" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon2.png" alt="profile icon"> <img src="../assets/img/active-profile-icon2.png" class="img-active" alt="profile icon"></div> <span>Dashboard</span></a>
-                        <a class="nav-link" id="v-pills-post-rent-tab" data-toggle="pill" href="#v-pills-post-rent" role="tab" aria-controls="v-pills-post-rent" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon3.png" alt="profile icon"> <img src="../assets/img/active-profile-icon3.png" class="img-active" alt="profile icon"></div> <span>Post for Lend</span></a>
-                        <a class="nav-link" id="v-pills-edit-profile-tab" data-toggle="pill" href="#v-pills-edit-profile" role="tab" aria-controls="v-pills-edit-profile" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon4.png" alt="profile icon"> <img src="../assets/img/active-profile-icon4.png" class="img-active" alt="profile icon"></div> <span>Edit Profile</span></a>
-                        <a class="nav-link" id="v-pills-my-earning-tab" data-toggle="pill" href="#v-pills-my-earning" role="tab" aria-controls="v-pills-my-earning" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/earn.png" alt="profile icon"> <img src="../assets/img/active-earn.png" class="img-active" alt="profile icon"></div> <span>My Earning</span></a>
+                            <a class="nav-link" id="v-pills-overview-tab" data-toggle="pill" href="#v-pills-overview" role="tab" aria-controls="v-pills-overview" aria-selected="true"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon1.png" alt="profile icon"> <img src="../assets/img/active-profile-icon1.png" class="img-active" alt="profile icon"></div> <span>Overview</span></a>
+                            <a class="nav-link active" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon2.png" alt="profile icon"> <img src="../assets/img/active-profile-icon2.png" class="img-active" alt="profile icon"></div> <span>Dashboard</span></a>
+                            <a class="nav-link" id="v-pills-post-rent-tab" data-toggle="pill" href="#v-pills-post-rent" role="tab" aria-controls="v-pills-post-rent" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon3.png" alt="profile icon"> <img src="../assets/img/active-profile-icon3.png" class="img-active" alt="profile icon"></div> <span>Post for Lend</span></a>
+                            <a class="nav-link" id="v-pills-edit-profile-tab" data-toggle="pill" href="#v-pills-edit-profile" role="tab" aria-controls="v-pills-edit-profile" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon4.png" alt="profile icon"> <img src="../assets/img/active-profile-icon4.png" class="img-active" alt="profile icon"></div> <span>Edit Profile</span></a>
+                            <a class="nav-link" id="v-pills-my-earning-tab" data-toggle="pill" href="#v-pills-my-earning" role="tab" aria-controls="v-pills-my-earning" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/earn.png" alt="profile icon"> <img src="../assets/img/active-earn.png" class="img-active" alt="profile icon"></div> <span>My Earning</span></a>
+                            <a class="nav-link" id="v-pills-refer-tab" data-toggle="pill" href="#v-pills-refer" role="tab" aria-controls="v-pills-refer" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/refer.png" alt="profile icon"> <img src="../assets/img/refer-active.png" class="img-active" alt="profile icon"></div> <span>Refer friend</span></a>
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -903,6 +904,65 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Refer friend -->
+
+                            <div class="tab-pane fade" id="v-pills-refer" role="tabpanel" aria-labelledby="v-pills-refer-tab">
+                                <div class="refer-friend">
+                                    <div class="refer-friend--link">
+                                        <p>Refer link</p>
+                                        <div class="refer-friend--link--input-group d-flex">
+                                            <input type="text" class="refer-friend--link--input-group--input">
+                                            <div class="refer-friend--link--input-group--append">
+                                                <span>Copy link</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- refer earning -->
+                                     <div class="my-earning--dashboard">
+                                        <div class="my-earning--dashboard--content">
+                                            <h4>Lifetime earnings</h4>
+                                            <h2>350 Taka</h2>
+                                        </div>
+                                        <div class="my-earning--dashboard--content">
+                                            <h4>Payable amount</h4>
+                                            <h2>420 Taka</h2>
+                                        </div>
+                                    </div>
+                                    <!-- refer amount -->
+                                    <div class="d-flex flex-column flex-sm-row text-center text-sm-left align-items-center justify-content-between">
+                                        <h6 class="mr-4 gray-text">Do you want to use referal earning amount?</h6>
+                                        <a href="#" class="btn--secondery"><span>RENT GAME</span></a>
+                                    </div>
+                                    <!-- refer history -->
+                                    <div class="refer-history">
+                                        <h6 class="mr-4 gray-text">Referral history</h6>
+                                        <div class="table-responsive">
+                                             <table class="table my-earning--payment-history--table">
+                                                <thead>
+                                                    <tr>
+                                                    <th scope="col">Date</th>
+                                                    <th scope="col">Email address</th>
+                                                    <th scope="col">Name</th>
+                                                    <th scope="col">Status</th>
+                                                    <th scope="col">Earned</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>12-1-1</td>
+                                                        <td>emm@mail.com</td>
+                                                        <td>Takla</td>
+                                                        <td>Boroloksz</td>
+                                                        <td>200 taka</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                         </div>
                         </div>
                     </div>

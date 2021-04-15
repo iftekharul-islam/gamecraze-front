@@ -1,0 +1,35 @@
+.refer-friend {
+    &--link {
+        p {
+            font-size: 20px;
+        }
+        &--input-group {
+            margin-bottom: 44px;
+            input {
+                border: 0;
+                height: 50px;
+                font-size: 20px;
+                &:focus {
+                    outline: none;
+                }
+            }
+            &--append {
+                span {
+                    width: 160px;
+                    background: $secondery;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    height: 100%;
+                    font-size: 20px;
+                    color: $text-dark;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}
+
+.refer-history {
+    margin-top: 50px;
+}

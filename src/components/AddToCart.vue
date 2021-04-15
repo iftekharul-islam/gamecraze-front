@@ -157,7 +157,7 @@
                                             <span aria-hidden="true" @click="showRentCountModal = false" class="close-modal"></span>
                                         </button>
                                         <div class="modal-body-content">
-                                            <p>You can not rent more than two games at a time please remove any {{ itemRemovable }} games to procced to order.</p>
+                                            <p>You can not rent more than {{ $store.state.user.rent_limit }} games at a time please remove any {{ itemRemovable }} games to procced to order.</p>
                                         </div>
                                     </div>
                                 </div>

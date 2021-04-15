@@ -131,7 +131,7 @@
         <!-- promotion Notification -->
         <div class="promo-notification mt-1">
             <div class="alert gamehub-warning-bg alert-dismissible fade show mb-0 br-0 text-center text-black gil-bold f-s-20 position-fixed w-100 z-index-999" role="alert">
-               15% off - Just for you! <router-link to="/games" class="text-dark"><u>Rent Now</u></router-link>
+                Play digital games free for a week & enjoy 15% discount on Physical Games. <router-link to="/games" class="text-dark"><u>Rent Now</u></router-link>
               <button type="button" class="close opa-10 x-close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true" class="x-icon"></span>
               </button>

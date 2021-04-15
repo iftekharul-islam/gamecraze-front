@@ -1388,6 +1388,10 @@
   color: #F16A46;
 }
 
+.gray-text {
+  color: #808080;
+}
+
 .gamehub-success {
   color: #66CC33;
 }
@@ -7262,7 +7266,7 @@ html {
 
 @media (max-width: 575px) {
   .user-profile-details--nav a {
-    font-size: 12px;
+    font-size: 10px;
   }
 }
 
@@ -10318,6 +10322,46 @@ html {
 
 .pricing-plan--card--description {
   margin-bottom: 20px;
+}
+
+.refer-friend--link p {
+  font-size: 20px;
+}
+
+.refer-friend--link--input-group {
+  margin-bottom: 44px;
+}
+
+.refer-friend--link--input-group input {
+  border: 0;
+  height: 50px;
+  font-size: 20px;
+}
+
+.refer-friend--link--input-group input:focus {
+  outline: none;
+}
+
+.refer-friend--link--input-group--append span {
+  width: 160px;
+  background: #FFD715;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100%;
+  font-size: 20px;
+  color: #000;
+  cursor: pointer;
+}
+
+.refer-history {
+  margin-top: 50px;
 }
 
 .btn:focus {

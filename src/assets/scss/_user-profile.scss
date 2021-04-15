@@ -216,7 +216,7 @@
                 padding: 0;
             }
             @include for-max-575 {
-                font-size: 12px;
+                font-size: 10px;
             }
             @include for-min-992 {
                 &:last-of-type {

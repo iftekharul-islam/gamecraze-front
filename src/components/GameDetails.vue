@@ -11,7 +11,7 @@
             </div>
             <div class="container">
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-7">
                         <div class="games-header-section--content" v-if="game">
                             <a href="#" class="d-block game-name-img"><h2>{{game.name}}</h2></a>
                             <p>{{game.description.substring(0, 300) | strippedContent}} . . .</p>

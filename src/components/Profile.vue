@@ -170,17 +170,6 @@
                                                 <td v-if="user.identification_image"><img :src="user.identification_image" alt="nid" class="img-fluid"></td>
                                                 <td v-else><img src="" alt="nid" class="img-fluid"></td>
                                             </tr>
-                                            <tr>
-                                                <td scope="row">Generate Link:</td>
-                                                <td v-if="user.referral_url">{{ user.referral_url }}</td>
-                                                <button class="btn-success"
-                                                        v-clipboard:copy="user.referral_url"
-                                                        v-clipboard:success="onCopy"
-                                                        v-clipboard:error="onError">
-                                                    Copy to clipboard
-                                                </button>
-
-                                            </tr>
                                         </tbody>
                                     </table>
                                 </div>
@@ -911,8 +900,11 @@
                                     <div class="refer-friend--link">
                                         <p>Refer link</p>
                                         <div class="refer-friend--link--input-group d-flex">
-                                            <input type="text" class="refer-friend--link--input-group--input">
-                                            <div class="refer-friend--link--input-group--append">
+                                            <input type="text" class="refer-friend--link--input-group--input" :value="user.referral_url" v-if="user.referral_url" readonly>
+                                            <div class="refer-friend--link--input-group--append"
+                                                 v-clipboard:copy="user.referral_url"
+                                                 v-clipboard:success="onCopy"
+                                                 v-clipboard:error="onError">
                                                 <span>Copy link</span>
                                             </div>
                                         </div>
@@ -920,44 +912,43 @@
                                     <!-- refer earning -->
                                      <div class="my-earning--dashboard">
                                         <div class="my-earning--dashboard--content">
-                                            <h4>Lifetime earnings</h4>
-                                            <h2>350 Taka</h2>
+                                            <h4>Lifetime Referral Earnings</h4>
+                                            <h2>{{ walletTotalEarned }} Taka</h2>
                                         </div>
                                         <div class="my-earning--dashboard--content">
-                                            <h4>Payable amount</h4>
-                                            <h2>420 Taka</h2>
+                                            <h4>Usable amount</h4>
+                                            <h2>{{ walletUsableAmount }} Taka</h2>
                                         </div>
                                     </div>
                                     <!-- refer amount -->
                                     <div class="d-flex flex-column flex-sm-row text-center text-sm-left align-items-center justify-content-between">
                                         <h6 class="mr-4 gray-text">Do you want to use referal earning amount?</h6>
-                                        <a href="#" class="btn--secondery"><span>RENT GAME</span></a>
+                                        <router-link to="/games" class="btn--secondery"><span>RENT GAME</span></router-link>
                                     </div>
                                     <!-- refer history -->
                                     <div class="refer-history">
                                         <h6 class="mr-4 gray-text">Referral history</h6>
-                                        <div class="table-responsive">
+                                        <div class="table-responsive" v-if="walletHistory.length">
                                              <table class="table my-earning--payment-history--table">
                                                 <thead>
                                                     <tr>
                                                     <th scope="col">Date</th>
-                                                    <th scope="col">Email address</th>
                                                     <th scope="col">Name</th>
-                                                    <th scope="col">Status</th>
+                                                    <th scope="col">Email address</th>
                                                     <th scope="col">Earned</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
-                                                        <td>12-1-1</td>
-                                                        <td>emm@mail.com</td>
-                                                        <td>Takla</td>
-                                                        <td>Boroloksz</td>
-                                                        <td>200 taka</td>
+                                                    <tr v-for="item in walletHistory">
+                                                        <td>{{ formattedDate(item.created_at) }}</td>
+                                                        <td>{{ item.referred_user ? item.referred_user.name :'N/A' }}</td>
+                                                        <td>{{ item.referred_user ? item.referred_user.email :  'N/A' }}</td>
+                                                        <td>{{ item.amount }}</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
                                         </div>
+                                        <span class="text-center d-block" v-else>No Referreal history found</span>
                                     </div>
                                 </div>
                             </div>
@@ -1046,6 +1037,9 @@
                 coverUrl: '',
                 activeCoverImage: '',
                 dummyCover: false,
+                walletTotalEarned: 0,
+                walletUsableAmount: 0,
+                walletHistory: [],
 
             }
         },
@@ -1649,6 +1643,12 @@
                 if (!this.activeCoverImage.length){
                     this.dummyCover = true;
                 }
+            });
+            this.$api.get('referral-history', config).then(response =>
+            {
+                this.walletTotalEarned = response.data.referred_history.total_earning;
+                this.walletUsableAmount = response.data.referred_history.usable_amount;
+                this.walletHistory = response.data.referred_history.history;
             });
 
 

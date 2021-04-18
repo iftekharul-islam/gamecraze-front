@@ -872,7 +872,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <span class="text-center d-block" v-else>No transaction history found</span>
+                                        <span class="text-center d-block mt-a-18" v-else>No transaction history found</span>
 <!--                                        <nav aria-label="Page navigation example" class="my-earning&#45;&#45;payment-history&#45;&#45;pagination">-->
 <!--                                            <ul class="pagination">-->
 <!--                                                <li class="page-item">-->
@@ -922,7 +922,7 @@
                                     </div>
                                     <!-- refer amount -->
                                     <div class="d-flex flex-column flex-sm-row text-center text-sm-left align-items-center justify-content-between">
-                                        <h6 class="mr-4 gray-text">Do you want to use referal earning amount?</h6>
+                                        <h6 class="mr-4 gray-text">Do you want to use referral earning amount?</h6>
                                         <router-link to="/games" class="btn--secondery"><span>RENT GAME</span></router-link>
                                     </div>
                                     <!-- refer history -->
@@ -948,7 +948,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <span class="text-center d-block" v-else>No Referreal history found</span>
+                                        <span class="text-center d-block mt-a-18" v-else>No Referreal history found</span>
                                     </div>
                                 </div>
                             </div>

@@ -7189,7 +7189,7 @@ html {
 
 .user-profile-details {
   padding-top: 50px;
-  padding-bottom: 150px;
+  padding-bottom: 200px;
 }
 
 .user-profile-details--nav {
@@ -8834,17 +8834,17 @@ html {
 }
 
 .cart-section--item-price-box--payment-method {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  background: #141A27;
+}
+
+.cart-section--item-price-box--payment-method p {
   padding: 20px;
-  background: rgba(255, 215, 21, 0.2);
+}
+
+.cart-section--item-price-box--payment-method .content {
+  border-top: 1px solid #FFD715;
+  padding: 20px;
+  padding-left: 51px;
 }
 
 .cart-section .promotional-code--input-group {

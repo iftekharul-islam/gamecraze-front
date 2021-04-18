@@ -73,7 +73,16 @@
                   </div>
                    <div class="cart-section--item-price-box--payment-method secondery-border mt-a-6">
                             <p class="mb-0">Payment Method</p>
-                            <p class="mb-0">Cash on Delivery</p>
+                            <div class="d-flex align-items-center justify-content-between content">
+                                <div class="checkbox-parents">
+                                    <input type="checkbox" id="cod" class="checkbox-parents--input" checked>
+                                    <label for="cod" class="checkbox-parents--label">Cash on Delivery </label>
+                                </div>
+                                <div class="checkbox-parents">
+                                    <input type="checkbox" id="refer" class="checkbox-parents--input">
+                                    <label for="refer" class="checkbox-parents--label">Refarral amount </label>
+                                </div>
+                            </div>
                       </div>
                   <!-- Enter Adsress -->
                     <ValidationObserver v-slot="{ handleSubmit }">

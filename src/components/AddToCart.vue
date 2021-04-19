@@ -78,9 +78,9 @@
                                     <input type="checkbox" id="cod" class="checkbox-parents--input" checked>
                                     <label for="cod" class="checkbox-parents--label">Cash on Delivery </label>
                                 </div>
-                                <div class="checkbox-parents">
-                                    <input type="checkbox" id="refer" class="checkbox-parents--input">
-                                    <label for="refer" class="checkbox-parents--label">Refarral amount </label>
+                                <div class="checkbox-parents" v-if="availableWallet">
+                                    <input type="checkbox" id="refer" @click="spendWalletExistAmount($event)" class="checkbox-parents--input">
+                                    <label for="refer" class="checkbox-parents--label">Referral amount </label>
                                 </div>
                             </div>
                       </div>
@@ -242,9 +242,25 @@
               offerAmount: 0,
               digitalTypePricing: 20,
               totalPrice: 0,
+              availableWallet: false,
+              spendWalletAmount: 0,
           }
       },
     methods: {
+        spendWalletExistAmount(event) {
+            if (event.target.checked == true) {
+                if (this.totalPrice > this.user.wallet) {
+                    this.totalPrice = this.totalPrice - this.user.wallet;
+                    this.spendWalletAmount = this.user.wallet
+                } else {
+                    this.spendWalletAmount = this.totalPrice;
+                    this.totalPrice = 0 ;
+                }
+                console.log(this.spendWalletAmount);
+            } else {
+                this.totalPrice = this.totalPrice + this.spendWalletAmount;
+            }
+        },
         authData () {
             var auth = this.$store.getters.ifAuthenticated;
             if (auth){
@@ -255,6 +271,9 @@
                 };
                 this.$api.get('user/details', config).then(response => {
                     this.user = response.data.data;
+                    if (this.user.wallet != 0) {
+                        this.availableWallet = true;
+                    }
                 })
                     .catch( err => {
                     console.log(err);
@@ -374,6 +393,7 @@
                 cartItems: this.newCartItems,
                 deliveryCharge: this.deliveryCharge,
                 totalAmount: this.totalPrice,
+                spendWalletAmount: this.spendWalletAmount,
             };
             this.$api.post('lend-game', data, config).then(response => {
                 if (response.data.error === false) {

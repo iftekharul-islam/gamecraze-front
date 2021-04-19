@@ -318,8 +318,8 @@
                         <div class="col-md-11 ml-auto">
                             <div class="row">
                                 <div class="col-sm-6 col-md-3">
-                            <div class="footer-menu-content">
-                                <div class="footer-top mb-5">
+                            <div class="footer-menu-content mb-5 mb-sm-0">
+                                <div class="footer-top mb-3 mb-sm-5">
                                     <a href="/" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
                                     <div class="footer-top--right">
                                     </div>
@@ -330,7 +330,7 @@
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-3">
-                            <div class="footer-menu-content">
+                            <div class="footer-menu-content mb-5 mb-sm-0">
                                 <div class="footer-menu-content--address">
                                     <p class="footer-menu-content--address--text">Email Us</p>
                                     <p class="footer-menu-content--address--text"><a href="mailto:contact@augnitive.com">contact@augnitive.com</a></p>

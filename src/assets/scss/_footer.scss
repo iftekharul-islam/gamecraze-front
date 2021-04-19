@@ -107,6 +107,9 @@
     }
     &--address {
         margin-bottom: 24px;
+        @include for-max-575 {
+            margin-bottom: 16px;
+        }
         &--text {
             margin-bottom: 0;
             &:first-of-type {

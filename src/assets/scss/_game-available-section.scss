@@ -199,6 +199,7 @@
         }
     }
     &--table-bottom {
+        width: 100%;
         tr {
             td {
                 &:last-of-type {
@@ -245,19 +246,6 @@
                 padding-bottom: 0px;
             }
             td {
-                select,
-                input,
-                .seller-address {
-                    @include for-max-991 {
-                        width: 63%;
-                    }
-                    @include for-max-768 {
-                        width: 67%;
-                    }
-                    @include for-max-575 {
-                        width: 43%;
-                    }
-                }
                 @include for-max-768 {
                     padding-top: 0;
                     padding-bottom: 0;

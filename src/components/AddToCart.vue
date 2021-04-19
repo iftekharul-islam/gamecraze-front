@@ -28,15 +28,21 @@
                             <td scope="col" v-if="item.disk_type == 1">Physical</td>
                             <td scope="col">{{ item.rent_week }}</td>
                             <td scope="col">
-                              <div class="d-flex align-items-center justify-content-between">
-                                  <del><span>৳ </span>
-                                      {{ item.regular_price }}
-                                  </del>
+                              <div class="d-flex align-items-center justify-content-between" v-if="user.achieve_discount == true && item.disk_type == 0">
                                   <div class="new-price"><span>৳ </span>
-                                      {{ item.discount_price }}
+                                      {{ item.regular_price }}
                                   </div>
                                 <div class="item-del" @click="onRemoveCartItem(index, item.id)"><i class="fas fa-trash-alt icon"></i></div>
                               </div>
+                                <div class="d-flex align-items-center justify-content-between" v-else>
+                                    <del><span>৳ </span>
+                                        {{ item.regular_price }}
+                                    </del>
+                                    <div class="new-price"><span>৳ </span>
+                                        {{ item.discount_price }}
+                                    </div>
+                                    <div class="item-del" @click="onRemoveCartItem(index, item.id)"><i class="fas fa-trash-alt icon"></i></div>
+                                </div>
                             </td>
                         </tr>
                       </tbody>
@@ -345,22 +351,6 @@
             });
 
         },
-        subTotal() {
-            if (this.cart != null) {
-              for (let i = 0; i < this.cart.length; i++) {
-                  this.$store.state.totalAmount = this.$store.state.totalAmount + this.price;
-              }
-
-              return this.$store.state.totalAmount;
-            }
-        },
-        updateRentWeek(index) {
-            localStorage.setItem('lendWeek', JSON.stringify(this.$store.state.lendWeek));
-            this.$store.state.totalAmount = 0;
-            for (let i=0;i<this.cart.length;i++) {
-                this.$store.state.totalAmount = this.$store.state.totalAmount + this.price;
-            }
-        },
         placeOrder() {
             var config = {
                 headers: {
@@ -431,7 +421,6 @@
             });
         },
         getCartItems() {
-          // let cartItems = localStorage.getItem('cartItems');
           if (this.newCartItems != '' && this.newCartItems != null) {
             this.newCartItems = JSON.parse(this.newCartItems);
               if (this.newCartItems) {

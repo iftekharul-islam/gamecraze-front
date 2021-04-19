@@ -912,7 +912,7 @@
                                     <!-- refer earning -->
                                      <div class="my-earning--dashboard">
                                         <div class="my-earning--dashboard--content">
-                                            <h4>Lifetime Referral Earnings</h4>
+                                            <h4>Used Referral Amount</h4>
                                             <h2>{{ walletTotalEarned }} Taka</h2>
                                         </div>
                                         <div class="my-earning--dashboard--content">

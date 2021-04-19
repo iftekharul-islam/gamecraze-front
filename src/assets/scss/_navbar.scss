@@ -632,6 +632,9 @@
 // Notification
 .promo-notification {
     height: 56px;
+    @include for-max-575 {
+        height: 78px;
+    }
     .alert {
         @include for-max-991 {
             top: 75px;

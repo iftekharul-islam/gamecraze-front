@@ -3143,6 +3143,12 @@ select option {
   height: 56px;
 }
 
+@media (max-width: 575px) {
+  .promo-notification {
+    height: 78px;
+  }
+}
+
 @media (max-width: 991px) {
   .promo-notification .alert {
     top: 75px;
@@ -6656,6 +6662,10 @@ html {
   }
 }
 
+.seller-information-modal--table-bottom {
+  width: 100%;
+}
+
 .seller-information-modal--table-bottom tr td:last-of-type {
   font-size: 16px;
   vertical-align: middle;
@@ -6707,30 +6717,6 @@ html {
         -ms-flex-direction: column;
             flex-direction: column;
     padding-bottom: 0px;
-  }
-}
-
-@media (max-width: 991px) {
-  .seller-information table tr td select,
-  .seller-information table tr td input,
-  .seller-information table tr td .seller-address {
-    width: 63%;
-  }
-}
-
-@media (max-width: 768px) {
-  .seller-information table tr td select,
-  .seller-information table tr td input,
-  .seller-information table tr td .seller-address {
-    width: 67%;
-  }
-}
-
-@media (max-width: 575px) {
-  .seller-information table tr td select,
-  .seller-information table tr td input,
-  .seller-information table tr td .seller-address {
-    width: 43%;
   }
 }
 
@@ -8696,7 +8682,7 @@ html {
 @media (max-width: 992px) {
   .cart-section {
     padding-top: 50px;
-    padding-bottom: 120px;
+    padding-bottom: 200px;
   }
 }
 
@@ -10794,6 +10780,12 @@ html {
 
 .footer-menu-content--address {
   margin-bottom: 24px;
+}
+
+@media (max-width: 575px) {
+  .footer-menu-content--address {
+    margin-bottom: 16px;
+  }
 }
 
 .footer-menu-content--address--text {

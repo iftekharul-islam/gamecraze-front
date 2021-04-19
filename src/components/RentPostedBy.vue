@@ -121,10 +121,10 @@
                                                 <td>Return Date:</td>
                                                 <td>{{ returnDate }}</td>
                                             </tr>
-                                            <tr>
+                                            <tr v-if="requiredAddress">
                                                 <td>Delivery Type:</td>
                                                 <td v-if="modalData">
-                                                  <ValidationProvider name="Delivery type" rules="required" v-slot="{ errors }">
+                                                  <ValidationProvider name="Delivery type" :rules="{required: requiredAddress}" v-slot="{ errors }">
                                                     <select class="form-control" id="exampleFormControlSelect2" v-model="form.deliveryType">
                                                         <option value="" disabled selected="selected">Please select delivery type</option>
                                                         <option value="0">Home Delivery</option>
@@ -213,6 +213,7 @@
                 isChecked: '',
                 reminderChecked: false,
                 achievedDiscount: 0,
+                requiredAddress: true,
             }
         },
         computed: {
@@ -284,6 +285,9 @@
             },
             setModalData(rent) {
                 this.form.week = '';
+                if (rent.disk_type == 0) {
+                    this.requiredAddress = false
+                }
 
                 if (this.checkIfExistsInCart(rent.game.data.id)) {
                     this.isExistsInCart = true;
@@ -312,13 +316,16 @@
                     if (response.data.error == true) {
                         this.$swal('Game is already in the cart');
                     }
-                    this.$store.dispatch('addToCart', {
-                        rent: this.modalData,
-                        lendWeek: this.form.week,
-                        deliveryType: this.form.deliveryType,
-                        deliveryAddress: this.form.address
-                    });
+                    // this.$store.dispatch('addToCart', {
+                    //     rent: this.modalData,
+                    //     lendWeek: this.form.week,
+                    //     deliveryType: this.form.deliveryType,
+                    //     deliveryAddress: this.form.address
+                    // });
                     this.modalData = false;
+                    this.$router.push('/cart').then(err => {
+                        location.reload();
+                    });
                 })
             },
             checkIfExistsInCart(gameId) {

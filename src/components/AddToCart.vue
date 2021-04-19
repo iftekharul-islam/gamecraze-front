@@ -28,15 +28,21 @@
                             <td scope="col" v-if="item.disk_type == 1">Physical</td>
                             <td scope="col">{{ item.rent_week }}</td>
                             <td scope="col">
-                              <div class="d-flex align-items-center justify-content-between">
-                                  <del><span>৳ </span>
-                                      {{ item.regular_price }}
-                                  </del>
+                              <div class="d-flex align-items-center justify-content-between" v-if="user.achieve_discount == true && item.disk_type == 0">
                                   <div class="new-price"><span>৳ </span>
-                                      {{ item.discount_price }}
+                                      {{ item.regular_price }}
                                   </div>
                                 <div class="item-del" @click="onRemoveCartItem(index, item.id)"><i class="fas fa-trash-alt icon"></i></div>
                               </div>
+                                <div class="d-flex align-items-center justify-content-between" v-else>
+                                    <del><span>৳ </span>
+                                        {{ item.regular_price }}
+                                    </del>
+                                    <div class="new-price"><span>৳ </span>
+                                        {{ item.discount_price }}
+                                    </div>
+                                    <div class="item-del" @click="onRemoveCartItem(index, item.id)"><i class="fas fa-trash-alt icon"></i></div>
+                                </div>
                             </td>
                         </tr>
                       </tbody>
@@ -78,9 +84,9 @@
                                     <input type="checkbox" id="cod" class="checkbox-parents--input" checked>
                                     <label for="cod" class="checkbox-parents--label">Cash on Delivery </label>
                                 </div>
-                                <div class="checkbox-parents">
-                                    <input type="checkbox" id="refer" class="checkbox-parents--input">
-                                    <label for="refer" class="checkbox-parents--label">Refarral amount </label>
+                                <div class="checkbox-parents" v-if="availableWallet">
+                                    <input type="checkbox" id="refer" @click="spendWalletExistAmount($event)" class="checkbox-parents--input">
+                                    <label for="refer" class="checkbox-parents--label">Referral amount </label>
                                 </div>
                             </div>
                       </div>
@@ -242,9 +248,25 @@
               offerAmount: 0,
               digitalTypePricing: 20,
               totalPrice: 0,
+              availableWallet: false,
+              spendWalletAmount: 0,
           }
       },
     methods: {
+        spendWalletExistAmount(event) {
+            if (event.target.checked == true) {
+                if (this.totalPrice > this.user.wallet) {
+                    this.totalPrice = this.totalPrice - this.user.wallet;
+                    this.spendWalletAmount = this.user.wallet
+                } else {
+                    this.spendWalletAmount = this.totalPrice;
+                    this.totalPrice = 0 ;
+                }
+                console.log(this.spendWalletAmount);
+            } else {
+                this.totalPrice = this.totalPrice + this.spendWalletAmount;
+            }
+        },
         authData () {
             var auth = this.$store.getters.ifAuthenticated;
             if (auth){
@@ -255,6 +277,9 @@
                 };
                 this.$api.get('user/details', config).then(response => {
                     this.user = response.data.data;
+                    if (this.user.wallet != 0) {
+                        this.availableWallet = true;
+                    }
                 })
                     .catch( err => {
                     console.log(err);
@@ -345,22 +370,6 @@
             });
 
         },
-        subTotal() {
-            if (this.cart != null) {
-              for (let i = 0; i < this.cart.length; i++) {
-                  this.$store.state.totalAmount = this.$store.state.totalAmount + this.price;
-              }
-
-              return this.$store.state.totalAmount;
-            }
-        },
-        updateRentWeek(index) {
-            localStorage.setItem('lendWeek', JSON.stringify(this.$store.state.lendWeek));
-            this.$store.state.totalAmount = 0;
-            for (let i=0;i<this.cart.length;i++) {
-                this.$store.state.totalAmount = this.$store.state.totalAmount + this.price;
-            }
-        },
         placeOrder() {
             var config = {
                 headers: {
@@ -374,6 +383,7 @@
                 cartItems: this.newCartItems,
                 deliveryCharge: this.deliveryCharge,
                 totalAmount: this.totalPrice,
+                spendWalletAmount: this.spendWalletAmount,
             };
             this.$api.post('lend-game', data, config).then(response => {
                 if (response.data.error === false) {
@@ -431,7 +441,6 @@
             });
         },
         getCartItems() {
-          // let cartItems = localStorage.getItem('cartItems');
           if (this.newCartItems != '' && this.newCartItems != null) {
             this.newCartItems = JSON.parse(this.newCartItems);
               if (this.newCartItems) {

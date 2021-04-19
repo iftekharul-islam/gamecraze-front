@@ -35,8 +35,18 @@
                             <td scope="col">{{ formattedDate(rent.availability_from_date) }}</td>
                             <td scope="col"><span>{{ rent.max_number_of_week}} week(s)</span></td>
                             <td>
-                                <del class="mr-4"><span> ৳</span> {{ rent.price_combination.regular_price}}</del>
-                                <span class="new-price"><span>৳</span> {{ rent.price_combination.discount_price}}</span>
+                                <del class="mr-4" v-if="rent.disk_type == 0 && achievedDiscount == true">
+
+                                </del>
+                                <del class="mr-4" v-else>
+                                    <span> ৳</span> {{ rent.price_combination.regular_price}}
+                                </del>
+                                <span class="new-price" v-if="rent.disk_type == 0 && achievedDiscount == true">
+                                    <span>৳</span> {{ rent.price_combination.regular_price}}
+                                </span>
+                                <span class="new-price" v-else>
+                                    <span>৳</span> {{ rent.price_combination.discount_price}}
+                                </span>
                             </td>
                         </tr>
                         </tbody>
@@ -111,10 +121,10 @@
                                                 <td>Return Date:</td>
                                                 <td>{{ returnDate }}</td>
                                             </tr>
-                                            <tr>
+                                            <tr v-if="requiredAddress">
                                                 <td>Delivery Type:</td>
                                                 <td v-if="modalData">
-                                                  <ValidationProvider name="Delivery type" rules="required" v-slot="{ errors }">
+                                                  <ValidationProvider name="Delivery type" :rules="{required: requiredAddress}" v-slot="{ errors }">
                                                     <select class="form-control" id="exampleFormControlSelect2" v-model="form.deliveryType">
                                                         <option value="" disabled selected="selected">Please select delivery type</option>
                                                         <option value="0">Home Delivery</option>
@@ -202,6 +212,8 @@
                 reminder: false,
                 isChecked: '',
                 reminderChecked: false,
+                achievedDiscount: 0,
+                requiredAddress: true,
             }
         },
         computed: {
@@ -266,10 +278,16 @@
             rentCost(week, disk_type, game_id) {
                 this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
                     this.price = response.data.price.discount_price;
+                    if (disk_type == 0 && this.achievedDiscount == true){
+                        this.price = response.data.price.regular_price;
+                    }
                 })
             },
             setModalData(rent) {
                 this.form.week = '';
+                if (rent.disk_type == 0) {
+                    this.requiredAddress = false
+                }
 
                 if (this.checkIfExistsInCart(rent.game.data.id)) {
                     this.isExistsInCart = true;
@@ -298,13 +316,16 @@
                     if (response.data.error == true) {
                         this.$swal('Game is already in the cart');
                     }
-                    this.$store.dispatch('addToCart', {
-                        rent: this.modalData,
-                        lendWeek: this.form.week,
-                        deliveryType: this.form.deliveryType,
-                        deliveryAddress: this.form.address
-                    });
+                    // this.$store.dispatch('addToCart', {
+                    //     rent: this.modalData,
+                    //     lendWeek: this.form.week,
+                    //     deliveryType: this.form.deliveryType,
+                    //     deliveryAddress: this.form.address
+                    // });
                     this.modalData = false;
+                    this.$router.push('/cart').then(err => {
+                        location.reload();
+                    });
                 })
             },
             checkIfExistsInCart(gameId) {
@@ -345,6 +366,8 @@
 
             this.$api.get('user/details', config).then(response => {
                 this.user_type = response.data.data.is_verified;
+                this.achievedDiscount = response.data.data.achieve_discount;
+                console.log(this.achievedDiscount);
             });
             this.$api.get('available-rent/' + this.slug, config).then(response => {
                 if (response.data.available == false) {

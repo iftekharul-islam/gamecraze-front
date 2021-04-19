@@ -388,7 +388,7 @@
                                                     <div class="d-flex justify-content-between dashboard-content--rented--box--order-description">
                                                             <div class="cost flex-2">
                                                                 <p>Cost</p>
-                                                                <p class="text-secondery">{{ lend.lend_cost + Math.floor(lend.commission) }}</p>
+                                                                <p class="text-secondery">{{ lend.lend_cost }}</p>
                                                             </div>
                                                             <div class="duration flex-1">
                                                                 <p>Rent duration</p>
@@ -1037,7 +1037,7 @@
                 coverUrl: '',
                 activeCoverImage: '',
                 dummyCover: false,
-                walletTotalEarned: 0,
+                walletTotalSpend: 0,
                 walletUsableAmount: 0,
                 walletHistory: [],
 
@@ -1646,7 +1646,7 @@
             });
             this.$api.get('referral-history', config).then(response =>
             {
-                this.walletTotalEarned = response.data.referred_history.total_earning;
+                this.walletTotalSpend = response.data.referred_history.total_spend;
                 this.walletUsableAmount = response.data.referred_history.usable_amount;
                 this.walletHistory = response.data.referred_history.history;
             });

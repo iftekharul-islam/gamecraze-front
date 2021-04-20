@@ -1329,8 +1329,8 @@
                         return;
                     }
                     let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
-                    if (fileSzie > 2048) { //2mb
-                        this.$toaster.warning('Maximum allowed file size 2MB');
+                    if (fileSzie > 5102) { //5mb
+                        this.$toaster.warning('Maximum allowed file size 5MB');
                         return;
                     }
                     this.selectedFile = event.srcElement.files[0].name;
@@ -1649,6 +1649,7 @@
                 this.walletTotalSpend = response.data.referred_history.total_spend;
                 this.walletUsableAmount = response.data.referred_history.usable_amount;
                 this.walletHistory = response.data.referred_history.history;
+                console.log(this.walletHistory);
             });
 
 

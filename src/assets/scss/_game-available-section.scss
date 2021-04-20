@@ -110,6 +110,12 @@
                     height: 40px;
                     border-radius: 4px;
                 }
+                &:nth-child(4) {
+                    img {
+                        width: auto;
+                        height: 20px;
+                    }
+                }
             }
             &:hover {
                 td {

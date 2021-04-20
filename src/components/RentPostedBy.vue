@@ -16,6 +16,7 @@
                             <th scope="col">Status</th>
 <!--                            <th scope="col">Checkpoint</th>-->
                             <th scope="col">Disk type</th>
+                            <th scope="col">Platform</th>
                             <th scope="col">Available From</th>
                             <th scope="col">Available For</th>
                             <th scope="col">Price for 1st week</th>
@@ -32,6 +33,7 @@
                             <td scope="col" v-else>Not Set</td>
                             <td scope="col" v-if="rent.disk_type == 1">Physical Disk</td>
                             <td scope="col" v-else>Digital Disk</td>
+                            <td scope="col"><img :src="rent.platform.data.url" :alt="rent.platform.data.name"></td>
                             <td scope="col">{{ formattedDate(rent.availability_from_date) }}</td>
                             <td scope="col"><span>{{ rent.max_number_of_week}} week(s)</span></td>
                             <td>
@@ -68,7 +70,7 @@
                                         <tr>
                                             <td>Platform:</td>
                                             <td v-if="modalData">
-                                                <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in modalData.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name" class="mr-2"></a>
+                                                <img :src="modalData.platform.data.url" alt="ps4">
                                             </td>
                                         </tr>
                                         <tr v-if="modalData.diskCondition">
@@ -293,6 +295,7 @@
                     this.isExistsInCart = true;
                 }
                 this.modalData = rent;
+                console.log(this.modalData)
             },
             formattedDate(date) {
                 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -352,7 +355,7 @@
                     this.cartItems = response.data.data.cartItems;
             });
 
-            this.$api.get('rent-posted-users/' + this.slug + '?include=game,game.basePrice,game.platforms,diskCondition,user,checkpoint.area.thana.district').then(response => {
+            this.$api.get('rent-posted-users/' + this.slug + '?include=game,game.basePrice,platform,diskCondition,user,checkpoint.area.thana.district').then(response => {
                 this.rentPosts = response.data.data;
                 this.gameId = this.rentPosts[0].game_id;
                 if (this.gameId) {

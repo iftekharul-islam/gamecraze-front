@@ -30,16 +30,16 @@
                             <td scope="col">
                               <div class="d-flex align-items-center justify-content-between" v-if="user.achieve_discount == true && item.disk_type == 0">
                                   <div class="new-price"><span>৳ </span>
-                                      {{ item.regular_price }}
+                                      {{ item.regular_price + item.regular_commission }}
                                   </div>
                                 <div class="item-del" @click="onRemoveCartItem(index, item.id)"><i class="fas fa-trash-alt icon"></i></div>
                               </div>
                                 <div class="d-flex align-items-center justify-content-between" v-else>
                                     <del><span>৳ </span>
-                                        {{ item.regular_price }}
+                                        {{ item.regular_price + item.regular_commission }}
                                     </del>
                                     <div class="new-price"><span>৳ </span>
-                                        {{ item.discount_price }}
+                                        {{ item.discount_price + item.discount_commission }}
                                     </div>
                                     <div class="item-del" @click="onRemoveCartItem(index, item.id)"><i class="fas fa-trash-alt icon"></i></div>
                                 </div>
@@ -248,6 +248,7 @@
               offerAmount: 0,
               digitalTypePricing: 20,
               totalPrice: 0,
+              totalCommission: 0,
               availableWallet: false,
               spendWalletAmount: 0,
           }
@@ -262,7 +263,6 @@
                     this.spendWalletAmount = this.totalPrice;
                     this.totalPrice = 0 ;
                 }
-                console.log(this.spendWalletAmount);
             } else {
                 this.totalPrice = this.totalPrice + this.spendWalletAmount;
             }

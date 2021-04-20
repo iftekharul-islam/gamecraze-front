@@ -1649,7 +1649,6 @@
                 this.walletTotalSpend = response.data.referred_history.total_spend;
                 this.walletUsableAmount = response.data.referred_history.usable_amount;
                 this.walletHistory = response.data.referred_history.history;
-                console.log(this.walletHistory);
             });
 
 

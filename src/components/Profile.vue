@@ -923,7 +923,7 @@
                                     <!-- refer amount -->
                                     <div class="d-flex flex-column flex-sm-row text-center text-sm-left align-items-center justify-content-between">
                                         <h6 class="mr-4 gray-text">Do you want to use referral earning amount?</h6>
-                                        <router-link to="/games" class="btn--secondery"><span>RENT GAME</span></router-link>
+                                        <router-link to="/games" class="btn--secondery mr-3"><span>RENT GAME</span></router-link>
                                     </div>
                                     <!-- refer history -->
                                     <div class="refer-history">

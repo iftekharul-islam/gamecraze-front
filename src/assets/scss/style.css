@@ -6580,6 +6580,11 @@ html {
   border-radius: 4px;
 }
 
+.rented-dashbord tbody tr td:nth-child(4) img {
+  width: auto;
+  height: 20px;
+}
+
 .rented-dashbord tbody tr:hover td {
   border-color: #FFD715;
 }

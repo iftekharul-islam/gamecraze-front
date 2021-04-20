@@ -1609,6 +1609,11 @@ html {
     @include gil-regular;
 }
 
+// pointer events
+.pe-none {
+    pointer-events: none;
+}
+
 // **************z-index***********//
 .z-index-9 {
     z-index: 9;

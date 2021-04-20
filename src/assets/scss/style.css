@@ -1567,6 +1567,10 @@ html {
   font-family: gilroy-regular;
 }
 
+.pe-none {
+  pointer-events: none;
+}
+
 .z-index-9 {
   z-index: 9;
 }
@@ -3145,7 +3149,7 @@ select option {
 
 @media (max-width: 575px) {
   .promo-notification {
-    height: 78px;
+    height: 90px;
   }
 }
 
@@ -4732,7 +4736,7 @@ html {
 @media (max-width: 575px) {
   .login-section,
   .registration-section {
-    padding-bottom: 100px;
+    padding-bottom: 150px;
   }
 }
 
@@ -5363,7 +5367,7 @@ html {
 
 .games-categories-section {
   padding-top: 60px;
-  padding-bottom: 100px;
+  padding-bottom: 180px;
 }
 
 @media (max-width: 768px) {
@@ -6787,7 +6791,7 @@ html {
 }
 
 .support-faq {
-  padding-bottom: 150px;
+  padding-bottom: 180px;
 }
 
 .support-faq h6 {
@@ -8676,7 +8680,7 @@ html {
 
 .cart-section {
   padding-top: 100px;
-  padding-bottom: 150px;
+  padding-bottom: 180px;
 }
 
 @media (max-width: 992px) {
@@ -9699,7 +9703,7 @@ html {
 }
 
 .about-us-section {
-  padding-bottom: 100px;
+  padding-bottom: 180px;
 }
 
 .about-us-section--content {
@@ -9712,7 +9716,8 @@ html {
   }
 }
 
-.about-us-section--content p, .about-us-section--content h6 {
+.about-us-section--content p,
+.about-us-section--content h6 {
   opacity: .97;
   margin-bottom: 32px;
 }
@@ -9728,7 +9733,7 @@ html {
 }
 
 .gamehub-policy-section {
-  padding-bottom: 150px;
+  padding-bottom: 180px;
 }
 
 .gamehub-policy-section h2 {

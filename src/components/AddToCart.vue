@@ -81,8 +81,8 @@
                             <p class="mb-0">Payment Method</p>
                             <div class="d-flex align-items-center justify-content-between content">
                                 <div class="checkbox-parents">
-                                    <input type="checkbox" id="cod" class="checkbox-parents--input" checked>
-                                    <label for="cod" class="checkbox-parents--label">Cash on Delivery </label>
+                                    <input type="checkbox" id="cod" class="checkbox-parents--input user-select-none pe-none" checked>
+                                    <label for="cod" class="checkbox-parents--label user-select-none pe-none">Cash on Delivery </label>
                                 </div>
                                 <div class="checkbox-parents" v-if="availableWallet">
                                     <input type="checkbox" id="refer" @click="spendWalletExistAmount($event)" class="checkbox-parents--input">

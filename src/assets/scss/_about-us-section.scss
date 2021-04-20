@@ -1,11 +1,12 @@
 .about-us-section {
-    padding-bottom: 100px;
+    padding-bottom: 180px;
     &--content {
         max-width: 505px;
         @include for-max-768 {
             margin-left: 0;
         }
-        p,h6 {
+        p,
+        h6 {
             opacity: .97;
             margin-bottom: 32px
         }

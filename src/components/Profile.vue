@@ -1489,8 +1489,8 @@
                         return;
                     }
                     let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
-                    if (fileSzie > 2048) { //2mb
-                        this.$toaster.warning('Maximum allowed file size 2MB');
+                    if (fileSzie > 5120) { //5mb
+                        this.$toaster.warning('Maximum allowed file size 5MB');
                         return;
                     }
                     fileReader.onload = (e) => {

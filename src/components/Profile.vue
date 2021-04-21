@@ -388,7 +388,7 @@
                                                     <div class="d-flex justify-content-between dashboard-content--rented--box--order-description">
                                                             <div class="cost flex-2">
                                                                 <p>Cost</p>
-                                                                <p class="text-secondery">{{ lend.lend_cost }}</p>
+                                                                <p class="text-secondery">{{ lend.lend_cost + parseInt(lend.commission)  }}</p>
                                                             </div>
                                                             <div class="duration flex-1">
                                                                 <p>Rent duration</p>

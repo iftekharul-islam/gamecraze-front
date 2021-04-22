@@ -1527,6 +1527,12 @@
   margin-right: 10px;
 }
 
+@media (max-width: 575px) {
+  .account-verified::before {
+    top: 7px;
+  }
+}
+
 .text-secondery {
   color: #FFD715 !important;
 }
@@ -7001,7 +7007,7 @@ html {
 
 @media (max-width: 575px) {
   .user-profile-heading--account-verified {
-    right: 15px;
+    right: 18px;
     bottom: -20px;
   }
 }
@@ -7017,9 +7023,9 @@ html {
 
 @media (max-width: 575px) {
   .user-profile-heading--account-verified--btn {
-    width: 130px;
+    width: 160px;
     font-size: 14px;
-    padding: 3px 0;
+    padding: 5px 0;
   }
 }
 
@@ -7484,37 +7490,28 @@ html {
 }
 
 .post-rent--form-group--input--radio-group {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 16px;
   padding-left: 19px;
   margin-top: 5px;
 }
 
+@media (max-width: 768px) {
+  .post-rent--form-group--input--radio-group {
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+  }
+}
+
 .post-rent--form-group--input--radio-group .custom-radio {
-  margin-right: 70px;
-}
-
-@media (max-width: 1199px) {
-  .post-rent--form-group--input--radio-group .custom-radio {
-    margin-right: 58px;
-  }
-}
-
-@media (max-width: 575px) {
-  .post-rent--form-group--input--radio-group .custom-radio {
-    margin-right: 40px;
-  }
+  margin-right: 82px;
 }
 
 .post-rent--form-group--input--radio-group .custom-radio:last-of-type {
   margin-right: 0;
-}
-
-.post-rent--form-group--input--radio-group .custom-radio:nth-child(n+4) {
-  margin-top: 16px;
 }
 
 .post-rent--form-group--input--radio-group .custom-radio .custom-control-label {
@@ -8274,6 +8271,8 @@ html {
   .bg-image-gallery-modal .modal-dialog .modal-content {
     min-height: 500px;
     padding: 70px;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 }
 
@@ -8305,13 +8304,17 @@ html {
 }
 
 .bg-image-gallery-modal .modal-dialog .modal-content .modal-footer {
-  margin-top: 50px;
+  padding-bottom: 46px;
 }
 
 @media (min-width: 768px) {
   .bg-image-gallery-modal .modal-dialog .modal-content .modal-footer {
     margin-top: auto;
   }
+}
+
+.bg-image-gallery-modal .modal-dialog .modal-content .modal-footer a {
+  margin-top: 50px;
 }
 
 .bg-image-gallery-modal .bg-image-gallery {
@@ -8324,8 +8327,11 @@ html {
 
 @media (min-width: 768px) {
   .bg-image-gallery-modal .bg-image-gallery {
-    -ms-grid-columns: 1fr 1fr 1fr;
-        grid-template-columns: 1fr 1fr 1fr;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 200px;
+    -ms-grid-rows: 200px;
+        grid-template-rows: 200px;
   }
 }
 
@@ -8348,6 +8354,13 @@ html {
   border: 2px solid transparent;
   opacity: .9;
   cursor: pointer;
+  height: 100%;
+}
+
+@media (min-width: 768px) {
+  .bg-image-gallery-modal .bg-image-gallery--item label img {
+    height: 100%;
+  }
 }
 
 .set-password {

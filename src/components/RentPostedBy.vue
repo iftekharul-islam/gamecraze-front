@@ -288,6 +288,8 @@
             },
             rentCost(week, disk_type, game_id) {
                 this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
+                    console.log(typeof response.data.price.discount_price);
+                    console.log(typeof response.data.price.discount_commission)
                     this.price = response.data.price.discount_price + response.data.price.discount_commission;
                     if (disk_type == 0 && this.achievedDiscount == true){
                         this.price = response.data.price.regular_price + response.data.price.regular_commission;

@@ -37,18 +37,27 @@
                             <td scope="col">{{ formattedDate(rent.availability_from_date) }}</td>
                             <td scope="col"><span>{{ rent.max_number_of_week}} week(s)</span></td>
                             <td>
-                                <del class="mr-4" v-if="rent.disk_type == 0 && achievedDiscount == true">
-
-                                </del>
-                                <del class="mr-4" v-else>
-                                    <span> ৳</span> {{ rent.price_combination.regular_price}}
-                                </del>
-                                <span class="new-price" v-if="rent.disk_type == 0 && achievedDiscount == true">
-                                    <span>৳</span> {{ rent.price_combination.regular_price}}
-                                </span>
-                                <span class="new-price" v-else>
-                                    <span>৳</span> {{ rent.price_combination.discount_price}}
-                                </span>
+                                <div class="" v-if="rent.disk_type == 0 && achievedDiscount == true">
+                                    <del class="mr-4">
+                                    </del>
+                                    <span class="new-price">
+                                        <span>৳</span> {{ rent.price_combination.regular_price}}
+                                    </span>
+                                </div>
+                                <div v-else>
+                                    <del class="mr-4" v-if="rent.disk_type == 1">
+                                        <span> ৳</span> {{ rent.price_combination.regular_price}}
+                                    </del>
+                                    <del class="mr-4" v-if="rent.disk_type == 0 && achievedDiscount == false">
+                                        <span> ৳</span> {{ rent.price_combination.regular_price}}
+                                    </del>
+                                    <span class="new-price" v-if="rent.disk_type == 1">
+                                        <span>৳</span> {{ rent.price_combination.discount_price}}
+                                    </span>
+                                    <span class="new-price" v-if="rent.disk_type == 0 && achievedDiscount == false">
+                                        <span>৳</span> {{ rent.price_combination.discount_price}}
+                                    </span>
+                                </div>
                             </td>
                         </tr>
                         </tbody>
@@ -214,7 +223,7 @@
                 reminder: false,
                 isChecked: '',
                 reminderChecked: false,
-                achievedDiscount: 0,
+                achievedDiscount: null,
                 requiredAddress: true,
             }
         },
@@ -368,8 +377,12 @@
             });
 
             this.$api.get('user/details', config).then(response => {
+                this.achievedDiscount = false;
                 this.user_type = response.data.data.is_verified;
                 this.achievedDiscount = response.data.data.achieve_discount;
+                if (this.achievedDiscount == null){
+                    this.achievedDiscount = false;
+                }
                 console.log(this.achievedDiscount);
             });
             this.$api.get('available-rent/' + this.slug, config).then(response => {

@@ -49,7 +49,7 @@
                                 </p>
                             </div>
                             <div class="pricing-plan--card--btn">
-                                <a href="#" class="btn--secondery text-uppercase mx-auto"><span>GET THIS</span></a>
+                                 <router-link to="/contacts" class="btn--secondery text-uppercase mx-auto"><span>GET THIS</span></router-link>
                             </div>
                          </div>
                      </div>

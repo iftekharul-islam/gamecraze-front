@@ -21,21 +21,21 @@
                 <div class="collapse navbar-collapse custom-collapse gamehub-menu-collapse" id="navbarSupportedContent" @click="modal = false">
                     <ul class="">
                         <li class="active">
-                            <router-link @click.native="onMenuItemClick()" class="nav-link active router_link" to="/" >Home<span class="sr-only">(current)</span></router-link>
+                            <router-link @click.native="onMenuItemClick()" class="nav-link active router_link" to="/" >{{ $t('home', $store.state.locale) }}<span class="sr-only">(current)</span></router-link>
                         </li>
                         <li>
-                            <router-link @click.native="onMenuItemClick()" class="router_link" to="/games" :class="{ 'router-link-exact-active router-link-active active': this.$route.path == '/games' }">Games</router-link>
+                            <router-link @click.native="onMenuItemClick()" class="router_link" to="/games" :class="{ 'router-link-exact-active router-link-active active': this.$route.path == '/games' }">{{ $t('games', $store.state.locale)}}</router-link>
                         </li>
                         <li>
-                            <router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">Post for Lend</router-link>
+                            <router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link>
                         </li>
                         <li class="dropdown position-relative dropdown-hover">
-                            <router-link class="router_link no-after" to="#">More</router-link>
+                            <router-link class="router_link no-after" to="#">{{ $t('more', $store.state.locale)}}</router-link>
                                 <div class="dropdown--sub-menu p-0">
-                                  <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/about-us">About us</router-link></div>
-                                  <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/terms">Terms & conditions</router-link></div>
-                                  <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/privacy">Privacy policies</router-link></div>
-                                  <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/frequently-asked-questions">FAQ</router-link></div>
+                                  <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/about-us">{{ $t('about_us', $store.state.locale) }}</router-link></div>
+                                  <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/terms">{{ $t('terms', $store.state.locale) }}</router-link></div>
+                                  <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/privacy">{{ $t('privacy_policy', $store.state.locale) }}</router-link></div>
+                                  <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/frequently-asked-questions">{{ $t('faq', $store.state.locale) }}</router-link></div>
                               </div>
                         </li>
                     </ul>
@@ -66,6 +66,13 @@
                         </div>
                 </div>
                 </div>
+<!--                <div class="locale-changer">-->
+<!--                    <select v-model="lang">-->
+<!--                        <option v-for="(lang, i) in $i18n.availableLocales" :key="`lang${i}`" :value="lang">-->
+<!--                            {{ lang }}-->
+<!--                        </option>-->
+<!--                    </select>-->
+<!--                </div>-->
                 <!-- sign in button and cart icon out side of collapse -->
                  <div class="gamehub-input-group signin-cart-group">
                         <!-- <div class="gamehub-input-group--content">
@@ -103,13 +110,13 @@
                                       </div>
                                             <div class="dropdown-menu gamehub-dropdown-menu">
                                                 <div class="gamehub-dropdown-menu--top">
-                                                  <router-link to="/profile" class="dropdown-item" href="#">Dashboard</router-link>
-                                                  <router-link to="/profile" class="dropdown-item" @click.native="clickProfile()">Post For Rent</router-link>
-                                                  <router-link class="router_link dropdown-item" to="/notice-board">Notice Board</router-link>
-                                                  <router-link to="/contacts" class="dropdown-item" href="#">Contact Us</router-link>
+                                                  <router-link to="/profile" class="dropdown-item" href="#">{{ $t('dashboard', $store.state.locale) }}</router-link>
+                                                  <router-link to="/profile" class="dropdown-item" @click.native="clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link>
+                                                  <router-link class="router_link dropdown-item" to="/notice-board">{{ $t('noticeboard', $store.state.locale) }}</router-link>
+                                                  <router-link to="/contacts" class="dropdown-item" href="#">{{ $t('contact_us', $store.state.locale) }}</router-link>
                                                 </div>
                                                 <div class="gamehub-dropdown-menu--bottom">
-                                                  <a @click="onLogout" to="/" class="dropdown-item" href="#">Log out</a>
+                                                  <a @click="onLogout" to="/" class="dropdown-item" href="#">{{ $t('logout', $store.state.locale) }}</a>
                                                 </div>
                                             </div>
                                 </div>
@@ -131,7 +138,7 @@
         <!-- promotion Notification -->
         <div class="promo-notification mt-1">
             <div class="alert gamehub-warning-bg alert-dismissible fade show mb-0 br-0 text-center text-black gil-bold f-s-20 position-fixed w-100 z-index-999" role="alert">
-                Play digital games free for a week & enjoy 15% discount on Physical Games. <router-link to="/games" class="text-dark"><u>Rent Now</u></router-link>
+                {{ $t('discount_notice', $store.state.locale) }}<router-link to="/games" class="text-dark"><u>{{ $t('rent_now', $store.state.locale) }}</u></router-link>
               <button type="button" class="close opa-10 x-close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true" class="x-icon"></span>
               </button>
@@ -145,6 +152,7 @@
     export default {
         data() {
             return {
+                langValue: null,
                 gameName: '',
                 userProfile: {},
                 token: '',
@@ -158,7 +166,8 @@
                 selected: "",
                 totalItems: 0,
                 isNavOpen: false,
-                user: {}
+                user: {},
+                langs: ['en', 'bn'],
             }
         },
         methods: {
@@ -260,6 +269,18 @@
             },
         },
         computed: {
+            lang: {
+                get: function() {
+                    console.log('get value');
+                    console.log(this.$store.state.locale);
+                    return this.$store.state.locale
+                },
+                set: function(newVal) {
+                    console.log('set value');
+                    console.log(newVal);
+                    this.$store.dispatch('changeLocale', newVal)
+                }
+            },
           auth () {
               return this.$store.getters.ifAuthenticated
           },

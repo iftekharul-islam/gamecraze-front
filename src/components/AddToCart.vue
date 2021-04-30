@@ -3,10 +3,10 @@
         <section class="cart-section">
           <div class="container">
             <div class="cart-heading"  v-if="newCartItems.length">
-              <h2>YOUR CART</h2>
+              <h2>{{ $t('your_cart', $store.state.locale) }}</h2>
             </div>
             <div class="cart-heading-empty" v-if="emptyCart">
-              <h2>YOUR CART IS EMPTY</h2>
+              <h2>{{ $t('your_cart_empty', $store.state.locale) }}</h2>
             </div>
             <div v-if="newCartItems.length" class="row">
               <div class="mb-4 mb-lg-0 col-md-12 col-lg-7">
@@ -14,10 +14,10 @@
                   <table class="table table-borderless cart-section--item-details--table">
                       <thead>
                         <tr>
-                            <td scope="col">Item</td>
-                            <td scope="col">Type</td>
-                            <td scope="col">Rent Week</td>
-                             <td scope="col">Price</td>
+                            <td scope="col">{{ $t('item', $store.state.locale) }}</td>
+                            <td scope="col">{{ $t('type', $store.state.locale) }}</td>
+                            <td scope="col">{{ $t('rent_week', $store.state.locale) }}</td>
+                             <td scope="col">{{ $t('price', $store.state.locale) }}</td>
                         </tr>
                       </thead>
                       <tbody >
@@ -53,14 +53,14 @@
                   <div class="cart-section--item-price-box">
                       <form action="">
                         <div class="cart-section--item-price-box--heading text-center">
-                        <span>Items in your Bag</span>
+                        <span>{{ $t('bag_item', $store.state.locale) }}</span>
                       </div>
                       <div class="subtotal d-flex align-items-center justify-content-between">
-                        <p>Subtotal</p>
+                        <p>{{ $t('subtotal', $store.state.locale) }}</p>
                         <span class="subtotal-price">৳ {{ totalPrice }}</span>
                       </div>
                       <div class="subtotal d-flex align-items-center justify-content-between">
-                        <p>Delivery Charge</p>
+                        <p>{{ $t('delivery_charge', $store.state.locale) }}</p>
                         <span class="subtotal-price">৳ {{ deliveryCharge }}</span>
                       </div>
 <!--                      <div class="promotional-code">-->
@@ -72,13 +72,13 @@
 <!--                      </div>-->
                      
                       <div class="total d-flex align-items-center justify-content-between">
-                        <p>Total</p>
+                        <p>{{ $t('total', $store.state.locale) }}</p>
                         <span class="total-price">৳ {{ totalPrice + deliveryCharge }}</span>
                       </div>
                       </form>
                   </div>
                    <div class="cart-section--item-price-box--payment-method secondery-border mt-a-6">
-                            <p class="mb-0">Payment Method</p>
+                            <p class="mb-0">{{ $t('payment_method', $store.state.locale) }}</p>
                             <div class="d-flex align-items-center justify-content-between content">
                                 <div class="checkbox-parents">
                                     <input type="checkbox" id="cod" class="checkbox-parents--input user-select-none pe-none" checked>
@@ -95,7 +95,7 @@
                       <form class="" @submit.prevent="handleSubmit(onCheckout)" method="post">
                           <div class="">
                             <div class="cart-delivery-address">
-                                <label for="address">Enter Address</label>
+                                <label for="address">{{ $t('enter_address', $store.state.locale) }}</label>
                                 <ValidationProvider name="address" rules="required" v-slot="{ errors }">
                                   <textarea id="address" type="text" v-model="address" class="promo-code-field"></textarea>
                                 <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
@@ -115,7 +115,7 @@
                            <!-- Place Order button -->
                             <div class="checkout-btn">
                                 <button class="btn--cart-btn w-100 gil-bold" :disabled="isLoading">
-                                    Place order
+                                    {{ $t('place_order', $store.state.locale) }}
                                     <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
                                 </button>
                             </div>
@@ -136,7 +136,7 @@
                                                 <span aria-hidden="true" @click="showModal = false" class=""></span>
                                             </button>
                                         <div class="modal-body-content">
-                                            <p>Opps !!! The game(S) {{ id }} you wanted to rent is not available at this moment.</p>
+                                            <p>{{ $t('game_not_available_part_1', $store.state.locale) }} {{ id }} {{ $t('game_not_available_part_2', $store.state.locale) }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -154,7 +154,7 @@
                                             <span aria-hidden="true" @click="showRentLimitModal = false" class="close-modal"></span>
                                         </button>
                                         <div class="modal-body-content">
-                                            <p>Opps !!! You exceeded renting limit. Return your current games to rent new ones </p>
+                                            <p>{{ $t('exceed_rent_limit', $store.state.locale) }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -388,7 +388,7 @@
             this.$api.post('lend-game', data, config).then(response => {
                 if (response.data.error === false) {
                     this.$store.dispatch('clearCart');
-                    this.$swal("Order Confirmed!", "You ordered Successfully!", "success");
+                    this.$swal(this.$t('order_confirmed', this.$store.state.locale), "success");
                     this.isLoading = false;
                     localStorage.setItem('cartItems', '');
                     localStorage.setItem('deliveryCharge', 0);
@@ -416,7 +416,7 @@
                 id: id
             };
             this.$swal({
-                title: "Do you want to remove this item?",
+                title: this.$t('cart_remove_warning', this.$store.state.locale),
                 text: "",
                 icon: "warning",
                 buttons: true,
@@ -426,7 +426,7 @@
                     this.$api.post('cart-item/destroy', data, config).then(response => {
                         if (response.data.error == false){
                             this.$store.dispatch('removeCartItem', index)
-                            swal("The item is removed.", {
+                            swal(this.$t('cart_removed', this.$store.state.locale), {
                                 icon: "success",
                                 buttons: false,
                             });
@@ -436,7 +436,7 @@
                         }
                     });
                 } else {
-                    swal("The item is not removed.");
+                    this.$swal(this.$t('cart_not_removed', this.$store.state.locale));
                 }
             });
         },

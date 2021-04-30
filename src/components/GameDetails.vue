@@ -15,13 +15,13 @@
                         <div class="games-header-section--content" v-if="game">
                             <a href="#" class="d-block game-name-img"><h2>{{game.name}}</h2></a>
                             <p>{{game.description.substring(0, 300) | strippedContent}} . . .</p>
-                            <a href="#description" class="read-more">Read More</a>
-                            <router-link :to="{ path: '/rent-price/' + game.slug}" class="btn--secondery rent-now border-0" v-if="!auth"><span>RENT NOW</span></router-link>
+                            <a href="#description" class="read-more">{{ $t('read_more', $store.state.locale) }}</a>
+                            <router-link :to="{ path: '/rent-price/' + game.slug}" class="btn--secondery rent-now border-0" v-if="!auth" ><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></router-link>
                             <router-link to="/login" class="border-0" v-if="!rentExist"><span></span></router-link>
-                            <button class="btn--secondery rent-now border-0"  data-toggle="modal" data-target="#warning" v-else-if="rentLimit <= myLends && rentButton"><span>RENT NOW</span></button>
-                            <router-link :to="{ path: '/rent-posted-users/' + game.slug}" class="btn--secondery rent-now border-0" v-else-if="rentButton"><span>RENT NOW</span></router-link>
+                            <button class="btn--secondery rent-now border-0"  data-toggle="modal" data-target="#warning" v-else-if="rentLimit <= myLends && rentButton"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></button>
+                            <router-link :to="{ path: '/rent-posted-users/' + game.slug}" class="btn--secondery rent-now border-0" v-else-if="rentButton"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></router-link>
                             <div class="d-flex games-header-section--platforms">
-                                <p>PLATFORM:</p>
+                                <p style="text-transform: uppercase">{{ $t('platform', $store.state.locale) }}:</p>
                                 <a href="javascript:void(0)" v-for="(platform, index) in game.platforms.data" :key="index"><img :src="platform.url" alt="windows"></a>
                             </div>
                         </div>
@@ -34,7 +34,7 @@
                             <button type="button" class="close m-0 close-modal" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"></span>
                             </button>
-                        <p>Opps !!! You exceeded renting limit. Return your current games to rent new ones</p>
+                        <p>{{ $t('exceed_rent_limit', $store.state.locale) }}</p>
 
                     </div>
                 </div>
@@ -44,17 +44,17 @@
         <section class="game-details-menu">
             <div class="container">
                 <ul>
-                    <li><a href="#screenshot-video">Screenshots & Videos</a></li>
-                    <li><a href="#overview">Overview</a></li>
-                    <li><a href="#description">Description</a></li>
-                    <li><a href="#related-game">Related games</a></li>
+                    <li><a href="#screenshot-video">{{ $t('screenshots_&_videos', $store.state.locale) }}</a></li>
+                    <li><a href="#overview">{{ $t('overview', $store.state.locale) }}</a></li>
+                    <li><a href="#description">{{ $t('description', $store.state.locale) }}</a></li>
+                    <li><a href="#related-game">{{ $t('related_games', $store.state.locale) }}</a></li>
                 </ul>
             </div>
         </section>
         <!-- screenshot n video -->
         <section class="screenshot-video" id="screenshot-video">
             <div class="container">
-                <h6>Screenshots & Videos</h6>
+                <h6>{{ $t('screenshots_&_videos', $store.state.locale) }}</h6>
                 <!-- <div id="owl-screenshot-video" class="owl-carousel owl-theme" v-if="game">
                     <div class="item" v-for="(screenshot, index) in game.screenshots.data" :key="index">
                         <a href="#"><img :src="screenshot.url" alt="screenshot"></a>
@@ -118,34 +118,34 @@
         <!-- overview -->
         <section class="overview" id="overview">
             <div class="container">
-                <h6>Overview</h6>
+                <h6>{{ $t('overview', $store.state.locale) }}</h6>
                 <div class="overview-content">
                     <div class="row" v-if="game">
                         <div class="col-6">
                             <div class="overview-content--text mb-3" v-if="game">
-                              <p>Genre</p>
+                              <p>{{ $t('genre', $store.state.locale) }}</p>
                               <span v-for="(genre, index) in game.genres.data" :key="index" >{{ genre.name }}<span class="mr-1" v-if="index < game.genres.data.length-1">, </span></span>
                             </div>
                             <div class="overview-content--text">
-                                <p>Publisher</p>
+                                <p>{{ $t('publisher', $store.state.locale) }}</p>
                                 <p>{{game.publisher}}</p>
                             </div>
                             <div class="overview-content--text">
-                                <p>Developer</p>
+                                <p>{{ $t('developer', $store.state.locale) }}</p>
                                 <p>{{game.developer}}</p>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="overview-content--text">
-                                <p>Release Date</p>
+                                <p>{{ $t('release_date', $store.state.locale) }}</p>
                                 <p>{{ formattedDate (game.release_date)}}</p>
                             </div>
                             <div class="overview-content--text">
-                                <p>Supported languages</p>
+                                <p>{{ $t('release_date', $store.state.locale) }}</p>
                                 <p>{{ game.supported_language }}</p>
                             </div>
                             <div class="overview-content--text">
-                                <p>Game link</p>
+                                <p>{{ $t('game_link', $store.state.locale) }}</p>
                                 <a :href="game.official_website" target="_blank">Click Here <i class="fas fa-external-link-alt"></i></a>
                             </div>
                         </div>
@@ -157,7 +157,7 @@
         <!-- description -->
         <section class="description" id="description">
             <div class="container">
-                <h6>Description</h6>
+                <h6>{{ $t('description', $store.state.locale) }}</h6>
                 <div class="description-content" v-if="game">
                     <div class="row" v-html="game.description">
 
@@ -168,7 +168,7 @@
         <!-- RELATED GAME -->
         <section class="related-game-section" id="related-game">
             <div class="container">
-                <h6 class="mb-4">You Might Also Like</h6>
+                <h6 class="mb-4">{{ $t('might_also_like', $store.state.locale) }}</h6>
                 <!-- new carousel -->
                 <div class="position-relative">
                   <carousel

@@ -382,7 +382,7 @@
             this.$api.post('lend-game', data, config).then(response => {
                 if (response.data.error === false) {
                     this.$store.dispatch('clearCart');
-                    this.$swal(this.$t('order_confirmed', this.$store.state.locale), "success");
+                    this.$swal(this.$t('order_confirmed', this.$store.state.locale), this.$t('order_successful', this.$store.state.locale), "success");
                     this.isLoading = false;
                     localStorage.setItem('cartItems', '');
                     localStorage.setItem('deliveryCharge', 0);

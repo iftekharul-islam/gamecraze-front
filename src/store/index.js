@@ -2,9 +2,12 @@ import axios from 'axios'
 import router from "../router/routes";
 import {swal} from 'vue-swal';
 import {toaster} from 'v-toaster';
+import i18n, { selectedLocale } from 'vue-i18n';
+import createPersistedState from 'vuex-persistedstate'
 
 export const storage = {
     state: {
+        locale: selectedLocale,
         lendWeek: [],
         checkpointId: [],
         searchResult: [],
@@ -52,6 +55,9 @@ export const storage = {
         }
     },
     mutations: {
+        updateLocale(state, payload) {
+            state.locale = payload
+        },
         pushPostId (state, payload) {
             if (state.postId.includes(payload)) {
                 return;
@@ -186,6 +192,11 @@ export const storage = {
         }
     },
     actions: {
+        changeLocale(context, payload) {
+            i18n.locale = payload;// important!
+            console.log(i18n.locale);
+            context.commit('updateLocale', payload)
+        },
         pushPostId (context, payload) {
             context.commit('pushPostId', payload)
         },
@@ -534,4 +545,5 @@ export const storage = {
             }
         }
     },
+    plugins: [createPersistedState()],
 }

@@ -2,24 +2,24 @@
     <div>
         <section class="game-available-section">
             <div class="container">
-                <h2 class="text-center mb-5">Available Right Now!</h2>
+                <h2 class="text-center mb-5">{{ $t('available_now', $store.state.locale) }} !</h2>
                 <!-- Remind me -->
                 <div class="game-remind-me" v-if="reminder">
                     <input id="reminder" type="checkbox"  @change="submitReminder($event)" :checked="reminderChecked">
-                    <label for="reminder">Remind me when available</label>
+                    <label for="reminder">{{ $t('remind_me_when_available', $store.state.locale) }}</label>
                 </div>
                 <div class="game-available-section--table">
                     <table class="table table-borderless rented-dashbord">
                         <thead class="">
                         <tr>
-                            <th scope="col">Game Owner </th>
-                            <th scope="col">Status</th>
+                            <th scope="col">{{ $t('game_owner', $store.state.locale) }}</th>
+                            <th scope="col">{{ $t('status', $store.state.locale) }}</th>
 <!--                            <th scope="col">Checkpoint</th>-->
-                            <th scope="col">Disk type</th>
-                            <th scope="col">Platform</th>
-                            <th scope="col">Available From</th>
-                            <th scope="col">Available For</th>
-                            <th scope="col">Price for 1st week</th>
+                            <th scope="col">{{ $t('status', $store.state.locale) }}</th>
+                            <th scope="col">{{ $t('platform', $store.state.locale) }}</th>
+                            <th scope="col">{{ $t('available_from', $store.state.locale) }}</th>
+                            <th scope="col">{{ $t('available_for', $store.state.locale) }}</th>
+                            <th scope="col">{{ $t('price_for_1st_week', $store.state.locale) }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -37,24 +37,11 @@
                             <td scope="col">{{ formattedDate(rent.availability_from_date) }}</td>
                             <td scope="col"><span>{{ rent.max_number_of_week}} week(s)</span></td>
                             <td>
-                                <div class="" v-if="rent.disk_type == 0 && achievedDiscount == true">
+                                <div>
                                     <del class="mr-4">
+                                        <span> ৳</span> {{ rent.price_combination.regular_price}}
                                     </del>
                                     <span class="new-price">
-                                        <span>৳</span> {{ rent.price_combination.regular_price}}
-                                    </span>
-                                </div>
-                                <div v-else>
-                                    <del class="mr-4" v-if="rent.disk_type == 1">
-                                        <span> ৳</span> {{ rent.price_combination.regular_price}}
-                                    </del>
-                                    <del class="mr-4" v-if="rent.disk_type == 0 && achievedDiscount == false">
-                                        <span> ৳</span> {{ rent.price_combination.regular_price}}
-                                    </del>
-                                    <span class="new-price" v-if="rent.disk_type == 1">
-                                        <span>৳</span> {{ rent.price_combination.discount_price}}
-                                    </span>
-                                    <span class="new-price" v-if="rent.disk_type == 0 && achievedDiscount == false">
                                         <span>৳</span> {{ rent.price_combination.discount_price}}
                                     </span>
                                 </div>
@@ -77,39 +64,39 @@
                                     <table class="table table-borderless seller-information-modal--table-top">
                                         <tbody>
                                         <tr>
-                                            <td>Platform:</td>
+                                            <td>{{ $t('platform', $store.state.locale) }} :</td>
                                             <td v-if="modalData">
                                                 <img :src="modalData.platform.data.url" alt="ps4">
                                             </td>
                                         </tr>
                                         <tr v-if="modalData.diskCondition">
-                                            <td>Disk Condition:</td>
+                                            <td>{{ $t('disk_condition', $store.state.locale) }} :</td>
                                             <td v-if="modalData">{{ modalData.diskCondition.data.name_of_type }} ({{ modalData.diskCondition.data.description }})</td>
 
                                         </tr>
                                         <tr>
-                                            <td>Available From:</td>
+                                            <td>{{ $t('available_from', $store.state.locale) }} :</td>
                                             <td v-if="modalData">{{ formattedDate(modalData.availability_from_date) }}</td>
                                         </tr>
                                         <tr>
-                                            <td>Maximum Rent For:</td>
+                                            <td>{{ $t('maximum_rent_for', $store.state.locale) }} :</td>
                                             <td v-if="modalData">{{ modalData.max_number_of_week}} week(s)</td>
                                         </tr>
                                         <tr>
-                                            <td>Posted By:</td>
+                                            <td>{{ $t('posted_by', $store.state.locale) }} :</td>
                                             <td v-if="modalData">{{ modalData.user.data.name }}</td>
                                         </tr>
                                         </tbody>
                                     </table>
-                                    <span v-if="isExistsInCart" class="text-center d-block">Already added in cart</span>
+                                    <span v-if="isExistsInCart" class="text-center d-block">{{ $t('already_in_cart', $store.state.locale) }}</span>
                                     <div v-if="!isExistsInCart" class="seller-information">
                                         <div class="text-center">
-                                            <h2>Provide Necessary Information</h2>
+                                            <h2>{{ $t('necessary_info', $store.state.locale) }}</h2>
                                         </div>
                                         <table class="table table-borderless seller-information-modal--table-bottom">
                                             <tbody>
                                             <tr>
-                                                <td>Select Rent Week:</td>
+                                                <td>{{ $t('select_week', $store.state.locale) }} :</td>
                                                 <td>
                                                   <ValidationProvider name="Rent Week" rules="required" v-slot="{ errors }">
                                                     <select class="form-control" id="exampleFormControlSelect1" v-if="modalData" @change="rentCost(form.week, modalData.disk_type, modalData.game_id)" v-model="form.week">
@@ -121,19 +108,19 @@
                                                 </td>
                                             </tr>
                                             <tr v-if="form.week">
-                                                <td>Rent Cost:</td>
+                                                <td>{{ $t('rent_cost', $store.state.locale) }} :</td>
                                                 <td><span>৳ </span>{{ price }}</td>
                                             </tr>
                                             <tr v-if="form.week">
-                                                <td>Rent Start Date:</td>
+                                                <td>{{ $t('rent_start_date', $store.state.locale) }} :</td>
                                                 <td>{{ rentStartDate }}</td>
                                             </tr>
                                             <tr v-if="form.week">
-                                                <td>Return Date:</td>
+                                                <td>{{ $t('rent_start_date', $store.state.locale) }} :</td>
                                                 <td>{{ returnDate }}</td>
                                             </tr>
                                             <tr v-if="requiredAddress">
-                                                <td>Delivery Type:</td>
+                                                <td>{{ $t('delivery_type', $store.state.locale) }} :</td>
                                                 <td v-if="modalData">
                                                   <ValidationProvider name="Delivery type" :rules="{required: requiredAddress}" v-slot="{ errors }">
                                                     <select class="form-control" id="exampleFormControlSelect2" v-model="form.deliveryType">
@@ -146,7 +133,7 @@
                                                 </td>
                                             </tr>
                                             <tr v-if="form.deliveryType !== '0' && form.deliveryType !== '' && modalData">
-                                                <td>Checkpoint Details:</td>
+                                                <td>{{ $t('checkpoint_details', $store.state.locale) }} :</td>
                                                 <td>
                                                     <div class="seller-address">
                                                         <i class="fas fa-map-marker-alt"></i>
@@ -163,7 +150,7 @@
                                
                                 <div v-if="!isExistsInCart" class="modal-footer justify-content-center">
                                     <a href="javascript:void(0)" class="btn--secondery" @click.prevent="handleSubmit(onAddToCart)">
-                                      <span><i class="fas fa-shopping-cart"></i> ADD TO CART</span>
+                                      <span><i class="fas fa-shopping-cart"></i>{{ $t('add_to_cart', $store.state.locale) }}</span>
                                     </a>
                                 </div>
                               </ValidationObserver>
@@ -176,17 +163,19 @@
                                     <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true"></span>
                                     </button>
-                                <p>Opps !!! It looks like you are a <a href="/rookie" class="text-secondery"> Rookie</a> member, to access the full features of GameHub you need
-                                    to upgrade to <a href="/elite" class="text-secondery">ELITE.</a> Once upgraded you can also rent physical disks.
-                                    To upgrade your account please contact us.</p>
+                                <p>{{ $t('rookie_sms_part_1', $store.state.locale) }}
+                                    <a href="/rookie" class="text-secondery"> Rookie</a>
+                                    {{ $t('rookie_sms_part_2', $store.state.locale) }}
+                                    <a href="/elite" class="text-secondery">ELITE.</a>
+                                    {{ $t('rookie_sms_part_3', $store.state.locale) }}</p>
                                 <div class="modal-content--description--form">
                                     <div class="modal-content--description--form--call">
-                                        <p>Please call to this number</p>
+                                        <p>{{ $t('please_call_contact', $store.state.locale) }}</p>
                                         <p>01886-614533</p>
                                     </div>
-                                    <span class="modal-or">Or</span>
+                                    <span class="modal-or">{{ $t('or', $store.state.locale) }}</span>
                                     <div class="modal-content--description--form--call">
-                                        <a href="/contacts" class="btn--secondery secondery-border" target="_blank"><span>FILL UP FORM</span></a>
+                                        <a href="/contacts" class="btn--secondery secondery-border" target="_blank"><span>{{ $t('form_fillup', $store.state.locale) }}</span></a>
                                     </div>
                                 </div>
                             </div>
@@ -289,9 +278,6 @@
             rentCost(week, disk_type, game_id) {
                 this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
                     this.price = response.data.price.discount_price + response.data.price.discount_commission;
-                    if (disk_type == 0 && this.achievedDiscount == true){
-                        this.price = response.data.price.regular_price + response.data.price.regular_commission;
-                    }
                 })
             },
             setModalData(rent) {

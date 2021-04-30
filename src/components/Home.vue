@@ -10,10 +10,10 @@
                 <div class="row">
                     <div class="col-md-7">
                         <h1 class="gamehub-heading">
-                                Largest <span>Online</span><br> <span>Platform</span> For Games rent in <span>Bangladesh</span>
+                            {{ $t('largest', $store.state.locale) }} <span>{{ $t('online', $store.state.locale) }}</span><br> <span>{{ $t('platform', $store.state.locale) }}</span> {{ $t('platform', $store.state.locale) }}<span>{{ $t('platform', $store.state.locale) }}</span>
                             </h1>
-                        <h6>Rent-Lend-Sell-buy PlayStation, Xbox, PC games online and join the largest gaming platform in Bangladesh.</h6>
-                        <router-link to="/games" class="btn--secondery"><span>BEGIN JOURNEY</span></router-link>
+                        <h6>{{ $t('home_banner_text', $store.state.locale) }}</h6>
+                        <router-link to="/games" class="btn--secondery"><span>{{ $t('begin_journey', $store.state.locale) }}</span></router-link>
                     </div>
                 </div>
             </div>
@@ -24,18 +24,18 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="exchange-lend-section--exchange">
-                            <h3>Do you want to
-                                <span>Earn</span> Money?</h3>
+                            <h3>{{ $t('do_you_want_to', $store.state.locale) }}
+                                <span>{{ $t('earn', $store.state.locale) }}</span> {{ $t('money', $store.state.locale) }} ?</h3>
                                 <router-link to="/profile" class="btn--secondery exchange-lend-section--exchange-btn" @click.native="clickProfile()"> <span>Lend</span> </router-link>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="exchange-lend-section--lend">
-                            <h3>DO YOU WANT TO
-                                <span>Save</span> Money?</h3>
+                            <h3>{{ $t('do_you_want_to', $store.state.locale) }}
+                                <span>{{ $t('save', $store.state.locale) }}</span> {{ $t('money', $store.state.locale) }} ?</h3>
 <!--                            <a href="#" class="btn&#45;&#45;secondery exchange-lend-section&#45;&#45;exchange-btn">lend</a>-->
-                                <router-link to="/games" class="btn--secondery exchange-lend-section--exchange-btn"><span>rent</span></router-link>
+                                <router-link to="/games" class="btn--secondery exchange-lend-section--exchange-btn"><span>{{ $t('rent', $store.state.locale) }}</span></router-link>
                         </div>
                     </div>
                 </div>
@@ -44,7 +44,7 @@
         <!-- TRENDING GAMES -->
         <section class="trending-section">
             <div class="text-center">
-                <h2 class="section-heading">TRENDING GAMES</h2>
+                <h2 class="section-heading">{{ $t('trending_games', $store.state.locale) }}</h2>
             </div>
             <div class="position-relative">
                 <carousel v-if ="loadedTrending"
@@ -88,7 +88,7 @@
         <!-- favorite-section -->
         <section class="favorite-section">
             <div class="text-center">
-                 <h2 class="section-heading">RENT YOUR FAVORITE GAMES</h2>
+                 <h2 class="section-heading">{{ $t('rent_favorite_games', $store.state.locale) }}</h2>
             </div>
               <div class="position-relative">
                     <carousel v-if ="loadedPopular"
@@ -132,7 +132,7 @@
 
        <section class="upcoming-section">
             <div class="text-center">
-                <h2 class="section-heading">UPCOMING GAMES</h2>
+                <h2 class="section-heading">{{ $t('upcoming_games', $store.state.locale) }}</h2>
             </div>
             <div class="position-relative">
                 <carousel v-if ="loadedUpcoming"
@@ -191,7 +191,7 @@
         <!-- notice board -->
         <section class="noticed-board-section">
             <div class="text-center">
-                <h2 class="section-heading">NEWS & NOTICE BOARD</h2>
+                <h2 class="section-heading">{{ $t('news_&_notice', $store.state.locale) }}</h2>
             </div>
             <div class="container">
                 <div class="row">
@@ -202,19 +202,19 @@
                                 <div class="noticed-details">
                                     <h6>{{ featuredArticle.title.substring(0, 20) }}</h6>
                                     <p> {{ featuredArticle.description.substring(0, 80) | strippedContent }}</p>
-                                    <router-link :to="{ name: 'NewsStory', params: { slug: featuredArticle.slug }}"><span>Read More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
+                                    <router-link :to="{ name: 'NewsStory', params: { slug: featuredArticle.slug }}"><span>{{ $t('read_more', $store.state.locale) }} <i class="fas fa-arrow-right ml-2"></i></span></router-link>
                                 </div>
                             </div>
 
                             <div class="notice-box" v-for="(article, index) in articles" :key="index" v-if="featuredArticle.id !== article.id">
                                 <img :src=article.thumbnail :alt="article.title" class="w-100">
                                 <div class="noticed-details">
-                                    <router-link :to="{ name: 'NewsStory', params: { slug: article.slug }}" class="small-readmore"><span>Read More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
+                                    <router-link :to="{ name: 'NewsStory', params: { slug: article.slug }}" class="small-readmore"><span>{{ $t('read_more', $store.state.locale) }} <i class="fas fa-arrow-right ml-2"></i></span></router-link>
                                 </div>
                             </div>
                         </div>
                         <div class="text-center mt-5">
-                            <a href="/news" class="btn--secondery m-auto "><span>View All</span></a>
+                            <a href="/news" class="btn--secondery m-auto "><span>{{ $t('view_all', $store.state.locale) }}</span></a>
                         </div>
                     </div>
                 </div>
@@ -252,7 +252,7 @@
                                 <div class="notice-box">
                                     <img :src=article.thumbnail :alt="article.title" class="w-100">
                                     <div class="noticed-details">
-                                        <router-link :to="{ name: 'NewsStory', params: { slug: article.slug }}" class="small-readmore"><span>Read More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
+                                        <router-link :to="{ name: 'NewsStory', params: { slug: article.slug }}" class="small-readmore"><span>{{ $t('read_more', $store.state.locale) }} <i class="fas fa-arrow-right ml-2"></i></span></router-link>
                                     </div>
                                 </div>
                             </div>
@@ -269,7 +269,7 @@
         <!-- featured section -->
         <section class="featured-section">
             <div class="text-center">
-                <h2 class="section-heading">FEATURED VIDEOS</h2>
+                <h2 class="section-heading">{{ $t('featured_videos', $store.state.locale) }}</h2>
             </div>
             <div class="container">
                 <div class="col-12">
@@ -325,22 +325,22 @@
                                     </div>
                                 </div>
                                 <p class="footer-menu-content--about-gamehub">
-                                    GameHub is Bangladesh’s first online platform for lending & renting games for playstation, Xbox, PC & more.
+                                    {{ $t('gamehub_title', $store.state.locale) }}
                                 </p>
                             </div>
                         </div>
                         <div class="col-sm-6 col-md-3">
                             <div class="footer-menu-content mb-5 mb-sm-0">
                                 <div class="footer-menu-content--address">
-                                    <p class="footer-menu-content--address--text">Email Us</p>
+                                    <p class="footer-menu-content--address--text">{{ $t('email_us', $store.state.locale) }}</p>
                                     <p class="footer-menu-content--address--text"><a href="mailto:contact@augnitive.com">contact@augnitive.com</a></p>
                                 </div>
                                  <div class="footer-menu-content--address">
-                                    <p class="footer-menu-content--address--text">Cell number</p>
+                                    <p class="footer-menu-content--address--text">{{ $t('cell_number', $store.state.locale) }}</p>
                                     <p class="footer-menu-content--address--text"><a href="tel:+8801886-614533">01886-614533</a></p>
                                 </div>
                                 <div class="footer-menu-content--address">
-                                    <p class="footer-menu-content--address--text">Office</p>
+                                    <p class="footer-menu-content--address--text">{{ $t('office', $store.state.locale) }}</p>
                                     <p class="footer-menu-content--address--text">House: 941, Road: 14, Avenue: 2,
                                         Mirpur DOHS, Dhaka 1216</p>
                                 </div>
@@ -351,10 +351,10 @@
                         <div class="col-6 col-md-3">
                             <div class="footer-menu-content">
                                 <ul>
-                                    <li><router-link to="/about-us">About Gamehub</router-link></li>
-                                    <li><router-link to="/profile">Rent Games</router-link></li>
-                                    <li><router-link to="/games">Lend Games</router-link></li>
-                                    <li><router-link to="/terms">Terms & condition</router-link></li>
+                                    <li><router-link to="/about-us">{{ $t('about_gamehub', $store.state.locale) }}</router-link></li>
+                                    <li><router-link to="/profile">{{ $t('rent_games', $store.state.locale) }}</router-link></li>
+                                    <li><router-link to="/games">{{ $t('lend_games', $store.state.locale) }}</router-link></li>
+                                    <li><router-link to="/terms">{{ $t('terms_&_condition', $store.state.locale) }}</router-link></li>
                                 </ul>
                             </div>
                         </div>
@@ -362,19 +362,19 @@
                             <div class="footer-menu-content" v-if="platforms">
                                 <ul>
                                     <li>
-                                        <router-link to="/sponsors">Ask for sponsorship</router-link>
+                                        <router-link to="/sponsors">{{ $t('ask_for_sponsorship', $store.state.locale) }}</router-link>
                                     </li>
                                     <li>
-                                        <router-link to="/contacts">Contact Us</router-link>
+                                        <router-link to="/contacts">{{ $t('contact_us', $store.state.locale) }}</router-link>
                                     </li>
                                     <li>
-                                        <router-link to="/frequently-asked-questions">FAQ</router-link>
+                                        <router-link to="/frequently-asked-questions">{{ $t('faq', $store.state.locale) }}</router-link>
                                     </li>
                                     <li>
-                                        <router-link to="/news">News & blogs</router-link>
+                                        <router-link to="/news">{{ $t('news_&_blog', $store.state.locale) }}</router-link>
                                     </li>
                                     <li>
-                                        <router-link to="/privacy">Privacy</router-link>
+                                        <router-link to="/privacy">{{ $t('privacy_policy', $store.state.locale) }}</router-link>
                                     </li>
                                 </ul>
                             </div>

@@ -4,7 +4,7 @@
             <img v-if="activeCoverImage" :src="activeCoverImage" alt="profile bg" class="img-fluid user-profile-bg">
             <img v-if="dummyCover" src="../assets/img/profile-bg.png" alt="profile bg" class="img-fluid user-profile-bg">
             <div class="cover-edit" @click="coverModal = true">
-                <label><i class="fas fa-camera camera-icon"></i>  <span>Edit Cover Photo</span></label>
+                <label><i class="fas fa-camera camera-icon"></i>  <span>{{ $t('edit_cover_photo', $store.state.locale) }}</span></label>
                 <i v-if="isCoverImgUpdating" class="spinner-border spinner-border-sm"></i>
             </div>
             <div v-if="coverModal">
@@ -28,10 +28,10 @@
                                        </div>
                                         <!-- End Background Image Gallery -->
                                         <div v-else>
-                                            <p class="text-secondery">No image available</p>
+                                            <p class="text-secondery">{{ $t('no_image_available', $store.state.locale) }}</p>
                                         </div>
                                         <div class="modal-footer justify-content-center border-0" v-if="coverImages.length">
-                                            <a type="submit" class="btn--secondery user-id-edit-btn" disabled @click.prevent="coverImageSelect(user.id)" ><span class="w-100">Submit</span></a>
+                                            <a type="submit" class="btn--secondery user-id-edit-btn" disabled @click.prevent="coverImageSelect(user.id)" ><span class="w-100">{{ $t('submit', $store.state.locale) }}</span></a>
                                         </div>
                                     </div>
                                 </div>
@@ -42,8 +42,8 @@
             </div>
             <!-- Account verified -->
             <div class="user-profile-heading--account-verified">
-                <a href="#" class="user-profile-heading--account-verified--btn account-verified" v-if="user.is_verified == 1"><span>Account verified</span></a>
-                <a href="#" data-toggle="modal" data-target="#warning" class="user-profile-heading--account-verified--btn account-not-verified" v-if="user.is_verified == 0"><span>Account verify now</span></a>
+                <a href="#" class="user-profile-heading--account-verified--btn account-verified" v-if="user.is_verified == 1"><span>{{ $t('account_verified', $store.state.locale) }}</span></a>
+                <a href="#" data-toggle="modal" data-target="#warning" class="user-profile-heading--account-verified--btn account-not-verified" v-if="user.is_verified == 0"><span>{{ $t('account_verify_now', $store.state.locale) }}</span></a>
             </div>
             <!-- account upgrade modal -->
             <div class="modal fade seller-information-modal upgrade-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
@@ -52,17 +52,19 @@
                             <button type="button" class="close m-0 close-modal" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"></span>
                             </button>
-                        <p>Opps !!! It looks like you are a <a href="/rookie" class="text-secondery"> Rookie</a> member, to access the full features of GameHub you need
-                             to upgrade to <a href="/elite" class="text-secondery">ELITE.</a> Once upgraded you can also rent physical disks.
-                              To upgrade your account please contact us.</p>
+                        <p>{{ $t('rookie_sms_part_1', $store.state.locale) }}
+                            <a href="/rookie" class="text-secondery"> Rookie</a>
+                            {{ $t('rookie_sms_part_2', $store.state.locale) }}
+                            <a href="/elite" class="text-secondery">ELITE.</a>
+                            {{ $t('rookie_sms_part_3', $store.state.locale) }}</p>
                         <div class="modal-content--description--form">
                             <div class="modal-content--description--form--call">
-                                <p>Please call to this number</p>
+                                <p>{{ $t('please_call_contact', $store.state.locale) }}</p>
                                 <p>01886-614533</p>
                             </div>
-                            <span class="modal-or">Or</span>
+                            <span class="modal-or">{{ $t('or', $store.state.locale) }}</span>
                             <div class="modal-content--description--form--call">
-                                <a href="/contacts" class="btn--secondery secondery-border" target="_blank"><span>FILL UP FORM</span></a>
+                                <a href="/contacts" class="btn--secondery secondery-border" target="_blank"><span>{{ $t('form_fillup', $store.state.locale) }}</span></a>
                             </div>
                         </div>
                     </div>
@@ -107,12 +109,12 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="nav nav-pills user-profile-details--nav" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <a class="nav-link" id="v-pills-overview-tab" data-toggle="pill" href="#v-pills-overview" role="tab" aria-controls="v-pills-overview" aria-selected="true"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon1.png" alt="profile icon"> <img src="../assets/img/active-profile-icon1.png" class="img-active" alt="profile icon"></div> <span>Overview</span></a>
-                            <a class="nav-link active" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon2.png" alt="profile icon"> <img src="../assets/img/active-profile-icon2.png" class="img-active" alt="profile icon"></div> <span>Dashboard</span></a>
-                            <a class="nav-link" id="v-pills-post-rent-tab" data-toggle="pill" href="#v-pills-post-rent" role="tab" aria-controls="v-pills-post-rent" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon3.png" alt="profile icon"> <img src="../assets/img/active-profile-icon3.png" class="img-active" alt="profile icon"></div> <span>Post for Lend</span></a>
-                            <a class="nav-link" id="v-pills-edit-profile-tab" data-toggle="pill" href="#v-pills-edit-profile" role="tab" aria-controls="v-pills-edit-profile" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon4.png" alt="profile icon"> <img src="../assets/img/active-profile-icon4.png" class="img-active" alt="profile icon"></div> <span>Edit Profile</span></a>
-                            <a class="nav-link" id="v-pills-my-earning-tab" data-toggle="pill" href="#v-pills-my-earning" role="tab" aria-controls="v-pills-my-earning" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/earn.png" alt="profile icon"> <img src="../assets/img/active-earn.png" class="img-active" alt="profile icon"></div> <span>My Earning</span></a>
-                            <a class="nav-link" id="v-pills-refer-tab" data-toggle="pill" href="#v-pills-refer" role="tab" aria-controls="v-pills-refer" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/refer.png" alt="profile icon"> <img src="../assets/img/refer-active.png" class="img-active" alt="profile icon"></div> <span>Refer friend</span></a>
+                            <a class="nav-link" id="v-pills-overview-tab" data-toggle="pill" href="#v-pills-overview" role="tab" aria-controls="v-pills-overview" aria-selected="true"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon1.png" alt="profile icon"> <img src="../assets/img/active-profile-icon1.png" class="img-active" alt="profile icon"></div> <span>{{ $t('overview', $store.state.locale) }}</span></a>
+                            <a class="nav-link active" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon2.png" alt="profile icon"> <img src="../assets/img/active-profile-icon2.png" class="img-active" alt="profile icon"></div> <span>{{ $t('dashboard', $store.state.locale) }}</span></a>
+                            <a class="nav-link" id="v-pills-post-rent-tab" data-toggle="pill" href="#v-pills-post-rent" role="tab" aria-controls="v-pills-post-rent" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon3.png" alt="profile icon"> <img src="../assets/img/active-profile-icon3.png" class="img-active" alt="profile icon"></div> <span>{{ $t('post_for_lend', $store.state.locale) }}</span></a>
+                            <a class="nav-link" id="v-pills-edit-profile-tab" data-toggle="pill" href="#v-pills-edit-profile" role="tab" aria-controls="v-pills-edit-profile" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon4.png" alt="profile icon"> <img src="../assets/img/active-profile-icon4.png" class="img-active" alt="profile icon"></div> <span>{{ $t('edit_profile', $store.state.locale) }}</span></a>
+                            <a class="nav-link" id="v-pills-my-earning-tab" data-toggle="pill" href="#v-pills-my-earning" role="tab" aria-controls="v-pills-my-earning" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/earn.png" alt="profile icon"> <img src="../assets/img/active-earn.png" class="img-active" alt="profile icon"></div> <span>{{ $t('my_earning', $store.state.locale) }}</span></a>
+                            <a class="nav-link" id="v-pills-refer-tab" data-toggle="pill" href="#v-pills-refer" role="tab" aria-controls="v-pills-refer" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/refer.png" alt="profile icon"> <img src="../assets/img/refer-active.png" class="img-active" alt="profile icon"></div> <span>{{ $t('refer_friend', $store.state.locale) }}</span></a>
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -122,23 +124,23 @@
                                     <table class="table table-borderless">
                                         <tbody>
                                             <tr>
-                                                <td scope="row">Name:</td>
+                                                <td scope="row">{{ $t('name', $store.state.locale) }} :</td>
                                                 <td> <span v-if="user.name">{{ user.name }}</span> <span v-if="user.last_name">{{ user.last_name }}</span></td>
                                             </tr>
                                             <tr>
-                                            <td scope="row">Gender:</td>
+                                            <td scope="row">{{ $t('gender', $store.state.locale) }} :</td>
                                                 <td>{{ user.gender }}</td>
                                             </tr>
                                             <tr>
-                                            <td scope="row">Date of Birth:</td>
+                                            <td scope="row">{{ $t('dob', $store.state.locale) }} :</td>
                                                 <td>{{ user.birth_date ? formattedDate(user.birth_date) : '' }}</td>
                                             </tr>
                                             <tr>
-                                            <td scope="row">Email:</td>
+                                            <td scope="row">{{ $t('email', $store.state.locale) }}:</td>
                                                 <td>{{ user.email }}</td>
                                             </tr>
                                             <tr>
-                                            <td scope="row">Mobile No:</td>
+                                            <td scope="row">{{ $t('mobile_no', $store.state.locale) }} :</td>
                                                 <td>
                                                     {{ user.phone_number }}
                                                     <span class="verified gamehub-success" v-if="user.is_phone_verified === 1">
@@ -150,23 +152,23 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                            <td scope="row">Address:</td>
+                                            <td scope="row">{{ $t('address', $store.state.locale) }} :</td>
                                                 <td v-if="user.address">{{ user.address.address }}</td>
                                             </tr>
                                             <tr>
-                                            <td scope="row">City:</td>
+                                            <td scope="row">{{ $t('city', $store.state.locale) }}:</td>
                                                 <td v-if="user.address">{{ user.address.city }}</td>
                                             </tr>
                                             <tr>
-                                            <td scope="row">Post Code:</td>
+                                            <td scope="row">{{ $t('post_code', $store.state.locale) }} :</td>
                                                 <td v-if="user.address">{{ user.address.post_code }}</td>
                                             </tr>
                                             <tr>
-                                            <td scope="row">NID No:</td>
+                                            <td scope="row">{{ $t('nid', $store.state.locale) }} :</td>
                                                 <td>{{ user.identification_number }}</td>
                                             </tr>
                                             <tr>
-                                            <td scope="row">NID Image:</td>
+                                            <td scope="row">{{ $t('nid_image', $store.state.locale) }} :</td>
                                                 <td v-if="user.identification_image"><img :src="user.identification_image" alt="nid" class="img-fluid"></td>
                                                 <td v-else><img src="" alt="nid" class="img-fluid"></td>
                                             </tr>
@@ -178,8 +180,8 @@
                             <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
                                 <div class="dashboard-content">
                                     <div class="d-flex justify-content-center dashboard-tab-button mb-5">
-                                        <button  @click.prevent="onRentedGames()" :disabled="!show" :class="{active: !show}"><img class="active-black" src="../assets/img/rent-icon.png" alt="rent icon"> <img class="active-yellow" src="../assets/img/rent-icon-black.png" alt="rent icon"> Rented Games</button>
-                                        <button  @click.prevent="onOfferedGames()" :disabled="show" :class="{active: show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  Offered Games</button>
+                                        <button  @click.prevent="onRentedGames()" :disabled="!show" :class="{active: !show}"><img class="active-black" src="../assets/img/rent-icon.png" alt="rent icon"> <img class="active-yellow" src="../assets/img/rent-icon-black.png" alt="rent icon"> {{ $t('rented_games', $store.state.locale) }}</button>
+                                        <button  @click.prevent="onOfferedGames()" :disabled="show" :class="{active: show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  {{ $t('offered_games', $store.state.locale) }}</button>
                                     </div>
                                 <!-- Offer -->
                                     <div class="dashboard-content--rented" v-if="rents.length && show">
@@ -192,7 +194,6 @@
                                                 </div>
 
                                              <div class="dashboard-content--rented--box--order-id h-30">
-<!--                                                <p>GH: 1223</p>-->
                                             </div>
 
                                              <div class="dashboard-content--rented--box--order-name">
@@ -201,12 +202,12 @@
                                             <div class="d-flex">
                                                 <div class="left flex-1">
                                                     <div class="disk-condition">
-                                                        <p class="mb-2">Disk condition</p>
+                                                        <p class="mb-2">{{ $t('disk_condition', $store.state.locale) }}</p>
                                                         <p class="text-secondery" v-if="rent.diskCondition">{{ rent.diskCondition.data.name_of_type }}</p>
                                                         <p class="text-secondery" v-else>N/A</p>
                                                     </div>
                                                     <div class="renter-name">
-                                                        <p class="mb-2">Renter Name</p>
+                                                        <p class="mb-2">{{ $t('renter_name', $store.state.locale) }}</p>
                                                         <p class="text-secondery" v-if="rent.renter">{{ rent.renter.data.name }}</p>
                                                         <p class="text-secondery" v-else>N/A</p>
                                                     </div>
@@ -221,11 +222,11 @@
                                                 </div>
                                                 <div class="right flex-1">
                                                     <div class="platform">
-                                                        <p class="mb-2">Platform</p>
+                                                        <p class="mb-2">{{ $t('platform', $store.state.locale) }}</p>
                                                         <p class="text-secondery">{{ rent.platform.data.name }}</p>
                                                     </div>
                                                     <div class="status">
-                                                        <p class="mb-2">Status</p>
+                                                        <p class="mb-2">{{ $t('status', $store.state.locale) }}</p>
                                                         <p v-if="rent.status ==2"><span class="rejected br-0 f-s-16">Rejected</span></p>
                                                         <p v-else-if="rent.lend != null"><span class="badge-danger badge br-0 p-2 f-s-16">Rented for {{ rent.lend.data.lend_week }} week(s)</span></p>
                                                         <p class="text-secondery" v-else>Available for {{ rent.max_number_of_week }} week(s)</p>
@@ -250,7 +251,7 @@
                                                                 <ValidationObserver v-slot="{ invalid }">
                                                                     <form @submit.prevent="gameCredentialUpdate(userRentId, userGameId, userPassword)" method="post">
                                                                         <div class="form-group post-rent--form-group">
-                                                                            <label for="game-user-id" class=" label-padding post-rent--form-group--label text-light text-left">Game user id</label>
+                                                                            <label for="game-user-id" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('game_user_id', $store.state.locale) }}</label>
                                                                             <div class=" post-rent--form-group--input">
                                                                                 <ValidationProvider name="Game user id" rules="required" v-slot="{ errors }">
                                                                                 <input type="text" class="form-control renten-input" id="game-user-id" placeholder="Enter game user id" v-model="userGameId">
@@ -261,7 +262,7 @@
                                                                         </div>
                                                                         <!-- form-group -->
                                                                         <div class="form-group post-rent--form-group">
-                                                                            <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light text-left">Game password</label>
+                                                                            <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('game_password', $store.state.locale) }}</label>
                                                                             <div class=" post-rent--form-group--input">
                                                                             <ValidationProvider name="Game password" rules="required" v-slot="{ errors }">
                                                                                 <input type="text" class="form-control renten-input" id="game-user-pass" placeholder="Enter game user password" v-model="userPassword">
@@ -273,7 +274,7 @@
                                                                         <div class="form-group post-rent--form-group offer-edit-btn">
                                                                             <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light"></label>
                                                                             <div class=" post-rent--form-group--input">
-                                                                                <button type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid"><span class="w-100">Submit</span></button>
+                                                                                <button type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid"><span class="w-100">{{ $t('submit', $store.state.locale) }}</span></button>
 <!--                                                                                <button type="submit" href="javascript:void(0)" class="btn&#45;&#45;secondery" @click.prevent="handleSubmit(gameCredentialUpdate(rent.id, rent.game_user_id, rent.game_password))">Submit</button>-->
                                                                             </div>
                                                                         </div>
@@ -292,84 +293,6 @@
                                     <!-- Rented -->
                                     <div v-else-if="lends.length && !show">
                                         <div class="dashboard-content--rented">
-                                            <!-- <table class="table table-borderless" v-if="lends">
-                                                <thead>
-                                                <tr>
-                                                    <td scope="col">Order Id</td>
-                                                    <td scope="col">Game</td>
-                                                    <td scope="col">Rent Week(s)</td>
-                                                    <td scope="col">Rent Date</td>
-                                                   <td scope="col">Rent Start Date</td>
-                                                    <td scope="col">Return Date</td>
-                                                    <td scope="col" class="text-center">Remaining Days</td>
-                                                    <td scope="col">Cost</td>
-                                                    <td scope="col">Status</td>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr v-for="(lend, index) in lends" :key="index">
-                                                    <td v-if="lend.order">{{ lend.order.order_no }}</td>
-                                                    <td v-else>N/A</td>
-                                                    <td v-if="lend.rent">{{ lend.rent.game.name }}
-                                                        <div class="disk-type mt-4 text-secondery" v-if="lend.rent.disk_type == 1">Physical Copy</div>
-                                                        <div class="disk-type mt-4 text-secondery" v-if="lend.rent.disk_type == 0">Digital Copy</div>
-                                                    </td>
-                                                    <td>{{ lend.lend_week }}</td>
-                                                    <td>{{ formattedDate(lend.lend_date) }}</td>
-                                                   <td v-if="lend.rent.disk_type == 1 && lend.status === 3">
-                                                       {{ startDate(lend.rent.disk_type, lend.updated_at) }}
-                                                   </td>
-                                                   <td v-else-if="lend.rent.disk_type == 0">
-                                                       {{ startDate(lend.rent.disk_type, lend.created_at) }}
-                                                   </td>
-                                                   <td v-else>
-                                                       -
-                                                   </td>
-
-                                                    <td v-if="lend.rent.disk_type == 1 && lend.status === 3">
-                                                        {{ returnDate(lend.rent.disk_type, lend.updated_at, lend.lend_week) }}
-                                                    </td>
-                                                    <td v-else-if="lend.rent.disk_type == 1 && lend.status === 1">
-                                                        {{ formattedReturnDate(lend.updated_at) }}
-                                                    </td>
-                                                    <td v-else-if="lend.rent.disk_type == 0">
-                                                        {{ returnDate(lend.rent.disk_type, lend.created_at, lend.lend_week) }}
-                                                    </td>
-                                                    <td v-else>
-                                                        -
-                                                    </td>
-                                                    <td v-if="lend.rent.disk_type == 1">
-                                                        <flip-countdown :deadline="endDate(lend.rent.disk_type, lend.updated_at, lend.lend_week)" v-if="lend.status === 3"></flip-countdown>
-                                                        <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-else></flip-countdown>
-                                                    </td>
-                                                    <td v-if="lend.rent.disk_type == 0">
-                                                        <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-if="lend.status === 1 || lend.status === 4"></flip-countdown>
-                                                        <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)" v-else></flip-countdown>
-                                                    </td>
-                                                    <td>{{ lend.lend_cost + Math.floor(lend.commission) }}</td>
-
-                                                    <td v-if="lend.status === 0">
-                                                        <a class="badge-warning badge" >Pending</a>
-                                                    </td>
-                                                    <td v-else-if="lend.status === 1">
-                                                        <a class="badge-success badge" >Completed</a>
-                                                    </td>
-                                                    <td v-else-if="lend.status === 2">
-                                                        <a class="badge-success badge" >Arrived at checkpoint</a>
-                                                    </td>
-                                                    <td v-else-if="lend.status === 3">
-                                                        <a class="badge-success badge" >Delivered</a>
-                                                    </td>
-                                                    <td v-else-if="lend.status === 4">
-                                                        <a class="badge-danger badge" >Rejected</a>
-                                                    </td>
-                                                    <td v-else-if="lend.status === 5">
-                                                        <a class="badge-success badge" >Processing</a>
-                                                    </td>
-                                                           <td><button class="btn btn-primary" @click.prevent="extend">Extent Date</button></td>
-                                                </tr>
-                                                </tbody>
-                                            </table> -->
                                             <!-- new rented design -->
                                             <div class="d-flex flex-wrap" v-if="lends">
                                                 <div class="dashboard-content--rented--box position-relative bg-game-details border-2 warning-border" v-for="(lend, index) in lends" :key="index">
@@ -387,11 +310,11 @@
                                                     </div>
                                                     <div class="d-flex justify-content-between dashboard-content--rented--box--order-description">
                                                             <div class="cost flex-2">
-                                                                <p>Cost</p>
+                                                                <p>{{ $t('cost', $store.state.locale) }}</p>
                                                                 <p class="text-secondery">{{ lend.lend_cost + parseInt(lend.commission)  }}</p>
                                                             </div>
                                                             <div class="duration flex-1">
-                                                                <p>Rent duration</p>
+                                                                <p>{{ $t('rent_duration', $store.state.locale) }}</p>
                                                                 <div class="d-flex flex-column align-items-center duration--date text-secondery w-fit">
                                                                     <p class="mb-1">{{ formattedDate(lend.lend_date) }} </p>
                                                                     <p class="mb-1">to</p>
@@ -404,7 +327,7 @@
                                                     </div>
                                                     <div class="mt-a-6 d-flex justify-content-between">
                                                             <div class="timer flex-2">
-                                                                <p class="mb-1">Remaining time</p>
+                                                                <p class="mb-1">{{ $t('remaining_time', $store.state.locale) }}</p>
                                                                 <div v-if="lend.rent.disk_type == 1">
                                                                     <flip-countdown :deadline="endDate(lend.rent.disk_type, lend.updated_at, lend.lend_week)" v-if="lend.status === 3"></flip-countdown>
                                                                     <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-else></flip-countdown>
@@ -415,7 +338,7 @@
                                                                 </div>
                                                             </div>
                                                             <div class="status flex-1">
-                                                                <p class="mb-1">Status</p>
+                                                                <p class="mb-1">{{ $t('status', $store.state.locale) }}</p>
                                                                 <div v-if="lend.status === 0">
                                                                     <span class="pending br-0 f-s-16" >Pending</span>
                                                                 </div>
@@ -439,11 +362,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="text-center text-secondery mt-3 rented-note">Please note that total rent amount is exclusive of 60 taka delivery charge only for physical disk.</p>
+                                        <p class="text-center text-secondery mt-3 rented-note">{{ $t('delivery_charge_notice', $store.state.locale) }}</p>
                                     </div>
                                     <!-- Norhing to show -->
                                     <div class="no-post-found-card mb-0" v-else>
-                                        <h5>Nothing to Show!</h5>
+                                        <h5>{{ $t('noting_to_show', $store.state.locale) }} !</h5>
                                     </div>
                                 </div>
 <!--                            </div>-->
@@ -453,8 +376,6 @@
                                 <div class="post-rent">
                                     <ValidationObserver ref="form">
                                         <form @submit.prevent="onRentSubmit" method="post" id="rentPostForm">
-<!--                                            &lt;!&ndash; Error text &ndash;&gt;-->
-<!--                                            <span class="error-message mb-a-5 shake-infinite top-error-rent-post d-flex justify-content-center w-fit m-a-auto pb-a-5" v-if="errors.length">Please fill up all required field</span>-->
                                             <!-- form-group -->
                                              <div class="form-group post-rent--form-group">
                                                 <label class=" post-rent--form-group--label"></label>
@@ -464,7 +385,7 @@
                                             </div>
 
                                             <div class="form-group post-rent--form-group">
-                                                <label class=" post-rent--form-group--label">Game Name:</label>
+                                                <label class=" post-rent--form-group--label">{{ $t('game_name', $store.state.locale) }}:</label>
                                                 <div class=" post-rent--form-group--input">
                                                     <ValidationProvider name="game" rules="" v-slot="{ errors }">
                                                         <vue-autosuggest
@@ -486,7 +407,7 @@
                                             </div>
                                               <!-- form-group -->
                                             <div class="form-group post-rent--form-group">
-                                                <label for="rentedWeek" class=" label-padding post-rent--form-group--label">Max Rented Week:</label>
+                                                <label for="rentedWeek" class=" label-padding post-rent--form-group--label">{{ $t('max_rent_week', $store.state.locale) }} :</label>
                                                 <div class=" post-rent--form-group--input">
                                                     <ValidationProvider name="rented week" rules="required|integer|min_value:1" v-slot="{ errors }">
                                                         <input type="number" class="form-control renten-input" id="rentedWeek" min="1" max="10" v-model="rentData.max_week">
@@ -499,21 +420,9 @@
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
-
-<!--                                            <div class="form-group row">-->
-<!--                                                <label for="gamendate" class="col-sm-3 col-form-label">Available from:</label>-->
-<!--                                                <div class="col-sm-8 post-rent&#45;&#45;input">-->
-<!--                                                    <ValidationProvider name="available date" rules="required" v-slot="{ errors }">-->
-<!--                                                        <input type="date" class="form-control" id="gamendate" placeholder="Availablity Date" :min="todayDate(1)" v-model="rentData.availability">-->
-<!--                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>-->
-<!--                                                    </ValidationProvider>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-                                            <!-- platform -->
-
                                               <!-- form-group -->
                                             <div class="form-group post-rent--form-group" v-if="gamePlatform">
-                                                <label class=" label-padding post-rent--form-group--label mt-0">Platform:</label>
+                                                <label class=" label-padding post-rent--form-group--label mt-0">{{ $t('platform', $store.state.locale) }} :</label>
                                                 <div class="post-rent--form-group--input">
                                                 <ValidationProvider name="Platform" rules="required" v-slot="{ errors }">
                                                     <div class=" post-rent--form-group--input--radio-group ">
@@ -529,9 +438,8 @@
                                                 </div>
                                             </div>
                                                   <!-- Delivery type -->
-                                                  <!-- form-group -->
                                             <div class="form-group post-rent--form-group">
-                                                <label class="post-rent--form-group--label mt-0">Delivery type:</label>
+                                                <label class="post-rent--form-group--label mt-0">{{ $t('delivery_type', $store.state.locale) }} :</label>
                                                 <div class="post-rent--form-group--input">
                                                     <div class="post-rent--form-group--input--radio-group delivery-radio-group">
                                                         <div class="custom-radio d-flex">
@@ -550,7 +458,7 @@
                                             <!-- Select Check point -->
                                               <!-- form-group -->
                                            <div class="form-group post-rent--form-group" v-show="x === '1'">
-                                                    <label class="post-rent--form-group--label">Select checkpoint:</label>
+                                                    <label class="post-rent--form-group--label">{{ $t('select_checkpoint', $store.state.locale) }} :</label>
                                                     <div class="post-rent--form-group--input">
                                                         <select class="form-control" id="checkpoint" v-model="rentData.checkpoint">
                                                             <option value="" disabled>Please Select Near Checkpoint</option>
@@ -561,7 +469,7 @@
                                               <!-- form-group -->
                                             <div class="form-group post-rent--form-group">
 
-                                                <label class="post-rent--form-group--label mt-0">Game Type:</label>
+                                                <label class="post-rent--form-group--label mt-0">{{ $t('game_type', $store.state.locale) }} :</label>
                                                 <div class="post-rent--form-group--input">
                                                     <ValidationProvider name="Game type" rules="required" v-slot="{ errors }">
                                                     <div class="post-rent--form-group--input--radio-group delivery-radio-group">
@@ -584,21 +492,21 @@
                                             <!-- form-group -->
 <!--                                            <div class="form-group post-rent&#45;&#45;form-group" v-if="basePrices">-->
                                             <div class="form-group post-rent--form-group" v-if="gameTypePricingState && basePrices">
-                                                <label class="post-rent--form-group--label mt-0">Earning Amount:</label>
+                                                <label class="post-rent--form-group--label mt-0">{{ $t('earning_amount', $store.state.locale) }} :</label>
                                                 <div class="earning-amount post-rent--form-group--input">
                                                     <div class="earning-amount--content">
                                                         <table class="table table-borderless">
                                                             <tbody>
                                                             <tr class="">
-                                                                <td>Your Estimated earning for 1 week</td>
+                                                                <td>{{ $t('estimation_1', $store.state.locale) }}</td>
                                                                 <td>BDT {{ Math.ceil((basePrices[1] - ( basePrices[1] * gameTypePricing ) /100)) }}</td>
                                                             </tr>
                                                             <tr class="">
-                                                                <td>Your Estimated earning for 2 week</td>
+                                                                <td>{{ $t('estimation_2', $store.state.locale) }}</td>
                                                                 <td>BDT {{ Math.ceil(basePrices[1] + basePrices[2]  - ((basePrices[1] + basePrices[2])  * gameTypePricing )/100) }}</td>
                                                             </tr>
                                                             <tr class="">
-                                                                <td>Your Estimated earning for 3 week</td>
+                                                                <td>{{ $t('estimation_3', $store.state.locale) }}</td>
                                                                 <td>BDT {{ Math.ceil(basePrices[1] + basePrices[2] + basePrices[3] - ((basePrices[1] + basePrices[2] + basePrices[3]) * gameTypePricing)/100) }}</td>
                                                             </tr>
                                                             </tbody>
@@ -608,7 +516,7 @@
                                                             <div class="alert alert-info alert-dismissible game-rent-alert--box">
                                                                 <button type="button" class="close close-modal" data-dismiss="alert" aria-label="Close"></button>
                                                                 <p>
-                                                                    If you want to Rent for more weeks. Then renting price will be cyclic like the given price table. So its start from 1st week.
+                                                                    {{ $t('estimation_notice', $store.state.locale) }}
                                                                 </p>
                                                             </div>
                                                         </div>
@@ -620,21 +528,21 @@
                                             </div>
                                              <!-- form-group -->
                                             <div class="form-group post-rent--form-group" v-if="isDigital">
-                                                <label for="rent-game-user-id" class=" label-padding post-rent--form-group--label">Game user id</label>
+                                                <label for="rent-game-user-id" class=" label-padding post-rent--form-group--label">{{ $t('game_user_id', $store.state.locale) }}</label>
                                                 <div class=" post-rent--form-group--input">
                                                     <input type="text" class="form-control renten-input" id="rent-game-user-id" placeholder="Enter game user id" v-model="rentData.gameUserId">
                                                 </div>
                                             </div>
                                             <!-- form-group -->
                                             <div class="form-group post-rent--form-group" v-if="isDigital">
-                                                <label for="rent-game-user-pass" class=" label-padding post-rent--form-group--label">Game password</label>
+                                                <label for="rent-game-user-pass" class=" label-padding post-rent--form-group--label">{{ $t('game_password', $store.state.locale) }}</label>
                                                 <div class=" post-rent--form-group--input">
                                                     <input type="text" class="form-control renten-input" id="rent-game-user-pass" placeholder="Enter game user password" v-model="rentData.gamePassword">
                                                 </div>
                                             </div>
                                             <!-- form-group -->
                                             <div class="form-group post-rent--form-group" v-if="diskImageRequired">
-                                                <label class="post-rent--form-group--label" for="DiskCondition">Disk Condition:</label>
+                                                <label class="post-rent--form-group--label" for="DiskCondition">{{ $t('disk_condition', $store.state.locale) }} :</label>
                                                 <div class="post-rent--form-group--input">
                                                     <ValidationProvider name="Disk Condition" :rules='{required: diskImageRequired}' v-slot="{ errors }">
                                                         <select class="form-control js-example-basic-single" id="DiskCondition" v-model="rentData.disk_condition">
@@ -647,13 +555,13 @@
                                             </div>
                                             <!-- disk image -->
                                             <div class="form-group post-rent--form-group post-rent--form-group-img" v-if="diskImageRequired">
-                                                <label class="post-rent--form-group--label">Disk Image:</label>
+                                                <label class="post-rent--form-group--label">{{ $t('disk_image', $store.state.locale) }} :</label>
                                                 <div class="post-rent--form-group--input">
                                                     <ValidationProvider name="Disk Image" :rules='{required: diskImageRequired}' v-slot="{ validate, errors }">
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="DiskUpload"  accept="image/*" @change="onDiskimageChange($event)|| validate($event)">
 <!--                                                        <input type="file" class="custom-file-input" id="DiskUpload"  accept="image/*" @change="onDiskimageChange">-->
-                                                        <label class="custom-file-label text-light" for="customFile">Disk Image</label>
+                                                        <label class="custom-file-label text-light" for="customFile">{{ $t('disk_image', $store.state.locale) }}</label>
                                                     </div>
                                                     <div class="img-prev">
                                                         <img v-if="rentData.disk_image" :src="rentData.disk_image" alt="Disk image preview">
@@ -664,12 +572,12 @@
                                                 </div>
                                             </div>
                                             <div class="form-group post-rent--form-group post-rent--form-group-img" v-if="diskImageRequired">
-                                                <label class="post-rent--form-group--label">Cover Image:</label>
+                                                <label class="post-rent--form-group--label">{{ $t('cover_image', $store.state.locale) }} :</label>
                                                 <div class="post-rent--form-group--input">
                                                     <ValidationProvider name="Cover Image" :rules='{required: diskImageRequired}' v-slot="{ validate, errors }">
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="customFile2" accept="image/*" @change="onCoverimageChange($event)|| validate($event)">
-                                                        <label class="custom-file-label text-light" for="customFile2">Cover Image</label>
+                                                        <label class="custom-file-label text-light" for="customFile2">{{ $t('cover_image', $store.state.locale) }}</label>
                                                     </div>
                                                     <div class="img-prev">
                                                         <img v-if="rentData.cover_image" :src="rentData.cover_image" alt="Cover image preview">
@@ -685,14 +593,14 @@
                                                 <div class="checkbox-parents">
                                                 <ValidationProvider name="Terms & Conditions" rules="required" v-slot="{ errors }">
                                                     <input type="checkbox" id="terms-agree" class="checkbox-parents--input" v-model="agreement" @change="onAgreement($event)">
-                                                    <label for="terms-agree" class="checkbox-parents--label">I agree with all <router-link to="/terms" target="_blank" class="text-secondery"><u> Terms and Conditions</u></router-link></label>
+                                                    <label for="terms-agree" class="checkbox-parents--label">{{ $t('i_agree', $store.state.locale) }} <router-link to="/terms" target="_blank" class="text-secondery"><u>{{ $t('terms', $store.state.locale) }}</u></router-link></label>
                                                     <span v-if="errors.length" class="error-message d-block ml--28">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                                 </div>
                                             </div>
                                             <div class="form-group post-rent--form-group post-rent-btn">
                                                 <button class="btn--secondery w-100 border-0 post-rent--form-group--btn" :disabled="isRentLoading">
-                                                    <span class="mr-2">Submit <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i></span>
+                                                    <span class="mr-2">{{ $t('submit', $store.state.locale) }} <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i></span>
                                                 </button>
                                             </div>
 
@@ -706,7 +614,7 @@
                                     <ValidationObserver v-slot="{ handleSubmit }">
                                         <form @submit.prevent="handleSubmit(onProfileUpdate)" method="post">
                                             <div class="form-group row">
-                                                <label for="first_name" class="col-sm-3 col-form-label">First name:</label>
+                                                <label for="first_name" class="col-sm-3 col-form-label">{{ $t('first_name', $store.state.locale) }} :</label>
 
                                                     <div class="col-sm-9 edit--input">
                                                         <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
@@ -717,7 +625,7 @@
 
                                             </div>
                                             <div class="form-group row">
-                                                <label for="last_name" class="col-sm-3 col-form-label">Last name:</label>
+                                                <label for="last_name" class="col-sm-3 col-form-label">{{ $t('last_name', $store.state.locale) }} :</label>
                                                 <div class="col-sm-9 edit--input">
                                                     <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
                                                         <input @keypress="isValidString($event)" type="text" class="form-control" id="last_name" v-model="form.last_name">
@@ -727,7 +635,7 @@
                                             </div>
 
                                             <div class="form-group row">
-                                                <label for="gender" class="col-sm-3 col-form-label">Gender:</label>
+                                                <label for="gender" class="col-sm-3 col-form-label">{{ $t('gender', $store.state.locale) }} :</label>
                                                 <div class="col-sm-9 edit--input">
                                                     <ValidationProvider name="gender" rules="required" v-slot="{ errors }">
 
@@ -748,7 +656,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="dateofbirth" class="col-sm-3 col-form-label">Date of Birth:</label>
+                                                <label for="dateofbirth" class="col-sm-3 col-form-label">{{ $t('dob', $store.state.locale) }} :</label>
                                                 <div class="col-sm-9 edit--input">
                                                     <ValidationProvider name="date of birth" rules="required" v-slot="{ errors }">
                                                         <input type="date" class="form-control" id="dateofbirth" :max="todayDate()" v-model="form.birth_date">
@@ -757,7 +665,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="email" class="col-sm-3 col-form-label">Email:</label>
+                                                <label for="email" class="col-sm-3 col-form-label">{{ $t('email', $store.state.locale) }} :</label>
                                                 <div class="col-sm-9 edit--input">
                                                     <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                                                         <input type="email" @focus="onEmailFocus" class="form-control" id="email" v-model="form.email">
@@ -777,7 +685,7 @@
 <!--                                                </div>-->
 <!--                                            </div>-->
                                             <div class="form-group row">
-                                                <label for="address" class="col-sm-3 col-form-label">Address:</label>
+                                                <label for="address" class="col-sm-3 col-form-label">{{ $t('address', $store.state.locale) }} :</label>
                                                 <div class="col-sm-9 edit--input">
                                                     <ValidationProvider name="address" rules="required" v-slot="{ errors }">
                                                         <input type="text" class="form-control" id="address" v-model="form.address">
@@ -786,7 +694,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="city" class="col-sm-3 col-form-label">City:</label>
+                                                <label for="city" class="col-sm-3 col-form-label">{{ $t('city', $store.state.locale) }} :</label>
                                                 <div class="col-sm-9 edit--input">
                                                     <ValidationProvider name="city" rules="required" v-slot="{ errors }">
                                                         <input type="text" class="form-control" id="city" v-model="form.city">
@@ -795,7 +703,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <label for="postcode" class="col-sm-3 col-form-label">Post Code:</label>
+                                                <label for="postcode" class="col-sm-3 col-form-label">{{ $t('post_code', $store.state.locale) }} :</label>
                                                 <div class="col-sm-9 edit--input">
                                                     <ValidationProvider name="post code" rules="required" v-slot="{ errors }">
                                                         <input type="text" class="form-control" id="postcode" v-model="form.postCode">
@@ -804,7 +712,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row" v-if="nid_verification == 0">
-                                                <label for="nidno" class="col-sm-3 col-form-label">NID No:</label>
+                                                <label for="nidno" class="col-sm-3 col-form-label">{{ $t('nid', $store.state.locale) }}:</label>
                                                 <div class="col-sm-9 edit--input">
                                                     <ValidationProvider name="NID" rules="required" v-slot="{ errors }">
                                                     <input type="text" class="form-control" id="nidno" v-model="form.identification_number">
@@ -813,7 +721,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row" v-if="nid_verification == 0">
-                                                <label class="col-sm-3 col-form-label">NID Image:</label>
+                                                <label class="col-sm-3 col-form-label">{{ $t('nid_image', $store.state.locale) }} :</label>
                                                 <div class="col-sm-9 edit--input">
                                                 <div class="custom-file">
                                                     <ValidationProvider name="NID Image" rules="required" v-slot="{ validate, errors }">
@@ -827,7 +735,7 @@
                                             <div class="form-group row">
                                             <div class="offset-md-3 col-md-9 col-xl-8 mt-4 post-rent--input">
                                                     <button class="btn--secondery w-100 border-0" :disabled="$store.state.isProfileUpdating">
-                                                        <span class="mr-2">Update Profile <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm text-dark"></i>  </span>
+                                                        <span class="mr-2">{{ $t('update_profile', $store.state.locale) }} <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm text-dark"></i>  </span>
                                                     </button>
                                                 </div>
                                             </div>
@@ -841,25 +749,25 @@
                                 <div class="my-earning">
                                     <div class="my-earning--dashboard">
                                         <div class="my-earning--dashboard--content">
-                                            <h4>Lifetime earnings</h4>
+                                            <h4>{{ $t('lifetime_earning', $store.state.locale) }}</h4>
                                             <h2>{{ total_earn }} Taka</h2>
                                         </div>
                                         <div class="my-earning--dashboard--content">
-                                            <h4>Payable amount</h4>
+                                            <h4>{{ $t('lifetime_earning', $store.state.locale) }}</h4>
                                             <h2>{{ payable_amount }} Taka</h2>
                                         </div>
                                     </div>
                                     <!-- payment history -->
                                     <div class="my-earning--payment-history">
-                                        <h4 class="my-earning--payment-history--heading">Payment history</h4>
+                                        <h4 class="my-earning--payment-history--heading">{{ $t('payment_history', $store.state.locale) }}</h4>
                                         <div class="table-responsive" v-if="transactions.length">
                                             <table class="table my-earning--payment-history--table">
                                                 <thead>
                                                     <tr>
-                                                    <th scope="col">Transaction id</th>
-                                                    <th scope="col">Date</th>
-                                                    <th scope="col">Withdrawal amount</th>
-                                                    <th scope="col">Withdrawal method</th>
+                                                    <th scope="col">{{ $t('transaction_id', $store.state.locale) }}</th>
+                                                    <th scope="col">{{ $t('date', $store.state.locale) }}</th>
+                                                    <th scope="col">{{ $t('withdrawal_amount', $store.state.locale) }}</th>
+                                                    <th scope="col">{{ $t('withdrawal_method', $store.state.locale) }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -872,7 +780,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <span class="text-center d-block mt-a-18" v-else>No transaction history found</span>
+                                        <span class="text-center d-block mt-a-18" v-else>{{ $t('no_trans_found', $store.state.locale) }}</span>
 <!--                                        <nav aria-label="Page navigation example" class="my-earning&#45;&#45;payment-history&#45;&#45;pagination">-->
 <!--                                            <ul class="pagination">-->
 <!--                                                <li class="page-item">-->
@@ -898,44 +806,44 @@
                             <div class="tab-pane fade" id="v-pills-refer" role="tabpanel" aria-labelledby="v-pills-refer-tab">
                                 <div class="refer-friend">
                                     <div class="refer-friend--link">
-                                        <p>Refer link</p>
+                                        <p>{{ $t('refer_link', $store.state.locale) }}</p>
                                         <div class="refer-friend--link--input-group d-flex">
                                             <input type="text" class="refer-friend--link--input-group--input" :value="user.referral_url" v-if="user.referral_url" readonly>
                                             <div class="refer-friend--link--input-group--append"
                                                  v-clipboard:copy="user.referral_url"
                                                  v-clipboard:success="onCopy"
                                                  v-clipboard:error="onError">
-                                                <span>Copy link</span>
+                                                <span>{{ $t('copy_link', $store.state.locale) }}</span>
                                             </div>
                                         </div>
                                     </div>
                                     <!-- refer earning -->
                                      <div class="my-earning--dashboard">
                                         <div class="my-earning--dashboard--content">
-                                            <h4>Used Referral Amount</h4>
+                                            <h4>{{ $t('Used_referral', $store.state.locale) }}</h4>
                                             <h2>{{ walletTotalSpend }} Taka</h2>
                                         </div>
                                         <div class="my-earning--dashboard--content">
-                                            <h4>Usable amount</h4>
+                                            <h4>{{ $t('usable_amount', $store.state.locale) }}</h4>
                                             <h2>{{ walletUsableAmount }} Taka</h2>
                                         </div>
                                     </div>
                                     <!-- refer amount -->
                                     <div class="d-flex flex-column flex-sm-row text-center text-sm-left align-items-center justify-content-between">
-                                        <h6 class="mr-4 gray-text">Do you want to use referral earning amount?</h6>
-                                        <router-link to="/games" class="btn--secondery mr-3"><span>RENT GAME</span></router-link>
+                                        <h6 class="mr-4 gray-text">{{ $t('want_to_earn', $store.state.locale) }}</h6>
+                                        <router-link to="/games" class="btn--secondery mr-3"><span style="text-transform: uppercase">{{ $t('rent_games', $store.state.locale) }}</span></router-link>
                                     </div>
                                     <!-- refer history -->
                                     <div class="refer-history">
-                                        <h6 class="mr-4 gray-text">Referral history</h6>
+                                        <h6 class="mr-4 gray-text">{{ $t('referral_history', $store.state.locale) }}</h6>
                                         <div class="table-responsive" v-if="walletHistory.length">
                                              <table class="table my-earning--payment-history--table">
                                                 <thead>
                                                     <tr>
-                                                    <th scope="col">Date</th>
-                                                    <th scope="col">Name</th>
-                                                    <th scope="col">Email address</th>
-                                                    <th scope="col">Earned</th>
+                                                    <th scope="col">{{ $t('date', $store.state.locale) }}</th>
+                                                    <th scope="col">{{ $t('name', $store.state.locale) }}</th>
+                                                    <th scope="col">{{ $t('email', $store.state.locale) }} {{ $t('address', $store.state.locale) }}</th>
+                                                    <th scope="col">{{ $t('earned', $store.state.locale) }}</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -948,7 +856,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <span class="text-center d-block mt-a-18" v-else>No Referreal history found</span>
+                                        <span class="text-center d-block mt-a-18" v-else>{{ $t('no_referral_history', $store.state.locale) }}</span>
                                     </div>
                                 </div>
                             </div>
@@ -1052,10 +960,11 @@
         },
         methods: {
             onCopy: function (e) {
-                this.$toaster.success("Link successfully copied !");
+                // this.$toaster.success("Link successfully copied !");
+                this.$toaster.success( this.$t('link_copied_successfully', this.$store.state.locale) );
             },
             onError: function (e) {
-                this.$toaster.success('Failed to copy the text to the clipboard');
+                this.$toaster.success( this.$t('link_copied_failed', this.$store.state.locale) );
                 console.log(e);
             },
             postStatusChange(event, id) {
@@ -1106,7 +1015,7 @@
                 this.$api.post('user-cover-update', data, config).then(response => {
                     if (response.data.error == false) {
                         this.coverModal = false;
-                        this.$toaster.success("User Cover Updated!");
+                        this.$toaster.success( this.$t('cover_updated', this.$store.state.locale) );
                     }else {
                         this.$toaster.fail(response.data.message);
                     }
@@ -1129,7 +1038,7 @@
                 this.$api.post('game-credential-update', data, config).then(response => {
                     if (response.data.error == false) {
                         this.credentialModalShow = false;
-                        this.$toaster.success("Game Credential Updated!");
+                        this.$toaster.success(this.$t('credential_updated', this.$store.state.locale));
                     }else {
                         this.$toaster.fail(response.data.message);
                     }
@@ -1157,8 +1066,8 @@
             },
             onDelete(rent) {
                 this.$swal({
-                    title: "Rent Post Delete!",
-                    text: "Do you want to delete the Rent Post?",
+                    title: this.$t('post_deleted', this.$store.state.locale),
+                    text: this.$t('delete_confirm', this.$store.state.locale),
                     icon: "warning",
                     buttons: true,
                     dangerMode: true,
@@ -1171,31 +1080,30 @@
                         }
                         this.$api.delete('rents/' + rent.id, config)
                             .then(response => {
-                            if (response.data) {
-                                this.rents.splice(this.rents.indexOf(rent), 1)
-                            }
-                            this.$swal ({
-                                title: "Post Deleted!",
-                                text: "Rent Post Delete Successful!",
-                                timer: 1500
-                            });
-                        })
+                                if (response.data) {
+                                    this.rents.splice(this.rents.indexOf(rent), 1)
+                                }
+                                this.$swal({
+                                    title: this.$t('post_deleted_successful', this.$store.state.locale),
+                                    text: this.$t('post_deleted_successful_msg', this.$store.state.locale),
+                                    timer: 1500
+                                })
 
-                    }
-                    else {
-                        this.$swal("Your information is safe!");
+                            })
+                    } else {
+                        this.$swal(this.$t('information_safe', this.$store.state.locale));
                     }
                 });
 
             },
             extend () {
                 this.$swal({
-                    title: "Please Contact",
-                    text: "Phone no: 017773278387",
+                    title: this.$t('please_contact', this.$store.state.locale),
+                    text: this.$t('contact_details', this.$store.state.locale),
                     icon: "warning",
                 }).then(() => {
                         this.$swal({
-                            text: "thank you",
+                            text: this.$t('thank_you', this.$store.state.locale),
                             icon: 'success',
                             timer: 1500,
                             button: false,
@@ -1292,7 +1200,7 @@
                         return;
                     }
                     this.$store.dispatch('updateUserDetails', this.form);
-                    this.$toaster.success("Profile Updated!");
+                    this.$toaster.success(this.$t('profile_updated', this.$store.state.locale));
                     setTimeout(function(){
                         // window.location.reload();
                         $('#v-pills-edit-profile-tab').removeClass('active');
@@ -1325,12 +1233,12 @@
                 if (event.srcElement.files.length > 0) {
                     let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
                     if (allowedTypes.indexOf(event.srcElement.files[0].type) == -1) { 
-                        this.$toaster.warning('Only jpg,jpeg or png file allowed');
+                        this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
                         return;
                     }
                     let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
                     if (fileSzie > 5102) { //5mb
-                        this.$toaster.warning('Maximum allowed file size 5MB');
+                        this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
                         return;
                     }
                     this.selectedFile = event.srcElement.files[0].name;
@@ -1347,12 +1255,12 @@
                 if (event.srcElement.files.length > 0) {
                     let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
                     if (allowedTypes.indexOf(event.srcElement.files[0].type) == -1) { 
-                        this.$toaster.warning('Only jpg,jpeg or png file allowed');
+                        this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
                         return;
                     }
                     let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
                     if (fileSzie > 5120) { //5mb
-                        this.$toaster.warning('Maximum allowed file size 5MB');
+                        this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
                         return;
                     }
                     fileReader.onload = (e) => {
@@ -1366,12 +1274,12 @@
                 if (event.srcElement.files.length > 0) {
                     let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
                     if (allowedTypes.indexOf(event.srcElement.files[0].type) == -1) { 
-                        this.$toaster.warning('Only jpg,jpeg or png file allowed');
+                        this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
                         return;
                     }
                     let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
                     if (fileSzie > 5120) { //5mb
-                        this.$toaster.warning('Maximum allowed file size 5MB');
+                        this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
                         return;
                     }
                     fileReader.onload = (e) => {
@@ -1390,11 +1298,11 @@
                                 top: 400,
                                 behavior: 'smooth',
                             })
-                            this.$toaster.error("Complete the required fields !");
+                            this.$toaster.error(this.$t('complete_required_field', this.$store.state.locale));
                             return;
                         }
                 if ( this.rentData.game == '' || this.rentData.game == null) {
-                    this.$toaster.warning('Select Game');
+                    this.$toaster.warning(this.$t('games_required_field', this.$store.state.locale));
                     this.isRentLoading = false;
                     return;
                 }
@@ -1420,7 +1328,7 @@
 
                 this.$api.post('rents', uploadInfo, config)
                     .then(response => {
-                        this.$toaster.success('Post submitted');
+                        this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
                         setTimeout(function () {
                             window.location.reload();
                             // $('#v-pills-post-rent-tab').removeClass('active');
@@ -1485,12 +1393,12 @@
                 if (event.srcElement.files.length > 0) {
                     let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
                     if (allowedTypes.indexOf(event.srcElement.files[0].type) == -1) { 
-                        this.$toaster.warning('Only jpg,jpeg or png file allowed');
+                        this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
                         return;
                     }
                     let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
                     if (fileSzie > 5120) { //5mb
-                        this.$toaster.warning('Maximum allowed file size 5MB');
+                        this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
                         return;
                     }
                     fileReader.onload = (e) => {

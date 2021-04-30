@@ -4,12 +4,12 @@
         <div class="container">
             <div class="inbox-section--content" v-if="notices.length">
                 <div class="inbox-section--content--heading text-center">
-                    <h6>Notice Board</h6>
+                    <h6>{{ $t('notice_board', $store.state.locale) }}</h6>
                 </div>
 
                 <div class="inbox-section--content--according">
                     <div class="card" v-for="(item, index) in notices" :key="index">
-                        <div class="inbox-click" @click="changeToggle(index)">Click me</div>
+                        <div class="inbox-click" @click="changeToggle(index)">{{ $t('click_me', $store.state.locale) }}</div>
                         <i class="fas fa-envelope mail-icon"></i>
                         <p :class="{ peraToggle: show !== index }">
                             {{ item['description'] }}
@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="cart-heading-empty" v-if="emptyNotice">
-                <h2>INBOX IS EMPTY</h2>
+                <h2 style="text-transform: uppercase">{{ $t('empty_inbox', $store.state.locale) }}</h2>
             </div>
         </div>
     </section>

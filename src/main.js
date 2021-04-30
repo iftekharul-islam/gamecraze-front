@@ -96,6 +96,8 @@ const store = new Vuex.Store(storage)
 //axios
 import axios from 'axios'
 
+import i18n from './i18n'
+
 Vue.use({
     install(Vue) {
         // console.log(process.env.VUE_APP_GAMEHUB_BASE_API, "env", process.env);
@@ -112,6 +114,9 @@ new Vue({
     render: h => h(App),
     router,
     store,
+    i18n,
+
+
     watch: {
         '$route' (to) {
             if (to.name == 'Payment') {

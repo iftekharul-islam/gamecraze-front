@@ -3,8 +3,8 @@
         <!-- contact-section -->
         <section class="title-section">
             <div class="contact-title text-center">
-                <h2 class="mb-3">Don't Be Shy, Let's Get In Touch!</h2>
-                <p>If you need any assistance, require any information, or want to upgrade your membership please contact us via the below form.</p>
+                <h2 class="mb-3">{{ $t('contact_title_part_1', $store.state.locale) }}</h2>
+                <p>{{ $t('contact_title_part_2', $store.state.locale) }}</p>
             </div>
         </section>
         <section class="contact-section">
@@ -19,19 +19,19 @@
                     </div>
                     <div class="col-md-6 mt-4 mt-md-0">
                         <div class="contact-form">
-                            <h2>CONTACT US</h2>
+                            <h2 style="text-transform: uppercase">{{ $t('contact_us', $store.state.locale) }}</h2>
                             <ValidationObserver v-slot="{ handleSubmit }">
                                 <form @submit.prevent="handleSubmit(sendMail)" method="post" id="contactForm">
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="firstName">First name</label>
+                                            <label for="firstName">{{ $t('first_name', $store.state.locale) }}</label>
                                             <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
                                                 <input type="text" class="form-control" name="first_name" id="firstName" value="" v-model="form.first_name">
                                                 <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="lastName">Last name</label>
+                                            <label for="lastName">{{ $t('last_name', $store.state.locale) }}</label>
                                             <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
                                                 <input type="text" class="form-control" name="last_name" id="lastName" value="" v-model="form.last_name">
                                                 <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
@@ -40,20 +40,20 @@
                                     </div>
                                     <ValidationProvider name="number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
                                         <div class="form-group">
-                                            <label for="phone">Phone</label>
+                                            <label for="phone">{{ $t('phone_number', $store.state.locale) }}</label>
                                                 <input type="tel" @keypress="isNumber($event)" class="form-control country-number mb-2" v-model="form.phone_number" name="phone"/>
                                                 <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                         </div>
                                     </ValidationProvider>
                                     <div class="form-group">
-                                        <label for="contactmail">Email </label>
+                                        <label for="contactmail">{{ $t('email', $store.state.locale) }} </label>
                                         <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                                             <input type="email" class="form-control" name="email" id="contactmail" v-model="form.email" aria-describedby="Contact email">
                                             <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                     </div>
                                     <div class="form-group">
-                                        <label for="contactmessage">Message</label>
+                                        <label for="contactmessage">{{ $t('message', $store.state.locale) }}</label>
                                         
                                         <ValidationProvider name="message" rules="required" v-slot="{ errors }">
                                             <textarea class="form-control" id="contactmessage" rows="3" v-model="form.message"></textarea>
@@ -61,7 +61,7 @@
                                         </ValidationProvider>
                                     </div>
                                     <button class="btn--secondery submit-btn">
-                                        <span>Submit <i v-if="isLoading" class="spinner-border spinner-border-sm"></i></span>
+                                        <span>{{ $t('submit', $store.state.locale) }} <i v-if="isLoading" class="spinner-border spinner-border-sm"></i></span>
                                         
                                     </button>
                                 </form>
@@ -111,7 +111,7 @@
                         return;
                     }
 
-                    this.$toaster.warning('Cound not send your message. Try sometime later.');
+                    this.$toaster.warning(this.$t('sms_error', this.$store.state.locale));
                 }).catch(error => {
                     console.error(error)
                     this.isLoading = false

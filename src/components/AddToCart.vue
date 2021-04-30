@@ -28,13 +28,7 @@
                             <td scope="col" v-if="item.disk_type == 1">Physical</td>
                             <td scope="col">{{ item.rent_week }}</td>
                             <td scope="col">
-                              <div class="d-flex align-items-center justify-content-between" v-if="user.achieve_discount == true && item.disk_type == 0">
-                                  <div class="new-price"><span>৳ </span>
-                                      {{ item.regular_price + item.regular_commission }}
-                                  </div>
-                                <div class="item-del" @click="onRemoveCartItem(index, item.id)"><i class="fas fa-trash-alt icon"></i></div>
-                              </div>
-                                <div class="d-flex align-items-center justify-content-between" v-else>
+                                <div class="d-flex align-items-center justify-content-between">
                                     <del><span>৳ </span>
                                         {{ item.regular_price + item.regular_commission }}
                                     </del>

@@ -66,11 +66,12 @@
                 </div>
                 </div>
                 <div class="locale-changer">
-                    <select v-model="lang">
-                        <option v-for="(lang, i) in $i18n.availableLocales" :key="`lang${i}`" :value="lang">
-                            {{ lang }}
-                        </option>
-                    </select>
+<!--                    <select v-model="lang">-->
+<!--                        <option v-for="(lang, i) in $i18n.availableLocales" :key="`lang${i}`" :value="lang">-->
+<!--                            {{ lang }}-->
+<!--                        </option>-->
+<!--                    </select>-->
+                    <span v-for="(lang, i) in $i18n.availableLocales" @click="languageChange(lang)">{{ lang }}</span>
                 </div>
                 <!-- sign in button and cart icon out side of collapse -->
                  <div class="gamehub-input-group signin-cart-group">
@@ -169,6 +170,9 @@
             }
         },
         methods: {
+            languageChange (value) {
+               this.lang = value;
+            },
             authData () {
                 var auth = this.$store.getters.ifAuthenticated;
                 if (auth) {

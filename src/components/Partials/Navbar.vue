@@ -202,7 +202,6 @@
             localChange(value){
                 var auth = this.$store.getters.ifAuthenticated;
                 if (!auth) {
-                    this.$router.push('/lend-notice');
                     return
                 }
                 let config = {

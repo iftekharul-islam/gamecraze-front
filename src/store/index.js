@@ -194,7 +194,6 @@ export const storage = {
     actions: {
         changeLocale(context, payload) {
             i18n.locale = payload;// important!
-            console.log(i18n.locale);
             context.commit('updateLocale', payload)
         },
         pushPostId (context, payload) {

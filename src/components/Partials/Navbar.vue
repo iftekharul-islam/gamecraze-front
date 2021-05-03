@@ -1,6 +1,5 @@
 <template>
     <div>
-<!--        <div class="my-postion" @click="modal = false"></div>-->
         <!-- navbar -->
         <nav class="navbar navbar-expand-lg gamehub-menu fixed-top">
             <div class="container">
@@ -66,13 +65,13 @@
                         </div>
                 </div>
                 </div>
-<!--                <div class="locale-changer">-->
-<!--                    <select v-model="lang">-->
-<!--                        <option v-for="(lang, i) in $i18n.availableLocales" :key="`lang${i}`" :value="lang">-->
-<!--                            {{ lang }}-->
-<!--                        </option>-->
-<!--                    </select>-->
-<!--                </div>-->
+                <div class="locale-changer">
+                    <select v-model="lang">
+                        <option v-for="(lang, i) in $i18n.availableLocales" :key="`lang${i}`" :value="lang">
+                            {{ lang }}
+                        </option>
+                    </select>
+                </div>
                 <!-- sign in button and cart icon out side of collapse -->
                  <div class="gamehub-input-group signin-cart-group">
                         <!-- <div class="gamehub-input-group--content">
@@ -138,7 +137,7 @@
         <!-- promotion Notification -->
         <div class="promo-notification mt-1">
             <div class="alert gamehub-warning-bg alert-dismissible fade show mb-0 br-0 text-center text-black gil-bold f-s-20 position-fixed w-100 z-index-999" role="alert">
-                {{ $t('discount_notice', $store.state.locale) }}<router-link to="/games" class="text-dark"><u>{{ $t('rent_now', $store.state.locale) }}</u></router-link>
+                {{ $t('discount_notice', $store.state.locale) }}<router-link to="/games" class="text-dark"><u> {{ $t('rent_now', $store.state.locale) }}</u></router-link>
               <button type="button" class="close opa-10 x-close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true" class="x-icon"></span>
               </button>
@@ -167,7 +166,6 @@
                 totalItems: 0,
                 isNavOpen: false,
                 user: {},
-                langs: ['en', 'bn'],
             }
         },
         methods: {
@@ -185,6 +183,7 @@
 
                     this.$api.get('user/details', config).then(response =>{
                         this.user = response.data.data;
+                        this.$store.dispatch('changeLocale', this.user.locale)
                     });
 
                     this.$store.watch(
@@ -199,6 +198,29 @@
                     );
                 }
                 this.totalItems = 0;
+            },
+            localChange(value){
+                var auth = this.$store.getters.ifAuthenticated;
+                if (!auth) {
+                    this.$router.push('/lend-notice');
+                    return
+                }
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+                var data = {
+                    value: value
+                };
+                this.$api.post('locale-update', data, config).then(res => {
+                    if (res.data.error == false) {
+                        this.$toaster.success( this.$t('Language_update', this.$store.state.locale) );
+                    } else {
+                        this.$toaster.warning( this.$t('Language_update_failed', this.$store.state.locale) );
+                    }
+
+                })
             },
           clickProfile() {
             var auth = this.$store.getters.ifAuthenticated;
@@ -279,6 +301,7 @@
                     console.log('set value');
                     console.log(newVal);
                     this.$store.dispatch('changeLocale', newVal)
+                    this.localChange(newVal);
                 }
             },
           auth () {

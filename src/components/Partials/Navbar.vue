@@ -40,10 +40,10 @@
                     </ul>
                     <!-- language -->
                     <div class="locale-changer gamehub-language">
-                        <span class="active" v-for="(lang, i) in $i18n.availableLocales" @click="languageChange(lang)">
-                            <b v-if="lang == 'bn'">বাংলা</b>
-                            <b v-else>English</b>
-                        </span>
+                        <div v-for="(lang) in $i18n.availableLocales" @click="languageChange(lang)" >
+                            <span v-if="lang == 'bn'" v-bind:class="{ active: isActiveBn }">বাংলা</span>
+                            <span v-if="lang == 'en'" v-bind:class="{ active: isActiveEn }">English</span>
+                        </div>
                     </div>
                    <!-- search bar -->
                    <div class="gamehub-input-group gamehub-input-group-searchbar">
@@ -167,11 +167,25 @@
                 totalItems: 0,
                 isNavOpen: false,
                 user: {},
+                isActiveBn: false,
+                isActiveEn: false,
+
             }
         },
         methods: {
-            languageChange (value) {
-               this.lang = value;
+            languageChange(value) {
+
+                this.lang = value;
+                this.activeLanguage(value);
+            },
+            activeLanguage(value){
+                this.isActiveBn = false;
+                this.isActiveEn = false;
+                if (value == 'en') {
+                    this.isActiveEn = true;
+                } else {
+                    this.isActiveBn = true;
+                }
             },
             authData () {
                 var auth = this.$store.getters.ifAuthenticated;
@@ -187,6 +201,7 @@
 
                     this.$api.get('user/details', config).then(response =>{
                         this.user = response.data.data;
+                        this.activeLanguage(this.user.locale);
                         this.$store.dispatch('changeLocale', this.user.locale)
                     });
 

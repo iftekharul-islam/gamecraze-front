@@ -38,6 +38,10 @@
                               </div>
                         </li>
                     </ul>
+                    <!-- language -->
+                    <div class="locale-changer gamehub-language">
+                        <span class="active" v-for="(lang, i) in $i18n.availableLocales" @click="languageChange(lang)">{{ lang }}</span>
+                    </div>
                    <!-- search bar -->
                    <div class="gamehub-input-group gamehub-input-group-searchbar">
                    <div class="gamehub-input-group--content">
@@ -65,14 +69,7 @@
                         </div>
                 </div>
                 </div>
-                <div class="locale-changer">
-<!--                    <select v-model="lang">-->
-<!--                        <option v-for="(lang, i) in $i18n.availableLocales" :key="`lang${i}`" :value="lang">-->
-<!--                            {{ lang }}-->
-<!--                        </option>-->
-<!--                    </select>-->
-                    <span v-for="(lang, i) in $i18n.availableLocales" @click="languageChange(lang)">{{ lang }}</span>
-                </div>
+                
                 <!-- sign in button and cart icon out side of collapse -->
                  <div class="gamehub-input-group signin-cart-group">
                         <!-- <div class="gamehub-input-group--content">

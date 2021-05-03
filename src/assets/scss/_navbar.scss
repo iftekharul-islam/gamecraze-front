@@ -728,3 +728,28 @@
         transition: all .3s ease-in;
     }
 }
+// language
+.gamehub-language {
+    margin-right: 32px;
+    display: flex;
+    align-items: center;
+    @include for-max-991 {
+        padding-left: 15px;
+        padding-bottom: 20px;
+    }
+    .active {
+        background: $secondery;
+        color: $primary;
+        font-weight: 700;
+    }
+    span {
+        margin-right: 8px;
+        height: 27px;
+        padding: 0px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $secondery;
+        cursor: pointer;
+    }
+}

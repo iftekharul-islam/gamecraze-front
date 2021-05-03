@@ -167,7 +167,7 @@
                 totalItems: 0,
                 isNavOpen: false,
                 user: {},
-                isActive : this.$i18n.locale,
+                isActive : this.$store.state.locale,
 
             }
         },
@@ -190,9 +190,11 @@
 
                     this.$api.get('user/details', config).then(response =>{
                         this.user = response.data.data;
-                        if (this.user.locale != '') {
-                            this.isActive = this.user.locale;
+                        if (this.user.locale == ''){
+                            this.localeSet(this.isActive)
+                            return;
                         }
+                        this.isActive = this.user.locale;
                         this.$store.dispatch('changeLocale', this.user.locale)
                     });
 
@@ -209,7 +211,7 @@
                 }
                 this.totalItems = 0;
             },
-            localChange(value){
+            localeSet(value){
                 var auth = this.$store.getters.ifAuthenticated;
                 if (!auth) {
                     return
@@ -310,7 +312,7 @@
                     console.log('set value');
                     console.log(newVal);
                     this.$store.dispatch('changeLocale', newVal)
-                    this.localChange(newVal);
+                    this.localeSet(newVal);
                 }
             },
           auth () {

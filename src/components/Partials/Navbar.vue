@@ -40,7 +40,10 @@
                     </ul>
                     <!-- language -->
                     <div class="locale-changer gamehub-language">
-                        <span class="active" v-for="(lang, i) in $i18n.availableLocales" @click="languageChange(lang)">{{ lang }}</span>
+                        <span class="active" v-for="(lang, i) in $i18n.availableLocales" @click="languageChange(lang)">
+                            <b v-if="lang == 'bn'">বাংলা</b>
+                            <b v-else>English</b>
+                        </span>
                     </div>
                    <!-- search bar -->
                    <div class="gamehub-input-group gamehub-input-group-searchbar">

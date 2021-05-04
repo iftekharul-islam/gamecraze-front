@@ -472,7 +472,7 @@
                                               <!-- form-group -->
                                             <div class="form-group post-rent--form-group">
 
-                                                <label class="post-rent--form-group--label mt-0">{{ $t('game_type', $store.state.locale) }} :</label>
+                                                <label class="post-rent--form-group--label mt-0">{{ $t('disk_type', $store.state.locale) }} :</label>
                                                 <div class="post-rent--form-group--input">
                                                     <ValidationProvider name="Game type" rules="required" v-slot="{ errors }">
                                                     <div class="post-rent--form-group--input--radio-group delivery-radio-group">

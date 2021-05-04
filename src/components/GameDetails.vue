@@ -141,7 +141,7 @@
                                 <p>{{ formattedDate (game.release_date)}}</p>
                             </div>
                             <div class="overview-content--text">
-                                <p>{{ $t('release_date', $store.state.locale) }}</p>
+                                <p>{{ $t('supported_languages', $store.state.locale) }}</p>
                                 <p>{{ game.supported_language }}</p>
                             </div>
                             <div class="overview-content--text">

@@ -101,7 +101,7 @@
                             <div class="checkbox-parents">
                                 <ValidationProvider name="Terms & Conditions" rules="required" v-slot="{ errors }">
                                 <input type="checkbox" id="terms-agree" class="checkbox-parents--input" v-model="agreement" @change="onAgreement($event)">
-                                <label for="terms-agree" class="checkbox-parents--label">I agree with all <router-link to="/terms" target="_blank" class="text-secondery"><u> terms & conditions</u></router-link></label>
+                                <label for="terms-agree" class="checkbox-parents--label">{{ $t('i_agree', $store.state.locale) }}<router-link to="/terms" target="_blank" class="text-secondery"><u>{{ $t('terms', $store.state.locale) }}</u></router-link></label>
                                 <span v-if="errors.length" class="error-message d-block ml--30">{{ errors[0] }}</span>
                             </ValidationProvider>
                             </div>

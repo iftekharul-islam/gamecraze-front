@@ -23,8 +23,10 @@
   "do_you_want_to" : "Do you want to",
   "earn" : "Earn",
   "money" : "Money",
+  "money_on_rent" : "Money",
   "save" : "Save",
   "rent" : "Rent",
+  "rent_button" : "Rent",
   "trending_games" : "TRENDING GAMES",
   "rent_favorite_games" : "RENT YOUR FAVORITE GAMES",
   "upcoming_games" : "UPCOMING GAMES",
@@ -44,6 +46,7 @@
   "news_&_blog" : "News & blogs",
   "filter" : "Filter",
   "game_type" : "Game type",
+  "disk_type" : "Disk Type",
   "digital_copy" : "Digital copy",
   "physical_copy" : "Physical copy",
   "select_category" : "Select Category",
@@ -336,5 +339,7 @@
   "search_game" : "Search game",
   "select_nid" : "Please upload NID",
   "for_rent_in" : "For Games rent in ",
-  "bangladesh_on_banner" : "Bangladesh"
+  "bangladesh_on_banner" : "Bangladesh",
+  "lend" : "Lend",
+  "no_game_match" : "Not match any games"
 }

@@ -86,7 +86,7 @@
                                 </div>
 
                               <div class="not-matching" v-if="noGameFound">
-                                <h2>Not match any games</h2>
+                                <h2>{{ $t('filter', $store.state.locale) }}</h2>
                               </div>
                             </div>
                         </div>

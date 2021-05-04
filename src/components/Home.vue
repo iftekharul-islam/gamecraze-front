@@ -26,16 +26,16 @@
                         <div class="exchange-lend-section--exchange">
                             <h3>{{ $t('do_you_want_to', $store.state.locale) }}
                                 <span>{{ $t('earn', $store.state.locale) }}</span> {{ $t('money', $store.state.locale) }}</h3>
-                                <router-link to="/profile" class="btn--secondery exchange-lend-section--exchange-btn" @click.native="clickProfile()"> <span>Lend</span> </router-link>
+                                <router-link to="/profile" class="btn--secondery exchange-lend-section--exchange-btn" @click.native="clickProfile()"> <span>{{ $t('lend', $store.state.locale) }}</span> </router-link>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="exchange-lend-section--lend">
                             <h3>{{ $t('do_you_want_to', $store.state.locale) }}
-                                <span>{{ $t('save', $store.state.locale) }}</span> {{ $t('money', $store.state.locale) }}</h3>
+                                <span>{{ $t('save', $store.state.locale) }}</span> {{ $t('money_on_rent', $store.state.locale) }}</h3>
 <!--                            <a href="#" class="btn&#45;&#45;secondery exchange-lend-section&#45;&#45;exchange-btn">lend</a>-->
-                                <router-link to="/games" class="btn--secondery exchange-lend-section--exchange-btn"><span>{{ $t('rent', $store.state.locale) }}</span></router-link>
+                                <router-link to="/games" class="btn--secondery exchange-lend-section--exchange-btn"><span>{{ $t('rent_button', $store.state.locale) }}</span></router-link>
                         </div>
                     </div>
                 </div>

@@ -341,5 +341,8 @@
   "for_rent_in" : "For Games rent in ",
   "bangladesh_on_banner" : "Bangladesh",
   "lend" : "Lend",
-  "no_game_match" : "Not match any games"
+  "no_game_match" : "Not match any games",
+  "ok" : "OK",
+  "cancel" : "Cancel",
+  "rent_post_status" : "Post status updated !"
 }

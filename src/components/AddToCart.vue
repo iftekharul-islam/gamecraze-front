@@ -413,8 +413,7 @@
                 title: this.$t('cart_remove_warning', this.$store.state.locale),
                 text: "",
                 icon: "warning",
-                buttons: true,
-                dangerMode: true,
+                buttons: [this.$t('cancel', this.$store.state.locale), this.$t('ok', this.$store.state.locale)],
             }).then((willDelete) => {
                 if (willDelete) {
                     this.$api.post('cart-item/destroy', data, config).then(response => {
@@ -430,7 +429,11 @@
                         }
                     });
                 } else {
-                    this.$swal(this.$t('cart_not_removed', this.$store.state.locale));
+                    this.$swal(this.$t('cart_not_removed', this.$store.state.locale),{
+                        icon: "warning",
+                        buttons: [this.$t('ok', this.$store.state.locale)],
+                        timer: 2000
+                    });
                 }
             });
         },

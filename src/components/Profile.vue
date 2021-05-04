@@ -987,7 +987,7 @@
                 this.$api.post('post-status-update', data, config).then(response => {
                     if (response.data.error == false) {
                         this.coverModal = false;
-                        this.$toaster.success("Post Status Updated !");
+                        this.$toaster.success(this.$t('rent_post_status', this.$store.state.locale));
                     }else {
                         this.$toaster.fail(response.data.message);
                     }

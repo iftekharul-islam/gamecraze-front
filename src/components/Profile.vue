@@ -357,6 +357,9 @@
                                                                 <div v-else-if="lend.status === 5">
                                                                     <span class="completed br-0 f-s-16" >Processing</span>
                                                                 </div>
+                                                                <div v-else-if="lend.status === 6">
+                                                                    <span class="completed br-0 f-s-16" >Postponed</span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                 </div>

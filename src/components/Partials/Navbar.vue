@@ -190,8 +190,9 @@
 
                     this.$api.get('user/details', config).then(response =>{
                         this.user = response.data.data;
-                        if (this.user.locale == ''){
-                            this.localeSet(this.isActive)
+                        if (this.user.locale === '' || this.user.locale == null){
+                            console.log(this.isActive);
+                            this.localeSet(this.isActive);
                             return;
                         }
                         this.isActive = this.user.locale;
@@ -329,9 +330,6 @@
           }
         },
         created() {
-            console.log('this.$i18n.locale');
-            console.log(this.$i18n.locale);
-            console.log(this.$store.state.locale);
             this.authData();
             this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {

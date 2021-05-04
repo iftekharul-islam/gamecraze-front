@@ -148,7 +148,7 @@
   "no_referral_history" : "No Referreal history found",
   "link_copied_successfully" : "Link successfully copied !",
   "link_copied_failed" : "Failed to copy the text to the clipboard",
-  "cover_updated" : "User Cover Updated !",
+  "cover_updated" : "Cover Photo Updated !",
   "credential_updated" : "Game Credential Updated !",
   "post_deleted" : "Rent Post Delete !",
   "delete_confirm" : "Do you want to delete the Rent Post ?",
@@ -330,6 +330,10 @@
   "confirm_password" : "Confirm Password",
   "email_already_taken" : "Email address already taken",
   "sign_up" : "SIGN UP",
-  "try_again" : "Try again"
+  "try_again" : "Try again",
+  "learn_about_create_post" : "Learn about how to create a post",
+  "cash_on_delivery" : "Cash on Delivery",
+  "search_game" : "Search game",
+  "select_nid" : "Please upload NID"
 
 }

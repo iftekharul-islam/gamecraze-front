@@ -380,12 +380,12 @@
                                              <div class="form-group post-rent--form-group">
                                                 <label class=" post-rent--form-group--label"></label>
                                                 <div class=" post-rent--form-group--input">
-                                                    <router-link  class="secondery-border text-secondery d-flex align-items-center justify-content-center h-48 game-rent-bg" to="/lend-notice" target="_blank">Learn about how to create a post</router-link>
+                                                    <router-link  class="secondery-border text-secondery d-flex align-items-center justify-content-center h-48 game-rent-bg" to="/lend-notice" target="_blank">{{ $t('learn_about_create_post', $store.state.locale) }}</router-link>
                                                 </div>
                                             </div>
 
                                             <div class="form-group post-rent--form-group">
-                                                <label class=" post-rent--form-group--label">{{ $t('game_name', $store.state.locale) }}:</label>
+                                                <label class=" post-rent--form-group--label">{{ $t('game_name', $store.state.locale) }} :</label>
                                                 <div class=" post-rent--form-group--input">
                                                     <ValidationProvider name="game" rules="" v-slot="{ errors }">
                                                         <vue-autosuggest
@@ -396,7 +396,7 @@
                                                             @input="onInputChange"
                                                             @selected="onSelected"
                                                             :get-suggestion-value="getSuggestionValue"
-                                                            :input-props="{id:'autosuggest__input2', placeholder:'Search Game'}">
+                                                            :input-props="{id:'autosuggest__input2', placeholder: $t('search_game', $store.state.locale) }">
                                                         <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
                                                             <div>{{suggestion.item.name}}</div>
                                                         </div>
@@ -444,7 +444,7 @@
                                                     <div class="post-rent--form-group--input--radio-group delivery-radio-group">
                                                         <div class="custom-radio d-flex">
                                                             <input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod" class="custom-control-input" checked>
-                                                            <label for="cod" class="custom-control-label"> Cash on Delivery <span class="checkbox-style"></span></label>
+                                                            <label for="cod" class="custom-control-label"> {{ $t('cash_on_delivery', $store.state.locale) }} <span class="checkbox-style"></span></label>
                                                         </div>
                                                     </div>
                                                     
@@ -475,12 +475,12 @@
                                                     <div class="post-rent--form-group--input--radio-group delivery-radio-group">
                                                         <div class="custom-radio d-flex ">
                                                             <input type="radio" value="0" id="digital_copy" name="disk_type" v-model="rentData.disk_type" @click="basePriceSelect(1)" class="custom-control-input">
-                                                            <label for="digital_copy" class="custom-control-label"> Digital Copy <span></span></label>
+                                                            <label for="digital_copy" class="custom-control-label"> {{ $t('digital_copy', $store.state.locale) }} <span></span></label>
                                                         </div>
 
                                                         <div class="custom-radio d-flex">
                                                             <input type="radio" value="1" id="physical_copy" name="disk_type" v-model="rentData.disk_type" @click="basePriceSelect(2)" class="custom-control-input">
-                                                            <label for="physical_copy" class="custom-control-label"> Physical Copy <span></span></label>
+                                                            <label for="physical_copy" class="custom-control-label"> {{ $t('physical_copy', $store.state.locale) }} <span></span></label>
                                                         </div>
 
                                                     </div>
@@ -559,9 +559,8 @@
                                                 <div class="post-rent--form-group--input">
                                                     <ValidationProvider name="Disk Image" :rules='{required: diskImageRequired}' v-slot="{ validate, errors }">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="DiskUpload"  accept="image/*" @change="onDiskimageChange($event)|| validate($event)">
-<!--                                                        <input type="file" class="custom-file-input" id="DiskUpload"  accept="image/*" @change="onDiskimageChange">-->
-                                                        <label class="custom-file-label text-light" for="customFile">{{ $t('disk_image', $store.state.locale) }}</label>
+                                                        <input type="file" class="custom-file-input" id="diskUpload"  accept="image/*" @change="onDiskimageChange($event)|| validate($event)">
+                                                        <label class="custom-file-label text-light" for="diskUpload">{{ selectedDiskName }}</label>
                                                     </div>
                                                     <div class="img-prev">
                                                         <img v-if="rentData.disk_image" :src="rentData.disk_image" alt="Disk image preview">
@@ -577,7 +576,8 @@
                                                     <ValidationProvider name="Cover Image" :rules='{required: diskImageRequired}' v-slot="{ validate, errors }">
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="customFile2" accept="image/*" @change="onCoverimageChange($event)|| validate($event)">
-                                                        <label class="custom-file-label text-light" for="customFile2">{{ $t('cover_image', $store.state.locale) }}</label>
+                                                        <label class="custom-file-label text-light" for="customFile2">{{ selectedCoverName }}</label>
+<!--                                                        <label class="custom-file-label text-light" for="customFile2">{{ $t('cover_image', $store.state.locale) }}</label>-->
                                                     </div>
                                                     <div class="img-prev">
                                                         <img v-if="rentData.cover_image" :src="rentData.cover_image" alt="Cover image preview">
@@ -753,7 +753,7 @@
                                             <h2>{{ total_earn }} Taka</h2>
                                         </div>
                                         <div class="my-earning--dashboard--content">
-                                            <h4>{{ $t('lifetime_earning', $store.state.locale) }}</h4>
+                                            <h4>{{ $t('amount_received', $store.state.locale) }}</h4>
                                             <h2>{{ payable_amount }} Taka</h2>
                                         </div>
                                     </div>
@@ -904,7 +904,9 @@
                     id_image: "",
                 },
                 nid_verification: 0,
-                selectedFile: 'Select NID',
+                selectedFile: this.$t('select_nid', this.$store.state.locale),
+                selectedDiskName: this.$t('disk_image', this.$store.state.locale),
+                selectedCoverName: this.$t('cover_image', this.$store.state.locale),
                 x: '',
                 diskConditions: [],
                 checkpoints: [],
@@ -1263,6 +1265,7 @@
                         this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
                         return;
                     }
+                    this.selectedDiskName = event.srcElement.files[0].name;
                     fileReader.onload = (e) => {
                         this.rentData.disk_image = e.target.result;
                     }
@@ -1282,6 +1285,7 @@
                         this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
                         return;
                     }
+                    this.selectedCoverName = event.srcElement.files[0].name;
                     fileReader.onload = (e) => {
                         this.rentData.cover_image = e.target.result;
                     }
@@ -1483,8 +1487,11 @@
                 $('#v-pills-dashboard').removeClass('active');
                 $('#v-pills-dashboard').removeClass('show');
                 $('#v-pills-my-earning-tab').removeClass('active');
+                $('#v-pills-my-earning').removeClass('active');
                 $('#v-pills-my-earning').removeClass('show');
-                $('#v-pills-my-earning').removeClass('show');
+                $('#v-pills-refer-tab').removeClass('active');
+                $('#v-pills-refer').removeClass('active');
+                $('#v-pills-refer').removeClass('show');
 
               });
 
@@ -1504,6 +1511,9 @@
                 $('#v-pills-my-earning-tab').removeClass('active');
                 $('#v-pills-my-earning').removeClass('show');
                 $('#v-pills-my-earning').removeClass('show');
+                $('#v-pills-refer-tab').removeClass('active');
+                $('#v-pills-refer').removeClass('active');
+                $('#v-pills-refer').removeClass('show');
 
               });
             //Cover image

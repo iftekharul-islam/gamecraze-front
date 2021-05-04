@@ -167,7 +167,7 @@
                 totalItems: 0,
                 isNavOpen: false,
                 user: {},
-                isActive : this.$store.state.locale,
+                isActive : this.$i18n.locale,
 
             }
         },
@@ -329,6 +329,9 @@
           }
         },
         created() {
+            console.log('this.$i18n.locale');
+            console.log(this.$i18n.locale);
+            console.log(this.$store.state.locale);
             this.authData();
             this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {

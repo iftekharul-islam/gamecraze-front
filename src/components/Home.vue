@@ -10,7 +10,7 @@
                 <div class="row">
                     <div class="col-md-7">
                         <h1 class="gamehub-heading">
-                            {{ $t('largest', $store.state.locale) }} <span>{{ $t('online', $store.state.locale) }}</span><br> <span>{{ $t('platform', $store.state.locale) }}</span>
+                            {{ $t('largest', $store.state.locale) }} <span>{{ $t('online', $store.state.locale) }}</span><br> <span>{{ $t('platform', $store.state.locale) }}</span> {{ $t('for_rent_in', $store.state.locale) }}<span>{{ $t('bangladesh_on_banner', $store.state.locale) }}</span>
                             </h1>
                         <h6>{{ $t('home_banner_text', $store.state.locale) }}</h6>
                         <router-link to="/games" class="btn--secondery"><span>{{ $t('begin_journey', $store.state.locale) }}</span></router-link>

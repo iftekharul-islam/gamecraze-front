@@ -99,7 +99,7 @@
                             </button>
                         </div> -->
                         <div class="gamehub-input-group--content">
-                            <router-link v-if="!auth" class="sign-in" to="/login"><span>Sign in</span></router-link>
+                            <router-link v-if="!auth" class="sign-in" to="/login"><span>{{ $t('sign_in', $store.state.locale) }}</span></router-link>
                                 <div v-if="auth" class="dropdown-toggle complete-sign-in" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                   <span class="user-name" v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span>
                                   <span class="user-name" v-else>{{ this.$store.state.user.phone_number }}</span>

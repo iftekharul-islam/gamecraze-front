@@ -9,13 +9,13 @@
                             <img src="../../assets/img/logo/gamehublogo.svg" alt="gamehublogo" class="text-center">
                         </div> -->
                         <div class="card mt-5">
-                            <h3 class="card-title text-center">SIGN UP</h3>
+                            <h3 class="card-title text-center">{{ $t('sign_up', $store.state.locale) }}</h3>
                             <!-- form -->
                             <ValidationObserver v-slot="{ handleSubmit }">
                                 <form method="post">
                                    <!-- Mobile No. -->
                                     <div class="form-group">
-                                        <label for="Phone">Phone number</label>
+                                        <label for="Phone">{{ $t('phone_number', $store.state.locale) }}</label>
                                         <ValidationProvider name="Phone" rules="required" v-slot="{ errors }">
                                             <input type="text" class="form-control gray cursor-none" id="Phone" value="" v-model="form.phone_number" readonly>
                                             <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
@@ -25,14 +25,14 @@
                                     <!-- First Name -->
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="firstName">First name</label>
+                                            <label for="firstName">{{ $t('first_name', $store.state.locale) }}</label>
                                             <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
                                                 <input @keypress="isValidString($event)" type="text" class="form-control" id="firstName" value="" v-model="form.name">
                                                 <span v-if="errors.length" class="error-message first-name-error">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
                                         <div class="form-group col-md-6">
-                                            <label for="LastName">Last name</label>
+                                            <label for="LastName">{{ $t('last_name', $store.state.locale) }}</label>
                                             <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
                                                 <input @keypress="isValidString($event)" type="text" class="form-control" id="LastName" value="" v-model="form.last_name">
                                                 <span v-if="errors.length" class="error-message last-name-error">{{ errors[0] }}</span>
@@ -41,12 +41,12 @@
                                     </div>
                                          
                                      <div class="form-group">
-                                        <label for="email">Email address</label>
+                                        <label for="email">{{ $t('email', $store.state.locale) }}</label>
 
                                         <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                                             <input @focus="onEmailChange" type="email" class="form-control" id="email" value="" v-model="form.email">
                                             <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                            <span v-if="isEmailExists" class="error-message">Email address already taken</span>
+                                            <span v-if="isEmailExists" class="error-message">{{ $t('email_already_taken', $store.state.locale) }}</span>
                                         </ValidationProvider>
 
                                     </div>
@@ -55,7 +55,7 @@
                                         <div class="checkbox-parents">
                                         <ValidationProvider name="Terms & Conditions" rules="required" v-slot="{ errors }">
                                             <input type="checkbox" id="terms-agree" class="checkbox-parents--input" v-model="agreement" @change="onAgreement($event)">
-                                            <label for="terms-agree" class="checkbox-parents--label">I agree with all <router-link to="/terms" target="_blank" class="text-secondery"><u> terms & conditions</u></router-link></label>
+                                            <label for="terms-agree" class="checkbox-parents--label">{{ $t('i_agree', $store.state.locale) }}<router-link to="/terms" target="_blank" class="text-secondery"><u> {{ $t('terms_&_condition', $store.state.locale) }}</u></router-link></label>
                                             <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                         </div>
@@ -64,7 +64,7 @@
                                     <!-- sign in button -->
                                     <div class="text-center sign-btn">
                                         <button class="btn  btn--otp w-100" type="button" @click.prevent="handleSubmit(onSubmit)" :disabled="isLoading">
-                                            PROCEED
+                                            {{ $t('proceed', $store.state.locale) }}
                                             <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
                                         </button>
                                       <!-- <button type="button" class="btn btn-primary mb-2" @click.prevent="handleSubmit(onSubmit)">Submit</button>-->

@@ -4,7 +4,7 @@
             <img v-if="activeCoverImage" :src="activeCoverImage" alt="profile bg" class="img-fluid user-profile-bg">
             <img v-if="dummyCover" src="../assets/img/profile-bg.png" alt="profile bg" class="img-fluid user-profile-bg">
             <div class="cover-edit" @click="coverModal = true">
-                <label><i class="fas fa-camera camera-icon"></i>  <span>{{ $t('edit_cover_photo', $store.state.locale) }}</span></label>
+                <label><i class="fas fa-camera camera-icon"></i> <span>{{ $t('edit_cover_photo', $store.state.locale) }}</span></label>
                 <i v-if="isCoverImgUpdating" class="spinner-border spinner-border-sm"></i>
             </div>
             <div v-if="coverModal">

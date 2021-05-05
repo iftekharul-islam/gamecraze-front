@@ -150,7 +150,7 @@
                                
                                 <div v-if="!isExistsInCart" class="modal-footer justify-content-center">
                                     <a href="javascript:void(0)" class="btn--secondery" @click.prevent="handleSubmit(onAddToCart)">
-                                      <span><i class="fas fa-shopping-cart"></i>{{ $t('add_to_cart', $store.state.locale) }}</span>
+                                      <span><i class="fas fa-shopping-cart"></i> {{ $t('add_to_cart', $store.state.locale) }}</span>
                                     </a>
                                 </div>
                               </ValidationObserver>

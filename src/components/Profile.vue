@@ -318,9 +318,10 @@
                                                                 <div class="d-flex flex-column align-items-center duration--date text-secondery w-fit">
                                                                     <p class="mb-1">{{ formattedDate(lend.lend_date) }} </p>
                                                                     <p class="mb-1">to</p>
-                                                                    <p class="mb-1" v-if="lend.rent.disk_type == 1 && lend.status === 3">{{ returnDate(lend.rent.disk_type, lend.updated_at, lend.lend_week) }}</p>
-                                                                    <p class="mb-1" v-else-if="lend.rent.disk_type == 1 && lend.status === 1">{{ formattedReturnDate(lend.updated_at) }}</p>
-                                                                    <p class="mb-1" v-else-if="lend.rent.disk_type == 0"> {{ returnDate(lend.rent.disk_type, lend.created_at, lend.lend_week) }}</p>
+                                                                    <p class="mb-1" v-if="lend.status === 3">{{ returnDate(lend.rent.disk_type, lend.updated_at, lend.lend_week) }}</p>
+                                                                    <p class="mb-1" v-else-if="lend.status === 1">{{ formattedReturnDate(lend.updated_at) }}</p>
+<!--                                                                    <p class="mb-1" v-else-if="lend.rent.disk_type == 1 && lend.status === 1">{{ formattedReturnDate(lend.updated_at) }}</p>-->
+<!--                                                                    <p class="mb-1" v-else-if="lend.rent.disk_type == 0"> {{ returnDate(lend.rent.disk_type, lend.created_at, lend.lend_week) }}</p>-->
                                                                     <p class="mb-1" v-else>-</p>
                                                                 </div>
                                                             </div>
@@ -333,8 +334,9 @@
                                                                     <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-else></flip-countdown>
                                                                 </div>
                                                                 <div v-if="lend.rent.disk_type == 0">
-                                                                    <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-if="lend.status === 1 || lend.status === 4"></flip-countdown>
-                                                                    <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)" v-else></flip-countdown>
+                                                                    <flip-countdown :deadline="endDate(lend.rent.disk_type, lend.updated_at, lend.lend_week)" v-if="lend.status === 3"></flip-countdown>
+                                                                    <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-else></flip-countdown>
+<!--                                                                    <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)" v-else></flip-countdown>-->
                                                                 </div>
                                                             </div>
                                                             <div class="status flex-1">
@@ -1135,7 +1137,7 @@
             formattedReturnDate(date) {
                 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                 let formattedDate = new Date(date)
-                return formattedDate.getDate()+1 + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
+                return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
             },
             startDate(diskType, datetime) {
                 let date = new Date(datetime);
@@ -1158,11 +1160,10 @@
                 let date = new Date(datetime);
                 var time = new Date(datetime);
 
-                var hours = time.getHours();
+                if (diskType == 0) {
 
-                if (diskType == 0 && hours >= 12) {
+                    date.setDate(date.getDate() + 1 + week * 7);
 
-                    date.setDate(date.getDate() + 2 + week * 7);
                 } else {
 
                     date.setDate(date.getDate() + 1 + week * 7);
@@ -1172,16 +1173,8 @@
             },
             returnDate(diskType, datetime, week) {
                 let date = new Date(datetime);
-                var time = new Date(datetime);
-                var hours = time.getHours();
 
-                if (diskType == 0 && hours >= 12) {
-
-                    date.setDate(date.getDate() + 2 + week * 7);
-                } else {
-
-                    date.setDate(date.getDate() + 1 + week * 7);
-                }
+                date.setDate(date.getDate() + 1 + week * 7);
 
                 const months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                 return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
@@ -1465,6 +1458,7 @@
                 this.$api.get('lends', config).then(response =>
                 {
                     this.lends = response.data;
+                    console.log(this.lends);
                 });
             }
         },

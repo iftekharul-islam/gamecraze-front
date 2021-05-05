@@ -15,6 +15,7 @@
   "rent_now" : "Rent Now",
   "largest" : "Largest",
   "online" : "Online",
+  "banner_platform" : "Platform",
   "platform" : "Platform",
   "for_games_rent_in" : "For Games rent in",
   "bangladesh" : "Bangladesh",
@@ -344,5 +345,9 @@
   "no_game_match" : "Not match any games",
   "ok" : "OK",
   "cancel" : "Cancel",
-  "rent_post_status" : "Post status updated !"
+  "rent_post_status" : "Post status updated !",
+  "news_page_header" : "Latest news & updates from GameHub ",
+  "feature" : "Feature",
+  "update" : "Update",
+  "game_no_found" : "Not match any games"
 }

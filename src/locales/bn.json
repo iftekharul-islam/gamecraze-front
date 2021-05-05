@@ -14,7 +14,8 @@
   "discount_notice" : "১৫% ছাড় - কেবল মাত্র আপনার জন্য !",
   "rent_now" : "গেম ভাড়া নিন",
   "largest" : "বাংলাদেশের সবচেয়ে বড় ",
-  "online" : "অনলাইন গেমিং",
+  "online" : "অনলাইন গেমস ভাড়া নেওয়ার প্লাটফর্ম",
+  "banner_platform" : "",
   "platform" : "প্লাটফর্ম",
   "for_games_rent_in" : "গেম ভাড়ার জন্য",
   "bangladesh" : "বাংলাদেশ",
@@ -62,7 +63,7 @@
   "publisher" : "প্রকাশক",
   "developer" : "বিকাশকারী",
   "game_link" : "গেম লিঙ্ক",
-  "supported_languages" : "সমর্থিত ভাষা",
+  "supported_languages" : "ভাষা",
   "release_date" : "মুক্তির তারিখ",
   "might_also_like" : "সম্পর্কিত গেমস",
   "available_now" : "এখন পাওয়া যাচ্ছে",
@@ -343,5 +344,9 @@
   "no_game_match" : "কোন গেম খুজে পাওয়া যায়নি",
   "ok" : "ঠিক আছে",
   "cancel" : "বাতিল করুন",
-  "rent_post_status" : "পোস্টটি আপডেট হয়েছে !"
+  "rent_post_status" : "পোস্টটি আপডেট হয়েছে !",
+  "news_page_header" : "গেমহাব থেকে সর্বশেষ সংবাদ এবং আপডেট",
+  "feature" : "ফিচার",
+  "update" : "আপডেট",
+  "game_no_found" : "কোন গেম খুজে পাওয়া যায়নি"
 }

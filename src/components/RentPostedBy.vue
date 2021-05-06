@@ -33,7 +33,9 @@
                             <td scope="col" v-else>Not Set</td>
                             <td scope="col" v-if="rent.disk_type == 1">Physical Disk</td>
                             <td scope="col" v-else>Digital Disk</td>
-                            <td scope="col"><img :src="rent.platform.data.url" :alt="rent.platform.data.name"></td>
+                            <td scope="col"> {{ rent.platform.data.name }}
+<!--                                <img :src="rent.platform.data.url" :alt="rent.platform.data.name">-->
+                            </td>
                             <td scope="col">{{ formattedDate(rent.availability_from_date) }}</td>
                             <td scope="col"><span>{{ rent.max_number_of_week}} week(s)</span></td>
                             <td>

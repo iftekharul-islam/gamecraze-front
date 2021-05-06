@@ -349,5 +349,8 @@
   "news_page_header" : "Latest news & updates from GameHub ",
   "feature" : "Feature",
   "update" : "Update",
-  "game_no_found" : "Not match any games"
+  "game_no_found" : "Not match any games",
+  "enter_game_credential" : "Enter your games account credentials",
+  "rent_image_update" : "Rent image updated ",
+  "image_update_failed" : "Rent image failed to update"
 }

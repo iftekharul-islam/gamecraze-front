@@ -231,8 +231,13 @@
                                                         <p v-else-if="rent.lend != null"><span class="badge-danger badge br-0 p-2 f-s-16">Rented for {{ rent.lend.data.lend_week }} week(s)</span></p>
                                                         <p class="text-secondery" v-else>Available for {{ rent.max_number_of_week }} week(s)</p>
                                                     </div>
-                                                    <div class="action" v-if="rent.disk_type != 1">
-                                                        <a href="#" class="btn--secondery h-40 w-80 ml-2" @click.prevent="credentialModal(rent)"><span>Edit</span></a>
+                                                    <div v-if="rent.status == 0">
+                                                        <div class="action" v-if="rent.disk_type != 1">
+                                                            <a href="#" class="btn--secondery h-40 w-80 ml-2" @click.prevent="credentialModal(rent)"><span>Edit</span></a>
+                                                        </div>
+                                                        <div class="action" v-if="rent.disk_type != 0">
+                                                            <a href="#" class="btn--secondery h-40 w-80 ml-2" @click.prevent="ImageModal(rent)"><span>Edit</span></a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -246,7 +251,7 @@
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true" @click="credentialModalShow = false" class="close-modal"></span>
                                                                     </button>
-                                                                <h4 class="text-secondery mb-a-12 f-s-28">Enter your digital disk’s credentials.</h4>
+                                                                <h4 class="text-secondery mb-a-12 f-s-28">{{ $t('enter_game_credential', $store.state.locale) }}</h4>
                                                                 <!-- form-group -->
                                                                 <ValidationObserver v-slot="{ invalid }">
                                                                     <form @submit.prevent="gameCredentialUpdate(userRentId, userGameId, userPassword)" method="post">
@@ -280,6 +285,58 @@
                                                                         </div>
                                                                     </form>
                                                                 </ValidationObserver>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </transition>
+                                            </div>
+                                            <div v-if="imageModalShow">
+                                                <transition name="modal">
+                                                    <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal">
+                                                        <div class="modal-wrapper">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                <div class="modal-content">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true" @click="imageModalShow = false" class="close-modal"></span>
+                                                                    </button>
+                                                                    <h4 class="text-secondery mb-a-12 f-s-28">{{ $t('enter_game_credential', $store.state.locale) }}</h4>
+                                                                    <!-- form-group -->
+                                                                        <form @submit.prevent="rentImageUpdate(userRentId, lendDiskImage, lendCoverImage)" method="post">
+                                                                            <div class="form-group post-rent--form-group post-rent--form-group-img" >
+                                                                                <label class="post-rent--form-group--label">{{ $t('disk_image', $store.state.locale) }} :</label>
+                                                                                <div class="post-rent--form-group--input">
+                                                                                        <div class="custom-file">
+                                                                                            <input type="file" class="custom-file-input" id="EditDiskUpload"  accept="image/*" @change="onEditDiskImageChange($event)">
+                                                                                            <label class="custom-file-label text-light" for="EditDiskUpload">{{ selectedEditDiskName }}</label>
+                                                                                        </div>
+<!--                                                                                        <div class="img-prev">-->
+<!--                                                                                            <img v-if="lendDiskImage" :src="lendDiskImage" alt="Disk image preview">-->
+<!--                                                                                            <img v-else src="../assets/img/disk.png" alt="Disk image preview">-->
+<!--                                                                                        </div>-->
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group post-rent--form-group post-rent--form-group-img" >
+                                                                                <label class="post-rent--form-group--label">{{ $t('cover_image', $store.state.locale) }} :</label>
+                                                                                <div class="post-rent--form-group--input">
+                                                                                        <div class="custom-file">
+                                                                                            <input type="file" class="custom-file-input" id="EditCoverUpload" accept="image/*" @change="onEditCoverImageChange($event)">
+                                                                                            <label class="custom-file-label text-light" for="EditCoverUpload">{{ selectedEditCoverName }}</label>
+                                                                                        </div>
+<!--                                                                                        <div class="img-prev">-->
+<!--                                                                                            <img v-if="lendCoverImage" :src="lendCoverImage" alt="Cover image preview">-->
+<!--                                                                                            <img v-else src="../assets/img/cover.png" alt="Cover image preview">-->
+<!--                                                                                        </div>-->
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- form-group Button -->
+                                                                            <div class="form-group post-rent--form-group offer-edit-btn">
+                                                                                <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light"></label>
+                                                                                <div class=" post-rent--form-group--input">
+                                                                                    <button type="submit" class="btn--secondery user-id-edit-btn"><span class="w-100">{{ $t('submit', $store.state.locale) }}</span></button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -884,9 +941,14 @@
         data() {
             return {
                 credentialModalShow: false,
+                imageModalShow: false,
                 diskImageRequired: false,
                 userGameId: '',
                 userPassword: '',
+                lendDiskImage: '',
+                lendCoverImage: '',
+                editDiskImage: '',
+                editCoverImage: '',
                 userRentId: '',
                 isDigital: false,
                 itemsData: ['Male', 'Female', 'Others'],
@@ -912,6 +974,8 @@
                 selectedFile: this.$t('select_nid', this.$store.state.locale),
                 selectedDiskName: this.$t('disk_image', this.$store.state.locale),
                 selectedCoverName: this.$t('cover_image', this.$store.state.locale),
+                selectedEditCoverName: 'Cover image',
+                selectedEditDiskName: 'Disk image',
                 x: '',
                 diskConditions: [],
                 checkpoints: [],
@@ -1003,6 +1067,17 @@
 
                 this.credentialModalShow = true;
             },
+            ImageModal(rent){
+                this.lendDiskImage = rent.disk_image;
+                this.lendCoverImage = rent.cover_image;
+                this.editDiskImage = rent.disk_image;
+                this.editCoverImage = rent.cover_image;
+                this.userRentId = rent.id;
+
+                console.log(this.lendCoverImage);
+
+                this.imageModalShow = true;
+            },
             coverImageSelect(userId){
                 this.dummyCover = false;
                 if (this.coverUrl == '') {
@@ -1023,8 +1098,36 @@
                     if (response.data.error == false) {
                         this.coverModal = false;
                         this.$toaster.success( this.$t('cover_updated', this.$store.state.locale) );
+                    } else {
+                        this.$toaster.warning(response.data.message);
+                    }
+
+                });
+            },
+            rentImageUpdate(rentId, disk, cover){
+                if (this.editDiskImage == disk) {
+                    disk = null;
+                }
+                if (this.editCoverImage == cover) {
+                    cover = null
+                }
+                this.imageModalShow = false;
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+                let data = {
+                    cover_image: cover,
+                    disk_image: disk,
+                    id: rentId
+                };
+                console.log(data);
+                this.$api.post('rent-image-update', data, config).then(response => {
+                    if (response.data.error == false) {
+                        this.$toaster.success(this.$t('rent_image_update', this.$store.state.locale));
                     }else {
-                        this.$toaster.fail(response.data.message);
+                        this.$toaster.warning(this.$t('image_update_failed', this.$store.state.locale));
                     }
 
                 });
@@ -1288,6 +1391,49 @@
                     fileReader.readAsDataURL(event.target.files[0]);
                 }
             },
+            onEditDiskImageChange (event) {
+                let fileReader = new FileReader();
+
+                if (event.srcElement.files.length > 0) {
+                    let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+                    if (allowedTypes.indexOf(event.srcElement.files[0].type) == -1) {
+                        this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
+                        return;
+                    }
+                    let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
+                    if (fileSzie > 5120) { //5mb
+                        this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
+                        return;
+                    }
+                    this.selectedEditDiskName = event.srcElement.files[0].name;
+                    fileReader.onload = (e) => {
+                        this.lendDiskImage = e.target.result;
+                        console.log(this.lendDiskImage);
+                    }
+                    fileReader.readAsDataURL(event.target.files[0]);
+                }
+            },
+            onEditCoverImageChange (event) {
+                let fileReader = new FileReader();
+                if (event.srcElement.files.length > 0) {
+                    let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+                    if (allowedTypes.indexOf(event.srcElement.files[0].type) == -1) {
+                        this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
+                        return;
+                    }
+                    let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
+                    if (fileSzie > 5120) { //5mb
+                        this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
+                        return;
+                    }
+                    this.selectedEditCoverName = event.srcElement.files[0].name;
+                    fileReader.onload = (e) => {
+                        this.lendCoverImage = e.target.result;
+                        console.log(this.lendCoverImage);
+                    }
+                    fileReader.readAsDataURL(event.target.files[0]);
+                }
+            },
             onEmpty () {
                 this.form.checkpoint = '';
             },
@@ -1453,12 +1599,12 @@
                 this.$api.get('rents?include=game,platform,diskCondition,checkpoint,renter,lend', config).then(response =>
                 {
                     this.rents = response.data.data;
+                    console.log(this.rents);
                 });
 
                 this.$api.get('lends', config).then(response =>
                 {
                     this.lends = response.data;
-                    console.log(this.lends);
                 });
             }
         },

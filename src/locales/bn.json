@@ -347,5 +347,8 @@
   "news_page_header" : "গেমহাব থেকে সর্বশেষ সংবাদ এবং আপডেট",
   "feature" : "ফিচার",
   "update" : "আপডেট",
-  "game_no_found" : "কোন গেম খুজে পাওয়া যায়নি"
+  "game_no_found" : "কোন গেম খুজে পাওয়া যায়নি",
+  "enter_game_credential" : "আপনার গেম অ্যাকাউন্ট শংসাপত্র প্রবেশ করুন",
+  "rent_image_update" : "ছবি আপডেট হয়েছে",
+  "image_update_failed" : "ছবি আপডেট ব্যর্থ হয়েছে"
 }

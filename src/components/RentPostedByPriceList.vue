@@ -7,12 +7,13 @@
                     <table class="table table-borderless rented-dashbord">
                         <thead class="">
                         <tr>
-                            <th scope="col">Game Owner </th>
-                            <th scope="col">Status</th>
-                            <th scope="col">Disk type</th>
-                            <th scope="col">Available From</th>
-                            <th scope="col">Available For</th>
-                            <th scope="col">Price for 1st week</th>
+                            <th scope="col">{{ $t('game_owner', $store.state.locale) }}</th>
+                            <th scope="col">{{ $t('status', $store.state.locale) }}</th>
+                            <th scope="col">{{ $t('disk_type', $store.state.locale) }}</th>
+                            <th scope="col">{{ $t('platform', $store.state.locale) }}</th>
+                            <th scope="col">{{ $t('available_from', $store.state.locale) }}</th>
+                            <th scope="col">{{ $t('available_for', $store.state.locale) }}</th>
+                            <th scope="col">{{ $t('price_for_1st_week', $store.state.locale) }}</th>
                         </tr>
                         </thead>
 
@@ -32,6 +33,7 @@
                                 <td scope="col" v-else>Not Set</td>
                                 <td scope="col" v-if="rent.disk_type == 1">Physical Disk</td>
                                 <td scope="col" v-else>Digital Disk</td>
+                                <td scope="col"> {{ rent.platform.data.name }}
                                 <td scope="col">{{ formattedDate(rent.availability_from_date) }}</td>
                                 <td scope="col"><span>{{ rent.max_number_of_week}} week(s)</span></td>
                                 <td>
@@ -69,7 +71,7 @@
         },
         created() {
             window.scrollTo(0,0);
-            this.$api.get('rent-posted-users/' + this.slug + '?include=game,game.basePrice,game.platforms,diskCondition,user,checkpoint.area.thana.district').then(response => {
+            this.$api.get('rent-posted-users/' + this.slug + '?include=game,game.basePrice,diskCondition,user,checkpoint.area.thana.district,platform').then(response => {
                 this.rentPosts = response.data.data;
             });
         },

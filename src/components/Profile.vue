@@ -293,10 +293,10 @@
                                             </div>
                                             <div v-if="imageModalShow">
                                                 <transition name="modal">
-                                                    <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal">
+                                                    <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal game-photo-edit-modal overflow-auto">
                                                         <div class="modal-wrapper">
                                                             <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                <div class="modal-content">
+                                                                <div class="modal-content h-auto">
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true" @click="imageModalShow = false" class="close-modal"></span>
                                                                     </button>
@@ -310,10 +310,10 @@
                                                                                             <input type="file" class="custom-file-input" id="EditDiskUpload"  accept="image/*" @change="onEditDiskImageChange($event)">
                                                                                             <label class="custom-file-label text-light" for="EditDiskUpload">{{ selectedEditDiskName }}</label>
                                                                                         </div>
-<!--                                                                                        <div class="img-prev">-->
-<!--                                                                                            <img v-if="lendDiskImage" :src="lendDiskImage" alt="Disk image preview">-->
-<!--                                                                                            <img v-else src="../assets/img/disk.png" alt="Disk image preview">-->
-<!--                                                                                        </div>-->
+                                                                                        <div class="img-prev">
+                                                                                            <img v-if="lendDiskImage" :src="lendDiskImage" alt="Disk image preview">
+                                                                                            <img v-else src="../assets/img/disk.png" alt="Disk image preview">
+                                                                                        </div>
                                                                                 </div>
                                                                             </div>
                                                                             <div class="form-group post-rent--form-group post-rent--form-group-img" >
@@ -323,10 +323,10 @@
                                                                                             <input type="file" class="custom-file-input" id="EditCoverUpload" accept="image/*" @change="onEditCoverImageChange($event)">
                                                                                             <label class="custom-file-label text-light" for="EditCoverUpload">{{ selectedEditCoverName }}</label>
                                                                                         </div>
-<!--                                                                                        <div class="img-prev">-->
-<!--                                                                                            <img v-if="lendCoverImage" :src="lendCoverImage" alt="Cover image preview">-->
-<!--                                                                                            <img v-else src="../assets/img/cover.png" alt="Cover image preview">-->
-<!--                                                                                        </div>-->
+                                                                                        <div class="img-prev">
+                                                                                            <img v-if="lendCoverImage" :src="lendCoverImage" alt="Cover image preview">
+                                                                                            <img v-else src="../assets/img/cover.png" alt="Cover image preview">
+                                                                                        </div>
                                                                                 </div>
                                                                             </div>
                                                                             <!-- form-group Button -->

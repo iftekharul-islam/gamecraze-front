@@ -3327,9 +3327,7 @@ select option {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  padding-top: 70px;
   height: 820px;
 }
 
@@ -3351,6 +3349,10 @@ select option {
     margin-top: -56px;
     height: 600px;
     position: relative;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding-top: 0;
   }
 }
 
@@ -3491,6 +3493,12 @@ select option {
 
 .exchange-lend-section--exchange h3 span, .exchange-lend-section--lend h3 span {
   color: #FFD715;
+}
+
+@media (max-width: 1400px) {
+  .exchange-lend-section--exchange h3, .exchange-lend-section--lend h3 {
+    font-size: 44px;
+  }
 }
 
 @media (max-width: 1199px) {

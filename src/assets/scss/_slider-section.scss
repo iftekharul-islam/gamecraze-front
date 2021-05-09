@@ -4,7 +4,7 @@
     background-size: cover;
     background-position: 50%;
     display: flex;
-    align-items: center;
+    padding-top: 70px;
     height: 820px;
     @include for-max-992 {
         height: 550px;
@@ -17,6 +17,8 @@
         margin-top: -56px;
         height: 600px;
         position: relative;
+        align-items: center;
+        padding-top: 0;
     }
     h1 {
         margin-bottom: 25px;

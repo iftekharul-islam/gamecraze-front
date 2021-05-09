@@ -55,7 +55,7 @@
                                         <div class="checkbox-parents">
                                         <ValidationProvider name="Terms & Conditions" rules="required" v-slot="{ errors }">
                                             <input type="checkbox" id="terms-agree" class="checkbox-parents--input" v-model="agreement" @change="onAgreement($event)">
-                                            <label for="terms-agree" class="checkbox-parents--label">{{ $t('i_agree', $store.state.locale) }}<router-link to="/terms" target="_blank" class="text-secondery"><u> {{ $t('terms_&_condition', $store.state.locale) }}</u></router-link></label>
+                                            <label for="terms-agree" class="checkbox-parents--label">{{ $t('i_agree', $store.state.locale) }} <router-link to="/terms" target="_blank" class="text-secondery"><u>{{ $t('terms_&_condition', $store.state.locale) }}</u></router-link></label>
                                             <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                         </div>

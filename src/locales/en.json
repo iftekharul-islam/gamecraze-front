@@ -353,5 +353,6 @@
   "enter_game_credential" : "Enter your games account credentials",
   "rent_image_update" : "Rent image updated ",
   "image_update_failed" : "Rent image failed to update",
-  "related_articles" : "Related Articles"
+  "related_articles" : "Related Articles",
+  "phone_number_exits" : "Phone number already exists"
 }

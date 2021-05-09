@@ -2,7 +2,7 @@
     <div>
         <section class="game-available-section">
             <div class="container">
-                <h2 class="text-center mb-5">Available Right Now!</h2>
+                <h2 class="text-center mb-5">{{ $t('available_now', $store.state.locale) }} !</h2>
                 <div class="game-available-section--table">
                     <table class="table table-borderless rented-dashbord">
                         <thead class="">

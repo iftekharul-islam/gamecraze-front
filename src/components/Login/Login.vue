@@ -7,7 +7,7 @@
                 <div class="row login-form">
                     <div class="col-md-6 col-xl-4 mx-auto">
                         <ul class="d-flex justify-content-center align-items-center p-0">
-                            <li>
+                            <li style="text-transform: uppercase">
                                 {{ $t('sign_in', $store.state.locale) }}
                             </li>
                         </ul>
@@ -21,7 +21,7 @@
                         </div>
 
                         <!-- form -->
-                        <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption=== this.$t('phone_number', this.$store.state.locale) && !$store.state.setPasswordPopUp">
+                        <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption === 'phone_number' && !$store.state.setPasswordPopUp">
                             <form @submit.prevent="handleSubmit(onLogin)" method="post">
                                 <div class="form-group" v-if="$store.state.notSetPassword">
                                     <!-- user name -->
@@ -72,7 +72,7 @@
                         </ValidationObserver>
 
                         <!-- form -->
-                        <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption=== this.$t('email', this.$store.state.locale)">
+                        <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption === 'email'">
                             <form @submit.prevent="handleSubmit(onLogin)" method="post">
                                 <div class="form-group">
                                     <label>{{ $t('phone_number', $store.state.locale) }}</label>
@@ -158,7 +158,11 @@
                                 class="btn mb-4 btn--registration button-style w-100" style="margin: 0 auto;"
                                 @click="onChangeLoginOption">
                                 <i class="fas fa-sign-in-alt"></i>
-                            <span>{{ $t('continue_with', $store.state.locale) }}  {{ loginOption }} {{ $t('through_this', $store.state.locale) }}</span>
+                            <span>{{ $t('continue_with', $store.state.locale) }}
+                                 <b v-if="loginOption === 'email'">{{ $t('email', $store.state.locale) }}</b>
+                                 <b v-else>{{ $t('phone_number', $store.state.locale) }}</b>
+                                {{ $t('through_this', $store.state.locale) }}
+                            </span>
                         </button>
                     </div>
                 </div>
@@ -179,7 +183,7 @@
                 },
                 phone_number: "",
                 otp: "",
-                loginOption: this.$t('email', this.$store.state.locale),
+                loginOption: 'email',
                 unauthorized: "",
                 unautorizedError: "",
                 showOTP: false,
@@ -232,7 +236,7 @@
                 this.$store.dispatch('setEmailLoader', true);
                 this.isLoading = true;
                 this.isLoggingIn = true;
-                if (this.loginOption === this.$t('email', this.$store.state.locale)) {
+                if (this.loginOption === 'email') {
                     this.$store.dispatch('setPhoneNumber', this.phone_number);
                     this.clearErrorMessages();
                     this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
@@ -261,10 +265,10 @@
             },
             onChangeLoginOption: function () {
                 this.clearErrorMessages();
-                if (this.loginOption === this.$t('phone_number', this.$store.state.locale)) {
-                    this.loginOption = this.$t('email', this.$store.state.locale)
+                if (this.loginOption === 'phone_number') {
+                    this.loginOption = 'email'
                 } else {
-                    this.loginOption = this.$t('phone_number', this.$store.state.locale)
+                    this.loginOption = 'phone_number';
                     this.$store.state.notSetPassword = true;
                 }
               this.isLoading = false

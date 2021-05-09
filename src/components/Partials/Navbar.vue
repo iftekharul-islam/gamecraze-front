@@ -138,7 +138,7 @@
         <!-- promotion Notification -->
         <div class="promo-notification mt-1">
             <div class="alert gamehub-warning-bg alert-dismissible fade show mb-0 br-0 text-center text-black gil-bold f-s-20 position-fixed w-100 z-index-999" role="alert">
-                {{ $t('discount_notice', $store.state.locale) }}<router-link to="/games" class="text-dark"><u> {{ $t('rent_now', $store.state.locale) }}</u></router-link>
+                {{ $t('discount_notice', $store.state.locale) }}  <router-link to="/games" class="text-dark"><u>{{ $t('rent_now', $store.state.locale) }}</u></router-link>
               <button type="button" class="close opa-10 x-close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true" class="x-icon"></span>
               </button>

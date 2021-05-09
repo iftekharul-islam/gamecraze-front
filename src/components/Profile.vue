@@ -375,10 +375,7 @@
                                                                 <div class="d-flex flex-column align-items-center duration--date text-secondery w-fit">
                                                                     <p class="mb-1">{{ formattedDate(lend.lend_date) }} </p>
                                                                     <p class="mb-1">to</p>
-                                                                    <p class="mb-1" v-if="lend.status === 3">{{ returnDate(lend.rent.disk_type, lend.updated_at, lend.lend_week) }}</p>
-                                                                    <p class="mb-1" v-else-if="lend.status === 1">{{ formattedReturnDate(lend.updated_at) }}</p>
-<!--                                                                    <p class="mb-1" v-else-if="lend.rent.disk_type == 1 && lend.status === 1">{{ formattedReturnDate(lend.updated_at) }}</p>-->
-<!--                                                                    <p class="mb-1" v-else-if="lend.rent.disk_type == 0"> {{ returnDate(lend.rent.disk_type, lend.created_at, lend.lend_week) }}</p>-->
+                                                                    <p class="mb-1" v-if="lend.status === 1 || lend.status === 3 && lend.end_date">{{ formattedReturnDate(lend.end_date) }}</p>
                                                                     <p class="mb-1" v-else>-</p>
                                                                 </div>
                                                             </div>

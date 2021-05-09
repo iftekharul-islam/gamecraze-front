@@ -354,5 +354,6 @@
   "rent_image_update" : "Rent image updated ",
   "image_update_failed" : "Rent image failed to update",
   "related_articles" : "Related Articles",
-  "phone_number_exits" : "Phone number already exists"
+  "phone_number_exits" : "Phone number already exists",
+  "disk_condition_select" : "Please Select Disk Condition"
 }

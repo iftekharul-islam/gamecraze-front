@@ -308,7 +308,14 @@
                                                                                 <div class="post-rent--form-group--input">
                                                                                         <div class="custom-file">
                                                                                             <input type="file" class="custom-file-input" id="EditDiskUpload"  accept="image/*" @change="onEditDiskImageChange($event)">
-                                                                                            <label class="custom-file-label text-light" for="EditDiskUpload">{{ selectedEditDiskName }}</label>
+                                                                                            <label class="custom-file-label text-light" for="EditDiskUpload">
+                                                                                                <b v-if="selectedEditDiskName == null">
+                                                                                                    {{ $t('disk_image', $store.state.locale) }}
+                                                                                                </b>
+                                                                                                <b v-else>
+                                                                                                    {{ selectedEditDiskName }}
+                                                                                                </b>
+                                                                                            </label>
                                                                                         </div>
                                                                                         <div class="img-prev">
                                                                                             <img v-if="lendDiskImage" :src="lendDiskImage" alt="Disk image preview">
@@ -321,7 +328,14 @@
                                                                                 <div class="post-rent--form-group--input">
                                                                                         <div class="custom-file">
                                                                                             <input type="file" class="custom-file-input" id="EditCoverUpload" accept="image/*" @change="onEditCoverImageChange($event)">
-                                                                                            <label class="custom-file-label text-light" for="EditCoverUpload">{{ selectedEditCoverName }}</label>
+                                                                                            <label class="custom-file-label text-light" for="EditCoverUpload">
+                                                                                                <b v-if="selectedEditCoverName == null">
+                                                                                                    {{ $t('cover_image', $store.state.locale) }}
+                                                                                                </b>
+                                                                                                <b v-else>
+                                                                                                    {{ selectedEditCoverName }}
+                                                                                                </b>
+                                                                                            </label>
                                                                                         </div>
                                                                                         <div class="img-prev">
                                                                                             <img v-if="lendCoverImage" :src="lendCoverImage" alt="Cover image preview">
@@ -605,7 +619,7 @@
                                                 <div class="post-rent--form-group--input">
                                                     <ValidationProvider name="Disk Condition" :rules='{required: diskImageRequired}' v-slot="{ errors }">
                                                         <select class="form-control js-example-basic-single" id="DiskCondition" v-model="rentData.disk_condition">
-                                                            <option disabled value="" >Please Select Disk Condition</option>
+                                                            <option disabled value="" >{{ $t('disk_condition_select', $store.state.locale) }}</option>
                                                             <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }} ({{ diskCondition.description }})</option>
                                                         </select>
                                                         <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
@@ -971,8 +985,8 @@
                 selectedFile: this.$t('select_nid', this.$store.state.locale),
                 selectedDiskName: this.$t('disk_image', this.$store.state.locale),
                 selectedCoverName: this.$t('cover_image', this.$store.state.locale),
-                selectedEditCoverName: 'Cover image',
-                selectedEditDiskName: 'Disk image',
+                selectedEditCoverName: null,
+                selectedEditDiskName: null,
                 x: '',
                 diskConditions: [],
                 checkpoints: [],

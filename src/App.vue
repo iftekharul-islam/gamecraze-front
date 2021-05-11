@@ -1,5 +1,5 @@
-<template>
-  <div id="app">
+<template >
+  <div id="app" :class="this.$i18n.locale">
     <navbar></navbar>
     <router-view></router-view>
     <Footer></Footer>

@@ -6475,7 +6475,7 @@ html {
 
 @media (max-width: 992px) {
   .game-available-section--table table {
-    width: 950px;
+    width: 1040px;
   }
 }
 
@@ -6493,7 +6493,7 @@ html {
 
 @media (max-width: 992px) {
   .game-available-section--table::after {
-    width: 990px;
+    width: 1080px;
     height: 61px;
   }
 }

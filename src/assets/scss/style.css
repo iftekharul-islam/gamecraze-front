@@ -3279,16 +3279,55 @@ select option {
   transition: all .3s ease-in;
 }
 
-.slider-section {
-  background: url(../img/Juggernaut.png);
-  background-repeat: no-repeat;
-  background-size: cover;
+.gamehub-language {
+  margin-right: 32px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media (max-width: 991px) {
+  .gamehub-language {
+    padding-left: 15px;
+    padding-bottom: 20px;
+  }
+}
+
+.gamehub-language .active {
+  background: #FFD715;
+  color: #0B0F18;
+  font-weight: 700;
+}
+
+.gamehub-language span {
+  margin-right: 8px;
+  height: 27px;
+  padding: 0px 15px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #FFD715;
+  cursor: pointer;
+}
+
+.slider-section {
+  background: url(../img/gamehub-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-top: 70px;
   height: 820px;
 }
 
@@ -3310,6 +3349,10 @@ select option {
     margin-top: -56px;
     height: 600px;
     position: relative;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    padding-top: 0;
   }
 }
 
@@ -3450,6 +3493,12 @@ select option {
 
 .exchange-lend-section--exchange h3 span, .exchange-lend-section--lend h3 span {
   color: #FFD715;
+}
+
+@media (max-width: 1400px) {
+  .exchange-lend-section--exchange h3, .exchange-lend-section--lend h3 {
+    font-size: 44px;
+  }
 }
 
 @media (max-width: 1199px) {
@@ -6426,7 +6475,7 @@ html {
 
 @media (max-width: 992px) {
   .game-available-section--table table {
-    width: 950px;
+    width: 1040px;
   }
 }
 
@@ -6444,7 +6493,7 @@ html {
 
 @media (max-width: 992px) {
   .game-available-section--table::after {
-    width: 990px;
+    width: 1080px;
     height: 61px;
   }
 }

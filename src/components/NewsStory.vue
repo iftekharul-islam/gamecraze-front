@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-md-8 mx-auto">
                         <div class="news-story-section--heading">
-                            <p>Update</p>
+                            <p>{{ $t('update', $store.state.locale) }}</p>
                             <p>{{ newsDetails.created }}</p>
                             <h2>{{ newsDetails.title }}</h2>
                             <div class="news-story-section--heading--icon">
@@ -28,7 +28,7 @@
         <section class="related-article-section">
             <div class="container">
                 <div class="text-center">
-                    <h2>Related Articles</h2>
+                    <h2>{{ $t('related_articles', $store.state.locale) }}</h2>
                 </div>
                 <div class="row">
                     <div class="col-md-4 mb-4" v-for="(item, index) in relatedNews" :key="index" v-if="newsDetails.id != item.id">
@@ -37,7 +37,7 @@
                                 <img :src=item.thumbnail :alt=item.title class="w-100 img-fluid">
                             </div>
                             <div class="newsroom-section--content-box--text">
-                                <p>Update</p>
+                                <p>{{ $t('update', $store.state.locale) }}</p>
                                 <h6>{{ item.title && item.title.length > 28 ? item.title.substring(0, 28) + ".." : item.title }}</h6>
                                 <p>{{ item.created }}</p>
                             </div>

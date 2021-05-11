@@ -15,7 +15,7 @@
                             <ValidationObserver v-slot="{ handleSubmit }">
                                 <form id="regForm" @submit.prevent="handleSubmit(onNext)" method="post">
                                      <div class="form-group">
-                                        <label >Email address</label>
+                                        <label >{{ $t('email', $store.state.locale) }}</label>
                                         <ValidationProvider name="name" rules="required" v-slot="{ errors }">
                                             <input type="email" class="form-control"  v-model="form.email" readonly>
                                             <span style="color: red;">{{ errors[0] }}</span>
@@ -26,7 +26,7 @@
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                            
-                                            <label for="firstName">First name</label>
+                                            <label for="firstName">{{ $t('first_name', $store.state.locale) }}</label>
                                             <ValidationProvider name="firstName" rules="required" v-slot="{ errors }">
                                                 <input type="text" class="form-control" id="firstName" value="" v-model="form.name">
                                                 <span class="error-message">{{ errors[0] }}</span>
@@ -35,7 +35,7 @@
                                                <!-- Last Name -->
                                             <div class="form-group col-md-6">
                                             
-                                                <label for="LastName">Last name</label>
+                                                <label for="LastName">{{ $t('last_name', $store.state.locale) }}</label>
                                                 <ValidationProvider name="LastName" rules="required" v-slot="{ errors }">
                                                     <input type="text" class="form-control" id="LastName" value="" v-model="form.lastName">
                                                     <span class="error-message">{{ errors[0] }}</span>
@@ -44,7 +44,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="user-number">Phone number</label>
+                                        <label for="user-number">{{ $t('phone_number', $store.state.locale) }}</label>
                                         <ValidationProvider name="phone number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
                                             <input @keypress="isNumber($event)" type="tel" class="form-control" id="user-number" v-model="form.phone_number" readonly>
                                             <span style="color: red;">{{ errors[0] }}</span>
@@ -53,14 +53,14 @@
                                     </div>
                                     <!-- password -->
                                     <div class="form-group">
-                                        <label>Set your password</label>
+                                        <label>{{ $t('set_password', $store.state.locale) }}</label>
                                         <ValidationProvider name="password" rules="required" v-slot="{ errors }">
                                             <input type="password" class="form-control" v-model="form.password">
                                             <span style="color: red;">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                     </div>
                                     <div class="regbtn mt-4">
-                                        <button type="submit" class="btn w-100 btn--login">PROCEED</button>
+                                        <button type="submit" class="btn w-100 btn--login">{{ $t('proceed', $store.state.locale) }}</button>
                                     </div>
                                 </form>
                             </ValidationObserver>

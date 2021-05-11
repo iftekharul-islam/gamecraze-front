@@ -41,6 +41,9 @@
             span {
                 color: $secondery;
             }
+            @include for-max-1400 {
+                font-size: 44px;
+            }
             @include for-max-1199 {
                 font-size: 26px;
             }

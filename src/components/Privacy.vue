@@ -6,130 +6,83 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="content-heading">
-                            <h2>privacy & policies</h2>
+                            <h2>{{ $t('privacy_&_policies', $store.state.locale) }}</h2>
                         </div>
                     </div>
 
                     <div class="col-12">
                         <div class="gamehub-policy-section--content">
                             <div class="gamehub-policy-section--content--text">
-                                <p>At GameHub, accessible from www.gamehub.com.bd, one of our main priorities 
-                                    is the privacy of our visitors. This Privacy Policy document contains types 
-                                    of information that is collected and recorded by GameHub and how we use it. 
-                                    If you have additional questions or require more information about our Privacy 
-                                    Policy, do not hesitate to contact us. This Privacy Policy applies only to our 
-                                    online activities and is valid for visitors to our website with regards to the 
-                                    information that they shared and/or collect in GameHub. This policy is not 
-                                    applicable to any information collected offline or via channels other than this website.</p>
+                                <p>{{ $t('privacy_body_part_1', $store.state.locale) }}</p>
                                  <div class="gamehub-policy-section--content--text--heading">
                                      <p>
-                                      Consent
+                                         {{ $t('consent', $store.state.locale) }}
                                     </p>
-                                    <p> By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>
+                                    <p> {{ $t('privacy_body_part_2', $store.state.locale) }}</p>
                                  </div>
                                 <div class="gamehub-policy-section--content--text--heading">
-                                    <p>Information we collect</p>
-                                    <p>The personal information that you are asked to provide, and the reasons 
-                                        why you are asked to provide it, will be made clear to you at the point we 
-                                        ask you to provide your personal information. If you contact us directly, we 
-                                        may receive additional information about you such as your name, email address, 
-                                        phone number, the contents of the message and/or attachments you may send us, and 
-                                        any other information you may choose to provide. When you register for an Account, 
-                                        we may ask for your contact information, including items such as name, company name, 
-                                        address, email address, and telephone number.</p>
+                                    <p>{{ $t('information_we_collect', $store.state.locale) }}</p>
+                                    <p>{{ $t('privacy_body_part_3', $store.state.locale) }}</p>
                                 </div>
                                 <div class="gamehub-policy-section--content--text--heading">
-                                    <p> How we use your information</p>
-                                    <p> We use the information we collect in various ways, including to:</p>
+                                    <p> {{ $t('privacy_body_part_4', $store.state.locale) }}</p>
+                                    <p> {{ $t('privacy_body_part_5', $store.state.locale) }}</p>
                                         <ul class="bullet-list">
-                                            <li class="bullet-list--item">Provide, operate, and maintain our website</li>
-                                            <li class="bullet-list--item">Improve, personalize, and expand our website</li>
-                                            <li class="bullet-list--item"> Understand and analyze how you use our website</li>
-                                            <li class="bullet-list--item">Develop new products, services, features, and functionality</li>
-                                            <li class="bullet-list--item">Communicate with you, either directly or through one of our partners, 
-                                                including for customer service, to provide you with updates and other information 
-                                                relating to the website, and for marketing and promotional purposes</li>
-                                            <li class="bullet-list--item"> Send you emails</li>
-                                            <li class="bullet-list--item">Find and prevent fraud</li>
+                                            <li class="bullet-list--item">{{ $t('privacy_body_part_6', $store.state.locale) }}</li>
+                                            <li class="bullet-list--item">{{ $t('privacy_body_part_7', $store.state.locale) }}</li>
+                                            <li class="bullet-list--item">{{ $t('privacy_body_part_8', $store.state.locale) }}</li>
+                                            <li class="bullet-list--item">{{ $t('privacy_body_part_9', $store.state.locale) }}</li>
+                                            <li class="bullet-list--item">{{ $t('privacy_body_part_10', $store.state.locale) }}</li>
+                                            <li class="bullet-list--item"> {{ $t('sent_you_email', $store.state.locale) }}</li>
+                                            <li class="bullet-list--item">{{ $t('find_and_prevent_fraud', $store.state.locale) }}</li>
                                         </ul>
                                 </div>
                                  <div class="gamehub-policy-section--content--text--heading"> 
-                                     <p>Log Files</p>
-                                     <p>GameHub follows a standard procedure of using log files. These files log visitors when they 
-                                         visit websites. All hosting companies do this and a part of hosting services' analytics. The 
-                                         information collected by log files includes internet protocol (IP) addresses, browser type, 
-                                         Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the 
-                                         number of clicks. These are not linked to any information that is personally identifiable. The 
-                                         purpose of the information is for analyzing trends, administering the site, tracking users' 
-                                         movement on the website, and gathering demographic information.</p>
+                                     <p>{{ $t('log_files', $store.state.locale) }}</p>
+                                     <p>{{ $t('privacy_body_part_11', $store.state.locale) }}</p>
                                  </div>
                                   <div class="gamehub-policy-section--content--text--heading"> 
-                                     <p>Cookies and Web Beacons</p>
-                                     <p>Like any other website, GameHub uses 'cookies'. These cookies are used to store 
-                                         information including visitors' preferences, and the pages on the website that 
-                                         the visitor accessed or visited. The information is used to optimize the users' 
-                                         experience by customizing our web page content based on visitors' browser type and/or 
-                                         other information. <br>For more general information on cookies, please read "What Are 
-                                         Cookies" from Cookie Consent.</p>
+                                     <p>{{ $t('privacy_body_part_12', $store.state.locale) }}</p>
+                                     <p>{{ $t('privacy_body_part_13', $store.state.locale) }}</p>
                                  </div>
                             </div>
                             <div class="gamehub-policy-section--content--text">
                                 <div class="gamehub-policy-section--content--text--heading">
-                                    <p>Delivery & Return Policy:</p>
-                                    <p>You may consult this list to find the Privacy Policy for each of the advertising 
-                                        partners of GameHub.<br><br> Third-party ad servers or ad networks use technologies like cookies, 
-                                        JavaScript, or Web Beacons that are used in their respective advertisements and links that appear 
-                                        on GameHub, which are sent directly to users' browsers. They automatically receive your IP address 
-                                        when this occurs. These technologies are used to measure the effectiveness of their advertising 
-                                        campaigns and/or to personalize the advertising content that you see on websites that you visit.<br><br>
-                                        Note that GameHub has no access to or control over these cookies that are used by third-party advertisers.</p>
+                                    <p>{{ $t('delivery_&_return_policy', $store.state.locale) }}</p>
+                                    <p>{{ $t('privacy_body_part_14', $store.state.locale) }}<br><br>
+                                        {{ $t('privacy_body_part_15', $store.state.locale) }}</p>
                                 </div>
                                  <div class="gamehub-policy-section--content--text--heading">
-                                    <p>Third Party Privacy Policies</p>
-                                    <p>GameHub's Privacy Policy does not apply to other advertisers or websites. 
-                                        Thus, we are advising you to consult the respective Privacy Policies of 
-                                        these third-party ad servers for more detailed information. It may include
-                                        their practices and instructions about how to opt-out of certain options.<br> 
-                                        You can choose to disable cookies through your individual browser options. 
-                                        To know more detailed information about cookie management with specific web 
-                                        browsers, it can be found at the browsers' respective websites.</p>
+                                    <p>{{ $t('privacy_body_part_16', $store.state.locale) }}</p>
+                                    <p>{{ $t('privacy_body_part_17', $store.state.locale) }}<br>
+                                        {{ $t('privacy_body_part_18', $store.state.locale) }}</p>
                                 </div>
                                 <div class="gamehub-policy-section--content--text--heading">
-                                    <p>CCPA Privacy Rights (Do Not Sell My Personal Information)</p>
-                                    <p>Under the CCPA, among other rights, consumers have the right to: Request that a business 
-                                        that collects a consumer's personal data disclose the categories and specific pieces of 
-                                        personal data that a business has collected about consumers.<br> Request that a business deletes 
-                                        any personal data about the consumer that a business has collected.<br> Request that a business 
-                                        that sells a consumer's personal data, not sell the consumer's personal data.<br> If you make a 
-                                        request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.</p>
+                                    <p>{{ $t('privacy_body_part_19', $store.state.locale) }}</p>
+                                    <p>{{ $t('privacy_body_part_20', $store.state.locale) }}<br>
+                                        {{ $t('privacy_body_part_21', $store.state.locale) }}<br>
+                                        {{ $t('privacy_body_part_22', $store.state.locale) }}<br>
+                                        {{ $t('privacy_body_part_23', $store.state.locale) }}</p>
                                 </div>
                                 <div class="gamehub-policy-section--content--text--heading">
-                                    <p>GDPR Data Protection Rights</p>
-                                    <p>We would like to make sure you are fully aware of all of your data protection rights. 
-                                        Every user is entitled to the following:<br> The right to access – You have the right to 
-                                        request copies of your personal data. We may charge you a small fee for this service. 
-                                        The right to rectification – You have the right to request that we correct any information 
-                                        you believe is inaccurate. You also have the right to request that we complete the 
-                                        information you believe is <br>incomplete.<br> The right to erasure – You have the right to request 
-                                        that we erase your personal data, under certain conditions.<br> The right to restrict processing – You have 
-                                        the right to request that we restrict the processing of your personal data, under certain conditions.<br> 
-                                        The right to object to processing – You have the right to object to our processing of your personal data, 
-                                        under certain conditions.<br> The right to data portability – You have the right to request that we transfer 
-                                        the data that we have collected to another organization, or directly to you, under certain conditions.<br>
-                                        If you make a request, we have one month to respond to you. If you would like to exercise any of these 
-                                        rights, please contact us. <br>Children's Information<br> Another part of our priority is adding protection for 
-                                        children while using the internet. We encourage parents and guardians to observe, participate in, and/or 
-                                        monitor and guide their online activity. GameHub does not knowingly collect any Personal Identifiable 
-                                        Information from children under the age of 13. If you think that your child provided this kind of 
-                                        information on our website, we strongly encourage you to contact us immediately and we will do our 
-                                        best efforts to promptly remove such information from our records. </p>
+                                    <p>{{ $t('privacy_body_part_24', $store.state.locale) }}</p>
+                                    <p>{{ $t('privacy_body_part_25', $store.state.locale) }}
+                                        <br> {{ $t('privacy_body_part_26', $store.state.locale) }}
+                                        <br> {{ $t('privacy_body_part_27', $store.state.locale) }}
+                                        <br> {{ $t('privacy_body_part_28', $store.state.locale) }}
+                                        <br> {{ $t('privacy_body_part_29', $store.state.locale) }}
+                                        <br> {{ $t('privacy_body_part_30', $store.state.locale) }}
+                                        <br> {{ $t('privacy_body_part_31', $store.state.locale) }}
+                                        <br> {{ $t('privacy_body_part_32', $store.state.locale) }}
+                                        <br> {{ $t('privacy_body_part_33', $store.state.locale) }}
+                                    </p>
                                 </div>
                             </div>
                         </div>
                          <!--  -->
                          <div class="support-bottom">
-                            <p class="mb-0 mr-a-6">If you have any questions about the policy feel free to contact us.</p>
-                            <a href="/contacts" class="btn--secondery"><span>CONTACT US</span></a>
+                            <p class="mb-0 mr-a-6">{{ $t('question_query', $store.state.locale) }}</p>
+                            <a href="/contacts" class="btn--secondery"><span style="text-transform: uppercase">{{ $t('contact_us', $store.state.locale) }}</span></a>
                         </div>
                     </div>
                 </div>

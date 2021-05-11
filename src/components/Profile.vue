@@ -4,7 +4,7 @@
             <img v-if="activeCoverImage" :src="activeCoverImage" alt="profile bg" class="img-fluid user-profile-bg">
             <img v-if="dummyCover" src="../assets/img/profile-bg.png" alt="profile bg" class="img-fluid user-profile-bg">
             <div class="cover-edit" @click="coverModal = true">
-                <label><i class="fas fa-camera camera-icon"></i>  <span>{{ $t('edit_cover_photo', $store.state.locale) }}</span></label>
+                <label><i class="fas fa-camera camera-icon"></i> <span>{{ $t('edit_cover_photo', $store.state.locale) }}</span></label>
                 <i v-if="isCoverImgUpdating" class="spinner-border spinner-border-sm"></i>
             </div>
             <div v-if="coverModal">
@@ -231,8 +231,13 @@
                                                         <p v-else-if="rent.lend != null"><span class="badge-danger badge br-0 p-2 f-s-16">Rented for {{ rent.lend.data.lend_week }} week(s)</span></p>
                                                         <p class="text-secondery" v-else>Available for {{ rent.max_number_of_week }} week(s)</p>
                                                     </div>
-                                                    <div class="action" v-if="rent.disk_type != 1">
-                                                        <a href="#" class="btn--secondery h-40 w-80 ml-2" @click.prevent="credentialModal(rent)"><span>Edit</span></a>
+                                                    <div v-if="rent.status == 0">
+                                                        <div class="action" v-if="rent.disk_type != 1">
+                                                            <a href="#" class="btn--secondery h-40 w-80 ml-2" @click.prevent="credentialModal(rent)"><span>Edit</span></a>
+                                                        </div>
+                                                        <div class="action" v-if="rent.disk_type != 0">
+                                                            <a href="#" class="btn--secondery h-40 w-80 ml-2" @click.prevent="ImageModal(rent)"><span>Edit</span></a>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -246,7 +251,7 @@
                                                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true" @click="credentialModalShow = false" class="close-modal"></span>
                                                                     </button>
-                                                                <h4 class="text-secondery mb-a-12 f-s-28">Enter your digital disk’s credentials.</h4>
+                                                                <h4 class="text-secondery mb-a-12 f-s-28">{{ $t('enter_game_credential', $store.state.locale) }}</h4>
                                                                 <!-- form-group -->
                                                                 <ValidationObserver v-slot="{ invalid }">
                                                                     <form @submit.prevent="gameCredentialUpdate(userRentId, userGameId, userPassword)" method="post">
@@ -286,6 +291,72 @@
                                                     </div>
                                                 </transition>
                                             </div>
+                                            <div v-if="imageModalShow">
+                                                <transition name="modal">
+                                                    <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal game-photo-edit-modal overflow-auto">
+                                                        <div class="modal-wrapper">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                <div class="modal-content h-auto">
+                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true" @click="imageModalShow = false" class="close-modal"></span>
+                                                                    </button>
+                                                                    <h4 class="text-secondery mb-a-12 f-s-28">{{ $t('enter_game_credential', $store.state.locale) }}</h4>
+                                                                    <!-- form-group -->
+                                                                        <form @submit.prevent="rentImageUpdate(userRentId, lendDiskImage, lendCoverImage)" method="post">
+                                                                            <div class="form-group post-rent--form-group post-rent--form-group-img" >
+                                                                                <label class="post-rent--form-group--label">{{ $t('disk_image', $store.state.locale) }} :</label>
+                                                                                <div class="post-rent--form-group--input">
+                                                                                        <div class="custom-file">
+                                                                                            <input type="file" class="custom-file-input" id="EditDiskUpload"  accept="image/*" @change="onEditDiskImageChange($event)">
+                                                                                            <label class="custom-file-label text-light" for="EditDiskUpload">
+                                                                                                <b v-if="selectedEditDiskName == null">
+                                                                                                    {{ $t('disk_image', $store.state.locale) }}
+                                                                                                </b>
+                                                                                                <b v-else>
+                                                                                                    {{ selectedEditDiskName }}
+                                                                                                </b>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                        <div class="img-prev">
+                                                                                            <img v-if="lendDiskImage" :src="lendDiskImage" alt="Disk image preview">
+                                                                                            <img v-else src="../assets/img/disk.png" alt="Disk image preview">
+                                                                                        </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="form-group post-rent--form-group post-rent--form-group-img" >
+                                                                                <label class="post-rent--form-group--label">{{ $t('cover_image', $store.state.locale) }} :</label>
+                                                                                <div class="post-rent--form-group--input">
+                                                                                        <div class="custom-file">
+                                                                                            <input type="file" class="custom-file-input" id="EditCoverUpload" accept="image/*" @change="onEditCoverImageChange($event)">
+                                                                                            <label class="custom-file-label text-light" for="EditCoverUpload">
+                                                                                                <b v-if="selectedEditCoverName == null">
+                                                                                                    {{ $t('cover_image', $store.state.locale) }}
+                                                                                                </b>
+                                                                                                <b v-else>
+                                                                                                    {{ selectedEditCoverName }}
+                                                                                                </b>
+                                                                                            </label>
+                                                                                        </div>
+                                                                                        <div class="img-prev">
+                                                                                            <img v-if="lendCoverImage" :src="lendCoverImage" alt="Cover image preview">
+                                                                                            <img v-else src="../assets/img/cover.png" alt="Cover image preview">
+                                                                                        </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <!-- form-group Button -->
+                                                                            <div class="form-group post-rent--form-group offer-edit-btn">
+                                                                                <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light"></label>
+                                                                                <div class=" post-rent--form-group--input">
+                                                                                    <button type="submit" class="btn--secondery user-id-edit-btn"><span class="w-100">{{ $t('submit', $store.state.locale) }}</span></button>
+                                                                                </div>
+                                                                            </div>
+                                                                        </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </transition>
+                                            </div>
                                         </div>
                                         </div>
 
@@ -318,9 +389,7 @@
                                                                 <div class="d-flex flex-column align-items-center duration--date text-secondery w-fit">
                                                                     <p class="mb-1">{{ formattedDate(lend.lend_date) }} </p>
                                                                     <p class="mb-1">to</p>
-                                                                    <p class="mb-1" v-if="lend.rent.disk_type == 1 && lend.status === 3">{{ returnDate(lend.rent.disk_type, lend.updated_at, lend.lend_week) }}</p>
-                                                                    <p class="mb-1" v-else-if="lend.rent.disk_type == 1 && lend.status === 1">{{ formattedReturnDate(lend.updated_at) }}</p>
-                                                                    <p class="mb-1" v-else-if="lend.rent.disk_type == 0"> {{ returnDate(lend.rent.disk_type, lend.created_at, lend.lend_week) }}</p>
+                                                                    <p class="mb-1" v-if="lend.status === 1 || lend.status === 3 && lend.end_date">{{ formattedReturnDate(lend.end_date) }}</p>
                                                                     <p class="mb-1" v-else>-</p>
                                                                 </div>
                                                             </div>
@@ -333,8 +402,9 @@
                                                                     <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-else></flip-countdown>
                                                                 </div>
                                                                 <div v-if="lend.rent.disk_type == 0">
-                                                                    <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-if="lend.status === 1 || lend.status === 4"></flip-countdown>
-                                                                    <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)" v-else></flip-countdown>
+                                                                    <flip-countdown :deadline="endDate(lend.rent.disk_type, lend.updated_at, lend.lend_week)" v-if="lend.status === 3"></flip-countdown>
+                                                                    <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-else></flip-countdown>
+<!--                                                                    <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)" v-else></flip-countdown>-->
                                                                 </div>
                                                             </div>
                                                             <div class="status flex-1">
@@ -356,6 +426,9 @@
                                                                 </div>
                                                                 <div v-else-if="lend.status === 5">
                                                                     <span class="completed br-0 f-s-16" >Processing</span>
+                                                                </div>
+                                                                <div v-else-if="lend.status === 6">
+                                                                    <span class="completed br-0 f-s-16" >Postponed</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -380,12 +453,12 @@
                                              <div class="form-group post-rent--form-group">
                                                 <label class=" post-rent--form-group--label"></label>
                                                 <div class=" post-rent--form-group--input">
-                                                    <router-link  class="secondery-border text-secondery d-flex align-items-center justify-content-center h-48 game-rent-bg" to="/lend-notice" target="_blank">Learn about how to create a post</router-link>
+                                                    <router-link  class="secondery-border text-secondery d-flex align-items-center justify-content-center h-48 game-rent-bg" to="/lend-notice" target="_blank">{{ $t('learn_about_create_post', $store.state.locale) }}</router-link>
                                                 </div>
                                             </div>
 
                                             <div class="form-group post-rent--form-group">
-                                                <label class=" post-rent--form-group--label">{{ $t('game_name', $store.state.locale) }}:</label>
+                                                <label class=" post-rent--form-group--label">{{ $t('game_name', $store.state.locale) }} :</label>
                                                 <div class=" post-rent--form-group--input">
                                                     <ValidationProvider name="game" rules="" v-slot="{ errors }">
                                                         <vue-autosuggest
@@ -396,7 +469,7 @@
                                                             @input="onInputChange"
                                                             @selected="onSelected"
                                                             :get-suggestion-value="getSuggestionValue"
-                                                            :input-props="{id:'autosuggest__input2', placeholder:'Search Game'}">
+                                                            :input-props="{id:'autosuggest__input2', placeholder: $t('search_game', $store.state.locale) }">
                                                         <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
                                                             <div>{{suggestion.item.name}}</div>
                                                         </div>
@@ -444,7 +517,7 @@
                                                     <div class="post-rent--form-group--input--radio-group delivery-radio-group">
                                                         <div class="custom-radio d-flex">
                                                             <input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod" class="custom-control-input" checked>
-                                                            <label for="cod" class="custom-control-label"> Cash on Delivery <span class="checkbox-style"></span></label>
+                                                            <label for="cod" class="custom-control-label"> {{ $t('cash_on_delivery', $store.state.locale) }} <span class="checkbox-style"></span></label>
                                                         </div>
                                                     </div>
                                                     
@@ -469,18 +542,18 @@
                                               <!-- form-group -->
                                             <div class="form-group post-rent--form-group">
 
-                                                <label class="post-rent--form-group--label mt-0">{{ $t('game_type', $store.state.locale) }} :</label>
+                                                <label class="post-rent--form-group--label mt-0">{{ $t('disk_type', $store.state.locale) }} :</label>
                                                 <div class="post-rent--form-group--input">
                                                     <ValidationProvider name="Game type" rules="required" v-slot="{ errors }">
                                                     <div class="post-rent--form-group--input--radio-group delivery-radio-group">
                                                         <div class="custom-radio d-flex ">
                                                             <input type="radio" value="0" id="digital_copy" name="disk_type" v-model="rentData.disk_type" @click="basePriceSelect(1)" class="custom-control-input">
-                                                            <label for="digital_copy" class="custom-control-label"> Digital Copy <span></span></label>
+                                                            <label for="digital_copy" class="custom-control-label"> {{ $t('digital_copy', $store.state.locale) }} <span></span></label>
                                                         </div>
 
                                                         <div class="custom-radio d-flex">
                                                             <input type="radio" value="1" id="physical_copy" name="disk_type" v-model="rentData.disk_type" @click="basePriceSelect(2)" class="custom-control-input">
-                                                            <label for="physical_copy" class="custom-control-label"> Physical Copy <span></span></label>
+                                                            <label for="physical_copy" class="custom-control-label"> {{ $t('physical_copy', $store.state.locale) }} <span></span></label>
                                                         </div>
 
                                                     </div>
@@ -546,7 +619,7 @@
                                                 <div class="post-rent--form-group--input">
                                                     <ValidationProvider name="Disk Condition" :rules='{required: diskImageRequired}' v-slot="{ errors }">
                                                         <select class="form-control js-example-basic-single" id="DiskCondition" v-model="rentData.disk_condition">
-                                                            <option disabled value="" >Please Select Disk Condition</option>
+                                                            <option disabled value="" >{{ $t('disk_condition_select', $store.state.locale) }}</option>
                                                             <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }} ({{ diskCondition.description }})</option>
                                                         </select>
                                                         <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
@@ -559,9 +632,8 @@
                                                 <div class="post-rent--form-group--input">
                                                     <ValidationProvider name="Disk Image" :rules='{required: diskImageRequired}' v-slot="{ validate, errors }">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="DiskUpload"  accept="image/*" @change="onDiskimageChange($event)|| validate($event)">
-<!--                                                        <input type="file" class="custom-file-input" id="DiskUpload"  accept="image/*" @change="onDiskimageChange">-->
-                                                        <label class="custom-file-label text-light" for="customFile">{{ $t('disk_image', $store.state.locale) }}</label>
+                                                        <input type="file" class="custom-file-input" id="diskUpload"  accept="image/*" @change="onDiskimageChange($event)|| validate($event)">
+                                                        <label class="custom-file-label text-light" for="diskUpload">{{ selectedDiskName }}</label>
                                                     </div>
                                                     <div class="img-prev">
                                                         <img v-if="rentData.disk_image" :src="rentData.disk_image" alt="Disk image preview">
@@ -577,7 +649,8 @@
                                                     <ValidationProvider name="Cover Image" :rules='{required: diskImageRequired}' v-slot="{ validate, errors }">
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="customFile2" accept="image/*" @change="onCoverimageChange($event)|| validate($event)">
-                                                        <label class="custom-file-label text-light" for="customFile2">{{ $t('cover_image', $store.state.locale) }}</label>
+                                                        <label class="custom-file-label text-light" for="customFile2">{{ selectedCoverName }}</label>
+<!--                                                        <label class="custom-file-label text-light" for="customFile2">{{ $t('cover_image', $store.state.locale) }}</label>-->
                                                     </div>
                                                     <div class="img-prev">
                                                         <img v-if="rentData.cover_image" :src="rentData.cover_image" alt="Cover image preview">
@@ -753,7 +826,7 @@
                                             <h2>{{ total_earn }} Taka</h2>
                                         </div>
                                         <div class="my-earning--dashboard--content">
-                                            <h4>{{ $t('lifetime_earning', $store.state.locale) }}</h4>
+                                            <h4>{{ $t('amount_received', $store.state.locale) }}</h4>
                                             <h2>{{ payable_amount }} Taka</h2>
                                         </div>
                                     </div>
@@ -879,9 +952,14 @@
         data() {
             return {
                 credentialModalShow: false,
+                imageModalShow: false,
                 diskImageRequired: false,
                 userGameId: '',
                 userPassword: '',
+                lendDiskImage: '',
+                lendCoverImage: '',
+                editDiskImage: '',
+                editCoverImage: '',
                 userRentId: '',
                 isDigital: false,
                 itemsData: ['Male', 'Female', 'Others'],
@@ -904,7 +982,11 @@
                     id_image: "",
                 },
                 nid_verification: 0,
-                selectedFile: 'Select NID',
+                selectedFile: this.$t('select_nid', this.$store.state.locale),
+                selectedDiskName: this.$t('disk_image', this.$store.state.locale),
+                selectedCoverName: this.$t('cover_image', this.$store.state.locale),
+                selectedEditCoverName: null,
+                selectedEditDiskName: null,
                 x: '',
                 diskConditions: [],
                 checkpoints: [],
@@ -982,7 +1064,7 @@
                 this.$api.post('post-status-update', data, config).then(response => {
                     if (response.data.error == false) {
                         this.coverModal = false;
-                        this.$toaster.success("Post Status Updated !");
+                        this.$toaster.success(this.$t('rent_post_status', this.$store.state.locale));
                     }else {
                         this.$toaster.fail(response.data.message);
                     }
@@ -995,6 +1077,17 @@
                 this.userRentId = rent.id;
 
                 this.credentialModalShow = true;
+            },
+            ImageModal(rent){
+                this.lendDiskImage = rent.disk_image;
+                this.lendCoverImage = rent.cover_image;
+                this.editDiskImage = rent.disk_image;
+                this.editCoverImage = rent.cover_image;
+                this.userRentId = rent.id;
+
+                console.log(this.lendCoverImage);
+
+                this.imageModalShow = true;
             },
             coverImageSelect(userId){
                 this.dummyCover = false;
@@ -1016,8 +1109,36 @@
                     if (response.data.error == false) {
                         this.coverModal = false;
                         this.$toaster.success( this.$t('cover_updated', this.$store.state.locale) );
+                    } else {
+                        this.$toaster.warning(response.data.message);
+                    }
+
+                });
+            },
+            rentImageUpdate(rentId, disk, cover){
+                if (this.editDiskImage == disk) {
+                    disk = null;
+                }
+                if (this.editCoverImage == cover) {
+                    cover = null
+                }
+                this.imageModalShow = false;
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+                let data = {
+                    cover_image: cover,
+                    disk_image: disk,
+                    id: rentId
+                };
+                console.log(data);
+                this.$api.post('rent-image-update', data, config).then(response => {
+                    if (response.data.error == false) {
+                        this.$toaster.success(this.$t('rent_image_update', this.$store.state.locale));
                     }else {
-                        this.$toaster.fail(response.data.message);
+                        this.$toaster.warning(this.$t('image_update_failed', this.$store.state.locale));
                     }
 
                 });
@@ -1130,7 +1251,7 @@
             formattedReturnDate(date) {
                 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                 let formattedDate = new Date(date)
-                return formattedDate.getDate()+1 + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
+                return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
             },
             startDate(diskType, datetime) {
                 let date = new Date(datetime);
@@ -1153,11 +1274,10 @@
                 let date = new Date(datetime);
                 var time = new Date(datetime);
 
-                var hours = time.getHours();
+                if (diskType == 0) {
 
-                if (diskType == 0 && hours >= 12) {
+                    date.setDate(date.getDate() + 1 + week * 7);
 
-                    date.setDate(date.getDate() + 2 + week * 7);
                 } else {
 
                     date.setDate(date.getDate() + 1 + week * 7);
@@ -1167,16 +1287,8 @@
             },
             returnDate(diskType, datetime, week) {
                 let date = new Date(datetime);
-                var time = new Date(datetime);
-                var hours = time.getHours();
 
-                if (diskType == 0 && hours >= 12) {
-
-                    date.setDate(date.getDate() + 2 + week * 7);
-                } else {
-
-                    date.setDate(date.getDate() + 1 + week * 7);
-                }
+                date.setDate(date.getDate() + 1 + week * 7);
 
                 const months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                 return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
@@ -1263,6 +1375,7 @@
                         this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
                         return;
                     }
+                    this.selectedDiskName = event.srcElement.files[0].name;
                     fileReader.onload = (e) => {
                         this.rentData.disk_image = e.target.result;
                     }
@@ -1282,8 +1395,52 @@
                         this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
                         return;
                     }
+                    this.selectedCoverName = event.srcElement.files[0].name;
                     fileReader.onload = (e) => {
                         this.rentData.cover_image = e.target.result;
+                    }
+                    fileReader.readAsDataURL(event.target.files[0]);
+                }
+            },
+            onEditDiskImageChange (event) {
+                let fileReader = new FileReader();
+
+                if (event.srcElement.files.length > 0) {
+                    let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+                    if (allowedTypes.indexOf(event.srcElement.files[0].type) == -1) {
+                        this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
+                        return;
+                    }
+                    let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
+                    if (fileSzie > 5120) { //5mb
+                        this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
+                        return;
+                    }
+                    this.selectedEditDiskName = event.srcElement.files[0].name;
+                    fileReader.onload = (e) => {
+                        this.lendDiskImage = e.target.result;
+                        console.log(this.lendDiskImage);
+                    }
+                    fileReader.readAsDataURL(event.target.files[0]);
+                }
+            },
+            onEditCoverImageChange (event) {
+                let fileReader = new FileReader();
+                if (event.srcElement.files.length > 0) {
+                    let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+                    if (allowedTypes.indexOf(event.srcElement.files[0].type) == -1) {
+                        this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
+                        return;
+                    }
+                    let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
+                    if (fileSzie > 5120) { //5mb
+                        this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
+                        return;
+                    }
+                    this.selectedEditCoverName = event.srcElement.files[0].name;
+                    fileReader.onload = (e) => {
+                        this.lendCoverImage = e.target.result;
+                        console.log(this.lendCoverImage);
                     }
                     fileReader.readAsDataURL(event.target.files[0]);
                 }
@@ -1453,6 +1610,7 @@
                 this.$api.get('rents?include=game,platform,diskCondition,checkpoint,renter,lend', config).then(response =>
                 {
                     this.rents = response.data.data;
+                    console.log(this.rents);
                 });
 
                 this.$api.get('lends', config).then(response =>
@@ -1483,8 +1641,11 @@
                 $('#v-pills-dashboard').removeClass('active');
                 $('#v-pills-dashboard').removeClass('show');
                 $('#v-pills-my-earning-tab').removeClass('active');
+                $('#v-pills-my-earning').removeClass('active');
                 $('#v-pills-my-earning').removeClass('show');
-                $('#v-pills-my-earning').removeClass('show');
+                $('#v-pills-refer-tab').removeClass('active');
+                $('#v-pills-refer').removeClass('active');
+                $('#v-pills-refer').removeClass('show');
 
               });
 
@@ -1504,6 +1665,9 @@
                 $('#v-pills-my-earning-tab').removeClass('active');
                 $('#v-pills-my-earning').removeClass('show');
                 $('#v-pills-my-earning').removeClass('show');
+                $('#v-pills-refer-tab').removeClass('active');
+                $('#v-pills-refer').removeClass('active');
+                $('#v-pills-refer').removeClass('show');
 
               });
             //Cover image

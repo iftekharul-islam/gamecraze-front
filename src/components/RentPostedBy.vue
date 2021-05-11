@@ -15,7 +15,7 @@
                             <th scope="col">{{ $t('game_owner', $store.state.locale) }}</th>
                             <th scope="col">{{ $t('status', $store.state.locale) }}</th>
 <!--                            <th scope="col">Checkpoint</th>-->
-                            <th scope="col">{{ $t('status', $store.state.locale) }}</th>
+                            <th scope="col">{{ $t('disk_type', $store.state.locale) }}</th>
                             <th scope="col">{{ $t('platform', $store.state.locale) }}</th>
                             <th scope="col">{{ $t('available_from', $store.state.locale) }}</th>
                             <th scope="col">{{ $t('available_for', $store.state.locale) }}</th>
@@ -33,7 +33,9 @@
                             <td scope="col" v-else>Not Set</td>
                             <td scope="col" v-if="rent.disk_type == 1">Physical Disk</td>
                             <td scope="col" v-else>Digital Disk</td>
-                            <td scope="col"><img :src="rent.platform.data.url" :alt="rent.platform.data.name"></td>
+                            <td scope="col"> {{ rent.platform.data.name }}
+<!--                                <img :src="rent.platform.data.url" :alt="rent.platform.data.name">-->
+                            </td>
                             <td scope="col">{{ formattedDate(rent.availability_from_date) }}</td>
                             <td scope="col"><span>{{ rent.max_number_of_week}} week(s)</span></td>
                             <td>
@@ -150,7 +152,7 @@
                                
                                 <div v-if="!isExistsInCart" class="modal-footer justify-content-center">
                                     <a href="javascript:void(0)" class="btn--secondery" @click.prevent="handleSubmit(onAddToCart)">
-                                      <span><i class="fas fa-shopping-cart"></i>{{ $t('add_to_cart', $store.state.locale) }}</span>
+                                      <span><i class="fas fa-shopping-cart"></i> {{ $t('add_to_cart', $store.state.locale) }}</span>
                                     </a>
                                 </div>
                               </ValidationObserver>

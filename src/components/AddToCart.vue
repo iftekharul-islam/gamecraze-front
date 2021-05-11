@@ -101,7 +101,7 @@
                             <div class="checkbox-parents">
                                 <ValidationProvider name="Terms & Conditions" rules="required" v-slot="{ errors }">
                                 <input type="checkbox" id="terms-agree" class="checkbox-parents--input" v-model="agreement" @change="onAgreement($event)">
-                                <label for="terms-agree" class="checkbox-parents--label">I agree with all <router-link to="/terms" target="_blank" class="text-secondery"><u> terms & conditions</u></router-link></label>
+                                <label for="terms-agree" class="checkbox-parents--label">{{ $t('i_agree', $store.state.locale) }} <router-link to="/terms" target="_blank" class="text-secondery"><u> {{ $t('terms', $store.state.locale) }}</u></router-link></label>
                                 <span v-if="errors.length" class="error-message d-block ml--30">{{ errors[0] }}</span>
                             </ValidationProvider>
                             </div>
@@ -413,8 +413,7 @@
                 title: this.$t('cart_remove_warning', this.$store.state.locale),
                 text: "",
                 icon: "warning",
-                buttons: true,
-                dangerMode: true,
+                buttons: [this.$t('cancel', this.$store.state.locale), this.$t('ok', this.$store.state.locale)],
             }).then((willDelete) => {
                 if (willDelete) {
                     this.$api.post('cart-item/destroy', data, config).then(response => {
@@ -430,7 +429,11 @@
                         }
                     });
                 } else {
-                    this.$swal(this.$t('cart_not_removed', this.$store.state.locale));
+                    this.$swal(this.$t('cart_not_removed', this.$store.state.locale),{
+                        icon: "warning",
+                        buttons: [this.$t('ok', this.$store.state.locale)],
+                        timer: 2000
+                    });
                 }
             });
         },

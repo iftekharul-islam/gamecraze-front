@@ -5,12 +5,12 @@
                 <div class="row">
                     <div class="col-md-6 col-xl-4 mx-auto">
                         <div class="registration-form">
-                                <h2 class=" text-center text-white mb-5">Reset Password</h2>
+                                <h2 class=" text-center text-white mb-5">{{ $t('reset_password', $store.state.locale) }}</h2>
                             <ValidationObserver v-slot="{ handleSubmit }">
                                 <form method="post" @submit.prevent="handleSubmit(onReset)">
                                     <!-- password -->
                                     <div class="form-group">
-                                        <label for="gamepassword1" class="sr-only">Password</label>
+                                        <label for="gamepassword1" class="sr-only">{{ $t('password', $store.state.locale) }}</label>
                                         <ValidationProvider name="password" rules="required|min:8" v-slot="{ errors }">
                                             <input type="password" class="form-control mb-2" id="gamepassword1" placeholder="Password" v-model="form.password">
                                             <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
@@ -19,7 +19,7 @@
 
                                     <!-- confirm password -->
                                     <div class="form-group">
-                                        <label for="gamepassword2" class="sr-only">Confirm Password</label>
+                                        <label for="gamepassword2" class="sr-only">{{ $t('confirm_password', $store.state.locale) }}</label>
                                         <ValidationProvider name="confirm" rules="required|min:8|confirmed:password" v-slot="{ errors }">
                                             <input type="password" class="form-control mb-2" id="gamepassword2" placeholder="Confirm Password" v-model="form.confirmPassword">
                                             <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
@@ -29,7 +29,7 @@
                                     <!-- sign in button -->
                                     <div class="text-center sign-btn">
                                         <button class="btn btn--secondery mb-2 br-0 m-auto" type="submit" :disabled=false>
-                                            <span>Reset password</span>
+                                            <span>{{ $t('reset_password', $store.state.locale) }}</span>
                                             <span v-if=false class="spinner-border spinner-border-sm"></span>
                                         </button>
                                     </div>

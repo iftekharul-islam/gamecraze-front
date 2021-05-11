@@ -1,6 +1,5 @@
 <template>
     <div>
-<!--        <div class="my-postion" @click="modal = false"></div>-->
         <!-- navbar -->
         <nav class="navbar navbar-expand-lg gamehub-menu fixed-top">
             <div class="container">
@@ -39,6 +38,13 @@
                               </div>
                         </li>
                     </ul>
+                    <!-- language -->
+                    <div class="locale-changer gamehub-language">
+                        <div v-for="(lang) in $i18n.availableLocales" @click="languageChange(lang)" >
+                            <span v-if="lang == 'bn'" v-bind:class="{ active: isActive === 'bn' }">বাংলা</span>
+                            <span v-if="lang == 'en'" v-bind:class="{ active: isActive === 'en' }">English</span>
+                        </div>
+                    </div>
                    <!-- search bar -->
                    <div class="gamehub-input-group gamehub-input-group-searchbar">
                    <div class="gamehub-input-group--content">
@@ -66,13 +72,7 @@
                         </div>
                 </div>
                 </div>
-<!--                <div class="locale-changer">-->
-<!--                    <select v-model="lang">-->
-<!--                        <option v-for="(lang, i) in $i18n.availableLocales" :key="`lang${i}`" :value="lang">-->
-<!--                            {{ lang }}-->
-<!--                        </option>-->
-<!--                    </select>-->
-<!--                </div>-->
+                
                 <!-- sign in button and cart icon out side of collapse -->
                  <div class="gamehub-input-group signin-cart-group">
                         <!-- <div class="gamehub-input-group--content">
@@ -99,7 +99,7 @@
                             </button>
                         </div> -->
                         <div class="gamehub-input-group--content">
-                            <router-link v-if="!auth" class="sign-in" to="/login"><span>Sign in</span></router-link>
+                            <router-link v-if="!auth" class="sign-in" to="/login"><span>{{ $t('sign_in', $store.state.locale) }}</span></router-link>
                                 <div v-if="auth" class="dropdown-toggle complete-sign-in" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                   <span class="user-name" v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span>
                                   <span class="user-name" v-else>{{ this.$store.state.user.phone_number }}</span>
@@ -138,7 +138,7 @@
         <!-- promotion Notification -->
         <div class="promo-notification mt-1">
             <div class="alert gamehub-warning-bg alert-dismissible fade show mb-0 br-0 text-center text-black gil-bold f-s-20 position-fixed w-100 z-index-999" role="alert">
-                {{ $t('discount_notice', $store.state.locale) }}<router-link to="/games" class="text-dark"><u>{{ $t('rent_now', $store.state.locale) }}</u></router-link>
+                {{ $t('discount_notice', $store.state.locale) }}  <router-link to="/games" class="text-dark"><u>{{ $t('rent_now', $store.state.locale) }}</u></router-link>
               <button type="button" class="close opa-10 x-close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true" class="x-icon"></span>
               </button>
@@ -167,10 +167,15 @@
                 totalItems: 0,
                 isNavOpen: false,
                 user: {},
-                langs: ['en', 'bn'],
+                isActive : this.$store.state.locale ?? this.$i18n.locale,
+
             }
         },
         methods: {
+            languageChange(value) {
+                this.lang = value;
+                this.isActive = value;
+            },
             authData () {
                 var auth = this.$store.getters.ifAuthenticated;
                 if (auth) {
@@ -185,6 +190,13 @@
 
                     this.$api.get('user/details', config).then(response =>{
                         this.user = response.data.data;
+                        if (this.user.locale === '' || this.user.locale == null){
+                            console.log(this.isActive);
+                            this.localeSet(this.isActive);
+                            return;
+                        }
+                        this.isActive = this.user.locale;
+                        this.$store.dispatch('changeLocale', this.user.locale)
                     });
 
                     this.$store.watch(
@@ -199,6 +211,28 @@
                     );
                 }
                 this.totalItems = 0;
+            },
+            localeSet(value){
+                var auth = this.$store.getters.ifAuthenticated;
+                if (!auth) {
+                    return
+                }
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+                var data = {
+                    value: value
+                };
+                this.$api.post('locale-update', data, config).then(res => {
+                    if (res.data.error == false) {
+                        this.$toaster.success( this.$t('Language_update', this.$store.state.locale) );
+                    } else {
+                        this.$toaster.warning( this.$t('Language_update_failed', this.$store.state.locale) );
+                    }
+
+                })
             },
           clickProfile() {
             var auth = this.$store.getters.ifAuthenticated;
@@ -279,6 +313,7 @@
                     console.log('set value');
                     console.log(newVal);
                     this.$store.dispatch('changeLocale', newVal)
+                    this.localeSet(newVal);
                 }
             },
           auth () {
@@ -295,6 +330,7 @@
           }
         },
         created() {
+            console.log(this.$i18n.locale);
             this.authData();
             this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {

@@ -7,29 +7,29 @@
                 <div class="row login-form">
                     <div class="col-md-6 col-xl-4 mx-auto">
                         <ul class="d-flex justify-content-center align-items-center p-0">
-                            <li>
-                                SIGN IN
+                            <li style="text-transform: uppercase">
+                                {{ $t('sign_in', $store.state.locale) }}
                             </li>
                         </ul>
 
                         <div class="password-setup-popup" v-if="$store.state.setPasswordPopUp">
                             <div class="password-setup-popup--content">
-                                <p>Please check your mail and set your password</p>
+                                <p>{{ $t('mail_password', $store.state.locale) }}</p>
                                 <!-- <router-link to="/registration">ok</router-link> -->
-                                <button @click="hidePopUp" class="password-setup-popup--content--btn">ok</button>
+                                <button @click="hidePopUp" class="password-setup-popup--content--btn"><p>{{ $t('submit', $store.state.locale) }}</p></button>
                             </div>
                         </div>
 
                         <!-- form -->
-                        <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption==='Phone Number' && !$store.state.setPasswordPopUp">
+                        <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption === 'phone_number' && !$store.state.setPasswordPopUp">
                             <form @submit.prevent="handleSubmit(onLogin)" method="post">
                                 <div class="form-group" v-if="$store.state.notSetPassword">
                                     <!-- user name -->
-                                    <label for="username1" class="">Email address</label>
+                                    <label for="username1" class="">{{ $t('email', $store.state.locale) }}</label>
                                     <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                                         <div class="floating-email">
                                             <input @click="changeErrorMessage" type="text" class="form-control mb-2"
-                                               id="username1" v-model="form.email" placeholder="Please enter your Email">
+                                               id="username1" v-model="form.email" :placeholder="$t('enter_email', $store.state.locale)">
                                              <label class="email-icon"><i class="fas fa-envelope"></i></label>
                                         </div>
                                         <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
@@ -37,7 +37,7 @@
                                 </div>
                                 <!-- password -->
                                 <div class="form-group mb-3" v-if="!$store.state.notSetPassword">
-                                    <label for="gamepassword1" class="">Password</label>
+                                    <label for="gamepassword1" class="">{{ $t('password', $store.state.locale) }}</label>
                                     <ValidationProvider name="password" rules="required|min:8" v-slot="{ errors }">
                                         <input @keypress="submitOnEnterPressed" @click="changeErrorMessage" type="password" class="form-control mb-2"
                                                id="gamepassword1" v-model="form.password">
@@ -45,25 +45,25 @@
                                         <br v-if="errors[0]">
                                     </ValidationProvider>
                                     <span class="error-message"
-                                        v-if="$store.state.notFoundEmail && !$store.state.inactiveUser">Password is not valid<br></span>
-                                        <span class="error-message" v-if="$store.state.inactiveUser">This User is inactive, please contact to helpline</span>
+                                        v-if="$store.state.notFoundEmail && !$store.state.inactiveUser">{{ $t('password', $store.state.locale) }}<br></span>
+                                        <span class="error-message" v-if="$store.state.inactiveUser">{{ $t('inactive_user', $store.state.locale) }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between" v-if="!$store.state.notSetPassword">
                                     <div class="custom-control custom-checkbox">
                                         <input class="custom-control-input" type="checkbox" id="gamecheck1">
                                         <label class="custom-control-label" for="gamecheck1">
-                                            Remember Me
+                                            {{ $t('remember_me', $store.state.locale) }}
                                         </label>
                                     </div>
                                     <!-- forget password -->
                                     <div class="forget">
-                                        <router-link to="forgot-password"><u>Forgot Password ?</u></router-link>
+                                        <router-link to="forgot-password"><u>{{ $t('forget_password', $store.state.locale) }}</u></router-link>
                                     </div>
                                 </div>
                                 <!-- sign in button -->
                                 <div class="text-center sign-btn">
                                     <button class="btn mb-2 btn--login w-100" type="submit" ref="emailLoginBtn" :disabled="isLoading && $store.state.notSetPassword && !$store.state.notFoundEmail">
-                                        PROCEED
+                                        {{ $t('proceed', $store.state.locale) }}
                                         <span v-if="$store.state.isEmailLoading"
                                               class="spinner-border spinner-border-sm"></span>
                                     </button>
@@ -72,10 +72,10 @@
                         </ValidationObserver>
 
                         <!-- form -->
-                        <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption==='Email'">
+                        <ValidationObserver v-slot="{ handleSubmit }" v-if="loginOption === 'email'">
                             <form @submit.prevent="handleSubmit(onLogin)" method="post">
                                 <div class="form-group">
-                                    <label>Phone number</label>
+                                    <label>{{ $t('phone_number', $store.state.locale) }}</label>
                                     <div class="floating-label-group">
 
                                         <ValidationProvider name="number"
@@ -86,7 +86,7 @@
                                                    v-model="phone_number" name="user-number" v-if="showOTP === true"
                                                    disabled/>
                                             <input @keypress="isNumber($event)" type="tel" id="user-number"  class="form-control country-number mb-2"
-                                                   v-model="phone_number" name="user-number" placeholder="Please enter your Number"
+                                                   v-model="phone_number" name="user-number" :placeholder="$t('enter_phone_number', $store.state.locale)"
                                                    v-else/>
 
                                             <span v-if="errors.length" class="error-message number-error-message">{{ errors[0] }}</span>
@@ -96,7 +96,7 @@
                                 </div>
                                 <div v-if="showOTP">
                                     <div class="form-group">
-                                        <span class="success-message mt-5 d-block">Insert 6 digits code sent to your phone</span>
+                                        <span class="success-message mt-5 d-block">{{ $t('insert_digit', $store.state.locale) }}</span>
                                         <div class="otp-input-group">
                                             <v-otp-input
                                                     ref="otpInput"
@@ -118,25 +118,25 @@
                                         <!--                                                <span class="error-message">{{ errors[0] }}</span>-->
                                         <br v-if="error">
 
-                                        <span class="error-message" v-if="$store.state.isOTPEmpty && !resend"> Please enter 6 digit one time pin</span>
-                                        <span class="error-message" v-if="$store.state.wrongOTP && !resend">Wrong OTP</span>
-                                        <span class="error-message" v-if="$store.state.timeout && !resend">This OTP expired</span>
-                                        <span class="error-message" v-if="$store.state.inactiveUser && !resend">This User is inactive, please contact to helpline</span>
-                                        <span class="error-message" v-if="$store.state.otpNotFound && !resend">The OTP not found. Please recheck.</span>
+                                        <span class="error-message" v-if="$store.state.isOTPEmpty && !resend">{{ $t('insert_digit', $store.state.locale) }}</span>
+                                        <span class="error-message" v-if="$store.state.wrongOTP && !resend">{{ $t('wrong_otp', $store.state.locale) }}</span>
+                                        <span class="error-message" v-if="$store.state.timeout && !resend">{{ $t('otp_expired', $store.state.locale) }}</span>
+                                        <span class="error-message" v-if="$store.state.inactiveUser && !resend">{{ $t('inactive_user', $store.state.locale) }}</span>
+                                        <span class="error-message" v-if="$store.state.otpNotFound && !resend">{{ $t('otp_not_found', $store.state.locale) }}</span>
 
                                         <!--                                            </ValidationProvider>-->
                                     </div>
                                     <div class="otpbtn">
                                         <button class="btn btn-link mb-2 resend-code" type="button"
                                                 @click.prevent="onResendOtp" :disabled="isResendLoading">
-                                            Didn’t get any code? <u>Try Resend Code </u>
+                                            {{ $t('not_get_code', $store.state.locale) }}<u>{{ $t('try_resent_code', $store.state.locale) }}</u>
                                             <span v-if="isResendLoading"
                                                   class="spinner-border spinner-border-sm"></span>
                                         </button>
                                         <button class="btn btn--otp mb-2 w-100" type="button"
                                                 @click.prevent="handleSubmit(onOtpVerification)"
                                                 :disabled="$store.state.isSubmitLoading">
-                                            PROCEED
+                                            {{ $t('proceed', $store.state.locale) }}
                                             <span v-if="$store.state.isSubmitLoading"
                                                   class="spinner-border spinner-border-sm"></span>
                                         </button>
@@ -146,19 +146,23 @@
                                 <div v-else>
                                     <div class="text-center sign-btn">
                                         <button class="btn mb-2 w-100 btn--login" ref="sendOtpBtn" type="submit" :disabled="isLoading">
-                                            PROCEED
+                                            {{ $t('proceed', $store.state.locale) }}
                                             <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
                                         </button>
                                     </div>
                                 </div>
                             </form>
                         </ValidationObserver>
-                        <span class="or text-center w-100 d-block">OR</span>
+                        <span class="or text-center w-100 d-block">{{ $t('or', $store.state.locale) }}</span>
                         <button v-if="!$store.state.setPasswordPopUp"
                                 class="btn mb-4 btn--registration button-style w-100" style="margin: 0 auto;"
                                 @click="onChangeLoginOption">
                                 <i class="fas fa-sign-in-alt"></i>
-                            <span>Continue with  {{ loginOption }} </span>
+                            <span>{{ $t('continue_with', $store.state.locale) }}
+                                 <b v-if="loginOption === 'email'">{{ $t('email', $store.state.locale) }}</b>
+                                 <b v-else>{{ $t('phone_number', $store.state.locale) }}</b>
+                                {{ $t('through_this', $store.state.locale) }}
+                            </span>
                         </button>
                     </div>
                 </div>
@@ -179,7 +183,7 @@
                 },
                 phone_number: "",
                 otp: "",
-                loginOption: "Email",
+                loginOption: 'email',
                 unauthorized: "",
                 unautorizedError: "",
                 showOTP: false,
@@ -232,7 +236,7 @@
                 this.$store.dispatch('setEmailLoader', true);
                 this.isLoading = true;
                 this.isLoggingIn = true;
-                if (this.loginOption === "Email") {
+                if (this.loginOption === 'email') {
                     this.$store.dispatch('setPhoneNumber', this.phone_number);
                     this.clearErrorMessages();
                     this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {
@@ -261,10 +265,10 @@
             },
             onChangeLoginOption: function () {
                 this.clearErrorMessages();
-                if (this.loginOption === "Phone Number") {
-                    this.loginOption = "Email"
+                if (this.loginOption === 'phone_number') {
+                    this.loginOption = 'email'
                 } else {
-                    this.loginOption = "Phone Number"
+                    this.loginOption = 'phone_number';
                     this.$store.state.notSetPassword = true;
                 }
               this.isLoading = false

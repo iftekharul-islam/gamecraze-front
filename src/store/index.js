@@ -2,12 +2,12 @@ import axios from 'axios'
 import router from "../router/routes";
 import {swal} from 'vue-swal';
 import {toaster} from 'v-toaster';
-import i18n, { selectedLocale } from 'vue-i18n';
+import i18n from 'vue-i18n';
 import createPersistedState from 'vuex-persistedstate'
 
 export const storage = {
     state: {
-        locale: selectedLocale,
+        locale: i18n.locale,
         lendWeek: [],
         checkpointId: [],
         searchResult: [],
@@ -194,7 +194,6 @@ export const storage = {
     actions: {
         changeLocale(context, payload) {
             i18n.locale = payload;// important!
-            console.log(i18n.locale);
             context.commit('updateLocale', payload)
         },
         pushPostId (context, payload) {

@@ -1,7 +1,7 @@
 <template>
     <div>
         <section class="newsroom-section">
-            <div class="text-center newsroom-section--heading"> <h2>Latest news & updates from GameHub </h2></div>
+            <div class="text-center newsroom-section--heading"> <h2>{{ $t('news_page_header', $store.state.locale) }}</h2></div>
             <div class="container">
                 <div class="row" v-if="featured">
                     <div class="col-12 mb-4">
@@ -9,7 +9,7 @@
                             <router-link :to="{ name: 'NewsStory', params: { id: featured.id }}" class="w-100 h-100 d-flex align-items-end">
                                 <img :src="featured.thumbnail" alt="newsroom" class="img-fluid w-100 position-absolute">
                                 <div class="trending-news--text-content">
-                                    <p>Feature</p>
+                                    <p>{{ $t('feature', $store.state.locale) }}</p>
                                     <h2>{{ featured.title }}</h2>
                                     <p class="newsroom-date">{{ featured.created }}</p>
                                 </div>
@@ -25,7 +25,7 @@
                                 <img :src=item.thumbnail :alt=item.title class="w-100 img-fluid">
                             </div>
                             <div class="newsroom-section--content-box--text">
-                                <p>Update</p>
+                                <p>{{ $t('update', $store.state.locale) }}</p>
                                 <h6 v-if="index == 0 || index == 1">{{ item.title && item.title.length > 53 ? item.title.substring(0, 53) + ".." : item.title }} </h6>
                                 <h6 v-else>{{ item.title && item.title.length > 28 ? item.title.substring(0, 28) + ".." : item.title }} </h6>
 

@@ -396,15 +396,8 @@
                     grid-template-columns: 1fr 1fr;
                 }
                 .custom-radio {
-                    margin-right: 82px;
-                    @include for-max-1199 {
-                        // margin-right: 58px;
-                    }
                     &:last-of-type {
                         margin-right: 0;
-                    }
-                    &:nth-child(n+4) {
-                        // margin-top: 16px;
                     }
                     .custom-control-label {
                         cursor: pointer;

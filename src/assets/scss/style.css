@@ -7555,10 +7555,6 @@ html {
   }
 }
 
-.post-rent--form-group--input--radio-group .custom-radio {
-  margin-right: 82px;
-}
-
 .post-rent--form-group--input--radio-group .custom-radio:last-of-type {
   margin-right: 0;
 }
@@ -10420,6 +10416,26 @@ html {
 
 .refer-history {
   margin-top: 50px;
+}
+
+.page_404 {
+  padding: 100px 0 180px 0;
+  background: #fff;
+  font-family: 'Arvo', serif;
+}
+
+.page_404 img {
+  width: 100%;
+}
+
+.four_zero_four_bg {
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  height: 400px;
+  background-position: center;
+}
+
+.four_zero_four_bg h1 {
+  font-size: 80px;
 }
 
 .btn:focus {

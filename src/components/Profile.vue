@@ -239,7 +239,17 @@
                                                             <a href="#" class="btn--secondery h-40 w-80 ml-2" @click.prevent="ImageModal(rent)"><span>Edit</span></a>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                    <div class="">
+                                                        <router-link :to="{ path: '/' + rent.id + '/' + rent.game.data.slug}" class="trending-image">
+                                                                <a href="">Details</a>
+                                                        </router-link>
+                                                    </div>
+                                                    <div class="refer-friend--link--input-group--append"
+                                                         v-clipboard:copy="copyUrl + rent.id + '/' + rent.game.data.slug "
+                                                         v-clipboard:success="onCopy"
+                                                         v-clipboard:error="onError">
+                                                        <span>share link</span>
+                                                    </div>
                                             </div>
                                             <!-- modal edit game -->
                                             <div v-if="credentialModalShow">
@@ -939,7 +949,7 @@
                         </div>
                     </div>
                 </div>
-<!--            </div>-->
+            </div>
         </section>
     </div>
 </template>
@@ -1030,6 +1040,7 @@
                 walletTotalSpend: 0,
                 walletUsableAmount: 0,
                 walletHistory: [],
+                copyUrl: '',
 
             }
         },
@@ -1620,6 +1631,7 @@
             }
         },
         created() {
+            this.copyUrl = process.env.VUE_APP_BASE_API;
             let config = {
                 headers: {
                     'Authorization': 'Bearer ' + this.$store.state.token

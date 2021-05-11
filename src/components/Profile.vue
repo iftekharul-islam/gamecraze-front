@@ -1631,7 +1631,7 @@
             }
         },
         created() {
-            this.copyUrl = process.env.VUE_APP_BASE_API;
+            this.copyUrl = process.env.VUE_APP_BASE;
             let config = {
                 headers: {
                     'Authorization': 'Bearer ' + this.$store.state.token

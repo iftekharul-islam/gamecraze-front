@@ -3513,6 +3513,22 @@ select option {
   }
 }
 
+.bn .exchange-lend-section--exchange h3, .bn .exchange-lend-section--lend h3 {
+  font-size: 26px;
+}
+
+@media (min-width: 1200px) {
+  .bn .exchange-lend-section--exchange h3, .bn .exchange-lend-section--lend h3 {
+    font-size: 40px;
+  }
+}
+
+@media (max-width: 992px) {
+  .bn .exchange-lend-section--exchange h3, .bn .exchange-lend-section--lend h3 {
+    font-size: 20px;
+  }
+}
+
 .exchange-lend-section--exchange-btn {
   margin: auto;
   margin-top: 30px;
@@ -6455,6 +6471,18 @@ html {
   display: block !important;
 }
 
+@media (max-width: 1199px) {
+  .bn .game-available-section--table table {
+    width: 1100px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .bn .game-available-section--table::after {
+    width: 1140px;
+  }
+}
+
 .game-available-section {
   padding-top: 80px;
   padding-bottom: 150px;
@@ -6593,6 +6621,10 @@ html {
   background: #0B0F18;
 }
 
+.game-available-section .w-100 {
+  width: 100%;
+}
+
 .rented-dashbord {
   border-collapse: separate;
   border-spacing: 0px 20px;
@@ -6666,6 +6698,10 @@ html {
   opacity: 1;
   color: #FF3030;
   font-family: gilroy-medium;
+}
+
+.bn .seller-information-modal tr td:first-of-type {
+  font-size: 18px;
 }
 
 .seller-information-modal table tr td:first-of-type {
@@ -7084,6 +7120,10 @@ html {
   display: inline-block;
 }
 
+.bn .user-profile-heading--account-verified--btn {
+  width: 220px;
+}
+
 .avatar-edit {
   position: absolute;
   right: 4px;
@@ -7163,6 +7203,10 @@ html {
           justify-content: center;
 }
 
+.bn .cover-edit label {
+  width: 220px;
+}
+
 .cover-edit {
   position: absolute;
   bottom: 20px;
@@ -7235,6 +7279,22 @@ html {
 
 .user-rating i {
   color: #FFD715;
+}
+
+.bn .user-profile-details--nav a {
+  font-size: 18px;
+}
+
+@media (max-width: 991px) {
+  .bn .user-profile-details--nav a {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 575px) {
+  .bn .user-profile-details--nav a {
+    font-size: 7px;
+  }
 }
 
 .user-profile-details {
@@ -7453,6 +7513,10 @@ html {
   #v-pills-post-rent {
     margin-left: 34px;
   }
+}
+
+.bn .post-rent--form-group--input .custom-control-label {
+  font-size: 15px;
 }
 
 .post-rent--form-group {
@@ -8739,6 +8803,18 @@ html {
   margin-bottom: 0;
   margin-top: 30px;
   font-size: 20px;
+}
+
+@media (max-width: 768px) {
+  .bn .cart-section--item-details--table {
+    width: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .bn .cart-section--item-details::after {
+    width: 640px;
+  }
 }
 
 .cart-section {
@@ -10600,6 +10676,12 @@ html {
 @media (min-width: 768px) {
   .btn--filter {
     display: none;
+  }
+}
+
+@media (max-width: 991px) {
+  .bn .btn--secondery {
+    width: 190px;
   }
 }
 

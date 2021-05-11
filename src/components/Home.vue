@@ -48,7 +48,7 @@
             </div>
             <div class="position-relative">
                 <carousel v-if ="loadedTrending"
-                    :autoplay ="false"
+                    :autoplay ="true"
                     :loop ="true"
                     :center ="false"
                     :nav ="false"
@@ -92,7 +92,7 @@
             </div>
               <div class="position-relative">
                     <carousel v-if ="loadedPopular"
-                        :autoplay ="false"
+                        :autoplay ="true"
                         :loop ="true"
                         :center ="false"
                         :nav ="false"

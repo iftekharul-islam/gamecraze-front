@@ -64,6 +64,17 @@
         }
     }
 }
+// ** bangla **
+.bn {
+    .user-profile-heading {
+        &--account-verified {
+            &--btn {
+                width: 220px;
+            }
+        }
+    }
+}
+// ** bangla **
 
 // avatar edit
 .avatar-edit {
@@ -121,6 +132,15 @@
 }
 
 // cover photo edit
+// **bangla***
+    .bn {
+        .cover-edit {
+            label {
+                width: 220px;
+            }
+        }
+    }
+// **bangla***
 .cover-edit {
     position: absolute;
     bottom: 20px;
@@ -177,7 +197,22 @@
         color: $secondery;
     }
 }
-
+// bangla
+.bn {
+    .user-profile-details {
+        &--nav {
+            a {
+                font-size: 18px;
+                @include for-max-991 {
+                    font-size: 12px;
+                }
+                @include for-max-575 {
+                    font-size: 7px;
+                }
+            }
+        }
+    }
+}
 .user-profile-details {
     padding-top: 50px;
     padding-bottom: 200px;
@@ -326,6 +361,19 @@
 #v-pills-post-rent {
     @include for-min-1200 {
         margin-left: 34px;
+    }
+}
+
+// bangla
+.bn {
+    .post-rent {
+        &--form-group {
+            &--input {
+                .custom-control-label {
+                    font-size: 15px;
+                }
+            }
+        }
     }
 }
 

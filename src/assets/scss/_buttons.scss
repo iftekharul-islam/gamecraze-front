@@ -123,3 +123,13 @@
         }
     }
 }
+.bn {
+    .btn {
+        &--secondery {
+            @include for-max-991 {
+                width: 190px;
+            }
+        }
+    }
+}
+

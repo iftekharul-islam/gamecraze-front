@@ -95,7 +95,7 @@
                                         <div class="text-center">
                                             <h2>{{ $t('necessary_info', $store.state.locale) }}</h2>
                                         </div>
-                                        <table class="table table-borderless seller-information-modal--table-bottom">
+                                        <table class="table table-borderless seller-information-modal--table-bottom w-100">
                                             <tbody>
                                             <tr>
                                                 <td>{{ $t('select_week', $store.state.locale) }} :</td>
@@ -152,7 +152,7 @@
                                
                                 <div v-if="!isExistsInCart" class="modal-footer justify-content-center">
                                     <a href="javascript:void(0)" class="btn--secondery" @click.prevent="handleSubmit(onAddToCart)">
-                                      <span><i class="fas fa-shopping-cart"></i> {{ $t('add_to_cart', $store.state.locale) }}</span>
+                                      <span><i class="fas fa-shopping-cart mr-2"></i> {{ $t('add_to_cart', $store.state.locale) }}</span>
                                     </a>
                                 </div>
                               </ValidationObserver>

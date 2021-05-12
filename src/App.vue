@@ -1,5 +1,5 @@
 <template >
-  <div id="app" :class="this.$i18n.locale">
+  <div id="app" :class="lang">
     <navbar></navbar>
     <router-view></router-view>
     <Footer></Footer>
@@ -14,7 +14,7 @@ export default {
   name: 'App',
   data() {
     return {
-
+      lang : this.$store.state.locale ?? this.$i18n.locale
     }
   },
   components: {
@@ -27,7 +27,22 @@ export default {
     this.$store.dispatch('setLendWeek');
     this.$store.dispatch('setCheckpointId');
     this.$store.dispatch('setSetupPasswordUserFromStorage');
+    
+  },
+//   watch: {
+// language() {
+//   localStorage.language = JSON.stringify(this.language);
+//   this.$i18n.locale = this.language.code;
+//   this.$root.$i18n.locale = this.language.code;
+//   document.documentElement.lang = JSON.parse(localStorage.language).code; //Added this bit
+//   this.$root.$emit('on-change-language', { language_code: this.language.code });
+// }}
+watch: {
+  '$store.state.locale': function() {
+    console.log(this.$store.state.locale)
+    this.lang = this.$store.state.locale ?? this.$i18n.locale;
   }
+}
 }
 </script>
 

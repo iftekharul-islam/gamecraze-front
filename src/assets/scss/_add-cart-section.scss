@@ -1,3 +1,22 @@
+// *** bangla***
+.bn {
+    .cart-section {
+        &--item-details {
+            &--table {
+                @include for-max-768 {
+                    width: 600px;
+                }
+            }
+            &::after {
+                @include for-max-768 {
+                    width: 640px;
+                }
+            }
+        }
+    }
+}
+// *** bangla***
+
 .cart-section {
     padding-top: 100px;
     padding-bottom: 180px;

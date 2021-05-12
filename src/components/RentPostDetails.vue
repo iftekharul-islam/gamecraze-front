@@ -1,17 +1,56 @@
 <template>
     <div>
         <!-- games header section -->
-        <div class="container">
-            <div class="row" v-if="rentPostDetails">
-                <div class="col-md-6">
-                    <p>rent details</p>
-                    <p>lend week :</p><p>{{ rentPostDetails.max_number_of_week }}</p>
-                    <p>Renter name:</p>
-                    <p>{{ rentPostDetails.user.data.name }}</p>
+        <section class="user-profile-heading">
+            <img src="../assets/img/profile-bg.png" alt="profile bg" class="img-fluid user-profile-bg">
+        </section>
+        <div class="container games-view primary-bg">
+            <div class="row max-400 mx-auto" v-if="rentPostDetails">
+                <div class="col-12 mb-5">
+                    <h3 class="f-s-28 gil-bold">Call of duty: Black OPS, Cold War</h3>
                 </div>
-                <div class="col-md-6">
-                    <p>games details</p>
-                    <p>game name</p><p>{{ rentPostDetails.game.data.name }}</p>
+                <div class="col-6">
+                    <div class="mb-4">
+                        <p class="text-white mb-1">Disk condition</p>
+                        <p class="text-secondery gil-bold mb-0">Super</p>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-white mb-1">Renter’s name</p>
+                        <p class="text-secondery gil-bold mb-0">MInhaj</p>
+                    </div>
+                      <div class="mb-4">
+                        <p class="text-white mb-1">Status</p>
+                        <p class="text-secondery gil-bold mb-0">Available  for 3 weeks</p>
+                    </div>
+                    <div class="mb-4">
+                        <label class="toggle-switch mt-0 mt-sm-2">
+                            <input type="checkbox">
+                            <span><span>Inactive</span>
+                            <span>Active</span></span>
+                            <a class="toggle-ball"></a>
+                        </label>
+                    </div>
+                </div>
+                <div class="col-6">
+                   <div class="mb-4">
+                        <p class="text-white mb-1">Disk type</p>
+                        <p class="text-secondery gil-bold mb-0">Digtal copy</p>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-white mb-1">Lender’s name</p>
+                        <p class="text-secondery gil-bold mb-0">Zahid</p>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-white mb-1">Platform</p>
+                        <p class="text-secondery gil-bold mb-0">PS4</p>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-white mb-1">Available from</p>
+                        <p class="text-secondery gil-bold mb-0">25 Feb, 2021</p>
+                    </div>
+                </div>
+                <div class="col-12 mt-5">
+                    <a href="#" class="btn--secondery w-75"><span>SHARE NOW</span></a>
                 </div>
             </div>
         </div>

@@ -1673,6 +1673,10 @@ html {
   width: 90px !important;
 }
 
+.max-400 {
+  max-width: 400px;
+}
+
 .w-148-100 {
   width: 148px;
 }
@@ -2332,6 +2336,10 @@ select option {
   display: block;
   position: absolute;
   right: -35px;
+}
+
+.primary-bg {
+  background: #0B0F18;
 }
 
 @media (max-width: 575px) {
@@ -7969,12 +7977,12 @@ html {
 
 @media (min-width: 1400px) {
   .dashboard-content--rented {
-    width: 855px;
+    width: 925px;
   }
 }
 
 .dashboard-content--rented--box {
-  padding: 10px 30px 20px 20px;
+  padding: 10px 20px 20px 20px;
   margin-right: 20px;
   margin-bottom: 20px;
   width: 100%;
@@ -7984,15 +7992,15 @@ html {
   margin-right: 0;
 }
 
-@media (min-width: 1400px) {
-  .dashboard-content--rented--box {
-    width: 446px;
-  }
-}
-
 @media (min-width: 1200px) {
   .dashboard-content--rented--box {
     width: 415px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .dashboard-content--rented--box {
+    width: 446px;
   }
 }
 
@@ -8470,6 +8478,11 @@ html {
   .bg-image-gallery-modal .bg-image-gallery--item label img {
     height: 100%;
   }
+}
+
+.games-view {
+  padding-top: 60px;
+  padding-bottom: 180px;
 }
 
 .set-password {

@@ -1710,7 +1710,9 @@ html {
 .w-90 {
     width: 90px !important;
 }
-
+.max-400 {
+    max-width: 400px;
+}
 .w-148-100 {
     width: 148px;
     @include for-max-575 {
@@ -2311,4 +2313,8 @@ select {
         position: absolute;
         right: -35px;
     }
+}
+// background
+.primary-bg {
+    background: $primary;
 }

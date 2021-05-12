@@ -50,6 +50,7 @@ import Rookie from '../components/Rookie';
 import Tournament from '../components/Tournament';
 import LendNotice from '../components/LendNotice';
 import PricePlan from '../components/PricePlan';
+import RentPostDetails from '../components/RentPostDetails';
 
 let router = new Router({
     mode: 'history',
@@ -408,10 +409,19 @@ let router = new Router({
             }
         },
         {
+            path: '/:id/:slug',
+            name: 'rent-post-details',
+            component: RentPostDetails,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
             path: '*',
             name: 'NotFoundPage',
             component: NotFoundPage,
         },
+
     ]
 })
 

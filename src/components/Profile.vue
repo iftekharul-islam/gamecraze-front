@@ -231,24 +231,26 @@
                                                         <p v-else-if="rent.lend != null"><span class="badge-danger badge br-0 p-2 f-s-16">Rented for {{ rent.lend.data.lend_week }} week(s)</span></p>
                                                         <p class="text-secondery" v-else>Available for {{ rent.max_number_of_week }} week(s)</p>
                                                     </div>
-                                                        <div class="action" v-if="rent.disk_type != 1">
-                                                            <a href="#" class="btn--secondery h-40 w-80 ml-2" @click.prevent="credentialModal(rent)"><span>Edit</span></a>
+                                                    <div class="d-flex">
+                                                        <div class="action bg-secondery px-3 py-1 mr-2" v-if="rent.disk_type != 1">
+                                                            <a href="#" class="text-black gil-medium" @click.prevent="credentialModal(rent)"><span>Edit</span></a>
                                                         </div>
                                                     <div v-if="rent.status == 0">
-                                                        <div class="action" v-if="rent.disk_type != 0">
-                                                            <a href="#" class="btn--secondery h-40 w-80 ml-2" @click.prevent="ImageModal(rent)"><span>Edit</span></a>
+                                                        <div class="action bg-secondery px-3 py-1 mr-2" v-if="rent.disk_type != 0">
+                                                            <a href="#" class="text-black gil-medium" @click.prevent="ImageModal(rent)"><span>Edit</span></a>
                                                         </div>
                                                     </div>
-                                                    <div class="">
+                                                    <div class="bg-secondery px-3 py-1 mr-2">
                                                         <router-link :to="{ path: '/' + rent.id + '/' + rent.game.data.slug}" class="trending-image">
-                                                                <a href="">Details</a>
+                                                                <a href="" class="text-black gil-medium">View</a>
                                                         </router-link>
                                                     </div>
-                                                    <div class="refer-friend--link--input-group--append"
+                                                    <div class="bg-secondery px-3 py-1"
                                                          v-clipboard:copy="copyUrl + rent.id + '/' + rent.game.data.slug "
                                                          v-clipboard:success="onCopy"
                                                          v-clipboard:error="onError">
-                                                        <span>share link</span>
+                                                        <span class="text-black gil-medium">share</span>
+                                                    </div>
                                                     </div>
                                             </div>
                                             <!-- modal edit game -->

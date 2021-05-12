@@ -717,22 +717,23 @@
             width: 880px;
         }
         @include for-min-1400 {
-            width: 855px;
+            width: 925px;
         }
         &--box {
-            padding: 10px 30px 20px 20px;
+            padding: 10px 20px 20px 20px;
             margin-right: 20px;
             margin-bottom: 20px;
             width: 100%;
             &:nth-child(even) {
                 margin-right: 0;
             }
-            @include for-min-1400 {
-                width: 446px;
-            }
             @include for-min-1200 {
                 width: 415px;
             }
+            @include for-min-1400 {
+                width: 446px;
+            }
+            
             @include for-max-1199 {
                 margin-right: 0;
             }
@@ -1087,7 +1088,8 @@
         }
     }
 }
-.game-photo-edit-modal {
-    
+.games-view {
+    padding-top: 60px;
+    padding-bottom: 180px;
 }
 

@@ -252,6 +252,7 @@
                                                         <span class="text-black gil-medium">share</span>
                                                     </div>
                                                     </div>
+                                                </div>
                                             </div>
                                             <!-- modal edit game -->
                                             <div v-if="credentialModalShow">
@@ -951,7 +952,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+<!--            </div>-->
         </section>
     </div>
 </template>

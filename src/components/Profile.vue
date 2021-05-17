@@ -250,6 +250,7 @@
                                                          v-clipboard:error="onError">
                                                         <span>share link</span>
                                                     </div>
+                                                </div>
                                             </div>
                                             <!-- modal edit game -->
                                             <div v-if="credentialModalShow">
@@ -949,7 +950,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+<!--            </div>-->
         </section>
     </div>
 </template>

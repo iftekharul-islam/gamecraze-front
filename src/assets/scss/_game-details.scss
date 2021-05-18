@@ -207,3 +207,14 @@
         font-size: 20px;
     }
 }
+.share-post-modal {
+    .max-md-760 {
+        @include for-min-992 {
+            max-width: 760px !important;
+        }
+        .modal-content {
+            min-height: 500px;
+            height: initial;
+        }
+    }
+}

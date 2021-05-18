@@ -1691,7 +1691,7 @@ html {
     width: 40px !important;
 }
 
-.w-50 {
+.w-50px {
     width: 50px !important;
 }
 
@@ -1730,6 +1730,21 @@ html {
 
 .w-380 {
     width: 380px;
+}
+.max-md-760 {
+    @include for-min-992 {
+        max-width: 760px;
+    }
+}
+
+// %
+.w-full {
+    width: 100%;
+}
+.w-lg-75 {
+    @include for-min-1200 {
+        width: 75%;
+    }
 }
 
 // text-area
@@ -2317,4 +2332,15 @@ select {
 // background
 .primary-bg {
     background: $primary;
+}
+// cursor
+.pointer {
+    cursor: pointer;
+}
+// hover
+.text-black-hover {
+    transition: all .2s ease-in;
+    &:hover {
+        color: $text-dark;
+    }
 }

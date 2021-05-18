@@ -69,9 +69,9 @@
                 </div>
                 <div v-if="rentModal">
                     <transition name="modal">
-                        <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal">
+                        <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal share-post-modal">
                             <div class="modal-wrapper">
-                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-dialog modal-dialog-centered max-md-760" role="document">
                                     <div class="modal-content">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true" @click="rentModal = false" class="close-modal"></span>
@@ -79,8 +79,8 @@
                                         <div class="modal-body-content">
                                             <ValidationObserver v-slot="{ handleSubmit }">
                                                 <div>
-                                                    <table>
-                                                        <tbody>
+                                                    <table class="w-full w-lg-75">
+                                                        <tbody class="text-left">
                                                         <tr>
                                                             <td>{{ $t('platform', $store.state.locale) }} :</td>
                                                             <td v-if="post">
@@ -107,15 +107,15 @@
                                                         </tbody>
                                                     </table>
 <!--                                                    <span v-if="isExistsInCart" class="text-center d-block">{{ $t('already_in_cart', $store.state.locale) }}</span>-->
-                                                    <div class="seller-information">
+                                                    <div class="seller-information mt-4">
                                                         <div class="text-center">
                                                             <h2>{{ $t('necessary_info', $store.state.locale) }}</h2>
                                                         </div>
-                                                        <table>
-                                                            <tbody>
+                                                        <table class="w-full">
+                                                            <tbody class="text-left">
                                                             <tr>
-                                                                <td>{{ $t('select_week', $store.state.locale) }} :</td>
-                                                                <td>
+                                                                <td class="align-middle p-0 pb-3 pb-sm-0">{{ $t('select_week', $store.state.locale) }} :</td>
+                                                                <td class="p-0">
                                                                     <ValidationProvider name="Rent Week" rules="required" v-slot="{ errors }">
                                                                         <select class="form-control" id="exampleFormControlSelect1" v-if="post" @change="rentCost(form.week, post.disk_type, post.game_id)" v-model="form.week">
                                                                             <option value="" selected disabled>Please select rent week</option>
@@ -166,7 +166,7 @@
                                                     </div>
                                                 </div>
 
-                                                <div class="modal-footer justify-content-center">
+                                                <div class="d-flex justify-content-center mt-5">
                                                     <a href="javascript:void(0)" class="btn--secondery" @click.prevent="handleSubmit(onAddToCart)">
                                                         <span><i class="fas fa-shopping-cart mr-2"></i> {{ $t('add_to_cart', $store.state.locale) }}</span>
                                                     </a>

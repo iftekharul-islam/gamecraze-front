@@ -1653,7 +1653,7 @@ html {
   width: 40px !important;
 }
 
-.w-50 {
+.w-50px {
   width: 50px !important;
 }
 
@@ -1697,6 +1697,22 @@ html {
 
 .w-380 {
   width: 380px;
+}
+
+@media (min-width: 992px) {
+  .max-md-760 {
+    max-width: 760px;
+  }
+}
+
+.w-full {
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .w-lg-75 {
+    width: 75%;
+  }
 }
 
 textarea:focus {
@@ -2340,6 +2356,19 @@ select option {
 
 .primary-bg {
   background: #0B0F18;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.text-black-hover {
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+
+.text-black-hover:hover {
+  color: #000;
 }
 
 @media (max-width: 575px) {
@@ -6090,6 +6119,17 @@ html {
     margin: 24px 0;
     font-size: 20px;
   }
+}
+
+@media (min-width: 992px) {
+  .share-post-modal .max-md-760 {
+    max-width: 760px !important;
+  }
+}
+
+.share-post-modal .max-md-760 .modal-content {
+  min-height: 500px;
+  height: initial;
 }
 
 .game-details-menu {

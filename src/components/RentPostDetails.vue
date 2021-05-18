@@ -4,9 +4,9 @@
         <section class="user-profile-heading" v-if="post != null">
             <img :src="post.game.data.coverImage" alt="profile bg" class="img-fluid user-profile-bg">
         </section>
-        <section class="user-profile-heading" v-else>
-            <img src="../assets/img/profile-bg.png" alt="profile bg" class="img-fluid user-profile-bg">
-        </section>
+<!--        <section class="user-profile-heading" v-else>-->
+<!--            <img src="../assets/img/profile-bg.png" alt="profile bg" class="img-fluid user-profile-bg">-->
+<!--        </section>-->
         <div class="container games-view primary-bg">
             <div class="row max-400 mx-auto" v-if="post != null">
                 <div class="col-12 mb-5">
@@ -62,10 +62,10 @@
                        v-clipboard:copy="copyUrl + post.id + '/' + post.game.data.slug "
                        v-clipboard:success="onCopy"
                        v-clipboard:error="onError"
-                       v-if="renter == true"><span style="text-transform: uppercase">{{ $t('share_now', $store.state.locale) }}</span></a>
-                    <a href="#" class="btn--secondery w-75" v-else-if="$store.getters.ifAuthenticated" @click="rentModal = true"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></a>
+                       v-if="renter == true && post.status == 1"><span style="text-transform: uppercase">{{ $t('share_now', $store.state.locale) }}</span></a>
+                    <a href="#" class="btn--secondery w-75" v-else-if="$store.getters.ifAuthenticated && post.status == 1" @click="rentModal = true"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></a>
                     <router-link to="/login" class="btn--secondery w-75"
-                       v-else><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></router-link>
+                       v-else-if="post.status == 1"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></router-link>
                 </div>
                 <div v-if="rentModal">
                     <transition name="modal">
@@ -207,8 +207,6 @@
         },
         computed: {
             renter() {
-                console.log(this.$store.state.user.id);
-                console.log(this.post.user.data.id);
                 if (this.$store.state.user == null){
                     return false;
                 }
@@ -307,7 +305,6 @@
             this.copyUrl = process.env.VUE_APP_BASE;
             window.scrollTo(0,0);
             this.$api.get('rents/' + this.$route.params.id + '?include=diskCondition,game.genres,user,renter,platform,checkpoint.area.thana.district').then(response => {
-                console.log(response);
                 this.post = response.data.data;
                 if (this.post.disk_type == 0) {
                     this.requiredAddress = false

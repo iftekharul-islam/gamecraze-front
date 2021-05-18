@@ -248,7 +248,7 @@
                                                     <div class="bg-secondery px-3 py-1 pointer"
                                                          v-clipboard:copy="copyUrl + rent.id + '/' + rent.game.data.slug "
                                                          v-clipboard:success="onCopy"
-                                                         v-clipboard:error="onError">
+                                                         v-clipboard:error="onError" v-if="rent.status == 1">
                                                         <span class="text-black gil-medium">share</span>
                                                     </div>
                                                     </div>

@@ -206,6 +206,16 @@
             }
         },
         computed: {
+            renter() {
+                console.log(this.$store.state.user.id);
+                console.log(this.post.user.data.id);
+                if (this.$store.state.user == null){
+                    return false;
+                }
+                if (this.$store.state.user.id == this.post.user.data.id) {
+                    return true;
+                }
+            },
             returnDate() {
                 let today = new Date();
                 let hours = today.getHours();
@@ -241,14 +251,6 @@
                 this.$toaster.warning( this.$t('link_copied_failed', this.$store.state.locale) );
                 console.log(e);
             },
-            renter() {
-               if (this.$store.state.user == null){
-                   return false;
-               }
-               if (this.$store.state.user.id == this.post.user.data.id) {
-                   return true;
-               }
-            },
             formattedDate(date) {
                 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                 let formattedDate = new Date(date)
@@ -268,7 +270,6 @@
 
                 this.$api.post('post-status-update', data, config).then(response => {
                     if (response.data.error == false) {
-                        this.coverModal = false;
                         this.$toaster.success(this.$t('rent_post_status', this.$store.state.locale));
                     }else {
                         this.$toaster.fail(response.data.message);
@@ -297,12 +298,6 @@
                     if (response.data.error == true) {
                         this.$swal('Game is already in the cart');
                     }
-                    // this.$store.dispatch('addToCart', {
-                    //     rent: this.modalData,
-                    //     lendWeek: this.form.week,
-                    //     deliveryType: this.form.deliveryType,
-                    //     deliveryAddress: this.form.address
-                    // });
                     this.rentModal = false;
                     this.$router.push('/cart');
                 })

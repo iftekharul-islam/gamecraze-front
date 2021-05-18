@@ -6130,6 +6130,26 @@ html {
 .share-post-modal .max-md-760 .modal-content {
   min-height: 500px;
   height: initial;
+  padding: 60px 93px;
+}
+
+@media (max-width: 768px) {
+  .share-post-modal .max-md-760 .modal-content {
+    padding: 40px 20px;
+  }
+}
+
+.share-post-modal .modal-wrapper {
+  overflow: auto;
+}
+
+.share-post-modal .share-post-modal--bottom-table tr td {
+  padding: 0;
+  padding-top: 20px;
+}
+
+.share-post-modal .share-post-modal--bottom-table tr td:first-of-type {
+  padding-top: 20px;
 }
 
 .game-details-menu {

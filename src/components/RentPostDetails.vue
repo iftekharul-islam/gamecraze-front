@@ -79,39 +79,41 @@
                                         <div class="modal-body-content">
                                             <ValidationObserver v-slot="{ handleSubmit }">
                                                 <div>
-                                                    <table class="w-full w-lg-75">
-                                                        <tbody class="text-left">
-                                                        <tr>
-                                                            <td>{{ $t('platform', $store.state.locale) }} :</td>
-                                                            <td v-if="post">
-                                                                <img :src="post.platform.data.url" alt="ps4">
-                                                            </td>
-                                                        </tr>
-                                                        <tr v-if="post.diskCondition">
-                                                            <td>{{ $t('disk_condition', $store.state.locale) }} :</td>
-                                                            <td v-if="post">{{ post.diskCondition.data.name_of_type }} ({{ post.diskCondition.data.description }})</td>
+                                                    <div class="seller-information border-0">
+                                                        <table class="w-full w-lg-75 share-post-modal--bottom-table">
+                                                            <tbody class="text-left">
+                                                            <tr>
+                                                                <td>{{ $t('platform', $store.state.locale) }} :</td>
+                                                                <td v-if="post">
+                                                                    <img :src="post.platform.data.url" alt="ps4">
+                                                                </td>
+                                                            </tr>
+                                                            <tr v-if="post.diskCondition">
+                                                                <td>{{ $t('disk_condition', $store.state.locale) }} :</td>
+                                                                <td v-if="post">{{ post.diskCondition.data.name_of_type }} ({{ post.diskCondition.data.description }})</td>
 
-                                                        </tr>
-                                                        <tr>
-                                                            <td>{{ $t('available_from', $store.state.locale) }} :</td>
-                                                            <td v-if="post">{{ formattedDate(post.availability_from_date) }}</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>{{ $t('maximum_rent_for', $store.state.locale) }} :</td>
-                                                            <td v-if="post">{{ post.max_number_of_week}} week(s)</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>{{ $t('posted_by', $store.state.locale) }} :</td>
-                                                            <td v-if="post">{{ post.user.data.name }}</td>
-                                                        </tr>
-                                                        </tbody>
-                                                    </table>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>{{ $t('available_from', $store.state.locale) }} :</td>
+                                                                <td v-if="post">{{ formattedDate(post.availability_from_date) }}</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>{{ $t('maximum_rent_for', $store.state.locale) }} :</td>
+                                                                <td v-if="post">{{ post.max_number_of_week}} week(s)</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>{{ $t('posted_by', $store.state.locale) }} :</td>
+                                                                <td v-if="post">{{ post.user.data.name }}</td>
+                                                            </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
 <!--                                                    <span v-if="isExistsInCart" class="text-center d-block">{{ $t('already_in_cart', $store.state.locale) }}</span>-->
                                                     <div class="seller-information mt-4">
                                                         <div class="text-center">
                                                             <h2>{{ $t('necessary_info', $store.state.locale) }}</h2>
                                                         </div>
-                                                        <table class="w-full">
+                                                        <table class="w-full share-post-modal--bottom-table">
                                                             <tbody class="text-left">
                                                             <tr>
                                                                 <td class="align-middle p-0 pb-3 pb-sm-0">{{ $t('select_week', $store.state.locale) }} :</td>

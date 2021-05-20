@@ -212,9 +212,19 @@
 .ml-a-16 {
     margin-left: 5.625rem;
 }
+.ml-a-sm-16 {
+    @include for-min-575 {
+        margin-left: 5.625rem;
+    }
+}
 
 .ml-a-17 {
-    margin-left: 6.25rem;
+    margin-left: 6rem;
+}
+.ml-a-sm-17 {
+    @include for-min-575 {
+        margin-left: 6rem;
+    }
 }
 
 .ml-a-18 {

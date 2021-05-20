@@ -12,7 +12,7 @@
                 <div class="col-12 mb-5">
                     <h3 class="f-s-28 gil-bold">{{ post.game.data.name }}</h3>
                 </div>
-                <div class="col-6">
+                <div class="flex-1">
                     <div class="mb-4">
                         <p class="text-white mb-1">{{ $t('disk_condition', $store.state.locale) }}</p>
                         <p class="text-secondery gil-bold mb-0" v-if="post.diskCondition">{{ post.diskCondition.data.name_of_type }}</p>
@@ -29,9 +29,9 @@
                         <p class="text-secondery gil-bold mb-0" v-else-if="post.lend != null">Rented for {{ post.lend.data.lend_week }} week(s)</p>
                         <p class="text-secondery gil-bold mb-0" v-else >Available for {{ post.max_number_of_week }} week(s)</p>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 edit-profile">
                         <p class="text-white mb-1">{{ $t('select_week', $store.state.locale) }} :</p>
-                        <select class="form-control" @change="rentCost(form.week, post.disk_type, post.game_id)" v-model="form.week">
+                        <select class="form-control no-arrow" @change="rentCost(form.week, post.disk_type, post.game_id)" v-model="form.week">
                             <option value="" selected disabled>Please select rent week</option>
                             <option v-for="n in post.max_number_of_week" :value="n" :key="n">For {{n}} Week</option>
                         </select>
@@ -45,37 +45,40 @@
                         </label>
                     </div>
                 </div>
-                <div class="col-6">
-                   <div class="mb-4">
+                <div class="flex-1">
+                   <div class="ml-a-4 ml-a-sm-16">
+                       <div class="mb-4">
                         <p class="text-white mb-1">{{ $t('disk_type', $store.state.locale) }}</p>
                         <p class="text-secondery gil-bold mb-0" v-if="post.disk_type == 1">Physical copy</p>
                         <p class="text-secondery gil-bold mb-0" v-else>Digital copy</p>
-                    </div>
-                    <div class="mb-4">
-                        <p class="text-white mb-1">{{ $t('lenders_name', $store.state.locale) }}</p>
-                        <p class="text-secondery gil-bold mb-0">{{ post.user.data.name }} {{ post.user.data.last_name }}</p>
-                    </div>
-                    <div class="mb-4">
-                        <p class="text-white mb-1">{{ $t('platform', $store.state.locale) }}</p>
-                        <p class="text-secondery gil-bold mb-0">{{ post.platform.data.name }}</p>
-                    </div>
-                    <div class="mb-4">
-                        <p class="text-white mb-1">{{ $t('rent_cost', $store.state.locale) }} :</p>
-                        <p class="text-secondery gil-bold mb-0"><span>৳ </span>{{ price }}</p>
-                    </div>
-                    <div class="mb-4">
-                        <p class="text-white mb-1">{{ $t('available_from', $store.state.locale) }}</p>
-                        <p class="text-secondery gil-bold mb-0">{{ formattedDate(post.availability_from_date)}}</p>
-                    </div>
+                       </div>
+                        <div class="mb-4">
+                            <p class="text-white mb-1">{{ $t('lenders_name', $store.state.locale) }}</p>
+                            <p class="text-secondery gil-bold mb-0">{{ post.user.data.name }} {{ post.user.data.last_name }}</p>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white mb-1">{{ $t('platform', $store.state.locale) }}</p>
+                            <p class="text-secondery gil-bold mb-0">{{ post.platform.data.name }}</p>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white mb-1">{{ $t('rent_cost', $store.state.locale) }} :</p>
+                            <p class="text-secondery gil-bold mb-0"><span>৳ </span>{{ price }}</p>
+                        </div>
+                        <div class="mb-4">
+                            <p class="text-white mb-1">{{ $t('available_from', $store.state.locale) }}</p>
+                            <p class="text-secondery gil-bold mb-0">{{ formattedDate(post.availability_from_date)}}</p>
+                        </div>
+                   </div>
                 </div>
                 <div class="col-12 mt-5">
-                    <a href="#" class="btn--secondery w-75"
+                    <a href="#" class="btn--secondery w-100"
                        v-clipboard:copy="copyUrl + post.id + '/' + post.game.data.slug "
                        v-clipboard:success="onCopy"
                        v-clipboard:error="onError"
-                       v-if="renter == true && post.status == 1"><span style="text-transform: uppercase">{{ $t('share_now', $store.state.locale) }}</span></a>
-                    <a href="#" class="btn--secondery w-75" v-else-if="$store.getters.ifAuthenticated && post.status == 1" @click="rentModal = true"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></a>
-                    <router-link to="/login" class="btn--secondery w-75"
+                       v-if="renter == true && post.status == 1"><span style="text-transform: uppercase">{{ $t('share_now', $store.state.locale) }}</span>
+                    </a>
+                    <a href="#" class="btn--secondery w-100" v-else-if="$store.getters.ifAuthenticated && post.status == 1" @click="rentModal = true"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></a>
+                    <router-link to="/login" class="btn--secondery w-100"
                        v-else-if="post.status == 1"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></router-link>
                 </div>
                 <div v-if="rentModal">

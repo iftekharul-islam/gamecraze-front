@@ -210,8 +210,20 @@
   margin-left: 5.625rem;
 }
 
+@media (min-width: 575px) {
+  .ml-a-sm-16 {
+    margin-left: 5.625rem;
+  }
+}
+
 .ml-a-17 {
-  margin-left: 6.25rem;
+  margin-left: 6rem;
+}
+
+@media (min-width: 575px) {
+  .ml-a-sm-17 {
+    margin-left: 6rem;
+  }
 }
 
 .ml-a-18 {
@@ -6954,6 +6966,11 @@ html {
   left: 0px;
 }
 
+.no-arrow {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
 .support-faq {
   padding-bottom: 180px;
 }
@@ -10606,8 +10623,8 @@ html {
           justify-content: center;
   -webkit-transition: all .3s ease-in;
   transition: all .3s ease-in;
-  -webkit-transform: skew(-21deg);
-          transform: skew(-21deg);
+  -webkit-transform: skew(-19deg);
+          transform: skew(-19deg);
   color: #000;
   font-family: gilroy-medium;
 }
@@ -10633,8 +10650,8 @@ html {
 }
 
 .btn--secondery span {
-  -webkit-transform: skew(21deg);
-          transform: skew(21deg);
+  -webkit-transform: skew(19deg);
+          transform: skew(19deg);
 }
 
 @media (max-width: 575px) {

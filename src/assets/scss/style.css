@@ -1766,9 +1766,17 @@ html {
 .w-380 {
   width: 380px;
 }
+
 @media (min-width: 575px) {
   .w-sm-400 {
     width: 400px;
+  }
+}
+
+.w-full {
+  width: 100%;
+}
+
 @media (min-width: 992px) {
   .max-md-760 {
     max-width: 760px;
@@ -1778,11 +1786,13 @@ html {
 .w-full {
   width: 100%;
 }
+
 @media (min-width: 1200px) {
   .w-lg-75 {
     width: 75%;
   }
 }
+
 textarea:focus {
   background: #FFD715;
   color: #fff;
@@ -2429,6 +2439,7 @@ select option {
 .primary-bg {
   background: #0B0F18;
 }
+
 .rating-given {
   fill: #FFD715;
 }
@@ -2439,6 +2450,8 @@ select option {
 
 .focus-primary:focus {
   background: #0B0F18;
+}
+
 .pointer {
   cursor: pointer;
 }

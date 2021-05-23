@@ -2410,6 +2410,8 @@ select {
 .focus-primary {
     &:focus {
         background: $primary;
+    }
+}
 // cursor
 .pointer {
     cursor: pointer;

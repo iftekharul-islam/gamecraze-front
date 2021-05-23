@@ -11,7 +11,7 @@
         align-items: center;
         justify-content: center;
         transition: all .3s ease-in;
-        transform: skew(-21deg);
+        transform: skew(-19deg);
         color: #000;
         @include gil-medium;
         &:hover {
@@ -27,7 +27,7 @@
             transform: skew(-16deg);
         }
         span {
-            transform: skew(21deg);
+            transform: skew(19deg);
             @include for-max-575 {
                 transform: skew(16deg);
             }

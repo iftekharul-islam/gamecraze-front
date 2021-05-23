@@ -212,7 +212,6 @@
                     this.$api.get('user/details', config).then(response =>{
                         this.user = response.data.data;
                         if (this.user.locale === '' || this.user.locale == null){
-                            console.log(this.isActive);
                             this.localeSet(this.isActive);
                             return;
                         }
@@ -326,13 +325,9 @@
         computed: {
             lang: {
                 get: function() {
-                    console.log('get value');
-                    console.log(this.$store.state.locale);
                     return this.$store.state.locale
                 },
                 set: function(newVal) {
-                    console.log('set value');
-                    console.log(newVal);
                     this.$store.dispatch('changeLocale', newVal)
                     this.localeSet(newVal);
                 }
@@ -351,7 +346,6 @@
           }
         },
         created() {
-            console.log(this.$i18n.locale);
             this.authData();
             this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {

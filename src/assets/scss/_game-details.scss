@@ -207,3 +207,32 @@
         font-size: 20px;
     }
 }
+.share-post-modal {
+    .max-md-760 {
+        @include for-min-992 {
+            max-width: 760px !important;
+        }
+        .modal-content {
+            min-height: 500px;
+            height: initial;
+            padding: 60px 93px;
+            @include for-max-768 {
+                padding: 40px 20px;
+            }
+        }
+    }
+    .modal-wrapper {
+        overflow: auto;
+    }
+    .share-post-modal--bottom-table {
+        tr {
+            td {
+                padding: 0;
+                padding-top: 20px;
+                &:first-of-type {
+                    padding-top: 20px;
+                }
+            }
+        }
+    }
+}

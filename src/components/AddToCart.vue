@@ -57,13 +57,14 @@
                         <p>{{ $t('delivery_charge', $store.state.locale) }}</p>
                         <span class="subtotal-price">৳ {{ deliveryCharge }}</span>
                       </div>
-<!--                      <div class="promotional-code">-->
-<!--                        <p class="mb-2">Enter a promotional code</p>-->
-<!--                        <div class="promotional-code&#45;&#45;input-group d-flex">-->
-<!--                          <input type="text" class="form-control mr-3">-->
-<!--                          <button class="btn&#45;&#45;cart-btn">APPLY</button>-->
-<!--                        </div>-->
-<!--                      </div>-->
+                      <div class="promotional-code">
+                        <p class="mb-2">Enter a promotional code</p>
+                        <div class="promotional-code--input-group d-flex">
+                          <input type="text" class="form-control mr-3" v-model="promoCode">
+                          <button class="btn--cart-btn" @click.prevent="applyCode">APPLY</button>
+                        </div>
+                        <p class="text-danger" v-if="promoError">Promo code not match</p>
+                      </div>
                      
                       <div class="total d-flex align-items-center justify-content-between">
                         <p>{{ $t('total', $store.state.locale) }}</p>
@@ -214,6 +215,9 @@
   export default {
       data() {
           return {
+              promoCode: '',
+              promoAmount: 0,
+              promoError: false,
               agreement: '',
               address: '',
               games: null,
@@ -248,6 +252,29 @@
           }
       },
     methods: {
+        applyCode() {
+            this.promoError = false;
+            if (this.promoCode != null){
+                var config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+
+                let data = {
+                    promo: this.promoCode,
+                };
+                this.$api.post('apply-promo', data, config).then(response => {
+                    if (response.data.error == false){
+                        this.promoAmount = response.data.amount;
+                        this.totalPrice = this.totalPrice - this.promoAmount;
+                        console.log(this.promoAmount);
+                    } else {
+                        this.promoError = true;
+                    }
+                })
+            }
+        },
         spendWalletExistAmount(event) {
             if (event.target.checked == true) {
                 if (this.totalPrice > this.user.wallet) {
@@ -378,6 +405,7 @@
                 deliveryCharge: this.deliveryCharge,
                 totalAmount: this.totalPrice,
                 spendWalletAmount: this.spendWalletAmount,
+                promoAmount: this.promoAmount,
             };
             this.$api.post('lend-game', data, config).then(response => {
                 if (response.data.error === false) {

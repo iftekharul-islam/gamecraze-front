@@ -210,8 +210,20 @@
   margin-left: 5.625rem;
 }
 
+@media (min-width: 575px) {
+  .ml-a-sm-16 {
+    margin-left: 5.625rem;
+  }
+}
+
 .ml-a-17 {
-  margin-left: 6.25rem;
+  margin-left: 6rem;
+}
+
+@media (min-width: 575px) {
+  .ml-a-sm-17 {
+    margin-left: 6rem;
+  }
 }
 
 .ml-a-18 {
@@ -1653,7 +1665,7 @@ html {
   width: 40px !important;
 }
 
-.w-50 {
+.w-50px {
   width: 50px !important;
 }
 
@@ -1697,6 +1709,22 @@ html {
 
 .w-380 {
   width: 380px;
+}
+
+@media (min-width: 992px) {
+  .max-md-760 {
+    max-width: 760px;
+  }
+}
+
+.w-full {
+  width: 100%;
+}
+
+@media (min-width: 1200px) {
+  .w-lg-75 {
+    width: 75%;
+  }
 }
 
 textarea:focus {
@@ -2340,6 +2368,19 @@ select option {
 
 .primary-bg {
   background: #0B0F18;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.text-black-hover {
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+
+.text-black-hover:hover {
+  color: #000;
 }
 
 @media (max-width: 575px) {
@@ -6092,6 +6133,37 @@ html {
   }
 }
 
+@media (min-width: 992px) {
+  .share-post-modal .max-md-760 {
+    max-width: 760px !important;
+  }
+}
+
+.share-post-modal .max-md-760 .modal-content {
+  min-height: 500px;
+  height: initial;
+  padding: 60px 93px;
+}
+
+@media (max-width: 768px) {
+  .share-post-modal .max-md-760 .modal-content {
+    padding: 40px 20px;
+  }
+}
+
+.share-post-modal .modal-wrapper {
+  overflow: auto;
+}
+
+.share-post-modal .share-post-modal--bottom-table tr td {
+  padding: 0;
+  padding-top: 20px;
+}
+
+.share-post-modal .share-post-modal--bottom-table tr td:first-of-type {
+  padding-top: 20px;
+}
+
 .game-details-menu {
   background: #141A27;
 }
@@ -6892,6 +6964,11 @@ html {
   border: 1px solid #FFD715;
   background: #411925;
   left: 0px;
+}
+
+.no-arrow {
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .support-faq {
@@ -10546,8 +10623,8 @@ html {
           justify-content: center;
   -webkit-transition: all .3s ease-in;
   transition: all .3s ease-in;
-  -webkit-transform: skew(-21deg);
-          transform: skew(-21deg);
+  -webkit-transform: skew(-19deg);
+          transform: skew(-19deg);
   color: #000;
   font-family: gilroy-medium;
 }
@@ -10573,8 +10650,8 @@ html {
 }
 
 .btn--secondery span {
-  -webkit-transform: skew(21deg);
-          transform: skew(21deg);
+  -webkit-transform: skew(19deg);
+          transform: skew(19deg);
 }
 
 @media (max-width: 575px) {

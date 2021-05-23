@@ -232,24 +232,24 @@
                                                         <p class="text-secondery" v-else>Available for {{ rent.max_number_of_week }} week(s)</p>
                                                     </div>
                                                     <div class="d-flex">
-                                                        <div class="action bg-secondery px-3 py-1 mr-2" v-if="rent.disk_type != 1">
-                                                            <a href="#" class="text-black gil-medium" @click.prevent="credentialModal(rent)"><span>Edit</span></a>
+                                                        <div class="action bg-secondery mr-2" v-if="rent.disk_type != 1">
+                                                            <a href="#" class="text-black d-flex gil-medium px-3 py-1 text-black-hover" @click.prevent="credentialModal(rent)"><span>Edit</span></a>
                                                         </div>
                                                     <div v-if="rent.status == 0">
-                                                        <div class="action bg-secondery px-3 py-1 mr-2" v-if="rent.disk_type != 0">
-                                                            <a href="#" class="text-black gil-medium" @click.prevent="ImageModal(rent)"><span>Edit</span></a>
+                                                        <div class="action bg-secondery mr-2" v-if="rent.disk_type != 0">
+                                                            <a href="#" class="text-black px-3 py-1 gil-medium" @click.prevent="ImageModal(rent)"><span>Edit</span></a>
                                                         </div>
                                                     </div>
-                                                    <div class="bg-secondery px-3 py-1 mr-2">
-                                                        <router-link :to="{ path: '/' + rent.id + '/' + rent.game.data.slug}" class="trending-image">
-                                                                <a href="" class="text-black gil-medium">View</a>
+                                                    <div class="bg-secondery mr-2">
+                                                        <router-link :to="{ path: '/' + rent.id + '/' + rent.game.data.slug}" class="trending-image d-flex px-3 py-1 text-black-hover">
+                                                                <a href="" class="text-black gil-medium text-black-hover">View</a>
                                                         </router-link>
                                                     </div>
-                                                    <div class="bg-secondery px-3 py-1"
+                                                    <div class="bg-secondery px-3 py-1 pointer"
                                                          v-clipboard:copy="copyUrl + rent.id + '/' + rent.game.data.slug "
                                                          v-clipboard:success="onCopy"
-                                                         v-clipboard:error="onError">
-                                                        <span class="text-black gil-medium">share</span>
+                                                         v-clipboard:error="onError" v-if="rent.status == 1">
+                                                        <span class="text-black gil-medium">Share</span>
                                                     </div>
                                                     </div>
                                                 </div>

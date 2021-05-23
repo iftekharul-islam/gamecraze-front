@@ -68,8 +68,15 @@
                 let formattedDate = new Date(date)
                 return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
             },
+            authData () {
+                var auth = this.$store.getters.ifAuthenticated;
+                if (auth){
+                    this.$router.push('/rent-posted-users/'+ this.slug)
+                }
+            },
         },
         created() {
+            this.authData();
             window.scrollTo(0,0);
             this.$api.get('rent-posted-users/' + this.slug + '?include=game,game.basePrice,diskCondition,user,checkpoint.area.thana.district,platform').then(response => {
                 this.rentPosts = response.data.data;

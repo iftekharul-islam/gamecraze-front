@@ -23,18 +23,16 @@
                         <p class="text-secondery gil-bold mb-0" v-if="post.renter">{{ post.renter.data.name }}</p>
                         <p class="text-secondery gil-bold mb-0" v-else>N/A</p>
                     </div>
-                    <div class="mb-4">
-                        <p class="text-white mb-1">{{ $t('status', $store.state.locale) }}</p>
-                        <p class="text-secondery gil-bold mb-0" v-if="post.status == 2"><span class="rejected br-0 f-s-16">Rejected</span></p>
-                        <p class="text-secondery gil-bold mb-0" v-else-if="post.lend != null">Rented for {{ post.lend.data.lend_week }} week(s)</p>
-                        <p class="text-secondery gil-bold mb-0" v-else >Available for {{ post.max_number_of_week }} week(s)</p>
-                    </div>
                     <div class="mb-4 edit-profile">
                         <p class="text-white mb-1">{{ $t('select_week', $store.state.locale) }} :</p>
                         <select class="form-control no-arrow" @change="rentCost(form.week, post.disk_type, post.game_id)" v-model="form.week">
                             <option value="" selected disabled>Please select rent week</option>
                             <option v-for="n in post.max_number_of_week" :value="n" :key="n">For {{n}} Week</option>
                         </select>
+                    </div>
+                    <div class="mb-4">
+                        <p class="text-white mb-1">{{ $t('rent_cost', $store.state.locale) }} :</p>
+                        <p class="text-secondery gil-bold mb-0"><span>৳ </span>{{ price }}</p>
                     </div>
                     <div class="mb-4" v-if="renter == true">
                         <label class="toggle-switch mt-0 mt-sm-2">
@@ -60,10 +58,12 @@
                             <p class="text-white mb-1">{{ $t('platform', $store.state.locale) }}</p>
                             <p class="text-secondery gil-bold mb-0">{{ post.platform.data.name }}</p>
                         </div>
-                        <div class="mb-4">
-                            <p class="text-white mb-1">{{ $t('rent_cost', $store.state.locale) }} :</p>
-                            <p class="text-secondery gil-bold mb-0"><span>৳ </span>{{ price }}</p>
-                        </div>
+                       <div class="mb-4">
+                           <p class="text-white mb-1">{{ $t('status', $store.state.locale) }}</p>
+                           <p class="text-secondery gil-bold mb-0" v-if="post.status == 2"><span class="rejected br-0 f-s-16">Rejected</span></p>
+                           <p class="text-secondery gil-bold mb-0" v-else-if="post.lend != null">Rented for {{ post.lend.data.lend_week }} week(s)</p>
+                           <p class="text-secondery gil-bold mb-0" v-else >Available for {{ post.max_number_of_week }} week(s)</p>
+                       </div>
                         <div class="mb-4">
                             <p class="text-white mb-1">{{ $t('available_from', $store.state.locale) }}</p>
                             <p class="text-secondery gil-bold mb-0">{{ formattedDate(post.availability_from_date)}}</p>
@@ -215,7 +215,7 @@
                 requiredAddress : true,
                 postWeek: '',
                 form: {
-                    week: '',
+                    week: 1,
                     deliveryType: '',
                     address: ''
                 },
@@ -327,6 +327,7 @@
             window.scrollTo(0,0);
             this.$api.get('rents/' + this.$route.params.id + '?include=diskCondition,game.genres,user,renter,platform,checkpoint.area.thana.district').then(response => {
                 this.post = response.data.data;
+                this.rentCost(1, this.post.disk_type, this.post.game_id);
                 if (this.post.disk_type == 0) {
                     this.requiredAddress = false
                 }

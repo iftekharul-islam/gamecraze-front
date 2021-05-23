@@ -12,14 +12,14 @@
     &.gamehub-menu-active {
         background: $trans-nav-bg;
     }
-    @include for-max-991 {
+    @include for-max-1199 {
         padding: 20px 0;
     }
 }
 
 .navbar-brand {
     margin-right: 0;
-    @include for-max-991 {
+    @include for-max-1199 {
         padding-left: 70px;
         padding-top: 0;
     }
@@ -32,13 +32,13 @@
             width: 100px;
         }
         @include for-max-575 {
-            width: 145px;
+            width: 120px;
         }
     }
 }
 
 .gamehub-menu-collapse {
-    @include for-max-991 {
+    @include for-max-1199 {
         padding-top: 60px;
         margin-top: 20px;
         position: relative;
@@ -48,7 +48,7 @@
         margin: auto;
         display: flex;
         justify-content: center;
-        @include for-max-991 {
+        @include for-max-1199 {
             display: block;
             margin-left: 0px;
             padding-bottom: 0;
@@ -114,7 +114,7 @@
     right: 0;
     top: 15px;
     padding-right: 1rem;
-    @include for-max-991 {
+    @include for-max-1199 {
         right: initial;
         left: 50px;
         top: 17px;
@@ -186,7 +186,7 @@
 }
 
 .signin-cart-group {
-    @include for-max-991 {
+    @include for-max-1199 {
         position: absolute;
         top: 17px;
         right: 50px;
@@ -197,7 +197,7 @@
 }
 
 .gamehub-input-group-searchbar {
-    @include for-max-991 {
+    @include for-max-1199 {
         position: absolute;
         top: 20px;
     }
@@ -207,7 +207,7 @@
 .gamehub-input-group {
     display: flex;
     align-items: center;
-    @include for-max-991 {
+    @include for-max-1199 {
         flex-wrap: wrap;
     }
     &--content {
@@ -240,7 +240,7 @@
             }
         }
         &:hover {
-            a {
+           > a {
                 color: $text-dark;
                 background: $secondery;
             }
@@ -256,6 +256,9 @@
                     }
                 }
             }
+        }
+        .dropdown-menu {
+            left: initial;
         }
     }
     // end content
@@ -329,7 +332,7 @@
     @include for-max-1199 {
         width: 100px;
     }
-    @include for-max-991 {
+    @include for-max-1199 {
         transform: skew(0deg);
     }
     @include for-max-575 {
@@ -339,7 +342,7 @@
     span {
         display: inline-block;
         transform: skew(21deg);
-        @include for-max-991 {
+        @include for-max-1199 {
             transform: skew(0deg);
         }
     }
@@ -352,7 +355,7 @@
     @include for-max-1199 {
         width: 120px;
     }
-    @include for-max-991 {
+    @include for-max-1199 {
         width: 200px;
     }
     @include for-max-575 {
@@ -379,18 +382,18 @@
         @include for-max-1199 {
             width: 115px;
         }
-        @include for-max-991 {
+        @include for-max-1199 {
             width: 100%;
         }
     }
     #autosuggest {
         >div {
             &:first-of-type {
-                @include for-max-991 {
+                @include for-max-1199 {
                     transform: skew(0deg);
                 }
                 input {
-                    @include for-max-991 {
+                    @include for-max-1199 {
                         transform: skew(0deg);
                     }
                 }
@@ -407,7 +410,7 @@
     border-radius: 0;
     position: relative;
     left: -3px;
-    @include for-max-991 {
+    @include for-max-1199 {
         transform: skew(0deg);
     }
     &:focus {
@@ -419,7 +422,7 @@
         transform: skew(21deg);
         color: $text-dark;
         font-size: 18px;
-        @include for-max-991 {
+        @include for-max-1199 {
             transform: skew(0deg);
         }
     }
@@ -506,7 +509,7 @@
         margin-left: -6px;
         height: 187px;
         overflow-y: auto;
-        @include for-max-991 {
+        @include for-max-1199 {
             margin-left: 0;
         }
         @include for-max-575 {
@@ -636,7 +639,7 @@
         height: 90px;
     }
     .alert {
-        @include for-max-991 {
+        @include for-max-1199 {
             top: 75px;
             ;
         }
@@ -647,7 +650,7 @@
 }
 
 .dropdown {
-    @include for-max-991 {
+    @include for-max-1199 {
         width: 100% !important;
     }
     &--sub-menu {
@@ -661,7 +664,7 @@
         justify-content: flex-start;
         display: none;
         right: 0;
-        @include for-max-991 {
+        @include for-max-1199 {
             width: 100%;
         }
         @include for-max-575 {
@@ -710,7 +713,7 @@
     &:hover {
         .dropdown--sub-menu {
             display: block;
-            @include for-max-991 {
+            @include for-max-1199 {
                 height: 260px;
             }
         }
@@ -733,7 +736,7 @@
     margin-right: 32px;
     display: flex;
     align-items: center;
-    @include for-max-991 {
+    @include for-max-1199 {
         padding-left: 15px;
         padding-bottom: 20px;
     }
@@ -753,3 +756,21 @@
         cursor: pointer;
     }
 }
+.rating-notification {
+    &--list {
+        padding: 16px;
+        &:hover {
+            background: $secondery;
+            color: $primary;
+            p {
+                &:last-of-type {
+                    color: $primary !important;
+                    span {
+                        color: $primary !important;
+                    }
+                }
+            }
+        }
+    }
+}
+

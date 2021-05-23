@@ -1,0 +1,10 @@
+.rating-list {
+    padding-bottom: 180px;
+    &--box {
+        border-bottom: 1px solid $white-50;
+        margin-bottom: 20px;
+        &:last-of-type {
+            border-bottom: 0;
+        }
+    }
+}

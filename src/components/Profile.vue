@@ -115,6 +115,7 @@
                             <a class="nav-link" id="v-pills-edit-profile-tab" data-toggle="pill" href="#v-pills-edit-profile" role="tab" aria-controls="v-pills-edit-profile" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon4.png" alt="profile icon"> <img src="../assets/img/active-profile-icon4.png" class="img-active" alt="profile icon"></div> <span>{{ $t('edit_profile', $store.state.locale) }}</span></a>
                             <a class="nav-link" id="v-pills-my-earning-tab" data-toggle="pill" href="#v-pills-my-earning" role="tab" aria-controls="v-pills-my-earning" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/earn.png" alt="profile icon"> <img src="../assets/img/active-earn.png" class="img-active" alt="profile icon"></div> <span>{{ $t('my_earning', $store.state.locale) }}</span></a>
                             <a class="nav-link" id="v-pills-refer-tab" data-toggle="pill" href="#v-pills-refer" role="tab" aria-controls="v-pills-refer" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/refer.png" alt="profile icon"> <img src="../assets/img/refer-active.png" class="img-active" alt="profile icon"></div> <span>{{ $t('refer_friend', $store.state.locale) }}</span></a>
+                            <a class="nav-link" id="v-pills-rating-tab" data-toggle="pill" href="#v-pills-rating" role="tab" aria-controls="v-pills-rating" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/star-not-active.png" alt="profile icon"> <img src="../assets/img/star-active.png" class="img-active" alt="profile icon"></div> <span>Ratings</span></a>
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -830,7 +831,8 @@
                                     </ValidationObserver>
                                 </div>
                             </div>
-
+                            
+                            <!-- Earning tab -->
                             <div class="tab-pane fade" id="v-pills-my-earning" role="tabpanel" aria-labelledby="v-pills-my-earning-tab">
                                 <div class="my-earning">
                                     <div class="my-earning--dashboard">
@@ -887,8 +889,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Refer friend -->
 
+                            <!-- Refer friend -->
                             <div class="tab-pane fade" id="v-pills-refer" role="tabpanel" aria-labelledby="v-pills-refer-tab">
                                 <div class="refer-friend">
                                     <div class="refer-friend--link">
@@ -946,6 +948,159 @@
                                     </div>
                                 </div>
                             </div>
+
+                            <!-- Rating game -->
+                              <div class="tab-pane fade" id="v-pills-rating" role="tabpanel" aria-labelledby="v-pills-rating-tab">
+                                    <div class="my-rating">
+                                        <div class="my-rating--dashboard secondery-border d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-5">
+                                            <div class="my-earning--dashboard--content mb-5 mb-md-0">
+                                                <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Renter</span> your rating</h4>
+                                                <div class="rating-star d-flex">
+                                                    <svg class="rating-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
+                                                    </svg>
+                                                    <svg class="rating-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
+                                                    </svg>
+                                                    <svg class="rating-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
+                                                    </svg>
+                                                    <svg class="rating-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
+                                                    </svg>
+                                                    <svg class="rating-not-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
+                                                    </svg>
+                                                    <span class="ml-3 text-secondery f-s-24 gil-medium">4.0</span>
+                                                </div>
+                                                <a href="#" class="text-secondery mt-4 d-inline-block">View list (32)</a>
+                                            </div>
+                                            <div class="my-earning--dashboard--content">
+                                                <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Renter</span> your rating</h4>
+                                                <div class="rating-star d-flex">
+                                                    <svg class="rating-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
+                                                    </svg>
+                                                    <svg class="rating-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
+                                                    </svg>
+                                                    <svg class="rating-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
+                                                    </svg>
+                                                    <svg class="rating-not-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
+                                                    </svg>
+                                                    <svg class="rating-not-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
+                                                    </svg>
+                                                    <span class="ml-3 text-secondery f-s-24 gil-medium">3.0</span>
+                                                </div>
+                                                <a href="#" class="text-secondery mt-4 d-inline-block">View list (32)</a>
+                                            </div>
+                                        </div>
+                                        <!-- Rating history -->
+                                        <div class="my-earning--payment-history">
+                                            <h4 class="my-earning--payment-history--heading mb-4">Waiting for rate</h4>
+                                            <div class="table-responsive" v-if="transactions.length">
+                                                <table class="table my-earning--payment-history--table">
+                                                    <thead>
+                                                        <tr>
+                                                        <th scope="col">Order id</th>
+                                                        <th scope="col">Game name</th>
+                                                        <th scope="col">Order type</th>
+                                                        <th scope="col">Order complete date</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>12263645</td>
+                                                            <td>Ghost of Minhaj</td>
+                                                            <td>Lending</td>
+                                                            <td>25 Feb, 2021</td>
+                                                            <td><a href="#" class="text-secondery" data-toggle="modal" data-target="#exampleModal">Rate now</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>12263645</td>
+                                                            <td>Ghost of Minhaj</td>
+                                                            <td>Lending</td>
+                                                            <td>25 Feb, 2021</td>
+                                                            <td><a href="#" class="text-secondery">Rate now</a></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>12263645</td>
+                                                            <td>Ghost of Minhaj</td>
+                                                            <td>Lending</td>
+                                                            <td>25 Feb, 2021</td>
+                                                            <td><a href="#" class="text-secondery">Rate now</a></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                                <!-- Rating box  -->
+                                                <div class="modal fade rating-box-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered">
+                                                        <div class="modal-content bg-game-details position-relative p-3 border-2 border-secondery br-0">
+                                                        <div class="modal-header justify-content-center border-0 p-0 mt-4">
+                                                            <h5 class="modal-title text-secondery text-center f-s-32 mb-4" id="exampleModalLabel">Rate please</h5>
+                                                            <button type="button" class="close position-absolute right-20 top-20" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">
+                                                                    <svg class="secondery-border rounded-circle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M14.2427 4.34315L10.0001 8.58579L5.75744 4.34315L4.34323 5.75736L8.58587 10L4.34323 14.2426L5.75744 15.6569L10.0001 11.4142L14.2427 15.6569L15.6569 14.2426L11.4143 10L15.6569 5.75736L14.2427 4.34315Z" fill="#FFD715"/>
+                                                                    </svg>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4">
+                                                            <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" alt="img" class="img-fluid">
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <p class="f-s-20 mb-1 gil-bold">Rakibul H. Rocky</p>
+                                                            <p class="gil-bold">Lender</p>
+                                                        </div>
+                                                        <div class="text-center">
+                                                            <p class="f-s-20 mb-1 gil-bold">Assassin's Creed 4 black flag</p>
+                                                            <p class="gil-bold">Game name</p>
+                                                        </div>
+                                                        <div class="d-flex justify-content-center align-items-center mb-5">
+                                                            <span class="mr-3"><img src="../assets/img/react1.png" alt="profile icon"></span>
+                                                            <span class="mr-3"><img src="../assets/img/react2.png" alt="profile icon"></span>
+                                                            <span class="mr-3"><img src="../assets/img/react3.png" alt="profile icon"></span>
+                                                            <span class="mr-3"><img src="../assets/img/react4.png" alt="profile icon"></span>
+                                                            <span class="mr-3"><img src="../assets/img/react5.png" alt="profile icon"></span>
+                                                        </div>
+                                                        <div class="comment-box">
+                                                            <div class="form-group">
+                                                                <label for="comment-box" class="d-block gil-bold">Comment Box</label>
+                                                                <textarea name="" id="comment-box" rows="3" class="w-100 border-1 border-secondery primary-bg text-white p-2 focus-primary"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <a href="#" class="bg-secondery primary-text text-center py-2 w-100 d-block gil-medium primary-text-hover">Done</a>
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <span class="text-center d-block mt-a-18" v-else>{{ $t('no_trans_found', $store.state.locale) }}</span>
+    <!--                                        <nav aria-label="Page navigation example" class="my-earning&#45;&#45;payment-history&#45;&#45;pagination">-->
+    <!--                                            <ul class="pagination">-->
+    <!--                                                <li class="page-item">-->
+    <!--                                                    <a class="page-link" href="#" aria-label="Previous">-->
+    <!--                                                        <span aria-hidden="true"><i class="fas fa-arrow-left"></i></span>-->
+    <!--                                                    </a>-->
+    <!--                                                </li>-->
+    <!--                                                <li class="page-item"><a class="page-link active" href="#">1</a></li>-->
+    <!--                                                <li class="page-item"><a class="page-link" href="#">2</a></li>-->
+    <!--                                                <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+    <!--                                                <li class="page-item">-->
+    <!--                                                    <a class="page-link" href="#" aria-label="Next">-->
+    <!--                                                        <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>-->
+    <!--                                                    </a>-->
+    <!--                                                </li>-->
+    <!--                                            </ul>-->
+    <!--                                        </nav>-->
+                                        </div>
+                                    </div>
+                              </div>
 
 
                         </div>

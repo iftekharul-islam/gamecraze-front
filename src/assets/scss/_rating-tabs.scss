@@ -1,0 +1,8 @@
+.my-rating {
+    &--dashboard {
+        padding: 50px 36px;
+        @include for-max-575 {
+            padding: 20px;
+        }
+    }
+}

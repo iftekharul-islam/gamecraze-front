@@ -50,6 +50,7 @@ import Rookie from '../components/Rookie';
 import Tournament from '../components/Tournament';
 import LendNotice from '../components/LendNotice';
 import PricePlan from '../components/PricePlan';
+import RatingList from '../components/RatingList';
 import RentPostDetails from '../components/RentPostDetails';
 
 let router = new Router({
@@ -404,6 +405,14 @@ let router = new Router({
             path: '/pricing',
             name: 'pricing',
             component: PricePlan,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/rating-list',
+            name: 'ratingList',
+            component: RatingList,
             meta: {
                 requiresAuth: false
             }

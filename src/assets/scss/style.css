@@ -1224,6 +1224,18 @@
   right: 14px;
 }
 
+.right-16 {
+  right: 16px;
+}
+
+.right-18 {
+  right: 18px;
+}
+
+.right-20 {
+  right: 20px;
+}
+
 .left-0 {
   left: 0;
 }
@@ -1298,6 +1310,10 @@
 
 .top-50 {
   top: 50px;
+}
+
+.top-full {
+  top: 100%;
 }
 
 .bottom-0 {
@@ -1376,6 +1392,10 @@
   border: 3px solid;
 }
 
+.border-secondery {
+  border-color: #FFD715;
+}
+
 .secondery-border {
   border: 1px solid #FFD715;
 }
@@ -1400,6 +1420,10 @@
   color: #F16A46;
 }
 
+.primary-text {
+  color: #0B0F18;
+}
+
 .gray-text {
   color: #808080;
 }
@@ -1412,8 +1436,16 @@
   color: #000;
 }
 
+.text-badge {
+  color: #F65157;
+}
+
 .bg-secondery {
   background: #FFD715;
+}
+
+.primary-bg {
+  background: #0B0F18;
 }
 
 .bg-game-details {
@@ -1510,6 +1542,14 @@
 
 .f-s-28 {
   font-size: 28px;
+}
+
+.f-s-30 {
+  font-size: 30px;
+}
+
+.f-s-32 {
+  font-size: 32px;
 }
 
 .account-not-verified {
@@ -1655,6 +1695,10 @@ html {
   height: 90px !important;
 }
 
+.h-100px {
+  height: 100px;
+}
+
 .w-fit {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -1685,6 +1729,14 @@ html {
   width: 90px !important;
 }
 
+.w-100px {
+  width: 100px;
+}
+
+.max-368 {
+  max-width: 368px;
+}
+
 .max-400 {
   max-width: 400px;
 }
@@ -1707,10 +1759,16 @@ html {
   width: 200px !important;
 }
 
+.w-300 {
+  width: 300px;
+}
+
 .w-380 {
   width: 380px;
 }
-
+@media (min-width: 575px) {
+  .w-sm-400 {
+    width: 400px;
 @media (min-width: 992px) {
   .max-md-760 {
     max-width: 760px;
@@ -1720,13 +1778,11 @@ html {
 .w-full {
   width: 100%;
 }
-
 @media (min-width: 1200px) {
   .w-lg-75 {
     width: 75%;
   }
 }
-
 textarea:focus {
   background: #FFD715;
   color: #fff;
@@ -1980,6 +2036,10 @@ select option {
 
 .secondery-hover a:hover {
   color: #000 !important;
+}
+
+.primary-text-hover:hover {
+  color: #0B0F18;
 }
 
 .checkbox-parents {
@@ -2369,7 +2429,16 @@ select option {
 .primary-bg {
   background: #0B0F18;
 }
+.rating-given {
+  fill: #FFD715;
+}
 
+.rating-not-given {
+  fill: #808080;
+}
+
+.focus-primary:focus {
+  background: #0B0F18;
 .pointer {
   cursor: pointer;
 }
@@ -2398,7 +2467,7 @@ select option {
   background: #141a27e0;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .gamehub-menu {
     padding: 20px 0;
   }
@@ -2408,7 +2477,7 @@ select option {
   margin-right: 0;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .navbar-brand {
     padding-left: 70px;
     padding-top: 0;
@@ -2433,11 +2502,11 @@ select option {
 
 @media (max-width: 575px) {
   .navbar-brand img {
-    width: 145px;
+    width: 120px;
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .gamehub-menu-collapse {
     padding-top: 60px;
     margin-top: 20px;
@@ -2456,7 +2525,7 @@ select option {
           justify-content: center;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .gamehub-menu-collapse > ul {
     display: block;
     margin-left: 0px;
@@ -2546,7 +2615,7 @@ select option {
   padding-right: 1rem;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .toggler-position {
     right: initial;
     left: 50px;
@@ -2631,7 +2700,7 @@ select option {
   left: 50%;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .signin-cart-group {
     position: absolute;
     top: 17px;
@@ -2645,7 +2714,7 @@ select option {
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .gamehub-input-group-searchbar {
     position: absolute;
     top: 20px;
@@ -2661,7 +2730,7 @@ select option {
           align-items: center;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .gamehub-input-group {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
@@ -2711,7 +2780,7 @@ select option {
   font-size: 14px;
 }
 
-.gamehub-input-group--content:hover a {
+.gamehub-input-group--content:hover > a {
   color: #000;
   background: #FFD715;
 }
@@ -2722,6 +2791,10 @@ select option {
 
 .gamehub-input-group--content:hover .complete-sign-in .gamehub-dropdown-menu a {
   background: initial;
+}
+
+.gamehub-input-group--content .dropdown-menu {
+  left: initial;
 }
 
 .complete-sign-in {
@@ -2820,7 +2893,7 @@ select option {
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .sign-in {
     -webkit-transform: skew(0deg);
             transform: skew(0deg);
@@ -2840,7 +2913,7 @@ select option {
           transform: skew(21deg);
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .sign-in span {
     -webkit-transform: skew(0deg);
             transform: skew(0deg);
@@ -2859,7 +2932,7 @@ select option {
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .search-input-design {
     width: 200px;
   }
@@ -2900,20 +2973,20 @@ select option {
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .search-input-design input {
     width: 100%;
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .search-input-design #autosuggest > div:first-of-type {
     -webkit-transform: skew(0deg);
             transform: skew(0deg);
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .search-input-design #autosuggest > div:first-of-type input {
     -webkit-transform: skew(0deg);
             transform: skew(0deg);
@@ -2931,7 +3004,7 @@ select option {
   left: -3px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .gamehub-search-btn {
     -webkit-transform: skew(0deg);
             transform: skew(0deg);
@@ -2952,7 +3025,7 @@ select option {
   font-size: 18px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .gamehub-search-btn--icon {
     -webkit-transform: skew(0deg);
             transform: skew(0deg);
@@ -3053,7 +3126,7 @@ select option {
   overflow-y: auto;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .autosuggest__results-container ul {
     margin-left: 0;
   }
@@ -3208,7 +3281,7 @@ select option {
   }
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .promo-notification .alert {
     top: 75px;
   }
@@ -3218,7 +3291,7 @@ select option {
   top: 5px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .dropdown {
     width: 100% !important;
   }
@@ -3242,7 +3315,7 @@ select option {
   right: 0;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .dropdown--sub-menu {
     width: 100%;
   }
@@ -3306,7 +3379,7 @@ select option {
   display: block;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .dropdown:hover .dropdown--sub-menu {
     height: 260px;
   }
@@ -3338,7 +3411,7 @@ select option {
           align-items: center;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 1199px) {
   .gamehub-language {
     padding-left: 15px;
     padding-bottom: 20px;
@@ -3366,6 +3439,23 @@ select option {
           justify-content: center;
   color: #FFD715;
   cursor: pointer;
+}
+
+.rating-notification--list {
+  padding: 16px;
+}
+
+.rating-notification--list:hover {
+  background: #FFD715;
+  color: #0B0F18;
+}
+
+.rating-notification--list:hover p:last-of-type {
+  color: #0B0F18 !important;
+}
+
+.rating-notification--list:hover p:last-of-type span {
+  color: #0B0F18 !important;
 }
 
 .slider-section {
@@ -10582,6 +10672,29 @@ html {
 
 .refer-history {
   margin-top: 50px;
+}
+
+.my-rating--dashboard {
+  padding: 50px 36px;
+}
+
+@media (max-width: 575px) {
+  .my-rating--dashboard {
+    padding: 20px;
+  }
+}
+
+.rating-list {
+  padding-bottom: 180px;
+}
+
+.rating-list--box {
+  border-bottom: 1px solid #ffffff80;
+  margin-bottom: 20px;
+}
+
+.rating-list--box:last-of-type {
+  border-bottom: 0;
 }
 
 .page_404 {

@@ -4,13 +4,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-10 mx-auto mt-3">
-                    <a href="#" class="text-white gil-bold mb-4 d-flex align-items-center">
+                    <router-link to="/profile" class="text-white gil-bold mb-4 d-flex align-items-center" @click.native="clickOnRating">
                         <svg class="mr-2" width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M18.9999 9.293L4.41394 9.293L9.70694 14.586L8.29294 16L0.585938 8.293L8.29294 0.586L9.70694 2L4.41394 7.293L18.9999 7.293L18.9999 9.293Z" fill="white"/>
                         </svg>
                         Back
-
-                    </a>
+                    </router-link>
                     <div class="rating-list">
                         <h5 class="gray-text f-s-24 gil-medium mb-5">Renting review list (32)</h5>
 
@@ -88,13 +87,23 @@
 </template>
 
 <script>
-
     export default {
         data() {
             return {
 
             }
+        },
+        methods: {
+            clickOnRating() {
+                var auth = this.$store.getters.ifAuthenticated;
+                if (!auth) {
+                    this.$router.push('/lend-notice');
+                    return
+                }
+                this.$root.$emit('userRating');
+            },
         }
+
     }
 </script>
 

@@ -414,7 +414,7 @@ let router = new Router({
             name: 'ratingList',
             component: RatingList,
             meta: {
-                requiresAuth: false
+                requiresAuth: true
             }
         },
         {

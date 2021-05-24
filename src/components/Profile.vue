@@ -1001,42 +1001,29 @@
                                         <!-- Rating history -->
                                         <div class="my-earning--payment-history">
                                             <h4 class="my-earning--payment-history--heading mb-4">Waiting for rate</h4>
-                                            <div class="table-responsive" v-if="transactions.length">
+                                            <div class="table-responsive" v-if="ratingList.length">
                                                 <table class="table my-earning--payment-history--table">
                                                     <thead>
                                                         <tr>
                                                         <th scope="col">Order id</th>
                                                         <th scope="col">Game name</th>
                                                         <th scope="col">Order type</th>
-                                                        <th scope="col">Order complete date</th>
+                                                        <th scope="col">Order completed</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>12263645</td>
-                                                            <td>Ghost of Minhaj</td>
-                                                            <td>Lending</td>
-                                                            <td>25 Feb, 2021</td>
-                                                            <td><a href="#" class="text-secondery" data-toggle="modal" data-target="#exampleModal">Rate now</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>12263645</td>
-                                                            <td>Ghost of Minhaj</td>
-                                                            <td>Lending</td>
-                                                            <td>25 Feb, 2021</td>
-                                                            <td><a href="#" class="text-secondery">Rate now</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>12263645</td>
-                                                            <td>Ghost of Minhaj</td>
-                                                            <td>Lending</td>
-                                                            <td>25 Feb, 2021</td>
-                                                            <td><a href="#" class="text-secondery">Rate now</a></td>
+                                                        <tr v-for="(rating, index) in ratingList" >
+                                                            <td>{{ rating.lend.data.order.data.order_no }}</td>
+                                                            <td>{{ rating.lend.data.rent.data.game.data.name }}</td>
+                                                            <td v-if="rating.lender_id == $store.state.user.id">Lending</td>
+                                                            <td v-else>Renting</td>
+                                                            <td>{{ formattedReturnDate(rating.lend.data.lend_date) }}</td>
+                                                            <td><a href="#" class="text-secondery" data-toggle="modal" data-target="#exampleModal" @click="setRatingData(rating)">Rate now</a></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                                 <!-- Rating box  -->
-                                                <div class="modal fade rating-box-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal fade rating-box-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" v-if="ratingData.value != null">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content bg-game-details position-relative p-3 border-2 border-secondery br-0">
                                                         <div class="modal-header justify-content-center border-0 p-0 mt-4">
@@ -1049,33 +1036,44 @@
                                                                 </span>
                                                             </button>
                                                         </div>
-                                                        <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4">
-                                                            <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" alt="img" class="img-fluid">
+                                                        <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-if="ratingData.value.lender_id != $store.state.user.id">
+                                                            <img :src="ratingData.value.lender.data.image" alt="img" class="img-fluid">
                                                         </div>
-                                                        <div class="text-center">
-                                                            <p class="f-s-20 mb-1 gil-bold">Rakibul H. Rocky</p>
+                                                        <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-else>
+                                                            <img :src="ratingData.value.renter.data.image" alt="img" class="img-fluid">
+                                                        </div>
+                                                        <div class="text-center" v-if="ratingData.value.lender_id != $store.state.user.id">
+                                                            <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.lender.data.name}} {{ ratingData.value.lender.data.last_name}}</p>
                                                             <p class="gil-bold">Lender</p>
                                                         </div>
+                                                        <div class="text-center" v-else>
+                                                            <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.renter.data.name}} {{ ratingData.value.renter.data.last_name}}</p>
+                                                            <p class="gil-bold">Renter</p>
+                                                        </div>
                                                         <div class="text-center">
-                                                            <p class="f-s-20 mb-1 gil-bold">Assassin's Creed 4 black flag</p>
-                                                            <p class="gil-bold">Game name</p>
+                                                            <p class="f-s-20 mb-1 gil-bold">{{ ratingData.value.lend.data.rent.data.game.data.name }}</p>
                                                         </div>
                                                         <div class="d-flex justify-content-center align-items-center mb-5">
-                                                            <span class="mr-3"><img src="../assets/img/react1.png" alt="profile icon"></span>
-                                                            <span class="mr-3"><img src="../assets/img/react2.png" alt="profile icon"></span>
-                                                            <span class="mr-3"><img src="../assets/img/react3.png" alt="profile icon"></span>
-                                                            <span class="mr-3"><img src="../assets/img/react4.png" alt="profile icon"></span>
-                                                            <span class="mr-3"><img src="../assets/img/react5.png" alt="profile icon"></span>
+                                                            <span class="mr-3"><img src="../assets/img/react1.png" alt="profile icon" @click="ratingData.rating = 1"></span>
+                                                            <span class="mr-3"><img src="../assets/img/react2.png" alt="profile icon" @click="ratingData.rating = 2"></span>
+                                                            <span class="mr-3"><img src="../assets/img/react3.png" alt="profile icon" @click="ratingData.rating = 3"></span>
+                                                            <span class="mr-3"><img src="../assets/img/react4.png" alt="profile icon" @click="ratingData.rating = 4"></span>
+                                                            <span class="mr-3"><img src="../assets/img/react5.png" alt="profile icon" @click="ratingData.rating = 5"></span>
                                                         </div>
-                                                        <div class="comment-box">
-                                                            <div class="form-group">
-                                                                <label for="comment-box" class="d-block gil-bold">Comment Box</label>
-                                                                <textarea name="" id="comment-box" rows="3" class="w-100 border-1 border-secondery primary-bg text-white p-2 focus-primary"></textarea>
+                                                            <form class="" @submit.prevent="ratingSubmit" method="post">
+                                                            <div class="comment-box">
+                                                                <div class="form-group">
+                                                                    <label for="comment-box" class="d-block gil-bold">Comment Box</label>
+                                                                    <textarea type="text" id="comment-box" rows="3" class="w-100 border-1 border-secondery primary-bg text-white p-2 focus-primary" v-model="ratingData.comment"></textarea>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                        <div>
-                                                            <a href="#" class="bg-secondery primary-text text-center py-2 w-100 d-block gil-medium primary-text-hover">Done</a>
-                                                        </div>
+                                                            <div>
+                                                                <span class="text-center d-block text-danger" v-if="invalidRating">Please Select Rating/comment</span>
+                                                            </div>
+                                                            <div>
+                                                                <button type="submit" class="bg-secondery primary-text text-center py-2 w-100 d-block gil-medium primary-text-hover">Done</button>
+                                                            </div>
+                                                        </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1120,6 +1118,12 @@
         data() {
             return {
                 credentialModalShow: false,
+                invalidRating: false,
+                ratingData: {
+                    value: null,
+                    rating: 0,
+                    comment: '',
+                },
                 imageModalShow: false,
                 diskImageRequired: false,
                 userGameId: '',
@@ -1199,6 +1203,7 @@
                 walletUsableAmount: 0,
                 walletHistory: [],
                 copyUrl: '',
+                ratingList: [],
 
             }
         },
@@ -1210,6 +1215,37 @@
             },
         },
         methods: {
+            ratingSubmit () {
+                this.invalidRating = false;
+                if (this.ratingData.rating === 0 && this.ratingData.comment === ''){
+                    this.invalidRating = true;
+                    return;
+                }
+                console.log(this.ratingData.comment);
+                var config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+
+                let data = {
+                    id: this.ratingData.value.id,
+                    rating: this.ratingData.rating,
+                    comment: this.ratingData.comment,
+                };
+
+                this.$api.post('user-rating', data, config).then(response => {
+                    this.$toaster.success( response.data.message );
+                })
+                this.$router.push('/profile');
+                this.$root.$emit('userRating');
+            },
+            setRatingData (data) {
+                this.ratingData.value = data;
+                console.log(this.ratingData.value);
+                console.log(this.ratingData.rating);
+                console.log(this.ratingData.comment);
+            },
             onCopy: function (e) {
                 // this.$toaster.success("Link successfully copied !");
                 this.$toaster.success( this.$t('link_copied_successfully', this.$store.state.locale) );
@@ -1789,13 +1825,18 @@
             }
         },
         created() {
+            window.scrollTo(0,0);
             this.copyUrl = process.env.VUE_APP_BASE;
             let config = {
                 headers: {
                     'Authorization': 'Bearer ' + this.$store.state.token
                 }
             };
-            window.scrollTo(0,0);
+            this.$api.get('rating-check?include=lend.rent.game,lend.order,lender,renter', config).then(response => {
+                this.ratingList = response.data.data;
+                console.log('this.ratingList');
+                console.log(this.ratingList);
+            });
             this.rentCheck();
             this.$root.$on('rentPost', () => {
                 $('#v-pills-overview-tab').removeClass('active');
@@ -1816,6 +1857,9 @@
                 $('#v-pills-refer-tab').removeClass('active');
                 $('#v-pills-refer').removeClass('active');
                 $('#v-pills-refer').removeClass('show');
+                $('#v-pills-rating-tab').removeClass('active');
+                $('#v-pills-rating').removeClass('active');
+                $('#v-pills-rating').removeClass('show');
 
               });
 
@@ -1838,8 +1882,36 @@
                 $('#v-pills-refer-tab').removeClass('active');
                 $('#v-pills-refer').removeClass('active');
                 $('#v-pills-refer').removeClass('show');
+                $('#v-pills-rating-tab').removeClass('active');
+                $('#v-pills-rating').removeClass('active');
+                $('#v-pills-rating').removeClass('show');
 
               });
+
+            this.$root.$on('userRating', () => {
+                $('#v-pills-rating-tab').addClass('active');
+                $('#v-pills-rating').addClass('active');
+                $('#v-pills-rating').addClass('show');
+                $('#v-pills-edit-profile-tab').removeClass('active');
+                $('#v-pills-edit-profile').removeClass('active');
+                $('#v-pills-edit-profile').removeClass('show');
+                $('#v-pills-overview-tab').removeClass('active');
+                $('#v-pills-overview').removeClass('active');
+                $('#v-pills-overview').removeClass('show');
+                $('#v-pills-post-rent-tab').removeClass('active');
+                $('#v-pills-post-rent').removeClass('show');
+                $('#v-pills-post-rent').removeClass('active');
+                $('#v-pills-dashboard-tab').removeClass('active');
+                $('#v-pills-dashboard').removeClass('active');
+                $('#v-pills-dashboard').removeClass('show');
+                $('#v-pills-my-earning-tab').removeClass('active');
+                $('#v-pills-my-earning').removeClass('show');
+                $('#v-pills-my-earning').removeClass('show');
+                $('#v-pills-refer-tab').removeClass('active');
+                $('#v-pills-refer').removeClass('active');
+                $('#v-pills-refer').removeClass('show');
+
+            });
             //Cover image
             this.$api.get('cover-image').then(response =>
             {

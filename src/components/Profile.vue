@@ -1237,8 +1237,7 @@
                 this.$api.post('user-rating', data, config).then(response => {
                     this.$toaster.success( response.data.message );
                 })
-                this.$router.push('/profile');
-                this.$root.$emit('userRating');
+                this.ratingCheck();
             },
             setRatingData (data) {
                 this.ratingData.value = data;
@@ -1822,6 +1821,20 @@
                 {
                     this.lends = response.data;
                 });
+            },
+            ratingCheck() {
+                this.ratingList = [];
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+
+                this.$api.get('rating-check?include=lend.rent.game,lend.order,lender,renter', config).then(response => {
+                    this.ratingList = response.data.data;
+                    console.log('this.ratingList');
+                    console.log(this.ratingList);
+                });
             }
         },
         created() {
@@ -1832,11 +1845,7 @@
                     'Authorization': 'Bearer ' + this.$store.state.token
                 }
             };
-            this.$api.get('rating-check?include=lend.rent.game,lend.order,lender,renter', config).then(response => {
-                this.ratingList = response.data.data;
-                console.log('this.ratingList');
-                console.log(this.ratingList);
-            });
+            this.ratingCheck();
             this.rentCheck();
             this.$root.$on('rentPost', () => {
                 $('#v-pills-overview-tab').removeClass('active');

@@ -16,12 +16,23 @@
     }
 }
 
-.rating-icon {
-    background: $gray;
-    border-radius: 50%;
-    overflow: hidden;
-    width: 32px;
+.vue-react {
+    .vue-feedback-reaction {
+        .reaction {
+            @include for-max-575 {
+                padding: 0;
+            }
+        }
+    }
 }
-.active-rating {
-    background: $secondery;
+.vue-star-rating-rating-text {
+    font-size: 40px;
+    @include gil-medium;
+    margin-left: 32px;
+    color: $secondery;
+}
+.vue-star-rating-star {
+    .vue-star-rating-star {
+        margin-right: 10px;
+    }
 }

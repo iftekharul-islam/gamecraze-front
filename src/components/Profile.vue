@@ -955,12 +955,12 @@
                                         <div class="my-rating--dashboard secondery-border d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-5">
                                             <div class="my-earning--dashboard--content mb-5 mb-md-0">
                                                 <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Renter</span> your rating</h4>
-                                                <star-rating :read-only="true" :rating="4"></star-rating>
+                                                <star-rating :read-only="true" :rating="4" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
                                                 <router-link to="/renter-rating-list" class="text-secondery mt-4 d-inline-block">View list</router-link>
                                             </div>
                                             <div class="my-earning--dashboard--content">
                                                 <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Lender</span> your rating</h4>
-                                                <star-rating :read-only="true" :rating="3"></star-rating>
+                                                <star-rating :read-only="true" :rating="3" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
                                                 <router-link to="/lender-rating-list" class="text-secondery mt-4 d-inline-block">View list</router-link>
                                             </div>
                                         </div>
@@ -993,8 +993,8 @@
                                         <div v-if="ratingPopupModal">
                                             <transition name="modal">
                                                 <div class="modal-mask rating-box-modal position-fixed top-0 left-0 w-100 h-100 m-auto z-index-9999">
-                                                    <div class="modal-wrapper h-100">
-                                                        <div class="modal-dialog modal-dialog-centered h-100" role="document">
+                                                    <div class="modal-wrapper bg-black-opa overflow-auto h-100">
+                                                        <div class="modal-dialog modal-dialog-centered h-100 mt-a-16" role="document">
                                                             <div class="modal-content max-500 bg-game-details border-2 border-secondery br-0">
                                                                 <button type="button" class="close position-absolute right-20 top-20" data-dismiss="modal" aria-label="Close">
                                                                     <span aria-hidden="true" @click="ratingPopupModal = false" class="close-modal">
@@ -1010,6 +1010,7 @@
                                                                     </div>
                                                                     <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-else>
                                                                         <img :src="ratingData.value.renter.data.image" alt="img" class="img-fluid">
+                                                                         <!-- <img src="../assets/img/avatar.png" class="img-fluid gamehub--logo" alt="Gamehub Logo logo"> -->
                                                                     </div>
                                                                     <div class="text-center" v-if="ratingData.value.lender_id != $store.state.user.id">
                                                                         <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.lender.data.name}} {{ ratingData.value.lender.data.last_name}}</p>
@@ -1022,7 +1023,7 @@
                                                                     <div class="text-center">
                                                                         <p class="f-s-20 mb-1 gil-bold">{{ ratingData.value.lend.data.rent.data.game.data.name }}</p>
                                                                     </div>
-                                                                    <div class="d-flex justify-content-center align-items-center mb-5">
+                                                                    <div class="d-flex vue-react justify-content-center align-items-center mb-5">
                                                                         <vue-feedback-reaction v-model="ratingData.feedback" :labels="['Very Poor','Poor','Average','Good','Excellent']"/>
                                                                     </div>
                                                                     <form class="" @submit.prevent="ratingSubmit" method="post">

@@ -1456,6 +1456,10 @@
   background: #141A27;
 }
 
+.bg-black-opa {
+  background: #00000080;
+}
+
 .gray-header {
   background: #c7c7c7;
 }
@@ -10725,15 +10729,21 @@ html {
   max-width: 500px;
 }
 
-.rating-icon {
-  background: #808080;
-  border-radius: 50%;
-  overflow: hidden;
-  width: 32px;
+@media (max-width: 575px) {
+  .vue-react .vue-feedback-reaction .reaction {
+    padding: 0;
+  }
 }
 
-.active-rating {
-  background: #FFD715;
+.vue-star-rating-rating-text {
+  font-size: 40px;
+  font-family: gilroy-medium;
+  margin-left: 32px;
+  color: #FFD715;
+}
+
+.vue-star-rating-star .vue-star-rating-star {
+  margin-right: 10px;
 }
 
 .rating-list {

@@ -955,12 +955,12 @@
                                         <div class="my-rating--dashboard secondery-border d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-5">
                                             <div class="my-earning--dashboard--content mb-5 mb-md-0">
                                                 <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Renter</span> your rating</h4>
-                                                <star-rating :read-only="true" :rating="4" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
+                                                <star-rating :read-only="true" :rating="rentingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
                                                 <router-link to="/renter-rating-list" class="text-secondery mt-4 d-inline-block">View list</router-link>
                                             </div>
                                             <div class="my-earning--dashboard--content">
                                                 <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Lender</span> your rating</h4>
-                                                <star-rating :read-only="true" :rating="3" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
+                                                <star-rating :read-only="true" :rating="lendingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
                                                 <router-link to="/lender-rating-list" class="text-secondery mt-4 d-inline-block">View list</router-link>
                                             </div>
                                         </div>
@@ -1091,6 +1091,8 @@
             return {
                 credentialModalShow: false,
                 invalidRating: false,
+                lendingAvg: 0,
+                rentingAvg: 0,
                 ratingData: {
                     value: null,
                     feedback: '',
@@ -1212,15 +1214,13 @@
 
                 this.$api.post('user-rating', data, config).then(response => {
                     this.$toaster.success( response.data.message );
-                })
-                this.ratingCheck();
+                    this.ratingCheck();
+                    this.ratingPopupModal = false;
+                });
             },
             setRatingData (data) {
                 this.ratingPopupModal = true;
                 this.ratingData.value = data;
-                console.log(this.ratingData.value);
-                console.log(this.ratingData.rating);
-                console.log(this.ratingData.comment);
             },
             onCopy: function (e) {
                 // this.$toaster.success("Link successfully copied !");
@@ -1812,6 +1812,19 @@
                     console.log('this.ratingList');
                     console.log(this.ratingList);
                 });
+
+                this.$api.get('avg-renter-rating', config).then(response => {
+                    this.rentingAvg = response.data.avg;
+                    console.log('this.rentingAvg');
+                    console.log(this.rentingAvg);
+                });
+                this.$api.get('avg-lender-rating', config).then(response => {
+                    this.lendingAvg = response.data.avg;
+                    console.log('this.lendingAvg');
+                    console.log(this.lendingAvg);
+                });
+
+
             }
         },
         created() {

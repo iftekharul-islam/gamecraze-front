@@ -404,6 +404,9 @@
 .mb-a-5 {
     margin-bottom: 1.875rem;
 }
+.mb-a-5-5 {
+    margin-bottom: 2rem;
+}
 
 .mb-a-6 {
     margin-bottom: 2.188rem;
@@ -1671,6 +1674,9 @@ html {
     z-index: 999;
 }
 
+.z-index-9999 {
+    z-index: 9999;
+}
 // height
 .h-0 {
     height: 0;
@@ -1762,6 +1768,9 @@ html {
 }
 .max-400 {
     max-width: 400px;
+}
+.max-500 {
+    max-width: 500px;
 }
 .w-148-100 {
     width: 148px;
@@ -2405,6 +2414,11 @@ select {
 }
 .rating-not-given {
     fill: $gray;
+    stroke: $gray;
+}
+.black-fill {
+    fill: $text-black;
+    stroke: $text-black;
 }
 // focus
 .focus-primary {
@@ -2412,6 +2426,12 @@ select {
         background: $primary;
     }
 }
+
+//outline
+.outline-none {
+    outline: none;
+}
+
 // cursor
 .pointer {
     cursor: pointer;

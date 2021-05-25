@@ -6,3 +6,22 @@
         }
     }
 }
+.rating-box-modal {
+    .modal-dialog {
+        .modal-content {
+            height: initial;
+            padding: 40px 20px 20px 20px;
+            max-width: 500px;
+        }
+    }
+}
+
+.rating-icon {
+    background: $gray;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 32px;
+}
+.active-rating {
+    background: $secondery;
+}

@@ -1018,12 +1018,145 @@
                                                             <td v-if="rating.lender_id == $store.state.user.id">Lending</td>
                                                             <td v-else>Renting</td>
                                                             <td>{{ formattedReturnDate(rating.lend.data.lend_date) }}</td>
-                                                            <td><a href="#" class="text-secondery" data-toggle="modal" data-target="#exampleModal" @click="setRatingData(rating)">Rate now</a></td>
+                                                            <td><a href="#" class="text-secondery"  @click="ratingPopupModal(true)">Rate now</a></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                                 <!-- Rating box  -->
-                                                <div class="modal fade rating-box-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" v-if="ratingData.value != null">
+
+                                        <div v-if="ratingPopupModal">
+                                            <transition name="modal">
+                                                <div class="modal-mask rating-box-modal position-fixed top-0 left-0 w-100 h-100 m-auto z-index-9999">
+                                                    <div class="modal-wrapper h-100">
+                                                        <div class="modal-dialog modal-dialog-centered h-100" role="document">
+                                                            <div class="modal-content max-500 bg-game-details border-2 border-secondery br-0">
+                                                                <button type="button" class="close position-absolute right-20 top-20" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true" @click="ratingPopupModal = false" class="close-modal">
+                                                                        <svg class="secondery-border rounded-circle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M14.2427 4.34315L10.0001 8.58579L5.75744 4.34315L4.34323 5.75736L8.58587 10L4.34323 14.2426L5.75744 15.6569L10.0001 11.4142L14.2427 15.6569L15.6569 14.2426L11.4143 10L15.6569 5.75736L14.2427 4.34315Z" fill="#FFD715"/>
+                                                                    </svg>
+                                                                    </span>
+                                                                </button>
+                                                                <div class="modal-body-content">
+                                                                    <h5 class="modal-title text-secondery text-center f-s-32 mb-4" id="exampleModalLabel">Rate please</h5>
+                                                                    <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4">
+                                                                        <img src="https://cdn.fastly.picmonkey.com/contentful/h6goo9gw1hh6/2sNZtFAWOdP1lmQ33VwRN3/24e953b920a9cd0ff2e1d587742a2472/1-intro-photo-final.jpg?w=800&q=70" alt="img" class="img-fluid h-100">
+                                                                    </div>
+                                                                    <div class="text-center mb-a-5-5">
+                                                                        <p class="f-s-20 mb-1 gil-bold" >Rakibul H. Rocky</p>
+                                                                        <p class="gil-bold mb-0">Lender</p>
+                                                                    </div>
+                                                                    
+                                                                    <div class="text-center mb-a-5-5">
+                                                                        <p class="f-s-20 mb-1 gil-bold">Assassin's Creed 4 black flag</p>
+                                                                         <p class="gil-bold mb-0">Gamer name</p>
+                                                                    </div>
+                                                                    <div class="d-flex justify-content-center align-items-center mb-5">
+                                                                        <span class="mr-3">
+                                                                            <svg class="rating-icon black-fill active-rating" viewBox="0 0 368 368" style="enable-background:new 0 0 368 368;" xml:space="preserve">
+                                                                                <g>
+                                                                                    <path d="M184,224c-29.824,0-58.232,12.632-77.96,34.664c-2.944,3.296-2.664,8.344,0.624,11.296c1.52,1.368,3.432,2.04,5.336,2.04
+                                                                                        c2.192,0,4.384-0.896,5.96-2.664C134.656,250.688,158.728,240,184,240c25.28,0,49.352,10.688,66.04,29.336
+                                                                                        c2.944,3.296,8.008,3.568,11.296,0.624c3.288-2.944,3.568-8,0.624-11.296C242.24,236.64,213.832,224,184,224z"/>
+                                                                                    <path d="M184,0C82.536,0,0,82.544,0,184s82.536,184,184,184s184-82.544,184-184S285.464,0,184,0z M184,352
+                                                                                        c-92.632,0-168-75.36-168-168S91.368,16,184,16s168,75.36,168,168S276.632,352,184,352z"/>
+                                                                                    <path d="M280,128c-4.424,0-8,3.584-8,8c0,13.232-10.768,24-24,24s-24-10.768-24-24c0-4.416-3.576-8-8-8s-8,3.584-8,8
+                                                                                        c0,22.056,17.944,40,40,40c22.056,0,40-17.944,40-40C288,131.584,284.424,128,280,128z"/>
+                                                                                    <path d="M160,136c0-4.416-3.576-8-8-8s-8,3.584-8,8c0,13.232-10.768,24-24,24s-24-10.768-24-24c0-4.416-3.576-8-8-8s-8,3.584-8,8
+                                                                                        c0,22.056,17.944,40,40,40C142.056,176,160,158.056,160,136z"/>
+                                                                                </g>
+                                                                            </svg>
+
+                                                                        </span>
+                                                                        <span class="mr-3">
+                                                                            <svg class="rating-icon black-fill" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                                                viewBox="0 0 368 368" style="enable-background:new 0 0 368 368;" xml:space="preserve">
+                                                                                    <g>
+                                                                                        <path d="M184,0C82.544,0,0,82.544,0,184s82.544,184,184,184s184-82.544,184-184S285.456,0,184,0z M184,352
+                                                                                            c-92.64,0-168-75.36-168-168S91.36,16,184,16s168,75.36,168,168S276.64,352,184,352z"/>
+                                                                                        <path d="M120,176c13.232,0,24-10.768,24-24s-10.768-24-24-24s-24,10.768-24,24S106.768,176,120,176z M120,144
+                                                                                            c4.408,0,8,3.592,8,8s-3.592,8-8,8s-8-3.592-8-8S115.592,144,120,144z"/>
+                                                                                        <path d="M248,128c-13.232,0-24,10.768-24,24s10.768,24,24,24s24-10.768,24-24S261.232,128,248,128z M248,160
+                                                                                            c-4.408,0-8-3.592-8-8s3.592-8,8-8c4.408,0,8,3.592,8,8S252.408,160,248,160z"/>
+                                                                                        <path d="M264,224H104c-4.416,0-8,3.584-8,8c0,4.416,3.584,8,8,8h160c4.416,0,8-3.584,8-8C272,227.584,268.416,224,264,224z"/>
+                                                                                    </g>
+                                                                            </svg>
+
+                                                                        </span>
+                                                                        <span class="mr-3">
+                                                                            <svg class="rating-icon black-fill" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                                                viewBox="0 0 368 368" style="enable-background:new 0 0 368 368;" xml:space="preserve">
+                                                                                <g>
+                                                                                    <path d="M184,0C82.544,0,0,82.544,0,184s82.544,184,184,184s184-82.544,184-184S285.456,0,184,0z M184,352
+                                                                                        c-92.64,0-168-75.36-168-168S91.36,16,184,16s168,75.36,168,168S276.64,352,184,352z"/>
+                                                                                    <path d="M144,152c0-13.232-10.768-24-24-24s-24,10.768-24,24s10.768,24,24,24S144,165.232,144,152z M112,152c0-4.408,3.592-8,8-8
+                                                                                        s8,3.592,8,8s-3.592,8-8,8S112,156.408,112,152z"/>
+                                                                                    <path d="M248,128c-13.232,0-24,10.768-24,24s10.768,24,24,24s24-10.768,24-24S261.232,128,248,128z M248,160
+                                                                                        c-4.408,0-8-3.592-8-8s3.592-8,8-8c4.408,0,8,3.592,8,8S252.408,160,248,160z"/>
+                                                                                    <path d="M261.336,226.04c-3.296-2.952-8.36-2.664-11.296,0.624C233.352,245.312,209.288,256,184,256
+                                                                                        c-25.28,0-49.352-10.688-66.04-29.336c-2.952-3.288-8-3.576-11.296-0.624c-3.296,2.944-3.568,8-0.624,11.296
+                                                                                        C125.76,259.368,154.176,272,184,272c29.832,0,58.248-12.64,77.96-34.664C264.904,234.04,264.624,228.984,261.336,226.04z"/>
+                                                                                </g>
+                                                                            </svg>
+
+                                                                        </span>
+                                                                        <span class="mr-3">
+                                                                            <svg class="rating-icon black-fill" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                                                viewBox="0 0 368 368" style="enable-background:new 0 0 368 368;" xml:space="preserve">
+                                                                                    <g>
+                                                                                        <path d="M261.336,226.04c-3.296-2.952-8.36-2.664-11.296,0.624C233.352,245.312,209.288,256,184,256
+                                                                                            c-25.28,0-49.352-10.688-66.04-29.336c-2.952-3.288-8-3.576-11.296-0.624c-3.296,2.944-3.568,8-0.624,11.296
+                                                                                            C125.76,259.368,154.176,272,184,272c29.832,0,58.248-12.64,77.96-34.664C264.904,234.04,264.624,228.984,261.336,226.04z"/>
+                                                                                        <path d="M184,0C82.544,0,0,82.544,0,184s82.544,184,184,184s184-82.544,184-184S285.456,0,184,0z M184,352
+                                                                                            c-92.64,0-168-75.36-168-168S91.36,16,184,16s168,75.36,168,168S276.64,352,184,352z"/>
+                                                                                        <path d="M248,128c-22.056,0-40,17.944-40,40c0,4.416,3.584,8,8,8c4.416,0,8-3.584,8-8c0-13.232,10.768-24,24-24s24,10.768,24,24
+                                                                                            c0,4.416,3.584,8,8,8c4.416,0,8-3.584,8-8C288,145.944,270.056,128,248,128z"/>
+                                                                                        <path d="M144,168c0,4.416,3.584,8,8,8s8-3.584,8-8c0-22.056-17.944-40-40-40c-22.056,0-40,17.944-40,40c0,4.416,3.584,8,8,8
+                                                                                            s8-3.584,8-8c0-13.232,10.768-24,24-24S144,154.768,144,168z"/>
+                                                                                    </g>
+                                                                            </svg>
+
+                                                                        </span>
+                                                                        <span class="mr-3">
+                                                                            <svg class="rating-icon black-fill" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                                                                viewBox="0 0 368 368" style="enable-background:new 0 0 368 368;" xml:space="preserve">
+                                                                                    <g>
+                                                                                        <path d="M184,0C82.536,0,0,82.544,0,184s82.536,184,184,184s184-82.544,184-184S285.464,0,184,0z M184,352
+                                                                                            c-92.632,0-168-75.36-168-168S91.368,16,184,16s168,75.36,168,168S276.632,352,184,352z"/>
+                                                                                        <path d="M296,176H72c-4.424,0-8,3.584-8,8c0,66.168,53.832,120,120,120s120-53.832,120-120C304,179.584,300.424,176,296,176z
+                                                                                            M184,288c-54.656,0-99.592-42.376-103.696-96h207.392C283.592,245.624,238.656,288,184,288z"/>
+                                                                                        <path d="M216,144h48c4.424,0,8-3.584,8-8s-3.576-8-8-8h-33.056l23.712-35.56c2.456-3.672,1.464-8.648-2.216-11.096
+                                                                                            c-3.696-2.456-8.656-1.456-11.096,2.216l-32,48c-1.632,2.456-1.792,5.608-0.4,8.208C210.336,142.368,213.048,144,216,144z"/>
+                                                                                        <path d="M104,144h48c2.952,0,5.664-1.624,7.056-4.224c1.392-2.6,1.232-5.76-0.4-8.208l-32-48
+                                                                                            c-2.448-3.672-7.416-4.672-11.096-2.216c-3.68,2.448-4.672,7.416-2.216,11.096L137.056,128H104c-4.424,0-8,3.584-8,8
+                                                                                            S99.576,144,104,144z"/>
+                                                                                    </g>
+                                                                            </svg>
+
+                                                                        </span>
+                                                                    </div>
+                                                                        <form class="" method="post">
+                                                                        <div class="comment-box">
+                                                                            <div class="form-group">
+                                                                                <label for="comment-box" class="d-block gil-bold">Comment Box</label>
+                                                                                <textarea type="text" id="comment-box" rows="3" class="w-100 border-1 border-secondery primary-bg text-white p-2 focus-primary"></textarea>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div>
+                                                                            <!-- <span class="text-center d-block text-danger">Please Select Rating/comment</span> -->
+                                                                        </div>
+                                                                        <div>
+                                                                            <button type="submit" class="bg-secondery primary-text text-center py-2 w-100 d-block gil-medium primary-text-hover outline-none border-0">Done</button>
+                                                                        </div>
+                                                                    </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </transition>
+                                        </div>
+                                                <!-- <div class="modal fade rating-box-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" v-if="ratingData.value != null">
                                                     <div class="modal-dialog modal-dialog-centered">
                                                         <div class="modal-content bg-game-details position-relative p-3 border-2 border-secondery br-0">
                                                         <div class="modal-header justify-content-center border-0 p-0 mt-4">
@@ -1076,7 +1209,8 @@
                                                         </form>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> -->
+
                                             </div>
                                             <span class="text-center d-block mt-a-18" v-else>{{ $t('no_trans_found', $store.state.locale) }}</span>
     <!--                                        <nav aria-label="Page navigation example" class="my-earning&#45;&#45;payment-history&#45;&#45;pagination">-->
@@ -1125,6 +1259,7 @@
                     comment: '',
                 },
                 imageModalShow: false,
+                ratingPopupModal: true,
                 diskImageRequired: false,
                 userGameId: '',
                 userPassword: '',

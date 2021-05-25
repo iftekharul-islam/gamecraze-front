@@ -10114,6 +10114,7 @@ html {
 
 .bullet-list {
   margin-top: -16px;
+  margin-left: 12px;
 }
 
 .bullet-list--item {

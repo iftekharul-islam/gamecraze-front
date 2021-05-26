@@ -18,7 +18,7 @@
                 </div>
             </div>
             <div class="cart-heading-empty" v-if="emptyNotice">
-                <h2 style="text-transform: uppercase">{{ $t('empty_inbox', $store.state.locale) }}</h2>
+                <h2 style="text-transform: uppercase">{{ $t('notice_empty_inbox', $store.state.locale) }}</h2>
             </div>
         </div>
     </section>

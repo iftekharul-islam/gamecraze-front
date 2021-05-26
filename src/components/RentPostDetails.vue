@@ -1,15 +1,23 @@
 <template>
     <div>
         <!-- games header section -->
-        <section class="user-profile-heading" v-if="post != null">
+        <section class="user-profile-heading position-relative" v-if="post != null">
             <img :src="post.game.data.coverImage" alt="profile bg" class="img-fluid user-profile-bg">
+            <div class="bg-slogan py-2 posiiton-absolute w-100">
+                <ul class="max-400 mx-auto d-flex align-items-center justify-content-between">
+                    <li class="p-0"><a href="#" class="text-secondery gil-bold f-s-28">RENT</a></li>
+                    <li class="p-0"><a href="#" class="text-secondery gil-bold f-s-28">LEND</a></li>
+                    <li class="p-0"><a href="#" class="text-secondery gil-bold f-s-28">EARN</a></li>
+                    <li class="p-0"><a href="#" class="text-secondery gil-bold f-s-28">PLAY</a></li>
+                </ul>
+            </div>
         </section>
 <!--        <section class="user-profile-heading" v-else>-->
 <!--            <img src="../assets/img/profile-bg.png" alt="profile bg" class="img-fluid user-profile-bg">-->
 <!--        </section>-->
         <div class="container games-view primary-bg">
             <div class="row max-400 mx-auto" v-if="post != null">
-                <div class="col-12 mb-5">
+                <div class="col-12 mb-5 pl-0">
                     <h3 class="f-s-28 gil-bold">{{ post.game.data.name }}</h3>
                 </div>
                 <div class="flex-1">
@@ -81,6 +89,15 @@
                     <router-link to="/login" class="btn--secondery w-100"
                        v-else-if="post.status == 1"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></router-link>
                 </div>
+
+                <div class="games-view--des mt-a-8">
+                    <p>Gamehub is a gaming platform that aims to make all games more easily available to gamers. We are attempting to bring together all types of video game lovers with the goal of becoming the most respected organization among enthusiasts.
+                     Using this unique platfrom you can rent your favorite games & lend the unused ones. I</p>
+                     <a href="#" class="opa-7 mt-3">Load more...</a>
+                </div>
+
+
+
                 <div v-if="rentModal">
                     <transition name="modal">
                         <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal share-post-modal">

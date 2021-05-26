@@ -24,7 +24,7 @@
 
                                             <label for="firstName">{{ $t('first_name', $store.state.locale) }}</label>
                                             <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
-                                                <input @keypress="isValidString($event)" type="text" class="form-control" id="firstName" value="" v-model="form.name">
+                                                <input @keypress="isValidString($event)" type="text" class="form-control" id="firstName" value="" v-model="form.name" placeholder="First Name">
                                                 <span v-if="errors.length" class="error-message first-name-error">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
@@ -32,7 +32,7 @@
                                         <div class="form-group col-md-6">
                                             <label for="LastName">{{ $t('last_name', $store.state.locale) }}</label>
                                             <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
-                                                <input @keypress="isValidString($event)" type="text" class="form-control" id="LastName" value="" v-model="form.lastName">
+                                                <input @keypress="isValidString($event)" type="text" class="form-control" id="LastName" value="" v-model="form.lastName" placeholder="Last Name">
                                                 <span v-if="errors.length" class="error-message last-name-error">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
@@ -42,7 +42,7 @@
                                         <label for="Phone">{{ $t('phone_number', $store.state.locale) }}</label>
                                         <ValidationProvider name="Phone Number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
 
-                                            <input @focus="changePhoneValidation" @keypress="isNumber($event)" type="text" class="form-control" id="Phone" value="" v-model="form.phone_number">
+                                            <input @focus="changePhoneValidation" @keypress="isNumber($event)" type="text" class="form-control" id="Phone" value="" v-model="form.phone_number" placeholder="Phone Number">
                                             <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
 
                                             <span class="error-message d-block" v-if="$store.state.numberExists">{{ $t('phone_number_exits', $store.state.locale) }}</span>

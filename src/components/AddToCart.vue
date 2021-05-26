@@ -411,9 +411,6 @@
                 spendWalletAmount: this.spendWalletAmount,
                 promoAmount: this.promoAmount,
             };
-
-            console.log(data);
-            return;
             this.$api.post('lend-game', data, config).then(response => {
                 if (response.data.error === false) {
                     this.$store.dispatch('clearCart');

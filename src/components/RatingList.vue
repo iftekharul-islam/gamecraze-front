@@ -22,12 +22,6 @@
                                     <p class="gray-text gil-bold">My feedback to Renter</p>
                                     <div class="d-flex align-items-center mb-4">
                                         <star-rating :read-only="true" :rating="rating.lender_rating" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
-<!--                                        <vue-feedback-reaction v-model="rating.lender_rating" :labels="['Very Poor','Poor','Average','Good','Excellent']"/>-->
-<!--                                        <span class="mr-3"><img src="../assets/img/react1.png" alt="profile icon"></span>-->
-<!--                                        <span class="mr-3"><img src="../assets/img/react2.png" alt="profile icon"></span>-->
-<!--                                        <span class="mr-3"><img src="../assets/img/react3.png" alt="profile icon"></span>-->
-<!--                                        <span class="mr-3"><img src="../assets/img/react4.png" alt="profile icon"></span>-->
-<!--                                        <span class="mr-3"><img src="../assets/img/react5.png" alt="profile icon"></span>-->
                                     </div>
                                     <p class="text-white">{{ rating.lender_comment }}</p>
                                 </div>
@@ -37,12 +31,6 @@
                                     <p class="gray-text gil-bold">Renter feedback</p>
                                     <div class="d-flex align-items-center mb-4">
                                         <star-rating :read-only="true" :rating="rating.renter_rating" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
-<!--                                        <vue-feedback-reaction :value="rating.renter_rating" :labels="['Very Poor','Poor','Average','Good','Excellent']"/>-->
-<!--                                        <span class="mr-3"><img src="../assets/img/react1.png" alt="profile icon"></span>-->
-<!--                                        <span class="mr-3"><img src="../assets/img/react2.png" alt="profile icon"></span>-->
-<!--                                        <span class="mr-3"><img src="../assets/img/react3.png" alt="profile icon"></span>-->
-<!--                                        <span class="mr-3"><img src="../assets/img/react4.png" alt="profile icon"></span>-->
-<!--                                        <span class="mr-3"><img src="../assets/img/react5.png" alt="profile icon"></span>-->
                                     </div>
                                     <p class="text-white">{{ rating.renter_comment }}</p>
                                 </div>
@@ -61,10 +49,9 @@
 </template>
 
 <script>
-    import { VueFeedbackReaction } from 'vue-feedback-reaction';
     import StarRating from 'vue-star-rating';
     export default {
-        components: {VueFeedbackReaction, StarRating},
+        components: {StarRating},
         data() {
             return {
                 lenderRating: [],

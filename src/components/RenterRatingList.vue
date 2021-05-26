@@ -21,11 +21,7 @@
                                     <p class="text-white mb-4 gil-bold">{{ formattedReturnDate(rating.lend.data.lend_date) }}</p>
                                     <p class="gray-text gil-bold">My feedback to lender</p>
                                     <div class="d-flex align-items-center mb-4">
-                                        <span class="mr-3"><img src="../assets/img/react1.png" alt="profile icon"></span>
-                                        <span class="mr-3"><img src="../assets/img/react2.png" alt="profile icon"></span>
-                                        <span class="mr-3"><img src="../assets/img/react3.png" alt="profile icon"></span>
-                                        <span class="mr-3"><img src="../assets/img/react4.png" alt="profile icon"></span>
-                                        <span class="mr-3"><img src="../assets/img/react5.png" alt="profile icon"></span>
+                                        <star-rating :read-only="true" :rating="rating.renter_rating" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
                                     </div>
                                     <p class="text-white">{{ rating.renter_comment }}</p>
                                 </div>
@@ -34,11 +30,7 @@
                                     <p class="text-white mb-4 gil-bold">{{ formattedReturnDate(rating.lend.data.lend_date) }}</p>
                                     <p class="gray-text gil-bold">Lender feedback</p>
                                     <div class="d-flex align-items-center mb-4">
-                                        <span class="mr-3"><img src="../assets/img/react1.png" alt="profile icon"></span>
-                                        <span class="mr-3"><img src="../assets/img/react2.png" alt="profile icon"></span>
-                                        <span class="mr-3"><img src="../assets/img/react3.png" alt="profile icon"></span>
-                                        <span class="mr-3"><img src="../assets/img/react4.png" alt="profile icon"></span>
-                                        <span class="mr-3"><img src="../assets/img/react5.png" alt="profile icon"></span>
+                                        <star-rating :read-only="true" :rating="rating.lender_rating" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
                                     </div>
                                     <p class="text-white">{{ rating.lender_comment }}</p>
                                 </div>
@@ -57,7 +49,9 @@
 </template>
 
 <script>
+    import StarRating from 'vue-star-rating';
     export default {
+        components: {StarRating},
         data() {
             return {
                 renterRating: [],

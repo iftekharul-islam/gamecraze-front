@@ -96,12 +96,27 @@
                     }
                 }
             }
+            &.dropdown {
+                &:hover {
+                    &::after {
+                        border-bottom-color: $secondery;
+                        @include for-min-1200 {
+                            transform: rotate(183deg);
+                        }
+                        transform: initial;
+                    }
+                }
+            }
+            &.show {
+                &::after {
+                    @include for-max-1199 {
+                        transform: rotate(183deg) !important;
+                    }
+                }
+            }
             &:hover {
                 a {
                     color: $secondery;
-                }
-                &::after {
-                    border-bottom-color: $secondery;
                 }
             }
         }
@@ -664,6 +679,7 @@
         justify-content: flex-start;
         display: none;
         right: 0;
+        border-radius: 0;
         @include for-max-1199 {
             width: 100%;
         }
@@ -712,7 +728,9 @@
     }
     &:hover {
         .dropdown--sub-menu {
-            display: block;
+            @include for-min-1200 {
+                display: block;
+            }
             @include for-max-1199 {
                 height: 260px;
             }

@@ -1452,6 +1452,10 @@
   background: #141A27;
 }
 
+.bg-slogan {
+  background: linear-gradient(90.05deg, rgba(11, 15, 24, 0.1) 0.78%, #0B0F18 48.87%, rgba(11, 15, 24, 0.1) 102.99%);
+}
+
 .gray-header {
   background: #c7c7c7;
 }
@@ -2613,12 +2617,28 @@ select option {
   }
 }
 
-.gamehub-menu-collapse > ul li:hover a {
-  color: #FFD715;
+.gamehub-menu-collapse > ul li.dropdown:hover::after {
+  border-bottom-color: #FFD715;
+  -webkit-transform: initial;
+          transform: initial;
 }
 
-.gamehub-menu-collapse > ul li:hover::after {
-  border-bottom-color: #FFD715;
+@media (min-width: 1200px) {
+  .gamehub-menu-collapse > ul li.dropdown:hover::after {
+    -webkit-transform: rotate(183deg);
+            transform: rotate(183deg);
+  }
+}
+
+@media (max-width: 1199px) {
+  .gamehub-menu-collapse > ul li.show::after {
+    -webkit-transform: rotate(183deg) !important;
+            transform: rotate(183deg) !important;
+  }
+}
+
+.gamehub-menu-collapse > ul li:hover a {
+  color: #FFD715;
 }
 
 .toggler-position {
@@ -3326,6 +3346,7 @@ select option {
           justify-content: flex-start;
   display: none;
   right: 0;
+  border-radius: 0;
 }
 
 @media (max-width: 1199px) {
@@ -3388,8 +3409,10 @@ select option {
   background: #FFD715;
 }
 
-.dropdown:hover .dropdown--sub-menu {
-  display: block;
+@media (min-width: 1200px) {
+  .dropdown:hover .dropdown--sub-menu {
+    display: block;
+  }
 }
 
 @media (max-width: 1199px) {
@@ -5499,7 +5522,7 @@ html {
 
 .contact-section {
   padding-top: 80px;
-  padding-bottom: 150px;
+  padding-bottom: 180px;
 }
 
 @media (max-width: 991px) {
@@ -5510,7 +5533,7 @@ html {
 
 @media (max-width: 575px) {
   .contact-section {
-    padding-bottom: 120px;
+    padding-bottom: 200px;
   }
 }
 
@@ -9226,7 +9249,7 @@ html {
   .cart-heading-empty {
     width: 60%;
     margin: auto;
-    margin-top: 7rem;
+    margin-top: 2rem;
   }
 }
 

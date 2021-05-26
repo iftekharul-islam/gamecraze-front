@@ -955,13 +955,13 @@
                                         <div class="my-rating--dashboard secondery-border d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-5">
                                             <div class="my-earning--dashboard--content mb-5 mb-md-0">
                                                 <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Renter</span> your rating</h4>
-                                                <star-rating :read-only="true" :rating="lendingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
-                                                <router-link to="/renter-rating-list" class="text-secondery mt-4 d-inline-block">View list</router-link>
+                                                <star-rating :read-only="true" :rating="rentingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
+                                                <router-link to="/lender-rating-list" class="text-secondery mt-4 d-inline-block">View list</router-link>
                                             </div>
                                             <div class="my-earning--dashboard--content">
                                                 <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Lender</span> your rating</h4>
-                                                <star-rating :read-only="true" :rating="rentingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
-                                                <router-link to="/lender-rating-list" class="text-secondery mt-4 d-inline-block">View list</router-link>
+                                                <star-rating :read-only="true" :rating="lendingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
+                                                <router-link to="/renter-rating-list" class="text-secondery mt-4 d-inline-block">View list</router-link>
                                             </div>
                                         </div>
                                         <!-- Rating history -->

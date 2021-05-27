@@ -77,11 +77,11 @@
                             <div class="d-flex flex-wrap align-items-center justify-content-between content">
                                 <div class="checkbox-parents">
                                     <input type="radio" id="cod" name="payment" value="cod" class="checkbox-parents--input" v-model="paymentMethod">
-                                    <label for="cod" class="checkbox-parents--label">Cash on Delivery </label>
+                                    <label for="cod" class="checkbox-parents--label">Cash on Delivery</label>
                                 </div>
                                 <div class="checkbox-parents">
-                                    <input type="radio" id="op" name="payment" value="online pay" class="checkbox-parents--input" v-model="paymentMethod">
-                                    <label for="op" class="checkbox-parents--label">Online payment </label>
+                                    <input type="radio" id="op" name="payment" value="bkashpay" class="checkbox-parents--input" v-model="paymentMethod">
+                                    <label for="op" class="checkbox-parents--label">Bkash payment</label>
                                 </div>
                                 <div class="checkbox-parents w-100 mt-3" v-if="availableWallet">
                                     <input type="checkbox" id="refer" @click="spendWalletExistAmount($event)" class="checkbox-parents--input">

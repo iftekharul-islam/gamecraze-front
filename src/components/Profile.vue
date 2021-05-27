@@ -956,12 +956,14 @@
                                             <div class="my-earning--dashboard--content mb-5 mb-md-0">
                                                 <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Renter</span> your rating</h4>
                                                 <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="3" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="rentingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
-                                                <router-link to="/renter-rating-list" class="text-secondery mt-4 d-inline-block">View list</router-link>
+                                                <router-link to="/renter-rating-list" class="text-secondery mt-4 d-inline-block">View list </router-link>
+<!--                                                <span>{{ renterRatingCount }}</span>-->
                                             </div>
                                             <div class="my-earning--dashboard--content">
                                                 <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Lender</span> your rating</h4>
                                                 <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="3" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="lendingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
-                                                <router-link to="/lender-rating-list" class="text-secondery mt-4 d-inline-block">View list</router-link>
+                                                <router-link to="/lender-rating-list" class="text-secondery mt-4 d-inline-block">View list </router-link>
+<!--                                                <span>{{ lenderRatingCount }}</span>-->
                                             </div>
                                         </div>
                                         <!-- Rating history -->
@@ -1183,6 +1185,8 @@
                 walletHistory: [],
                 copyUrl: '',
                 ratingList: [],
+                LenderRatingCount: 0,
+                RenterRatingCount: 0
 
             }
         },
@@ -1824,8 +1828,6 @@
                     console.log('this.lendingAvg');
                     console.log(this.lendingAvg);
                 });
-
-
             }
         },
         created() {
@@ -1836,6 +1838,18 @@
                     'Authorization': 'Bearer ' + this.$store.state.token
                 }
             };
+            this.$api.get('renter-rating-list?include=renter,lender,lend.rent.game', config).then(response =>
+            {
+                this.renterRatingCount = response.data.data.length
+                console.log('this.renterRatingCount');
+                console.log(this.renterRatingCount);
+            });
+            this.$api.get('lender-rating-list?include=renter,lender,lend.rent.game', config).then(response =>
+            {
+                this.lenderRatingCount = response.data.data.length;
+                console.log('this.LenderRatingCount');
+                console.log(this.lenderRatingCount);
+            });
             this.ratingCheck();
             this.rentCheck();
             this.$root.$on('rentPost', () => {

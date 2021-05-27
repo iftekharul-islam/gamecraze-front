@@ -21,7 +21,8 @@
                                     <p class="text-white mb-4 gil-bold">{{ formattedReturnDate(rating.lend.data.lend_date) }}</p>
                                     <p class="gray-text gil-bold">My feedback to Renter</p>
                                     <div class="d-flex align-items-center mb-4">
-                                        <star-rating :read-only="true" :rating="rating.lender_rating" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
+                                        <star-rating :read-only="true" :rating="rating.lender_rating" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30" v-if="rating.notify_lender != null"></star-rating>
+                                        <p v-else>Not rate yet</p>
                                     </div>
                                     <p class="text-white">{{ rating.lender_comment }}</p>
                                 </div>
@@ -30,7 +31,8 @@
                                     <p class="text-white mb-4 gil-bold">{{ formattedReturnDate(rating.lend.data.lend_date) }}</p>
                                     <p class="gray-text gil-bold">Renter feedback</p>
                                     <div class="d-flex align-items-center mb-4">
-                                        <star-rating :read-only="true" :rating="rating.renter_rating" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
+                                        <star-rating :read-only="true" :rating="rating.renter_rating" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30" v-if="rating.notify_renter != null"></star-rating>
+                                        <p v-else>Not rate yet</p>
                                     </div>
                                     <p class="text-white">{{ rating.renter_comment }}</p>
                                 </div>

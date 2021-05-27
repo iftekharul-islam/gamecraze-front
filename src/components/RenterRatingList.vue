@@ -11,37 +11,37 @@
                         Back
                     </router-link>
                     <div class="rating-list">
-                        <h5 class="gray-text f-s-24 gil-medium mb-5">Lender review list ({{ lenderRating.length}})</h5>
+                        <h5 class="gray-text f-s-24 gil-medium mb-5">Renting review list ({{ renterRating.length}})</h5>
 
-                        <div class="rating-list--box" v-for="(rating, index) in lenderRating">
+                        <div class="rating-list--box" v-for="(rating, index) in renterRating">
                             <h4 class="f-s-28 gil-medium text-secondery mb-4">{{ rating.lend.data.rent.data.game.data.name }}</h4>
                             <div class="d-flex flex-column flex-lg-row justify-content-between">
-                                <div class="rating-list--box--content mb-4 mb-lg-0 mr-lg-4 max-368">
-                                    <p class="gil-bold gray-text f-s-16 mb-2">Order complete date</p>
-                                    <p class="text-white mb-4 gil-bold">{{ formattedReturnDate(rating.lend.data.lend_date) }}</p>
-                                    <p class="gray-text gil-bold">My feedback to Renter</p>
-                                    <div class="d-flex align-items-center mb-4">
-                                        <star-rating :read-only="true" :rating="rating.lender_rating" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30" v-if="rating.notify_lender != null"></star-rating>
-                                        <p v-else>Not rate yet</p>
-                                    </div>
-                                    <p class="text-white">{{ rating.lender_comment }}</p>
-                                </div>
                                 <div class="rating-list--box--content max-368">
                                     <p class="gil-bold gray-text f-s-16 mb-2">Order complete date</p>
                                     <p class="text-white mb-4 gil-bold">{{ formattedReturnDate(rating.lend.data.lend_date) }}</p>
-                                    <p class="gray-text gil-bold">Renter feedback</p>
+                                    <p class="gray-text gil-bold">My feedback to Lender</p>
                                     <div class="d-flex align-items-center mb-4">
                                         <star-rating :read-only="true" :rating="rating.renter_rating" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30" v-if="rating.notify_renter != null"></star-rating>
                                         <p v-else>Not rate yet</p>
                                     </div>
                                     <p class="text-white">{{ rating.renter_comment }}</p>
                                 </div>
+                                <div class="rating-list--box--content mb-4 mb-lg-0 mr-lg-4 max-368">
+                                    <p class="gil-bold gray-text f-s-16 mb-2">Order complete date</p>
+                                    <p class="text-white mb-4 gil-bold">{{ formattedReturnDate(rating.lend.data.lend_date) }}</p>
+                                    <p class="gray-text gil-bold">Lender feedback</p>
+                                    <div class="d-flex align-items-center mb-4">
+                                        <star-rating :read-only="true" :rating="rating.lender_rating" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30" v-if="rating.notify_lender != null"></star-rating>
+                                        <p v-else>Not rate yet</p>
+                                    </div>
+                                    <p class="text-white">{{ rating.lender_comment }}</p>
+                                </div>
                             </div>
                         </div>
 
-<!--                       <div class="text-center">-->
-<!--                            <a href="#" class="gray-text gil-bold f-s-16 ">Load more</a>-->
-<!--                       </div>-->
+                        <!--                       <div class="text-center">-->
+                        <!--                            <a href="#" class="gray-text gil-bold f-s-16 ">Load more</a>-->
+                        <!--                       </div>-->
                     </div>
                 </div>
             </div>
@@ -56,7 +56,7 @@
         components: {StarRating},
         data() {
             return {
-                lenderRating: [],
+                renterRating: [],
             }
         },
         methods: {
@@ -80,9 +80,9 @@
                     'Authorization': 'Bearer ' + this.$store.state.token
                 }
             };
-            this.$api.get('lender-rating-list?include=renter,lender,lend.rent.game', config).then(response =>
+            this.$api.get('renter-rating-list?include=renter,lender,lend.rent.game', config).then(response =>
             {
-                this.lenderRating = response.data.data;
+                this.renterRating = response.data.data;
                 console.log(this.lenderRating);
             });
         }

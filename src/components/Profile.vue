@@ -955,132 +955,103 @@
                                         <div class="my-rating--dashboard secondery-border d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-5">
                                             <div class="my-earning--dashboard--content mb-5 mb-md-0">
                                                 <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Renter</span> your rating</h4>
-                                                <div class="rating-star d-flex">
-                                                    <svg class="rating-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
-                                                    </svg>
-                                                    <svg class="rating-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
-                                                    </svg>
-                                                    <svg class="rating-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
-                                                    </svg>
-                                                    <svg class="rating-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
-                                                    </svg>
-                                                    <svg class="rating-not-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
-                                                    </svg>
-                                                    <span class="ml-3 text-secondery f-s-24 gil-medium">4.0</span>
-                                                </div>
-                                                <a href="#" class="text-secondery mt-4 d-inline-block">View list (32)</a>
+                                                <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="3" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="rentingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
+                                                <router-link to="/renter-rating-list" class="text-secondery mt-4 d-inline-block">View list </router-link>
+<!--                                                <span>{{ renterRatingCount }}</span>-->
                                             </div>
                                             <div class="my-earning--dashboard--content">
-                                                <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Renter</span> your rating</h4>
-                                                <div class="rating-star d-flex">
-                                                    <svg class="rating-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
-                                                    </svg>
-                                                    <svg class="rating-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
-                                                    </svg>
-                                                    <svg class="rating-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
-                                                    </svg>
-                                                    <svg class="rating-not-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
-                                                    </svg>
-                                                    <svg class="rating-not-given mr-3" width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <path d="M29.9197 10.7685C29.7262 10.2015 29.2147 9.801 28.6177 9.7545L20.0662 9.075L16.3657 0.8835C16.1242 0.345 15.5887 0 14.9992 0C14.4097 0 13.8742 0.345 13.6327 0.882L9.93224 9.075L1.38074 9.7545C0.794236 9.801 0.288736 10.1865 0.0892358 10.74C-0.110264 11.2935 0.030736 11.913 0.452236 12.324L6.77174 18.4845L4.53674 28.1625C4.39874 28.761 4.64024 29.3835 5.14574 29.733C5.40374 29.91 5.70074 30 5.99924 30C6.28874 30 6.57974 29.916 6.83174 29.748L14.9992 24.303L23.1667 29.748C23.6887 30.096 24.3742 30.0825 24.8842 29.712C25.3912 29.3415 25.6147 28.692 25.4422 28.089L22.6987 18.489L29.5027 12.366C29.9482 11.964 30.1117 11.337 29.9197 10.7685Z" />
-                                                    </svg>
-                                                    <span class="ml-3 text-secondery f-s-24 gil-medium">3.0</span>
-                                                </div>
-                                                <a href="#" class="text-secondery mt-4 d-inline-block">View list (32)</a>
+                                                <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Lender</span> your rating</h4>
+                                                <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="3" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="lendingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
+                                                <router-link to="/lender-rating-list" class="text-secondery mt-4 d-inline-block">View list </router-link>
+<!--                                                <span>{{ lenderRatingCount }}</span>-->
                                             </div>
                                         </div>
                                         <!-- Rating history -->
                                         <div class="my-earning--payment-history">
                                             <h4 class="my-earning--payment-history--heading mb-4">Waiting for rate</h4>
-                                            <div class="table-responsive" v-if="transactions.length">
+                                            <div class="table-responsive" v-if="ratingList.length">
                                                 <table class="table my-earning--payment-history--table">
                                                     <thead>
                                                         <tr>
                                                         <th scope="col">Order id</th>
                                                         <th scope="col">Game name</th>
                                                         <th scope="col">Order type</th>
-                                                        <th scope="col">Order complete date</th>
+                                                        <th scope="col">Order completed</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr>
-                                                            <td>12263645</td>
-                                                            <td>Ghost of Minhaj</td>
-                                                            <td>Lending</td>
-                                                            <td>25 Feb, 2021</td>
-                                                            <td><a href="#" class="text-secondery" data-toggle="modal" data-target="#exampleModal">Rate now</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>12263645</td>
-                                                            <td>Ghost of Minhaj</td>
-                                                            <td>Lending</td>
-                                                            <td>25 Feb, 2021</td>
-                                                            <td><a href="#" class="text-secondery">Rate now</a></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>12263645</td>
-                                                            <td>Ghost of Minhaj</td>
-                                                            <td>Lending</td>
-                                                            <td>25 Feb, 2021</td>
-                                                            <td><a href="#" class="text-secondery">Rate now</a></td>
+                                                        <tr v-for="(rating, index) in ratingList" >
+                                                            <td>{{ rating.lend.data.order.data.order_no }}</td>
+                                                            <td>{{ rating.lend.data.rent.data.game.data.name }}</td>
+                                                            <td v-if="rating.lender_id == $store.state.user.id">Lending</td>
+                                                            <td v-else>Renting</td>
+                                                            <td>{{ formattedReturnDate(rating.lend.data.lend_date) }}</td>
+                                                            <td><a href="#" class="text-secondery"  @click="setRatingData(rating)">Rate now</a></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                                 <!-- Rating box  -->
-                                                <div class="modal fade rating-box-modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered">
-                                                        <div class="modal-content bg-game-details position-relative p-3 border-2 border-secondery br-0">
-                                                        <div class="modal-header justify-content-center border-0 p-0 mt-4">
-                                                            <h5 class="modal-title text-secondery text-center f-s-32 mb-4" id="exampleModalLabel">Rate please</h5>
-                                                            <button type="button" class="close position-absolute right-20 top-20" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">
-                                                                    <svg class="secondery-border rounded-circle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M14.2427 4.34315L10.0001 8.58579L5.75744 4.34315L4.34323 5.75736L8.58587 10L4.34323 14.2426L5.75744 15.6569L10.0001 11.4142L14.2427 15.6569L15.6569 14.2426L11.4143 10L15.6569 5.75736L14.2427 4.34315Z" fill="#FFD715"/>
-                                                                    </svg>
-                                                                </span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4">
-                                                            <img src="https://organicthemes.com/demo/profile/files/2018/05/profile-pic.jpg" alt="img" class="img-fluid">
-                                                        </div>
-                                                        <div class="text-center">
-                                                            <p class="f-s-20 mb-1 gil-bold">Rakibul H. Rocky</p>
-                                                            <p class="gil-bold">Lender</p>
-                                                        </div>
-                                                        <div class="text-center">
-                                                            <p class="f-s-20 mb-1 gil-bold">Assassin's Creed 4 black flag</p>
-                                                            <p class="gil-bold">Game name</p>
-                                                        </div>
-                                                        <div class="d-flex justify-content-center align-items-center mb-5">
-                                                            <span class="mr-3"><img src="../assets/img/react1.png" alt="profile icon"></span>
-                                                            <span class="mr-3"><img src="../assets/img/react2.png" alt="profile icon"></span>
-                                                            <span class="mr-3"><img src="../assets/img/react3.png" alt="profile icon"></span>
-                                                            <span class="mr-3"><img src="../assets/img/react4.png" alt="profile icon"></span>
-                                                            <span class="mr-3"><img src="../assets/img/react5.png" alt="profile icon"></span>
-                                                        </div>
-                                                        <div class="comment-box">
-                                                            <div class="form-group">
-                                                                <label for="comment-box" class="d-block gil-bold">Comment Box</label>
-                                                                <textarea name="" id="comment-box" rows="3" class="w-100 border-1 border-secondery primary-bg text-white p-2 focus-primary"></textarea>
+
+                                            <div v-if="ratingPopupModal">
+                                                <transition name="modal">
+                                                    <div class="modal-mask rating-box-modal position-fixed top-0 left-0 w-100 h-100 m-auto z-index-9999">
+                                                        <div class="modal-wrapper bg-black-opa overflow-auto h-100">
+                                                            <div class="modal-dialog modal-dialog-centered h-100 mt-a-16" role="document">
+                                                                <div class="modal-content max-500 bg-game-details border-2 border-secondery br-0">
+                                                                    <button type="button" class="close position-absolute right-20 top-20" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true" @click="ratingPopupModal = false" class="close-modal">
+                                                                            <svg class="secondery-border rounded-circle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M14.2427 4.34315L10.0001 8.58579L5.75744 4.34315L4.34323 5.75736L8.58587 10L4.34323 14.2426L5.75744 15.6569L10.0001 11.4142L14.2427 15.6569L15.6569 14.2426L11.4143 10L15.6569 5.75736L14.2427 4.34315Z" fill="#FFD715"/>
+                                                                        </svg>
+                                                                        </span>
+                                                                    </button>
+                                                                    <div class="modal-body-content">
+                                                                        <h5 class="modal-title text-secondery text-center f-s-32 mb-4" id="exampleModalLabel">Rate please</h5>
+                                                                        <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-if="ratingData.value.lender_id != $store.state.user.id">
+                                                                            <img :src="ratingData.value.lender.data.image" alt="img" class="img-fluid">
+                                                                        </div>
+                                                                        <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-else>
+                                                                            <img :src="ratingData.value.renter.data.image" alt="img" class="img-fluid">
+                                                                             <!-- <img src="../assets/img/avatar.png" class="img-fluid gamehub--logo" alt="Gamehub Logo logo"> -->
+                                                                        </div>
+                                                                        <div class="text-center" v-if="ratingData.value.lender_id != $store.state.user.id">
+                                                                            <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.lender.data.name}} {{ ratingData.value.lender.data.last_name}}</p>
+                                                                            <p class="gil-bold opa-8">Lender</p>
+                                                                        </div>
+                                                                        <div class="text-center" v-else>
+                                                                            <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.renter.data.name}} {{ ratingData.value.renter.data.last_name}}</p>
+                                                                            <p class="gil-bold opa-8">Renter</p>
+                                                                        </div>
+                                                                        <div class="text-center">
+                                                                            <p class="f-s-20 mb-1 gil-bold">{{ ratingData.value.lend.data.rent.data.game.data.name }}</p>
+                                                                            <p class="gil-bold opa-8">Game name</p>
+                                                                        </div>
+                                                                        <div class="d-flex vue-react justify-content-center align-items-center mb-5">
+                                                                            <vue-feedback-reaction v-model="ratingData.feedback" :labels="['Very Poor','Poor','Average','Good','Excellent']"/>
+                                                                        </div>
+                                                                        <form class="" @submit.prevent="ratingSubmit" method="post">
+                                                                            <div class="comment-box">
+                                                                                <div class="form-group">
+                                                                                    <label for="comment-box" class="d-block gil-bold">Comment Box</label>
+                                                                                    <textarea type="text" id="comment-box" rows="3" class="w-100 border-1 border-secondery primary-bg text-white p-2 focus-primary" v-model="ratingData.comment"></textarea>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div>
+                                                                                <span class="text-center d-block text-danger" v-if="invalidRating">Please Select Rating/comment</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <button type="submit" class="bg-secondery primary-text text-center py-2 w-100 d-block gil-medium primary-text-hover">Done</button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div>
-                                                            <a href="#" class="bg-secondery primary-text text-center py-2 w-100 d-block gil-medium primary-text-hover">Done</a>
-                                                        </div>
-                                                        </div>
                                                     </div>
-                                                </div>
+                                                </transition>
                                             </div>
-                                            <span class="text-center d-block mt-a-18" v-else>{{ $t('no_trans_found', $store.state.locale) }}</span>
+                                            </div>
+                                            <span class="text-center d-block mt-a-18" v-else>{{ $t('no_pending_rating', $store.state.locale) }}</span>
     <!--                                        <nav aria-label="Page navigation example" class="my-earning&#45;&#45;payment-history&#45;&#45;pagination">-->
     <!--                                            <ul class="pagination">-->
     <!--                                                <li class="page-item">-->
@@ -1114,13 +1085,27 @@
 
 <script>
     import FlipCountdown from 'vue2-flip-countdown';
+    import StarRating from 'vue-star-rating';
+    import { VueFeedbackReaction } from 'vue-feedback-reaction';
     export default {
-        components: { FlipCountdown, Clipboard},
+        components: {StarRating, FlipCountdown, Clipboard, VueFeedbackReaction},
         props: ['rentPost', 'profileEdit'],
         data() {
             return {
                 credentialModalShow: false,
+                invalidRating: false,
+                lendingAvg: 0,
+                rentingAvg: 0,
+                ratingData: {
+                    value: null,
+                    feedback: '',
+                    comment: '',
+                },
+                reaction: '',
+                isActive: false,
+                isDisabled: false,
                 imageModalShow: false,
+                ratingPopupModal: false,
                 diskImageRequired: false,
                 userGameId: '',
                 userPassword: '',
@@ -1199,6 +1184,9 @@
                 walletUsableAmount: 0,
                 walletHistory: [],
                 copyUrl: '',
+                ratingList: [],
+                LenderRatingCount: 0,
+                RenterRatingCount: 0
 
             }
         },
@@ -1210,6 +1198,35 @@
             },
         },
         methods: {
+            ratingSubmit () {
+                this.invalidRating = false;
+                if (this.ratingData.rating === 0 && this.ratingData.comment === ''){
+                    this.invalidRating = true;
+                    return;
+                }
+                console.log(this.ratingData.comment);
+                var config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+
+                let data = {
+                    id: this.ratingData.value.id,
+                    rating: this.ratingData.feedback,
+                    comment: this.ratingData.comment,
+                };
+
+                this.$api.post('user-rating', data, config).then(response => {
+                    this.$toaster.success( response.data.message );
+                    this.ratingCheck();
+                    this.ratingPopupModal = false;
+                });
+            },
+            setRatingData (data) {
+                this.ratingPopupModal = true;
+                this.ratingData.value = data;
+            },
             onCopy: function (e) {
                 // this.$toaster.success("Link successfully copied !");
                 this.$toaster.success( this.$t('link_copied_successfully', this.$store.state.locale) );
@@ -1786,16 +1803,54 @@
                 {
                     this.lends = response.data;
                 });
+            },
+            ratingCheck() {
+                this.ratingList = [];
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+
+                this.$api.get('rating-check?include=lend.rent.game,lend.order,lender,renter', config).then(response => {
+                    this.ratingList = response.data.data;
+                    console.log('this.ratingList');
+                    console.log(this.ratingList);
+                });
+
+                this.$api.get('avg-renter-rating', config).then(response => {
+                    this.rentingAvg = response.data.avg;
+                    console.log('this.rentingAvg');
+                    console.log(this.rentingAvg);
+                });
+                this.$api.get('avg-lender-rating', config).then(response => {
+                    this.lendingAvg = response.data.avg;
+                    console.log('this.lendingAvg');
+                    console.log(this.lendingAvg);
+                });
             }
         },
         created() {
+            window.scrollTo(0,0);
             this.copyUrl = process.env.VUE_APP_BASE;
             let config = {
                 headers: {
                     'Authorization': 'Bearer ' + this.$store.state.token
                 }
             };
-            window.scrollTo(0,0);
+            this.$api.get('renter-rating-list?include=renter,lender,lend.rent.game', config).then(response =>
+            {
+                this.renterRatingCount = response.data.data.length
+                console.log('this.renterRatingCount');
+                console.log(this.renterRatingCount);
+            });
+            this.$api.get('lender-rating-list?include=renter,lender,lend.rent.game', config).then(response =>
+            {
+                this.lenderRatingCount = response.data.data.length;
+                console.log('this.LenderRatingCount');
+                console.log(this.lenderRatingCount);
+            });
+            this.ratingCheck();
             this.rentCheck();
             this.$root.$on('rentPost', () => {
                 $('#v-pills-overview-tab').removeClass('active');
@@ -1816,6 +1871,9 @@
                 $('#v-pills-refer-tab').removeClass('active');
                 $('#v-pills-refer').removeClass('active');
                 $('#v-pills-refer').removeClass('show');
+                $('#v-pills-rating-tab').removeClass('active');
+                $('#v-pills-rating').removeClass('active');
+                $('#v-pills-rating').removeClass('show');
 
               });
 
@@ -1838,8 +1896,36 @@
                 $('#v-pills-refer-tab').removeClass('active');
                 $('#v-pills-refer').removeClass('active');
                 $('#v-pills-refer').removeClass('show');
+                $('#v-pills-rating-tab').removeClass('active');
+                $('#v-pills-rating').removeClass('active');
+                $('#v-pills-rating').removeClass('show');
 
               });
+
+            this.$root.$on('userRating', () => {
+                $('#v-pills-rating-tab').addClass('active');
+                $('#v-pills-rating').addClass('active');
+                $('#v-pills-rating').addClass('show');
+                $('#v-pills-edit-profile-tab').removeClass('active');
+                $('#v-pills-edit-profile').removeClass('active');
+                $('#v-pills-edit-profile').removeClass('show');
+                $('#v-pills-overview-tab').removeClass('active');
+                $('#v-pills-overview').removeClass('active');
+                $('#v-pills-overview').removeClass('show');
+                $('#v-pills-post-rent-tab').removeClass('active');
+                $('#v-pills-post-rent').removeClass('show');
+                $('#v-pills-post-rent').removeClass('active');
+                $('#v-pills-dashboard-tab').removeClass('active');
+                $('#v-pills-dashboard').removeClass('active');
+                $('#v-pills-dashboard').removeClass('show');
+                $('#v-pills-my-earning-tab').removeClass('active');
+                $('#v-pills-my-earning').removeClass('show');
+                $('#v-pills-my-earning').removeClass('show');
+                $('#v-pills-refer-tab').removeClass('active');
+                $('#v-pills-refer').removeClass('active');
+                $('#v-pills-refer').removeClass('show');
+
+            });
             //Cover image
             this.$api.get('cover-image').then(response =>
             {

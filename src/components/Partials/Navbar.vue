@@ -132,7 +132,7 @@
                                     <div class="badge gamehub-badge navbar-badge" v-if="pendingRating.length">{{ pendingRating.length }}</div>
                                 </div>
                                 <!-- Notification for rating -->
-                                <div class="dropdown-menu w-300 w-sm-400 position-absolute top-full secondery-border right-20 bg-game-details text-white br-0 p-0" aria-labelledby="rating-notification">
+                                <div class="dropdown-menu w-300 w-sm-400 position-absolute secondery-border right-20 bg-game-details text-white br-0 p-0 top-55" aria-labelledby="rating-notification">
                                     <div class="rating-notification--list d-block" @click="clickOnRating(rating)" v-for="(rating, index) in pendingRating" v-if="pendingRating.length">
                                         <p class="gil-bold text-badge mb-2">Congratulations</p>
                                         <p class="text-white text transition-3 mb-0">The order of <span class="text-secondery transition-3">{{ rating.lend.data.rent.data.game.data.name }}</span> has been completed Please rate now. </p>
@@ -187,14 +187,15 @@
                                     </div>
                                     <div class="text-center" v-if="ratingData.value.lender_id != $store.state.user.id">
                                         <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.lender.data.name}} {{ ratingData.value.lender.data.last_name}}</p>
-                                        <p class="gil-bold">Lender</p>
+                                        <p class="gil-bold opa-8">Lender</p>
                                     </div>
                                     <div class="text-center" v-else>
                                         <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.renter.data.name}} {{ ratingData.value.renter.data.last_name}}</p>
-                                        <p class="gil-bold">Renter</p>
+                                        <p class="gil-bold opa-8">Renter</p>
                                     </div>
                                     <div class="text-center">
                                         <p class="f-s-20 mb-1 gil-bold">{{ ratingData.value.lend.data.rent.data.game.data.name }}</p>
+                                        <p class="gil-bold opa-8">Game name</p>
                                     </div>
                                     <div class="d-flex vue-react justify-content-center align-items-center mb-5">
                                         <vue-feedback-reaction v-model="ratingData.feedback" :labels="['Very Poor','Poor','Average','Good','Excellent']"/>

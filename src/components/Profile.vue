@@ -955,12 +955,12 @@
                                         <div class="my-rating--dashboard secondery-border d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-5">
                                             <div class="my-earning--dashboard--content mb-5 mb-md-0">
                                                 <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Renter</span> your rating</h4>
-                                                <star-rating :read-only="true" :rating="rentingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
+                                                <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="3" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="rentingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
                                                 <router-link to="/renter-rating-list" class="text-secondery mt-4 d-inline-block">View list</router-link>
                                             </div>
                                             <div class="my-earning--dashboard--content">
                                                 <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Lender</span> your rating</h4>
-                                                <star-rating :read-only="true" :rating="lendingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
+                                                <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="3" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="lendingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
                                                 <router-link to="/lender-rating-list" class="text-secondery mt-4 d-inline-block">View list</router-link>
                                             </div>
                                         </div>
@@ -1014,14 +1014,15 @@
                                                                         </div>
                                                                         <div class="text-center" v-if="ratingData.value.lender_id != $store.state.user.id">
                                                                             <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.lender.data.name}} {{ ratingData.value.lender.data.last_name}}</p>
-                                                                            <p class="gil-bold">Lender</p>
+                                                                            <p class="gil-bold opa-8">Lender</p>
                                                                         </div>
                                                                         <div class="text-center" v-else>
                                                                             <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.renter.data.name}} {{ ratingData.value.renter.data.last_name}}</p>
-                                                                            <p class="gil-bold">Renter</p>
+                                                                            <p class="gil-bold opa-8">Renter</p>
                                                                         </div>
                                                                         <div class="text-center">
                                                                             <p class="f-s-20 mb-1 gil-bold">{{ ratingData.value.lend.data.rent.data.game.data.name }}</p>
+                                                                            <p class="gil-bold opa-8">Game name</p>
                                                                         </div>
                                                                         <div class="d-flex vue-react justify-content-center align-items-center mb-5">
                                                                             <vue-feedback-reaction v-model="ratingData.feedback" :labels="['Very Poor','Poor','Average','Good','Excellent']"/>

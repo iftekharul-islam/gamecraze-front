@@ -1339,6 +1339,9 @@
 .top-50 {
     top: 50px;
 }
+.top-55 {
+    top: 55px;
+}
 .top-full {
     top: 100%;
 }
@@ -2445,5 +2448,19 @@ select {
     transition: all .2s ease-in;
     &:hover {
         color: $text-dark;
+    }
+}
+
+// underline 
+.underline {
+    position: relative;
+    &::after {
+        content: '';
+        width: 100%;
+        height: 1px;
+        background: $secondery;
+        left: 0;
+        bottom: 0;
+        position: absolute;
     }
 }

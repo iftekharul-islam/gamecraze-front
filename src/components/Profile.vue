@@ -1014,14 +1014,15 @@
                                                                         </div>
                                                                         <div class="text-center" v-if="ratingData.value.lender_id != $store.state.user.id">
                                                                             <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.lender.data.name}} {{ ratingData.value.lender.data.last_name}}</p>
-                                                                            <p class="gil-bold">Lender</p>
+                                                                            <p class="gil-bold opa-8">Lender</p>
                                                                         </div>
                                                                         <div class="text-center" v-else>
                                                                             <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.renter.data.name}} {{ ratingData.value.renter.data.last_name}}</p>
-                                                                            <p class="gil-bold">Renter</p>
+                                                                            <p class="gil-bold opa-8">Renter</p>
                                                                         </div>
                                                                         <div class="text-center">
                                                                             <p class="f-s-20 mb-1 gil-bold">{{ ratingData.value.lend.data.rent.data.game.data.name }}</p>
+                                                                            <p class="gil-bold opa-8">Game name</p>
                                                                         </div>
                                                                         <div class="d-flex vue-react justify-content-center align-items-center mb-5">
                                                                             <vue-feedback-reaction v-model="ratingData.feedback" :labels="['Very Poor','Poor','Average','Good','Excellent']"/>

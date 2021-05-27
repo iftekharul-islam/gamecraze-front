@@ -398,6 +398,10 @@
   margin-bottom: 1.875rem;
 }
 
+.mb-a-5-5 {
+  margin-bottom: 2rem;
+}
+
 .mb-a-6 {
   margin-bottom: 2.188rem;
 }
@@ -1312,6 +1316,10 @@
   top: 50px;
 }
 
+.top-55 {
+  top: 55px;
+}
+
 .top-full {
   top: 100%;
 }
@@ -1450,6 +1458,12 @@
 
 .bg-game-details {
   background: #141A27;
+}
+
+.bg-black-opa {
+  background: #00000080;
+.bg-slogan {
+  background: linear-gradient(90.05deg, rgba(11, 15, 24, 0.1) 0.78%, #0B0F18 48.87%, rgba(11, 15, 24, 0.1) 102.99%);
 }
 
 .gray-header {
@@ -1641,6 +1655,10 @@ html {
   z-index: 999;
 }
 
+.z-index-9999 {
+  z-index: 9999;
+}
+
 .h-0 {
   height: 0;
 }
@@ -1739,6 +1757,10 @@ html {
 
 .max-400 {
   max-width: 400px;
+}
+
+.max-500 {
+  max-width: 500px;
 }
 
 .w-148-100 {
@@ -2446,10 +2468,20 @@ select option {
 
 .rating-not-given {
   fill: #808080;
+  stroke: #808080;
+}
+
+.black-fill {
+  fill: #000000;
+  stroke: #000000;
 }
 
 .focus-primary:focus {
   background: #0B0F18;
+}
+
+.outline-none {
+  outline: none;
 }
 
 .pointer {
@@ -2463,6 +2495,20 @@ select option {
 
 .text-black-hover:hover {
   color: #000;
+}
+
+.underline {
+  position: relative;
+}
+
+.underline::after {
+  content: '';
+  width: 100%;
+  height: 1px;
+  background: #FFD715;
+  left: 0;
+  bottom: 0;
+  position: absolute;
 }
 
 @media (max-width: 575px) {
@@ -2613,12 +2659,28 @@ select option {
   }
 }
 
-.gamehub-menu-collapse > ul li:hover a {
-  color: #FFD715;
+.gamehub-menu-collapse > ul li.dropdown:hover::after {
+  border-bottom-color: #FFD715;
+  -webkit-transform: initial;
+          transform: initial;
 }
 
-.gamehub-menu-collapse > ul li:hover::after {
-  border-bottom-color: #FFD715;
+@media (min-width: 1200px) {
+  .gamehub-menu-collapse > ul li.dropdown:hover::after {
+    -webkit-transform: rotate(183deg);
+            transform: rotate(183deg);
+  }
+}
+
+@media (max-width: 1199px) {
+  .gamehub-menu-collapse > ul li.show::after {
+    -webkit-transform: rotate(183deg) !important;
+            transform: rotate(183deg) !important;
+  }
+}
+
+.gamehub-menu-collapse > ul li:hover a {
+  color: #FFD715;
 }
 
 .toggler-position {
@@ -3326,6 +3388,7 @@ select option {
           justify-content: flex-start;
   display: none;
   right: 0;
+  border-radius: 0;
 }
 
 @media (max-width: 1199px) {
@@ -3388,8 +3451,10 @@ select option {
   background: #FFD715;
 }
 
-.dropdown:hover .dropdown--sub-menu {
-  display: block;
+@media (min-width: 1200px) {
+  .dropdown:hover .dropdown--sub-menu {
+    display: block;
+  }
 }
 
 @media (max-width: 1199px) {
@@ -5499,7 +5564,7 @@ html {
 
 .contact-section {
   padding-top: 80px;
-  padding-bottom: 150px;
+  padding-bottom: 180px;
 }
 
 @media (max-width: 991px) {
@@ -5510,7 +5575,7 @@ html {
 
 @media (max-width: 575px) {
   .contact-section {
-    padding-bottom: 120px;
+    padding-bottom: 200px;
   }
 }
 
@@ -6141,7 +6206,7 @@ html {
   }
 }
 
-.upgrade-modal .modal-dialog .modal-content button {
+.upgrade-modal .modal-dialog .modal-content .close {
   font-weight: normal !important;
   font-size: 20px;
   padding: 0;
@@ -6155,23 +6220,23 @@ html {
 }
 
 @media (max-width: 575px) {
-  .upgrade-modal .modal-dialog .modal-content button {
+  .upgrade-modal .modal-dialog .modal-content .close {
     right: 16px;
     top: 16px;
   }
 }
 
-.upgrade-modal .modal-dialog .modal-content button:focus {
+.upgrade-modal .modal-dialog .modal-content .close:focus {
   outline: none !important;
 }
 
-.upgrade-modal .modal-dialog .modal-content button span {
+.upgrade-modal .modal-dialog .modal-content .close span {
   position: relative;
   display: block;
   margin-top: -7px;
 }
 
-.upgrade-modal .modal-dialog .modal-content button span::after, .upgrade-modal .modal-dialog .modal-content button span::before {
+.upgrade-modal .modal-dialog .modal-content .close span::after, .upgrade-modal .modal-dialog .modal-content .close span::before {
   position: absolute;
   content: ' ';
   height: 14px;
@@ -6179,12 +6244,12 @@ html {
   background-color: #FFD715;
 }
 
-.upgrade-modal .modal-dialog .modal-content button span::after {
+.upgrade-modal .modal-dialog .modal-content .close span::after {
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
 
-.upgrade-modal .modal-dialog .modal-content button span::before {
+.upgrade-modal .modal-dialog .modal-content .close span::before {
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
 }
@@ -6743,7 +6808,7 @@ html {
   padding-bottom: 40px;
 }
 
-.game-available-section .modal-content button {
+.game-available-section .modal-content .close {
   font-weight: normal !important;
   font-size: 20px;
   padding: 0;
@@ -6757,23 +6822,23 @@ html {
 }
 
 @media (max-width: 575px) {
-  .game-available-section .modal-content button {
+  .game-available-section .modal-content .close {
     right: 16px;
     top: 16px;
   }
 }
 
-.game-available-section .modal-content button:focus {
+.game-available-section .modal-content .close:focus {
   outline: none !important;
 }
 
-.game-available-section .modal-content button span {
+.game-available-section .modal-content .close span {
   position: relative;
   display: block;
   margin-top: -7px;
 }
 
-.game-available-section .modal-content button span::after, .game-available-section .modal-content button span::before {
+.game-available-section .modal-content .close span::after, .game-available-section .modal-content .close span::before {
   position: absolute;
   content: ' ';
   height: 14px;
@@ -6781,12 +6846,12 @@ html {
   background-color: #FFD715;
 }
 
-.game-available-section .modal-content button span::after {
+.game-available-section .modal-content .close span::after {
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
 }
 
-.game-available-section .modal-content button span::before {
+.game-available-section .modal-content .close span::before {
   -webkit-transform: rotate(-45deg);
           transform: rotate(-45deg);
 }
@@ -9226,7 +9291,7 @@ html {
   .cart-heading-empty {
     width: 60%;
     margin: auto;
-    margin-top: 7rem;
+    margin-top: 2rem;
   }
 }
 
@@ -10114,6 +10179,7 @@ html {
 
 .bullet-list {
   margin-top: -16px;
+  margin-left: 12px;
 }
 
 .bullet-list--item {
@@ -10695,6 +10761,29 @@ html {
   .my-rating--dashboard {
     padding: 20px;
   }
+}
+
+.rating-box-modal .modal-dialog .modal-content {
+  height: initial;
+  padding: 40px 20px 20px 20px;
+  max-width: 500px;
+}
+
+@media (max-width: 575px) {
+  .vue-react .vue-feedback-reaction .reaction {
+    padding: 0;
+  }
+}
+
+.vue-star-rating-rating-text {
+  font-size: 40px;
+  font-family: gilroy-medium;
+  margin-left: 32px;
+  color: #FFD715;
+}
+
+.vue-star-rating-star .vue-star-rating-star {
+  margin-right: 10px;
 }
 
 .rating-list {

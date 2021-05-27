@@ -51,6 +51,7 @@ import Tournament from '../components/Tournament';
 import LendNotice from '../components/LendNotice';
 import PricePlan from '../components/PricePlan';
 import RatingList from '../components/RatingList';
+import RenterRatingList from '../components/RenterRatingList';
 import RentPostDetails from '../components/RentPostDetails';
 
 let router = new Router({
@@ -410,11 +411,19 @@ let router = new Router({
             }
         },
         {
-            path: '/rating-list',
+            path: '/lender-rating-list',
             name: 'ratingList',
             component: RatingList,
             meta: {
-                requiresAuth: false
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/renter-rating-list',
+            name: 'ratingList',
+            component: RenterRatingList,
+            meta: {
+                requiresAuth: true
             }
         },
         {

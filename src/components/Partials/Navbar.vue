@@ -124,19 +124,19 @@
                         </div>
                         <div class="gamehub-input-group--content">
                             <div class="position-relative" v-if="auth && pendingRating.length">
-                                <router-link class="gamehub-input-group--content--cart mr-4" to="#" role="button" id="rating-notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="gamehub-input-group--content--cart mr-4" role="button" id="rating-notification" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <svg width="24" height="28" viewBox="0 0 24 28" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M9.04845 24.1191C9.74833 23.971 14.013 23.971 14.7129 24.1191C15.3112 24.2573 15.9582 24.5802 15.9582 25.2852C15.9234 25.9563 15.5296 26.5514 14.9856 26.9293C14.2801 27.4792 13.4523 27.8274 12.5868 27.9529C12.1082 28.015 11.6379 28.0164 11.1759 27.9529C10.3091 27.8274 9.48118 27.4792 8.77713 26.9278C8.2317 26.5514 7.83793 25.9563 7.80314 25.2852C7.80314 24.5802 8.45015 24.2573 9.04845 24.1191ZM11.9633 0C14.8755 0 17.8503 1.38183 19.6174 3.67453C20.764 5.15083 21.2899 6.62572 21.2899 8.91842V9.51486C21.2899 11.2732 21.7546 12.3095 22.7773 13.5038C23.5523 14.3837 23.8 15.5131 23.8 16.7384C23.8 17.9623 23.3979 19.1242 22.5923 20.0675C21.5376 21.1983 20.0502 21.9203 18.5321 22.0458C16.3323 22.2333 14.1311 22.3912 11.9007 22.3912C9.66888 22.3912 7.46907 22.2968 5.26925 22.0458C3.74984 21.9203 2.26243 21.1983 1.20913 20.0675C0.403508 19.1242 0 17.9623 0 16.7384C0 15.5131 0.249062 14.3837 1.02268 13.5038C2.07737 12.3095 2.51149 11.2732 2.51149 9.51486V8.91842C2.51149 6.56368 3.09866 5.02393 4.30779 3.51661C6.10549 1.31838 8.98709 0 11.8381 0H11.9633Z" fill="#FFD715"/>
                                     </svg>
                                     <div class="badge navbar-badge"></div>
                                     <div class="badge gamehub-badge navbar-badge" v-if="pendingRating.length">{{ pendingRating.length }}</div>
-                                </router-link>
+                                </div>
                                 <!-- Notification for rating -->
                                 <div class="dropdown-menu w-300 w-sm-400 position-absolute top-full secondery-border right-20 bg-game-details text-white br-0 p-0" aria-labelledby="rating-notification">
-                                    <router-link to="/profile" class="rating-notification--list d-block" @click.native="clickOnRating()" v-for="(rating, index) in pendingRating" v-if="pendingRating.length">
+                                    <div class="rating-notification--list d-block" @click="clickOnRating(rating)" v-for="(rating, index) in pendingRating" v-if="pendingRating.length">
                                         <p class="gil-bold text-badge mb-2">Congratulations</p>
                                         <p class="text-white text transition-3 mb-0">The order of <span class="text-secondery transition-3">{{ rating.lend.data.rent.data.game.data.name }}</span> has been completed Please rate now. </p>
-                                    </router-link>
+                                    </div>
                                     <p class="text-center mt-3" v-else>No Pending Rating available</p>
 <!--                                    <div class="d-flex justify-content-between align-items-center px-3 py-2 primary-bg">-->
 <!--                                        <a href="#" class="text-secondery">Clear</a>-->
@@ -162,14 +162,81 @@
               </button>
             </div>
         </div>
+        <div v-if="ratingNavModal">
+            <transition name="modal">
+                <div class="modal-mask rating-box-modal position-fixed top-0 left-0 w-100 h-100 m-auto z-index-9999">
+                    <div class="modal-wrapper bg-black-opa overflow-auto h-100">
+                        <div class="modal-dialog modal-dialog-centered h-100 mt-a-16" role="document">
+                            <div class="modal-content max-500 bg-game-details border-2 border-secondery br-0">
+                                <button type="button" class="close position-absolute right-20 top-20" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true" @click="ratingNavModal = false" class="close-modal">
+                                        <svg class="secondery-border rounded-circle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M14.2427 4.34315L10.0001 8.58579L5.75744 4.34315L4.34323 5.75736L8.58587 10L4.34323 14.2426L5.75744 15.6569L10.0001 11.4142L14.2427 15.6569L15.6569 14.2426L11.4143 10L15.6569 5.75736L14.2427 4.34315Z" fill="#FFD715"/>
+                                    </svg>
+                                    </span>
+                                </button>
+                                <div class="modal-body-content">
+                                    <h5 class="modal-title text-secondery text-center f-s-32 mb-4" id="exampleModalLabel">Rate please</h5>
+                                    <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-if="ratingData.value.lender_id != $store.state.user.id">
+                                        <img :src="ratingData.value.lender.data.image" alt="img" class="img-fluid" v-if="ratingData.value.lender.data.image">
+                                        <img src="../../assets/img/avatar.png" class="img-fluid gamehub--logo" alt="Gamehub Logo logo" v-else>
+                                    </div>
+                                    <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-else>
+                                        <img :src="ratingData.value.renter.data.image" alt="img" class="img-fluid" v-if="ratingData.value.renter.data.image">
+                                         <img src="../../assets/img/avatar.png" class="img-fluid gamehub--logo" alt="Gamehub Logo logo" v-else>
+                                    </div>
+                                    <div class="text-center" v-if="ratingData.value.lender_id != $store.state.user.id">
+                                        <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.lender.data.name}} {{ ratingData.value.lender.data.last_name}}</p>
+                                        <p class="gil-bold">Lender</p>
+                                    </div>
+                                    <div class="text-center" v-else>
+                                        <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.renter.data.name}} {{ ratingData.value.renter.data.last_name}}</p>
+                                        <p class="gil-bold">Renter</p>
+                                    </div>
+                                    <div class="text-center">
+                                        <p class="f-s-20 mb-1 gil-bold">{{ ratingData.value.lend.data.rent.data.game.data.name }}</p>
+                                    </div>
+                                    <div class="d-flex vue-react justify-content-center align-items-center mb-5">
+                                        <vue-feedback-reaction v-model="ratingData.feedback" :labels="['Very Poor','Poor','Average','Good','Excellent']"/>
+                                    </div>
+                                    <form class="" @submit.prevent="ratingSubmit" method="post">
+                                        <div class="comment-box">
+                                            <div class="form-group">
+                                                <label for="comment-box" class="d-block gil-bold">Comment Box</label>
+                                                <textarea type="text" id="comment-box" rows="3" class="w-100 border-1 border-secondery primary-bg text-white p-2 focus-primary" v-model="ratingData.comment"></textarea>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <span class="text-center d-block text-danger" v-if="invalidRating">Please Select Rating/comment</span>
+                                        </div>
+                                        <div>
+                                            <button type="submit" class="bg-secondery primary-text text-center py-2 w-100 d-block gil-medium primary-text-hover">Done</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </transition>
+        </div>
 
     </div>
 </template>
 
 <script>
+    import { VueFeedbackReaction } from 'vue-feedback-reaction';
     export default {
+        components: {VueFeedbackReaction},
         data() {
             return {
+                invalidRating: false,
+                ratingNavModal: false,
+                ratingData: {
+                    value: null,
+                    feedback: '',
+                    comment: '',
+                },
                 langValue: null,
                 gameName: '',
                 userProfile: {},
@@ -191,9 +258,48 @@
             }
         },
         methods: {
+            ratingSubmit () {
+                this.invalidRating = false;
+                if (this.ratingData.rating === 0 && this.ratingData.comment === ''){
+                    this.invalidRating = true;
+                    return;
+                }
+                console.log(this.ratingData.comment);
+                var config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+
+                let data = {
+                    id: this.ratingData.value.id,
+                    rating: this.ratingData.feedback,
+                    comment: this.ratingData.comment,
+                };
+
+                this.$api.post('user-rating', data, config).then(response => {
+                    this.$toaster.success( response.data.message );
+                    this.navRatingCheck();
+                    this.ratingNavModal = false;
+                });
+            },
             languageChange(value) {
                 this.lang = value;
                 this.isActive = value;
+            },
+            navRatingCheck() {
+                this.pendingRating = [];
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+
+                this.$api.get('rating-check?include=lend.rent.game,lend.order,lender,renter', config).then(response => {
+                    this.pendingRating = response.data.data;
+                    console.log('this.pendingRating');
+                    console.log(this.pendingRating);
+                });
             },
             authData () {
                 var auth = this.$store.getters.ifAuthenticated;
@@ -216,11 +322,7 @@
                         this.isActive = this.user.locale;
                         this.$store.dispatch('changeLocale', this.user.locale)
                     });
-
-                    this.$api.get('rating-check?include=lend.rent.game', config).then(response => {
-                        this.pendingRating = response.data.data;
-                        // console.log(this.pendingRating);
-                    });
+                    this.navRatingCheck();
                     this.$store.watch(
                         (state)=>{
                             return this.totalItems // could also put a Getter here
@@ -264,13 +366,9 @@
                 }
                 this.$root.$emit('rentPost');
             },
-            clickOnRating() {
-                var auth = this.$store.getters.ifAuthenticated;
-                if (!auth) {
-                    this.$router.push('/lend-notice');
-                    return
-                }
-                this.$root.$emit('userRating');
+            clickOnRating(data) {
+                this.ratingNavModal = true;
+                this.ratingData.value = data;
             },
           searchGame() {
               if(this.query !== '') {

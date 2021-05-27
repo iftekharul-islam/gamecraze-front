@@ -76,11 +76,11 @@
                             <p class="mb-0">{{ $t('payment_method', $store.state.locale) }}</p>
                             <div class="d-flex flex-wrap align-items-center justify-content-between content">
                                 <div class="checkbox-parents">
-                                    <input type="radio" id="cod" name="payment" class="checkbox-parents--input" checked>
+                                    <input type="radio" id="cod" name="payment" value="cod" class="checkbox-parents--input" v-model="paymentMethod">
                                     <label for="cod" class="checkbox-parents--label">Cash on Delivery </label>
                                 </div>
                                 <div class="checkbox-parents">
-                                    <input type="radio" id="op" name="payment" class="checkbox-parents--input">
+                                    <input type="radio" id="op" name="payment" value="online pay" class="checkbox-parents--input" v-model="paymentMethod">
                                     <label for="op" class="checkbox-parents--label">Online payment </label>
                                 </div>
                                 <div class="checkbox-parents w-100 mt-3" v-if="availableWallet">

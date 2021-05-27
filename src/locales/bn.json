@@ -356,5 +356,6 @@
   "phone_number_exits" : "ফোন নম্বর ইতিমধ্যে বিদ্যমান",
   "disk_condition_select" : "ডিস্ক শর্ত নির্বাচন করুন",
   "lenders_name" : "ভাড়া প্রদানকারীর নাম",
-  "share_now" : "শেয়ারে করুন"
+  "share_now" : "শেয়ারে করুন",
+  "no_pending_rating" : "কোনও রেটিং পাওয়া যায় নি"
 }

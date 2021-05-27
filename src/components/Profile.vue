@@ -955,13 +955,13 @@
                                         <div class="my-rating--dashboard secondery-border d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-5">
                                             <div class="my-earning--dashboard--content mb-5 mb-md-0">
                                                 <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Renter</span> your rating</h4>
-                                                <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="3" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="4" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
-                                                <router-link to="/renter-rating-list" class="text-secondery mt-4 d-inline-block underline">View list</router-link>
+                                                <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="3" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="rentingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
+                                                <router-link to="/renter-rating-list" class="text-secondery mt-4 d-inline-block">View list</router-link>
                                             </div>
                                             <div class="my-earning--dashboard--content">
                                                 <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Lender</span> your rating</h4>
-                                                <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="3" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="3" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
-                                                <router-link to="/lender-rating-list" class="text-secondery mt-4 d-inline-block underline">View list</router-link>
+                                                <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="3" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="lendingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
+                                                <router-link to="/lender-rating-list" class="text-secondery mt-4 d-inline-block">View list</router-link>
                                             </div>
                                         </div>
                                         <!-- Rating history -->
@@ -990,65 +990,65 @@
                                                 </table>
                                                 <!-- Rating box  -->
 
-                                        <div v-if="ratingPopupModal">
-                                            <transition name="modal">
-                                                <div class="modal-mask rating-box-modal position-fixed top-0 left-0 w-100 h-100 m-auto z-index-9999">
-                                                    <div class="modal-wrapper bg-black-opa overflow-auto h-100">
-                                                        <div class="modal-dialog modal-dialog-centered h-100 mt-a-16" role="document">
-                                                            <div class="modal-content max-500 bg-game-details border-2 border-secondery br-0">
-                                                                <button type="button" class="close position-absolute right-20 top-20" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true" @click="ratingPopupModal = false" class="close-modal">
-                                                                        <svg class="secondery-border rounded-circle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                        <path d="M14.2427 4.34315L10.0001 8.58579L5.75744 4.34315L4.34323 5.75736L8.58587 10L4.34323 14.2426L5.75744 15.6569L10.0001 11.4142L14.2427 15.6569L15.6569 14.2426L11.4143 10L15.6569 5.75736L14.2427 4.34315Z" fill="#FFD715"/>
-                                                                    </svg>
-                                                                    </span>
-                                                                </button>
-                                                                <div class="modal-body-content">
-                                                                    <h5 class="modal-title text-secondery text-center f-s-32 mb-4" id="exampleModalLabel">Rate please</h5>
-                                                                    <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-if="ratingData.value.lender_id != $store.state.user.id">
-                                                                        <img :src="ratingData.value.lender.data.image" alt="img" class="img-fluid">
-                                                                    </div>
-                                                                    <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-else>
-                                                                        <img :src="ratingData.value.renter.data.image" alt="img" class="img-fluid">
-                                                                         <!-- <img src="../assets/img/avatar.png" class="img-fluid gamehub--logo" alt="Gamehub Logo logo"> -->
-                                                                    </div>
-                                                                    <div class="text-center" v-if="ratingData.value.lender_id != $store.state.user.id">
-                                                                        <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.lender.data.name}} {{ ratingData.value.lender.data.last_name}}</p>
-                                                                        <p class="gil-bold">Lender</p>
-                                                                    </div>
-                                                                    <div class="text-center" v-else>
-                                                                        <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.renter.data.name}} {{ ratingData.value.renter.data.last_name}}</p>
-                                                                        <p class="gil-bold">Renter</p>
-                                                                    </div>
-                                                                    <div class="text-center">
-                                                                        <p class="f-s-20 mb-1 gil-bold">{{ ratingData.value.lend.data.rent.data.game.data.name }}</p>
-                                                                    </div>
-                                                                    <div class="d-flex vue-react justify-content-center align-items-center mb-5">
-                                                                        <vue-feedback-reaction v-model="ratingData.feedback" :labels="['Very Poor','Poor','Average','Good','Excellent']"/>
-                                                                    </div>
-                                                                    <form class="" @submit.prevent="ratingSubmit" method="post">
-                                                                        <div class="comment-box">
-                                                                            <div class="form-group">
-                                                                                <label for="comment-box" class="d-block gil-bold">Comment Box</label>
-                                                                                <textarea type="text" id="comment-box" rows="3" class="w-100 border-1 border-secondery primary-bg text-white p-2 focus-primary" v-model="ratingData.comment"></textarea>
+                                            <div v-if="ratingPopupModal">
+                                                <transition name="modal">
+                                                    <div class="modal-mask rating-box-modal position-fixed top-0 left-0 w-100 h-100 m-auto z-index-9999">
+                                                        <div class="modal-wrapper bg-black-opa overflow-auto h-100">
+                                                            <div class="modal-dialog modal-dialog-centered h-100 mt-a-16" role="document">
+                                                                <div class="modal-content max-500 bg-game-details border-2 border-secondery br-0">
+                                                                    <button type="button" class="close position-absolute right-20 top-20" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true" @click="ratingPopupModal = false" class="close-modal">
+                                                                            <svg class="secondery-border rounded-circle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M14.2427 4.34315L10.0001 8.58579L5.75744 4.34315L4.34323 5.75736L8.58587 10L4.34323 14.2426L5.75744 15.6569L10.0001 11.4142L14.2427 15.6569L15.6569 14.2426L11.4143 10L15.6569 5.75736L14.2427 4.34315Z" fill="#FFD715"/>
+                                                                        </svg>
+                                                                        </span>
+                                                                    </button>
+                                                                    <div class="modal-body-content">
+                                                                        <h5 class="modal-title text-secondery text-center f-s-32 mb-4" id="exampleModalLabel">Rate please</h5>
+                                                                        <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-if="ratingData.value.lender_id != $store.state.user.id">
+                                                                            <img :src="ratingData.value.lender.data.image" alt="img" class="img-fluid">
+                                                                        </div>
+                                                                        <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-else>
+                                                                            <img :src="ratingData.value.renter.data.image" alt="img" class="img-fluid">
+                                                                             <!-- <img src="../assets/img/avatar.png" class="img-fluid gamehub--logo" alt="Gamehub Logo logo"> -->
+                                                                        </div>
+                                                                        <div class="text-center" v-if="ratingData.value.lender_id != $store.state.user.id">
+                                                                            <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.lender.data.name}} {{ ratingData.value.lender.data.last_name}}</p>
+                                                                            <p class="gil-bold">Lender</p>
+                                                                        </div>
+                                                                        <div class="text-center" v-else>
+                                                                            <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.renter.data.name}} {{ ratingData.value.renter.data.last_name}}</p>
+                                                                            <p class="gil-bold">Renter</p>
+                                                                        </div>
+                                                                        <div class="text-center">
+                                                                            <p class="f-s-20 mb-1 gil-bold">{{ ratingData.value.lend.data.rent.data.game.data.name }}</p>
+                                                                        </div>
+                                                                        <div class="d-flex vue-react justify-content-center align-items-center mb-5">
+                                                                            <vue-feedback-reaction v-model="ratingData.feedback" :labels="['Very Poor','Poor','Average','Good','Excellent']"/>
+                                                                        </div>
+                                                                        <form class="" @submit.prevent="ratingSubmit" method="post">
+                                                                            <div class="comment-box">
+                                                                                <div class="form-group">
+                                                                                    <label for="comment-box" class="d-block gil-bold">Comment Box</label>
+                                                                                    <textarea type="text" id="comment-box" rows="3" class="w-100 border-1 border-secondery primary-bg text-white p-2 focus-primary" v-model="ratingData.comment"></textarea>
+                                                                                </div>
                                                                             </div>
-                                                                        </div>
-                                                                        <div>
-                                                                            <span class="text-center d-block text-danger" v-if="invalidRating">Please Select Rating/comment</span>
-                                                                        </div>
-                                                                        <div>
-                                                                            <button type="submit" class="bg-secondery primary-text text-center py-2 w-100 d-block gil-medium primary-text-hover">Done</button>
-                                                                        </div>
-                                                                    </form>
+                                                                            <div>
+                                                                                <span class="text-center d-block text-danger" v-if="invalidRating">Please Select Rating/comment</span>
+                                                                            </div>
+                                                                            <div>
+                                                                                <button type="submit" class="bg-secondery primary-text text-center py-2 w-100 d-block gil-medium primary-text-hover">Done</button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </transition>
-                                        </div>
+                                                </transition>
                                             </div>
-                                            <span class="text-center d-block mt-a-18" v-else>{{ $t('no_trans_found', $store.state.locale) }}</span>
+                                            </div>
+                                            <span class="text-center d-block mt-a-18" v-else>{{ $t('no_pending_rating', $store.state.locale) }}</span>
     <!--                                        <nav aria-label="Page navigation example" class="my-earning&#45;&#45;payment-history&#45;&#45;pagination">-->
     <!--                                            <ul class="pagination">-->
     <!--                                                <li class="page-item">-->
@@ -1091,6 +1091,8 @@
             return {
                 credentialModalShow: false,
                 invalidRating: false,
+                lendingAvg: 0,
+                rentingAvg: 0,
                 ratingData: {
                     value: null,
                     feedback: '',
@@ -1212,15 +1214,13 @@
 
                 this.$api.post('user-rating', data, config).then(response => {
                     this.$toaster.success( response.data.message );
-                })
-                this.ratingCheck();
+                    this.ratingCheck();
+                    this.ratingPopupModal = false;
+                });
             },
             setRatingData (data) {
                 this.ratingPopupModal = true;
                 this.ratingData.value = data;
-                console.log(this.ratingData.value);
-                console.log(this.ratingData.rating);
-                console.log(this.ratingData.comment);
             },
             onCopy: function (e) {
                 // this.$toaster.success("Link successfully copied !");
@@ -1812,6 +1812,19 @@
                     console.log('this.ratingList');
                     console.log(this.ratingList);
                 });
+
+                this.$api.get('avg-renter-rating', config).then(response => {
+                    this.rentingAvg = response.data.avg;
+                    console.log('this.rentingAvg');
+                    console.log(this.rentingAvg);
+                });
+                this.$api.get('avg-lender-rating', config).then(response => {
+                    this.lendingAvg = response.data.avg;
+                    console.log('this.lendingAvg');
+                    console.log(this.lendingAvg);
+                });
+
+
             }
         },
         created() {

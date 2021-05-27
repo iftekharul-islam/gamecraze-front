@@ -2491,6 +2491,20 @@ select option {
   color: #000;
 }
 
+.underline {
+  position: relative;
+}
+
+.underline::after {
+  content: '';
+  width: 100%;
+  height: 1px;
+  background: #FFD715;
+  left: 0;
+  bottom: 0;
+  position: absolute;
+}
+
 @media (max-width: 575px) {
   .body-home .gamehub-menu {
     background: transparent;

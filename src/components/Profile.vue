@@ -955,13 +955,13 @@
                                         <div class="my-rating--dashboard secondery-border d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-5">
                                             <div class="my-earning--dashboard--content mb-5 mb-md-0">
                                                 <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Renter</span> your rating</h4>
-                                                <star-rating :read-only="true" :rating="4" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
-                                                <router-link to="/renter-rating-list" class="text-secondery mt-4 d-inline-block">View list</router-link>
+                                                <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="3" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="4" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
+                                                <router-link to="/renter-rating-list" class="text-secondery mt-4 d-inline-block underline">View list</router-link>
                                             </div>
                                             <div class="my-earning--dashboard--content">
                                                 <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Lender</span> your rating</h4>
-                                                <star-rating :read-only="true" :rating="3" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
-                                                <router-link to="/lender-rating-list" class="text-secondery mt-4 d-inline-block">View list</router-link>
+                                                <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="3" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="3" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
+                                                <router-link to="/lender-rating-list" class="text-secondery mt-4 d-inline-block underline">View list</router-link>
                                             </div>
                                         </div>
                                         <!-- Rating history -->

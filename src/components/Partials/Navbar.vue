@@ -29,8 +29,8 @@
                             <router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link>
                         </li>
                         <li class="dropdown position-relative dropdown-hover">
-                            <router-link class="router_link no-after" to="#">{{ $t('more', $store.state.locale)}}</router-link>
-                                <div class="dropdown--sub-menu p-0">
+                            <router-link class="router_link no-after" to="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $t('more', $store.state.locale)}}</router-link>
+                                <div class="dropdown--sub-menu p-0 dropdown-menu" aria-labelledby="dropdownMenuButton">
                                   <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/about-us">{{ $t('about_us', $store.state.locale) }}</router-link></div>
                                   <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/terms">{{ $t('terms', $store.state.locale) }}</router-link></div>
                                   <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/privacy">{{ $t('privacy_policy', $store.state.locale) }}</router-link></div>
@@ -41,8 +41,8 @@
                     <!-- language -->
                     <div class="locale-changer gamehub-language">
                         <div v-for="(lang) in $i18n.availableLocales" @click="languageChange(lang)" >
-                            <span v-if="lang == 'bn'" v-bind:class="{ active: isActive === 'bn' }">বাংলা</span>
-                            <span v-if="lang == 'en'" v-bind:class="{ active: isActive === 'en' }">English</span>
+                            <span @click="onMenuItemClick()" v-if="lang == 'bn'" v-bind:class="{ active: isActive === 'bn' }">বাংলা</span>
+                            <span @click="onMenuItemClick()" v-if="lang == 'en'" v-bind:class="{ active: isActive === 'en' }">English</span>
                         </div>
                     </div>
                    <!-- search bar -->
@@ -60,8 +60,8 @@
                                   @selected="onSelected"
                                   :get-suggestion-value="getSuggestionValue"
                                   :input-props="{id:'autosuggest__input',class:'auto-suggest-menu'}">
-                                <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
-                                  {{suggestion.item.game.data.name}}
+                                <div  slot-scope="{suggestion}" style="display: flex; align-items: center;">
+                                  <span @click="onMenuItemClick()">{{suggestion.item.game.data.name}}</span>
                                 </div>
                               </vue-autosuggest>
                             </div>

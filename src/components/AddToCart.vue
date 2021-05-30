@@ -66,7 +66,7 @@
                               <span v-if="isLoadingCode" class="spinner-border spinner-border-sm"></span>
                           </button>
                         </div>
-                        <p class="text-danger" v-if="promoError">Promo code not match</p>
+                        <p class="text-danger" v-if="promoError">Invalid Promo Code</p>
                       </div>
                       <div class="total d-flex align-items-center justify-content-between" v-if="discountAmount != 0">
                           <p>Main amount</p>

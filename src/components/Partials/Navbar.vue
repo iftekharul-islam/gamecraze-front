@@ -111,7 +111,7 @@
                                         <div class="dropdown-menu gamehub-dropdown-menu">
                                             <div class="gamehub-dropdown-menu--top">
                                               <router-link to="/profile" class="dropdown-item" href="#">{{ $t('dashboard', $store.state.locale) }}</router-link>
-                                              <router-link to="/profile" class="dropdown-item" @click.native="clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link>
+                                              <router-link to="/" class="dropdown-item" @click.native="clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link>
                                               <router-link class="router_link dropdown-item" to="/notice-board">{{ $t('noticeboard', $store.state.locale) }}</router-link>
                                               <router-link to="/contacts" class="dropdown-item" href="#">{{ $t('contact_us', $store.state.locale) }}</router-link>
                                             </div>
@@ -227,6 +227,7 @@
 
 <script>
     import { VueFeedbackReaction } from 'vue-feedback-reaction';
+    import Profile from '../../components/Profile';
     export default {
         components: {VueFeedbackReaction},
         data() {
@@ -260,6 +261,7 @@
         },
         methods: {
             ratingSubmit () {
+                var bus = new Vue();
                 this.invalidRating = false;
                 if (this.ratingData.rating === 0 && this.ratingData.comment === ''){
                     this.invalidRating = true;
@@ -282,6 +284,7 @@
                     this.$toaster.success( response.data.message );
                     this.navRatingCheck();
                     this.ratingNavModal = false;
+                    this.$root.$emit('ratingCheck');
                 });
             },
             languageChange(value) {
@@ -298,8 +301,6 @@
 
                 this.$api.get('rating-check?include=lend.rent.game,lend.order,lender,renter', config).then(response => {
                     this.pendingRating = response.data.data;
-                    console.log('this.pendingRating');
-                    console.log(this.pendingRating);
                 });
             },
             authData () {
@@ -455,6 +456,8 @@
           }
         },
         created() {
+            this.$root.$refs.Navbar = this;
+            // this.$root.$refs.Profile = Profile;
             this.authData();
             this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {

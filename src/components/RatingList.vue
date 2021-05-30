@@ -29,7 +29,7 @@
                                 <div class="rating-list--box--content max-368">
                                     <p class="gil-bold gray-text f-s-16 mb-2">Order complete date</p>
                                     <p class="text-white mb-4 gil-bold">{{ formattedReturnDate(rating.lend.data.lend_date) }}</p>
-                                    <p class="gray-text gil-bold">Renter feedback</p>
+                                    <p class="gray-text gil-bold">Renter feedback to you</p>
                                     <div class="d-flex align-items-center mb-4">
                                         <star-rating :read-only="true" :rating="rating.renter_rating" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30" v-if="rating.notify_renter != null"></star-rating>
                                         <p v-else>Not rate yet</p>

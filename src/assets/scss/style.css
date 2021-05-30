@@ -1462,6 +1462,8 @@
 
 .bg-black-opa {
   background: #00000080;
+}
+
 .bg-slogan {
   background: linear-gradient(90.05deg, rgba(11, 15, 24, 0.1) 0.78%, #0B0F18 48.87%, rgba(11, 15, 24, 0.1) 102.99%);
 }

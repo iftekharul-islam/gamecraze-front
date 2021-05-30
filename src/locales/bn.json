@@ -358,5 +358,6 @@
   "disk_condition_select" : "ডিস্ক শর্ত নির্বাচন করুন",
   "lenders_name" : "ভাড়া প্রদানকারীর নাম",
   "share_now" : "শেয়ারে করুন",
-  "no_pending_rating" : "কোনও রেটিং পাওয়া যায় নি"
+  "no_pending_rating" : "কোনও রেটিং পাওয়া যায় নি",
+  "coming_soon" : "শীঘ্রই আসছে...."
 }

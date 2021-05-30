@@ -365,5 +365,6 @@
   "disk_condition_select" : "Please Select Disk Condition",
   "lenders_name" : "Lender’s name",
   "share_now" : "Share now",
-  "no_pending_rating" : "No pending rating available"
+  "no_pending_rating" : "No pending rating available",
+  "coming_soon" : "Coming soon...."
 }

@@ -150,7 +150,7 @@
                                                                 <td class="align-middle p-0 pb-3 pb-sm-0">{{ $t('select_week', $store.state.locale) }} :</td>
                                                                 <td class="p-0">
                                                                     <ValidationProvider name="Rent Week" rules="required" v-slot="{ errors }">
-                                                                        <select class="form-control" id="exampleFormControlSelect1" v-if="post" @change="postRentCost(postWeek, post.disk_type, post.game_id)" v-model="postWeek">
+                                                                        <select class="form-control" id="exampleFormControlSelect1" v-if="post" @change="postRentCost(form.week, post.disk_type, post.game_id)" v-model="form.week">
                                                                             <option value="" selected disabled>Please select rent week</option>
                                                                             <option v-for="n in post.max_number_of_week" :value="n" :key="n">For {{n}} Week</option>
                                                                         </select>
@@ -160,7 +160,7 @@
                                                             </tr>
                                                             <tr v-if="form.week">
                                                                 <td>{{ $t('rent_cost', $store.state.locale) }} :</td>
-                                                                <td><span>৳ </span>{{ postPrice }}</td>
+                                                                <td><span>৳ </span>{{ price }}</td>
                                                             </tr>
                                                             <tr v-if="form.week">
                                                                 <td>{{ $t('rent_start_date', $store.state.locale) }} :</td>
@@ -310,7 +310,7 @@
             },
             postRentCost(week, disk_type, game_id) {
                 this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
-                    this.postPrice = response.data.price.discount_price + response.data.price.discount_commission;
+                    this.price = response.data.price.discount_price + response.data.price.discount_commission;
                 })
             },
             rentCost(week, disk_type, game_id) {

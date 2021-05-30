@@ -81,6 +81,7 @@
   "select_week" : "ভাড়ার সপ্তাহ নির্বাচন করুন",
   "rent_cost" : "ভাড়ার খরচ",
   "rent_start_date" : "ভাড়া শুরুর তারিখ",
+  "rent_end_date" : "ফেরত দেওয়ার তারিখ",
   "return_date" : "ফেরত দেওয়ার তারিখ",
   "delivery_type" : "ডেলিভারির ধরন",
   "checkpoint_details" : "চেকপয়েন্টর খুঁটিনাটি",

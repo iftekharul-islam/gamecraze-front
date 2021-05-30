@@ -82,6 +82,7 @@
   "select_week" : "Select Rent Week",
   "rent_cost" : "Rent Cost",
   "rent_start_date" : "Rent Start Date",
+  "rent_end_date" : "Rent End Date",
   "return_date" : "Return Date",
   "delivery_type" : "Delivery Type",
   "checkpoint_details" : "Checkpoint Details",

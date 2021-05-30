@@ -90,10 +90,23 @@
                        v-else-if="post.status == 1"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></router-link>
                 </div>
 
-                <div class="games-view--des mt-a-8">
+                <!-- <div class="games-view--des mt-a-8 position-relative">
+                    <input type="checkbox" class="loadmore-input">
                     <p>Gamehub is a gaming platform that aims to make all games more easily available to gamers. We are attempting to bring together all types of video game lovers with the goal of becoming the most respected organization among enthusiasts.
                      Using this unique platfrom you can rent your favorite games & lend the unused ones. I</p>
-                     <a href="#" class="opa-7 mt-3">Load more...</a>
+                     <a href="#" class="opa-7 mt-3 read-more">Load more...</a>
+                     <a href="#" class="opa-7 mt-3 read-less">Less</a>
+                </div> -->
+                <div class="load-more-container mt-a-8">
+                    <input type="checkbox" id="load-more" class="d-none"/>
+                    <p class="loadmore-text"> Gamehub is a gaming platform that aims to make all games more easily available to 
+                        gamers. We are attempting to bring together all types of video game lovers 
+                        with the goal of becoming the most respected organization among enthusiasts.
+                        Using this unique platfrom you can rent your favorite games & lend the unused ones.</p>
+                    <label class="load-more-btn" for="load-more">
+                        <span class="unloaded text-white opa-7">Load more...</span>
+                        <span class="loaded text-white op-7">View less</span>
+                    </label>  
                 </div>
 
 

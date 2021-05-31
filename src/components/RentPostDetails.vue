@@ -85,7 +85,7 @@
                        v-clipboard:error="onError"
                        v-if="renter == true && post.status == 1"><span style="text-transform: uppercase">{{ $t('share_now', $store.state.locale) }}</span>
                     </a>
-                    <a href="#" class="btn--secondery w-100" v-else-if="$store.getters.ifAuthenticated && post.status == 1" @click="rentModal = true"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></a>
+                    <a href="javascript:void(0)" class="btn--secondery w-100" v-else-if="$store.getters.ifAuthenticated && post.status == 1" @click="rentModal = true"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></a>
                     <router-link to="/login" class="btn--secondery w-100"
                        v-else-if="post.status == 1"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></router-link>
                 </div>
@@ -167,7 +167,7 @@
                                                                 <td>{{ rentStartDate }}</td>
                                                             </tr>
                                                             <tr v-if="form.week">
-                                                                <td>{{ $t('rent_start_date', $store.state.locale) }} :</td>
+                                                                <td>{{ $t('rent_end_date', $store.state.locale) }} :</td>
                                                                 <td>{{ returnDate }}</td>
                                                             </tr>
                                                             <tr v-if="requiredAddress">

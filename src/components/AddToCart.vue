@@ -269,8 +269,19 @@
               couponId: null
           }
       },
+      computed: {
+      },
     methods: {
+        autoPromoApply() {
+            let code = this.$store.state.promo ?? null;
+            if (code != null) {
+                console.log('i m in autoApplyCode');
+                this.promoCode = code;
+                this.applyCode();
+            }
+        },
         applyCode() {
+            console.log('i m in applyCode');
             this.isLoadingCode = true;
             this.promoError = false;
             this.discountAmount = 0;
@@ -335,6 +346,7 @@
                     this.totalPrice = response.data.data.totalDiscountPrice;
                     this.mainAmount = this.totalPrice;
                     this.deliveryCharge = response.data.data.deliveryCharge;
+                    this.autoPromoApply();
                     if (this.newCartItems) {
                         for (let i = 0; i < this.newCartItems.length; i++) {
                             this.rentIds.push(this.newCartItems[i].rent_id);
@@ -441,6 +453,7 @@
                     this.isLoading = false;
                     localStorage.setItem('cartItems', '');
                     localStorage.setItem('deliveryCharge', 0);
+                    this.$store.dispatch('setPromo', null);
                     this.$router.push('/profile').then(err => {
                         setTimeout(function () {
                             location.reload();
@@ -505,6 +518,8 @@
         }
     },
     created() {
+        console.log('the promo code');
+        console.log(this.$store.state.promo);
         window.scrollTo(0,0);
         this.authData();
         this.$api.get('delivery-charge').then(response => {

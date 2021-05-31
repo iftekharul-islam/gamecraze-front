@@ -261,7 +261,6 @@
         },
         methods: {
             ratingSubmit () {
-                var bus = new Vue();
                 this.invalidRating = false;
                 if (this.ratingData.rating === 0 && this.ratingData.comment === ''){
                     this.invalidRating = true;

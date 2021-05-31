@@ -378,5 +378,15 @@
   "waiting_for_rate" : "Waiting for rate",
   "order_no" : "Order no",
   "order_type" : "Order Type",
-  "order_completed" : "order completed"
+  "order_completed" : "order completed",
+  "rate_now" : "Rate now",
+  "rating" : "Rating",
+  "rate_please" : "Rate Please",
+  "comment_box" : "Comment Box",
+  "please_rating" : "Please Select Rating/comment",
+  "view_list" : "View list",
+  "as_a" : "As a",
+  "your_rating" : "your rating",
+  "Renter" : "Renter",
+  "Lender" : "Lender"
 }

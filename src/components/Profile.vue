@@ -115,7 +115,7 @@
                             <a class="nav-link" id="v-pills-edit-profile-tab" data-toggle="pill" href="#v-pills-edit-profile" role="tab" aria-controls="v-pills-edit-profile" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon4.png" alt="profile icon"> <img src="../assets/img/active-profile-icon4.png" class="img-active" alt="profile icon"></div> <span>{{ $t('edit_profile', $store.state.locale) }}</span></a>
                             <a class="nav-link" id="v-pills-my-earning-tab" data-toggle="pill" href="#v-pills-my-earning" role="tab" aria-controls="v-pills-my-earning" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/earn.png" alt="profile icon"> <img src="../assets/img/active-earn.png" class="img-active" alt="profile icon"></div> <span>{{ $t('my_earning', $store.state.locale) }}</span></a>
                             <a class="nav-link" id="v-pills-refer-tab" data-toggle="pill" href="#v-pills-refer" role="tab" aria-controls="v-pills-refer" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/refer.png" alt="profile icon"> <img src="../assets/img/refer-active.png" class="img-active" alt="profile icon"></div> <span>{{ $t('refer_friend', $store.state.locale) }}</span></a>
-                            <a class="nav-link" id="v-pills-rating-tab" data-toggle="pill" href="#v-pills-rating" role="tab" aria-controls="v-pills-rating" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/star-not-active.png" alt="profile icon"> <img src="../assets/img/star-active.png" class="img-active" alt="profile icon"></div> <span>Ratings</span></a>
+                            <a class="nav-link" id="v-pills-rating-tab" data-toggle="pill" href="#v-pills-rating" role="tab" aria-controls="v-pills-rating" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/star-not-active.png" alt="profile icon"> <img src="../assets/img/star-active.png" class="img-active" alt="profile icon"></div> <span>{{ $t('rating', $store.state.locale) }}</span></a>
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -954,14 +954,14 @@
                                     <div class="my-rating">
                                         <div class="my-rating--dashboard secondery-border d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-5">
                                             <div class="my-earning--dashboard--content mb-5 mb-md-0">
-                                                <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Renter</span> your rating</h4>
+                                                <h4 class="f-s-24 gil-medium mb-4">{{ $t('as_a', $store.state.locale) }} <span class="text-white">{{ $t('Renter', $store.state.locale) }}</span> {{ $t('your_rating', $store.state.locale) }}</h4>
                                                 <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="3" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="rentingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
-                                                <router-link to="/renter-rating-list" class="text-secondery mt-4 d-inline-block">View list ( {{ renterRatingCount }} )</router-link>
+                                                <router-link to="/renter-rating-list" class="text-secondery mt-4 d-inline-block">{{ $t('view_list', $store.state.locale) }} ( {{ renterRatingCount }} )</router-link>
                                             </div>
                                             <div class="my-earning--dashboard--content">
-                                                <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Lender</span> your rating</h4>
+                                                <h4 class="f-s-24 gil-medium mb-4">{{ $t('as_a', $store.state.locale) }} <span class="text-white">{{ $t('Lender', $store.state.locale) }}</span> {{ $t('your_rating', $store.state.locale) }}</h4>
                                                 <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="3" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="lendingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
-                                                <router-link to="/lender-rating-list" class="text-secondery mt-4 d-inline-block">View list ( {{ lenderRatingCount }} )</router-link>
+                                                <router-link to="/lender-rating-list" class="text-secondery mt-4 d-inline-block">{{ $t('view_list', $store.state.locale) }} ( {{ lenderRatingCount }} )</router-link>
                                             </div>
                                         </div>
                                         <!-- Rating history -->
@@ -984,7 +984,7 @@
                                                             <td v-if="rating.lender_id == $store.state.user.id">Lending</td>
                                                             <td v-else>Renting</td>
                                                             <td>{{ formattedReturnDate(rating.lend.data.lend_date) }}</td>
-                                                            <td><a href="#" class="text-secondery"  @click="setRatingData(rating)">Rate now</a></td>
+                                                            <td><a href="#" class="text-secondery"  @click="setRatingData(rating)">{{ $t('rate_now', $store.state.locale) }}</a></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -1004,7 +1004,7 @@
                                                                         </span>
                                                                     </button>
                                                                     <div class="modal-body-content">
-                                                                        <h5 class="modal-title text-secondery text-center f-s-32 mb-4" id="exampleModalLabel">Rate please</h5>
+                                                                        <h5 class="modal-title text-secondery text-center f-s-32 mb-4" id="exampleModalLabel">{{ $t('rate_please', $store.state.locale) }}</h5>
                                                                         <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-if="ratingData.value.lender_id != $store.state.user.id">
                                                                             <img :src="ratingData.value.lender.data.image" alt="img" class="img-fluid">
                                                                         </div>
@@ -1014,15 +1014,15 @@
                                                                         </div>
                                                                         <div class="text-center" v-if="ratingData.value.lender_id != $store.state.user.id">
                                                                             <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.lender.data.name}} {{ ratingData.value.lender.data.last_name}}</p>
-                                                                            <p class="gil-bold opa-8">Lender</p>
+                                                                            <p class="gil-bold opa-8">{{ $t('lender', $store.state.locale) }}</p>
                                                                         </div>
                                                                         <div class="text-center" v-else>
                                                                             <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.renter.data.name}} {{ ratingData.value.renter.data.last_name}}</p>
-                                                                            <p class="gil-bold opa-8">Renter</p>
+                                                                            <p class="gil-bold opa-8">{{ $t('renter', $store.state.locale) }}</p>
                                                                         </div>
                                                                         <div class="text-center">
                                                                             <p class="f-s-20 mb-1 gil-bold">{{ ratingData.value.lend.data.rent.data.game.data.name }}</p>
-                                                                            <p class="gil-bold opa-8">Game name</p>
+                                                                            <p class="gil-bold opa-8">{{ $t('game_name', $store.state.locale) }}</p>
                                                                         </div>
                                                                         <div class="d-flex vue-react justify-content-center align-items-center mb-5">
                                                                             <vue-feedback-reaction v-model="ratingData.feedback" :labels="['Very Poor','Poor','Average','Good','Excellent']"/>
@@ -1030,15 +1030,15 @@
                                                                         <form class="" @submit.prevent="ratingSubmit" method="post">
                                                                             <div class="comment-box">
                                                                                 <div class="form-group">
-                                                                                    <label for="comment-box" class="d-block gil-bold">Comment Box</label>
+                                                                                    <label for="comment-box" class="d-block gil-bold">{{ $t('comment_box', $store.state.locale) }}</label>
                                                                                     <textarea type="text" id="comment-box" rows="3" class="w-100 border-1 border-secondery primary-bg text-white p-2 focus-primary" v-model="ratingData.comment"></textarea>
                                                                                 </div>
                                                                             </div>
                                                                             <div>
-                                                                                <span class="text-center d-block text-danger" v-if="invalidRating">Please Select Rating/comment</span>
+                                                                                <span class="text-center d-block text-danger" v-if="invalidRating">{{ $t('please_rating', $store.state.locale) }}</span>
                                                                             </div>
                                                                             <div>
-                                                                                <button type="submit" class="bg-secondery primary-text text-center py-2 w-100 d-block gil-medium primary-text-hover">Done</button>
+                                                                                <button type="submit" class="bg-secondery primary-text text-center py-2 w-100 d-block gil-medium primary-text-hover">{{ $t('submit', $store.state.locale) }}</button>
                                                                             </div>
                                                                         </form>
                                                                     </div>

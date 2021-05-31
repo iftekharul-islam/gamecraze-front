@@ -176,7 +176,7 @@
                                     </span>
                                 </button>
                                 <div class="modal-body-content">
-                                    <h5 class="modal-title text-secondery text-center f-s-32 mb-4" id="exampleModalLabel">Rate please</h5>
+                                    <h5 class="modal-title text-secondery text-center f-s-32 mb-4" id="exampleModalLabel">{{ $t('rate_please', $store.state.locale) }}</h5>
                                     <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-if="ratingData.value.lender_id != $store.state.user.id">
                                         <img :src="ratingData.value.lender.data.image" alt="img" class="img-fluid" v-if="ratingData.value.lender.data.image">
                                         <img src="../../assets/img/avatar.png" class="img-fluid gamehub--logo" alt="Gamehub Logo logo" v-else>
@@ -187,15 +187,15 @@
                                     </div>
                                     <div class="text-center" v-if="ratingData.value.lender_id != $store.state.user.id">
                                         <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.lender.data.name}} {{ ratingData.value.lender.data.last_name}}</p>
-                                        <p class="gil-bold opa-8">Lender</p>
+                                        <p class="gil-bold opa-8">{{ $t('lender', $store.state.locale) }}</p>
                                     </div>
                                     <div class="text-center" v-else>
                                         <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.renter.data.name}} {{ ratingData.value.renter.data.last_name}}</p>
-                                        <p class="gil-bold opa-8">Renter</p>
+                                        <p class="gil-bold opa-8">{{ $t('renter', $store.state.locale) }}</p>
                                     </div>
                                     <div class="text-center">
                                         <p class="f-s-20 mb-1 gil-bold">{{ ratingData.value.lend.data.rent.data.game.data.name }}</p>
-                                        <p class="gil-bold opa-8">Game name</p>
+                                        <p class="gil-bold opa-8">{{ $t('game_name', $store.state.locale) }}</p>
                                     </div>
                                     <div class="d-flex vue-react justify-content-center align-items-center mb-5">
                                         <vue-feedback-reaction v-model="ratingData.feedback" :labels="['Very Poor','Poor','Average','Good','Excellent']"/>
@@ -203,15 +203,15 @@
                                     <form class="" @submit.prevent="ratingSubmit" method="post">
                                         <div class="comment-box">
                                             <div class="form-group">
-                                                <label for="comment-box" class="d-block gil-bold">Comment Box</label>
+                                                <label for="comment-box" class="d-block gil-bold">{{ $t('comment_box', $store.state.locale) }}</label>
                                                 <textarea type="text" id="comment-box" rows="3" class="w-100 border-1 border-secondery primary-bg text-white p-2 focus-primary" v-model="ratingData.comment"></textarea>
                                             </div>
                                         </div>
                                         <div>
-                                            <span class="text-center d-block text-danger" v-if="invalidRating">Please Select Rating/comment</span>
+                                            <span class="text-center d-block text-danger" v-if="invalidRating">{{ $t('please_rating', $store.state.locale) }}</span>
                                         </div>
                                         <div>
-                                            <button type="submit" class="bg-secondery primary-text text-center py-2 w-100 d-block gil-medium primary-text-hover">Done</button>
+                                            <button type="submit" class="bg-secondery primary-text text-center py-2 w-100 d-block gil-medium primary-text-hover">{{ $t('submit', $store.state.locale) }}</button>
                                         </div>
                                     </form>
                                 </div>

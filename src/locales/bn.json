@@ -370,6 +370,17 @@
   "lender_feedback_to_you" : "আপনার প্রতি ভাড়া প্রদানকারীর প্রতিক্রিয়া",
   "waiting_for_rate" : "অপেক্ষমান রেটিং",
   "order_type" : "অর্ডারের ধরণ",
-  "order_completed" : "অর্ডার সম্পূর্ণ"
+  "order_completed" : "অর্ডার সম্পূর্ণ",
+  "rate_now" : "রেট করুন",
+  "rating" : "রেটিং",
+  "rate_please" : "রেট করুন",
+  "comment_box" : "মন্তব্য বক্স",
+  "please_rating" : "রেটিং / মন্তব্য নির্বাচন করুন",
+  "order_no" : "অর্ডার নাম্বার",
+  "view_list" : "তালিকা দেখুন",
+  "as_a" : "",
+  "your_rating" : "হিসেবে আপানার রেটিং",
+  "Renter" : "রেন্টার",
+  "Lender" : "লেন্ডার"
 
 }

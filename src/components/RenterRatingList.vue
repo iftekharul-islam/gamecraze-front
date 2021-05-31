@@ -11,28 +11,28 @@
                         Back
                     </router-link>
                     <div class="rating-list">
-                        <h5 class="gray-text f-s-24 gil-medium mb-5">Renting review list ({{ renterRating.length}})</h5>
+                        <h5 class="gray-text f-s-24 gil-medium mb-5">{{ $t('renter_review_list', $store.state.locale) }} ({{ renterRating.length}})</h5>
 
                         <div class="rating-list--box" v-for="(rating, index) in renterRating">
                             <h4 class="f-s-28 gil-medium text-secondery mb-4">{{ rating.lend.data.rent.data.game.data.name }}</h4>
                             <div class="d-flex flex-column flex-lg-row justify-content-between">
                                 <div class="rating-list--box--content max-368">
-                                    <p class="gil-bold gray-text f-s-16 mb-2">Order complete date</p>
+                                    <p class="gil-bold gray-text f-s-16 mb-2">{{ $t('order_complete_date', $store.state.locale) }}</p>
                                     <p class="text-white mb-4 gil-bold">{{ formattedReturnDate(rating.lend.data.lend_date) }}</p>
-                                    <p class="gray-text gil-bold">My feedback to Lender</p>
+                                    <p class="gray-text gil-bold">{{ $t('my_feedback_to_lender', $store.state.locale) }}</p>
                                     <div class="d-flex align-items-center mb-4">
                                         <star-rating :read-only="true" :rating="rating.renter_rating" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30" v-if="rating.notify_renter != null"></star-rating>
-                                        <p v-else>Not rate yet</p>
+                                        <p v-else>{{ $t('not_yet_rated', $store.state.locale) }}</p>
                                     </div>
                                     <p class="text-white">{{ rating.renter_comment }}</p>
                                 </div>
                                 <div class="rating-list--box--content mb-4 mb-lg-0 mr-lg-4 max-368">
-                                    <p class="gil-bold gray-text f-s-16 mb-2">Order complete date</p>
+                                    <p class="gil-bold gray-text f-s-16 mb-2">{{ $t('order_complete_date', $store.state.locale) }}</p>
                                     <p class="text-white mb-4 gil-bold">{{ formattedReturnDate(rating.lend.data.lend_date) }}</p>
-                                    <p class="gray-text gil-bold">Lender feedback to you</p>
+                                    <p class="gray-text gil-bold">{{ $t('lender_feedback_to_you', $store.state.locale) }}</p>
                                     <div class="d-flex align-items-center mb-4">
                                         <star-rating :read-only="true" :rating="rating.lender_rating" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30" v-if="rating.notify_lender != null"></star-rating>
-                                        <p v-else>Not rate yet</p>
+                                        <p v-else>{{ $t('not_yet_rated', $store.state.locale) }}</p>
                                     </div>
                                     <p class="text-white">{{ rating.lender_comment }}</p>
                                 </div>

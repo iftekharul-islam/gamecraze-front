@@ -966,15 +966,15 @@
                                         </div>
                                         <!-- Rating history -->
                                         <div class="my-earning--payment-history">
-                                            <h4 class="my-earning--payment-history--heading mb-4">Waiting for rate</h4>
+                                            <h4 class="my-earning--payment-history--heading mb-4">{{ $t('waiting_for_rate', $store.state.locale) }}</h4>
                                             <div class="table-responsive" v-if="ratingList.length">
                                                 <table class="table my-earning--payment-history--table">
                                                     <thead>
                                                         <tr>
-                                                        <th scope="col">Order id</th>
-                                                        <th scope="col">Game name</th>
-                                                        <th scope="col">Order type</th>
-                                                        <th scope="col">Order completed</th>
+                                                        <th scope="col">{{ $t('order_no', $store.state.locale) }}</th>
+                                                        <th scope="col">{{ $t('game_name', $store.state.locale) }}</th>
+                                                        <th scope="col">{{ $t('order_type', $store.state.locale) }}</th>
+                                                        <th scope="col">{{ $t('order_completed', $store.state.locale) }}</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>

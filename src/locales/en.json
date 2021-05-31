@@ -366,5 +366,17 @@
   "lenders_name" : "Lender’s name",
   "share_now" : "Share now",
   "no_pending_rating" : "No pending rating available",
-  "coming_soon" : "Coming soon...."
+  "coming_soon" : "Coming soon....",
+  "lender_review_list" : "Lender review list",
+  "renter_review_list" : "Renter review list",
+  "order_complete_date" : "Order complete date",
+  "not_yet_rated" : "Not yet rated",
+  "my_feedback_to_renter" : "My feedback to Renter",
+  "renter_feedback_to_you" : "Renter feedback to you",
+  "my_feedback_to_lender" : "My feedback to lender",
+  "lender_feedback_to_you" : "lender feedback to you",
+  "waiting_for_rate" : "Waiting for rate",
+  "order_no" : "Order no",
+  "order_type" : "Order Type",
+  "order_completed" : "order completed"
 }

@@ -359,5 +359,17 @@
   "lenders_name" : "ভাড়া প্রদানকারীর নাম",
   "share_now" : "শেয়ারে করুন",
   "no_pending_rating" : "কোনও রেটিং পাওয়া যায় নি",
-  "coming_soon" : "শীঘ্রই আসছে...."
+  "coming_soon" : "শীঘ্রই আসছে....",
+  "lender_review_list" : "ভাড়া প্রদানকারীর পর্যালোচনা তালিকা",
+  "renter_review_list" : "ভাড়া গ্রহনকারীর পর্যালোচনা তালিকা",
+  "order_complete_date" : "অর্ডার সম্পূর্ণ তারিখ",
+  "not_yet_rated" : "এখনও রেট করা হয়নি",
+  "my_feedback_to_renter" : "ভাড়া গ্রহনকারীর প্রতি আমার প্রতিক্রিয়া",
+  "renter_feedback_to_you" : "আপনার প্রতি ভাড়া গ্রহনকারীর প্রতিক্রিয়া",
+  "my_feedback_to_lender" : "ভাড়া প্রদানকারীর প্রতি আমার প্রতিক্রিয়া",
+  "lender_feedback_to_you" : "আপনার প্রতি ভাড়া প্রদানকারীর প্রতিক্রিয়া",
+  "waiting_for_rate" : "অপেক্ষমান রেটিং",
+  "order_type" : "অর্ডারের ধরণ",
+  "order_completed" : "অর্ডার সম্পূর্ণ"
+
 }

@@ -1087,7 +1087,7 @@
     import { VueFeedbackReaction } from 'vue-feedback-reaction';
     export default {
         components: {StarRating, FlipCountdown, Clipboard, VueFeedbackReaction},
-        props: ['rentPost', 'profileEdit'],
+        // props: ['rentPost', 'profileEdit'],
         data() {
             return {
                 lenderRatingCount: 0,
@@ -1212,7 +1212,6 @@
                     this.invalidRating = true;
                     return;
                 }
-                console.log(this.ratingData.comment);
                 var config = {
                     headers: {
                         'Authorization': 'Bearer ' + this.$store.state.token
@@ -1237,7 +1236,6 @@
                 this.ratingData.value = data;
             },
             onCopy: function (e) {
-                // this.$toaster.success("Link successfully copied !");
                 this.$toaster.success( this.$t('link_copied_successfully', this.$store.state.locale) );
             },
             onError: function (e) {
@@ -1328,7 +1326,6 @@
                     disk_image: disk,
                     id: rentId
                 };
-                console.log(data);
                 this.$api.post('rent-image-update', data, config).then(response => {
                     if (response.data.error == false) {
                         this.$toaster.success(this.$t('rent_image_update', this.$store.state.locale));
@@ -1682,6 +1679,18 @@
                     .then(response => {
                         this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
                         setTimeout(function () {
+                                // this.rentData.game = '';
+                                // this.rentData.max_week = 1;
+                                // this.rentData.platform = null;
+                                // this.rentData.disk_condition = '';
+                                // this.rentData.disk_image = '';
+                                // this.rentData.cover_image = '';
+                                // this.rentData.checkpoint = {};
+                                // this.rentData.disk_type = '';
+                                // this.rentData.gameUserId = '';
+                                // this.rentData.gamePassword = '';
+                                // this.activeRentOffers();
+
                             window.location.reload();
                             // $('#v-pills-post-rent-tab').removeClass('active');
                             // $('#v-pills-post-rent').removeClass('active');
@@ -1692,6 +1701,32 @@
                         }, 2000);
                     });
                 })
+            },
+            activeRentOffers() {
+                // // $('#v-pills-overview-tab').removeClass('active');
+                // // $('#v-pills-overview').removeClass('active');
+                // // $('#v-pills-overview').removeClass('show');
+                // // $('#v-pills-post-rent-tab').removeClass('active');
+                // // $('#v-pills-post-rent').removeClass('show');
+                // // $('#v-pills-post-rent').removeClass('active');
+                // $('#v-pills-dashboard-tab').removeClass('active');
+                // $('#v-pills-dashboard').removeClass('active');
+                // $('#v-pills-dashboard').removeClass('show');
+                // $('#v-pills-edit-profile-tab').addClass('active');
+                // // $('#v-pills-edit-profile').addClass('active');
+                // // $('#v-pills-edit-profile').addClass('show');
+                // // $('#v-pills-dashboard-tab').addClass('active');
+                // // $('#v-pills-dashboard').addClass('active');
+                // // $('#v-pills-dashboard').addClass('show');
+                // // $('#v-pills-my-earning-tab').removeClass('active');
+                // // $('#v-pills-my-earning').removeClass('active');
+                // // $('#v-pills-my-earning').removeClass('show');
+                // // $('#v-pills-refer-tab').removeClass('active');
+                // // $('#v-pills-refer').removeClass('active');
+                // // $('#v-pills-refer').removeClass('show');
+                // // $('#v-pills-rating-tab').removeClass('active');
+                // // $('#v-pills-rating').removeClass('active');
+                // // $('#v-pills-rating').removeClass('show');
             },
             clickHandler(item) {
               // event fired when clicking on the input
@@ -1805,7 +1840,6 @@
                 this.$api.get('rents?include=game,platform,diskCondition,checkpoint,renter,lend', config).then(response =>
                 {
                     this.rents = response.data.data;
-                    console.log(this.rents);
                 });
 
                 this.$api.get('lends', config).then(response =>
@@ -1839,22 +1873,31 @@
                 {
                     this.lenderRatingCount = response.data.total;
                 });
-            }
-        },
-        created() {
-            this.$root.$on('ratingNavCheck', () => {
-                this.ratingCheck();
-            });
-            window.scrollTo(0,0);
-            this.copyUrl = process.env.VUE_APP_BASE;
-            let config = {
-                headers: {
-                    'Authorization': 'Bearer ' + this.$store.state.token
-                }
-            };
-            this.ratingCheck();
-            this.rentCheck();
-            this.$root.$on('rentPost', () => {
+            },
+            // rentPostTab() {
+            //     $('#v-pills-overview-tab').removeClass('active');
+            //     $('#v-pills-overview').removeClass('active');
+            //     $('#v-pills-overview').removeClass('show');
+            //     $('#v-pills-post-rent-tab').addClass('active');
+            //     $('#v-pills-post-rent').addClass('show');
+            //     $('#v-pills-post-rent').addClass('active');
+            //     $('#v-pills-edit-profile-tab').removeClass('active');
+            //     $('#v-pills-edit-profile').removeClass('active');
+            //     $('#v-pills-edit-profile').removeClass('show');
+            //     $('#v-pills-dashboard-tab').removeClass('active');
+            //     $('#v-pills-dashboard').removeClass('active');
+            //     $('#v-pills-dashboard').removeClass('show');
+            //     $('#v-pills-my-earning-tab').removeClass('active');
+            //     $('#v-pills-my-earning').removeClass('active');
+            //     $('#v-pills-my-earning').removeClass('show');
+            //     $('#v-pills-refer-tab').removeClass('active');
+            //     $('#v-pills-refer').removeClass('active');
+            //     $('#v-pills-refer').removeClass('show');
+            //     $('#v-pills-rating-tab').removeClass('active');
+            //     $('#v-pills-rating').removeClass('active');
+            //     $('#v-pills-rating').removeClass('show');
+            // },
+            rentPostTab() {
                 $('#v-pills-overview-tab').removeClass('active');
                 $('#v-pills-overview').removeClass('active');
                 $('#v-pills-overview').removeClass('show');
@@ -1876,7 +1919,51 @@
                 $('#v-pills-rating-tab').removeClass('active');
                 $('#v-pills-rating').removeClass('active');
                 $('#v-pills-rating').removeClass('show');
+            },
+            rentGamesTab() {
+                $('#v-pills-overview-tab').removeClass('active');
+                $('#v-pills-overview').removeClass('active');
+                $('#v-pills-overview').removeClass('show');
+                $('#v-pills-post-rent-tab').removeClass('active');
+                $('#v-pills-post-rent').removeClass('show');
+                $('#v-pills-post-rent').removeClass('active');
+                $('#v-pills-edit-profile-tab').removeClass('active');
+                $('#v-pills-edit-profile').removeClass('active');
+                $('#v-pills-edit-profile').removeClass('show');
+                $('#v-pills-dashboard-tab').addClass('active');
+                $('#v-pills-dashboard').addClass('active');
+                $('#v-pills-dashboard').addClass('show');
+                $('#v-pills-my-earning-tab').removeClass('active');
+                $('#v-pills-my-earning').removeClass('active');
+                $('#v-pills-my-earning').removeClass('show');
+                $('#v-pills-refer-tab').removeClass('active');
+                $('#v-pills-refer').removeClass('active');
+                $('#v-pills-refer').removeClass('show');
+                $('#v-pills-rating-tab').removeClass('active');
+                $('#v-pills-rating').removeClass('active');
+                $('#v-pills-rating').removeClass('show');
 
+                this.onRentedGames();
+            }
+        },
+        created() {
+            window.scrollTo(0,0);
+            this.$root.$on('ratingNavCheck', () => {
+                this.ratingCheck();
+            });
+            this.$root.$on('rentGames', () => {
+                this.rentGamesTab();
+            });
+            this.copyUrl = process.env.VUE_APP_BASE;
+            let config = {
+                headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                }
+            };
+            this.ratingCheck();
+            this.rentCheck();
+            this.$root.$on('rentPost', () => {
+                this.rentPostTab();
               });
 
             this.$root.$on('profileEdit', () => {

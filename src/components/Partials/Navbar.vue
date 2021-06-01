@@ -110,8 +110,8 @@
                                       </div>
                                         <div class="dropdown-menu gamehub-dropdown-menu">
                                             <div class="gamehub-dropdown-menu--top">
-                                              <router-link to="/profile" class="dropdown-item" href="#">{{ $t('dashboard', $store.state.locale) }}</router-link>
-                                              <router-link to="/" class="dropdown-item" @click.native="clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link>
+                                              <router-link to="/profile" class="dropdown-item">{{ $t('dashboard', $store.state.locale) }}</router-link>
+                                              <router-link to="/profile" class="dropdown-item" @click.native="clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link>
                                               <router-link class="router_link dropdown-item" to="/notice-board">{{ $t('noticeboard', $store.state.locale) }}</router-link>
                                               <router-link to="/contacts" class="dropdown-item" href="#">{{ $t('contact_us', $store.state.locale) }}</router-link>
                                             </div>

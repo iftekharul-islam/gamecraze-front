@@ -455,9 +455,7 @@
                     localStorage.setItem('deliveryCharge', 0);
                     this.$store.dispatch('setPromo', null);
                     this.$router.push('/profile').then(err => {
-                        setTimeout(function () {
-                            location.reload();
-                        }, 2000)
+                        this.$root.$emit('rentGames')
                     });
                 }
                 if (response.data.error === true) {

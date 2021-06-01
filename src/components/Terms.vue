@@ -78,7 +78,14 @@
                                     <p>{{ $t('terms_body_part_22', $store.state.locale) }} :</p>
                                     <p>{{ $t('terms_body_part_23', $store.state.locale) }}</p>
                                 </div>
-
+                                <div class="gamehub-policy-section--content--text--heading">
+                                    <p>{{ $t('terms_body_part_30', $store.state.locale) }} :</p>
+                                    <p>{{ $t('terms_body_part_31', $store.state.locale) }}</p>
+                                </div>
+                                <div class="gamehub-policy-section--content--text--heading">
+                                    <p>{{ $t('terms_body_part_32', $store.state.locale) }} :</p>
+                                    <p>{{ $t('terms_body_part_33', $store.state.locale) }}</p>
+                                </div>
                             </div>
                         </div>
                          <!--  -->

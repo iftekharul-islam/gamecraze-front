@@ -1719,6 +1719,10 @@ html {
   height: 100px;
 }
 
+.max-h-450 {
+  max-height: 450px;
+}
+
 .w-fit {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -2511,6 +2515,24 @@ select option {
   left: 0;
   bottom: 0;
   position: absolute;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #FFD715;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.custom-scroll::-webkit-scrollbar {
+  width: 10px;
+  background: #FFD715;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  border-left: 1px solid #FFD715;
+  border-right: 0;
+  background: #000;
 }
 
 @media (max-width: 575px) {

@@ -388,5 +388,8 @@
   "as_a" : "As a",
   "your_rating" : "your rating",
   "Renter" : "Renter",
-  "Lender" : "Lender"
+  "Lender" : "Lender",
+  "congratulations" : "Congratulations",
+  "the_order_of" : "The order of",
+  "rating_complete_notice" : "has been completed Please rate now."
 }

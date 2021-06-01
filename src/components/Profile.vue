@@ -1014,11 +1014,11 @@
                                                                         </div>
                                                                         <div class="text-center" v-if="ratingData.value.lender_id != $store.state.user.id">
                                                                             <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.lender.data.name}} {{ ratingData.value.lender.data.last_name}}</p>
-                                                                            <p class="gil-bold opa-8">{{ $t('lender', $store.state.locale) }}</p>
+                                                                            <p class="gil-bold opa-8">{{ $t('Lender', $store.state.locale) }}</p>
                                                                         </div>
                                                                         <div class="text-center" v-else>
                                                                             <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.renter.data.name}} {{ ratingData.value.renter.data.last_name}}</p>
-                                                                            <p class="gil-bold opa-8">{{ $t('renter', $store.state.locale) }}</p>
+                                                                            <p class="gil-bold opa-8">{{ $t('Renter', $store.state.locale) }}</p>
                                                                         </div>
                                                                         <div class="text-center">
                                                                             <p class="f-s-20 mb-1 gil-bold">{{ ratingData.value.lend.data.rent.data.game.data.name }}</p>

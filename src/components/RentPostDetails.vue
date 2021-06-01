@@ -85,6 +85,7 @@
                        v-clipboard:error="onError"
                        v-if="renter == true && post.status == 1"><span style="text-transform: uppercase">{{ $t('share_now', $store.state.locale) }}</span>
                     </a>
+                    <a href="javascript:void(0)" v-else-if="post.rented_user_id != null"></a>
                     <a href="javascript:void(0)" class="btn--secondery w-100" v-else-if="$store.getters.ifAuthenticated && post.status == 1" @click="rentModal = true"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></a>
                     <router-link to="/login" class="btn--secondery w-100"
                        v-else-if="post.status == 1"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></router-link>
@@ -344,6 +345,7 @@
             window.scrollTo(0,0);
             this.$api.get('rents/' + this.$route.params.id + '?include=diskCondition,game.genres,user,renter,platform,checkpoint.area.thana.district').then(response => {
                 this.post = response.data.data;
+                console.log(this.post);
                 this.rentCost(1, this.post.disk_type, this.post.game_id);
                 if (this.post.disk_type == 0) {
                     this.requiredAddress = false

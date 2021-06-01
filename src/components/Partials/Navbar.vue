@@ -266,7 +266,6 @@
                     this.invalidRating = true;
                     return;
                 }
-                console.log(this.ratingData.comment);
                 var config = {
                     headers: {
                         'Authorization': 'Bearer ' + this.$store.state.token
@@ -283,7 +282,7 @@
                     this.$toaster.success( response.data.message );
                     this.navRatingCheck();
                     this.ratingNavModal = false;
-                    this.$root.$emit('ratingCheck');
+                    this.$root.$emit('ratingNavCheck');
                 });
             },
             languageChange(value) {

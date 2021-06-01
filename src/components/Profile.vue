@@ -1842,6 +1842,9 @@
             }
         },
         created() {
+            this.$root.$on('ratingNavCheck', () => {
+                this.ratingCheck();
+            });
             window.scrollTo(0,0);
             this.copyUrl = process.env.VUE_APP_BASE;
             let config = {

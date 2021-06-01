@@ -123,6 +123,7 @@ let router = new Router({
             path: '/profile',
             name: 'Profile',
             component: Profile,
+            props: true,
             meta: {
                 requiresAuth: true
             }

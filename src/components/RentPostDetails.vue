@@ -28,7 +28,7 @@
                     </div>
                     <div class="mb-4">
                         <p class="text-white mb-1">{{ $t('renter_name', $store.state.locale) }}</p>
-                        <p class="text-secondery gil-bold mb-0" v-if="post.renter">{{ post.renter.data.name }}</p>
+                        <p class="text-secondery gil-bold mb-0" v-if="post.renter">{{ post.renter.data.name }} {{ post.renter.data.last_name }}</p>
                         <p class="text-secondery gil-bold mb-0" v-else>N/A</p>
                     </div>
                     <div class="mb-4 edit-profile">

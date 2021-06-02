@@ -1090,6 +1090,7 @@
         // props: ['rentPost', 'profileEdit'],
         data() {
             return {
+                fromCart: false,
                 lenderRatingCount: 0,
                 renterRatingCount: 0,
                 credentialModalShow: false,
@@ -1505,15 +1506,21 @@
                     }
                     this.$store.dispatch('updateUserDetails', this.form);
                     this.$toaster.success(this.$t('profile_updated', this.$store.state.locale));
-                    setTimeout(function(){
-                        // window.location.reload();
-                        $('#v-pills-edit-profile-tab').removeClass('active');
-                        $('#v-pills-edit-profile').removeClass('active');
-                        $('#v-pills-edit-profile').removeClass('show');
-                        $('#v-pills-overview-tab').addClass('active');
-                        $('#v-pills-overview').addClass('active');
-                        $('#v-pills-overview').addClass('show');
-                    }, 1000);
+                    if (this.fromCart) {
+                        this.fromCart = false;
+                        this.$router.push('/cart');
+                    } else {
+                        setTimeout(function(){
+                            // window.location.reload();
+                            $('#v-pills-edit-profile-tab').removeClass('active');
+                            $('#v-pills-edit-profile').removeClass('active');
+                            $('#v-pills-edit-profile').removeClass('show');
+                            $('#v-pills-overview-tab').addClass('active');
+                            $('#v-pills-overview').addClass('active');
+                            $('#v-pills-overview').addClass('show');
+                        }, 1000);
+                    }
+
                 });
             },
             isNumber: function(evt) {
@@ -1944,6 +1951,29 @@
                 $('#v-pills-rating').removeClass('show');
 
                 this.onRentedGames();
+            },
+            editProfileTab () {
+                $('#v-pills-edit-profile-tab').addClass('active');
+                $('#v-pills-edit-profile').addClass('active');
+                $('#v-pills-edit-profile').addClass('show');
+                $('#v-pills-overview-tab').removeClass('active');
+                $('#v-pills-overview').removeClass('active');
+                $('#v-pills-overview').removeClass('show');
+                $('#v-pills-post-rent-tab').removeClass('active');
+                $('#v-pills-post-rent').removeClass('show');
+                $('#v-pills-post-rent').removeClass('active');
+                $('#v-pills-dashboard-tab').removeClass('active');
+                $('#v-pills-dashboard').removeClass('active');
+                $('#v-pills-dashboard').removeClass('show');
+                $('#v-pills-my-earning-tab').removeClass('active');
+                $('#v-pills-my-earning').removeClass('show');
+                $('#v-pills-my-earning').removeClass('show');
+                $('#v-pills-refer-tab').removeClass('active');
+                $('#v-pills-refer').removeClass('active');
+                $('#v-pills-refer').removeClass('show');
+                $('#v-pills-rating-tab').removeClass('active');
+                $('#v-pills-rating').removeClass('active');
+                $('#v-pills-rating').removeClass('show');
             }
         },
         created() {
@@ -1967,28 +1997,8 @@
               });
 
             this.$root.$on('profileEdit', () => {
-                $('#v-pills-edit-profile-tab').addClass('active');
-                $('#v-pills-edit-profile').addClass('active');
-                $('#v-pills-edit-profile').addClass('show');
-                $('#v-pills-overview-tab').removeClass('active');
-                $('#v-pills-overview').removeClass('active');
-                $('#v-pills-overview').removeClass('show');
-                $('#v-pills-post-rent-tab').removeClass('active');
-                $('#v-pills-post-rent').removeClass('show');
-                $('#v-pills-post-rent').removeClass('active');
-                $('#v-pills-dashboard-tab').removeClass('active');
-                $('#v-pills-dashboard').removeClass('active');
-                $('#v-pills-dashboard').removeClass('show');
-                $('#v-pills-my-earning-tab').removeClass('active');
-                $('#v-pills-my-earning').removeClass('show');
-                $('#v-pills-my-earning').removeClass('show');
-                $('#v-pills-refer-tab').removeClass('active');
-                $('#v-pills-refer').removeClass('active');
-                $('#v-pills-refer').removeClass('show');
-                $('#v-pills-rating-tab').removeClass('active');
-                $('#v-pills-rating').removeClass('active');
-                $('#v-pills-rating').removeClass('show');
-
+                this.editProfileTab();
+                this.fromCart = true;
               });
 
             this.$root.$on('userRating', () => {

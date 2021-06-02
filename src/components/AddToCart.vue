@@ -488,10 +488,9 @@
                             swal(this.$t('cart_removed', this.$store.state.locale), {
                                 icon: "success",
                                 buttons: false,
+                                timer: 1500,
                             });
-                            setTimeout(function () {
-                                location.reload();
-                            }, 1500)
+                            this.authData();
                         }
                     });
                 } else {

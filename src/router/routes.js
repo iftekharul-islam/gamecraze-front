@@ -56,8 +56,17 @@ import RentPostDetails from '../components/RentPostDetails';
 
 let router = new Router({
     mode: 'history',
-    routes: [{
+    routes: [
+        {
             path: '',
+            name: 'Home',
+            component: Home,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/home',
             name: 'Home',
             component: Home,
             meta: {
@@ -114,6 +123,7 @@ let router = new Router({
             path: '/profile',
             name: 'Profile',
             component: Profile,
+            props: true,
             meta: {
                 requiresAuth: true
             }

@@ -28,7 +28,7 @@
                     </div>
                     <div class="mb-4">
                         <p class="text-white mb-1">{{ $t('renter_name', $store.state.locale) }}</p>
-                        <p class="text-secondery gil-bold mb-0" v-if="post.renter">{{ post.renter.data.name }}</p>
+                        <p class="text-secondery gil-bold mb-0" v-if="post.renter">{{ post.renter.data.name }} {{ post.renter.data.last_name }}</p>
                         <p class="text-secondery gil-bold mb-0" v-else>N/A</p>
                     </div>
                     <div class="mb-4 edit-profile">
@@ -85,15 +85,29 @@
                        v-clipboard:error="onError"
                        v-if="renter == true && post.status == 1"><span style="text-transform: uppercase">{{ $t('share_now', $store.state.locale) }}</span>
                     </a>
-                    <a href="#" class="btn--secondery w-100" v-else-if="$store.getters.ifAuthenticated && post.status == 1" @click="rentModal = true"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></a>
+                    <a href="javascript:void(0)" v-else-if="post.rented_user_id != null"></a>
+                    <a href="javascript:void(0)" class="btn--secondery w-100" v-else-if="$store.getters.ifAuthenticated && post.status == 1" @click="rentModal = true"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></a>
                     <router-link to="/login" class="btn--secondery w-100"
                        v-else-if="post.status == 1"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></router-link>
                 </div>
 
-                <div class="games-view--des mt-a-8">
+                <!-- <div class="games-view--des mt-a-8 position-relative">
+                    <input type="checkbox" class="loadmore-input">
                     <p>Gamehub is a gaming platform that aims to make all games more easily available to gamers. We are attempting to bring together all types of video game lovers with the goal of becoming the most respected organization among enthusiasts.
                      Using this unique platfrom you can rent your favorite games & lend the unused ones. I</p>
-                     <a href="#" class="opa-7 mt-3">Load more...</a>
+                     <a href="#" class="opa-7 mt-3 read-more">Load more...</a>
+                     <a href="#" class="opa-7 mt-3 read-less">Less</a>
+                </div> -->
+                <div class="load-more-container mt-a-8">
+                    <input type="checkbox" id="load-more" class="d-none"/>
+                    <p class="loadmore-text"> Gamehub is a gaming platform that aims to make all games more easily available to 
+                        gamers. We are attempting to bring together all types of video game lovers 
+                        with the goal of becoming the most respected organization among enthusiasts.
+                        Using this unique platfrom you can rent your favorite games & lend the unused ones.</p>
+                    <label class="load-more-btn" for="load-more">
+                        <span class="unloaded text-white opa-7">Load more...</span>
+                        <span class="loaded text-white op-7">View less</span>
+                    </label>  
                 </div>
 
 
@@ -150,7 +164,7 @@
                                                                 <td class="align-middle p-0 pb-3 pb-sm-0">{{ $t('select_week', $store.state.locale) }} :</td>
                                                                 <td class="p-0">
                                                                     <ValidationProvider name="Rent Week" rules="required" v-slot="{ errors }">
-                                                                        <select class="form-control" id="exampleFormControlSelect1" v-if="post" @change="postRentCost(postWeek, post.disk_type, post.game_id)" v-model="postWeek">
+                                                                        <select class="form-control" id="exampleFormControlSelect1" v-if="post" @change="postRentCost(form.week, post.disk_type, post.game_id)" v-model="form.week">
                                                                             <option value="" selected disabled>Please select rent week</option>
                                                                             <option v-for="n in post.max_number_of_week" :value="n" :key="n">For {{n}} Week</option>
                                                                         </select>
@@ -160,14 +174,14 @@
                                                             </tr>
                                                             <tr v-if="form.week">
                                                                 <td>{{ $t('rent_cost', $store.state.locale) }} :</td>
-                                                                <td><span>৳ </span>{{ postPrice }}</td>
+                                                                <td><span>৳ </span>{{ price }}</td>
                                                             </tr>
                                                             <tr v-if="form.week">
                                                                 <td>{{ $t('rent_start_date', $store.state.locale) }} :</td>
                                                                 <td>{{ rentStartDate }}</td>
                                                             </tr>
                                                             <tr v-if="form.week">
-                                                                <td>{{ $t('rent_start_date', $store.state.locale) }} :</td>
+                                                                <td>{{ $t('rent_end_date', $store.state.locale) }} :</td>
                                                                 <td>{{ returnDate }}</td>
                                                             </tr>
                                                             <tr v-if="requiredAddress">
@@ -310,7 +324,7 @@
             },
             postRentCost(week, disk_type, game_id) {
                 this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
-                    this.postPrice = response.data.price.discount_price + response.data.price.discount_commission;
+                    this.price = response.data.price.discount_price + response.data.price.discount_commission;
                 })
             },
             rentCost(week, disk_type, game_id) {
@@ -344,6 +358,7 @@
             window.scrollTo(0,0);
             this.$api.get('rents/' + this.$route.params.id + '?include=diskCondition,game.genres,user,renter,platform,checkpoint.area.thana.district').then(response => {
                 this.post = response.data.data;
+                console.log(this.post);
                 this.rentCost(1, this.post.disk_type, this.post.game_id);
                 if (this.post.disk_type == 0) {
                     this.requiredAddress = false

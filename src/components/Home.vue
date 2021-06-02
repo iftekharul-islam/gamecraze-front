@@ -565,6 +565,14 @@
             clickProfile() {
                 this.$root.$emit('rentPost');
             },
+            getUrlCode() {
+                let promo = this.$route.query.promo;
+                if (promo != null) {
+                    this.$store.dispatch('setPromo', promo);
+                    console.log('store promo code');
+                    console.log(this.$store.state.promo);
+                }
+            },
         },
         watch: {
             '$route' (to) {
@@ -586,6 +594,8 @@
             }
         },
         created() {
+            this.getUrlCode();
+            // console.log(this.$route.query.promo);
             window.scrollTo(0,0);
 
             this.getTrendingGames();

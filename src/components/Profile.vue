@@ -115,7 +115,7 @@
                             <a class="nav-link" id="v-pills-edit-profile-tab" data-toggle="pill" href="#v-pills-edit-profile" role="tab" aria-controls="v-pills-edit-profile" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/profile-icon4.png" alt="profile icon"> <img src="../assets/img/active-profile-icon4.png" class="img-active" alt="profile icon"></div> <span>{{ $t('edit_profile', $store.state.locale) }}</span></a>
                             <a class="nav-link" id="v-pills-my-earning-tab" data-toggle="pill" href="#v-pills-my-earning" role="tab" aria-controls="v-pills-my-earning" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/earn.png" alt="profile icon"> <img src="../assets/img/active-earn.png" class="img-active" alt="profile icon"></div> <span>{{ $t('my_earning', $store.state.locale) }}</span></a>
                             <a class="nav-link" id="v-pills-refer-tab" data-toggle="pill" href="#v-pills-refer" role="tab" aria-controls="v-pills-refer" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/refer.png" alt="profile icon"> <img src="../assets/img/refer-active.png" class="img-active" alt="profile icon"></div> <span>{{ $t('refer_friend', $store.state.locale) }}</span></a>
-                            <a class="nav-link" id="v-pills-rating-tab" data-toggle="pill" href="#v-pills-rating" role="tab" aria-controls="v-pills-rating" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/star-not-active.png" alt="profile icon"> <img src="../assets/img/star-active.png" class="img-active" alt="profile icon"></div> <span>Ratings</span></a>
+                            <a class="nav-link" id="v-pills-rating-tab" data-toggle="pill" href="#v-pills-rating" role="tab" aria-controls="v-pills-rating" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/star-not-active.png" alt="profile icon"> <img src="../assets/img/star-active.png" class="img-active" alt="profile icon"></div> <span>{{ $t('rating', $store.state.locale) }}</span></a>
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -954,29 +954,27 @@
                                     <div class="my-rating">
                                         <div class="my-rating--dashboard secondery-border d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-5">
                                             <div class="my-earning--dashboard--content mb-5 mb-md-0">
-                                                <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Renter</span> your rating</h4>
+                                                <h4 class="f-s-24 gil-medium mb-4">{{ $t('as_a', $store.state.locale) }} <span class="text-white">{{ $t('Renter', $store.state.locale) }}</span> {{ $t('your_rating', $store.state.locale) }}</h4>
                                                 <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="3" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="rentingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
-                                                <router-link to="/renter-rating-list" class="text-secondery mt-4 d-inline-block">View list </router-link>
-<!--                                                <span>{{ renterRatingCount }}</span>-->
+                                                <router-link to="/renter-rating-list" class="text-secondery mt-4 d-inline-block">{{ $t('view_list', $store.state.locale) }} ( {{ renterRatingCount }} )</router-link>
                                             </div>
                                             <div class="my-earning--dashboard--content">
-                                                <h4 class="f-s-24 gil-medium mb-4">As a <span class="text-white">Lender</span> your rating</h4>
+                                                <h4 class="f-s-24 gil-medium mb-4">{{ $t('as_a', $store.state.locale) }} <span class="text-white">{{ $t('Lender', $store.state.locale) }}</span> {{ $t('your_rating', $store.state.locale) }}</h4>
                                                 <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="3" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="lendingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30"></star-rating>
-                                                <router-link to="/lender-rating-list" class="text-secondery mt-4 d-inline-block">View list </router-link>
-<!--                                                <span>{{ lenderRatingCount }}</span>-->
+                                                <router-link to="/lender-rating-list" class="text-secondery mt-4 d-inline-block">{{ $t('view_list', $store.state.locale) }} ( {{ lenderRatingCount }} )</router-link>
                                             </div>
                                         </div>
                                         <!-- Rating history -->
                                         <div class="my-earning--payment-history">
-                                            <h4 class="my-earning--payment-history--heading mb-4">Waiting for rate</h4>
+                                            <h4 class="my-earning--payment-history--heading mb-4">{{ $t('waiting_for_rate', $store.state.locale) }}</h4>
                                             <div class="table-responsive" v-if="ratingList.length">
                                                 <table class="table my-earning--payment-history--table">
                                                     <thead>
                                                         <tr>
-                                                        <th scope="col">Order id</th>
-                                                        <th scope="col">Game name</th>
-                                                        <th scope="col">Order type</th>
-                                                        <th scope="col">Order completed</th>
+                                                        <th scope="col">{{ $t('order_no', $store.state.locale) }}</th>
+                                                        <th scope="col">{{ $t('game_name', $store.state.locale) }}</th>
+                                                        <th scope="col">{{ $t('order_type', $store.state.locale) }}</th>
+                                                        <th scope="col">{{ $t('order_completed', $store.state.locale) }}</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -986,7 +984,7 @@
                                                             <td v-if="rating.lender_id == $store.state.user.id">Lending</td>
                                                             <td v-else>Renting</td>
                                                             <td>{{ formattedReturnDate(rating.lend.data.lend_date) }}</td>
-                                                            <td><a href="#" class="text-secondery"  @click="setRatingData(rating)">Rate now</a></td>
+                                                            <td><a href="#" class="text-secondery"  @click="setRatingData(rating)">{{ $t('rate_now', $store.state.locale) }}</a></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -1006,7 +1004,7 @@
                                                                         </span>
                                                                     </button>
                                                                     <div class="modal-body-content">
-                                                                        <h5 class="modal-title text-secondery text-center f-s-32 mb-4" id="exampleModalLabel">Rate please</h5>
+                                                                        <h5 class="modal-title text-secondery text-center f-s-32 mb-4" id="exampleModalLabel">{{ $t('rate_please', $store.state.locale) }}</h5>
                                                                         <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-if="ratingData.value.lender_id != $store.state.user.id">
                                                                             <img :src="ratingData.value.lender.data.image" alt="img" class="img-fluid">
                                                                         </div>
@@ -1016,15 +1014,15 @@
                                                                         </div>
                                                                         <div class="text-center" v-if="ratingData.value.lender_id != $store.state.user.id">
                                                                             <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.lender.data.name}} {{ ratingData.value.lender.data.last_name}}</p>
-                                                                            <p class="gil-bold opa-8">Lender</p>
+                                                                            <p class="gil-bold opa-8">{{ $t('Lender', $store.state.locale) }}</p>
                                                                         </div>
                                                                         <div class="text-center" v-else>
                                                                             <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.renter.data.name}} {{ ratingData.value.renter.data.last_name}}</p>
-                                                                            <p class="gil-bold opa-8">Renter</p>
+                                                                            <p class="gil-bold opa-8">{{ $t('Renter', $store.state.locale) }}</p>
                                                                         </div>
                                                                         <div class="text-center">
                                                                             <p class="f-s-20 mb-1 gil-bold">{{ ratingData.value.lend.data.rent.data.game.data.name }}</p>
-                                                                            <p class="gil-bold opa-8">Game name</p>
+                                                                            <p class="gil-bold opa-8">{{ $t('game_name', $store.state.locale) }}</p>
                                                                         </div>
                                                                         <div class="d-flex vue-react justify-content-center align-items-center mb-5">
                                                                             <vue-feedback-reaction v-model="ratingData.feedback" :labels="['Very Poor','Poor','Average','Good','Excellent']"/>
@@ -1032,15 +1030,15 @@
                                                                         <form class="" @submit.prevent="ratingSubmit" method="post">
                                                                             <div class="comment-box">
                                                                                 <div class="form-group">
-                                                                                    <label for="comment-box" class="d-block gil-bold">Comment Box</label>
+                                                                                    <label for="comment-box" class="d-block gil-bold">{{ $t('comment_box', $store.state.locale) }}</label>
                                                                                     <textarea type="text" id="comment-box" rows="3" class="w-100 border-1 border-secondery primary-bg text-white p-2 focus-primary" v-model="ratingData.comment"></textarea>
                                                                                 </div>
                                                                             </div>
                                                                             <div>
-                                                                                <span class="text-center d-block text-danger" v-if="invalidRating">Please Select Rating/comment</span>
+                                                                                <span class="text-center d-block text-danger" v-if="invalidRating">{{ $t('please_rating', $store.state.locale) }}</span>
                                                                             </div>
                                                                             <div>
-                                                                                <button type="submit" class="bg-secondery primary-text text-center py-2 w-100 d-block gil-medium primary-text-hover">Done</button>
+                                                                                <button type="submit" class="bg-secondery primary-text text-center py-2 w-100 d-block gil-medium primary-text-hover">{{ $t('submit', $store.state.locale) }}</button>
                                                                             </div>
                                                                         </form>
                                                                     </div>
@@ -1089,9 +1087,12 @@
     import { VueFeedbackReaction } from 'vue-feedback-reaction';
     export default {
         components: {StarRating, FlipCountdown, Clipboard, VueFeedbackReaction},
-        props: ['rentPost', 'profileEdit'],
+        // props: ['rentPost', 'profileEdit'],
         data() {
             return {
+                fromCart: false,
+                lenderRatingCount: 0,
+                renterRatingCount: 0,
                 credentialModalShow: false,
                 invalidRating: false,
                 lendingAvg: 0,
@@ -1185,8 +1186,6 @@
                 walletHistory: [],
                 copyUrl: '',
                 ratingList: [],
-                LenderRatingCount: 0,
-                RenterRatingCount: 0
 
             }
         },
@@ -1196,6 +1195,16 @@
                     this.rentCheck()
                 }
             },
+            // "$route": {
+            //     handler: function(value) {
+            //         if (value.name === 'Profile'){
+            //             this.ratingCheck()
+            //         }
+            //     },
+            //     deep: true,
+            //     immediate: true,
+            // },
+
         },
         methods: {
             ratingSubmit () {
@@ -1204,7 +1213,6 @@
                     this.invalidRating = true;
                     return;
                 }
-                console.log(this.ratingData.comment);
                 var config = {
                     headers: {
                         'Authorization': 'Bearer ' + this.$store.state.token
@@ -1221,6 +1229,7 @@
                     this.$toaster.success( response.data.message );
                     this.ratingCheck();
                     this.ratingPopupModal = false;
+                    this.$root.$refs.Navbar.navRatingCheck();
                 });
             },
             setRatingData (data) {
@@ -1228,7 +1237,6 @@
                 this.ratingData.value = data;
             },
             onCopy: function (e) {
-                // this.$toaster.success("Link successfully copied !");
                 this.$toaster.success( this.$t('link_copied_successfully', this.$store.state.locale) );
             },
             onError: function (e) {
@@ -1319,7 +1327,6 @@
                     disk_image: disk,
                     id: rentId
                 };
-                console.log(data);
                 this.$api.post('rent-image-update', data, config).then(response => {
                     if (response.data.error == false) {
                         this.$toaster.success(this.$t('rent_image_update', this.$store.state.locale));
@@ -1499,15 +1506,21 @@
                     }
                     this.$store.dispatch('updateUserDetails', this.form);
                     this.$toaster.success(this.$t('profile_updated', this.$store.state.locale));
-                    setTimeout(function(){
-                        // window.location.reload();
-                        $('#v-pills-edit-profile-tab').removeClass('active');
-                        $('#v-pills-edit-profile').removeClass('active');
-                        $('#v-pills-edit-profile').removeClass('show');
-                        $('#v-pills-overview-tab').addClass('active');
-                        $('#v-pills-overview').addClass('active');
-                        $('#v-pills-overview').addClass('show');
-                    }, 1000);
+                    if (this.fromCart) {
+                        this.fromCart = false;
+                        this.$router.push('/cart');
+                    } else {
+                        setTimeout(function(){
+                            // window.location.reload();
+                            $('#v-pills-edit-profile-tab').removeClass('active');
+                            $('#v-pills-edit-profile').removeClass('active');
+                            $('#v-pills-edit-profile').removeClass('show');
+                            $('#v-pills-overview-tab').addClass('active');
+                            $('#v-pills-overview').addClass('active');
+                            $('#v-pills-overview').addClass('show');
+                        }, 1000);
+                    }
+
                 });
             },
             isNumber: function(evt) {
@@ -1673,6 +1686,18 @@
                     .then(response => {
                         this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
                         setTimeout(function () {
+                                // this.rentData.game = '';
+                                // this.rentData.max_week = 1;
+                                // this.rentData.platform = null;
+                                // this.rentData.disk_condition = '';
+                                // this.rentData.disk_image = '';
+                                // this.rentData.cover_image = '';
+                                // this.rentData.checkpoint = {};
+                                // this.rentData.disk_type = '';
+                                // this.rentData.gameUserId = '';
+                                // this.rentData.gamePassword = '';
+                                // this.activeRentOffers();
+
                             window.location.reload();
                             // $('#v-pills-post-rent-tab').removeClass('active');
                             // $('#v-pills-post-rent').removeClass('active');
@@ -1683,6 +1708,32 @@
                         }, 2000);
                     });
                 })
+            },
+            activeRentOffers() {
+                // // $('#v-pills-overview-tab').removeClass('active');
+                // // $('#v-pills-overview').removeClass('active');
+                // // $('#v-pills-overview').removeClass('show');
+                // // $('#v-pills-post-rent-tab').removeClass('active');
+                // // $('#v-pills-post-rent').removeClass('show');
+                // // $('#v-pills-post-rent').removeClass('active');
+                // $('#v-pills-dashboard-tab').removeClass('active');
+                // $('#v-pills-dashboard').removeClass('active');
+                // $('#v-pills-dashboard').removeClass('show');
+                // $('#v-pills-edit-profile-tab').addClass('active');
+                // // $('#v-pills-edit-profile').addClass('active');
+                // // $('#v-pills-edit-profile').addClass('show');
+                // // $('#v-pills-dashboard-tab').addClass('active');
+                // // $('#v-pills-dashboard').addClass('active');
+                // // $('#v-pills-dashboard').addClass('show');
+                // // $('#v-pills-my-earning-tab').removeClass('active');
+                // // $('#v-pills-my-earning').removeClass('active');
+                // // $('#v-pills-my-earning').removeClass('show');
+                // // $('#v-pills-refer-tab').removeClass('active');
+                // // $('#v-pills-refer').removeClass('active');
+                // // $('#v-pills-refer').removeClass('show');
+                // // $('#v-pills-rating-tab').removeClass('active');
+                // // $('#v-pills-rating').removeClass('active');
+                // // $('#v-pills-rating').removeClass('show');
             },
             clickHandler(item) {
               // event fired when clicking on the input
@@ -1796,7 +1847,6 @@
                 this.$api.get('rents?include=game,platform,diskCondition,checkpoint,renter,lend', config).then(response =>
                 {
                     this.rents = response.data.data;
-                    console.log(this.rents);
                 });
 
                 this.$api.get('lends', config).then(response =>
@@ -1814,45 +1864,47 @@
 
                 this.$api.get('rating-check?include=lend.rent.game,lend.order,lender,renter', config).then(response => {
                     this.ratingList = response.data.data;
-                    console.log('this.ratingList');
-                    console.log(this.ratingList);
                 });
 
                 this.$api.get('avg-renter-rating', config).then(response => {
                     this.rentingAvg = response.data.avg;
-                    console.log('this.rentingAvg');
-                    console.log(this.rentingAvg);
                 });
                 this.$api.get('avg-lender-rating', config).then(response => {
                     this.lendingAvg = response.data.avg;
-                    console.log('this.lendingAvg');
-                    console.log(this.lendingAvg);
                 });
-            }
-        },
-        created() {
-            window.scrollTo(0,0);
-            this.copyUrl = process.env.VUE_APP_BASE;
-            let config = {
-                headers: {
-                    'Authorization': 'Bearer ' + this.$store.state.token
-                }
-            };
-            this.$api.get('renter-rating-list?include=renter,lender,lend.rent.game', config).then(response =>
-            {
-                this.renterRatingCount = response.data.data.length
-                console.log('this.renterRatingCount');
-                console.log(this.renterRatingCount);
-            });
-            this.$api.get('lender-rating-list?include=renter,lender,lend.rent.game', config).then(response =>
-            {
-                this.lenderRatingCount = response.data.data.length;
-                console.log('this.LenderRatingCount');
-                console.log(this.lenderRatingCount);
-            });
-            this.ratingCheck();
-            this.rentCheck();
-            this.$root.$on('rentPost', () => {
+                this.$api.get('total-renter-rating', config).then(response =>
+                {
+                    this.renterRatingCount = response.data.total;
+                });
+                this.$api.get('total-lending-rating', config).then(response =>
+                {
+                    this.lenderRatingCount = response.data.total;
+                });
+            },
+            // rentPostTab() {
+            //     $('#v-pills-overview-tab').removeClass('active');
+            //     $('#v-pills-overview').removeClass('active');
+            //     $('#v-pills-overview').removeClass('show');
+            //     $('#v-pills-post-rent-tab').addClass('active');
+            //     $('#v-pills-post-rent').addClass('show');
+            //     $('#v-pills-post-rent').addClass('active');
+            //     $('#v-pills-edit-profile-tab').removeClass('active');
+            //     $('#v-pills-edit-profile').removeClass('active');
+            //     $('#v-pills-edit-profile').removeClass('show');
+            //     $('#v-pills-dashboard-tab').removeClass('active');
+            //     $('#v-pills-dashboard').removeClass('active');
+            //     $('#v-pills-dashboard').removeClass('show');
+            //     $('#v-pills-my-earning-tab').removeClass('active');
+            //     $('#v-pills-my-earning').removeClass('active');
+            //     $('#v-pills-my-earning').removeClass('show');
+            //     $('#v-pills-refer-tab').removeClass('active');
+            //     $('#v-pills-refer').removeClass('active');
+            //     $('#v-pills-refer').removeClass('show');
+            //     $('#v-pills-rating-tab').removeClass('active');
+            //     $('#v-pills-rating').removeClass('active');
+            //     $('#v-pills-rating').removeClass('show');
+            // },
+            rentPostTab() {
                 $('#v-pills-overview-tab').removeClass('active');
                 $('#v-pills-overview').removeClass('active');
                 $('#v-pills-overview').removeClass('show');
@@ -1874,10 +1926,33 @@
                 $('#v-pills-rating-tab').removeClass('active');
                 $('#v-pills-rating').removeClass('active');
                 $('#v-pills-rating').removeClass('show');
+            },
+            rentGamesTab() {
+                $('#v-pills-overview-tab').removeClass('active');
+                $('#v-pills-overview').removeClass('active');
+                $('#v-pills-overview').removeClass('show');
+                $('#v-pills-post-rent-tab').removeClass('active');
+                $('#v-pills-post-rent').removeClass('show');
+                $('#v-pills-post-rent').removeClass('active');
+                $('#v-pills-edit-profile-tab').removeClass('active');
+                $('#v-pills-edit-profile').removeClass('active');
+                $('#v-pills-edit-profile').removeClass('show');
+                $('#v-pills-dashboard-tab').addClass('active');
+                $('#v-pills-dashboard').addClass('active');
+                $('#v-pills-dashboard').addClass('show');
+                $('#v-pills-my-earning-tab').removeClass('active');
+                $('#v-pills-my-earning').removeClass('active');
+                $('#v-pills-my-earning').removeClass('show');
+                $('#v-pills-refer-tab').removeClass('active');
+                $('#v-pills-refer').removeClass('active');
+                $('#v-pills-refer').removeClass('show');
+                $('#v-pills-rating-tab').removeClass('active');
+                $('#v-pills-rating').removeClass('active');
+                $('#v-pills-rating').removeClass('show');
 
-              });
-
-            this.$root.$on('profileEdit', () => {
+                this.onRentedGames();
+            },
+            editProfileTab () {
                 $('#v-pills-edit-profile-tab').addClass('active');
                 $('#v-pills-edit-profile').addClass('active');
                 $('#v-pills-edit-profile').addClass('show');
@@ -1899,7 +1974,31 @@
                 $('#v-pills-rating-tab').removeClass('active');
                 $('#v-pills-rating').removeClass('active');
                 $('#v-pills-rating').removeClass('show');
+            }
+        },
+        created() {
+            window.scrollTo(0,0);
+            this.$root.$on('ratingNavCheck', () => {
+                this.ratingCheck();
+            });
+            this.$root.$on('rentGames', () => {
+                this.rentGamesTab();
+            });
+            this.copyUrl = process.env.VUE_APP_BASE;
+            let config = {
+                headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                }
+            };
+            this.ratingCheck();
+            this.rentCheck();
+            this.$root.$on('rentPost', () => {
+                this.rentPostTab();
+              });
 
+            this.$root.$on('profileEdit', () => {
+                this.editProfileTab();
+                this.fromCart = true;
               });
 
             this.$root.$on('userRating', () => {

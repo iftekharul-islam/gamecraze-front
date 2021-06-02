@@ -51,7 +51,7 @@
                       </div>
                       <div class="subtotal d-flex align-items-center justify-content-between">
                         <p>{{ $t('subtotal', $store.state.locale) }}</p>
-                        <span class="subtotal-price">৳ {{ totalPrice }}</span>
+                        <span class="subtotal-price">৳ {{ mainAmount }}</span>
                       </div>
                       <div class="subtotal d-flex align-items-center justify-content-between">
                         <p>{{ $t('delivery_charge', $store.state.locale) }}</p>
@@ -61,14 +61,24 @@
                         <p class="mb-2">Enter a promotional code</p>
                         <div class="promotional-code--input-group d-flex">
                           <input type="text" class="form-control mr-3" v-model="promoCode">
-                          <button class="btn--cart-btn" @click.prevent="applyCode">APPLY</button>
+                          <button class="btn--cart-btn d-flex" @click.prevent="applyCode">
+                              <span v-if="!isLoadingCode">APPLY</span>
+                              <span v-if="isLoadingCode" class="spinner-border spinner-border-sm"></span>
+                          </button>
                         </div>
-                        <p class="text-danger" v-if="promoError">Promo code not match</p>
+                        <p class="text-danger" v-if="promoError">Invalid Promo Code</p>
                       </div>
-                     
+                      <div class="total d-flex align-items-center justify-content-between" v-if="discountAmount != 0">
+                          <p>Main amount</p>
+                          <span class="total-price">৳ {{ mainAmount + deliveryCharge }}</span>
+                      </div>
+                          <div class="total d-flex align-items-center justify-content-between" v-if="discountAmount != 0">
+                              <p>Discount amount</p>
+                              <span class="total-price">৳ {{ discountAmount }}</span>
+                          </div>
                       <div class="total d-flex align-items-center justify-content-between">
-                        <p>{{ $t('total', $store.state.locale) }}</p>
-                        <span class="total-price">৳ {{ totalPrice + deliveryCharge }}</span>
+                          <p>{{ $t('total', $store.state.locale) }}</p>
+                          <span class="total-price">৳ {{ totalPrice + deliveryCharge }}</span>
                       </div>
                       </form>
                   </div>
@@ -219,6 +229,8 @@
   export default {
       data() {
           return {
+              isLoadingCode: false,
+              discountAmount: false,
               promoCode: '',
               promoAmount: 0,
               promoError: false,
@@ -250,14 +262,31 @@
               offerAmount: 0,
               digitalTypePricing: 20,
               totalPrice: 0,
+              mainAmount: 0,
               totalCommission: 0,
               availableWallet: false,
               spendWalletAmount: 0,
+              couponId: null
           }
       },
+      computed: {
+      },
     methods: {
+        autoPromoApply() {
+            let code = this.$store.state.promo ?? null;
+            if (code != null) {
+                console.log('i m in autoApplyCode');
+                this.promoCode = code;
+                this.applyCode();
+            }
+        },
         applyCode() {
+            console.log('i m in applyCode');
+            this.isLoadingCode = true;
             this.promoError = false;
+            this.discountAmount = 0;
+            this.totalPrice = this.mainAmount;
+            this.couponId = null;
             if (this.promoCode != null){
                 var config = {
                     headers: {
@@ -267,15 +296,18 @@
 
                 let data = {
                     promo: this.promoCode,
+                    amount: this.mainAmount,
                 };
                 this.$api.post('apply-promo', data, config).then(response => {
                     if (response.data.error == false){
                         this.promoAmount = response.data.amount;
-                        this.totalPrice = this.totalPrice - this.promoAmount;
-                        console.log(this.promoAmount);
+                        this.couponId = response.data.coupon_id;
+                        this.discountAmount = this.mainAmount - this.promoAmount;
+                        this.totalPrice = this.promoAmount;
                     } else {
                         this.promoError = true;
                     }
+                    this.isLoadingCode = false;
                 })
             }
         },
@@ -312,7 +344,9 @@
                 this.$api.get('cart-items', config).then(response => {
                     this.newCartItems = response.data.data.cartItems;
                     this.totalPrice = response.data.data.totalDiscountPrice;
+                    this.mainAmount = this.totalPrice;
                     this.deliveryCharge = response.data.data.deliveryCharge;
+                    this.autoPromoApply();
                     if (this.newCartItems) {
                         for (let i = 0; i < this.newCartItems.length; i++) {
                             this.rentIds.push(this.newCartItems[i].rent_id);
@@ -409,7 +443,8 @@
                 deliveryCharge: this.deliveryCharge,
                 totalAmount: this.totalPrice,
                 spendWalletAmount: this.spendWalletAmount,
-                promoAmount: this.promoAmount,
+                discountAmount: this.discountAmount,
+                couponId: this.couponId,
             };
             this.$api.post('lend-game', data, config).then(response => {
                 if (response.data.error === false) {
@@ -418,10 +453,9 @@
                     this.isLoading = false;
                     localStorage.setItem('cartItems', '');
                     localStorage.setItem('deliveryCharge', 0);
+                    this.$store.dispatch('setPromo', null);
                     this.$router.push('/profile').then(err => {
-                        setTimeout(function () {
-                            location.reload();
-                        }, 2000)
+                        this.$root.$emit('rentGames')
                     });
                 }
                 if (response.data.error === true) {
@@ -454,10 +488,9 @@
                             swal(this.$t('cart_removed', this.$store.state.locale), {
                                 icon: "success",
                                 buttons: false,
+                                timer: 1500,
                             });
-                            setTimeout(function () {
-                                location.reload();
-                            }, 1500)
+                            this.authData();
                         }
                     });
                 } else {
@@ -482,6 +515,8 @@
         }
     },
     created() {
+        console.log('the promo code');
+        console.log(this.$store.state.promo);
         window.scrollTo(0,0);
         this.authData();
         this.$api.get('delivery-charge').then(response => {

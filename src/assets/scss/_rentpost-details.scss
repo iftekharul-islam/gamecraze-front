@@ -1,0 +1,26 @@
+
+.load-more-container {
+    min-height: 150px;
+    margin: 20px auto;
+    position: relative;
+    .loadmore-text {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
+    }
+    .load-more-btn {
+      cursor: pointer;
+      .loaded { display: none; }
+    }
+    #load-more {
+      &:checked ~ .loadmore-text {
+        display: block;
+        -webkit-line-clamp: none;
+      }
+      &:checked ~ .load-more-btn {
+        .loaded { display: block; }
+        .unloaded { display: none; }
+      }
+    }
+  }

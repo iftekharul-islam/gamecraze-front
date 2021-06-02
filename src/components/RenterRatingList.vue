@@ -19,7 +19,7 @@
                                 <div class="rating-list--box--content max-368">
                                     <p class="gil-bold gray-text f-s-16 mb-2">{{ $t('order_complete_date', $store.state.locale) }}</p>
                                     <p class="text-white mb-4 gil-bold">{{ formattedReturnDate(rating.lend.data.lend_date) }}</p>
-                                    <p class="gray-text gil-bold">{{ $t('my_feedback_to_lender', $store.state.locale) }}</p>
+                                  <p class="gray-text gil-bold">{{ $t('my_feedback_to_lender', $store.state.locale) }}</p>
                                     <div class="d-flex align-items-center mb-4">
                                         <star-rating :read-only="true" :rating="rating.renter_rating" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30" v-if="rating.notify_renter != null"></star-rating>
                                         <p v-else>{{ $t('not_yet_rated', $store.state.locale) }}</p>

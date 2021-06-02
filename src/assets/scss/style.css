@@ -10823,6 +10823,40 @@ html {
   border-bottom: 0;
 }
 
+.load-more-container {
+  min-height: 150px;
+  margin: 20px auto;
+  position: relative;
+}
+
+.load-more-container .loadmore-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.load-more-container .load-more-btn {
+  cursor: pointer;
+}
+
+.load-more-container .load-more-btn .loaded {
+  display: none;
+}
+
+.load-more-container #load-more:checked ~ .loadmore-text {
+  display: block;
+  -webkit-line-clamp: none;
+}
+
+.load-more-container #load-more:checked ~ .load-more-btn .loaded {
+  display: block;
+}
+
+.load-more-container #load-more:checked ~ .load-more-btn .unloaded {
+  display: none;
+}
+
 .page_404 {
   padding: 100px 0 180px 0;
   background: #fff;

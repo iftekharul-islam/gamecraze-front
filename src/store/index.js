@@ -18,6 +18,7 @@ export const storage = {
         },
         email:'',
         referral: '',
+        promo: '',
         rentPostDetails: {},
         //auth user info
         token: null,
@@ -118,6 +119,9 @@ export const storage = {
         },
         setReferral (state, payload) {
             state.referral = payload
+        },
+        setPromo (state, payload) {
+            state.promo = payload
         },
         setRentPostDetails (state, payload) {
             state.rentPostDetails = payload
@@ -249,6 +253,9 @@ export const storage = {
         },
         setReferral (context, payload) {
             context.commit('setReferral', payload)
+        },
+        setPromo (context, payload) {
+            context.commit('setPromo', payload)
         },
         setRentPostDetails(context, payload) {
             context.commit('setRentPostDetails', payload)

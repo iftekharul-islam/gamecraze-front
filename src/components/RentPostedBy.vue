@@ -118,7 +118,7 @@
                                                 <td>{{ rentStartDate }}</td>
                                             </tr>
                                             <tr v-if="form.week">
-                                                <td>{{ $t('rent_start_date', $store.state.locale) }} :</td>
+                                                <td>{{ $t('rent_end_date', $store.state.locale) }} :</td>
                                                 <td>{{ returnDate }}</td>
                                             </tr>
                                             <tr v-if="requiredAddress">

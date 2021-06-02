@@ -4,7 +4,7 @@
         <section class="sponsors-section">
             <div class="container">
                 <div class="sponsors-section--content">
-                    <h2>coming soon....</h2>
+                    <h2>{{ $t('coming_soon', $store.state.locale) }}</h2>
                 </div>
             </div>
         </section>

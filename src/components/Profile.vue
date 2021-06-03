@@ -446,7 +446,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        <div class="">
+                                                        <div class="" v-if="lend.status === 3">
                                                             <a href="#" class="text-black px-3 py-1 gil-medium" @click.prevent="extendModal(lend)"><span>Extend</span></a>
                                                         </div>
 

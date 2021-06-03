@@ -446,6 +446,77 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="">
+                                                            <a href="#" class="text-black px-3 py-1 gil-medium" @click.prevent="extendModal(lend)"><span>Extend</span></a>
+                                                        </div>
+
+                                                        <!-- Extend modal -->
+                                                        <div v-if="extendModalShow">
+                                                            <transition name="modal">
+                                                                <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal share-post-modal">
+                                                                    <div class="modal-wrapper">
+                                                                        <div class="modal-dialog modal-dialog-centered max-md-760" role="document">
+                                                                            <div class="modal-content">
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                    <span aria-hidden="true" @click="extendModalShow = false" class="close-modal"></span>
+                                                                                </button>
+                                                                                <div class="modal-body-content">
+                                                                                    <ValidationObserver v-slot="{ handleSubmit }">
+                                                                                        <div>
+                                                                                            <div class="seller-information border-0">
+                                                                                                <table class="w-full w-lg-75 share-post-modal--bottom-table">
+                                                                                                    <tbody class="text-left">
+                                                                                                    <tr>
+                                                                                                        <td>Order no :</td>
+                                                                                                        <td>{{ extend.orderNo }}</td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <td>Game Name :</td>
+                                                                                                        <td>{{ extend.game }}</td>
+                                                                                                    </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+                                                                                            </div>
+                                                                                            <div class="seller-information mt-4">
+                                                                                                <div class="text-center">
+                                                                                                    <h2>Provide Extend Week</h2>
+                                                                                                </div>
+                                                                                                <table class="w-full share-post-modal--bottom-table">
+                                                                                                    <tbody class="text-left">
+                                                                                                    <tr>
+                                                                                                        <td class="align-middle p-0 pb-3 pb-sm-0">{{ $t('select_week', $store.state.locale) }} :</td>
+                                                                                                        <td class="p-0">
+                                                                                                            <ValidationProvider name="Rent Week" rules="required" v-slot="{ errors }">
+                                                                                                                <select class="form-control" id="exampleFormControlSelect1" @change="rentCost(extend.week, extend.disk_type, extend.game_id)" v-model="extend.week">
+                                                                                                                    <option value="" selected disabled>Please select rent week</option>
+                                                                                                                    <option v-for="n in 5" :value="n" :key="n">For {{n}} Week</option>
+                                                                                                                </select>
+                                                                                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                                                            </ValidationProvider>
+                                                                                                        </td>
+                                                                                                    </tr>
+                                                                                                    <tr>
+                                                                                                        <td>{{ $t('rent_cost', $store.state.locale) }} :</td>
+                                                                                                        <td><span>৳ </span>{{ extend.price + extend.commission}}</td>
+                                                                                                    </tr>
+                                                                                                    </tbody>
+                                                                                                </table>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        <div class="d-flex justify-content-center mt-5">
+                                                                                            <a href="javascript:void(0)" class="btn--secondery" @click.prevent="handleSubmit(extendSubmit)">
+                                                                                                <span><i class="fas fa-shopping-cart mr-2"></i> {{ $t('submit', $store.state.locale) }}</span>
+                                                                                            </a>
+                                                                                        </div>
+                                                                                    </ValidationObserver>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </transition>
+                                                        </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1087,9 +1158,19 @@
     import { VueFeedbackReaction } from 'vue-feedback-reaction';
     export default {
         components: {StarRating, FlipCountdown, Clipboard, VueFeedbackReaction},
-        // props: ['rentPost', 'profileEdit'],
         data() {
             return {
+                extend: {
+                    week: '',
+                    price: 0,
+                    game: '',
+                    lend_id: null,
+                    orderNo: '',
+                    commission: 0,
+                    game_id: '',
+                    disk_type: ''
+                },
+                extendModalShow: false,
                 fromCart: false,
                 lenderRatingCount: 0,
                 renterRatingCount: 0,
@@ -1195,18 +1276,50 @@
                     this.rentCheck()
                 }
             },
-            // "$route": {
-            //     handler: function(value) {
-            //         if (value.name === 'Profile'){
-            //             this.ratingCheck()
-            //         }
-            //     },
-            //     deep: true,
-            //     immediate: true,
-            // },
-
         },
         methods: {
+            extendModal(lend) {
+                this.extend.week = '';
+                this.extend.price = 0;
+                this.extend.commission = 0;
+
+                this.extendModalShow = true;
+                this.extend.game = lend.rent.game.name;
+                this.extend.game_id = lend.rent.game.id;
+                this.extend.disk_type = lend.rent.disk_type;
+                this.extend.orderNo = lend.order.order_no;
+                this.extend.lend_id = lend.id;
+            },
+            extendSubmit(){
+                var config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+
+                let data = {
+                    id: this.extend.lend_id,
+                    week: this.extend.week,
+                    amount: this.extend.price,
+                    commission: this.extend.commission,
+                };
+
+                this.$api.post('extend-lend', data, config).then(response => {
+                    console.log(response.data.error);
+                    if (response.data.error == false) {
+                        this.extendModalShow = false;
+                        this.$toaster.success("Extend request sent successfully!!");
+                    }
+
+                });
+            },
+            rentCost(week, disk_type, game_id) {
+                this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
+                    console.log(response);
+                    this.extend.price = response.data.price.discount_price;
+                    this.extend.commission =  response.data.price.discount_commission;
+                })
+            },
             ratingSubmit () {
                 this.invalidRating = false;
                 if (this.ratingData.rating === 0 && this.ratingData.comment === ''){
@@ -1410,22 +1523,22 @@
                 });
 
             },
-            extend () {
-                this.$swal({
-                    title: this.$t('please_contact', this.$store.state.locale),
-                    text: this.$t('contact_details', this.$store.state.locale),
-                    icon: "warning",
-                }).then(() => {
-                        this.$swal({
-                            text: this.$t('thank_you', this.$store.state.locale),
-                            icon: 'success',
-                            timer: 1500,
-                            button: false,
-                        });
-
-                });
-
-            },
+            // extend () {
+            //     this.$swal({
+            //         title: this.$t('please_contact', this.$store.state.locale),
+            //         text: this.$t('contact_details', this.$store.state.locale),
+            //         icon: "warning",
+            //     }).then(() => {
+            //             this.$swal({
+            //                 text: this.$t('thank_you', this.$store.state.locale),
+            //                 icon: 'success',
+            //                 timer: 1500,
+            //                 button: false,
+            //             });
+            //
+            //     });
+            //
+            // },
             onOfferedGames() {
                 this.show = true
             },

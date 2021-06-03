@@ -273,8 +273,8 @@
       },
     methods: {
         autoPromoApply() {
-            let code = this.$store.state.promo ?? null;
-            if (code != null) {
+            let code = this.$store.state.promo ?? false;
+            if (code) {
                 console.log('i m in autoApplyCode');
                 this.promoCode = code;
                 this.applyCode();

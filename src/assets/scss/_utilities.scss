@@ -27,6 +27,11 @@
 .mt-a-7 {
     margin-top: 2.5rem;
 }
+.mt-a-sm-7 {
+    @include for-min-575 {
+        margin-top: 2.5rem;
+    }
+}
 
 .mt-a-8 {
     margin-top: 2.813rem;
@@ -1782,6 +1787,11 @@ html {
 .max-400 {
     max-width: 400px;
 }
+
+.max-446 {
+    max-width: 446px;
+}
+
 .max-500 {
     max-width: 500px;
 }
@@ -1813,6 +1823,11 @@ html {
 .w-full {
     width: 100%;
 }
+.w-sm-initial {
+   @include for-min-575 {
+    width: initial;
+   }
+}
 .max-md-760 {
     @include for-min-992 {
         max-width: 760px;
@@ -1820,9 +1835,6 @@ html {
 }
 
 // %
-.w-full {
-    width: 100%;
-}
 .w-lg-75 {
     @include for-min-1200 {
         width: 75%;
@@ -2107,10 +2119,41 @@ select {
         }
     }
 }
+.game-details-hover {
+    transition: all .3s ease;
+    &:hover {
+        background: $game-details;
+        color: $text-light;
+        border: 1px solid $secondery;
+    }
+}
 .primary-text-hover {
     &:hover {
         color: $primary;
     }
+}
+.black-text-hover {
+    &:hover {
+        color: $text-dark;
+    }
+}
+.secondery-fill-hover {
+    transition: all .3s ease-in;
+    &:hover {
+        fill: $secondery;
+        svg {
+                fill: $secondery;
+            path {
+                fill: $secondery;
+            }
+        }
+    }
+    path {
+        &:hover {
+            fill: $secondery;
+        }
+    }
+    
 }
 
 // checkbox custom
@@ -2204,7 +2247,14 @@ select {
 .flex-2 {
     flex: 2;
 }
-
+.flex-none {
+    flex: none;
+}
+.flex-sm-initial {
+    @include for-min-575 {
+        flex: initial;
+    }
+}
 // After
 .no-after {
     &::after {
@@ -2488,3 +2538,12 @@ select {
         background: $text-dark;
     }
 }
+
+// skew 
+.-skew-19-deg {
+    transform: skew(-19deg);
+}
+.skew-19-deg {
+    transform: skew(19deg);
+}
+

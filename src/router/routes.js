@@ -53,6 +53,7 @@ import PricePlan from '../components/PricePlan';
 import RatingList from '../components/RatingList';
 import RenterRatingList from '../components/RenterRatingList';
 import RentPostDetails from '../components/RentPostDetails';
+import RentedGamesList from '../components/RentedGamesList';
 
 let router = new Router({
     mode: 'history',
@@ -440,6 +441,14 @@ let router = new Router({
             path: '/:id/:slug',
             name: 'rent-post-details',
             component: RentPostDetails,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/rented-games-list',
+            name: 'rented-games-list',
+            component: RentedGamesList,
             meta: {
                 requiresAuth: false
             }

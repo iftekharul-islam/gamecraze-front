@@ -750,46 +750,7 @@
     .timer {
         margin-top: -60px;
     }
-    .flip-clock {
-        display: grid;
-        grid-template: wrap;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 55px;
-        grid-auto-rows: 55px;
-        justify-items: center;
-        justify-content: center;
-        background: $timer;
-        padding: 5px;
-        width: 198px;
-        height: 120px;
-        margin: 0 !important;
-        @include for-max-400 {
-            width: 160px;
-            height: 90px;
-            grid-template-rows: 45px;
-            grid-auto-rows: 45px;
-        }
-        >span {
-            &:last-of-type {
-                grid-column-start: 2;
-                grid-column-end: 3;
-            }
-            >span {
-                font-size: 1.6rem;
-                @include for-max-400 {
-                    font-size: 12px;
-                }
-            }
-        }
-        .flip-clock__slot {
-            font-size: 10px;
-        }
-        &__piece {
-            display: flex !important;
-            flex-direction: column;
-            align-items: center;
-        }
-    }
+    
 }
 
 .rented-note,
@@ -1093,3 +1054,44 @@
     padding-bottom: 180px;
 }
 
+// clock
+.flip-clock {
+    display: grid;
+    grid-template: wrap;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 55px;
+    grid-auto-rows: 55px;
+    justify-items: center;
+    justify-content: center;
+    background: $timer;
+    padding: 5px;
+    width: 198px !important;
+    height: 120px !important;
+    margin: 0 !important;
+    @include for-max-400 {
+        width: 160px !important;
+        height: 90px !important;
+        grid-template-rows: 45px;
+        grid-auto-rows: 45px;
+    }
+    >span {
+        &:last-of-type {
+            grid-column-start: 2;
+            grid-column-end: 3;
+        }
+        >span {
+            font-size: 1.6rem !important;
+            @include for-max-400 {
+                font-size: 12px !important;
+            }
+        }
+    }
+    .flip-clock__slot {
+        font-size: 10px !important;
+    }
+    &__piece {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+    }
+}

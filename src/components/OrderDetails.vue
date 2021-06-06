@@ -14,7 +14,7 @@
                             </router-link>
                         </div>
                         <!-- new rented design -->
-                        <div class="d-flex flex-wrap justify-content-center" v-if="lends">
+                        <div class="d-flex flex-wrap max-940 mx-auto" v-if="lends">
                             <div class="max-446 mb-3 mr-sm-4 w-100 pt-a-2 pl-a-4 pb-a-6 pr-a-4 position-relative bg-game-details border-2 warning-border" v-for="(lend, index) in lends" :key="index">
                                 <!-- disk type -->
                                 <div class="dashboard-content--rented--box--disk-type position-absolute top--1 right--1 bg-secondery p-2 gil-bold">
@@ -165,7 +165,28 @@
                                     </div>
                             </div>
                         </div>
-                        <div class="text-center">No data found !!!</div>
+                        <div class="max-940 mx-auto">
+                            <div class="max-446 mr-sm-4 ml-md-auto mt-5">
+                                    <div class="border-b-1 border-t-1 border-white-50 p-4">
+                                        <div class="d-flex align-items-center justify-content-between mb-4">
+                                        <p class="mb-0 gray-text gil-medium">Subtotal</p>
+                                        <p class="mb-0 gil-bold text-white">Tk. 585.00</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between mb-4">
+                                        <p class="mb-0 gray-text gil-medium">Delivery charge</p>
+                                        <p class="mb-0 gil-bold text-white">Tk. 585.00</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <p class="mb-0 gray-text gil-medium">Discount</p>
+                                        <p class="mb-0 gil-bold text-white">Tk. 585.00</p>
+                                    </div>
+                                </div>
+                                <div class="p-4 d-flex align-items-center justify-content-between">
+                                    <p class="mb-0 text-secondery gil-medium"> Grand total</p>
+                                    <p class="mb-0 gil-bold text-secondery">Tk 560.00</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

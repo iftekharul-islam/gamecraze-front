@@ -407,7 +407,7 @@
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <router-link to="/141/order-details" class="d-flex border-1 border-secondery -skew-19-deg pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover"><span class="skew-19-deg">Details</span></router-link>
+                                                        <router-link :to="'/'+ order.id +'/order-details'" class="d-flex border-1 border-secondery -skew-19-deg pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover"><span class="skew-19-deg">Details</span></router-link>
                                                     </div>
                                                     <!-- disk type -->
                                                     <!-- <div class="dashboard-content--rented--box--disk-type position-absolute top--1 right--1 bg-secondery p-2 gil-bold">

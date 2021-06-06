@@ -185,7 +185,7 @@
                                         <button  @click.prevent="onOfferedGames()" :disabled="show" :class="{active: show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  {{ $t('offered_games', $store.state.locale) }}</button>
                                     </div>
                                 <!-- Offer -->
-                                    <div class="dashboard-content--rented" v-if="rents.length && show">
+                                    <div class="dashboard-content--rented dashboard-content--offer" v-if="rents.length && show">
                                     <!-- new offter design -->
                                         <div class="d-flex flex-wrap"  v-if="rents">
                                         <div class="dashboard-content--rented--box position-relative bg-game-details border-2 warning-border" v-for="(rent, index) in rents" :key="index">
@@ -377,23 +377,48 @@
                                     </div>
                                     <!-- Rented -->
                                     <div v-else-if="lends.length && !show">
-                                        <div class="dashboard-content--rented">
+                                        <div class="dashboard-content--rented new-rented">
                                             <!-- new rented design -->
                                             <div class="d-flex flex-wrap" v-if="lends">
-                                                <div class="dashboard-content--rented--box position-relative bg-game-details border-2 warning-border" v-for="(lend, index) in lends" :key="index">
+                                                <div class="dashboard-content--rented--box flex-wrap d-flex justify-content-between w-100 mr-0  bg-game-details border-2 warning-border" v-for="(lend, index) in lends" :key="index">
+                                                    <!-- order id -->
+                                                    <div class="order-id flex-none flex-sm-initial w-full w-sm-initial">
+                                                        <p class="f-s-20 gil-bold text-secondery" v-if="lend.order">{{ lend.order.order_no }}</p>
+                                                        <p class="f-s-20 gil-bold text-secondery" v-else>N/A</p>
+                                                    </div>
+                                                    <div class="start-date d-flex flex-column">
+                                                        <div class="mb-4">
+                                                            <p class="text-white mb-2">{{ $t('order_start_date', $store.state.locale) }}</p>
+                                                            <p class=" text-secondery">{{ formattedDate(lend.lend_date) }} </p>
+                                                        </div>
+                                                        <div>
+                                                            <p class="text-white mb-2">{{ $t('total_game', $store.state.locale) }}</p>
+                                                            <p class=" text-secondery">3</p>
+                                                        </div>
+                                                    </div>
+                                                     <div class="payment d-flex flex-column">
+                                                        <div class="mb-4">
+                                                            <p class="text-white mb-2">{{ $t('order_amount', $store.state.locale) }}</p>
+                                                            <p class=" text-secondery">{{ lend.lend_cost + parseInt(lend.commission)  }}</p>
+                                                        </div>
+                                                        <div>
+                                                            <p class="text-white mb-2">{{ $t('payment_status', $store.state.locale) }}</p>
+                                                            <p class=" text-secondery">Unpaid</p>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <router-link to="/rented-games-list" class="d-flex border-1 border-secondery -skew-19-deg pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover"><span class="skew-19-deg">Details</span></router-link>
+                                                    </div>
                                                     <!-- disk type -->
-                                                    <div class="dashboard-content--rented--box--disk-type position-absolute top--1 right--1 bg-secondery p-2 gil-bold">
+                                                    <!-- <div class="dashboard-content--rented--box--disk-type position-absolute top--1 right--1 bg-secondery p-2 gil-bold">
                                                         <div class="disk-type text-black" v-if="lend.rent.disk_type == 1">Physical Copy</div>
                                                         <div class="disk-type text-black" v-if="lend.rent.disk_type == 0">Digital Copy</div>
                                                     </div>
-                                                    <div class="dashboard-content--rented--box--order-id h-30">
-                                                        <p v-if="lend.order">{{ lend.order.order_no }}</p>
-                                                        <p v-else>N/A</p>
-                                                    </div>
+                                                    
                                                     <div class="dashboard-content--rented--box--order-name">
                                                         <p v-if="lend.rent" class="f-s-20 gil-bold mb-a-3 h-60">{{ lend.rent.game.name }}</p>
-                                                    </div>
-                                                    <div class="d-flex justify-content-between dashboard-content--rented--box--order-description">
+                                                    </div> -->
+                                                    <!-- <div class="d-flex justify-content-between dashboard-content--rented--box--order-description">
                                                             <div class="cost flex-2">
                                                                 <p>{{ $t('cost', $store.state.locale) }}</p>
                                                                 <p class="text-secondery">{{ lend.lend_cost + parseInt(lend.commission)  }}</p>
@@ -407,8 +432,8 @@
                                                                     <p class="mb-1" v-else>-</p>
                                                                 </div>
                                                             </div>
-                                                    </div>
-                                                    <div class="mt-a-6 d-flex justify-content-between">
+                                                    </div> -->
+                                                    <!-- <div class="mt-a-6 d-flex justify-content-between">
                                                             <div class="timer flex-2">
                                                                 <p class="mb-1">{{ $t('remaining_time', $store.state.locale) }}</p>
                                                                 <div v-if="lend.rent.disk_type == 1">
@@ -418,7 +443,7 @@
                                                                 <div v-if="lend.rent.disk_type == 0">
                                                                     <flip-countdown :deadline="endDate(lend.rent.disk_type, lend.updated_at, lend.lend_week)" v-if="lend.status === 3"></flip-countdown>
                                                                     <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-else></flip-countdown>
-<!--                                                                    <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)" v-else></flip-countdown>-->
+                                                                   <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)" v-else></flip-countdown>
                                                                 </div>
                                                             </div>
                                                             <div class="status flex-1">
@@ -445,78 +470,7 @@
                                                                     <span class="completed br-0 f-s-16" >Postponed</span>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                        <div class="" v-if="lend.status === 3">
-                                                            <a href="#" class="text-black px-3 py-1 gil-medium" @click.prevent="extendModal(lend)"><span>Extend</span></a>
-                                                        </div>
-
-                                                        <!-- Extend modal -->
-                                                        <div v-if="extendModalShow">
-                                                            <transition name="modal">
-                                                                <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal share-post-modal">
-                                                                    <div class="modal-wrapper">
-                                                                        <div class="modal-dialog modal-dialog-centered max-md-760" role="document">
-                                                                            <div class="modal-content">
-                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                    <span aria-hidden="true" @click="extendModalShow = false" class="close-modal"></span>
-                                                                                </button>
-                                                                                <div class="modal-body-content">
-                                                                                    <ValidationObserver v-slot="{ handleSubmit }">
-                                                                                        <div>
-                                                                                            <div class="seller-information border-0">
-                                                                                                <table class="w-full w-lg-75 share-post-modal--bottom-table">
-                                                                                                    <tbody class="text-left">
-                                                                                                    <tr>
-                                                                                                        <td>Order no :</td>
-                                                                                                        <td>{{ extend.orderNo }}</td>
-                                                                                                    </tr>
-                                                                                                    <tr>
-                                                                                                        <td>Game Name :</td>
-                                                                                                        <td>{{ extend.game }}</td>
-                                                                                                    </tr>
-                                                                                                    </tbody>
-                                                                                                </table>
-                                                                                            </div>
-                                                                                            <div class="seller-information mt-4">
-                                                                                                <div class="text-center">
-                                                                                                    <h2>Provide Extend Week</h2>
-                                                                                                </div>
-                                                                                                <table class="w-full share-post-modal--bottom-table">
-                                                                                                    <tbody class="text-left">
-                                                                                                    <tr>
-                                                                                                        <td class="align-middle p-0 pb-3 pb-sm-0">{{ $t('select_week', $store.state.locale) }} :</td>
-                                                                                                        <td class="p-0">
-                                                                                                            <ValidationProvider name="Rent Week" rules="required" v-slot="{ errors }">
-                                                                                                                <select class="form-control" id="exampleFormControlSelect1" @change="rentCost(extend.week, extend.disk_type, extend.game_id)" v-model="extend.week">
-                                                                                                                    <option value="" selected disabled>Please select rent week</option>
-                                                                                                                    <option v-for="n in 5" :value="n" :key="n">For {{n}} Week</option>
-                                                                                                                </select>
-                                                                                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                                                                            </ValidationProvider>
-                                                                                                        </td>
-                                                                                                    </tr>
-                                                                                                    <tr>
-                                                                                                        <td>{{ $t('rent_cost', $store.state.locale) }} :</td>
-                                                                                                        <td><span>৳ </span>{{ extend.price + extend.commission}}</td>
-                                                                                                    </tr>
-                                                                                                    </tbody>
-                                                                                                </table>
-                                                                                            </div>
-                                                                                        </div>
-
-                                                                                        <div class="d-flex justify-content-center mt-5">
-                                                                                            <a href="javascript:void(0)" class="btn--secondery" @click.prevent="handleSubmit(extendSubmit)">
-                                                                                                <span><i class="fas fa-shopping-cart mr-2"></i> {{ $t('submit', $store.state.locale) }}</span>
-                                                                                            </a>
-                                                                                        </div>
-                                                                                    </ValidationObserver>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </transition>
-                                                        </div>
+                                                        </div> -->
                                                 </div>
                                             </div>
                                         </div>

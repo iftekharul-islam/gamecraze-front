@@ -1112,9 +1112,19 @@
     import { VueFeedbackReaction } from 'vue-feedback-reaction';
     export default {
         components: {StarRating, FlipCountdown, Clipboard, VueFeedbackReaction},
-        // props: ['rentPost', 'profileEdit'],
         data() {
             return {
+                extend: {
+                    week: '',
+                    price: 0,
+                    game: '',
+                    lend_id: null,
+                    orderNo: '',
+                    commission: 0,
+                    game_id: '',
+                    disk_type: ''
+                },
+                extendModalShow: false,
                 fromCart: false,
                 lenderRatingCount: 0,
                 renterRatingCount: 0,
@@ -1220,18 +1230,50 @@
                     this.rentCheck()
                 }
             },
-            // "$route": {
-            //     handler: function(value) {
-            //         if (value.name === 'Profile'){
-            //             this.ratingCheck()
-            //         }
-            //     },
-            //     deep: true,
-            //     immediate: true,
-            // },
-
         },
         methods: {
+            extendModal(lend) {
+                this.extend.week = '';
+                this.extend.price = 0;
+                this.extend.commission = 0;
+
+                this.extendModalShow = true;
+                this.extend.game = lend.rent.game.name;
+                this.extend.game_id = lend.rent.game.id;
+                this.extend.disk_type = lend.rent.disk_type;
+                this.extend.orderNo = lend.order.order_no;
+                this.extend.lend_id = lend.id;
+            },
+            extendSubmit(){
+                var config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+
+                let data = {
+                    id: this.extend.lend_id,
+                    week: this.extend.week,
+                    amount: this.extend.price,
+                    commission: this.extend.commission,
+                };
+
+                this.$api.post('extend-lend', data, config).then(response => {
+                    console.log(response.data.error);
+                    if (response.data.error == false) {
+                        this.extendModalShow = false;
+                        this.$toaster.success("Extend request sent successfully!!");
+                    }
+
+                });
+            },
+            rentCost(week, disk_type, game_id) {
+                this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
+                    console.log(response);
+                    this.extend.price = response.data.price.discount_price;
+                    this.extend.commission =  response.data.price.discount_commission;
+                })
+            },
             ratingSubmit () {
                 this.invalidRating = false;
                 if (this.ratingData.rating === 0 && this.ratingData.comment === ''){
@@ -1435,22 +1477,22 @@
                 });
 
             },
-            extend () {
-                this.$swal({
-                    title: this.$t('please_contact', this.$store.state.locale),
-                    text: this.$t('contact_details', this.$store.state.locale),
-                    icon: "warning",
-                }).then(() => {
-                        this.$swal({
-                            text: this.$t('thank_you', this.$store.state.locale),
-                            icon: 'success',
-                            timer: 1500,
-                            button: false,
-                        });
-
-                });
-
-            },
+            // extend () {
+            //     this.$swal({
+            //         title: this.$t('please_contact', this.$store.state.locale),
+            //         text: this.$t('contact_details', this.$store.state.locale),
+            //         icon: "warning",
+            //     }).then(() => {
+            //             this.$swal({
+            //                 text: this.$t('thank_you', this.$store.state.locale),
+            //                 icon: 'success',
+            //                 timer: 1500,
+            //                 button: false,
+            //             });
+            //
+            //     });
+            //
+            // },
             onOfferedGames() {
                 this.show = true
             },

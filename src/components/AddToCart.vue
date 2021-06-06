@@ -273,8 +273,8 @@
       },
     methods: {
         autoPromoApply() {
-            let code = this.$store.state.promo ?? null;
-            if (code != null) {
+            let code = this.$store.state.promo ?? false;
+            if (code) {
                 console.log('i m in autoApplyCode');
                 this.promoCode = code;
                 this.applyCode();
@@ -342,6 +342,7 @@
                     console.log(err);
                 });
                 this.$api.get('cart-items', config).then(response => {
+                    console.log(response);
                     this.newCartItems = response.data.data.cartItems;
                     this.totalPrice = response.data.data.totalDiscountPrice;
                     this.mainAmount = this.totalPrice;
@@ -491,6 +492,7 @@
                                 timer: 1500,
                             });
                             this.authData();
+                            this.$root.$refs.Navbar.authData();
                         }
                     });
                 } else {

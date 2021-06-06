@@ -373,41 +373,41 @@
                                             </div>
                                         </div>
                                         </div>
-
                                     </div>
                                     <!-- Rented -->
-                                    <div v-else-if="lends.length && !show">
+                                    <div v-else-if="orders.length && !show">
                                         <div class="dashboard-content--rented new-rented">
                                             <!-- new rented design -->
-                                            <div class="d-flex flex-wrap" v-if="lends">
-                                                <div class="dashboard-content--rented--box flex-wrap d-flex justify-content-between w-100 mr-0  bg-game-details border-2 warning-border" v-for="(lend, index) in lends" :key="index">
+                                            <div class="d-flex flex-wrap" v-if="orders">
+                                                <div class="dashboard-content--rented--box flex-wrap d-flex justify-content-between w-100 mr-0  bg-game-details border-2 warning-border" v-for="(order, index) in orders" :key="index">
                                                     <!-- order id -->
                                                     <div class="order-id flex-none flex-sm-initial w-full w-sm-initial">
-                                                        <p class="f-s-20 gil-bold text-secondery" v-if="lend.order">{{ lend.order.order_no }}</p>
+                                                        <p class="f-s-20 gil-bold text-secondery" v-if="order">{{ order.order_no }}</p>
                                                         <p class="f-s-20 gil-bold text-secondery" v-else>N/A</p>
                                                     </div>
                                                     <div class="start-date d-flex flex-column">
                                                         <div class="mb-4">
                                                             <p class="text-white mb-2">{{ $t('order_start_date', $store.state.locale) }}</p>
-                                                            <p class=" text-secondery">{{ formattedDate(lend.lend_date) }} </p>
+                                                            <p class=" text-secondery">{{ formattedDate(order.create_date) }} </p>
                                                         </div>
                                                         <div>
                                                             <p class="text-white mb-2">{{ $t('total_game', $store.state.locale) }}</p>
-                                                            <p class=" text-secondery">3</p>
+                                                            <p class=" text-secondery">{{ order.lenders.data.length }}</p>
                                                         </div>
                                                     </div>
                                                      <div class="payment d-flex flex-column">
                                                         <div class="mb-4">
                                                             <p class="text-white mb-2">{{ $t('order_amount', $store.state.locale) }}</p>
-                                                            <p class=" text-secondery">{{ lend.lend_cost + parseInt(lend.commission)  }}</p>
+                                                            <p class=" text-secondery">{{ order.amount  }}</p>
                                                         </div>
                                                         <div>
                                                             <p class="text-white mb-2">{{ $t('payment_status', $store.state.locale) }}</p>
-                                                            <p class=" text-secondery">Unpaid</p>
+                                                            <p class=" text-secondery" v-if="order.payment_status == 1">Paid</p>
+                                                            <p class=" text-secondery" v-else>Unpaid</p>
                                                         </div>
                                                     </div>
                                                     <div>
-                                                        <router-link to="/rented-games-list" class="d-flex border-1 border-secondery -skew-19-deg pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover"><span class="skew-19-deg">Details</span></router-link>
+                                                        <router-link to="/141/order-details" class="d-flex border-1 border-secondery -skew-19-deg pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover"><span class="skew-19-deg">Details</span></router-link>
                                                     </div>
                                                     <!-- disk type -->
                                                     <!-- <div class="dashboard-content--rented--box--disk-type position-absolute top--1 right--1 bg-secondery p-2 gil-bold">
@@ -1154,6 +1154,7 @@
                 itemsData: ['Male', 'Female', 'Others'],
                 rents: [],
                 lends: [],
+                orders: [],
                 agreement: '',
                 show: true,
                 user: {},
@@ -1921,6 +1922,20 @@
                     this.lends = response.data;
                 });
             },
+            orderCheck() {
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+
+                this.$api.get('orders?include=lenders', config).then(response =>
+                {
+                    this.orders = response.data.data;
+                    console.log('orders');
+                    console.log(this.orders);
+                });
+            },
             ratingCheck() {
                 this.ratingList = [];
                 let config = {
@@ -2045,6 +2060,7 @@
         },
         created() {
             window.scrollTo(0,0);
+            this.orderCheck();
             this.$root.$on('ratingNavCheck', () => {
                 this.ratingCheck();
             });

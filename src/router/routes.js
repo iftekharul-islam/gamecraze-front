@@ -53,7 +53,7 @@ import PricePlan from '../components/PricePlan';
 import RatingList from '../components/RatingList';
 import RenterRatingList from '../components/RenterRatingList';
 import RentPostDetails from '../components/RentPostDetails';
-import RentedGamesList from '../components/RentedGamesList';
+import OrderDetails from '../components/OrderDetails';
 
 let router = new Router({
     mode: 'history',
@@ -438,17 +438,18 @@ let router = new Router({
             }
         },
         {
-            path: '/:id/:slug',
-            name: 'rent-post-details',
-            component: RentPostDetails,
+            path: '/:id/order-details',
+            name: 'order-details',
+            component: OrderDetails,
+            props: true,
             meta: {
-                requiresAuth: false
+                requiresAuth: true
             }
         },
         {
-            path: '/rented-games-list',
-            name: 'rented-games-list',
-            component: RentedGamesList,
+            path: '/:id/:slug',
+            name: 'rent-post-details',
+            component: RentPostDetails,
             meta: {
                 requiresAuth: false
             }

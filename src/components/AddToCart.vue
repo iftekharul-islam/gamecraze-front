@@ -492,6 +492,7 @@
                                 timer: 1500,
                             });
                             this.authData();
+                            this.$root.$refs.Navbar.authData();
                         }
                     });
                 } else {

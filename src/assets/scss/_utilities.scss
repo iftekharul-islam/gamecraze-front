@@ -1429,8 +1429,30 @@
 .border-3 {
     border: 3px solid;
 }
+.border-b-1 {
+    border-bottom: 1px solid;
+}
+.border-b-2 {
+    border-bottom: 2px solid;
+}
+.border-b-3 {
+    border-bottom: 3px solid;
+}
+.border-t-1 {
+    border-top: 1px solid;
+}
+.border-t-2 {
+    border-top: 2px solid;
+}
+.border-t-3 {
+    border-top: 3px solid;
+}
+
 .border-secondery {
     border-color: $secondery;
+}
+.border-white-50 {
+    border-color: $white-50;
 }
 
 .secondery-border {
@@ -1794,6 +1816,9 @@ html {
 
 .max-500 {
     max-width: 500px;
+}
+.max-940 {
+    max-width: 940px;
 }
 .w-148-100 {
     width: 148px;

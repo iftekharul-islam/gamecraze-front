@@ -185,7 +185,7 @@
                                         <button  @click.prevent="onOfferedGames()" :disabled="show" :class="{active: show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  {{ $t('offered_games', $store.state.locale) }}</button>
                                     </div>
                                 <!-- Offer -->
-                                    <div class="dashboard-content--rented dashboard-content--offer" v-if="rents.length && show">
+                                    <div class="dashboard-content--offer" v-if="rents.length && show">
                                     <!-- new offter design -->
                                         <div class="d-flex flex-wrap"  v-if="rents">
                                         <div class="dashboard-content--rented--box position-relative bg-game-details border-2 warning-border" v-for="(rent, index) in rents" :key="index">
@@ -243,7 +243,7 @@
                                                     </div>
                                                     <div class="bg-secondery mr-2">
                                                         <router-link :to="{ path: '/' + rent.id + '/' + rent.game.data.slug}" class="trending-image d-flex px-3 py-1 text-black-hover">
-                                                                <a href="" class="text-black gil-medium text-black-hover">View</a>
+                                                                <span class="text-black gil-medium text-black-hover">View</span>
                                                         </router-link>
                                                     </div>
                                                     <div class="bg-secondery px-3 py-1 pointer"
@@ -388,26 +388,34 @@
                                                     <div class="start-date d-flex flex-column">
                                                         <div class="mb-4">
                                                             <p class="text-white mb-2">{{ $t('order_start_date', $store.state.locale) }}</p>
-                                                            <p class=" text-secondery">{{ formattedDate(order.create_date) }} </p>
+                                                            <p class=" text-secondery mb-0">{{ formattedDate(order.create_date) }} </p>
                                                         </div>
                                                         <div>
                                                             <p class="text-white mb-2">{{ $t('total_game', $store.state.locale) }}</p>
-                                                            <p class=" text-secondery">{{ order.lenders.data.length }}</p>
+                                                            <p class=" text-secondery mb-0">{{ order.lenders.data.length }}</p>
                                                         </div>
                                                     </div>
                                                      <div class="payment d-flex flex-column">
                                                         <div class="mb-4">
                                                             <p class="text-white mb-2">{{ $t('order_amount', $store.state.locale) }}</p>
-                                                            <p class=" text-secondery">{{ order.amount  }}</p>
+                                                            <p class=" text-secondery mb-0">{{ order.amount  }}</p>
                                                         </div>
                                                         <div>
                                                             <p class="text-white mb-2">{{ $t('payment_status', $store.state.locale) }}</p>
                                                             <p class=" text-secondery" v-if="order.payment_status == 1">Paid</p>
-                                                            <p class=" text-secondery" v-else>Unpaid</p>
+                                                            <p class=" text-secondery mb-0" v-else>Unpaid</p>
                                                         </div>
                                                     </div>
-                                                    <div>
-                                                        <router-link :to="'/'+ order.id +'/order-details'" class="d-flex border-1 border-secondery -skew-19-deg pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover"><span class="skew-19-deg">Details</span></router-link>
+                                                    <div class="d-flex flex-column">
+                                                        <div class=" mb-4 h-56">
+                                                        <router-link :to="'/'+ order.id +'/order-details'" class="d-flex border-1 border-secondery -skew-19-deg pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover mt-2"><span class="skew-19-deg">Details</span></router-link>
+                                                        </div>
+                                                        <div>
+                                                            <p class="mb-1">{{ $t('status', $store.state.locale) }}</p>
+                                                            <div>
+                                                                <span class="pending br-0 f-s-16" >Pending</span>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                     <!-- disk type -->
                                                     <!-- <div class="dashboard-content--rented--box--disk-type position-absolute top--1 right--1 bg-secondery p-2 gil-bold">
@@ -474,7 +482,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="text-center text-secondery mt-3 rented-note">{{ $t('delivery_charge_notice', $store.state.locale) }}</p>
+                                        <!-- <p class="text-center text-secondery mt-3 rented-note">{{ $t('delivery_charge_notice', $store.state.locale) }}</p> -->
                                     </div>
                                     <!-- Norhing to show -->
                                     <div class="no-post-found-card mb-0" v-else>

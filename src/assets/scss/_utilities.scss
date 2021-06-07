@@ -628,6 +628,23 @@
     margin: auto;
 }
 
+// Padding all
+.p-a-1 {
+    padding: 0.313rem;
+}
+.p-a-2 {
+    padding: 0.625rem;
+}
+.p-a-3 {
+    padding: 0.938rem;
+}
+.p-a-4 {
+    padding: 1.25rem;
+}
+.p-a-5 {
+    padding: 1.875rem;
+}
+
 // padding top
 // incresing:5px
 .pt-a-1 {
@@ -1417,7 +1434,9 @@
 .border-0 {
     border: none;
 }
-
+.border-half {
+    border: .5px solid;
+}
 .border-1 {
     border: 1px solid;
 }
@@ -1451,12 +1470,18 @@
 .border-secondery {
     border-color: $secondery;
 }
+.border-secondery-imp {
+    border-color: $secondery !important;
+}
 .border-white-50 {
     border-color: $white-50;
 }
 
 .secondery-border {
     border: 1px solid $secondery;
+}
+.secondery-border-imp {
+    border: 1px solid $secondery !important;
 }
 
 .gray-header-border {
@@ -1485,7 +1510,9 @@
 .gray-text {
     color: $gray;
 }
-
+.text-light-gray {
+    color: $light-gray;
+}
 .gamehub-success {
     color: $game-rating;
 }
@@ -1496,7 +1523,9 @@
 .text-badge {
     color: $cart-badge;
 }
-
+.text-pattens-blue {
+    color: $pattens-blue;
+}
 // ******************Background***************//
 .bg-secondery {
     background: $secondery;
@@ -1508,7 +1537,9 @@
 .bg-game-details {
     background: $game-details;
 }
-
+.bg-pattens-blue {
+    background: $pattens-blue;
+}
 
 .bg-black-opa {
     background: $black-opacity;
@@ -1749,7 +1780,9 @@ html {
 .h-50 {
     height: 50px !important;
 }
-
+.h-56 {
+    height: 56px !important;
+}
 .h-60 {
     height: 60px !important;
 }
@@ -1802,6 +1835,9 @@ html {
 }
 .w-100px {
     width: 100px;
+}
+.max-328 {
+    max-width: 328px;
 }
 .max-368 {
     max-width: 368px;
@@ -2049,6 +2085,10 @@ select {
     option {
         font-family: roboto;
     }
+}
+.no-default-arrow {
+    -webkit-appearance: none;
+    -moz-appearance: none;
 }
 
 // All slider icon hover
@@ -2514,6 +2554,11 @@ select {
         background: $primary;
     }
 }
+.focus-game-details {
+    &:focus {
+        background: $game-details;
+    }
+}
 
 //outline
 .outline-none {
@@ -2572,3 +2617,7 @@ select {
     transform: skew(19deg);
 }
 
+// text shadow
+.primary-text-shadow {
+    text-shadow: $del-shadow;
+}

@@ -22,7 +22,7 @@
                                     <div class="disk-type text-black" v-if="lend.rent.data.disk_type == 0">Digital Copy</div>
                                 </div>
                                 <div class="dashboard-content--rented--box--order-id h-30">
-                                    <p v-if="lend.order">{{ lend.order.order_no }}</p>
+                                    <p v-if="order">{{ order.order_no }}</p>
                                     <p v-else>N/A</p>
                                 </div>
                                 <div class="dashboard-content--rented--box--order-name mt-3">
@@ -90,8 +90,7 @@
                                             <div v-else-if="lend.status === 6">
                                                 <span class="completed br-0 f-s-16" >Postponed</span>
                                             </div>
-                                            <!-- extend button condition { v-if="lend.status === 3" } -->
-                                            <div class="mt-a-4 mt-a-sm-7" >
+                                            <div class="mt-a-4 mt-a-sm-7" v-if="lend.status === 3">
                                                 <a href="#" class="bg-secondery black-text-hover py-1 px-3 d-block text-center text-black w-fit gil-medium" @click.prevent="extendModal(lend)">Extend date</a>
                                             </div>
 
@@ -159,7 +158,7 @@
                                     </div>
                             </div>
                         </div>
-                        <div class="max-940 mx-auto">
+                        <div class="max-940 mx-auto" v-if="orderDetails">
                             <div class="max-446 mr-sm-4 ml-md-auto mt-5">
                                     <div class="border-b-1 border-t-1 border-white-50 px-4 pt-4 pb-0">
                                         <div class="d-flex align-items-center justify-content-between mb-4">

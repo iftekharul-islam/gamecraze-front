@@ -2,12 +2,12 @@
     <div>
 
     <!-- user profile details -->
-        <section class="user-profile-details">
+        <section class="user-profile-details pt-2">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="back mb-a-7">
-                            <router-link to="/profile" class="d-flex secondery-fill-hover align-items-center">
+                            <router-link to="/profile" class="d-flex secondery-fill-hover align-items-center w-fit">
                                 <svg class="mr-3 secondery-fill-hover" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M11.8114 14.5468C12.1234 14.3785 12.3179 14.0584 12.3179 13.7103V8.28972H23.0209C23.5614 8.28972 24 7.86127 24 7.33337C24 6.80546 23.5614 6.37702 23.0209 6.37702H12.3179V0.956419C12.3179 0.607032 12.1234 0.286973 11.8114 0.119931C11.4994 -0.0496622 11.1182 -0.038186 10.8166 0.146709L0.456894 6.52366C0.172314 6.69963 0 7.00438 0 7.33337C0 7.66235 0.172314 7.96711 0.456894 8.14308L10.8166 14.52C10.9759 14.6169 11.1574 14.6667 11.3388 14.6667C11.5007 14.6667 11.6639 14.6259 11.8114 14.5468Z" fill="white"/>
                                 </svg>Back
@@ -90,69 +90,63 @@
                                             <div v-else-if="lend.status === 6">
                                                 <span class="completed br-0 f-s-16" >Postponed</span>
                                             </div>
-                                            <div class="mt-a-4 mt-a-sm-7" v-if="lend.status === 3">
+                                            <!-- extend button condition { v-if="lend.status === 3" } -->
+                                            <div class="mt-a-4 mt-a-sm-7" >
                                                 <a href="#" class="bg-secondery black-text-hover py-1 px-3 d-block text-center text-black w-fit gil-medium" @click.prevent="extendModal(lend)">Extend date</a>
                                             </div>
 
                                             <!-- Extend modal -->
                                             <div v-if="extendModalShow">
                                                 <transition name="modal">
-                                                    <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal share-post-modal">
+                                                    <div class="modal-mask order-details-extend-modal position-fixed top-0 left-0 h-100 w-full d-flex align-items-center justify-content-center z-index-9">
                                                         <div class="modal-wrapper">
-                                                            <div class="modal-dialog modal-dialog-centered max-md-760" role="document">
-                                                                <div class="modal-content">
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true" @click="extendModalShow = false" class="close-modal"></span>
+                                                            <div class="modal-dialog modal-dialog-centered max-328" role="document">
+                                                                <div class="modal-content bg-pattens-blue border-2 border-secondery p-a-4 br-0">
+                                                                    <button type="button" class="close position-absolute right-10 top-10 w-fit" data-dismiss="modal" aria-label="Close">
+                                                                        <svg aria-hidden="true" @click="extendModalShow = false" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                            <path d="M16.2427 6.34315L12.0001 10.5858L7.75744 6.34315L6.34323 7.75736L10.5859 12L6.34323 16.2426L7.75744 17.6569L12.0001 13.4142L16.2427 17.6569L17.6569 16.2426L13.4143 12L17.6569 7.75736L16.2427 6.34315Z" fill="#0B0F18"/>
+                                                                            <rect x="0.5" y="0.5" width="23" height="23" rx="11.5" stroke="#0B0F18"/>
+                                                                        </svg>
                                                                     </button>
                                                                     <div class="modal-body-content">
                                                                         <ValidationObserver v-slot="{ handleSubmit }">
                                                                             <div>
-                                                                                <div class="seller-information border-0">
-                                                                                    <table class="w-full w-lg-75 share-post-modal--bottom-table">
-                                                                                        <tbody class="text-left">
-                                                                                        <tr>
-                                                                                            <td>Order no :</td>
-                                                                                            <td>{{ extend.orderNo }}</td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td>Game Name :</td>
-                                                                                            <td>{{ extend.game }}</td>
-                                                                                        </tr>
-                                                                                        </tbody>
-                                                                                    </table>
-                                                                                </div>
-                                                                                <div class="seller-information mt-4">
-                                                                                    <div class="text-center">
-                                                                                        <h2>Provide Extend Week</h2>
+                                                                                <div class="border-0">
+                                                                                    <div class="d-flex mb-4">
+                                                                                        <p class="primary-text gil-medium mb-0">Order no :</p>
+                                                                                        <p class="primary-text gil-medium mb-0 ml-1">{{ extend.orderNo }}</p>
                                                                                     </div>
-                                                                                    <table class="w-full share-post-modal--bottom-table">
-                                                                                        <tbody class="text-left">
-                                                                                        <tr>
-                                                                                            <td class="align-middle p-0 pb-3 pb-sm-0">{{ $t('select_week', $store.state.locale) }} :</td>
-                                                                                            <td class="p-0">
-                                                                                                <ValidationProvider name="Rent Week" rules="required" v-slot="{ errors }">
-                                                                                                    <select class="form-control" id="exampleFormControlSelect1" @change="rentCost(extend.week, extend.disk_type, extend.game_id)" v-model="extend.week">
-                                                                                                        <option value="" selected disabled>Please select rent week</option>
-                                                                                                        <option v-for="n in 5" :value="n" :key="n">For {{n}} Week</option>
-                                                                                                    </select>
-                                                                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                                                                </ValidationProvider>
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                        <tr>
-                                                                                            <td>{{ $t('rent_cost', $store.state.locale) }} :</td>
-                                                                                            <td><span>৳ </span>{{ extend.price + extend.commission}}</td>
-                                                                                        </tr>
-                                                                                        </tbody>
-                                                                                    </table>
+                                                                                    <div class="d-flex mb-a-4">
+                                                                                        <p class="primary-text mb-0 f-s-20 gil-bold">{{ extend.game }}</p>
+                                                                                    </div>
+                                                                                    <div class="d-flex flex-column">
+                                                                                        <p class="primary-text mb-2 gil-medium">Extend duration</p>
+                                                                                        <ValidationProvider name="Rent Week" rules="required" v-slot="{ errors }">
+                                                                                            <div class="position-relative">
+                                                                                                <select class="form-control bg-game-details focus-game-details border-half border-secondery-imp no-default-arrow br-0 shadow-none cursor-pointer text-white gil-medium" id="exampleFormControlSelect1" @change="rentCost(extend.week, extend.disk_type, extend.game_id)" v-model="extend.week">
+                                                                                                    <option value="" selected disabled>Please select rent week</option>
+                                                                                                    <option v-for="n in 5" :value="n" :key="n">For {{n}} Week</option>
+                                                                                                </select>
+                                                                                                <svg class="position-absolute top-14 right-10 user-select-none pe-none" width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                    <path d="M12.9395 0.938965L8.00045 5.87896L3.06145 0.938965L0.939453 3.06096L8.00045 10.121L15.0615 3.06096L12.9395 0.938965Z" fill="#FFD715"/>
+                                                                                                </svg>
+
+                                                                                            </div>
+                                                                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                                        </ValidationProvider>
+                                                                                    </div>
+                                                                                    <div class="d-flex align-items-center justify-content-between mt-4">
+                                                                                        <p class="text-light-gray gil-medium mb-0">{{ $t('amount', $store.state.locale) }} :</p>
+                                                                                        <p class="primary-text gil-medium mb-0">Tk. {{ extend.price + extend.commission}}</p>
+                                                                                    </div>
                                                                                 </div>
                                                                             </div>
 
                                                                             <div class="d-flex justify-content-center mt-5">
-                                                                                <a href="javascript:void(0)" class="btn--secondery" @click.prevent="handleSubmit(extendSubmit)">
-                                                                                    <span><i class="fas fa-shopping-cart mr-2"></i> {{ $t('submit', $store.state.locale) }}</span>
+                                                                                <a href="javascript:void(0)" class="bg-secondery d-block text-center primary-text w-full primary-text-shadow gil-bold primary-text-hover py-2" @click.prevent="handleSubmit(extendSubmit)">
+                                                                                    <span> {{ $t('request_for_extend', $store.state.locale) }}</span>
                                                                                 </a>
-                                                                            </div>
+                                                                            </div> 
                                                                         </ValidationObserver>
                                                                     </div>
                                                                 </div>
@@ -167,22 +161,22 @@
                         </div>
                         <div class="max-940 mx-auto">
                             <div class="max-446 mr-sm-4 ml-md-auto mt-5">
-                                    <div class="border-b-1 border-t-1 border-white-50 p-4">
+                                    <div class="border-b-1 border-t-1 border-white-50 px-4 pt-4 pb-0">
                                         <div class="d-flex align-items-center justify-content-between mb-4">
                                         <p class="mb-0 gray-text gil-medium">Subtotal</p>
-                                        <p class="mb-0 gil-bold text-white">Tk. {{ order.amount - order.delivery_charge + order.discount_amount }}</p>
+                                        <p class="mb-0 gil-bold text-white">Tk {{ order.amount - order.delivery_charge + order.discount_amount }}</p>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mb-4">
                                         <p class="mb-0 gray-text gil-medium">Delivery charge</p>
-                                        <p class="mb-0 gil-bold text-white">Tk. {{ order.delivery_charge }}</p>
+                                        <p class="mb-0 gil-bold text-white">Tk {{ order.delivery_charge }}</p>
                                     </div>
-                                    <div class="d-flex align-items-center justify-content-between" v-if="order.discount_amount">
+                                    <div class="d-flex align-items-center justify-content-between mb-4" v-if="order.discount_amount">
                                         <p class="mb-0 gray-text gil-medium">Discount</p>
-                                        <p class="mb-0 gil-bold text-white">Tk. {{ order.discount_amount }}</p>
+                                        <p class="mb-0 gil-bold text-white">Tk -{{ order.discount_amount }}</p>
                                     </div>
-                                    <div class="d-flex align-items-center justify-content-between" v-if="order.wallet_amount">
+                                    <div class="d-flex align-items-center justify-content-between mb-4" v-if="order.wallet_amount">
                                         <p class="mb-0 gray-text gil-medium">Wallet amount</p>
-                                        <p class="mb-0 gil-bold text-white">Tk. {{ order.wallet_amount }}</p>
+                                        <p class="mb-0 gil-bold text-white">Tk {{ order.wallet_amount }}</p>
                                     </div>
                                 </div>
                                 <div class="p-4 d-flex align-items-center justify-content-between">

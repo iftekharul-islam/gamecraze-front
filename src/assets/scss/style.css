@@ -622,6 +622,26 @@
   margin: auto;
 }
 
+.p-a-1 {
+  padding: 0.313rem;
+}
+
+.p-a-2 {
+  padding: 0.625rem;
+}
+
+.p-a-3 {
+  padding: 0.938rem;
+}
+
+.p-a-4 {
+  padding: 1.25rem;
+}
+
+.p-a-5 {
+  padding: 1.875rem;
+}
+
 .pt-a-1 {
   padding-top: 0.313rem;
 }
@@ -1394,6 +1414,10 @@
   border: none;
 }
 
+.border-half {
+  border: .5px solid;
+}
+
 .border-1 {
   border: 1px solid;
 }
@@ -1434,12 +1458,20 @@
   border-color: #FFD715;
 }
 
+.border-secondery-imp {
+  border-color: #FFD715 !important;
+}
+
 .border-white-50 {
   border-color: #ffffff80;
 }
 
 .secondery-border {
   border: 1px solid #FFD715;
+}
+
+.secondery-border-imp {
+  border: 1px solid #FFD715 !important;
 }
 
 .gray-header-border {
@@ -1470,6 +1502,10 @@
   color: #808080;
 }
 
+.text-light-gray {
+  color: #707070;
+}
+
 .gamehub-success {
   color: #66CC33;
 }
@@ -1482,6 +1518,10 @@
   color: #F65157;
 }
 
+.text-pattens-blue {
+  color: #DBE6FF;
+}
+
 .bg-secondery {
   background: #FFD715;
 }
@@ -1492,6 +1532,10 @@
 
 .bg-game-details {
   background: #141A27;
+}
+
+.bg-pattens-blue {
+  background: #DBE6FF;
 }
 
 .bg-black-opa {
@@ -1733,6 +1777,10 @@ html {
   height: 50px !important;
 }
 
+.h-56 {
+  height: 56px !important;
+}
+
 .h-60 {
   height: 60px !important;
 }
@@ -1789,6 +1837,10 @@ html {
 
 .w-100px {
   width: 100px;
+}
+
+.max-328 {
+  max-width: 328px;
 }
 
 .max-368 {
@@ -2021,6 +2073,11 @@ select option:hover {
 
 select option {
   font-family: roboto;
+}
+
+.no-default-arrow {
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 .owl-nav button .arrow {
@@ -2580,6 +2637,10 @@ select option {
   background: #0B0F18;
 }
 
+.focus-game-details:focus {
+  background: #141A27;
+}
+
 .outline-none {
   outline: none;
 }
@@ -2637,6 +2698,10 @@ select option {
 .skew-19-deg {
   -webkit-transform: skew(19deg);
           transform: skew(19deg);
+}
+
+.primary-text-shadow {
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 @media (max-width: 575px) {
@@ -8231,39 +8296,14 @@ html {
 }
 
 .dashboard-content--offer {
-  border: 1px solid #FFD715;
-  padding: 0 20px;
+  border: none;
   position: relative;
   overflow-x: auto;
-  width: 1050px;
 }
 
-@media (max-width: 1600px) {
+@media (min-width: 1400px) {
   .dashboard-content--offer {
-    width: 1000px;
-  }
-}
-
-@media (max-width: 1400px) {
-  .dashboard-content--offer {
-    width: 100%;
-  }
-}
-
-.dashboard-content--offer::after {
-  content: "";
-  height: 80px;
-  width: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  background: #FFD715;
-}
-
-@media (max-width: 1600px) {
-  .dashboard-content--offer::after {
-    width: 1150px;
+    width: 920px;
   }
 }
 
@@ -8859,7 +8899,7 @@ html {
 }
 
 .set-password {
-  padding-bottom: 120px;
+  padding-bottom: 180px;
   padding-top: 40px;
 }
 

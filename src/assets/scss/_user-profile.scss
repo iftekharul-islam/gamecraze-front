@@ -617,29 +617,16 @@
         margin-left: 0px;
     }
     &--offer {
-        border: 1px solid $secondery;
-        padding: 0 20px;
+        border: none;
+        // padding: 0 20px;
         position: relative;
         overflow-x: auto;
-        width: 1050px;
-        @include for-max-1600 {
-            width: 1000px;
+        // width: 1050px;
+        @include for-min-1400 {
+            width: 920px;
         }
-        @include for-max-1400 {
-            width: 100%;
-        }
-        &::after {
-            content: "";
-            height: 80px;
-            width: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            background: $secondery;
-            @include for-max-1600 {
-                width: 1150px;
-            }
+        @include for-max-1199 {
+            // width: 100%;
         }
         table {
             border-collapse: separate;

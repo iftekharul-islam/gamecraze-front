@@ -1039,11 +1039,12 @@
                                                                     <div class="modal-body-content">
                                                                         <h5 class="modal-title text-secondery text-center f-s-32 mb-4" id="exampleModalLabel">{{ $t('rate_please', $store.state.locale) }}</h5>
                                                                         <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-if="ratingData.value.lender_id != $store.state.user.id">
-                                                                            <img :src="ratingData.value.lender.data.image" alt="img" class="img-fluid">
+                                                                            <img :src="ratingData.value.lender.data.image" alt="img" class="img-fluid" v-if="ratingData.value.lender.data.image">
+                                                                            <img src="../assets/img/avatar.png" class="img-fluid gamehub--logo" alt="Gamehub Logo logo" v-else>
                                                                         </div>
                                                                         <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-else>
-                                                                            <img :src="ratingData.value.renter.data.image" alt="img" class="img-fluid">
-                                                                             <!-- <img src="../assets/img/avatar.png" class="img-fluid gamehub--logo" alt="Gamehub Logo logo"> -->
+                                                                            <img :src="ratingData.value.renter.data.image" alt="img" class="img-fluid" v-if="ratingData.value.renter.data.image">
+                                                                            <img src="../assets/img/avatar.png" class="img-fluid gamehub--logo" alt="Gamehub Logo logo" v-else>
                                                                         </div>
                                                                         <div class="text-center" v-if="ratingData.value.lender_id != $store.state.user.id">
                                                                             <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.lender.data.name}} {{ ratingData.value.lender.data.last_name}}</p>

@@ -14,8 +14,8 @@
                             </router-link>
                         </div>
                         <!-- new rented design -->
-                        <div class="d-flex flex-wrap max-940 mx-auto" v-if="lends">
-                            <div class="max-446 mb-3 mr-sm-4 w-100 pt-a-2 pl-a-4 pb-a-6 pr-a-4 position-relative bg-game-details border-2 warning-border" v-for="(lend, index) in lends" :key="index">
+                        <div class="d-flex flex-wrap max-940 mx-auto" v-if="orderDetails">
+                            <div class="max-446 mb-3 mr-sm-4 w-100 pt-a-2 pl-a-4 pb-a-6 pr-a-4 position-relative bg-game-details border-2 warning-border" v-for="(lend, index) in order.lenders.data" :key="index">
                                 <!-- disk type -->
                                 <div class="dashboard-content--rented--box--disk-type position-absolute top--1 right--1 bg-secondery p-2 gil-bold">
                                     <div class="disk-type text-black" v-if="lend.rent.data.disk_type == 1">Physical Copy</div>
@@ -90,7 +90,7 @@
                                             <div v-else-if="lend.status === 6">
                                                 <span class="completed br-0 f-s-16" >Postponed</span>
                                             </div>
-                                            <div class="mt-a-4 mt-a-sm-7">
+                                            <div class="mt-a-4 mt-a-sm-7" v-if="lend.status === 3">
                                                 <a href="#" class="bg-secondery black-text-hover py-1 px-3 d-block text-center text-black w-fit gil-medium" @click.prevent="extendModal(lend)">Extend date</a>
                                             </div>
 
@@ -170,20 +170,24 @@
                                     <div class="border-b-1 border-t-1 border-white-50 p-4">
                                         <div class="d-flex align-items-center justify-content-between mb-4">
                                         <p class="mb-0 gray-text gil-medium">Subtotal</p>
-                                        <p class="mb-0 gil-bold text-white">Tk. 585.00</p>
+                                        <p class="mb-0 gil-bold text-white">Tk. {{ order.amount - order.delivery_charge + order.discount_amount }}</p>
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mb-4">
                                         <p class="mb-0 gray-text gil-medium">Delivery charge</p>
-                                        <p class="mb-0 gil-bold text-white">Tk. 585.00</p>
+                                        <p class="mb-0 gil-bold text-white">Tk. {{ order.delivery_charge }}</p>
                                     </div>
-                                    <div class="d-flex align-items-center justify-content-between">
+                                    <div class="d-flex align-items-center justify-content-between" v-if="order.discount_amount">
                                         <p class="mb-0 gray-text gil-medium">Discount</p>
-                                        <p class="mb-0 gil-bold text-white">Tk. 585.00</p>
+                                        <p class="mb-0 gil-bold text-white">Tk. {{ order.discount_amount }}</p>
+                                    </div>
+                                    <div class="d-flex align-items-center justify-content-between" v-if="order.wallet_amount">
+                                        <p class="mb-0 gray-text gil-medium">Wallet amount</p>
+                                        <p class="mb-0 gil-bold text-white">Tk. {{ order.wallet_amount }}</p>
                                     </div>
                                 </div>
                                 <div class="p-4 d-flex align-items-center justify-content-between">
                                     <p class="mb-0 text-secondery gil-medium"> Grand total</p>
-                                    <p class="mb-0 gil-bold text-secondery">Tk 560.00</p>
+                                    <p class="mb-0 gil-bold text-secondery">Tk {{ order.amount }}</p>
                                 </div>
                             </div>
                         </div>
@@ -202,6 +206,7 @@
         props: ['id'],
         data() {
             return {
+                orderDetails: false,
                 extend: {
                     week: '',
                     price: 0,
@@ -212,104 +217,8 @@
                     game_id: '',
                     disk_type: ''
                 },
-                extendModalShow: false,
-                fromCart: false,
-                lenderRatingCount: 0,
-                renterRatingCount: 0,
-                credentialModalShow: false,
-                invalidRating: false,
-                lendingAvg: 0,
-                rentingAvg: 0,
-                ratingData: {
-                    value: null,
-                    feedback: '',
-                    comment: '',
-                },
-                reaction: '',
-                isActive: false,
-                isDisabled: false,
-                imageModalShow: false,
-                ratingPopupModal: false,
-                diskImageRequired: false,
-                userGameId: '',
-                userPassword: '',
-                lendDiskImage: '',
-                lendCoverImage: '',
-                editDiskImage: '',
-                editCoverImage: '',
-                userRentId: '',
-                isDigital: false,
-                itemsData: ['Male', 'Female', 'Others'],
-                rents: [],
-                lends: [],
-                agreement: '',
-                show: true,
-                user: {},
-                form: {
-                    name: this.$store.state.user.name,
-                    last_name: this.$store.state.user.last_name,
-                    gender: this.$store.state.user.gender ?? '',
-                    birth_date: this.$store.state.user.birth_date,
-                    email: this.$store.state.user.email,
-                    phone_number: this.$store.state.user.phone_number,
-                    identification_number: this.$store.state.user.identification_number,
-                    address: this.$store.state.user.address ? this.$store.state.user.address.address: '',
-                    city: this.$store.state.user.address ? this.$store.state.user.address.city: '',
-                    postCode: this.$store.state.user.address ? this.$store.state.user.address.post_code: '',
-                    id_image: "",
-                },
-                nid_verification: 0,
-                selectedFile: this.$t('select_nid', this.$store.state.locale),
-                selectedDiskName: this.$t('disk_image', this.$store.state.locale),
-                selectedCoverName: this.$t('cover_image', this.$store.state.locale),
-                selectedEditCoverName: null,
-                selectedEditDiskName: null,
-                x: '',
-                diskConditions: [],
-                checkpoints: [],
-                games: [],
-                platforms: [],
-                gamesName: {},
-                platformsName: {},
-                basePrices: false,
-                gameTypePricing: 0,
-                gameTypePricingState: false,
-                diskConditionsName: {},
-                gameName: '',
-                gamePlatform: false,
-                rentData: {
-                    game: null,
-                    // availability: '',
-                    max_week: 1,
-                    platform: null,
-                    disk_condition: '',
-                    disk_image: '',
-                    cover_image: '',
-                    checkpoint: {},
-                    disk_type: '',
-                    gameUserId: '',
-                    gamePassword: '',
-                },
-                isRentLoading: false,
-                image: null,
-                isProfileImgUpdating: false,
-                isCoverImgUpdating: false,
-                isPhoneExists: false,
-                isEmailExists: false,
-                total_earn: 0,
-                payable_amount: 0,
-                transactions: [],
-                coverImages: [],
-                coverModal: false,
-                coverUrl: '',
-                activeCoverImage: '',
-                dummyCover: false,
-                walletTotalSpend: 0,
-                walletUsableAmount: 0,
-                walletHistory: [],
-                copyUrl: '',
-                ratingList: [],
-
+                order: [],
+                extendModalShow: false
             }
         },
         methods: {
@@ -368,35 +277,10 @@
                 let formattedDate = new Date(date)
                 return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
             },
-            startDate(diskType, datetime) {
-                let date = new Date(datetime);
-                var time = new Date(datetime);
-
-                var hours = time.getHours();
-
-                if (diskType == 0 && hours >= 12) {
-
-                    date.setDate(date.getDate() + 2);
-                } else {
-
-                    date.setDate(date.getDate() + 1);
-                }
-
-                const months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
-            },
             endDate(diskType, datetime, week) {
                 let date = new Date(datetime);
-                var time = new Date(datetime);
 
-                if (diskType == 0) {
-
-                    date.setDate(date.getDate() + 1 + week * 7);
-
-                } else {
-
-                    date.setDate(date.getDate() + 1 + week * 7);
-                }
+                date.setDate(date.getDate() + 1 + week * 7);
 
                 return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear()
             },
@@ -418,14 +302,15 @@
 
                 this.$api.get('order/'+ this.id + '?include=lenders.rent.game,lenders.order', config).then(response =>
                 {
-                    this.lends = response.data.data.lenders.data;
-                    console.log(this.lends);
+                    this.order = response.data.data;
+                    if (this.order.lenders.data.length) {
+                        this.orderDetails = true;
+                    }
+                    console.log(this.order);
                 });
             },
         },
         created() {
-            console.log('hello from order details');
-            console.log(this.id);
             window.scrollTo(0,0);
             this.rentCheck();
         },

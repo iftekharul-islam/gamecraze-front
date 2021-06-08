@@ -37,8 +37,8 @@
                                 <td scope="col">{{ formattedDate(rent.availability_from_date) }}</td>
                                 <td scope="col"><span>{{ rent.max_number_of_week}} week(s)</span></td>
                                 <td>
-                                    <del class="mr-4"><span> ৳</span> {{ rent.price_combination.regular_price}}</del>
-                                    <span class="new-price"><span>৳</span> {{ rent.price_combination.discount_price}}</span>
+<!--                                    <del class="mr-4"><span> ৳</span> {{ rent.price_combination.regular_price}}</del>-->
+                                    <span class="new-price"><span>৳</span> {{ rent.price_combination.regular_price}}</span>
                                 </td>
                             </tr>
                         </tbody>

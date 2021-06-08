@@ -40,11 +40,11 @@
                             <td scope="col"><span>{{ rent.max_number_of_week}} week(s)</span></td>
                             <td>
                                 <div>
-                                    <del class="mr-4">
-                                        <span> ৳</span> {{ rent.price_combination.regular_price}}
-                                    </del>
+<!--                                    <del class="mr-4">-->
+<!--                                        <span> ৳</span> {{ rent.price_combination.regular_price}}-->
+<!--                                    </del>-->
                                     <span class="new-price">
-                                        <span>৳</span> {{ rent.price_combination.discount_price}}
+                                        <span>৳</span> {{ rent.price_combination.regular_price}}
                                     </span>
                                 </div>
                             </td>
@@ -279,7 +279,7 @@
             },
             rentCost(week, disk_type, game_id) {
                 this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
-                    this.price = response.data.price.discount_price + response.data.price.discount_commission;
+                    this.price = response.data.price.regular_price + response.data.price.regular_commission;
                 })
             },
             setModalData(rent) {

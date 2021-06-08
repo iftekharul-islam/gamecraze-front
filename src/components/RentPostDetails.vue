@@ -321,12 +321,12 @@
             },
             postRentCost(week, disk_type, game_id) {
                 this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
-                    this.price = response.data.price.discount_price + response.data.price.discount_commission;
+                    this.price = response.data.price.regular_price + response.data.price.regular_commission;
                 })
             },
             rentCost(week, disk_type, game_id) {
                 this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
-                    this.price = response.data.price.discount_price + response.data.price.discount_commission;
+                    this.price = response.data.price.regular_price + response.data.price.regular_commission;
                 })
             },
             onAddToCart() {

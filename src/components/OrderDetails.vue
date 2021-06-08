@@ -252,8 +252,8 @@
             rentCost(week, disk_type, game_id) {
                 this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
                     console.log(response);
-                    this.extend.price = response.data.price.discount_price;
-                    this.extend.commission =  response.data.price.discount_commission;
+                    this.extend.price = response.data.price.regular_price;
+                    this.extend.commission =  response.data.price.regular_commission;
                 })
             },
             formattedDateForTimer(date) {

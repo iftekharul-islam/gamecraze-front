@@ -412,8 +412,23 @@
                                                         </div>
                                                         <div>
                                                             <p class="mb-1">{{ $t('status', $store.state.locale) }}</p>
-                                                            <div>
+                                                            <div v-if="order.delivery_status === 0">
                                                                 <span class="pending br-0 f-s-16" >Pending</span>
+                                                            </div>
+                                                            <div v-else-if="order.delivery_status === 1">
+                                                                <span class="completed br-0 f-s-16" >Completed</span>
+                                                            </div>
+                                                            <div v-else-if="order.delivery_status === 2">
+                                                                <span class="completed br-0 f-s-16" >Delivered</span>
+                                                            </div>
+                                                            <div v-else-if="order.delivery_status === 3">
+                                                                <span class="rejected br-0  f-s-16" >Rejected</span>
+                                                            </div>
+                                                            <div v-else-if="order.delivery_status === 4">
+                                                                <span class="completed br-0 f-s-16" >Processing</span>
+                                                            </div>
+                                                            <div v-else-if="order.delivery_status === 5">
+                                                                <span class="completed br-0 f-s-16" >Postponed</span>
                                                             </div>
                                                         </div>
                                                     </div>

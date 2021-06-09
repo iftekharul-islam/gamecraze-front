@@ -18,7 +18,7 @@ export const storage = {
         },
         email:'',
         referral: '',
-        promo: '',
+        promo: false,
         rentPostDetails: {},
         //auth user info
         token: null,

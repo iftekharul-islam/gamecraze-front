@@ -79,7 +79,7 @@
                                     <!-- sign in button -->
                                     <div class="text-center sign-btn">
                                         <button class="btn  btn--otp w-100" type="button" @click.prevent="handleSubmit(onSubmit)" :disabled="isLoading">
-                                            {{ $t('proceed', $store.state.locale) }}
+                                            {{ $t('sign_up', $store.state.locale) }}
                                             <span v-if="$store.state.isSubmitLoading" class="spinner-border spinner-border-sm"></span>
                                         </button>
                                         <!-- <button type="button" class="btn btn-primary mb-2" @click.prevent="handleSubmit(onSubmit)">Submit</button>-->

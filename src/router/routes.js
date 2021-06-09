@@ -53,6 +53,7 @@ import PricePlan from '../components/PricePlan';
 import RatingList from '../components/RatingList';
 import RenterRatingList from '../components/RenterRatingList';
 import RentPostDetails from '../components/RentPostDetails';
+import OrderDetails from '../components/OrderDetails';
 
 let router = new Router({
     mode: 'history',
@@ -432,6 +433,15 @@ let router = new Router({
             path: '/renter-rating-list',
             name: 'ratingList',
             component: RenterRatingList,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/:id/order-details',
+            name: 'order-details',
+            component: OrderDetails,
+            props: true,
             meta: {
                 requiresAuth: true
             }

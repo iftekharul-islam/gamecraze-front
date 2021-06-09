@@ -617,29 +617,16 @@
         margin-left: 0px;
     }
     &--offer {
-        border: 1px solid $secondery;
-        padding: 0 20px;
+        border: none;
+        // padding: 0 20px;
         position: relative;
         overflow-x: auto;
-        width: 1050px;
-        @include for-max-1600 {
-            width: 1000px;
+        // width: 1050px;
+        @include for-min-1400 {
+            width: 920px;
         }
-        @include for-max-1400 {
-            width: 100%;
-        }
-        &::after {
-            content: "";
-            height: 80px;
-            width: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: -1;
-            background: $secondery;
-            @include for-max-1600 {
-                width: 1150px;
-            }
+        @include for-max-1199 {
+            // width: 100%;
         }
         table {
             border-collapse: separate;
@@ -750,46 +737,7 @@
     .timer {
         margin-top: -60px;
     }
-    .flip-clock {
-        display: grid;
-        grid-template: wrap;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 55px;
-        grid-auto-rows: 55px;
-        justify-items: center;
-        justify-content: center;
-        background: $timer;
-        padding: 5px;
-        width: 198px;
-        height: 120px;
-        margin: 0 !important;
-        @include for-max-400 {
-            width: 160px;
-            height: 90px;
-            grid-template-rows: 45px;
-            grid-auto-rows: 45px;
-        }
-        >span {
-            &:last-of-type {
-                grid-column-start: 2;
-                grid-column-end: 3;
-            }
-            >span {
-                font-size: 1.6rem;
-                @include for-max-400 {
-                    font-size: 12px;
-                }
-            }
-        }
-        .flip-clock__slot {
-            font-size: 10px;
-        }
-        &__piece {
-            display: flex !important;
-            flex-direction: column;
-            align-items: center;
-        }
-    }
+    
 }
 
 .rented-note,
@@ -1093,3 +1041,44 @@
     padding-bottom: 180px;
 }
 
+// clock
+.flip-clock {
+    display: grid;
+    grid-template: wrap;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 55px;
+    grid-auto-rows: 55px;
+    justify-items: center;
+    justify-content: center;
+    background: $timer;
+    padding: 5px;
+    width: 198px !important;
+    height: 120px !important;
+    margin: 0 !important;
+    @include for-max-400 {
+        width: 160px !important;
+        height: 90px !important;
+        grid-template-rows: 45px;
+        grid-auto-rows: 45px;
+    }
+    >span {
+        &:last-of-type {
+            grid-column-start: 2;
+            grid-column-end: 3;
+        }
+        >span {
+            font-size: 1.6rem !important;
+            @include for-max-400 {
+                font-size: 12px !important;
+            }
+        }
+    }
+    .flip-clock__slot {
+        font-size: 10px !important;
+    }
+    &__piece {
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+    }
+}

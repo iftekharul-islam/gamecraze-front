@@ -185,7 +185,7 @@
                                         <button  @click.prevent="onOfferedGames()" :disabled="show" :class="{active: show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  {{ $t('offered_games', $store.state.locale) }}</button>
                                     </div>
                                 <!-- Offer -->
-                                    <div class="dashboard-content--rented" v-if="rents.length && show">
+                                    <div class="dashboard-content--offer" v-if="rents.length && show">
                                     <!-- new offter design -->
                                         <div class="d-flex flex-wrap"  v-if="rents">
                                         <div class="dashboard-content--rented--box position-relative bg-game-details border-2 warning-border" v-for="(rent, index) in rents" :key="index">
@@ -243,7 +243,7 @@
                                                     </div>
                                                     <div class="bg-secondery mr-2">
                                                         <router-link :to="{ path: '/' + rent.id + '/' + rent.game.data.slug}" class="trending-image d-flex px-3 py-1 text-black-hover">
-                                                                <a href="" class="text-black gil-medium text-black-hover">View</a>
+                                                                <span class="text-black gil-medium text-black-hover">View</span>
                                                         </router-link>
                                                     </div>
                                                     <div class="bg-secondery px-3 py-1 pointer"
@@ -373,27 +373,75 @@
                                             </div>
                                         </div>
                                         </div>
-
                                     </div>
                                     <!-- Rented -->
-                                    <div v-else-if="lends.length && !show">
-                                        <div class="dashboard-content--rented">
+                                    <div v-else-if="orders.length && !show">
+                                        <div class="dashboard-content--rented new-rented">
                                             <!-- new rented design -->
-                                            <div class="d-flex flex-wrap" v-if="lends">
-                                                <div class="dashboard-content--rented--box position-relative bg-game-details border-2 warning-border" v-for="(lend, index) in lends" :key="index">
+                                            <div class="d-flex flex-wrap" v-if="orders">
+                                                <div class="dashboard-content--rented--box flex-wrap d-flex justify-content-between w-100 mr-0  bg-game-details border-2 warning-border" v-for="(order, index) in orders" :key="index">
+                                                    <!-- order id -->
+                                                    <div class="order-id flex-none flex-sm-initial w-full w-sm-initial">
+                                                        <p class="f-s-20 gil-bold text-secondery" v-if="order">{{ order.order_no }}</p>
+                                                        <p class="f-s-20 gil-bold text-secondery" v-else>N/A</p>
+                                                    </div>
+                                                    <div class="start-date d-flex flex-column">
+                                                        <div class="mb-4">
+                                                            <p class="text-white mb-2">{{ $t('order_start_date', $store.state.locale) }}</p>
+                                                            <p class=" text-secondery mb-0">{{ formattedDate(order.create_date) }} </p>
+                                                        </div>
+                                                        <div>
+                                                            <p class="text-white mb-2">{{ $t('total_game', $store.state.locale) }}</p>
+                                                            <p class=" text-secondery mb-0">{{ order.lenders.data.length }}</p>
+                                                        </div>
+                                                    </div>
+                                                     <div class="payment d-flex flex-column">
+                                                        <div class="mb-4">
+                                                            <p class="text-white mb-2">{{ $t('order_amount', $store.state.locale) }}</p>
+                                                            <p class=" text-secondery mb-0">{{ order.amount  }}</p>
+                                                        </div>
+                                                        <div>
+                                                            <p class="text-white mb-2">{{ $t('payment_status', $store.state.locale) }}</p>
+                                                            <p class=" text-secondery" v-if="order.payment_status == 1">Paid</p>
+                                                            <p class=" text-secondery mb-0" v-else>Unpaid</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-column">
+                                                        <div class=" mb-4 h-56">
+                                                        <router-link :to="'/'+ order.id +'/order-details'" class="d-flex border-1 border-secondery -skew-19-deg pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover mt-2"><span class="skew-19-deg">Details</span></router-link>
+                                                        </div>
+                                                        <div>
+                                                            <p class="mb-1">{{ $t('status', $store.state.locale) }}</p>
+                                                            <div v-if="order.delivery_status === 0">
+                                                                <span class="pending br-0 f-s-16" >Pending</span>
+                                                            </div>
+                                                            <div v-else-if="order.delivery_status === 1">
+                                                                <span class="completed br-0 f-s-16" >Completed</span>
+                                                            </div>
+                                                            <div v-else-if="order.delivery_status === 2">
+                                                                <span class="completed br-0 f-s-16" >Delivered</span>
+                                                            </div>
+                                                            <div v-else-if="order.delivery_status === 3">
+                                                                <span class="rejected br-0  f-s-16" >Rejected</span>
+                                                            </div>
+                                                            <div v-else-if="order.delivery_status === 4">
+                                                                <span class="completed br-0 f-s-16" >Processing</span>
+                                                            </div>
+                                                            <div v-else-if="order.delivery_status === 5">
+                                                                <span class="completed br-0 f-s-16" >Postponed</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                     <!-- disk type -->
-                                                    <div class="dashboard-content--rented--box--disk-type position-absolute top--1 right--1 bg-secondery p-2 gil-bold">
+                                                    <!-- <div class="dashboard-content--rented--box--disk-type position-absolute top--1 right--1 bg-secondery p-2 gil-bold">
                                                         <div class="disk-type text-black" v-if="lend.rent.disk_type == 1">Physical Copy</div>
                                                         <div class="disk-type text-black" v-if="lend.rent.disk_type == 0">Digital Copy</div>
                                                     </div>
-                                                    <div class="dashboard-content--rented--box--order-id h-30">
-                                                        <p v-if="lend.order">{{ lend.order.order_no }}</p>
-                                                        <p v-else>N/A</p>
-                                                    </div>
+                                                    
                                                     <div class="dashboard-content--rented--box--order-name">
                                                         <p v-if="lend.rent" class="f-s-20 gil-bold mb-a-3 h-60">{{ lend.rent.game.name }}</p>
-                                                    </div>
-                                                    <div class="d-flex justify-content-between dashboard-content--rented--box--order-description">
+                                                    </div> -->
+                                                    <!-- <div class="d-flex justify-content-between dashboard-content--rented--box--order-description">
                                                             <div class="cost flex-2">
                                                                 <p>{{ $t('cost', $store.state.locale) }}</p>
                                                                 <p class="text-secondery">{{ lend.lend_cost + parseInt(lend.commission)  }}</p>
@@ -407,8 +455,8 @@
                                                                     <p class="mb-1" v-else>-</p>
                                                                 </div>
                                                             </div>
-                                                    </div>
-                                                    <div class="mt-a-6 d-flex justify-content-between">
+                                                    </div> -->
+                                                    <!-- <div class="mt-a-6 d-flex justify-content-between">
                                                             <div class="timer flex-2">
                                                                 <p class="mb-1">{{ $t('remaining_time', $store.state.locale) }}</p>
                                                                 <div v-if="lend.rent.disk_type == 1">
@@ -418,7 +466,7 @@
                                                                 <div v-if="lend.rent.disk_type == 0">
                                                                     <flip-countdown :deadline="endDate(lend.rent.disk_type, lend.updated_at, lend.lend_week)" v-if="lend.status === 3"></flip-countdown>
                                                                     <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-else></flip-countdown>
-<!--                                                                    <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)" v-else></flip-countdown>-->
+                                                                   <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)" v-else></flip-countdown>
                                                                 </div>
                                                             </div>
                                                             <div class="status flex-1">
@@ -445,11 +493,11 @@
                                                                     <span class="completed br-0 f-s-16" >Postponed</span>
                                                                 </div>
                                                             </div>
-                                                        </div>
+                                                        </div> -->
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class="text-center text-secondery mt-3 rented-note">{{ $t('delivery_charge_notice', $store.state.locale) }}</p>
+                                        <!-- <p class="text-center text-secondery mt-3 rented-note">{{ $t('delivery_charge_notice', $store.state.locale) }}</p> -->
                                     </div>
                                     <!-- Norhing to show -->
                                     <div class="no-post-found-card mb-0" v-else>
@@ -1006,11 +1054,12 @@
                                                                     <div class="modal-body-content">
                                                                         <h5 class="modal-title text-secondery text-center f-s-32 mb-4" id="exampleModalLabel">{{ $t('rate_please', $store.state.locale) }}</h5>
                                                                         <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-if="ratingData.value.lender_id != $store.state.user.id">
-                                                                            <img :src="ratingData.value.lender.data.image" alt="img" class="img-fluid">
+                                                                            <img :src="ratingData.value.lender.data.image" alt="img" class="img-fluid" v-if="ratingData.value.lender.data.image">
+                                                                            <img src="../assets/img/avatar.png" class="img-fluid gamehub--logo" alt="Gamehub Logo logo" v-else>
                                                                         </div>
                                                                         <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-else>
-                                                                            <img :src="ratingData.value.renter.data.image" alt="img" class="img-fluid">
-                                                                             <!-- <img src="../assets/img/avatar.png" class="img-fluid gamehub--logo" alt="Gamehub Logo logo"> -->
+                                                                            <img :src="ratingData.value.renter.data.image" alt="img" class="img-fluid" v-if="ratingData.value.renter.data.image">
+                                                                            <img src="../assets/img/avatar.png" class="img-fluid gamehub--logo" alt="Gamehub Logo logo" v-else>
                                                                         </div>
                                                                         <div class="text-center" v-if="ratingData.value.lender_id != $store.state.user.id">
                                                                             <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.lender.data.name}} {{ ratingData.value.lender.data.last_name}}</p>
@@ -1087,9 +1136,19 @@
     import { VueFeedbackReaction } from 'vue-feedback-reaction';
     export default {
         components: {StarRating, FlipCountdown, Clipboard, VueFeedbackReaction},
-        // props: ['rentPost', 'profileEdit'],
         data() {
             return {
+                extend: {
+                    week: '',
+                    price: 0,
+                    game: '',
+                    lend_id: null,
+                    orderNo: '',
+                    commission: 0,
+                    game_id: '',
+                    disk_type: ''
+                },
+                extendModalShow: false,
                 fromCart: false,
                 lenderRatingCount: 0,
                 renterRatingCount: 0,
@@ -1119,6 +1178,7 @@
                 itemsData: ['Male', 'Female', 'Others'],
                 rents: [],
                 lends: [],
+                orders: [],
                 agreement: '',
                 show: true,
                 user: {},
@@ -1195,18 +1255,50 @@
                     this.rentCheck()
                 }
             },
-            // "$route": {
-            //     handler: function(value) {
-            //         if (value.name === 'Profile'){
-            //             this.ratingCheck()
-            //         }
-            //     },
-            //     deep: true,
-            //     immediate: true,
-            // },
-
         },
         methods: {
+            extendModal(lend) {
+                this.extend.week = '';
+                this.extend.price = 0;
+                this.extend.commission = 0;
+
+                this.extendModalShow = true;
+                this.extend.game = lend.rent.game.name;
+                this.extend.game_id = lend.rent.game.id;
+                this.extend.disk_type = lend.rent.disk_type;
+                this.extend.orderNo = lend.order.order_no;
+                this.extend.lend_id = lend.id;
+            },
+            extendSubmit(){
+                var config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+
+                let data = {
+                    id: this.extend.lend_id,
+                    week: this.extend.week,
+                    amount: this.extend.price,
+                    commission: this.extend.commission,
+                };
+
+                this.$api.post('extend-lend', data, config).then(response => {
+                    console.log(response.data.error);
+                    if (response.data.error == false) {
+                        this.extendModalShow = false;
+                        this.$toaster.success("Extend request sent successfully!!");
+                    }
+
+                });
+            },
+            rentCost(week, disk_type, game_id) {
+                this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
+                    console.log(response);
+                    this.extend.price = response.data.price.discount_price;
+                    this.extend.commission =  response.data.price.discount_commission;
+                })
+            },
             ratingSubmit () {
                 this.invalidRating = false;
                 if (this.ratingData.rating === 0 && this.ratingData.comment === ''){
@@ -1410,22 +1502,22 @@
                 });
 
             },
-            extend () {
-                this.$swal({
-                    title: this.$t('please_contact', this.$store.state.locale),
-                    text: this.$t('contact_details', this.$store.state.locale),
-                    icon: "warning",
-                }).then(() => {
-                        this.$swal({
-                            text: this.$t('thank_you', this.$store.state.locale),
-                            icon: 'success',
-                            timer: 1500,
-                            button: false,
-                        });
-
-                });
-
-            },
+            // extend () {
+            //     this.$swal({
+            //         title: this.$t('please_contact', this.$store.state.locale),
+            //         text: this.$t('contact_details', this.$store.state.locale),
+            //         icon: "warning",
+            //     }).then(() => {
+            //             this.$swal({
+            //                 text: this.$t('thank_you', this.$store.state.locale),
+            //                 icon: 'success',
+            //                 timer: 1500,
+            //                 button: false,
+            //             });
+            //
+            //     });
+            //
+            // },
             onOfferedGames() {
                 this.show = true
             },
@@ -1854,6 +1946,20 @@
                     this.lends = response.data;
                 });
             },
+            orderCheck() {
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+
+                this.$api.get('orders?include=lenders', config).then(response =>
+                {
+                    this.orders = response.data.data;
+                    console.log('orders');
+                    console.log(this.orders);
+                });
+            },
             ratingCheck() {
                 this.ratingList = [];
                 let config = {
@@ -1978,6 +2084,7 @@
         },
         created() {
             window.scrollTo(0,0);
+            this.orderCheck();
             this.$root.$on('ratingNavCheck', () => {
                 this.ratingCheck();
             });

@@ -100,18 +100,12 @@
                 </div> -->
                 <div class="load-more-container mt-a-8">
                     <input type="checkbox" id="load-more" class="d-none"/>
-                    <p class="loadmore-text"> Gamehub is a gaming platform that aims to make all games more easily available to 
-                        gamers. We are attempting to bring together all types of video game lovers 
-                        with the goal of becoming the most respected organization among enthusiasts.
-                        Using this unique platfrom you can rent your favorite games & lend the unused ones.</p>
+                    <p class="loadmore-text">{{ $t('load_more_text', $store.state.locale) }}</p>
                     <label class="load-more-btn" for="load-more">
                         <span class="unloaded text-white opa-7">Load more...</span>
                         <span class="loaded text-white op-7">View less</span>
                     </label>  
                 </div>
-
-
-
                 <div v-if="rentModal">
                     <transition name="modal">
                         <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal share-post-modal">
@@ -324,12 +318,12 @@
             },
             postRentCost(week, disk_type, game_id) {
                 this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
-                    this.price = response.data.price.discount_price + response.data.price.discount_commission;
+                    this.price = response.data.price.regular_price + response.data.price.regular_commission;
                 })
             },
             rentCost(week, disk_type, game_id) {
                 this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
-                    this.price = response.data.price.discount_price + response.data.price.discount_commission;
+                    this.price = response.data.price.regular_price + response.data.price.regular_commission;
                 })
             },
             onAddToCart() {

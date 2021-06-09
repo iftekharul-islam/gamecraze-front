@@ -29,11 +29,11 @@
                             <td scope="col">{{ item.rent_week }}</td>
                             <td scope="col">
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <del><span>৳ </span>
-                                        {{ item.regular_price + item.regular_commission }}
-                                    </del>
+<!--                                    <del><span>৳ </span>-->
+<!--                                        {{ item.regular_price + item.regular_commission }}-->
+<!--                                    </del>-->
                                     <div class="new-price"><span>৳ </span>
-                                        {{ item.discount_price + item.discount_commission }}
+                                        {{ item.regular_price + item.regular_commission }}
                                     </div>
                                     <div class="item-del" @click="onRemoveCartItem(index, item.id)"><i class="fas fa-trash-alt icon"></i></div>
                                 </div>
@@ -273,8 +273,8 @@
       },
     methods: {
         autoPromoApply() {
-            let code = this.$store.state.promo ?? null;
-            if (code != null) {
+            let code = this.$store.state.promo ?? false;
+            if (code) {
                 console.log('i m in autoApplyCode');
                 this.promoCode = code;
                 this.applyCode();
@@ -342,8 +342,9 @@
                     console.log(err);
                 });
                 this.$api.get('cart-items', config).then(response => {
+                    console.log(response);
                     this.newCartItems = response.data.data.cartItems;
-                    this.totalPrice = response.data.data.totalDiscountPrice;
+                    this.totalPrice = response.data.data.totalRegularPrice;
                     this.mainAmount = this.totalPrice;
                     this.deliveryCharge = response.data.data.deliveryCharge;
                     this.autoPromoApply();
@@ -491,6 +492,7 @@
                                 timer: 1500,
                             });
                             this.authData();
+                            this.$root.$refs.Navbar.authData();
                         }
                     });
                 } else {

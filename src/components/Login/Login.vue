@@ -63,7 +63,7 @@
                                 <!-- sign in button -->
                                 <div class="text-center sign-btn">
                                     <button class="btn mb-2 btn--login w-100" type="submit" ref="emailLoginBtn" :disabled="isLoading && $store.state.notSetPassword && !$store.state.notFoundEmail">
-                                        {{ $t('proceed', $store.state.locale) }}
+                                        {{ $t('sign_in', $store.state.locale) }}
                                         <span v-if="$store.state.isEmailLoading"
                                               class="spinner-border spinner-border-sm"></span>
                                     </button>
@@ -136,7 +136,7 @@
                                         <button class="btn btn--otp mb-2 w-100" type="button"
                                                 @click.prevent="handleSubmit(onOtpVerification)"
                                                 :disabled="$store.state.isSubmitLoading">
-                                            {{ $t('proceed', $store.state.locale) }}
+                                            {{ $t('sign_in', $store.state.locale) }}
                                             <span v-if="$store.state.isSubmitLoading"
                                                   class="spinner-border spinner-border-sm"></span>
                                         </button>

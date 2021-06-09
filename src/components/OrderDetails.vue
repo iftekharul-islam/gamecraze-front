@@ -159,7 +159,59 @@
                             </div>
                         </div>
                         <div class="max-940 mx-auto" v-if="orderDetails">
-                            <div class="max-446 mr-sm-4 ml-md-auto mt-5">
+                            <p class="text-secondery gil-medium">Invoice</p>
+                            <div class="table-responsive">
+                                <table class="w-full">
+                                    <thead>
+                                        <tr>
+                                            <td class="text-white gil-medium py-3">Order id</td>
+                                            <td class="text-white gil-medium py-3 px-2">Game name</td>
+                                            <td class="text-white gil-medium py-3 px-2 text-right pr-4">Amount</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td rowspan="99999" class="bg-secondery-opa-25 max-96 align-top px-2 py-3">1253125</td>
+                                            <td class="px-2 py-3 border-white-50 border-b-1 border-t-1">Call of duty: Black OPS, Cold War</td>
+                                            <td class="px-2 py-3 border-white-50 border-b-1 border-t-1 text-right pr-4">Tk.250.00</td>
+                                        </tr>
+                                         <tr>
+                                            <td class="px-2 py-3 border-white-50 border-b-1 border-t-1">Call of duty: Black OPS, Cold War</td>
+                                            <td class="px-2 py-3 border-white-50 border-b-1 border-t-1 text-right pr-4">Tk.250.00</td>
+                                        </tr>
+                                         <tr>
+                                            <td class="px-2 py-3 border-white-50 border-b-1 border-t-1">Call of duty: Black OPS, Cold War</td>
+                                            <td class="px-2 py-3 border-white-50 border-b-1 border-t-1 text-right pr-4">Tk.250.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table class="subtota-table w-full">
+                                    <tr>
+                                        <td class="px-2 py-3"><p class="mb-0 gray-text gil-medium text-right">Subtotal</p></td>
+                                        <td class="px-2 py-3 w-20-prs pr-4"><p class="mb-0 gil-bold text-white text-right">Tk {{ order.amount - order.delivery_charge + order.discount_amount }}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-2 py-3"><p class="mb-0 gray-text gil-medium text-right">Delivery charge</p></td>
+                                        <td class="px-2 py-3 w-20-prs pr-4"> <p class="mb-0 gil-bold text-white text-right">Tk {{ order.delivery_charge }}</p></td>
+                                    </tr>
+                                    <tr v-if="order.discount_amount">
+                                        <td class="px-2 py-3"><p class="mb-0 gray-text gil-medium text-right">Discount</p></td>
+                                        <td class="px-2 py-3 w-20-prs pr-4"><p class="mb-0 gil-bold text-white text-right">Tk -{{ order.discount_amount }}</p></td>
+                                    </tr>
+                                    <tr v-if="order.wallet_amount">
+                                        <td class="px-2 py-3"><p class="mb-0 gray-text gil-medium text-right">Wallet amount</p></td>
+                                        <td class="px-2 py-3 w-20-prs pr-4"><p class="mb-0 gil-bold text-white text-right">Tk {{ order.wallet_amount }}</p></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-2 py-3 border-white-50 border-t-1"><p class="mb-0 text-secondery gil-medium text-right"> Grand total</p></td>
+                                        <td class="px-2 py-3 w-20-prs pr-4 border-white-50 border-t-1"><p class="mb-0 gil-bold text-secondery text-right">Tk {{ order.amount }}</p></td>
+                                    </tr>
+                                </table>
+                            </div>
+
+
+
+                            <!-- <div class="max-446 mr-sm-4 ml-md-auto mt-5">
                                     <div class="border-b-1 border-t-1 border-white-50 px-4 pt-4 pb-0">
                                         <div class="d-flex align-items-center justify-content-between mb-4">
                                         <p class="mb-0 gray-text gil-medium">Subtotal</p>
@@ -182,7 +234,7 @@
                                     <p class="mb-0 text-secondery gil-medium"> Grand total</p>
                                     <p class="mb-0 gil-bold text-secondery">Tk {{ order.amount }}</p>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                     </div>
                 </div>

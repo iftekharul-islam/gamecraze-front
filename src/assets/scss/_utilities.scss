@@ -1530,6 +1530,9 @@
 .bg-secondery {
     background: $secondery;
 }
+.bg-secondery-opa-25 {
+    background: $secondery-opa-25;
+}
 .primary-bg {
     background: $primary;
 }
@@ -1833,8 +1836,14 @@ html {
 .w-90 {
     width: 90px !important;
 }
+.w-96 {
+    width: 96px;
+}
 .w-100px {
     width: 100px;
+}
+.max-96 {
+    max-width: 96px;
 }
 .max-328 {
     max-width: 328px;
@@ -1880,6 +1889,9 @@ html {
     @include for-min-575 {
         width: 400px;
     }
+}
+.w-20-prs {
+    width: 20%;
 }
 .w-full {
     width: 100%;

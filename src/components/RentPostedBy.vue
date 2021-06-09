@@ -23,7 +23,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr v-for="(rent, index) in rentPosts" :key="index"  data-toggle="modal" :data-target="(user_type == false & rent.disk_type == true) ? '#warning' : '#rent_now'" @click="setModalData(rent)" :class="{disablePost: rent.user_id === $store.state.userId || rent.rented_user_id !== null}">
+                        <tr v-for="(rent, index) in rentPosts" :key="index" @click="setModalData(rent)" :class="{disablePost: rent.user_id === $store.state.userId || rent.rented_user_id !== null}">
                             <td scope="col" v-if="rent.user.data.image"><img :src="rent.user.data.image" alt="renter">{{ rent.user.data.name }}</td>
                             <td scope="col" v-else><img width="80px" v-if="rent.user.data.gender === 'Male'" src="../assets/img/male.png" alt="renter"><img width="80px" v-else-if="rent.user.data.gender === 'Female'" src="../assets/img/female.png" alt="renter"><img v-else src="../assets/img/avatar.png" width="80px" alt="renter">{{ rent.user.data.name }}</td>
                             <td scope="col" v-if="rent.rented_user_id !== null"><span>Rented</span></td>
@@ -51,137 +51,152 @@
                         </tr>
                         </tbody>
                     </table>
+                    <div v-if="rentModal">
+                        <transition name="modal">
+                            <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal share-post-modal">
+                                <div class="modal-wrapper">
+                                    <div class="modal-dialog modal-dialog-centered max-md-760" role="document">
+                                        <div class="modal-content">
+                                            <h2 class="modal-title m-auto" id="exampleModalLabel" v-if="modalData">{{ modalData.game.data.name }}</h2>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true" @click="rentModal = false" class="close-modal"></span>
+                                            </button>
+                                            <div class="modal-body-content">
+                                                <ValidationObserver v-slot="{ handleSubmit }">
+                                                    <div>
+                                                        <div class="seller-information border-0">
+                                                            <table class="w-full w-lg-75 share-post-modal--bottom-table">
+                                                                <tbody class="text-left">
+                                                                    <tr>
+                                                                        <td>{{ $t('platform', $store.state.locale) }} :</td>
+                                                                        <td v-if="modalData">
+                                                                            <img :src="modalData.platform.data.url" alt="ps4">
+                                                                        </td>
+                                                                    </tr>
+                                                                    <tr v-if="modalData.diskCondition">
+                                                                        <td>{{ $t('disk_condition', $store.state.locale) }} :</td>
+                                                                        <td v-if="modalData">{{ modalData.diskCondition.data.name_of_type }} ({{ modalData.diskCondition.data.description }})</td>
 
-                    <div v-if="modalData && modalData.user_id !== $store.state.userId && modalData.rented_user_id === null" class="modal fade seller-information-modal" id="rent_now" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                              <ValidationObserver v-slot="{ handleSubmit }">
-                                <div class="modal-header text-center">
-                                    <h2 class="modal-title m-auto" id="exampleModalLabel" v-if="modalData">{{ modalData.game.data.name }}</h2>
-                                    <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true"></span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <table class="table table-borderless seller-information-modal--table-top">
-                                        <tbody>
-                                        <tr>
-                                            <td>{{ $t('platform', $store.state.locale) }} :</td>
-                                            <td v-if="modalData">
-                                                <img :src="modalData.platform.data.url" alt="ps4">
-                                            </td>
-                                        </tr>
-                                        <tr v-if="modalData.diskCondition">
-                                            <td>{{ $t('disk_condition', $store.state.locale) }} :</td>
-                                            <td v-if="modalData">{{ modalData.diskCondition.data.name_of_type }} ({{ modalData.diskCondition.data.description }})</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>{{ $t('available_from', $store.state.locale) }} :</td>
-                                            <td v-if="modalData">{{ formattedDate(modalData.availability_from_date) }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ $t('maximum_rent_for', $store.state.locale) }} :</td>
-                                            <td v-if="modalData">{{ modalData.max_number_of_week}} week(s)</td>
-                                        </tr>
-                                        <tr>
-                                            <td>{{ $t('posted_by', $store.state.locale) }} :</td>
-                                            <td v-if="modalData">{{ modalData.user.data.name }}</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                    <span v-if="isExistsInCart" class="text-center d-block">{{ $t('already_in_cart', $store.state.locale) }}</span>
-                                    <div v-if="!isExistsInCart" class="seller-information">
-                                        <div class="text-center">
-                                            <h2>{{ $t('necessary_info', $store.state.locale) }}</h2>
-                                        </div>
-                                        <table class="table table-borderless seller-information-modal--table-bottom w-100">
-                                            <tbody>
-                                            <tr>
-                                                <td>{{ $t('select_week', $store.state.locale) }} :</td>
-                                                <td>
-                                                  <ValidationProvider name="Rent Week" rules="required" v-slot="{ errors }">
-                                                    <select class="form-control" id="exampleFormControlSelect1" v-if="modalData" @change="rentCost(form.week, modalData.disk_type, modalData.game_id)" v-model="form.week">
-                                                        <option value="" selected disabled>Please select rent week</option>
-                                                        <option v-for="n in modalData.max_number_of_week" :value="n" :key="n">For {{n}} Week</option>
-                                                    </select>
-                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                  </ValidationProvider>
-                                                </td>
-                                            </tr>
-                                            <tr v-if="form.week">
-                                                <td>{{ $t('rent_cost', $store.state.locale) }} :</td>
-                                                <td><span>৳ </span>{{ price }}</td>
-                                            </tr>
-                                            <tr v-if="form.week">
-                                                <td>{{ $t('rent_start_date', $store.state.locale) }} :</td>
-                                                <td>{{ rentStartDate }}</td>
-                                            </tr>
-                                            <tr v-if="form.week">
-                                                <td>{{ $t('rent_end_date', $store.state.locale) }} :</td>
-                                                <td>{{ returnDate }}</td>
-                                            </tr>
-                                            <tr v-if="requiredAddress">
-                                                <td>{{ $t('delivery_type', $store.state.locale) }} :</td>
-                                                <td v-if="modalData">
-                                                  <ValidationProvider name="Delivery type" :rules="{required: requiredAddress}" v-slot="{ errors }">
-                                                    <select class="form-control" id="exampleFormControlSelect2" v-model="form.deliveryType">
-                                                        <option value="" disabled selected="selected">Please select delivery type</option>
-                                                        <option value="0">Home Delivery</option>
-<!--                                                        <option :value="modalData.checkpoint_id" :disabled="modalData.checkpoint_id == null ">Checkpoint</option>-->
-                                                    </select>
-                                                    <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                  </ValidationProvider>
-                                                </td>
-                                            </tr>
-                                            <tr v-if="form.deliveryType !== '0' && form.deliveryType !== '' && modalData">
-                                                <td>{{ $t('checkpoint_details', $store.state.locale) }} :</td>
-                                                <td>
-                                                    <div class="seller-address">
-                                                        <i class="fas fa-map-marker-alt"></i>
-                                                        Flat: {{ modalData.checkpoint.data.flat_no }}, House: {{modalData.checkpoint.data.house_no}}/{{modalData.checkpoint.data.road_no}},
-                                                      {{ modalData.checkpoint.data.area.data.name }},
-                                                        {{ modalData.checkpoint.data.area.data.thana.data.name }}, {{modalData.checkpoint.data.area.data.thana.data.district.data.name}}
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>{{ $t('available_from', $store.state.locale) }} :</td>
+                                                                        <td v-if="modalData">{{ formattedDate(modalData.availability_from_date) }}</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>{{ $t('maximum_rent_for', $store.state.locale) }} :</td>
+                                                                        <td v-if="modalData">{{ modalData.max_number_of_week}} week(s)</td>
+                                                                    </tr>
+                                                                    <tr>
+                                                                        <td>{{ $t('posted_by', $store.state.locale) }} :</td>
+                                                                        <td v-if="modalData">{{ modalData.user.data.name }}</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <span v-if="isExistsInCart" class="text-center d-block">{{ $t('already_in_cart', $store.state.locale) }}</span>
+                                                        <div class="seller-information mt-4">
+                                                            <div class="text-center">
+                                                                <h2>{{ $t('necessary_info', $store.state.locale) }}</h2>
+                                                            </div>
+                                                            <table class="w-full share-post-modal--bottom-table">
+                                                                <tbody class="text-left">
+                                                                <tr>
+                                                                    <td class="align-middle p-0 pb-3 pb-sm-0">{{ $t('select_week', $store.state.locale) }} :</td>
+                                                                    <td class="p-0">
+                                                                        <ValidationProvider name="Rent Week" rules="required" v-slot="{ errors }">
+                                                                            <select class="form-control" id="exampleFormControlSelect1" v-if="modalData" @change="rentCost(form.week, modalData.disk_type, modalData.game_id)" v-model="form.week">
+                                                                                <option value="" selected disabled>Please select rent week</option>
+                                                                                <option v-for="n in modalData.max_number_of_week" :value="n" :key="n">For {{n}} Week</option>
+                                                                            </select>
+                                                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                        </ValidationProvider>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr v-if="form.week">
+                                                                    <td>{{ $t('rent_cost', $store.state.locale) }} :</td>
+                                                                    <td><span>৳ </span>{{ price }}</td>
+                                                                </tr>
+                                                                <tr v-if="form.week">
+                                                                    <td>{{ $t('rent_start_date', $store.state.locale) }} :</td>
+                                                                    <td>{{ rentStartDate }}</td>
+                                                                </tr>
+                                                                <tr v-if="form.week">
+                                                                    <td>{{ $t('rent_end_date', $store.state.locale) }} :</td>
+                                                                    <td>{{ returnDate }}</td>
+                                                                </tr>
+                                                                <tr v-if="requiredAddress">
+                                                                    <td>{{ $t('delivery_type', $store.state.locale) }} :</td>
+                                                                    <td v-if="modalData">
+                                                                        <ValidationProvider name="Delivery type" :rules="{required: requiredAddress}" v-slot="{ errors }">
+                                                                            <select class="form-control" id="exampleFormControlSelect2" v-model="form.deliveryType">
+                                                                                <option value="" disabled selected="selected">Please select delivery type</option>
+                                                                                <option value="0">Home Delivery</option>
+                                                                                <!--                                                        <option :value="modalData.checkpoint_id" :disabled="modalData.checkpoint_id == null ">Checkpoint</option>-->
+                                                                            </select>
+                                                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                        </ValidationProvider>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr v-if="form.deliveryType !== '0' && form.deliveryType !== '' && modalData">
+                                                                    <td>{{ $t('checkpoint_details', $store.state.locale) }} :</td>
+                                                                    <td>
+                                                                        <div class="seller-address">
+                                                                            <i class="fas fa-map-marker-alt"></i>
+                                                                            Flat: {{ modalData.checkpoint.data.flat_no }}, House: {{modalData.checkpoint.data.house_no}}/{{modalData.checkpoint.data.road_no}},
+                                                                            {{ modalData.checkpoint.data.area.data.name }},
+                                                                            {{ modalData.checkpoint.data.area.data.thana.data.name }}, {{modalData.checkpoint.data.area.data.thana.data.district.data.name}}
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
                                                     </div>
-                                                </td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
+                                                    <div class="d-flex justify-content-center mt-5" v-if="!isExistsInCart">
+                                                        <a href="javascript:void(0)" class="btn--secondery" @click.prevent="handleSubmit(onAddToCart)">
+                                                            <span><i class="fas fa-shopping-cart mr-2"></i> {{ $t('add_to_cart', $store.state.locale) }}</span>
+                                                        </a>
+                                                    </div>
+                                                </ValidationObserver>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                               
-                                <div v-if="!isExistsInCart" class="modal-footer justify-content-center">
-                                    <a href="javascript:void(0)" class="btn--secondery" @click.prevent="handleSubmit(onAddToCart)">
-                                      <span><i class="fas fa-shopping-cart mr-2"></i> {{ $t('add_to_cart', $store.state.locale) }}</span>
-                                    </a>
-                                </div>
-                              </ValidationObserver>
                             </div>
-                        </div>
+                        </transition>
                     </div>
-                    <div v-if="modalData && modalData.user_id !== $store.state.userId && modalData.rented_user_id === null" class="modal fade seller-information-modal upgrade-modal" id="warning" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                    <button type="button" class="close m-0" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true"></span>
-                                    </button>
-                                <p>{{ $t('rookie_sms_part_1', $store.state.locale) }}
-                                    <a href="/rookie" class="text-secondery"> Rookie</a>
-                                    {{ $t('rookie_sms_part_2', $store.state.locale) }}
-                                    <a href="/elite" class="text-secondery">ELITE.</a>
-                                    {{ $t('rookie_sms_part_3', $store.state.locale) }}</p>
-                                <div class="modal-content--description--form">
-                                    <div class="modal-content--description--form--call">
-                                        <p>{{ $t('please_call_contact', $store.state.locale) }}</p>
-                                        <p>01886-614533</p>
-                                    </div>
-                                    <span class="modal-or">{{ $t('or', $store.state.locale) }}</span>
-                                    <div class="modal-content--description--form--call">
-                                        <a href="/contacts" class="btn--secondery secondery-border" target="_blank"><span>{{ $t('form_fillup', $store.state.locale) }}</span></a>
+                    <div v-if="registrationModal">
+                        <transition name="modal">
+                            <div class="modal-mask seller-information-modal upgrade-modal cart-warning-modal multiple-user-warning-modal z-index-99">
+                                <div class="modal-wrapper">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true" @click="registrationModal = false" class=""></span>
+                                            </button>
+                                            <div class="modal-body-content">
+                                                <p>{{ $t('rookie_sms_part_1', $store.state.locale) }}
+                                                    <a href="/rookie" class="text-secondery"> Rookie</a>
+                                                    {{ $t('rookie_sms_part_2', $store.state.locale) }}
+                                                    <a href="/elite" class="text-secondery">ELITE.</a>
+                                                    {{ $t('rookie_sms_part_3', $store.state.locale) }}
+                                                </p>
+                                                <div class="d-flex justify-content-center mt-5">
+                                                    <div class="modal-content--description--form--call">
+                                                        <p>{{ $t('please_call_contact', $store.state.locale) }}</p>
+                                                        <p>01886-614533</p>
+                                                    </div>
+                                                    <span class="modal-or">{{ $t('or', $store.state.locale) }}</span>
+                                                    <div class="modal-content--description--form--call">
+                                                        <router-link to="/contacts" class="btn--secondery secondery-border"><span>{{ $t('form_fillup', $store.state.locale) }}</span></router-link>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </transition>
                     </div>
                 </div>
             </div>
@@ -195,6 +210,8 @@
         props: ['slug'],
         data() {
             return {
+                rentModal: false,
+                registrationModal: false,
                 agreement: '',
                 rentPosts: [],
                 user_type: 0,
@@ -283,6 +300,14 @@
                 })
             },
             setModalData(rent) {
+                if (rent.user_id === this.$store.state.userId || rent.rented_user_id !== null) {
+                    return
+                }
+                if (this.user_type == false && rent.disk_type == true) {
+                    this.registrationModal = true;
+                    return
+                }
+                this.rentModal = true;
                 this.form.week = '';
                 if (rent.disk_type == 0) {
                     this.requiredAddress = false
@@ -322,9 +347,7 @@
                     //     deliveryAddress: this.form.address
                     // });
                     this.modalData = false;
-                    this.$router.push('/cart').then(err => {
-                        location.reload();
-                    });
+                    this.$router.push('/cart')
                 })
             },
             checkIfExistsInCart(gameId) {

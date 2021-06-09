@@ -106,9 +106,6 @@
                         <span class="loaded text-white op-7">View less</span>
                     </label>  
                 </div>
-
-
-
                 <div v-if="rentModal">
                     <transition name="modal">
                         <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal share-post-modal">

@@ -88,7 +88,6 @@
             this.$api.get('lender-rating-list?include=renter,lender,lend.rent.game,lend.order', config).then(response =>
             {
                 this.lenderRating = response.data.data;
-                console.log(this.lenderRating);
             });
         }
     }

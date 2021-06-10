@@ -5871,6 +5871,11 @@ html {
   }
 }
 
+.map iframe {
+  border-radius: 8px;
+  border: 2px solid #FFD715 !important;
+}
+
 .games-categories-section {
   padding-top: 60px;
   padding-bottom: 180px;

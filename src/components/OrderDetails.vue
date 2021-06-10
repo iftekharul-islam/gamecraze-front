@@ -91,7 +91,7 @@
                                                 <span class="completed br-0 f-s-16" >Postponed</span>
                                             </div>
                                             <div class="mt-a-4 mt-a-sm-7" v-if="lend.status === 3">
-                                                <a href="#" class="bg-secondery black-text-hover py-1 px-3 d-block text-center text-black w-fit gil-medium" @click.prevent="extendModal(lend)">Extend date</a>
+                                                <a href="#" class="bg-secondery black-text-hover py-1 px-3 d-block text-center text-black w-fit gil-medium" @click.prevent="extendModal(lend)">{{ $t('extend_request', $store.state.locale) }}</a>
                                             </div>
 
                                             <!-- Extend modal -->
@@ -159,82 +159,49 @@
                             </div>
                         </div>
                         <div class="max-940 mx-auto" v-if="orderDetails">
-                            <p class="text-secondery gil-medium">Invoice</p>
+                            <p class="text-secondery gil-medium">{{ $t('order_summary', $store.state.locale) }}</p>
                             <div class="table-responsive">
                                 <table class="w-full">
                                     <thead>
                                         <tr>
-                                            <td class="text-white gil-medium py-3">Order id</td>
-                                            <td class="text-white gil-medium py-3 px-2">Game name</td>
-                                            <td class="text-white gil-medium py-3 px-2 text-right pr-4">Amount</td>
+                                            <td class="text-white gil-medium py-3">{{ $t('order_no', $store.state.locale) }}</td>
+                                            <td class="text-white gil-medium py-3 px-2">{{ $t('game_name', $store.state.locale) }}</td>
+                                            <td class="text-white gil-medium py-3 px-2 text-right pr-4">{{ $t('amount', $store.state.locale) }}</td>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td rowspan="99999" class="bg-secondery-opa-25 max-96 align-top px-2 py-3">1253125</td>
-                                            <td class="px-2 py-3 border-white-50 border-b-1 border-t-1">Call of duty: Black OPS, Cold War</td>
-                                            <td class="px-2 py-3 border-white-50 border-b-1 border-t-1 text-right pr-4">Tk.250.00</td>
+                                            <td rowspan="99999" class="bg-secondery-opa-25 w-150 max-150 align-top px-2 py-3">{{ order.order_no }}</td>
                                         </tr>
-                                         <tr>
-                                            <td class="px-2 py-3 border-white-50 border-b-1 border-t-1">Call of duty: Black OPS, Cold War</td>
-                                            <td class="px-2 py-3 border-white-50 border-b-1 border-t-1 text-right pr-4">Tk.250.00</td>
-                                        </tr>
-                                         <tr>
-                                            <td class="px-2 py-3 border-white-50 border-b-1 border-t-1">Call of duty: Black OPS, Cold War</td>
-                                            <td class="px-2 py-3 border-white-50 border-b-1 border-t-1 text-right pr-4">Tk.250.00</td>
+                                         <tr v-for="invoice in order.lenders.data">
+                                            <td class="px-2 py-3 border-white-50 border-b-1 border-t-1">{{ invoice.rent.data.game.data.name }}</td>
+                                            <td class="px-2 py-3 gray-text  border-white-50 border-b-1 border-t-1 text-right pr-4">৳ {{ invoice.lend_cost + parseInt(invoice.commission) }}</td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <table class="subtota-table w-full">
                                     <tr>
-                                        <td class="px-2 py-3"><p class="mb-0 gray-text gil-medium text-right">Subtotal</p></td>
-                                        <td class="px-2 py-3 w-20-prs pr-4"><p class="mb-0 gil-bold text-white text-right">Tk {{ order.amount - order.delivery_charge + order.discount_amount }}</p></td>
+                                        <td class="px-2 py-3"><p class="mb-0 gray-text gil-medium text-right">{{ $t('subtotal', $store.state.locale) }}</p></td>
+                                        <td class="px-2 py-3 w-20-prs pr-4"><p class="mb-0 gil-bold text-white text-right">৳ {{ order.amount - order.delivery_charge + order.discount_amount }}</p></td>
                                     </tr>
                                     <tr>
-                                        <td class="px-2 py-3"><p class="mb-0 gray-text gil-medium text-right">Delivery charge</p></td>
-                                        <td class="px-2 py-3 w-20-prs pr-4"> <p class="mb-0 gil-bold text-white text-right">Tk {{ order.delivery_charge }}</p></td>
+                                        <td class="px-2 py-3"><p class="mb-0 gray-text gil-medium text-right">{{ $t('delivery_charge', $store.state.locale) }}</p></td>
+                                        <td class="px-2 py-3 w-20-prs pr-4"> <p class="mb-0 gil-bold text-white text-right">৳ {{ order.delivery_charge }}</p></td>
                                     </tr>
                                     <tr v-if="order.discount_amount">
-                                        <td class="px-2 py-3"><p class="mb-0 gray-text gil-medium text-right">Discount</p></td>
-                                        <td class="px-2 py-3 w-20-prs pr-4"><p class="mb-0 gil-bold text-white text-right">Tk -{{ order.discount_amount }}</p></td>
+                                        <td class="px-2 py-3"><p class="mb-0 gray-text gil-medium text-right">{{ $t('discount', $store.state.locale) }}</p></td>
+                                        <td class="px-2 py-3 w-20-prs pr-4"><p class="mb-0 gil-bold text-white text-right">৳ -{{ order.discount_amount }}</p></td>
                                     </tr>
                                     <tr v-if="order.wallet_amount">
-                                        <td class="px-2 py-3"><p class="mb-0 gray-text gil-medium text-right">Wallet amount</p></td>
-                                        <td class="px-2 py-3 w-20-prs pr-4"><p class="mb-0 gil-bold text-white text-right">Tk {{ order.wallet_amount }}</p></td>
+                                        <td class="px-2 py-3"><p class="mb-0 gray-text gil-medium text-right">{{ $t('wallet_amount', $store.state.locale) }}</p></td>
+                                        <td class="px-2 py-3 w-20-prs pr-4"><p class="mb-0 gil-bold text-white text-right">৳ {{ order.wallet_amount }}</p></td>
                                     </tr>
                                     <tr>
-                                        <td class="px-2 py-3 border-white-50 border-t-1"><p class="mb-0 text-secondery gil-medium text-right"> Grand total</p></td>
-                                        <td class="px-2 py-3 w-20-prs pr-4 border-white-50 border-t-1"><p class="mb-0 gil-bold text-secondery text-right">Tk {{ order.amount }}</p></td>
+                                        <td class="px-2 py-3 border-white-50 border-t-1"><p class="mb-0 text-secondery gil-medium text-right">{{ $t('grand_total', $store.state.locale) }}</p></td>
+                                        <td class="px-2 py-3 w-20-prs pr-4 border-white-50 border-t-1"><p class="mb-0 gil-bold text-secondery text-right">৳ {{ order.amount }}</p></td>
                                     </tr>
                                 </table>
                             </div>
-
-
-
-                            <!-- <div class="max-446 mr-sm-4 ml-md-auto mt-5">
-                                    <div class="border-b-1 border-t-1 border-white-50 px-4 pt-4 pb-0">
-                                        <div class="d-flex align-items-center justify-content-between mb-4">
-                                        <p class="mb-0 gray-text gil-medium">Subtotal</p>
-                                        <p class="mb-0 gil-bold text-white">Tk {{ order.amount - order.delivery_charge + order.discount_amount }}</p>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mb-4">
-                                        <p class="mb-0 gray-text gil-medium">Delivery charge</p>
-                                        <p class="mb-0 gil-bold text-white">Tk {{ order.delivery_charge }}</p>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mb-4" v-if="order.discount_amount">
-                                        <p class="mb-0 gray-text gil-medium">Discount</p>
-                                        <p class="mb-0 gil-bold text-white">Tk -{{ order.discount_amount }}</p>
-                                    </div>
-                                    <div class="d-flex align-items-center justify-content-between mb-4" v-if="order.wallet_amount">
-                                        <p class="mb-0 gray-text gil-medium">Wallet amount</p>
-                                        <p class="mb-0 gil-bold text-white">Tk {{ order.wallet_amount }}</p>
-                                    </div>
-                                </div>
-                                <div class="p-4 d-flex align-items-center justify-content-between">
-                                    <p class="mb-0 text-secondery gil-medium"> Grand total</p>
-                                    <p class="mb-0 gil-bold text-secondery">Tk {{ order.amount }}</p>
-                                </div>
-                            </div> -->
                         </div>
                     </div>
                 </div>

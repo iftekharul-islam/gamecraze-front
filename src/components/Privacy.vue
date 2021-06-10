@@ -45,6 +45,18 @@
                                      <p>{{ $t('privacy_body_part_12', $store.state.locale) }}</p>
                                      <p>{{ $t('privacy_body_part_13', $store.state.locale) }}</p>
                                  </div>
+
+                                 <div class="gamehub-policy-section--content--text--heading">
+                                    <p> {{ $t('privacy_body_part_34', $store.state.locale) }}</p>
+                                    <p> {{ $t('privacy_body_part_35', $store.state.locale) }}</p>
+                                        <ul class="bullet-list">
+                                            <li class="bullet-list--item">{{ $t('privacy_body_part_36', $store.state.locale) }}</li>
+                                            <li class="bullet-list--item">{{ $t('privacy_body_part_37', $store.state.locale) }}</li>
+                                            <li class="bullet-list--item">{{ $t('privacy_body_part_38', $store.state.locale) }}</li>
+                                            <li class="bullet-list--item">{{ $t('privacy_body_part_39', $store.state.locale) }}</li>
+                                        </ul>
+                                    <p> {{ $t('privacy_body_part_40', $store.state.locale) }}</p>
+                                </div>
                             </div>
                             <div class="gamehub-policy-section--content--text">
                                 <div class="gamehub-policy-section--content--text--heading">

@@ -1526,6 +1526,10 @@
   background: #FFD715;
 }
 
+.bg-secondery-opa-25 {
+  background: rgba(255, 215, 21, 0.25);
+}
+
 .primary-bg {
   background: #0B0F18;
 }
@@ -1835,8 +1839,24 @@ html {
   width: 90px !important;
 }
 
+.w-96 {
+  width: 96px;
+}
+
+.w-150 {
+  width: 150px;
+}
+
 .w-100px {
   width: 100px;
+}
+
+.max-96 {
+  max-width: 96px;
+}
+
+.max-150 {
+  max-width: 150px;
 }
 
 .max-328 {
@@ -1893,6 +1913,10 @@ html {
   .w-sm-400 {
     width: 400px;
   }
+}
+
+.w-20-prs {
+  width: 20%;
 }
 
 .w-full {

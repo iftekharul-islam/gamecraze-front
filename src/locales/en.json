@@ -97,7 +97,7 @@
   "edit_cover_photo" : "Edit Cover Photo",
   "no_image_available" : "No image available",
   "submit" : "Submit",
-  "request_for_extend" : "Request for extend",
+  "extend_request" : "Extend request",
   "account_verified" : "Account verified",
   "account_verify_now" : "Account verify now",
   "edit_profile" : "Edit Profile",
@@ -403,5 +403,9 @@
   "Lender" : "Lender",
   "congratulations" : "Congratulations",
   "the_order_of" : "The order of",
-  "rating_complete_notice" : "has been completed Please rate now."
+  "rating_complete_notice" : "has been completed Please rate now.",
+  "order_summary" : "Order Summary",
+  "discount" : "discount",
+  "wallet_amount" : "Wallet amount",
+  "grand_total": "Grand total"
 }

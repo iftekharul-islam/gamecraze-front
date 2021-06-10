@@ -17,8 +17,11 @@
                             <h4 class="f-s-28 gil-medium text-secondery mb-4">{{ rating.lend.data.rent.data.game.data.name }}</h4>
                             <div class="d-flex flex-column flex-lg-row justify-content-between">
                                 <div class="rating-list--box--content mb-4 mb-lg-0 mr-lg-4 max-368">
-                                    <p class="gil-bold gray-text f-s-16 mb-2">{{ $t('order_complete_date', $store.state.locale) }}</p>
-                                    <p class="text-white mb-4 gil-bold">{{ formattedReturnDate(rating.lend.data.lend_date) }}</p>
+                                    <p class="gil-bold gray-text f-s-16 mb-2">{{ $t('order_no', $store.state.locale) }}</p>
+                                    <p class="text-white mb-4 gil-bold">{{ rating.lend.data.order.data.order_no }}</p>
+                                    <p class="gil-bold gray-text f-s-16 mb-2">{{ $t('disk_type', $store.state.locale) }}</p>
+                                    <p class="text-white mb-4 gil-bold" v-if="rating.lend.data.rent.data.disk_type == 1">Physical</p>
+                                    <p class="text-white mb-4 gil-bold" v-else>Digital</p>
                                     <p class="gray-text gil-bold">{{ $t('my_feedback_to_renter', $store.state.locale) }}</p>
                                     <div class="d-flex align-items-center mb-4">
                                         <star-rating :read-only="true" :rating="rating.lender_rating" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30" v-if="rating.notify_lender != null"></star-rating>
@@ -29,6 +32,8 @@
                                 <div class="rating-list--box--content max-368">
                                     <p class="gil-bold gray-text f-s-16 mb-2">{{ $t('order_complete_date', $store.state.locale) }}</p>
                                     <p class="text-white mb-4 gil-bold">{{ formattedReturnDate(rating.lend.data.lend_date) }}</p>
+                                    <p class="gil-bold gray-text f-s-16 mb-2">{{ $t('Renter', $store.state.locale) }}</p>
+                                    <p class="text-white mb-4 gil-bold">{{ rating.renter.data.name }}</p>
                                     <p class="gray-text gil-bold">{{ $t('renter_feedback_to_you', $store.state.locale) }}</p>
                                     <div class="d-flex align-items-center mb-4">
                                         <star-rating :read-only="true" :rating="rating.renter_rating" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="30" v-if="rating.notify_renter != null"></star-rating>
@@ -80,7 +85,7 @@
                     'Authorization': 'Bearer ' + this.$store.state.token
                 }
             };
-            this.$api.get('lender-rating-list?include=renter,lender,lend.rent.game', config).then(response =>
+            this.$api.get('lender-rating-list?include=renter,lender,lend.rent.game,lend.order', config).then(response =>
             {
                 this.lenderRating = response.data.data;
                 console.log(this.lenderRating);

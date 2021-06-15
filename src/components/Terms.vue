@@ -43,6 +43,7 @@
                                             <li class="bullet-list--item">{{ $t('terms_body_part_27', $store.state.locale) }}</li>
                                             <li class="bullet-list--item">{{ $t('terms_body_part_28', $store.state.locale) }}</li>
                                             <li class="bullet-list--item">{{ $t('terms_body_part_29', $store.state.locale) }}</li>
+                                            <li class="bullet-list--item">{{ $t('terms_body_part_41', $store.state.locale) }}</li>
                                         </ul>
                                      <p>{{ $t('terms_body_part_26', $store.state.locale) }}</p>
                                  </div>

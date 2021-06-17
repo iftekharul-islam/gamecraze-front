@@ -426,5 +426,9 @@
   "order_summary" : "Order Summary",
   "discount" : "discount",
   "wallet_amount" : "Wallet amount",
-  "grand_total": "Grand total"
+  "grand_total": "Grand total",
+  "product_name": "Product Name",
+  "product_type": "Product Type",
+  "is_negotiable": "Is negotiable",
+  "sub_category": "Sub category"
 }

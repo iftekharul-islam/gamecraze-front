@@ -790,8 +790,8 @@
                 display: none;
             }
         }
-        &:first-of-type {
-            margin-right: 20px;
+        &:last-of-type {
+            margin-right: 0;
             @include for-max-575 {
                 margin-right: 10px;
             }

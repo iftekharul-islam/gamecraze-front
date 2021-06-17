@@ -8544,12 +8544,12 @@ html {
   display: none;
 }
 
-.dashboard-tab-button button:first-of-type {
-  margin-right: 20px;
+.dashboard-tab-button button:last-of-type {
+  margin-right: 0;
 }
 
 @media (max-width: 575px) {
-  .dashboard-tab-button button:first-of-type {
+  .dashboard-tab-button button:last-of-type {
     margin-right: 10px;
   }
 }

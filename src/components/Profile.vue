@@ -116,6 +116,7 @@
                             <a class="nav-link" id="v-pills-my-earning-tab" data-toggle="pill" href="#v-pills-my-earning" role="tab" aria-controls="v-pills-my-earning" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/earn.png" alt="profile icon"> <img src="../assets/img/active-earn.png" class="img-active" alt="profile icon"></div> <span>{{ $t('my_earning', $store.state.locale) }}</span></a>
                             <a class="nav-link" id="v-pills-refer-tab" data-toggle="pill" href="#v-pills-refer" role="tab" aria-controls="v-pills-refer" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/refer.png" alt="profile icon"> <img src="../assets/img/refer-active.png" class="img-active" alt="profile icon"></div> <span>{{ $t('refer_friend', $store.state.locale) }}</span></a>
                             <a class="nav-link" id="v-pills-rating-tab" data-toggle="pill" href="#v-pills-rating" role="tab" aria-controls="v-pills-rating" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/star-not-active.png" alt="profile icon"> <img src="../assets/img/star-active.png" class="img-active" alt="profile icon"></div> <span>{{ $t('rating', $store.state.locale) }}</span></a>
+                            <a class="nav-link" id="v-pills-sell-post-tab" data-toggle="pill" href="#v-pills-sell-post" role="tab" aria-controls="v-pills-sell-post" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/star-not-active.png" alt="profile icon"> <img src="../assets/img/star-active.png" class="img-active" alt="profile icon"></div> <span>Sell post</span></a>
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -180,12 +181,13 @@
 
                             <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
                                 <div class="dashboard-content">
-                                    <div class="d-flex justify-content-center dashboard-tab-button mb-5">
-                                        <button  @click.prevent="onRentedGames()" :disabled="!show" :class="{active: !show}"><img class="active-black" src="../assets/img/rent-icon.png" alt="rent icon"> <img class="active-yellow" src="../assets/img/rent-icon-black.png" alt="rent icon"> {{ $t('rented_games', $store.state.locale) }}</button>
-                                        <button  @click.prevent="onOfferedGames()" :disabled="show" :class="{active: show}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  {{ $t('offered_games', $store.state.locale) }}</button>
+                                    <div class="d-flex justify-content-between dashboard-tab-button mb-5">
+                                        <button @click.prevent="onRentedGames()" :disabled="rentShow" :class="{active: rentShow}"><img class="active-black" src="../assets/img/rent-icon.png" alt="rent icon"> <img class="active-yellow" src="../assets/img/rent-icon-black.png" alt="rent icon"> {{ $t('rented_games', $store.state.locale) }}</button>
+                                        <button class="mx-4" @click.prevent="onOfferedGames()" :disabled="offerShow" :class="{active: offerShow}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon"> {{ $t('offered_games', $store.state.locale) }}</button>
+                                        <button  @click.prevent="onSellPost()" :disabled="postShow" :class="{active: postShow}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  {{ $t('offered_games', $store.state.locale) }}</button>
                                     </div>
                                 <!-- Offer -->
-                                    <div class="dashboard-content--offer" v-if="rents.length && show">
+                                    <div class="dashboard-content--offer" v-if="rents.length && offerShow">
                                     <!-- new offter design -->
                                         <div class="d-flex flex-wrap"  v-if="rents">
                                         <div class="dashboard-content--rented--box position-relative bg-game-details border-2 warning-border" v-for="(rent, index) in rents" :key="index">
@@ -375,7 +377,7 @@
                                         </div>
                                     </div>
                                     <!-- Rented -->
-                                    <div v-else-if="orders.length && !show">
+                                    <div v-else-if="orders.length && rentShow">
                                         <div class="dashboard-content--rented new-rented">
                                             <!-- new rented design -->
                                             <div class="d-flex flex-wrap" v-if="orders">
@@ -438,6 +440,121 @@
                                                         <div class="disk-type text-black" v-if="lend.rent.disk_type == 0">Digital Copy</div>
                                                     </div>
                                                     
+                                                    <div class="dashboard-content--rented--box--order-name">
+                                                        <p v-if="lend.rent" class="f-s-20 gil-bold mb-a-3 h-60">{{ lend.rent.game.name }}</p>
+                                                    </div> -->
+                                                    <!-- <div class="d-flex justify-content-between dashboard-content--rented--box--order-description">
+                                                            <div class="cost flex-2">
+                                                                <p>{{ $t('cost', $store.state.locale) }}</p>
+                                                                <p class="text-secondery">{{ lend.lend_cost + parseInt(lend.commission)  }}</p>
+                                                            </div>
+                                                            <div class="duration flex-1">
+                                                                <p>{{ $t('rent_duration', $store.state.locale) }}</p>
+                                                                <div class="d-flex flex-column align-items-center duration--date text-secondery w-fit">
+                                                                    <p class="mb-1">{{ formattedDate(lend.lend_date) }} </p>
+                                                                    <p class="mb-1">to</p>
+                                                                    <p class="mb-1" v-if="lend.status === 1 || lend.status === 3 && lend.end_date">{{ formattedReturnDate(lend.end_date) }}</p>
+                                                                    <p class="mb-1" v-else>-</p>
+                                                                </div>
+                                                            </div>
+                                                    </div> -->
+                                                    <!-- <div class="mt-a-6 d-flex justify-content-between">
+                                                            <div class="timer flex-2">
+                                                                <p class="mb-1">{{ $t('remaining_time', $store.state.locale) }}</p>
+                                                                <div v-if="lend.rent.disk_type == 1">
+                                                                    <flip-countdown :deadline="endDate(lend.rent.disk_type, lend.updated_at, lend.lend_week)" v-if="lend.status === 3"></flip-countdown>
+                                                                    <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-else></flip-countdown>
+                                                                </div>
+                                                                <div v-if="lend.rent.disk_type == 0">
+                                                                    <flip-countdown :deadline="endDate(lend.rent.disk_type, lend.updated_at, lend.lend_week)" v-if="lend.status === 3"></flip-countdown>
+                                                                    <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-else></flip-countdown>
+                                                                   <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)" v-else></flip-countdown>
+                                                                </div>
+                                                            </div>
+                                                            <div class="status flex-1">
+                                                                <p class="mb-1">{{ $t('status', $store.state.locale) }}</p>
+                                                                <div v-if="lend.status === 0">
+                                                                    <span class="pending br-0 f-s-16" >Pending</span>
+                                                                </div>
+                                                                <div v-else-if="lend.status === 1">
+                                                                    <span class="completed br-0 f-s-16" >Completed</span>
+                                                                </div>
+                                                                <div v-else-if="lend.status === 2">
+                                                                    <span class="completed br-0  f-s-16" >Arrived at checkpoint</span>
+                                                                </div>
+                                                                <div v-else-if="lend.status === 3">
+                                                                    <span class="completed br-0 f-s-16" >Delivered</span>
+                                                                </div>
+                                                                <div v-else-if="lend.status === 4">
+                                                                    <span class="rejected br-0  f-s-16" >Rejected</span>
+                                                                </div>
+                                                                <div v-else-if="lend.status === 5">
+                                                                    <span class="completed br-0 f-s-16" >Processing</span>
+                                                                </div>
+                                                                <div v-else-if="lend.status === 6">
+                                                                    <span class="completed br-0 f-s-16" >Postponed</span>
+                                                                </div>
+                                                            </div>
+                                                        </div> -->
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <p class="text-center text-secondery mt-3 rented-note">{{ $t('delivery_charge_notice', $store.state.locale) }}</p> -->
+                                    </div>
+                                    <!-- sellPosts -->
+                                    <div v-else-if="sellPosts.length && postShow">
+                                        <div class="dashboard-content--rented new-rented">
+                                            <!-- new rented design -->
+                                            <div class="d-flex flex-wrap" v-if="sellPosts">
+                                                <div class="dashboard-content--rented--box flex-wrap d-flex justify-content-between w-100 mr-0  bg-game-details border-2 warning-border" v-for="(product, index) in sellPosts" :key="index">
+                                                    <!-- order id -->
+                                                    <div class="order-id flex-none flex-sm-initial w-full w-sm-initial">
+                                                        <p class="f-s-20 gil-bold text-secondery" v-if="product">{{ product.product_no }}</p>
+                                                        <p class="f-s-20 gil-bold text-secondery" v-else>N/A</p>
+                                                    </div>
+                                                    <div class="start-date d-flex flex-column">
+                                                        <div>
+                                                            <p class="text-white mb-2">{{ $t('name', $store.state.locale) }}</p>
+                                                            <p class=" text-secondery mb-0">{{ product.name }}</p>
+                                                        </div>
+                                                        <div class="text-white  mb-4">
+                                                            <p class="text-white mb-2">{{ $t('order_start_date', $store.state.locale) }}</p>
+                                                            <p class=" text-secondery mb-0">{{ formattedDate(product.created_at) }} </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="payment d-flex flex-column">
+                                                        <div>
+                                                            <p class="text-white mb-2">{{ $t('sub_category', $store.state.locale) }}</p>
+                                                            <p class=" text-secondery">{{ product.subcategory.data.name }}</p>
+                                                        </div>
+                                                        <div class="mb-4">
+                                                            <p class="text-white mb-2">{{ $t('order_amount', $store.state.locale) }}</p>
+                                                            <p class=" text-secondery mb-0">{{ product.price  }}</p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="d-flex flex-column">
+<!--                                                        <div class=" mb-4 h-56">-->
+<!--                                                            <router-link :to="'/'+ order.id +'/order-details'" class="d-flex border-1 border-secondery -skew-19-deg pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover mt-2"><span class="skew-19-deg">Details</span></router-link>-->
+<!--                                                        </div>-->
+                                                        <div>
+                                                            <p class="mb-1">{{ $t('status', $store.state.locale) }}</p>
+                                                            <div v-if="product.status === 1">
+                                                                <span class="completed br-0 f-s-16" >Approved</span>
+                                                            </div>
+                                                            <div v-else-if="product.status === 2">
+                                                                <span class="pending br-0 f-s-16" >Pending</span>
+                                                            </div>
+                                                            <div v-else-if="product.status === 3">
+                                                                <span class="rejected br-0 f-s-16" >Rejected</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- disk type -->
+                                                    <!-- <div class="dashboard-content--rented--box--disk-type position-absolute top--1 right--1 bg-secondery p-2 gil-bold">
+                                                        <div class="disk-type text-black" v-if="lend.rent.disk_type == 1">Physical Copy</div>
+                                                        <div class="disk-type text-black" v-if="lend.rent.disk_type == 0">Digital Copy</div>
+                                                    </div>
+
                                                     <div class="dashboard-content--rented--box--order-name">
                                                         <p v-if="lend.rent" class="f-s-20 gil-bold mb-a-3 h-60">{{ lend.rent.game.name }}</p>
                                                     </div> -->
@@ -1120,7 +1237,120 @@
                                     </div>
                               </div>
 
+                            <!-- Sell post -->
+                            <div class="tab-pane fade" id="v-pills-sell-post" role="tabpanel" aria-labelledby="v-pills-sell-post-tab">
+                                <div class="post-rent">
+                                    <ValidationObserver ref="form">
+                                        <form @submit.prevent="onSellPostSubmit" method="post" id="rentPostForm">
 
+                                            <div class="form-group post-rent--form-group">
+                                                <label class=" post-rent--form-group--label">{{ $t('product_name', $store.state.locale) }} :</label>
+                                                <div class=" post-rent--form-group--input">
+                                                    <ValidationProvider name="name" rules="required" v-slot="{ errors }">
+                                                        <input type="text" class="form-control renten-input" name="name" v-model="sellData.name">
+                                                        <span class="text-danger">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="form-group post-rent--form-group">
+                                                <label class=" post-rent--form-group--label">{{ $t('description', $store.state.locale) }} :</label>
+                                                <div class=" post-rent--form-group--input">
+                                                    <ValidationProvider name="description" rules="required" v-slot="{ errors }">
+                                                        <input type="text" class="form-control renten-input" name="description" v-model="sellData.description">
+                                                        <span class="text-danger">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="form-group post-rent--form-group">
+                                                <label class=" post-rent--form-group--label">{{ $t('price', $store.state.locale) }} :</label>
+                                                <div class=" post-rent--form-group--input">
+                                                    <ValidationProvider name="price" rules="required|integer" v-slot="{ errors }">
+                                                        <input type="number" class="form-control renten-input" name="price" v-model="sellData.price">
+                                                        <span class="text-danger">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="form-group post-rent--form-group" >
+                                                <label class=" label-padding post-rent--form-group--label mt-0">{{ $t('product_type', $store.state.locale) }} :</label>
+                                                <div class="post-rent--form-group--input">
+                                                    <ValidationProvider name="Product type" rules="required" v-slot="{ errors }">
+                                                        <div class=" post-rent--form-group--input--radio-group ">
+                                                            <div class="form-check form-check-inline custom-radio">
+                                                                <input class="custom-control-input platform" id="new_type" name="product_type" type="radio" value="1" v-model="sellData.product_type">
+                                                                <label class="custom-control-label ml-2" for="new_type">New</label>
+                                                            </div>
+                                                            <div class="form-check form-check-inline custom-radio">
+                                                                <input class="custom-control-input platform" id="used_type" name="product_type" type="radio" value="2" v-model="sellData.product_type">
+                                                                <label class="custom-control-label ml-2" for="used_type">Used</label>
+                                                            </div>
+                                                        </div>
+                                                        <span v-if="errors.length" class="error-message platform-error">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="form-group post-rent--form-group" >
+                                                <label class=" label-padding post-rent--form-group--label mt-0">{{ $t('is_negotiable', $store.state.locale) }} :</label>
+                                                <div class="post-rent--form-group--input">
+                                                    <div class=" post-rent--form-group--input--radio-group ">
+                                                        <div class="form-check form-check-inline custom-radio">
+                                                            <input class="custom-control-input platform" id="is_negotiable" name="is_negotiable" type="checkbox" value="" v-model="sellData.is_negotiable">
+                                                            <label class="custom-control-label ml-2" for="is_negotiable">{{ $t('is_negotiable', $store.state.locale) }}</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group post-rent--form-group">
+                                                <label class=" post-rent--form-group--label">{{ $t('sub_category', $store.state.locale) }} :</label>
+                                                <div class=" post-rent--form-group--input">
+                                                    <ValidationProvider name="Sub Category" rules="required" v-slot="{ errors }">
+                                                        <select class="custom-select" id="sub_category" name="sub_category" v-model="sellData.sub_category_id">
+                                                            <option value="">Select sub category</option>
+                                                            <option :value="category.id" v-for="(category, index) in subCategories">{{ category.name }}</option>
+                                                        </select>
+                                                        <span class="text-danger">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+<!--                                            <div class="form-group post-rent&#45;&#45;form-group post-rent&#45;&#45;form-group-img">-->
+<!--                                                <div class="post-rent&#45;&#45;form-group&#45;&#45;input" v-for="(input, index) in fileInputs" :key="index">-->
+<!--                                                    <ValidationProvider name="Disk Image" :rules='required' v-slot="{ validate, errors }">-->
+<!--                                                        <div class="custom-file">-->
+<!--                                                            <input type="file" class="custom-file-input" id="post-{{$index}}"  accept="image/*" @change="onPostimageChange($event)|| validate($event)">-->
+<!--                                                            <label class="custom-file-label text-light" :for="index">{{ selectedDiskName }}</label>-->
+<!--                                                        </div>-->
+<!--                                                        <div class="img-prev">-->
+<!--                                                            <img v-if="rentData.disk_image" :src="rentData.disk_image" alt="Disk image preview">-->
+<!--                                                            <img v-else src="../assets/img/disk.png" alt="Disk image preview">-->
+<!--                                                        </div>-->
+<!--                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>-->
+<!--                                                    </ValidationProvider>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="form-group post-rent&#45;&#45;form-group">-->
+<!--                                                <div class=" post-rent&#45;&#45;form-group&#45;&#45;input">-->
+<!--                                                    <button @click="addInput" type="button" class="btn btn-secondary">Add Input</button>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+                                            <!-- Agree terms and condition -->
+                                            <div class="form-group post-rent--form-group post-rent--form-group--agree post-rent--form-group--agree-profile mt-a-7">
+                                                <div class="checkbox-parents">
+                                                    <ValidationProvider name="Terms & Conditions" rules="required" v-slot="{ errors }">
+                                                        <input type="checkbox" id="terms-agree-sell-post" class="checkbox-parents--input" v-model="agreement" @change="onAgreement($event)">
+                                                        <label for="terms-agree-sell-post" class="checkbox-parents--label">{{ $t('i_agree', $store.state.locale) }} <router-link to="/terms" target="_blank" class="text-secondery"><u>{{ $t('terms', $store.state.locale) }}</u></router-link></label>
+                                                        <span v-if="errors.length" class="error-message d-block ml--28">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="form-group post-rent--form-group post-rent-btn">
+                                                <button class="btn--secondery w-100 border-0 post-rent--form-group--btn" :disabled="onSellPostLoadning">
+                                                    <span class="mr-2">{{ $t('submit', $store.state.locale) }} <i v-if="onSellPostLoadning" class="spinner-border spinner-border-sm"></i></span>
+                                                </button>
+                                            </div>
+
+                                        </form>
+                                    </ValidationObserver>
+                                </div>
+                            </div>
                         </div>
                         </div>
                     </div>
@@ -1138,6 +1368,22 @@
         components: {StarRating, FlipCountdown, Clipboard, VueFeedbackReaction},
         data() {
             return {
+                onSellPostLoadning: false,
+                subCategories: [],
+                sellData: {
+                    name: '',
+                    description: '',
+                    price: '',
+                    product_type: '',
+                    is_negotiable: '',
+                    sub_category_id: '',
+                    product_image: '',
+                },
+                fileInputs:[
+                    {
+                        input: 'file-name',
+                    }
+                ],
                 extend: {
                     week: '',
                     price: 0,
@@ -1179,8 +1425,11 @@
                 rents: [],
                 lends: [],
                 orders: [],
+                sellPosts: [],
                 agreement: '',
-                show: true,
+                offerShow: true,
+                rentShow: false,
+                postShow: false,
                 user: {},
                 form: {
                     name: this.$store.state.user.name,
@@ -1257,6 +1506,11 @@
             },
         },
         methods: {
+            addInput () {
+                this.fileInputs.push({
+                    input: 'file-name',
+                })
+            },
             extendModal(lend) {
                 this.extend.week = '';
                 this.extend.price = 0;
@@ -1519,10 +1773,19 @@
             //
             // },
             onOfferedGames() {
-                this.show = true
+                this.offerShow = true
+                this.rentShow = false
+                this.postShow = false
             },
             onRentedGames() {
-                this.show = false
+                this.rentShow = true
+                this.offerShow = false
+                this.postShow = false
+            },
+            onSellPost() {
+                this.postShow = true
+                this.offerShow = false
+                this.rentShow = false
             },
             formattedDateForTimer(date) {
                 let formattedDate = new Date(date)
@@ -1557,7 +1820,6 @@
             },
             endDate(diskType, datetime, week) {
                 let date = new Date(datetime);
-                var time = new Date(datetime);
 
                 if (diskType == 0) {
 
@@ -1651,6 +1913,28 @@
                     fileReader.readAsDataURL(event.target.files[0]);
                 }
             },
+            // sell post image
+            onPostimageChange (event) {
+                let fileReader = new FileReader();
+
+                if (event.srcElement.files.length > 0) {
+                    let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+                    if (allowedTypes.indexOf(event.srcElement.files[0].type) == -1) {
+                        this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
+                        return;
+                    }
+                    let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
+                    if (fileSzie > 5120) { //5mb
+                        this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
+                        return;
+                    }
+                    this.selectedDiskName = event.srcElement.files[0].name;
+                    fileReader.onload = (e) => {
+                        this.rentData.disk_image = e.target.result;
+                    }
+                    fileReader.readAsDataURL(event.target.files[0]);
+                }
+            },
             //rent post
             onDiskimageChange (event) {
                 let fileReader = new FileReader();
@@ -1738,6 +2022,62 @@
             },
             onEmpty () {
                 this.form.checkpoint = '';
+            },
+            onSellPostSubmit () {
+                this.$refs.form.validate().then(success => {
+                    if (!success) {
+                        window.scrollTo({
+                            top: 400,
+                            behavior: 'smooth',
+                        })
+                        this.$toaster.error(this.$t('complete_required_field', this.$store.state.locale));
+                        return;
+                    }
+                    this.onSellPostLoadning = true;
+                    // if(this.sellData.is_negotiable == false){
+                    //     this.sellData.is_negotiable = null;
+                    // }
+                    let uploadInfo = {
+                        name: this.sellData.name,
+                        description: this.sellData.description,
+                        price: this.sellData.price,
+                        product_type: this.sellData.product_type,
+                        is_negotiable: this.sellData.is_negotiable,
+                        sub_category_id: this.sellData.sub_category_id,
+                    }
+                    let config = {
+                        headers: {
+                            'Authorization': 'Bearer ' + this.$store.state.token
+                        }
+                    }
+                    console.log(uploadInfo);
+                    this.onSellPostLoadning = false;
+                    this.$api.post('sell-post', uploadInfo, config)
+                        .then(response => {
+                            this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
+                            setTimeout(function () {
+                                // this.rentData.game = '';
+                                // this.rentData.max_week = 1;
+                                // this.rentData.platform = null;
+                                // this.rentData.disk_condition = '';
+                                // this.rentData.disk_image = '';
+                                // this.rentData.cover_image = '';
+                                // this.rentData.checkpoint = {};
+                                // this.rentData.disk_type = '';
+                                // this.rentData.gameUserId = '';
+                                // this.rentData.gamePassword = '';
+                                // this.activeRentOffers();
+
+                                window.location.reload();
+                                // $('#v-pills-post-rent-tab').removeClass('active');
+                                // $('#v-pills-post-rent').removeClass('active');
+                                // $('#v-pills-post-rent').removeClass('show');
+                                // $('#v-pills-dashboard-tab').addClass('active');
+                                // $('#v-pills-dashboard').addClass('active');
+                                // $('#v-pills-dashboard').addClass('show');
+                            }, 2000);
+                        });
+                })
             },
             onRentSubmit () {
                 this.$refs.form.validate().then(success => {
@@ -1960,6 +2300,20 @@
                     console.log(this.orders);
                 });
             },
+            sellPostCheck() {
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+
+                this.$api.get('sell-posts?include=subcategory', config).then(response =>
+                {
+                    this.sellPosts = response.data.data;
+                    console.log('sellPosts');
+                    console.log(this.sellPosts);
+                });
+            },
             ratingCheck() {
                 this.ratingList = [];
                 let config = {
@@ -2085,6 +2439,7 @@
         created() {
             window.scrollTo(0,0);
             this.orderCheck();
+            this.sellPostCheck();
             this.$root.$on('ratingNavCheck', () => {
                 this.ratingCheck();
             });
@@ -2156,6 +2511,13 @@
             this.$api.get('checkpoints?include=area').then (response =>
             {
                 this.checkpoints = response.data.data
+            });
+
+            this.$api.get('sub-categories').then (response =>
+            {
+                this.subCategories = response.data.data
+                console.log('subCategories');
+                console.log(this.subCategories);
             });
 
             //transaction details

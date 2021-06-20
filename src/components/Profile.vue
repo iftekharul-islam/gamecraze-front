@@ -1512,8 +1512,13 @@
                 console.log(this.postImages)
             },
             handleImages(files) {
+                if (files.length === 0) {
+                    this.postImages = [];
+                    console.log(this.postImages);
+                    return;
+                }
                 var file = files[files.length - 1];
-                console.log(file)
+                console.log(files)
                 var reader = new FileReader()
                 reader.readAsDataURL(file)
                 reader.onload = () => {

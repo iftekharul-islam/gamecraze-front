@@ -1312,10 +1312,10 @@
                                                 </div>
                                             </div>
 <!--                                            <div class="form-group post-rent&#45;&#45;form-group post-rent&#45;&#45;form-group-img">-->
-<!--                                                <div class="post-rent&#45;&#45;form-group&#45;&#45;input" v-for="(input, index) in fileInputs" :key="index">-->
+<!--                                                <div class="post-rent&#45;&#45;form-group&#45;&#45;input">-->
 <!--                                                    <ValidationProvider name="Disk Image" :rules='required' v-slot="{ validate, errors }">-->
 <!--                                                        <div class="custom-file">-->
-<!--                                                            <input type="file" class="custom-file-input" id="post-{{$index}}"  accept="image/*" @change="onPostimageChange($event)|| validate($event)">-->
+<!--                                                            <input type="file" class="custom-file-input" id="post"  accept="image/*" @change="onPostimageChange($event)|| validate($event)">-->
 <!--                                                            <label class="custom-file-label text-light" :for="index">{{ selectedDiskName }}</label>-->
 <!--                                                        </div>-->
 <!--                                                        <div class="img-prev">-->
@@ -1341,9 +1341,12 @@
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
+                                            <div class="form-group post-rent--form-group post-rent--form-group--agree post-rent--form-group--agree-profile mt-a-7">
+                                                <UploadImages :max="4" @change="handleImages" @click="deleteImg"/>
+                                            </div>
                                             <div class="form-group post-rent--form-group post-rent-btn">
-                                                <button class="btn--secondery w-100 border-0 post-rent--form-group--btn" :disabled="onSellPostLoadning">
-                                                    <span class="mr-2">{{ $t('submit', $store.state.locale) }} <i v-if="onSellPostLoadning" class="spinner-border spinner-border-sm"></i></span>
+                                                <button class="btn--secondery w-100 border-0 post-rent--form-group--btn" :disabled="onSellPostLoading">
+                                                    <span class="mr-2">{{ $t('submit', $store.state.locale) }} <i v-if="onSellPostLoading" class="spinner-border spinner-border-sm"></i></span>
                                                 </button>
                                             </div>
 
@@ -1363,13 +1366,15 @@
 <script>
     import FlipCountdown from 'vue2-flip-countdown';
     import StarRating from 'vue-star-rating';
+    import UploadImages from "vue-upload-drop-images";
     import { VueFeedbackReaction } from 'vue-feedback-reaction';
     export default {
-        components: {StarRating, FlipCountdown, Clipboard, VueFeedbackReaction},
+        components: {StarRating, FlipCountdown, Clipboard, VueFeedbackReaction, UploadImages},
         data() {
             return {
-                onSellPostLoadning: false,
+                onSellPostLoading: false,
                 subCategories: [],
+                postImages: [],
                 sellData: {
                     name: '',
                     description: '',
@@ -1379,11 +1384,6 @@
                     sub_category_id: '',
                     product_image: '',
                 },
-                fileInputs:[
-                    {
-                        input: 'file-name',
-                    }
-                ],
                 extend: {
                     week: '',
                     price: 0,
@@ -1506,10 +1506,27 @@
             },
         },
         methods: {
-            addInput () {
-                this.fileInputs.push({
-                    input: 'file-name',
-                })
+            deleteImg(index) {
+                console.log('hello');
+                this.postImages.splice(index, 1);
+                console.log(this.postImages)
+            },
+            handleImages(files) {
+                var file = files[files.length - 1];
+                console.log(file)
+                var reader = new FileReader()
+                reader.readAsDataURL(file)
+                reader.onload = () => {
+                    var fileBase64 = reader.result;
+                    console.log('file to base64 result:' + fileBase64)
+                    this.postImages.push(fileBase64);
+                    console.log(this.postImages)
+                    // this.iconBase64 = reader.result
+                }
+                reader.onerror = function (error) {
+                    console.log('Error: ', error)
+
+                }
             },
             extendModal(lend) {
                 this.extend.week = '';
@@ -1756,22 +1773,6 @@
                 });
 
             },
-            // extend () {
-            //     this.$swal({
-            //         title: this.$t('please_contact', this.$store.state.locale),
-            //         text: this.$t('contact_details', this.$store.state.locale),
-            //         icon: "warning",
-            //     }).then(() => {
-            //             this.$swal({
-            //                 text: this.$t('thank_you', this.$store.state.locale),
-            //                 icon: 'success',
-            //                 timer: 1500,
-            //                 button: false,
-            //             });
-            //
-            //     });
-            //
-            // },
             onOfferedGames() {
                 this.offerShow = true
                 this.rentShow = false
@@ -1928,9 +1929,9 @@
                         this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
                         return;
                     }
-                    this.selectedDiskName = event.srcElement.files[0].name;
+                    console.log(event.srcElement.files[0].name);
                     fileReader.onload = (e) => {
-                        this.rentData.disk_image = e.target.result;
+                        console.log(e.target.result);
                     }
                     fileReader.readAsDataURL(event.target.files[0]);
                 }
@@ -2033,10 +2034,7 @@
                         this.$toaster.error(this.$t('complete_required_field', this.$store.state.locale));
                         return;
                     }
-                    this.onSellPostLoadning = true;
-                    // if(this.sellData.is_negotiable == false){
-                    //     this.sellData.is_negotiable = null;
-                    // }
+                    this.onSellPostLoading = true;
                     let uploadInfo = {
                         name: this.sellData.name,
                         description: this.sellData.description,
@@ -2044,6 +2042,7 @@
                         product_type: this.sellData.product_type,
                         is_negotiable: this.sellData.is_negotiable,
                         sub_category_id: this.sellData.sub_category_id,
+                        images: this.postImages
                     }
                     let config = {
                         headers: {
@@ -2051,30 +2050,12 @@
                         }
                     }
                     console.log(uploadInfo);
-                    this.onSellPostLoadning = false;
+                    this.onSellPostLoading = false;
                     this.$api.post('sell-post', uploadInfo, config)
                         .then(response => {
                             this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
                             setTimeout(function () {
-                                // this.rentData.game = '';
-                                // this.rentData.max_week = 1;
-                                // this.rentData.platform = null;
-                                // this.rentData.disk_condition = '';
-                                // this.rentData.disk_image = '';
-                                // this.rentData.cover_image = '';
-                                // this.rentData.checkpoint = {};
-                                // this.rentData.disk_type = '';
-                                // this.rentData.gameUserId = '';
-                                // this.rentData.gamePassword = '';
-                                // this.activeRentOffers();
-
                                 window.location.reload();
-                                // $('#v-pills-post-rent-tab').removeClass('active');
-                                // $('#v-pills-post-rent').removeClass('active');
-                                // $('#v-pills-post-rent').removeClass('show');
-                                // $('#v-pills-dashboard-tab').addClass('active');
-                                // $('#v-pills-dashboard').addClass('active');
-                                // $('#v-pills-dashboard').addClass('show');
                             }, 2000);
                         });
                 })

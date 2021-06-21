@@ -1342,7 +1342,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group post-rent--form-group post-rent--form-group--agree post-rent--form-group--agree-profile mt-a-7">
-                                                <UploadImages :max="4" @change="handleImages" @click="deleteImg"/>
+                                                <UploadImages :max="4" @change="handleImages"/>
                                             </div>
                                             <div class="form-group post-rent--form-group post-rent-btn">
                                                 <button class="btn--secondery w-100 border-0 post-rent--form-group--btn" :disabled="onSellPostLoading">
@@ -1506,11 +1506,6 @@
             },
         },
         methods: {
-            deleteImg(index) {
-                console.log('hello');
-                this.postImages.splice(index, 1);
-                console.log(this.postImages)
-            },
             handleImages(files) {
                 if (files.length === 0) {
                     this.postImages = [];
@@ -2055,14 +2050,33 @@
                         }
                     }
                     console.log(uploadInfo);
-                    this.onSellPostLoading = false;
                     this.$api.post('sell-post', uploadInfo, config)
                         .then(response => {
-                            this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
-                            setTimeout(function () {
-                                window.location.reload();
-                            }, 2000);
-                        });
+                            if (response.status == 200) {
+                                this.sellData.name = '';
+                                this.sellData.description = '';
+                                this.sellData.price = '';
+                                this.sellData.product_type = '';
+                                this.sellData.is_negotiable = '';
+                                this.sellData.sub_category_id = '';
+                                this.postImages = [];
+
+                                this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
+
+                                $('#v-pills-sell-post-tab').removeClass('active');
+                                $('#v-pills-sell-post').removeClass('active');
+                                $('#v-pills-sell-post').removeClass('show');
+                                $('#v-pills-dashboard-tab').addClass('active');
+                                $('#v-pills-dashboard').addClass('active');
+                                $('#v-pills-dashboard').addClass('show');
+
+                                this.onSellPost();
+                                this.onSellPostLoading = false;
+                            }
+
+                        }).catch(err => {
+                            console.log(err)
+                    });
                 })
             },
             onRentSubmit () {

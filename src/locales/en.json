@@ -430,5 +430,7 @@
   "product_name": "Product Name",
   "product_type": "Product Type",
   "is_negotiable": "Is negotiable",
-  "sub_category": "Sub category"
+  "sub_category": "Sub category",
+  "sell_post": "Sell Post",
+  "game_bazar" : "Game bazar"
 }

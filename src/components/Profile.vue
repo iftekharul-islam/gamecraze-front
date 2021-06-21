@@ -116,7 +116,7 @@
                             <a class="nav-link" id="v-pills-my-earning-tab" data-toggle="pill" href="#v-pills-my-earning" role="tab" aria-controls="v-pills-my-earning" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/earn.png" alt="profile icon"> <img src="../assets/img/active-earn.png" class="img-active" alt="profile icon"></div> <span>{{ $t('my_earning', $store.state.locale) }}</span></a>
                             <a class="nav-link" id="v-pills-refer-tab" data-toggle="pill" href="#v-pills-refer" role="tab" aria-controls="v-pills-refer" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/refer.png" alt="profile icon"> <img src="../assets/img/refer-active.png" class="img-active" alt="profile icon"></div> <span>{{ $t('refer_friend', $store.state.locale) }}</span></a>
                             <a class="nav-link" id="v-pills-rating-tab" data-toggle="pill" href="#v-pills-rating" role="tab" aria-controls="v-pills-rating" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/star-not-active.png" alt="profile icon"> <img src="../assets/img/star-active.png" class="img-active" alt="profile icon"></div> <span>{{ $t('rating', $store.state.locale) }}</span></a>
-                            <a class="nav-link" id="v-pills-sell-post-tab" data-toggle="pill" href="#v-pills-sell-post" role="tab" aria-controls="v-pills-sell-post" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/star-not-active.png" alt="profile icon"> <img src="../assets/img/star-active.png" class="img-active" alt="profile icon"></div> <span>Sell post</span></a>
+                            <a class="nav-link" id="v-pills-sell-post-tab" data-toggle="pill" href="#v-pills-sell-post" role="tab" aria-controls="v-pills-sell-post" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/star-not-active.png" alt="profile icon"> <img src="../assets/img/star-active.png" class="img-active" alt="profile icon"></div> <span>{{ $t('sell_post', $store.state.locale) }}</span></a>
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -2307,11 +2307,8 @@
                     }
                 };
 
-                this.$api.get('sell-posts?include=subcategory', config).then(response =>
-                {
+                this.$api.get('my-sell-posts?include=subcategory', config).then(response => {
                     this.sellPosts = response.data.data;
-                    console.log('sellPosts');
-                    console.log(this.sellPosts);
                 });
             },
             ratingCheck() {

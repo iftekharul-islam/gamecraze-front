@@ -54,6 +54,7 @@ import RatingList from '../components/RatingList';
 import RenterRatingList from '../components/RenterRatingList';
 import RentPostDetails from '../components/RentPostDetails';
 import OrderDetails from '../components/OrderDetails';
+import SellPosts from '../components/SellPosts';
 
 let router = new Router({
     mode: 'history',
@@ -450,6 +451,14 @@ let router = new Router({
             path: '/:id/:slug',
             name: 'rent-post-details',
             component: RentPostDetails,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/sell-posts',
+            name: 'sell-post',
+            component: SellPosts,
             meta: {
                 requiresAuth: false
             }

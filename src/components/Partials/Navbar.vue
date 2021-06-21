@@ -28,6 +28,9 @@
                         <li>
                             <router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link>
                         </li>
+                        <li class="active">
+                            <router-link @click.native="onMenuItemClick()" class="nav-link active router_link" to="/sell-posts" >{{ $t('game_bazar', $store.state.locale) }}</router-link>
+                        </li>
                         <li class="dropdown position-relative dropdown-hover">
                             <router-link class="router_link no-after" to="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $t('more', $store.state.locale)}}</router-link>
                                 <div class="dropdown--sub-menu p-0 dropdown-menu" aria-labelledby="dropdownMenuButton">

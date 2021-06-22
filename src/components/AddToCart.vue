@@ -134,7 +134,6 @@
               <!-- End Enter Adsress -->
               </div>
                
-               
                 <div v-if="showModal">
                     <transition name="modal">
                         <div class="modal-mask seller-information-modal upgrade-modal cart-warning-modal multiple-user-warning-modal z-index-99">

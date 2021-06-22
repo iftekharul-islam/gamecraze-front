@@ -1256,7 +1256,7 @@
                                                 <label class=" post-rent--form-group--label">{{ $t('description', $store.state.locale) }} :</label>
                                                 <div class=" post-rent--form-group--input">
                                                     <ValidationProvider name="description" rules="required" v-slot="{ errors }">
-                                                        <input type="text" class="form-control renten-input" name="description" v-model="sellData.description">
+                                                        <textarea type="text" class="form-control renten-input" name="description" v-model="sellData.description"></textarea>
                                                         <span class="text-danger">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
@@ -1331,6 +1331,10 @@
 <!--                                                    <button @click="addInput" type="button" class="btn btn-secondary">Add Input</button>-->
 <!--                                                </div>-->
 <!--                                            </div>-->
+                                            <div class="form-group post-rent--form-group">
+                                                <label class=" label-padding post-rent--form-group--label mt-0">Upload images :</label>
+                                                <UploadImages class="image-box" :max="4" @change="handleImages"/>
+                                            </div>
                                             <!-- Agree terms and condition -->
                                             <div class="form-group post-rent--form-group post-rent--form-group--agree post-rent--form-group--agree-profile mt-a-7">
                                                 <div class="checkbox-parents">
@@ -1340,9 +1344,6 @@
                                                         <span v-if="errors.length" class="error-message d-block ml--28">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
-                                            </div>
-                                            <div class="form-group post-rent--form-group post-rent--form-group--agree post-rent--form-group--agree-profile mt-a-7">
-                                                <UploadImages :max="4" @change="handleImages"/>
                                             </div>
                                             <div class="form-group post-rent--form-group post-rent-btn">
                                                 <button class="btn--secondery w-100 border-0 post-rent--form-group--btn" :disabled="onSellPostLoading">
@@ -2577,6 +2578,10 @@
 .delete {
     display: none;
 }
+.image-box {
+    width: 70% !important;
+}
+
 input {
   width: 100%;
   padding: 0.5rem;

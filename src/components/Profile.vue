@@ -627,7 +627,7 @@
                             <div class="tab-pane fade" id="v-pills-post-rent" role="tabpanel" aria-labelledby="v-pills-post-rent-tab">
                                 <div class="post-rent">
                                     <ValidationObserver ref="form">
-                                        <form @submit.prevent="onRentSubmit" method="post" id="rentPostForm">
+                                        <form @submit.prevent="onRentSubmit" method="post" id="sellPostForm">
                                             <!-- form-group -->
                                              <div class="form-group post-rent--form-group">
                                                 <label class=" post-rent--form-group--label"></label>

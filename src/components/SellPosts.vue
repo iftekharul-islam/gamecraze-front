@@ -43,7 +43,7 @@
                         <div class="games-categories-section--games">
                             <div class="row">
                                 <div v-for="(item, index) in posts" :key="index" class="col-md-6 col-lg-4 mb-4" v-if="posts.length">
-                                  <router-link to="/home" class="games-categories-section--games--game-card-box game-card-hover-outer">
+                                  <router-link :to="'/sell-post/' + item.id + '/post-details'" class="games-categories-section--games--game-card-box game-card-hover-outer">
                                     <div class="game-card game-card-hover-inner">
                                         <div class="display-image" href="#">
                                             <img :src="item.images[0]" :alt="item.name" class="img-fluid" v-if="item.images[0]">

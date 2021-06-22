@@ -228,7 +228,7 @@
 <script>
     export default {
         components: {Clipboard},
-        name: 'RentPostDetails',
+        name: 'rent-post-details',
         props: ['id','slug'],
         data() {
             return {

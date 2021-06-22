@@ -55,6 +55,7 @@ import RenterRatingList from '../components/RenterRatingList';
 import RentPostDetails from '../components/RentPostDetails';
 import OrderDetails from '../components/OrderDetails';
 import SellPosts from '../components/SellPosts';
+import PostDetails from '../components/PostDetails';
 
 let router = new Router({
     mode: 'history',
@@ -69,7 +70,7 @@ let router = new Router({
         },
         {
             path: '/home',
-            name: 'Home',
+            name: 'home',
             component: Home,
             meta: {
                 requiresAuth: false
@@ -424,7 +425,7 @@ let router = new Router({
         },
         {
             path: '/lender-rating-list',
-            name: 'ratingList',
+            name: 'lender-rating-list',
             component: RatingList,
             meta: {
                 requiresAuth: true
@@ -459,6 +460,15 @@ let router = new Router({
             path: '/sell-posts',
             name: 'sell-post',
             component: SellPosts,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/sell-post/:id/post-details',
+            name: 'post-details',
+            component: PostDetails,
+            props: true,
             meta: {
                 requiresAuth: false
             }

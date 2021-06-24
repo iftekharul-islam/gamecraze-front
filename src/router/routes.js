@@ -56,6 +56,7 @@ import RentPostDetails from '../components/RentPostDetails';
 import OrderDetails from '../components/OrderDetails';
 import SellPosts from '../components/SellPosts';
 import PostDetails from '../components/PostDetails';
+import SellPost from '../components/SellPostHelp'
 
 let router = new Router({
     mode: 'history',
@@ -469,6 +470,14 @@ let router = new Router({
             name: 'post-details',
             component: PostDetails,
             props: true,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/about-sell-post',
+            name: 'sell-post',
+            component: SellPost,
             meta: {
                 requiresAuth: false
             }

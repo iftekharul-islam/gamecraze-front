@@ -629,10 +629,14 @@
                                     <ValidationObserver ref="form">
                                         <form @submit.prevent="onRentSubmit" method="post" id="sellPostForm">
                                             <!-- form-group -->
-                                             <div class="form-group post-rent--form-group">
+                                            <div class="form-group post-rent--form-group">
                                                 <label class=" post-rent--form-group--label"></label>
                                                 <div class=" post-rent--form-group--input">
-                                                    <router-link  class="secondery-border text-secondery d-flex align-items-center justify-content-center h-48 game-rent-bg" to="/lend-notice" target="_blank">{{ $t('learn_about_create_post', $store.state.locale) }}</router-link>
+                                                    <router-link
+                                                            class="secondery-border text-secondery d-flex align-items-center justify-content-center h-48 game-rent-bg"
+                                                            to="/lend-notice" target="_blank">{{
+                                                        $t('learn_about_create_post', $store.state.locale) }}
+                                                    </router-link>
                                                 </div>
                                             </div>
 
@@ -1242,6 +1246,16 @@
                                 <div class="post-rent">
                                     <ValidationObserver ref="form">
                                         <form @submit.prevent="onSellPostSubmit" method="post" id="rentPostForm">
+                                            <!-- form-group -->
+                                            <div class="form-group post-rent--form-group">
+                                                <label class=" post-rent--form-group--label"></label>
+                                                <div class=" post-rent--form-group--input">
+                                                    <router-link
+                                                            class="secondery-border text-secondery d-flex align-items-center justify-content-center h-48 game-rent-bg"
+                                                            to="/about-sell-post">{{$t('learn_about_create_sell_post', $store.state.locale) }}
+                                                    </router-link>
+                                                </div>
+                                            </div>
 
                                             <div class="form-group post-rent--form-group">
                                                 <label class=" post-rent--form-group--label">{{ $t('product_name', $store.state.locale) }} :</label>
@@ -1262,7 +1276,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group post-rent--form-group">
-                                                <label class=" post-rent--form-group--label">{{ $t('price', $store.state.locale) }} :</label>
+                                                <label class=" post-rent--form-group--label">{{ $t('price', $store.state.locale) }} (BDT):</label>
                                                 <div class=" post-rent--form-group--input">
                                                     <ValidationProvider name="price" rules="required|integer" v-slot="{ errors }">
                                                         <input type="number" class="form-control renten-input" name="price" v-model="sellData.price">
@@ -1276,15 +1290,24 @@
                                                     <ValidationProvider name="Product type" rules="required" v-slot="{ errors }">
                                                         <div class=" post-rent--form-group--input--radio-group ">
                                                             <div class="form-check form-check-inline custom-radio">
-                                                                <input class="custom-control-input platform" id="new_type" name="product_type" type="radio" value="1" v-model="sellData.product_type">
+                                                                <input class="custom-control-input platform" id="new_type" @click="summaryModal = false" name="product_type" type="radio" value="1" v-model="sellData.product_type">
                                                                 <label class="custom-control-label ml-2" for="new_type">New</label>
                                                             </div>
                                                             <div class="form-check form-check-inline custom-radio">
-                                                                <input class="custom-control-input platform" id="used_type" name="product_type" type="radio" value="2" v-model="sellData.product_type">
+                                                                <input class="custom-control-input platform" id="used_type" @click="summaryModal = true" name="product_type" type="radio" value="2" v-model="sellData.product_type">
                                                                 <label class="custom-control-label ml-2" for="used_type">Used</label>
                                                             </div>
                                                         </div>
                                                         <span v-if="errors.length" class="error-message platform-error">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="form-group post-rent--form-group" v-if="summaryModal">
+                                                <label class=" post-rent--form-group--label">{{ $t('condition_summary', $store.state.locale) }} :</label>
+                                                <div class=" post-rent--form-group--input">
+                                                    <ValidationProvider name="address" rules="required" v-slot="{ errors }">
+                                                        <input type="text" class="form-control renten-input" name="condition_summary" v-model="sellData.summary">
+                                                        <span class="text-danger">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
@@ -1297,6 +1320,24 @@
                                                             <label class="custom-control-label ml-2" for="is_negotiable">{{ $t('is_negotiable', $store.state.locale) }}</label>
                                                         </div>
                                                     </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group post-rent--form-group">
+                                                <label class=" post-rent--form-group--label">{{ $t('phone_number', $store.state.locale) }} :</label>
+                                                <div class=" post-rent--form-group--input">
+                                                    <ValidationProvider name="phone number" rules="required" v-slot="{ errors }">
+                                                        <input type="number" class="form-control renten-input" name="phone_no" v-model="sellData.phone_no">
+                                                        <span class="text-danger">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
+                                                </div>
+                                            </div>
+                                            <div class="form-group post-rent--form-group">
+                                                <label class=" post-rent--form-group--label">{{ $t('address', $store.state.locale) }} :</label>
+                                                <div class=" post-rent--form-group--input">
+                                                    <ValidationProvider name="address" rules="required" v-slot="{ errors }">
+                                                        <input type="text" class="form-control renten-input" name="address" v-model="sellData.address">
+                                                        <span class="text-danger">{{ errors[0] }}</span>
+                                                    </ValidationProvider>
                                                 </div>
                                             </div>
                                             <div class="form-group post-rent--form-group">
@@ -1333,6 +1374,10 @@
 <!--                                            </div>-->
                                             <div class="form-group post-rent--form-group">
                                                 <label class=" label-padding post-rent--form-group--label mt-0">Upload images :</label>
+                                                <UploadImages class="image-box" :max="4" @change="handleImages"/>
+                                            </div>
+                                            <div class="form-group post-rent--form-group">
+                                                <label class=" label-padding post-rent--form-group--label mt-0">{{ $t('upload_images', $store.state.locale) }} :</label>
                                                 <UploadImages class="image-box" :max="4" @change="handleImages"/>
                                             </div>
                                             <!-- Agree terms and condition -->
@@ -1384,6 +1429,9 @@
                     is_negotiable: '',
                     sub_category_id: '',
                     product_image: '',
+                    phone_no: '',
+                    address: '',
+                    summary: ''
                 },
                 extend: {
                     week: '',
@@ -1513,16 +1561,36 @@
                     console.log(this.postImages);
                     return;
                 }
+                console.log(files);
+                console.log(this.postImages);
+                if (this.postImages.length > files.length) {
+                    var val = '';
+                    this.postImages.forEach(function (image, index) {
+                        console.log(image.name);
+                        files.forEach(function (file) {
+                            console.log(file.name);
+                            if (image.name != file.name){
+                                console.log(image.name)
+                                val = index
+                                return
+                            }
+                        })
+                    })
+                    this.postImages.splice(val, 1);
+                    console.log(this.postImages)
+                    return
+                }
                 var file = files[files.length - 1];
-                console.log(files)
                 var reader = new FileReader()
                 reader.readAsDataURL(file)
                 reader.onload = () => {
                     var fileBase64 = reader.result;
-                    console.log('file to base64 result:' + fileBase64)
-                    this.postImages.push(fileBase64);
+                    var data = {
+                        name: file.name,
+                        file: fileBase64
+                    }
+                    this.postImages.push(data);
                     console.log(this.postImages)
-                    // this.iconBase64 = reader.result
                 }
                 reader.onerror = function (error) {
                     console.log('Error: ', error)
@@ -2043,14 +2111,16 @@
                         product_type: this.sellData.product_type,
                         is_negotiable: this.sellData.is_negotiable,
                         sub_category_id: this.sellData.sub_category_id,
-                        images: this.postImages
+                        phone_no: this.sellData.phone_no,
+                        address: this.sellData.address,
+                        images: this.postImages,
+                        condition_summary: this.sellData.summary
                     }
                     let config = {
                         headers: {
                             'Authorization': 'Bearer ' + this.$store.state.token
                         }
                     }
-                    console.log(uploadInfo);
                     this.$api.post('sell-post', uploadInfo, config)
                         .then(response => {
                             if (response.status == 200) {
@@ -2061,6 +2131,9 @@
                                 this.sellData.is_negotiable = '';
                                 this.sellData.sub_category_id = '';
                                 this.postImages = [];
+                                this.sellData.summary = '';
+                                this.sellData.phone_no = '';
+                                this.sellData.address = '';
 
                                 this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
 
@@ -2573,10 +2646,6 @@
 <style>
 .demo {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-.delete {
-    display: none;
 }
 .image-box {
     width: 70% !important;

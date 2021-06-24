@@ -432,5 +432,8 @@
   "is_negotiable": "Is negotiable",
   "sub_category": "Sub category",
   "sell_post": "Sell Post",
-  "game_bazar" : "Game bazar"
+  "game_bazar" : "Game bazar",
+  "condition_summary" : "Condition Summary",
+  "upload_images" : "Upload Images",
+  "learn_about_create_sell_post" : "Learn about how to create a sell post"
 }

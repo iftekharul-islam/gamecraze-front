@@ -2,7 +2,7 @@
     <div>
 
     <!-- user profile details -->
-        <section class="user-profile-details pt-2">
+        <section class="user-profile-details pt-5">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
@@ -99,7 +99,7 @@
                                                 <transition name="modal">
                                                     <div class="modal-mask order-details-extend-modal position-fixed top-0 left-0 h-100 w-full d-flex align-items-center justify-content-center z-index-9">
                                                         <div class="modal-wrapper">
-                                                            <div class="modal-dialog modal-dialog-centered max-328" role="document">
+                                                            <div class="modal-dialog modal-dialog-centered w-328" role="document">
                                                                 <div class="modal-content bg-pattens-blue border-2 border-secondery p-a-4 br-0">
                                                                     <button type="button" class="close position-absolute right-10 top-10 w-fit" data-dismiss="modal" aria-label="Close">
                                                                         <svg aria-hidden="true" @click="extendModalShow = false" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -112,18 +112,18 @@
                                                                             <div>
                                                                                 <div class="border-0">
                                                                                     <div class="d-flex mb-4">
-                                                                                        <p class="primary-text gil-medium mb-0">Order no :</p>
+                                                                                        <p class="primary-text gil-medium mb-0">{{ $t('order_no', $store.state.locale) }} :</p>
                                                                                         <p class="primary-text gil-medium mb-0 ml-1">{{ extend.orderNo }}</p>
                                                                                     </div>
                                                                                     <div class="d-flex mb-a-4">
                                                                                         <p class="primary-text mb-0 f-s-20 gil-bold">{{ extend.game }}</p>
                                                                                     </div>
                                                                                     <div class="d-flex flex-column">
-                                                                                        <p class="primary-text mb-2 gil-medium">Extend duration</p>
+                                                                                        <p class="primary-text mb-2 gil-medium"> {{ $t('extend_duration', $store.state.locale) }}</p>
                                                                                         <ValidationProvider name="Rent Week" rules="required" v-slot="{ errors }">
                                                                                             <div class="position-relative">
                                                                                                 <select class="form-control bg-game-details focus-game-details border-half border-secondery-imp no-default-arrow br-0 shadow-none cursor-pointer text-white gil-medium" id="exampleFormControlSelect1" @change="rentCost(extend.week, extend.disk_type, extend.game_id)" v-model="extend.week">
-                                                                                                    <option value="" selected disabled>Please select rent week</option>
+                                                                                                    <option value="" selected disabled>Select rent week</option>
                                                                                                     <option v-for="n in 5" :value="n" :key="n">For {{n}} Week</option>
                                                                                                 </select>
                                                                                                 <svg class="position-absolute top-14 right-10 user-select-none pe-none" width="16" height="11" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -143,7 +143,7 @@
 
                                                                             <div class="d-flex justify-content-center mt-5">
                                                                                 <a href="javascript:void(0)" class="bg-secondery d-block text-center primary-text w-full primary-text-shadow gil-bold primary-text-hover py-2" @click.prevent="handleSubmit(extendSubmit)">
-                                                                                    <span> {{ $t('request_for_extend', $store.state.locale) }}</span>
+                                                                                    <span> {{ $t('extend_request', $store.state.locale) }}</span>
                                                                                 </a>
                                                                             </div> 
                                                                         </ValidationObserver>
@@ -171,7 +171,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td rowspan="99999" class="bg-secondery-opa-25 w-150 max-150 align-top px-2 py-3">{{ order.order_no }}</td>
+                                            <td rowspan="99999" class="bg-secondery-opa-25 w-100px w-sm-150 max-100 max-sm-150 align-top px-2 py-3">{{ order.order_no }}</td>
                                         </tr>
                                          <tr v-for="invoice in order.lenders.data">
                                             <td class="px-2 py-3 border-white-50 border-b-1 border-t-1">{{ invoice.rent.data.game.data.name }}</td>
@@ -179,7 +179,7 @@
                                         </tr>
                                     </tbody>
                                 </table>
-                                <table class="subtota-table w-full">
+                                <table class="subtotal-table w-full">
                                     <tr>
                                         <td class="px-2 py-3"><p class="mb-0 gray-text gil-medium text-right">{{ $t('subtotal', $store.state.locale) }}</p></td>
                                         <td class="px-2 py-3 w-20-prs pr-4"><p class="mb-0 gil-bold text-white text-right">৳ {{ order.amount - order.delivery_charge + order.discount_amount }}</p></td>

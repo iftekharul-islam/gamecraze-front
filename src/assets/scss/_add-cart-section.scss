@@ -130,6 +130,14 @@
                 padding: 20px;
                 padding-left: 51px;
             }
+            &--content {
+                    .checkbox-parents {
+                        @include for-max-380 {
+                            width: 100%;
+                        }
+                    }
+                
+            }
         }
     }
     .promotional-code {

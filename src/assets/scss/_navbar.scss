@@ -775,6 +775,9 @@
     }
 }
 .rating-notification {
+    @include for-max-380 {
+        right: -5px;
+    }
     &--list {
         padding: 16px;
         &:hover {

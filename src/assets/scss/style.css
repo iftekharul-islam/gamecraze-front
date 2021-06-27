@@ -1843,20 +1843,40 @@ html {
   width: 96px;
 }
 
-.w-150 {
-  width: 150px;
-}
-
 .w-100px {
   width: 100px;
+}
+
+.w-120 {
+  width: 120px;
+}
+
+@media (min-width: 575px) {
+  .w-sm-150 {
+    width: 150px;
+  }
+}
+
+.w-328 {
+  width: 328px;
 }
 
 .max-96 {
   max-width: 96px;
 }
 
-.max-150 {
-  max-width: 150px;
+.max-100 {
+  max-width: 100px;
+}
+
+.max-120 {
+  max-width: 120px;
+}
+
+@media (min-width: 575px) {
+  .max-sm-150 {
+    max-width: 150px;
+  }
 }
 
 .max-328 {
@@ -3734,6 +3754,12 @@ select option {
           justify-content: center;
   color: #FFD715;
   cursor: pointer;
+}
+
+@media (max-width: 380px) {
+  .rating-notification {
+    right: -5px;
+  }
 }
 
 .rating-notification--list {
@@ -8773,6 +8799,12 @@ html {
   }
 }
 
+@media (max-width: 575px) {
+  .bg-image-gallery-modal .modal-dialog .modal-content {
+    max-height: 80%;
+  }
+}
+
 .bg-image-gallery-modal .modal-dialog .modal-content .modal-body-content {
   height: 100%;
 }
@@ -8926,6 +8958,19 @@ html {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+@media (max-width: 575px) {
+  .subtotal-table tr td:last-of-type {
+    max-width: 94px;
+    width: 94px;
+  }
+}
+
+@media (max-width: 380px) {
+  .vue-feedback-reaction span {
+    font-size: 13px;
+  }
 }
 
 .set-password {
@@ -9430,6 +9475,12 @@ html {
   border-top: 1px solid #FFD715;
   padding: 20px;
   padding-left: 51px;
+}
+
+@media (max-width: 380px) {
+  .cart-section--item-price-box--payment-method--content .checkbox-parents {
+    width: 100%;
+  }
 }
 
 .cart-section .promotional-code--input-group {

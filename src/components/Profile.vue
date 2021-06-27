@@ -178,13 +178,13 @@
                                     </table>
                                 </div>
                             </div>
-
+                            <!-- Dashboard -->
                             <div class="tab-pane fade show active" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab">
                                 <div class="dashboard-content">
                                     <div class="d-flex justify-content-between dashboard-tab-button mb-5">
                                         <button @click.prevent="onRentedGames()" :disabled="rentShow" :class="{active: rentShow}"><img class="active-black" src="../assets/img/rent-icon.png" alt="rent icon"> <img class="active-yellow" src="../assets/img/rent-icon-black.png" alt="rent icon"> {{ $t('rented_games', $store.state.locale) }}</button>
                                         <button class="mx-4" @click.prevent="onOfferedGames()" :disabled="offerShow" :class="{active: offerShow}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon"> {{ $t('offered_games', $store.state.locale) }}</button>
-                                        <button  @click.prevent="onSellPost()" :disabled="postShow" :class="{active: postShow}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  {{ $t('offered_games', $store.state.locale) }}</button>
+                                        <button  @click.prevent="onSellPost()" :disabled="postShow" :class="{active: postShow}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  {{ $t('sell_post', $store.state.locale) }}</button>
                                     </div>
                                 <!-- Offer -->
                                     <div class="dashboard-content--offer" v-if="rents.length && offerShow">
@@ -296,7 +296,6 @@
                                                                             <label for="game-user-pass" class=" label-padding post-rent--form-group--label text-light"></label>
                                                                             <div class=" post-rent--form-group--input">
                                                                                 <button type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid"><span class="w-100">{{ $t('submit', $store.state.locale) }}</span></button>
-<!--                                                                                <button type="submit" href="javascript:void(0)" class="btn&#45;&#45;secondery" @click.prevent="handleSubmit(gameCredentialUpdate(rent.id, rent.game_user_id, rent.game_password))">Submit</button>-->
                                                                             </div>
                                                                         </div>
                                                                     </form>
@@ -434,72 +433,9 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- disk type -->
-                                                    <!-- <div class="dashboard-content--rented--box--disk-type position-absolute top--1 right--1 bg-secondery p-2 gil-bold">
-                                                        <div class="disk-type text-black" v-if="lend.rent.disk_type == 1">Physical Copy</div>
-                                                        <div class="disk-type text-black" v-if="lend.rent.disk_type == 0">Digital Copy</div>
-                                                    </div>
-                                                    
-                                                    <div class="dashboard-content--rented--box--order-name">
-                                                        <p v-if="lend.rent" class="f-s-20 gil-bold mb-a-3 h-60">{{ lend.rent.game.name }}</p>
-                                                    </div> -->
-                                                    <!-- <div class="d-flex justify-content-between dashboard-content--rented--box--order-description">
-                                                            <div class="cost flex-2">
-                                                                <p>{{ $t('cost', $store.state.locale) }}</p>
-                                                                <p class="text-secondery">{{ lend.lend_cost + parseInt(lend.commission)  }}</p>
-                                                            </div>
-                                                            <div class="duration flex-1">
-                                                                <p>{{ $t('rent_duration', $store.state.locale) }}</p>
-                                                                <div class="d-flex flex-column align-items-center duration--date text-secondery w-fit">
-                                                                    <p class="mb-1">{{ formattedDate(lend.lend_date) }} </p>
-                                                                    <p class="mb-1">to</p>
-                                                                    <p class="mb-1" v-if="lend.status === 1 || lend.status === 3 && lend.end_date">{{ formattedReturnDate(lend.end_date) }}</p>
-                                                                    <p class="mb-1" v-else>-</p>
-                                                                </div>
-                                                            </div>
-                                                    </div> -->
-                                                    <!-- <div class="mt-a-6 d-flex justify-content-between">
-                                                            <div class="timer flex-2">
-                                                                <p class="mb-1">{{ $t('remaining_time', $store.state.locale) }}</p>
-                                                                <div v-if="lend.rent.disk_type == 1">
-                                                                    <flip-countdown :deadline="endDate(lend.rent.disk_type, lend.updated_at, lend.lend_week)" v-if="lend.status === 3"></flip-countdown>
-                                                                    <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-else></flip-countdown>
-                                                                </div>
-                                                                <div v-if="lend.rent.disk_type == 0">
-                                                                    <flip-countdown :deadline="endDate(lend.rent.disk_type, lend.updated_at, lend.lend_week)" v-if="lend.status === 3"></flip-countdown>
-                                                                    <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-else></flip-countdown>
-                                                                   <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)" v-else></flip-countdown>
-                                                                </div>
-                                                            </div>
-                                                            <div class="status flex-1">
-                                                                <p class="mb-1">{{ $t('status', $store.state.locale) }}</p>
-                                                                <div v-if="lend.status === 0">
-                                                                    <span class="pending br-0 f-s-16" >Pending</span>
-                                                                </div>
-                                                                <div v-else-if="lend.status === 1">
-                                                                    <span class="completed br-0 f-s-16" >Completed</span>
-                                                                </div>
-                                                                <div v-else-if="lend.status === 2">
-                                                                    <span class="completed br-0  f-s-16" >Arrived at checkpoint</span>
-                                                                </div>
-                                                                <div v-else-if="lend.status === 3">
-                                                                    <span class="completed br-0 f-s-16" >Delivered</span>
-                                                                </div>
-                                                                <div v-else-if="lend.status === 4">
-                                                                    <span class="rejected br-0  f-s-16" >Rejected</span>
-                                                                </div>
-                                                                <div v-else-if="lend.status === 5">
-                                                                    <span class="completed br-0 f-s-16" >Processing</span>
-                                                                </div>
-                                                                <div v-else-if="lend.status === 6">
-                                                                    <span class="completed br-0 f-s-16" >Postponed</span>
-                                                                </div>
-                                                            </div>
-                                                        </div> -->
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- <p class="text-center text-secondery mt-3 rented-note">{{ $t('delivery_charge_notice', $store.state.locale) }}</p> -->
                                     </div>
                                     <!-- sellPosts -->
                                     <div v-else-if="sellPosts.length && postShow">
@@ -521,6 +457,14 @@
                                                             <p class="text-white mb-2">{{ $t('order_start_date', $store.state.locale) }}</p>
                                                             <p class=" text-secondery mb-0">{{ formattedDate(product.created_at) }} </p>
                                                         </div>
+                                                        <label class="toggle-switch mt-0 mt-sm-2">
+                                                            <input type="checkbox" @change="sellPostStatusChange($event,product.id)" :checked="product.status == 1" :disabled="product.is_sold == 2"/>
+                                                            <span>
+                                                            <span>Sold</span>
+                                                            <span>Available</span>
+                                                        </span>
+                                                            <a class="toggle-ball"></a>
+                                                        </label>
                                                     </div>
                                                     <div class="payment d-flex flex-column">
                                                         <div>
@@ -533,9 +477,6 @@
                                                         </div>
                                                     </div>
                                                     <div class="d-flex flex-column">
-<!--                                                        <div class=" mb-4 h-56">-->
-<!--                                                            <router-link :to="'/'+ order.id +'/order-details'" class="d-flex border-1 border-secondery -skew-19-deg pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover mt-2"><span class="skew-19-deg">Details</span></router-link>-->
-<!--                                                        </div>-->
                                                         <div>
                                                             <p class="mb-1">{{ $t('status', $store.state.locale) }}</p>
                                                             <div v-if="product.status === 1">
@@ -549,72 +490,9 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <!-- disk type -->
-                                                    <!-- <div class="dashboard-content--rented--box--disk-type position-absolute top--1 right--1 bg-secondery p-2 gil-bold">
-                                                        <div class="disk-type text-black" v-if="lend.rent.disk_type == 1">Physical Copy</div>
-                                                        <div class="disk-type text-black" v-if="lend.rent.disk_type == 0">Digital Copy</div>
-                                                    </div>
-
-                                                    <div class="dashboard-content--rented--box--order-name">
-                                                        <p v-if="lend.rent" class="f-s-20 gil-bold mb-a-3 h-60">{{ lend.rent.game.name }}</p>
-                                                    </div> -->
-                                                    <!-- <div class="d-flex justify-content-between dashboard-content--rented--box--order-description">
-                                                            <div class="cost flex-2">
-                                                                <p>{{ $t('cost', $store.state.locale) }}</p>
-                                                                <p class="text-secondery">{{ lend.lend_cost + parseInt(lend.commission)  }}</p>
-                                                            </div>
-                                                            <div class="duration flex-1">
-                                                                <p>{{ $t('rent_duration', $store.state.locale) }}</p>
-                                                                <div class="d-flex flex-column align-items-center duration--date text-secondery w-fit">
-                                                                    <p class="mb-1">{{ formattedDate(lend.lend_date) }} </p>
-                                                                    <p class="mb-1">to</p>
-                                                                    <p class="mb-1" v-if="lend.status === 1 || lend.status === 3 && lend.end_date">{{ formattedReturnDate(lend.end_date) }}</p>
-                                                                    <p class="mb-1" v-else>-</p>
-                                                                </div>
-                                                            </div>
-                                                    </div> -->
-                                                    <!-- <div class="mt-a-6 d-flex justify-content-between">
-                                                            <div class="timer flex-2">
-                                                                <p class="mb-1">{{ $t('remaining_time', $store.state.locale) }}</p>
-                                                                <div v-if="lend.rent.disk_type == 1">
-                                                                    <flip-countdown :deadline="endDate(lend.rent.disk_type, lend.updated_at, lend.lend_week)" v-if="lend.status === 3"></flip-countdown>
-                                                                    <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-else></flip-countdown>
-                                                                </div>
-                                                                <div v-if="lend.rent.disk_type == 0">
-                                                                    <flip-countdown :deadline="endDate(lend.rent.disk_type, lend.updated_at, lend.lend_week)" v-if="lend.status === 3"></flip-countdown>
-                                                                    <flip-countdown :deadline="formattedDateForTimer(lend.created_at)" v-else></flip-countdown>
-                                                                   <flip-countdown :deadline="endDate(lend.rent.disk_type,lend.created_at, lend.lend_week)" v-else></flip-countdown>
-                                                                </div>
-                                                            </div>
-                                                            <div class="status flex-1">
-                                                                <p class="mb-1">{{ $t('status', $store.state.locale) }}</p>
-                                                                <div v-if="lend.status === 0">
-                                                                    <span class="pending br-0 f-s-16" >Pending</span>
-                                                                </div>
-                                                                <div v-else-if="lend.status === 1">
-                                                                    <span class="completed br-0 f-s-16" >Completed</span>
-                                                                </div>
-                                                                <div v-else-if="lend.status === 2">
-                                                                    <span class="completed br-0  f-s-16" >Arrived at checkpoint</span>
-                                                                </div>
-                                                                <div v-else-if="lend.status === 3">
-                                                                    <span class="completed br-0 f-s-16" >Delivered</span>
-                                                                </div>
-                                                                <div v-else-if="lend.status === 4">
-                                                                    <span class="rejected br-0  f-s-16" >Rejected</span>
-                                                                </div>
-                                                                <div v-else-if="lend.status === 5">
-                                                                    <span class="completed br-0 f-s-16" >Processing</span>
-                                                                </div>
-                                                                <div v-else-if="lend.status === 6">
-                                                                    <span class="completed br-0 f-s-16" >Postponed</span>
-                                                                </div>
-                                                            </div>
-                                                        </div> -->
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- <p class="text-center text-secondery mt-3 rented-note">{{ $t('delivery_charge_notice', $store.state.locale) }}</p> -->
                                     </div>
                                     <!-- Norhing to show -->
                                     <div class="no-post-found-card mb-0" v-else>
@@ -623,7 +501,7 @@
                                 </div>
 <!--                            </div>-->
                             </div>
-                                <!-- Post for Rent -->
+                            <!-- Post for Rent -->
                             <div class="tab-pane fade" id="v-pills-post-rent" role="tabpanel" aria-labelledby="v-pills-post-rent-tab">
                                 <div class="post-rent">
                                     <ValidationObserver ref="form">
@@ -864,7 +742,7 @@
                                     </ValidationObserver>
                                 </div>
                             </div>
-
+                            <!-- edit profile -->
                             <div class="tab-pane fade" id="v-pills-edit-profile" role="tabpanel" aria-labelledby="v-pills-edit-profile-tab">
                                 <div class="edit-profile">
                                     <ValidationObserver v-slot="{ handleSubmit }">
@@ -1000,7 +878,6 @@
                                     </ValidationObserver>
                                 </div>
                             </div>
-                            
                             <!-- Earning tab -->
                             <div class="tab-pane fade" id="v-pills-my-earning" role="tabpanel" aria-labelledby="v-pills-my-earning-tab">
                                 <div class="my-earning">
@@ -1058,7 +935,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <!-- Refer friend -->
                             <div class="tab-pane fade" id="v-pills-refer" role="tabpanel" aria-labelledby="v-pills-refer-tab">
                                 <div class="refer-friend">
@@ -1117,9 +993,8 @@
                                     </div>
                                 </div>
                             </div>
-
                             <!-- Rating game -->
-                              <div class="tab-pane fade" id="v-pills-rating" role="tabpanel" aria-labelledby="v-pills-rating-tab">
+                            <div class="tab-pane fade" id="v-pills-rating" role="tabpanel" aria-labelledby="v-pills-rating-tab">
                                     <div class="my-rating">
                                         <div class="my-rating--dashboard secondery-border d-flex flex-column flex-md-row align-items-md-center justify-content-between mb-5">
                                             <div class="my-earning--dashboard--content mb-5 mb-md-0">
@@ -1240,7 +1115,6 @@
                                         </div>
                                     </div>
                               </div>
-
                             <!-- Sell post -->
                             <div class="tab-pane fade" id="v-pills-sell-post" role="tabpanel" aria-labelledby="v-pills-sell-post-tab">
                                 <div class="post-rent">
@@ -1372,10 +1246,10 @@
 <!--                                                    <button @click="addInput" type="button" class="btn btn-secondary">Add Input</button>-->
 <!--                                                </div>-->
 <!--                                            </div>-->
-                                            <div class="form-group post-rent--form-group">
-                                                <label class=" label-padding post-rent--form-group--label mt-0">Upload images :</label>
-                                                <UploadImages class="image-box" :max="4" @change="handleImages"/>
-                                            </div>
+<!--                                            <div class="form-group post-rent&#45;&#45;form-group">-->
+<!--                                                <label class=" label-padding post-rent&#45;&#45;form-group&#45;&#45;label mt-0">Upload images :</label>-->
+<!--                                                <UploadImages class="image-box" :max="4" @change="handleImages"/>-->
+<!--                                            </div>-->
                                             <div class="form-group post-rent--form-group">
                                                 <label class=" label-padding post-rent--form-group--label mt-0">{{ $t('upload_images', $store.state.locale) }} :</label>
                                                 <UploadImages class="image-box" :max="4" @change="handleImages"/>
@@ -1401,10 +1275,9 @@
                                 </div>
                             </div>
                         </div>
-                        </div>
                     </div>
                 </div>
-<!--            </div>-->
+            </div>
         </section>
     </div>
 </template>
@@ -1418,6 +1291,7 @@
         components: {StarRating, FlipCountdown, Clipboard, VueFeedbackReaction, UploadImages},
         data() {
             return {
+                summaryModal: false,
                 onSellPostLoading: false,
                 subCategories: [],
                 postImages: [],
@@ -1688,6 +1562,28 @@
                 };
 
                 this.$api.post('post-status-update', data, config).then(response => {
+                    if (response.data.error == false) {
+                        this.coverModal = false;
+                        this.$toaster.success(this.$t('rent_post_status', this.$store.state.locale));
+                    }else {
+                        this.$toaster.fail(response.data.message);
+                    }
+
+                });
+            },
+            sellPostStatusChange(event, id) {
+                var status = event.target.checked;
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+                let data = {
+                    id: id,
+                    status: status,
+                };
+
+                this.$api.post('sold-status-update', data, config).then(response => {
                     if (response.data.error == false) {
                         this.coverModal = false;
                         this.$toaster.success(this.$t('rent_post_status', this.$store.state.locale));

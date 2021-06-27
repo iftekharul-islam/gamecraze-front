@@ -84,7 +84,7 @@
                   </div>
                    <div class="cart-section--item-price-box--payment-method secondery-border mt-a-6">
                             <p class="mb-0">{{ $t('payment_method', $store.state.locale) }}</p>
-                            <div class="d-flex flex-wrap align-items-center justify-content-between content">
+                            <div class="cart-section--item-price-box--payment-method--content d-flex flex-wrap align-items-center justify-content-between content">
                                 <div class="checkbox-parents">
                                     <input type="radio" id="cod" name="payment" value="cod" class="checkbox-parents--input" v-model="paymentMethod">
                                     <label for="cod" class="checkbox-parents--label">Cash on Delivery</label>

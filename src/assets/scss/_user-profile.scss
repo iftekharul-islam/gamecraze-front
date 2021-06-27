@@ -977,6 +977,9 @@
                 padding-left: 30px;
                 padding-right: 30px;
             }
+            @include for-max-575 {
+                max-height: 80%;
+            }
             .modal-body-content {
                 height: 100%;
                 @include for-min-768 {
@@ -1080,5 +1083,24 @@
         display: flex !important;
         flex-direction: column;
         align-items: center;
+    }
+}
+.subtotal-table {
+    tr {
+        td {
+            &:last-of-type {
+                @include for-max-575 {
+                    max-width: 94px;
+                    width: 94px;
+                }
+            }
+        }
+    }
+}
+.vue-feedback-reaction {
+    span {
+        @include for-max-380 {
+            font-size: 13px;
+        }
     }
 }

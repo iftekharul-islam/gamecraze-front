@@ -98,6 +98,7 @@
   "no_image_available" : "No image available",
   "submit" : "Submit",
   "extend_request" : "Extend request",
+  "extend_duration" : "Extend duration",
   "account_verified" : "Account verified",
   "account_verify_now" : "Account verify now",
   "edit_profile" : "Edit Profile",

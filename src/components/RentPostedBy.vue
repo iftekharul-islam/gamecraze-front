@@ -98,7 +98,7 @@
                                                             <div class="text-center">
                                                                 <h2>{{ $t('necessary_info', $store.state.locale) }}</h2>
                                                             </div>
-                                                            <table class="w-full share-post-modal--bottom-table">
+                                                            <table class="w-100 share-post-modal--bottom-table">
                                                                 <tbody class="text-left">
                                                                 <tr>
                                                                     <td class="align-middle p-0 pb-3 pb-sm-0">{{ $t('select_week', $store.state.locale) }} :</td>
@@ -181,7 +181,7 @@
                                                     <a href="/elite" class="text-secondery">ELITE.</a>
                                                     {{ $t('rookie_sms_part_3', $store.state.locale) }}
                                                 </p>
-                                                <div class="d-flex justify-content-center mt-5">
+                                                <div class="d-flex flex-column align-items-center flex-sm-row justify-content-center mt-5">
                                                     <div class="modal-content--description--form--call">
                                                         <p>{{ $t('please_call_contact', $store.state.locale) }}</p>
                                                         <p>01886-614533</p>

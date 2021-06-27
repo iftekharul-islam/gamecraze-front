@@ -239,8 +239,8 @@
                                                             <a href="#" class="text-black d-flex gil-medium px-3 py-1 text-black-hover" @click.prevent="credentialModal(rent)"><span>Edit</span></a>
                                                         </div>
                                                     <div v-if="rent.status == 0">
-                                                        <div class="action bg-secondery mr-2" v-if="rent.disk_type != 0">
-                                                            <a href="#" class="text-black px-3 py-1 gil-medium" @click.prevent="ImageModal(rent)"><span>Edit</span></a>
+                                                        <div class="action bg-secondery mr-2 h-100 d-flex" v-if="rent.disk_type != 0">
+                                                            <a href="#" class="text-black px-3 py-1 gil-medium text-black-hover" @click.prevent="ImageModal(rent)"><span>Edit</span></a>
                                                         </div>
                                                     </div>
                                                     <div class="bg-secondery mr-2">

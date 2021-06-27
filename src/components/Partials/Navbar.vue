@@ -135,7 +135,7 @@
                                     <div class="badge gamehub-badge navbar-badge" v-if="pendingRating.length">{{ pendingRating.length }}</div>
                                 </div>
                                 <!-- Notification for rating -->
-                                <div class="dropdown-menu w-300 w-sm-400 max-h-450 overflow-auto custom-scroll position-absolute secondery-border right-20 bg-game-details text-white br-0 p-0 top-55" aria-labelledby="rating-notification">
+                                <div class="dropdown-menu rating-notification w-300 w-sm-400 max-h-450 overflow-auto custom-scroll position-absolute secondery-border right-20 bg-game-details text-white br-0 p-0 top-55" aria-labelledby="rating-notification">
                                     <div class="rating-notification--list d-block pointer" @click="clickOnRating(rating)" v-for="(rating, index) in pendingRating" v-if="pendingRating.length">
                                         <p class="gil-bold text-badge mb-2">{{ $t('congratulations', $store.state.locale) }}</p>
                                         <p class="text-white text transition-3 mb-0">{{ $t('the_order_of', $store.state.locale) }} <span class="text-secondery transition-3">{{ rating.lend.data.rent.data.game.data.name }}</span> {{ $t('rating_complete_notice', $store.state.locale) }} </p>

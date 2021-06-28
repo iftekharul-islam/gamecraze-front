@@ -435,5 +435,6 @@
   "game_bazar" : "Game bazar",
   "condition_summary" : "Condition Summary",
   "upload_images" : "Upload Images",
-  "learn_about_create_sell_post" : "Learn about how to create a sell post"
+  "learn_about_create_sell_post" : "Learn about how to create a sell post",
+  "created_at" : "Create Date"
 }

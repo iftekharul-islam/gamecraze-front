@@ -409,7 +409,7 @@
                                                     </div>
                                                     <div class="d-flex flex-column">
                                                         <div class=" mb-4 h-56">
-                                                        <router-link :to="'/'+ order.id +'/order-details'" class="d-flex border-1 border-secondery -skew-19-deg pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover mt-2"><span class="skew-19-deg">Details</span></router-link>
+                                                            <router-link :to="'/'+ order.id +'/order-details'" class="d-flex border-1 border-secondery -skew-19-deg pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover mt-2"><span class="skew-19-deg">Details</span></router-link>
                                                         </div>
                                                         <div>
                                                             <p class="mb-1">{{ $t('status', $store.state.locale) }}</p>
@@ -454,11 +454,11 @@
                                                             <p class=" text-secondery mb-0">{{ product.name }}</p>
                                                         </div>
                                                         <div class="text-white  mb-4">
-                                                            <p class="text-white mb-2">{{ $t('order_start_date', $store.state.locale) }}</p>
+                                                            <p class="text-white mb-2">{{ $t('created_at', $store.state.locale) }}</p>
                                                             <p class=" text-secondery mb-0">{{ formattedDate(product.created_at) }} </p>
                                                         </div>
                                                         <label class="toggle-switch mt-0 mt-sm-2">
-                                                            <input type="checkbox" @change="sellPostStatusChange($event,product.id)" :checked="product.status == 1" :disabled="product.is_sold == 2"/>
+                                                            <input type="checkbox" @change="sellPostStatusChange($event,product.id)" :checked="product.is_sold == 1" :disabled="product.status == 2"/>
                                                             <span>
                                                             <span>Sold</span>
                                                             <span>Available</span>
@@ -472,8 +472,20 @@
                                                             <p class=" text-secondery">{{ product.subcategory.data.name }}</p>
                                                         </div>
                                                         <div class="mb-4">
-                                                            <p class="text-white mb-2">{{ $t('order_amount', $store.state.locale) }}</p>
-                                                            <p class=" text-secondery mb-0">{{ product.price  }}</p>
+                                                            <p class="text-white mb-2">{{ $t('price', $store.state.locale) }}</p>
+                                                            <p class=" text-secondery mb-0">
+                                                                {{ product.price  }}
+                                                                <span v-if="product.is_negotiable">( Negotiable )</span>
+                                                            </p>
+                                                        </div>
+                                                        <div class="mb-4">
+                                                            <p class="text-white mb-2">{{ $t('product_type', $store.state.locale) }}</p>
+                                                            <p class=" text-secondery mb-0" v-if="product.product_type == 1">
+                                                                New
+                                                            </p>
+                                                            <p class=" text-secondery mb-0" v-else>
+                                                                Used
+                                                            </p>
                                                         </div>
                                                     </div>
                                                     <div class="d-flex flex-column">
@@ -485,11 +497,82 @@
                                                             <div v-else-if="product.status === 2">
                                                                 <span class="pending br-0 f-s-16" >Pending</span>
                                                             </div>
-                                                            <div v-else-if="product.status === 3">
-                                                                <span class="rejected br-0 f-s-16" >Rejected</span>
-                                                            </div>
                                                         </div>
                                                     </div>
+                                                    <div class=" mb-4 h-56">
+                                                        <router-link :to="'/sell-post/' + product.id + '/post-details'" class="d-flex border-1 border-secondery -skew-19-deg pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover mt-2"><span class="skew-19-deg">Details</span></router-link>
+                                                        <a href="#" class="d-flex border-1 border-secondery -skew-19-deg pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover mt-2" @click.prevent="sellPostEditModal(product)" v-if="product.status === 2"><span>Edit</span></a>
+                                                    </div>
+                                                </div>
+                                                <!-- modal edit game -->
+                                                <div v-if="sellPostEditModalShow">
+                                                    <transition name="modal">
+                                                        <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal">
+                                                            <div class="modal-wrapper">
+                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                    <div class="modal-content">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true" @click="sellPostEditModalShow = false" class="close-modal"></span>
+                                                                        </button>
+                                                                        <h4 class="text-secondery mb-a-12 f-s-28">{{ $t('sell_post', $store.state.locale) }}</h4>
+                                                                        <!-- form-group -->
+                                                                        <ValidationObserver v-slot="{ invalid }">
+                                                                            <form @submit.prevent="gameCredentialUpdate(userRentId, userGameId, userPassword)" method="post">
+                                                                                <div class="form-group post-rent--form-group">
+                                                                                    <label for="sell-post-name" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('name', $store.state.locale) }}</label>
+                                                                                    <div class=" post-rent--form-group--input">
+                                                                                        <ValidationProvider name="Sell post name" rules="required" v-slot="{ errors }">
+                                                                                            <input type="text" class="form-control renten-input" id="sell-post-name" placeholder="Enter sell post name" v-model="editPostData.name">
+                                                                                            <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                                                                                        </ValidationProvider>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <!-- form-group -->
+                                                                                <div class="form-group post-rent--form-group">
+                                                                                    <label for="sell-post-des" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('description', $store.state.locale) }}</label>
+                                                                                    <div class=" post-rent--form-group--input">
+                                                                                        <ValidationProvider name="description" rules="required" v-slot="{ errors }">
+                                                                                            <input type="text" class="form-control renten-input" id="sell-post-des" placeholder="Enter sell post description" v-model="editPostData.description">
+                                                                                            <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                                                                                        </ValidationProvider>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group post-rent--form-group">
+                                                                                    <label for="sell-post-price" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('price', $store.state.locale) }}</label>
+                                                                                    <div class=" post-rent--form-group--input">
+                                                                                        <ValidationProvider name="price" rules="required" v-slot="{ errors }">
+                                                                                            <input type="text" class="form-control renten-input" id="sell-post-price" placeholder="Enter price" v-model="editPostData.price">
+                                                                                            <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                                                                                        </ValidationProvider>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group post-rent--form-group">
+                                                                                    <label for="sell-post-sub" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('sub_category', $store.state.locale) }}</label>
+                                                                                    <div class=" post-rent--form-group--input">
+                                                                                        <ValidationProvider name="Sub category" rules="required" v-slot="{ errors }">
+                                                                                            <select class="custom-select" id="sell-post-sub" name="edit_sub_category" v-model="editPostData.sub_category_id">
+                                                                                                <option>Select sub category</option>
+                                                                                                <option v-for="(category, index) in subCategories" :value="category.id" :key="category.id">{{ category.name }}</option>
+                                                                                            </select>
+                                                                                            <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                                                                                        </ValidationProvider>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <!-- form-group Button -->
+                                                                                <div class="form-group post-rent--form-group offer-edit-btn">
+                                                                                    <label class=" label-padding post-rent--form-group--label text-light"></label>
+                                                                                    <div class=" post-rent--form-group--input">
+                                                                                        <button type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid"><span class="w-100">{{ $t('submit', $store.state.locale) }}</span></button>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </form>
+                                                                        </ValidationObserver>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </transition>
                                                 </div>
                                             </div>
                                         </div>
@@ -1118,8 +1201,8 @@
                             <!-- Sell post -->
                             <div class="tab-pane fade" id="v-pills-sell-post" role="tabpanel" aria-labelledby="v-pills-sell-post-tab">
                                 <div class="post-rent">
-                                    <ValidationObserver ref="form">
-                                        <form @submit.prevent="onSellPostSubmit" method="post" id="rentPostForm">
+                                    <ValidationObserver ref="sellForm">
+                                        <form @submit.prevent="onSellPostSubmit" method="post" id="sellPostForm">
                                             <!-- form-group -->
                                             <div class="form-group post-rent--form-group">
                                                 <label class=" post-rent--form-group--label"></label>
@@ -1220,36 +1303,12 @@
                                                     <ValidationProvider name="Sub Category" rules="required" v-slot="{ errors }">
                                                         <select class="custom-select" id="sub_category" name="sub_category" v-model="sellData.sub_category_id">
                                                             <option value="">Select sub category</option>
-                                                            <option :value="category.id" v-for="(category, index) in subCategories">{{ category.name }}</option>
+                                                            <option :value="category.id" v-for="category in subCategories">{{ category.name }}</option>
                                                         </select>
                                                         <span class="text-danger">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
                                             </div>
-<!--                                            <div class="form-group post-rent&#45;&#45;form-group post-rent&#45;&#45;form-group-img">-->
-<!--                                                <div class="post-rent&#45;&#45;form-group&#45;&#45;input">-->
-<!--                                                    <ValidationProvider name="Disk Image" :rules='required' v-slot="{ validate, errors }">-->
-<!--                                                        <div class="custom-file">-->
-<!--                                                            <input type="file" class="custom-file-input" id="post"  accept="image/*" @change="onPostimageChange($event)|| validate($event)">-->
-<!--                                                            <label class="custom-file-label text-light" :for="index">{{ selectedDiskName }}</label>-->
-<!--                                                        </div>-->
-<!--                                                        <div class="img-prev">-->
-<!--                                                            <img v-if="rentData.disk_image" :src="rentData.disk_image" alt="Disk image preview">-->
-<!--                                                            <img v-else src="../assets/img/disk.png" alt="Disk image preview">-->
-<!--                                                        </div>-->
-<!--                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>-->
-<!--                                                    </ValidationProvider>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="form-group post-rent&#45;&#45;form-group">-->
-<!--                                                <div class=" post-rent&#45;&#45;form-group&#45;&#45;input">-->
-<!--                                                    <button @click="addInput" type="button" class="btn btn-secondary">Add Input</button>-->
-<!--                                                </div>-->
-<!--                                            </div>-->
-<!--                                            <div class="form-group post-rent&#45;&#45;form-group">-->
-<!--                                                <label class=" label-padding post-rent&#45;&#45;form-group&#45;&#45;label mt-0">Upload images :</label>-->
-<!--                                                <UploadImages class="image-box" :max="4" @change="handleImages"/>-->
-<!--                                            </div>-->
                                             <div class="form-group post-rent--form-group">
                                                 <label class=" label-padding post-rent--form-group--label mt-0">{{ $t('upload_images', $store.state.locale) }} :</label>
                                                 <UploadImages class="image-box" :max="4" @change="handleImages"/>
@@ -1291,10 +1350,20 @@
         components: {StarRating, FlipCountdown, Clipboard, VueFeedbackReaction, UploadImages},
         data() {
             return {
+                sellPostEditModalShow: false,
                 summaryModal: false,
                 onSellPostLoading: false,
                 subCategories: [],
                 postImages: [],
+                editPostData: {
+                    name: '',
+                    description: '',
+                    price: '',
+                    product_type: '',
+                    is_negotiable: '',
+                    sub_category_id: '',
+
+                },
                 sellData: {
                     name: '',
                     description: '',
@@ -1429,6 +1498,15 @@
             },
         },
         methods: {
+            sellPostEditModal(product) {
+                console.log(product)
+                this.sellPostEditModalShow = true
+                this.editPostData.name =  product.name
+                this.editPostData.description = product.description
+                this.editPostData.price = product.price
+                this.editPostData.is_negotiable =  product.is_negotiable
+                this.editPostData.sub_category_id =  product.sub_category_id
+            },
             handleImages(files) {
                 if (files.length === 0) {
                     this.postImages = [];
@@ -1990,7 +2068,7 @@
                 this.form.checkpoint = '';
             },
             onSellPostSubmit () {
-                this.$refs.form.validate().then(success => {
+                this.$refs.sellForm.validate().then(success => {
                     if (!success) {
                         window.scrollTo({
                             top: 400,

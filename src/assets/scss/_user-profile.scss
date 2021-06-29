@@ -733,6 +733,30 @@
                 margin-bottom: 24px;
             }
         }
+        &--sell-post {
+            &--button {
+                @include for-max-1199 {
+                    flex: none;
+                    width: 100%;
+                    a {
+                        width: 110px;
+                        padding: 0;
+                        span {
+                            text-align: center;
+                            display: block;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+            &--status {
+                @include for-max-1199 {
+                    margin-bottom: 32px;
+                    flex: none;
+                    width: 100%;
+                }
+            }
+        }
     }
     .timer {
         margin-top: -60px;
@@ -1101,6 +1125,15 @@
     span {
         @include for-max-380 {
             font-size: 13px;
+        }
+    }
+}
+
+.sell-post-modal {
+    .modal-dialog {
+        @include for-min-768 {
+            width: 700px;
+            max-width: 700px;
         }
     }
 }

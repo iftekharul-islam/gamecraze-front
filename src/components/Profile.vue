@@ -442,7 +442,7 @@
                                         <div class="dashboard-content--rented new-rented">
                                             <!-- new rented design -->
                                             <div class="d-flex flex-wrap" v-if="sellPosts">
-                                                <div class="dashboard-content--rented--box flex-wrap d-flex justify-content-between w-100 mr-0  bg-game-details border-2 warning-border" v-for="(product, index) in sellPosts" :key="index">
+                                                <div class="dashboard-content--rented--box dashboard-content--rented--sell-post flex-wrap d-flex justify-content-between w-100 mr-0  bg-game-details border-2 warning-border" v-for="(product, index) in sellPosts" :key="index">
                                                     <!-- order id -->
                                                     <div class="order-id flex-none flex-sm-initial w-full w-sm-initial">
                                                         <p class="f-s-20 gil-bold text-secondery" v-if="product">{{ product.product_no }}</p>
@@ -488,7 +488,7 @@
                                                             </p>
                                                         </div>
                                                     </div>
-                                                    <div class="d-flex flex-column">
+                                                    <div class="dashboard-content--rented--sell-post--status d-flex flex-column">
                                                         <div>
                                                             <p class="mb-1">{{ $t('status', $store.state.locale) }}</p>
                                                             <div v-if="product.status === 1">
@@ -499,22 +499,27 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class=" mb-4 h-56">
-                                                        <router-link :to="'/sell-post/' + product.id + '/post-details'" class="d-flex border-1 border-secondery -skew-19-deg pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover mt-2"><span class="skew-19-deg">Details</span></router-link>
-                                                        <a href="#" class="d-flex border-1 border-secondery -skew-19-deg pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover mt-2" @click.prevent="sellPostEditModal(product)" v-if="product.status === 2"><span>Edit</span></a>
+                                                    <div class="dashboard-content--rented--sell-post--button mb-4">
+                                                        <router-link :to="'/sell-post/' + product.id + '/post-details'" class="d-flex border-1 border-secondery pl-a-7 pr-a-7 py-1 mb-3 bg-secondery text-black game-details-hover mt-2"><span class="">Details</span></router-link>
+                                                        <a href="#" class="d-flex border-1 border-secondery pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover mt-2" @click.prevent="sellPostEditModal(product)" v-if="product.status === 2"><span class="w-full text-center">Edit</span></a>
                                                     </div>
                                                 </div>
                                                 <!-- modal edit game -->
                                                 <div v-if="sellPostEditModalShow">
                                                     <transition name="modal">
-                                                        <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal">
-                                                            <div class="modal-wrapper">
-                                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                    <div class="modal-content">
-                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true" @click="sellPostEditModalShow = false" class="close-modal"></span>
+                                                        <div class="modal-mask sell-post-modal position-fixed top-0 left-0 z-index-9999 w-full h-100 d-flex align-items-center justify-content-center">
+                                                            <div class="modal-wrapper overflow-auto max-h-80pr border-1 border-secondery w-full w-sm-initial">
+                                                                <div class="modal-dialog modal-dialog-centered m-0" role="document">
+                                                                    <div class="modal-content bg-game-details br-0 p-3 p-sm-5">
+                                                                        <button type="button" class="position-absolute top-10 right-10 close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true" @click="sellPostEditModalShow = false" class="close-modal">
+                                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                    <path d="M16.2427 6.34315L12.0001 10.5858L7.75744 6.34315L6.34323 7.75736L10.5859 12L6.34323 16.2426L7.75744 17.6569L12.0001 13.4142L16.2427 17.6569L17.6569 16.2426L13.4143 12L17.6569 7.75736L16.2427 6.34315Z" fill="#FFD715"/>
+                                                                                    <rect x="0.5" y="0.5" width="23" height="23" rx="11.5" stroke="#FFD715"/>
+                                                                                </svg>
+                                                                            </span>
                                                                         </button>
-                                                                        <h4 class="text-secondery mb-a-12 f-s-28">{{ $t('sell_post', $store.state.locale) }}</h4>
+                                                                        <h4 class="text-secondery mb-a-12 f-s-28 text-center">{{ $t('sell_post', $store.state.locale) }}</h4>
                                                                         <!-- form-group -->
                                                                         <ValidationObserver v-slot="{ invalid }">
                                                                             <form @submit.prevent="sellPostUpdate" method="post">

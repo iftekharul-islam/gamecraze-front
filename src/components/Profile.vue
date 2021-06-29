@@ -517,7 +517,7 @@
                                                                         <h4 class="text-secondery mb-a-12 f-s-28">{{ $t('sell_post', $store.state.locale) }}</h4>
                                                                         <!-- form-group -->
                                                                         <ValidationObserver v-slot="{ invalid }">
-                                                                            <form @submit.prevent="gameCredentialUpdate(userRentId, userGameId, userPassword)" method="post">
+                                                                            <form @submit.prevent="sellPostUpdate" method="post">
                                                                                 <div class="form-group post-rent--form-group">
                                                                                     <label for="sell-post-name" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('name', $store.state.locale) }}</label>
                                                                                     <div class=" post-rent--form-group--input">
@@ -547,11 +547,22 @@
                                                                                         </ValidationProvider>
                                                                                     </div>
                                                                                 </div>
+                                                                                <div class="form-group post-rent--form-group" >
+                                                                                    <label class="label-padding post-rent--form-group--label text-light text-left">{{ $t('is_negotiable', $store.state.locale) }} :</label>
+                                                                                    <div class="post-rent--form-group--input">
+                                                                                        <div class=" post-rent--form-group--input--radio-group ">
+                                                                                            <div class="form-check form-check-inline custom-radio">
+                                                                                                <input class="custom-control-input platform" id="sell-post-nego" name="is_negotiable" type="checkbox" value="" v-model="editPostData.is_negotiable" :checked="editPostData.is_negotiable == 1">
+                                                                                                <label class="custom-control-label ml-2" for="sell-post-nego">{{ $t('is_negotiable', $store.state.locale) }}</label>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
                                                                                 <div class="form-group post-rent--form-group">
                                                                                     <label for="sell-post-sub" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('sub_category', $store.state.locale) }}</label>
                                                                                     <div class=" post-rent--form-group--input">
                                                                                         <ValidationProvider name="Sub category" rules="required" v-slot="{ errors }">
-                                                                                            <select class="custom-select" id="sell-post-sub" name="edit_sub_category" v-model="editPostData.sub_category_id">
+                                                                                            <select class="custom-select" id="sell-post-sub" name="edit_sub_category" value="" v-model="editPostData.sub_category_id">
                                                                                                 <option>Select sub category</option>
                                                                                                 <option v-for="(category, index) in subCategories" :value="category.id" :key="category.id">{{ category.name }}</option>
                                                                                             </select>
@@ -559,6 +570,33 @@
                                                                                         </ValidationProvider>
                                                                                     </div>
                                                                                 </div>
+                                                                                <div class="form-group post-rent--form-group">
+                                                                                    <label for="sell-post-phone" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('phone_number', $store.state.locale) }}</label>
+                                                                                    <div class=" post-rent--form-group--input">
+                                                                                        <ValidationProvider name="Phone no" rules="required" v-slot="{ errors }">
+                                                                                            <input type="text" class="form-control renten-input" id="sell-post-phone" placeholder="Enter phone no" v-model="editPostData.phone_no">
+                                                                                            <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                                                                                        </ValidationProvider>
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="form-group post-rent--form-group">
+                                                                                    <label for="sell-post-address" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('address', $store.state.locale) }}</label>
+                                                                                    <div class=" post-rent--form-group--input">
+                                                                                        <ValidationProvider name="Address" rules="required" v-slot="{ errors }">
+                                                                                            <input type="text" class="form-control renten-input" id="sell-post-address" placeholder="Enter sell post address" v-model="editPostData.address">
+                                                                                            <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                                                                                        </ValidationProvider>
+                                                                                    </div>
+
+                                                                                </div>
+
+<!--                                                                                <div class="form-group post-rent&#45;&#45;form-group" v-if="editPostData.images.length">-->
+<!--                                                                                    <label for="sell-post-sub" class=" label-padding post-rent&#45;&#45;form-group&#45;&#45;label text-light text-left">{{ $t('images', $store.state.locale) }}</label>-->
+<!--                                                                                    <div class=" post-rent&#45;&#45;form-group&#45;&#45;input">-->
+<!--                                                                                        <img v-for="image in editPostData.images" :src="image" class="img-fluid mr-2" width="150" height="200">-->
+<!--                                                                                    </div>-->
+<!--                                                                                </div>-->
                                                                                 <!-- form-group Button -->
                                                                                 <div class="form-group post-rent--form-group offer-edit-btn">
                                                                                     <label class=" label-padding post-rent--form-group--label text-light"></label>
@@ -1356,13 +1394,16 @@
                 subCategories: [],
                 postImages: [],
                 editPostData: {
+                    id: '',
                     name: '',
                     description: '',
                     price: '',
                     product_type: '',
                     is_negotiable: '',
                     sub_category_id: '',
-
+                    images: '',
+                    phone_no: '',
+                    address: '',
                 },
                 sellData: {
                     name: '',
@@ -1501,11 +1542,16 @@
             sellPostEditModal(product) {
                 console.log(product)
                 this.sellPostEditModalShow = true
+
+                this.editPostData.id = product.id
                 this.editPostData.name =  product.name
                 this.editPostData.description = product.description
                 this.editPostData.price = product.price
                 this.editPostData.is_negotiable =  product.is_negotiable
                 this.editPostData.sub_category_id =  product.sub_category_id
+                this.editPostData.images =  product.images
+                this.editPostData.phone_no =  product.phone_no
+                this.editPostData.address =  product.address
             },
             handleImages(files) {
                 if (files.length === 0) {
@@ -2117,7 +2163,7 @@
                                 $('#v-pills-dashboard-tab').addClass('active');
                                 $('#v-pills-dashboard').addClass('active');
                                 $('#v-pills-dashboard').addClass('show');
-
+                                this.sellPostCheck()
                                 this.onSellPost();
                                 this.onSellPostLoading = false;
                             }
@@ -2126,6 +2172,36 @@
                             console.log(err)
                     });
                 })
+            },
+            sellPostUpdate(){
+                console.log('hello from sell post update');
+                let config = {
+                    headers: {
+                        'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                };
+                let data = {
+                    id: this.editPostData.id,
+                    name: this.editPostData.name,
+                    description: this.editPostData.description,
+                    price: this.editPostData.price,
+                    sub_category_id: this.editPostData.sub_category_id,
+                    is_negotiable: this.editPostData.is_negotiable,
+                    phone_no: this.editPostData.phone_no,
+                    address: this.editPostData.address,
+                };
+
+                this.$api.post('sell-post-update', data, config).then(response => {
+                    if (response.data.error == false) {
+                        this.sellPostEditModalShow = false;
+                        this.$toaster.success(this.$t('info_update_notification', this.$store.state.locale));
+                        this.sellPostCheck()
+                        this.onSellPost()
+                    }else {
+                        this.$toaster.fail(response.data.message);
+                    }
+
+                });
             },
             onRentSubmit () {
                 this.$refs.form.validate().then(success => {
@@ -2188,32 +2264,6 @@
                         }, 2000);
                     });
                 })
-            },
-            activeRentOffers() {
-                // // $('#v-pills-overview-tab').removeClass('active');
-                // // $('#v-pills-overview').removeClass('active');
-                // // $('#v-pills-overview').removeClass('show');
-                // // $('#v-pills-post-rent-tab').removeClass('active');
-                // // $('#v-pills-post-rent').removeClass('show');
-                // // $('#v-pills-post-rent').removeClass('active');
-                // $('#v-pills-dashboard-tab').removeClass('active');
-                // $('#v-pills-dashboard').removeClass('active');
-                // $('#v-pills-dashboard').removeClass('show');
-                // $('#v-pills-edit-profile-tab').addClass('active');
-                // // $('#v-pills-edit-profile').addClass('active');
-                // // $('#v-pills-edit-profile').addClass('show');
-                // // $('#v-pills-dashboard-tab').addClass('active');
-                // // $('#v-pills-dashboard').addClass('active');
-                // // $('#v-pills-dashboard').addClass('show');
-                // // $('#v-pills-my-earning-tab').removeClass('active');
-                // // $('#v-pills-my-earning').removeClass('active');
-                // // $('#v-pills-my-earning').removeClass('show');
-                // // $('#v-pills-refer-tab').removeClass('active');
-                // // $('#v-pills-refer').removeClass('active');
-                // // $('#v-pills-refer').removeClass('show');
-                // // $('#v-pills-rating-tab').removeClass('active');
-                // // $('#v-pills-rating').removeClass('active');
-                // // $('#v-pills-rating').removeClass('show');
             },
             clickHandler(item) {
               // event fired when clicking on the input
@@ -2357,6 +2407,7 @@
 
                 this.$api.get('my-sell-posts?include=subcategory', config).then(response => {
                     this.sellPosts = response.data.data;
+                    console.log(this.sellPosts);
                 });
             },
             ratingCheck() {
@@ -2386,29 +2437,6 @@
                     this.lenderRatingCount = response.data.total;
                 });
             },
-            // rentPostTab() {
-            //     $('#v-pills-overview-tab').removeClass('active');
-            //     $('#v-pills-overview').removeClass('active');
-            //     $('#v-pills-overview').removeClass('show');
-            //     $('#v-pills-post-rent-tab').addClass('active');
-            //     $('#v-pills-post-rent').addClass('show');
-            //     $('#v-pills-post-rent').addClass('active');
-            //     $('#v-pills-edit-profile-tab').removeClass('active');
-            //     $('#v-pills-edit-profile').removeClass('active');
-            //     $('#v-pills-edit-profile').removeClass('show');
-            //     $('#v-pills-dashboard-tab').removeClass('active');
-            //     $('#v-pills-dashboard').removeClass('active');
-            //     $('#v-pills-dashboard').removeClass('show');
-            //     $('#v-pills-my-earning-tab').removeClass('active');
-            //     $('#v-pills-my-earning').removeClass('active');
-            //     $('#v-pills-my-earning').removeClass('show');
-            //     $('#v-pills-refer-tab').removeClass('active');
-            //     $('#v-pills-refer').removeClass('active');
-            //     $('#v-pills-refer').removeClass('show');
-            //     $('#v-pills-rating-tab').removeClass('active');
-            //     $('#v-pills-rating').removeClass('active');
-            //     $('#v-pills-rating').removeClass('show');
-            // },
             rentPostTab() {
                 $('#v-pills-overview-tab').removeClass('active');
                 $('#v-pills-overview').removeClass('active');

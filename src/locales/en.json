@@ -437,5 +437,6 @@
   "condition_summary" : "Condition Summary",
   "upload_images" : "Upload Images",
   "learn_about_create_sell_post" : "Learn about how to create a sell post",
-  "created_at" : "Create Date"
+  "created_at" : "Create Date",
+  "info_update_notification" : "Information successfully updated !!"
 }

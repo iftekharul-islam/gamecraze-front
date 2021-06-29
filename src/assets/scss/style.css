@@ -1809,6 +1809,10 @@ html {
   max-height: 450px;
 }
 
+.max-h-80pr {
+  max-height: 80%;
+}
+
 .w-fit {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -8491,6 +8495,34 @@ html {
   margin-bottom: 24px;
 }
 
+@media (max-width: 1199px) {
+  .dashboard-content--rented--sell-post--button {
+    -webkit-box-flex: 0;
+        -ms-flex: none;
+            flex: none;
+    width: 100%;
+  }
+  .dashboard-content--rented--sell-post--button a {
+    width: 110px;
+    padding: 0;
+  }
+  .dashboard-content--rented--sell-post--button a span {
+    text-align: center;
+    display: block;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1199px) {
+  .dashboard-content--rented--sell-post--status {
+    margin-bottom: 32px;
+    -webkit-box-flex: 0;
+        -ms-flex: none;
+            flex: none;
+    width: 100%;
+  }
+}
+
 .dashboard-content .timer {
   margin-top: -60px;
 }
@@ -8970,6 +9002,13 @@ html {
 @media (max-width: 380px) {
   .vue-feedback-reaction span {
     font-size: 13px;
+  }
+}
+
+@media (min-width: 768px) {
+  .sell-post-modal .modal-dialog {
+    width: 700px;
+    max-width: 700px;
   }
 }
 

@@ -15,31 +15,42 @@
                             <!-- Game Type -->
                             <div class="select-categories">
                                 <h6>{{ $t('select_category', $store.state.locale) }}</h6>
-                            </div>
-                            <div class="select-categories" v-if="categories">
-                                <div class="accordion" id="accordionExample">
-                                    <div class="card" v-for="(item, index) in categories" :key="index">
-                                        <div class="card-header p-0" :id="'cat-' + index">
-                                            <h2 class="mb-0">
-                                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" :data-target="'#collapse'+ index" aria-expanded="false" aria-controls="collapseTwo">
-                                                    {{ item.name }}
-                                                </button>
-                                            </h2>
-                                        </div>
-                                        <div :id="'collapse'+ index" class="collapse" :aria-labelledby="'cat-' + index" data-parent="#accordionExample">
-                                            <div v-for="(subItem, index) in item.subcategory.data" :key="index" v-if="item.subcategory.data.length">
-                                                <label class="text-black py-a-1" @click="postsById(subItem.id)">{{ subItem.name }}</label>
-                                            </div>
-                                            <div v-if="item.subcategory.data.length === 0">
-                                                <label class="text-black py-a-1">No data found</label>
-                                            </div>
-                                        </div>
+                                <div class="form-group form-check" v-for="(category, index) in categories" :key="'category' + index" v-if="categories">
+<!--                                    <input type="checkbox" class="custom-control-input" :id="category.name + '-game'" :checked="checkedCategories.includes(category.slug)" @change="changeCheckedCategories(category.slug)">-->
+                                    <h6 v-if="category.subcategory.data.length">{{ category.name }}</h6>
+                                    <div v-for="(subItem, index) in category.subcategory.data" :key="index" v-if="category.subcategory.data.length" >
+                                        <input type="checkbox" class="custom-control-input" :id="subItem.name + '-game'" :checked="checkedCategories.includes(subItem.name)" @change="changeCheckedCategories(subItem.name)">
+                                        <label class="custom-control-label" :for="subItem.name + '-game'">{{subItem.name}}</label>
                                     </div>
                                 </div>
                             </div>
+<!--                            <div class="select-categories" v-if="categories">-->
+<!--                                <div class="accordion" id="accordionExample">-->
+<!--                                    <div class="card" v-for="(item, index) in categories" :key="index">-->
+<!--                                        <div class="card-header p-0" :id="'cat-' + index">-->
+<!--                                            <h2 class="mb-0">-->
+<!--                                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" :data-target="'#collapse'+ index" aria-expanded="false" aria-controls="collapseTwo">-->
+<!--                                                    {{ item.name }}-->
+<!--                                                </button>-->
+<!--                                            </h2>-->
+<!--                                        </div>-->
+<!--                                        <div :id="'collapse'+ index" class="collapse" :aria-labelledby="'cat-' + index" data-parent="#accordionExample">-->
+<!--                                            <div v-for="(subItem, index) in item.subcategory.data" :key="index" v-if="item.subcategory.data.length">-->
+<!--                                                <label class="text-black py-a-1" @click="postsById(subItem.id)">{{ subItem.name }}</label>-->
+<!--                                            </div>-->
+<!--                                            <div v-if="item.subcategory.data.length === 0">-->
+<!--                                                <label class="text-black py-a-1">No data found</label>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
                         </div>
                     </div>
                     <div class="col-md-8 col-lg-9 mb-3">
+                        <div class="games-categories-section--tag">
+                            <span v-for="(categoryItem, categoryIndex) in checkedCategories" :key="categoryItem + categoryIndex">{{categoryItem}} <div @click="removeCategoryFilter(categoryItem)" class="remove-icon"><i class="fas fa-times"></i></div></span>
+                        </div>
                         <div class="games-categories-section--games">
                             <div class="row">
                                 <div v-for="(item, index) in posts" :key="index" class="col-md-6 col-lg-4 mb-4" v-if="posts.length">
@@ -61,7 +72,7 @@
                                     </div>
                                   </router-link>
                                 </div>
-                                <div class="not-matching" v-if="posts.length === 0">
+                                <div class="not-matching" v-if="noPostFound">
                                     <h2>{{ $t('noting_to_show', $store.state.locale) }}</h2>
                                 </div>
                             </div>
@@ -78,8 +89,11 @@
     export default {
         data() {
             return {
+                noPostFound: true,
                 posts: [],
                 categories: [],
+                checkedCategories: [],
+                queryCategories: [],
                 isHidden: false,
                 noGameFound: false
             }
@@ -92,15 +106,60 @@
                   console.log(this.posts)
               });
           },
+          removeCategoryFilter(value) {
+              const index = this.checkedCategories.indexOf(value);
+              if ( index> -1) {
+                  this.checkedCategories.splice(index, 1);
+              }
+              console.log(this.checkedCategories)
+          },
+          changeCheckedCategories(value) {
+              const index = this.checkedCategories.indexOf(value);
+              if ( index> -1) {
+                  this.checkedCategories.splice(index, 1);
+              } else {
+                  this.checkedCategories.push(value);
+              }
+          },
+          fetchFilteredPosts() {
+              this.noPostFound = false;
+              if (this.$route.query.categories) {
+                  this.queryCategories = this.$route.query.categories
+              }
+              else {
+                  this.queryCategories = []
+              }
+              this.$api.get('sell-posts?include=subcategory&subcategory=' + this.queryCategories).then(resp => {
+                  this.posts = resp.data.data;
+                  if (!this.posts.length) {
+                      this.noPostFound = true;
+                  }
+              })
+
+          },
       },
       watch: {
-
+          checkedCategories: function (val) {
+              if (this.checkedCategories.length) {
+                  this.$router.push({
+                      query: Object.assign({}, this.$route.query, {
+                          categories: this.checkedCategories.join()
+                      })
+                  })
+              } else {
+                  this.$router.push({query: {}});
+              }
+              this.fetchFilteredPosts();
+          },
       },
       created() {
           this.posts = [];
           this.$api.get('sell-posts?include=subcategory').then(response => {
               this.posts = response.data.data;
               console.log(this.posts)
+              if (!this.posts.length) {
+                  this.noPostFound = true;
+              }
           });
           this.$api.get('categories?include=subcategory').then(response => {
               this.categories = response.data.data;

@@ -23,7 +23,6 @@
                                     <input type="checkbox" class="custom-control-input" id="physical_copy" :checked="checkedDiskType.includes('physical_copy')" @change="changeCheckedDiskType('physical_copy')">
                                     <label class="custom-control-label" for="physical_copy">{{ $t('physical_copy', $store.state.locale) }}</label>
                                 </div>
-
                             </div>
 
                             <!-- select categories -->
@@ -33,7 +32,6 @@
                                     <input type="checkbox" class="custom-control-input" :id="category.name + '-game'" :checked="checkedCategories.includes(category.slug)" @change="changeCheckedCategories(category.slug)">
                                     <label class="custom-control-label" :for="category.name + '-game'">{{category.name}}</label>
                                 </div>
-
                             </div>
                             <!-- platform -->
                             <div class="select-platforms">
@@ -45,7 +43,7 @@
                             </div>
                             <div class="clear">
                                 <a href="javascript:void(0)" class="clear-filters btn--secondery" id="clear-filters" @click="clearFilter()"><span>{{ $t('clear_filters', $store.state.locale) }}</span></a>
-                                <a href="#" class="clear-filters btn--secondery d-flex d-sm-none" id="filter-apply" v-on:click="toggleMenu()"><span>{{ $t('apply', $store.state.locale) }}</span></a>
+                                <a href="javascript:void(0)" class="clear-filters btn--secondery d-flex d-sm-none" id="filter-apply" v-on:click="toggleMenu()"><span>{{ $t('apply', $store.state.locale) }}</span></a>
                             </div>
                         </div>
                     </div>
@@ -59,7 +57,6 @@
                         <div class="games-categories-section--games">
                             <div class="row">
                                 <div v-for="(rent, index) in filteredGames" :key="index" class="col-md-6 col-lg-4 mb-4">
-<!--                                    <p>{{rent }}</p>-->
                                   <router-link :to="{ path: '/game-details/' + rent.game.data.slug}" class="games-categories-section--games--game-card-box game-card-hover-outer">
                                     <div class="game-card game-card-hover-inner">
                                         <div class="display-image" href="#">

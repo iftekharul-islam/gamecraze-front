@@ -16,7 +16,6 @@
                             <div class="select-categories">
                                 <h6>{{ $t('select_category', $store.state.locale) }}</h6>
                                 <div class="form-group form-check" v-for="(category, index) in categories" :key="'category' + index" v-if="categories">
-<!--                                    <input type="checkbox" class="custom-control-input" :id="category.name + '-game'" :checked="checkedCategories.includes(category.slug)" @change="changeCheckedCategories(category.slug)">-->
                                     <h6 v-if="category.subcategory.data.length">{{ category.name }}</h6>
                                     <div v-for="(subItem, index) in category.subcategory.data" :key="index" v-if="category.subcategory.data.length" >
                                         <input type="checkbox" class="custom-control-input" :id="subItem.name + '-game'" :checked="checkedCategories.includes(subItem.name)" @change="changeCheckedCategories(subItem.name)">
@@ -24,27 +23,6 @@
                                     </div>
                                 </div>
                             </div>
-<!--                            <div class="select-categories" v-if="categories">-->
-<!--                                <div class="accordion" id="accordionExample">-->
-<!--                                    <div class="card" v-for="(item, index) in categories" :key="index">-->
-<!--                                        <div class="card-header p-0" :id="'cat-' + index">-->
-<!--                                            <h2 class="mb-0">-->
-<!--                                                <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" :data-target="'#collapse'+ index" aria-expanded="false" aria-controls="collapseTwo">-->
-<!--                                                    {{ item.name }}-->
-<!--                                                </button>-->
-<!--                                            </h2>-->
-<!--                                        </div>-->
-<!--                                        <div :id="'collapse'+ index" class="collapse" :aria-labelledby="'cat-' + index" data-parent="#accordionExample">-->
-<!--                                            <div v-for="(subItem, index) in item.subcategory.data" :key="index" v-if="item.subcategory.data.length">-->
-<!--                                                <label class="text-black py-a-1" @click="postsById(subItem.id)">{{ subItem.name }}</label>-->
-<!--                                            </div>-->
-<!--                                            <div v-if="item.subcategory.data.length === 0">-->
-<!--                                                <label class="text-black py-a-1">No data found</label>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                    </div>-->
-<!--                                </div>-->
-<!--                            </div>-->
                         </div>
                     </div>
                     <div class="col-md-8 col-lg-9 mb-3">

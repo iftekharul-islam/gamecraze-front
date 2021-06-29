@@ -497,6 +497,9 @@
                                                             <div v-else-if="product.status === 2">
                                                                 <span class="pending br-0 f-s-16" >Pending</span>
                                                             </div>
+                                                            <div v-else-if="product.status === 3">
+                                                                <span class="pending br-0 f-s-16" >Rejected</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class=" mb-4 h-56">

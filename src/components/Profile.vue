@@ -497,6 +497,12 @@
                                                             <div v-else-if="product.status === 2">
                                                                 <span class="pending br-0 f-s-16" >Pending</span>
                                                             </div>
+                                                            <div v-else-if="product.status === 3">
+                                                                <span class="pending br-0 f-s-16" >Rejected</span>
+                                                            </div>
+                                                            <div v-else>
+                                                                <span class="pending br-0 f-s-16" >Inactive</span>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="dashboard-content--rented--sell-post--button mb-4">

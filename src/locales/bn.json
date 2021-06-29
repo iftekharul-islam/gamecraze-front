@@ -435,5 +435,6 @@
   "condition_summary" : "পণ্য সংক্ষিপ্তসার",
   "upload_images" : "আপলোড ছবি",
   "learn_about_create_sell_post" : "বিক্রয় পোস্ট তৈরি সম্পর্কে জানুন",
-  "created_at" : "পোস্ট তৈরি"
+  "created_at" : "পোস্ট তৈরি",
+  "info_update_notification" : "তথ্য সফলভাবে আপডেট হয়েছে !!"
 }

@@ -11121,6 +11121,53 @@ html {
   display: none;
 }
 
+.c-sliding-pagination__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.c-sliding-pagination__list-element {
+  padding: 0;
+  width: 36px;
+  height: 36px;
+  border: 1px solid #FFD715;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 0;
+  margin-right: 12px;
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
+.c-sliding-pagination__list-element:last-child {
+  margin-right: 0;
+}
+
+.c-sliding-pagination__list-element .c-sliding-pagination__page {
+  width: 100%;
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.c-sliding-pagination__list-element--active {
+  background: #FFD715;
+}
+
+.c-sliding-pagination__list-element--active .c-sliding-pagination__page {
+  color: #000;
+  font-weight: 600;
+}
+
 .page_404 {
   padding: 100px 0 180px 0;
   background: #fff;

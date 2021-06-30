@@ -87,6 +87,9 @@
             }
         },
       methods: {
+          onPageChange (page) {
+            this.current = page
+            },
           pageChangeHandler(selectedPage) {
               console.log(selectedPage);
               this.currentPage = selectedPage

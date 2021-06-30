@@ -56,8 +56,6 @@
                             </div>
                         </div>
                         <sliding-pagination
-                                ariaPreviousPageLabel="p"
-                                ariaNextPageLabel="n"
                                 :current="currentPage"
                                 :total="totalPages"
                                 @page-change="pageChangeHandler"

@@ -55,6 +55,13 @@
                                 </div>
                             </div>
                         </div>
+                        <sliding-pagination
+                                ariaPreviousPageLabel="p"
+                                ariaNextPageLabel="n"
+                                :current="currentPage"
+                                :total="totalPages"
+                                @page-change="pageChangeHandler"
+                        v-if="posts.length"></sliding-pagination>
                     </div>
                 </div>
             </div>
@@ -64,19 +71,29 @@
 </template>
 
 <script>
+    import SlidingPagination from 'vue-sliding-pagination'
     export default {
+        components: {SlidingPagination},
         data() {
             return {
-                noPostFound: true,
+                noPostFound: false,
                 posts: [],
                 categories: [],
                 checkedCategories: [],
                 queryCategories: [],
                 isHidden: false,
-                noGameFound: false
+                noGameFound: false,
+                pagination: '',
+                currentPage: 0,
+                totalPages: 0
             }
         },
       methods: {
+          pageChangeHandler(selectedPage) {
+              console.log(selectedPage);
+              this.currentPage = selectedPage
+              this.getSellPosts(selectedPage);
+          },
           postsById(id) {
               console.log(id);
               this.$api.get('sell-posts/'+ id + '?include=subcategory' ).then(response => {
@@ -107,14 +124,21 @@
               else {
                   this.queryCategories = []
               }
-              this.$api.get('sell-posts?include=subcategory&subcategory=' + this.queryCategories).then(resp => {
-                  this.posts = resp.data.data;
+              this.getSellPosts();
+
+          },
+          getSellPosts(page_no) {
+              this.$api.get('sell-posts?include=subcategory&page=' + page_no + '&subcategory=' + this.queryCategories).then(response => {
+                  this.posts = response.data.data;
+                  this.pagination = response.data.meta.pagination;
+                  this.currentPage = this.pagination.current_page
+                  this.totalPages = this.pagination.total_pages
+                  console.log(this.pagination)
                   if (!this.posts.length) {
                       this.noPostFound = true;
                   }
-              })
-
-          },
+              });
+          }
       },
       watch: {
           checkedCategories: function (val) {
@@ -132,13 +156,7 @@
       },
       created() {
           this.posts = [];
-          this.$api.get('sell-posts?include=subcategory').then(response => {
-              this.posts = response.data.data;
-              console.log(this.posts)
-              if (!this.posts.length) {
-                  this.noPostFound = true;
-              }
-          });
+          this.getSellPosts();
           this.$api.get('categories?include=subcategory').then(response => {
               this.categories = response.data.data;
               console.log(this.categories)
@@ -148,5 +166,10 @@
 
 
 </script>
-
+<style>
+    .c-sliding-pagination__list {
+        text-align: center;
+        margin: 1.5em 0;
+    }
+</style>
 

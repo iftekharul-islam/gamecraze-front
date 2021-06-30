@@ -45,11 +45,6 @@ Vue.component("v-select", vSelect);
 import VueAutosuggest from "vue-autosuggest";
 Vue.use(VueAutosuggest);
 
-// Paginator
-import Paginate from 'vuejs-paginate'
-Vue.component('paginate', Paginate)
-
-
 //vue-router
 import router from "./router/routes";
 

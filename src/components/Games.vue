@@ -293,9 +293,6 @@
               this.fetchFilteredGames();
           }
       },
-        computed: {
-
-        },
         created() {
             window.scrollTo(0,0);
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {
@@ -308,7 +305,7 @@
                 this.$api.get('rent-games/?ids=' + uniqueArr + '&include=assets,genres,platforms').then(resp => {
                   this.games = resp.data.data;
                 })
-                
+
             });
             this.$api.get('genres').then(response => {
                 this.categories = response.data.data;

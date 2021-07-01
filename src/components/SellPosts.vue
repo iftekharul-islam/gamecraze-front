@@ -23,6 +23,28 @@
                                     </div>
                                 </div>
                             </div>
+                            <!-- Filter -->
+                            <div class="select-platforms">
+                                <h6 class="margin__bottom">Filter</h6>
+                                <div class="form-group form-check">
+                                    <div>
+                                        <input type="checkbox" class="custom-control-input" id="price_filter" @change="sortPrice($event)">
+                                        <label class="custom-control-label" for="price_filter">Price (Low to High)</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="custom-control-input" id="new_type_filter" @change="sortNewType($event)">
+                                        <label class="custom-control-label" for="new_type_filter">New Product</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="custom-control-input" id="used_type_filter" @change="sortUsedType($event)">
+                                        <label class="custom-control-label" for="used_type_filter">Used Product</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="select-platforms">
+                                <h6>Price range</h6>
+                                <vue-range-slider ref="slider" v-model="value" :min="0" :max="1000" :enable-cross="false" :min-range="10"></vue-range-slider>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-8 col-lg-9 mb-3">
@@ -40,9 +62,11 @@
 
                                         </div>
                                        <div class="game-card--details">
-                                          <div> <h6>{{item.name}}</h6></div>
+                                          <h6>{{item.name}}</h6>
                                           <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                                              <div class="game-card--details--platforms"><a href="javascript:void(0)">{{ item.subcategory.data.name }}</a></div>
+                                              <div class="game-card--details--platforms">{{ item.subcategory.data.name }}</div>
+                                              <span v-if="item.product_type == 1">New</span>
+                                              <span v-if="item.product_type == 2">Used</span>
                                               <span>৳ {{ item.price }}</span>
                                           </div>
                                        </div>
@@ -59,7 +83,7 @@
                                 :current="currentPage"
                                 :total="totalPages"
                                 @page-change="pageChangeHandler"
-                        v-if="posts.length"></sliding-pagination>
+                        ></sliding-pagination>
                     </div>
                 </div>
             </div>
@@ -70,12 +94,15 @@
 
 <script>
     import SlidingPagination from 'vue-sliding-pagination'
+    import 'vue-range-component/dist/vue-range-slider.css'
+    import VueRangeSlider from 'vue-range-component'
     export default {
-        components: {SlidingPagination},
+        components: {SlidingPagination, VueRangeSlider},
         data() {
             return {
                 noPostFound: false,
                 posts: [],
+                allPosts: [],
                 categories: [],
                 checkedCategories: [],
                 queryCategories: [],
@@ -83,13 +110,26 @@
                 noGameFound: false,
                 pagination: '',
                 currentPage: 0,
-                totalPages: 0
+                totalPages: 0,
+                sortByPrice: '',
+                sortNew: '',
+                sortUsed: '',
+                value: [0,1000]
             }
         },
       methods: {
-          onPageChange (page) {
-            this.current = page
-            },
+          sortPrice(event){
+              this.sortByPrice = event.target.checked === true ? 1 : '';
+              this.getSellPosts();
+          },
+          sortNewType(event){
+              this.sortNew = event.target.checked === true ? 1 : '';
+              this.getSellPosts();
+          },
+          sortUsedType(event){
+              this.sortUsed = event.target.checked === true ? 1 : '';
+              this.getSellPosts();
+          },
           pageChangeHandler(selectedPage) {
               console.log(selectedPage);
               this.currentPage = selectedPage
@@ -128,19 +168,28 @@
               this.getSellPosts();
 
           },
-          getSellPosts(page_no) {
-              this.$api.get('sell-posts?include=subcategory&page=' + page_no + '&subcategory=' + this.queryCategories).then(response => {
+          getSellPosts(page_no = '') {
+              this.noPostFound = false;
+              this.$api.get('sell-posts?include=subcategory&page=' + page_no + '&subcategory=' + this.queryCategories + '&sortPrice=' + this.sortByPrice + '&sortNew=' + this.sortNew + '&sortUsed=' + this.sortUsed).then(response => {
                   this.posts = response.data.data;
+                  this.allPosts = this.posts;
                   this.pagination = response.data.meta.pagination;
                   this.currentPage = this.pagination.current_page
                   this.totalPages = this.pagination.total_pages
-                  console.log(this.pagination)
+                  this.sortByRange();
+                  console.log(this.posts)
                   if (!this.posts.length) {
                       this.noPostFound = true;
                   }
               });
+          },
+          sortByRange(){
+              this.posts = this.allPosts.filter(post => post.price >= this.value[0] && post.price <= this.value[1]);
           }
       },
+        computed: {
+
+        },
       watch: {
           checkedCategories: function (val) {
               if (this.checkedCategories.length) {
@@ -154,8 +203,18 @@
               }
               this.fetchFilteredPosts();
           },
+          value: function () {
+              console.log(this.value[0])
+              var min = this.value[0]
+              var max = this.value[1]
+              console.log(this.value[1])
+              this.sortByRange();
+              console.log(this.posts);
+          }
       },
       created() {
+          this.min = 0;
+          this.max = 250;
           this.posts = [];
           this.getSellPosts();
           this.$api.get('categories?include=subcategory').then(response => {
@@ -165,12 +224,5 @@
       }
     }
 
-
 </script>
-<style>
-    .c-sliding-pagination__list {
-        text-align: center;
-        margin: 1.5em 0;
-    }
-</style>
 

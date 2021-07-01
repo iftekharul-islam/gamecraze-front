@@ -28,8 +28,16 @@
                                 <h6 class="margin__bottom">Filter</h6>
                                 <div class="form-group form-check">
                                     <div>
-                                        <input type="checkbox" class="custom-control-input" id="price_filter" @change="sortPrice($event)">
-                                        <label class="custom-control-label" for="price_filter">Price (Low to High)</label>
+                                        <input type="radio" class="custom-control-input" id="asc_price_filter" name="sort_price" @change="ascPrice($event)">
+                                        <label class="custom-control-label" for="asc_price_filter">Price (Low To High)</label>
+                                    </div>
+                                    <div>
+                                        <input type="radio" class="custom-control-input" id="desc_price_filter" name="sort_price" @change="descPrice($event)">
+                                        <label class="custom-control-label" for="desc_price_filter">Price (High To Low)</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" class="custom-control-input" id="date_filter" @change="sortDate($event)">
+                                        <label class="custom-control-label" for="date_filter">Date (From Today)</label>
                                     </div>
                                     <div>
                                         <input type="checkbox" class="custom-control-input" id="new_type_filter" @change="sortNewType($event)">
@@ -44,6 +52,10 @@
                             <div class="select-platforms">
                                 <h6>Price range</h6>
                                 <vue-range-slider ref="slider" v-model="value" :min="0" :max="1000" :enable-cross="false" :min-range="10"></vue-range-slider>
+                            </div>
+                            <div class="select-platforms">
+                                    <input type="text" class="form-group col-md-4" name="min" v-model="minValue">
+                                    <input type="text" class="form-group col-md-4 float-right" name="max" v-model="maxValue">
                             </div>
                         </div>
                     </div>
@@ -100,6 +112,8 @@
         components: {SlidingPagination, VueRangeSlider},
         data() {
             return {
+                minValue: 100,
+                maxValue: 100,
                 noPostFound: false,
                 posts: [],
                 allPosts: [],
@@ -111,15 +125,33 @@
                 pagination: '',
                 currentPage: 0,
                 totalPages: 0,
-                sortByPrice: '',
+                ascByPrice: '',
+                descByPrice: '',
+                sortByDate: '',
                 sortNew: '',
                 sortUsed: '',
                 value: [0,1000]
             }
         },
       methods: {
-          sortPrice(event){
-              this.sortByPrice = event.target.checked === true ? 1 : '';
+          setValue() {
+              var arr = [];
+              arr.push(this.minValue, this.maxValue);
+              console.log(arr);
+          },
+          ascPrice(event){
+              this.descByPrice = '',
+              this.ascByPrice = event.target.checked === true ? 1 : '';
+              this.getSellPosts();
+          },
+          descPrice(event){
+              this.ascByPrice = '',
+              this.descByPrice = event.target.checked === true ? 1 : '';
+              this.getSellPosts();
+          },
+          sortDate(event){
+              this.sortByDate = event.target.checked === true ? 1 : '';
+              console.log(this.sortByDate)
               this.getSellPosts();
           },
           sortNewType(event){
@@ -170,26 +202,22 @@
           },
           getSellPosts(page_no = '') {
               this.noPostFound = false;
-              this.$api.get('sell-posts?include=subcategory&page=' + page_no + '&subcategory=' + this.queryCategories + '&sortPrice=' + this.sortByPrice + '&sortNew=' + this.sortNew + '&sortUsed=' + this.sortUsed).then(response => {
+              this.$api.get('sell-posts?include=subcategory&page=' + page_no + '&subcategory=' + this.queryCategories + '&ascPrice=' + this.ascByPrice + '&descPrice=' + this.descByPrice + '&sortDate=' + this.sortByDate + '&sortNew=' + this.sortNew + '&sortUsed=' + this.sortUsed + '&priceRange=' + this.value).then(response => {
                   this.posts = response.data.data;
                   this.allPosts = this.posts;
                   this.pagination = response.data.meta.pagination;
                   this.currentPage = this.pagination.current_page
                   this.totalPages = this.pagination.total_pages
-                  this.sortByRange();
                   console.log(this.posts)
                   if (!this.posts.length) {
                       this.noPostFound = true;
                   }
               });
           },
-          sortByRange(){
-              this.posts = this.allPosts.filter(post => post.price >= this.value[0] && post.price <= this.value[1]);
-          }
+          // sortByRange(){
+          //     this.posts = this.allPosts.filter(post => post.price >= this.value[0] && post.price <= this.value[1]);
+          // }
       },
-        computed: {
-
-        },
       watch: {
           checkedCategories: function (val) {
               if (this.checkedCategories.length) {
@@ -204,12 +232,7 @@
               this.fetchFilteredPosts();
           },
           value: function () {
-              console.log(this.value[0])
-              var min = this.value[0]
-              var max = this.value[1]
-              console.log(this.value[1])
-              this.sortByRange();
-              console.log(this.posts);
+              this.getSellPosts()
           }
       },
       created() {

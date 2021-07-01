@@ -457,8 +457,8 @@
                                                             <p class="text-white mb-2">{{ $t('created_at', $store.state.locale) }}</p>
                                                             <p class=" text-secondery mb-0">{{ formattedDate(product.created_at) }} </p>
                                                         </div>
-                                                        <label class="toggle-switch mt-0 mt-sm-1">
-                                                            <input type="checkbox" @change="sellPostStatusChange($event,product.id)" :checked="product.is_sold == 1" :disabled="product.status == 2"/>
+                                                        <label class="toggle-switch mt-0 mt-sm-1" v-if="product.status == 2">
+                                                            <input type="checkbox" @change="sellPostStatusChange($event,product.id)" :checked="product.is_sold == 1"/>
                                                             <span>
                                                             <span>Sold</span>
                                                             <span>Available</span>
@@ -1251,7 +1251,7 @@
                             <div class="tab-pane fade" id="v-pills-sell-post" role="tabpanel" aria-labelledby="v-pills-sell-post-tab">
                                 <div class="post-rent">
                                     <ValidationObserver ref="sellForm">
-                                        <form @submit.prevent="onSellPostSubmit" method="post" id="sellPostForm">
+                                        <form @submit.prevent="onSellPostSubmit" method="post" id="sellForm">
                                             <!-- form-group -->
                                             <div class="form-group post-rent--form-group">
                                                 <label class=" post-rent--form-group--label"></label>

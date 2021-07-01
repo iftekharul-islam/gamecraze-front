@@ -476,7 +476,7 @@ let router = new Router({
         },
         {
             path: '/about-sell-post',
-            name: 'sell-post',
+            name: 'sell-post-help',
             component: SellPost,
             meta: {
                 requiresAuth: false

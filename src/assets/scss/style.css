@@ -11168,6 +11168,13 @@ html {
   font-weight: 600;
 }
 
+.slider-process,
+.slider-tooltip {
+  background: #FFD715 !important;
+  border-color: #FFD715 !important;
+  color: #000 !important;
+}
+
 .page_404 {
   padding: 100px 0 180px 0;
   background: #fff;

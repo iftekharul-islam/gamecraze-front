@@ -202,7 +202,7 @@
                                              <div class="dashboard-content--rented--box--order-name">
                                                     <p v-if="rent.game" class="f-s-20 gil-bold mb-a-3 h-60">{{ rent.game.data.name }}</p>
                                             </div>
-                                            <div class="d-flex">
+                                            <div class="d-flex flex-wrap">
                                                 <div class="left flex-1">
                                                     <div class="disk-condition">
                                                         <p class="mb-2">{{ $t('disk_condition', $store.state.locale) }}</p>
@@ -223,7 +223,7 @@
                                                         <a class="toggle-ball"></a>
                                                     </label>
                                                 </div>
-                                                <div class="right flex-1">
+                                                <div class="right flex-1 mt-5 mt-sm-0">
                                                     <div class="platform">
                                                         <p class="mb-2">{{ $t('platform', $store.state.locale) }}</p>
                                                         <p class="text-secondery">{{ rent.platform.data.name }}</p>
@@ -449,7 +449,7 @@
                                                         <p class="f-s-20 gil-bold text-secondery" v-else>N/A</p>
                                                     </div>
                                                     <div class="start-date d-flex flex-column">
-                                                        <div>
+                                                        <div class="mb-4">
                                                             <p class="text-white mb-2">{{ $t('name', $store.state.locale) }}</p>
                                                             <p class=" text-secondery mb-0">{{ product.name }}</p>
                                                         </div>
@@ -457,7 +457,7 @@
                                                             <p class="text-white mb-2">{{ $t('created_at', $store.state.locale) }}</p>
                                                             <p class=" text-secondery mb-0">{{ formattedDate(product.created_at) }} </p>
                                                         </div>
-                                                        <label class="toggle-switch mt-0 mt-sm-2">
+                                                        <label class="toggle-switch mt-0 mt-sm-1">
                                                             <input type="checkbox" @change="sellPostStatusChange($event,product.id)" :checked="product.is_sold == 1" :disabled="product.status == 2"/>
                                                             <span>
                                                             <span>Sold</span>
@@ -467,9 +467,9 @@
                                                         </label>
                                                     </div>
                                                     <div class="payment d-flex flex-column">
-                                                        <div>
+                                                        <div class="mb-4">
                                                             <p class="text-white mb-2">{{ $t('sub_category', $store.state.locale) }}</p>
-                                                            <p class=" text-secondery">{{ product.subcategory.data.name }}</p>
+                                                            <p class=" text-secondery mb-0">{{ product.subcategory.data.name }}</p>
                                                         </div>
                                                         <div class="mb-4">
                                                             <p class="text-white mb-2">{{ $t('price', $store.state.locale) }}</p>

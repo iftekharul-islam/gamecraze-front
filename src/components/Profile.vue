@@ -570,13 +570,21 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group post-rent--form-group">
-                                                                                    <label for="sell-post-sub" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('sub_category', $store.state.locale) }}</label>
+                                                                                    <label class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('sub_category', $store.state.locale) }}</label>
                                                                                     <div class=" post-rent--form-group--input">
                                                                                         <ValidationProvider name="Sub category" rules="required" v-slot="{ errors }">
-                                                                                            <select class="custom-select" id="sell-post-sub" name="edit_sub_category" value="" v-model="editPostData.sub_category_id">
-                                                                                                <option>Select sub category</option>
-                                                                                                <option v-for="(category, index) in subCategories" :value="category.id" :key="category.id">{{ category.name }}</option>
-                                                                                            </select>
+<!--                                                                                            <select class="custom-select" id="sell-post-sub" name="edit_sub_category" value="" v-model="editPostData.sub_category_id">-->
+<!--                                                                                                <option>Select sub category</option>-->
+<!--                                                                                                <option v-for="(category, index) in subCategories" :value="category.id" :key="category.id">{{ category.name }}</option>-->
+<!--                                                                                            </select>-->
+                                                                                            <b-form-select
+                                                                                                    v-model="selected"
+                                                                                                    :options="subCategories"
+                                                                                                    class="custom-select"
+                                                                                                    value-field="id"
+                                                                                                    text-field="name"
+                                                                                                    disabled-field="notEnabled"
+                                                                                            ></b-form-select>
                                                                                             <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
                                                                                         </ValidationProvider>
                                                                                     </div>
@@ -1395,14 +1403,22 @@
     import StarRating from 'vue-star-rating';
     import UploadImages from "vue-upload-drop-images";
     import { VueFeedbackReaction } from 'vue-feedback-reaction';
+
     export default {
         components: {StarRating, FlipCountdown, Clipboard, VueFeedbackReaction, UploadImages},
         data() {
             return {
+                selected: '',
                 sellPostEditModalShow: false,
                 summaryModal: false,
                 onSellPostLoading: false,
-                subCategories: [],
+                // subCategories: [],
+                subCategories:[
+                                    { item: 'A', name: 'Option A' },
+                                    { item: 'B', name: 'Option B' },
+                                    { item: 'D', name: 'Option C', notEnabled: true },
+                                    { item: { d: 1 }, name: 'Option D' }
+                                ],
                 postImages: [],
                 editPostData: {
                     id: '',
@@ -1559,10 +1575,11 @@
                 this.editPostData.description = product.description
                 this.editPostData.price = product.price
                 this.editPostData.is_negotiable =  product.is_negotiable
-                this.editPostData.sub_category_id =  product.sub_category_id
+                // this.editPostData.selected =  product.sub_category_id
                 this.editPostData.images =  product.images
                 this.editPostData.phone_no =  product.phone_no
                 this.editPostData.address =  product.address
+                this.selected = product.sub_category_id
             },
             handleImages(files) {
                 if (files.length === 0) {
@@ -2196,7 +2213,7 @@
                     name: this.editPostData.name,
                     description: this.editPostData.description,
                     price: this.editPostData.price,
-                    sub_category_id: this.editPostData.sub_category_id,
+                    sub_category_id: this.selected,
                     is_negotiable: this.editPostData.is_negotiable,
                     phone_no: this.editPostData.phone_no,
                     address: this.editPostData.address,

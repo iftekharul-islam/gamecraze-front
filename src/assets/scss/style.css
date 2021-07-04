@@ -2752,6 +2752,32 @@ select option {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.d-grid {
+  display: -ms-grid;
+  display: grid;
+}
+
+.grid-cols-2 {
+  -ms-grid-columns: (minmax(0, 1fr))[2];
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.col-gap-10 {
+  grid-column-gap: 10px;
+}
+
+.col-gap-12 {
+  grid-column-gap: 12px;
+}
+
+.col-gap-14 {
+  grid-column-gap: 14px;
+}
+
+.col-gap-16 {
+  grid-column-gap: 16px;
+}
+
 @media (max-width: 575px) {
   .body-home .gamehub-menu {
     background: transparent;
@@ -11173,6 +11199,70 @@ html {
   background: #FFD715 !important;
   border-color: #FFD715 !important;
   color: #000 !important;
+}
+
+.range-slider {
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+  height: 0.5rem;
+}
+
+.range-slider__bar, .range-slider__highlight-bar {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 0.5rem;
+}
+
+.range-slider__bar {
+  background-color: #ddd;
+}
+
+.range-slider__highlight-bar {
+  background-color: #FFD715;
+  z-index: 2;
+}
+
+.range-slider__ball {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: none;
+  display: block;
+  position: absolute;
+  z-index: 2;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  top: calc(-50% - 0.25rem);
+  margin-left: -1rem;
+  border: 2px solid #FFD715;
+  background: #141A27;
+  -ms-touch-action: pan-x;
+  touch-action: pan-x;
+  transition: box-shadow .3s ease-out,background-color .3s ease,-webkit-transform .3s ease-out;
+  -webkit-transition: background-color .3s ease,-webkit-transform .3s ease-out,-webkit-box-shadow .3s ease-out;
+  transition: background-color .3s ease,-webkit-transform .3s ease-out,-webkit-box-shadow .3s ease-out;
+  transition: transform .3s ease-out,box-shadow .3s ease-out,background-color .3s ease;
+  transition: transform .3s ease-out,box-shadow .3s ease-out,background-color .3s ease,-webkit-transform .3s ease-out,-webkit-box-shadow .3s ease-out;
+  transition: transform .3s ease-out,box-shadow .3s ease-out,background-color .3s ease,-webkit-transform .3s ease-out;
+}
+
+.range-slider__ball::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: #FFD715;
+  border-radius: 50%;
+  display: block;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.range-slider__ball:focus {
+  outline: none;
 }
 
 .page_404 {

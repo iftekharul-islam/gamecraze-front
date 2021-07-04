@@ -22,7 +22,7 @@
                                             <div class="bg-image-gallery--item position-relative" v-for="(item, index) in coverImages" :key="index">
                                                 <input type="radio" :value="item.url" name="image-checkbox" :id="item.id" v-model="coverUrl" @click="submitAcitve == true" class="w-100 h-100" />
                                                 <label :for="item.id">
-                                                    <img :src="item.url" class="img-fluid">
+                                                    <img :src="item.url" class="img-fluid" :alt="item.url">
                                                 </label>
                                             </div>
                                        </div>
@@ -573,10 +573,6 @@
                                                                                     <label class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('sub_category', $store.state.locale) }}</label>
                                                                                     <div class=" post-rent--form-group--input">
                                                                                         <ValidationProvider name="Sub category" rules="required" v-slot="{ errors }">
-<!--                                                                                            <select class="custom-select" id="sell-post-sub" name="edit_sub_category" value="" v-model="editPostData.sub_category_id">-->
-<!--                                                                                                <option>Select sub category</option>-->
-<!--                                                                                                <option v-for="(category, index) in subCategories" :value="category.id" :key="category.id">{{ category.name }}</option>-->
-<!--                                                                                            </select>-->
                                                                                             <b-form-select
                                                                                                     v-model="selected"
                                                                                                     :options="subCategories"
@@ -610,12 +606,12 @@
 
                                                                                 </div>
 
-<!--                                                                                <div class="form-group post-rent&#45;&#45;form-group" v-if="editPostData.images.length">-->
-<!--                                                                                    <label for="sell-post-sub" class=" label-padding post-rent&#45;&#45;form-group&#45;&#45;label text-light text-left">{{ $t('images', $store.state.locale) }}</label>-->
-<!--                                                                                    <div class=" post-rent&#45;&#45;form-group&#45;&#45;input">-->
-<!--                                                                                        <img v-for="image in editPostData.images" :src="image" class="img-fluid mr-2" width="150" height="200">-->
-<!--                                                                                    </div>-->
-<!--                                                                                </div>-->
+                                                                                <div class="form-group post-rent--form-group" v-if="editPostData.images.length">
+                                                                                    <label  class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('images', $store.state.locale) }}</label>
+                                                                                    <div class=" post-rent--form-group--input">
+                                                                                        <img v-for="(image, index) in editPostData.images" :key="index" :src="image" class="img-fluid mr-2" width="150" height="200">
+                                                                                    </div>
+                                                                                </div>
                                                                                 <!-- form-group Button -->
                                                                                 <div class="form-group post-rent--form-group offer-edit-btn">
                                                                                     <label class=" label-padding post-rent--form-group--label text-light"></label>
@@ -1045,7 +1041,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr v-for="item in transactions">
+                                                    <tr v-for="(item, index) in transactions" :key="index">
                                                         <td>{{ item.transaction_id }}</td>
                                                         <td>{{ item.create }}</td>
                                                         <td>{{ Math.ceil(item.amount) }} Taka</td>
@@ -1120,7 +1116,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr v-for="item in walletHistory">
+                                                    <tr v-for="(item, index) in walletHistory" :key="index">
                                                         <td>{{ formattedDate(item.created_at) }}</td>
                                                         <td>{{ item.referred_user ? item.referred_user.name :'N/A' }}</td>
                                                         <td>{{ item.referred_user ? item.referred_user.email :  'N/A' }}</td>
@@ -1162,7 +1158,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr v-for="(rating, index) in ratingList" >
+                                                        <tr v-for="(rating, index) in ratingList" :key="index">
                                                             <td>{{ rating.lend.data.order.data.order_no }}</td>
                                                             <td>{{ rating.lend.data.rent.data.game.data.name }}</td>
                                                             <td v-if="rating.lender_id == $store.state.user.id">Lending</td>
@@ -1360,11 +1356,15 @@
                                                     <ValidationProvider name="Sub Category" rules="required" v-slot="{ errors }">
                                                         <select class="custom-select" id="sub_category" name="sub_category" v-model="sellData.sub_category_id">
                                                             <option value="">Select sub category</option>
-                                                            <option :value="category.id" v-for="category in subCategories">{{ category.name }}</option>
+                                                            <option :value="category.id" v-for="(category, index) in subCategories" :key="index">{{ category.name }}</option>
                                                         </select>
                                                         <span class="text-danger">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
+                                            </div>
+                                            <div class="form-group post-rent--form-group">
+                                                <label class="label-padding post-rent--form-group--label mt-0">{{ $t('upload_images', $store.state.locale) }} :</label>
+                                                <VueCropper v-show="selectedFile" ref="cropper" :src="selectedFile" alt="Source Image"></VueCropper>
                                             </div>
                                             <div class="form-group post-rent--form-group">
                                                 <label class=" label-padding post-rent--form-group--label mt-0">{{ $t('upload_images', $store.state.locale) }} :</label>
@@ -1399,13 +1399,13 @@
 </template>
 
 <script>
-    import FlipCountdown from 'vue2-flip-countdown';
     import StarRating from 'vue-star-rating';
     import UploadImages from "vue-upload-drop-images";
     import { VueFeedbackReaction } from 'vue-feedback-reaction';
-
+    import VueCropper from 'vue-cropperjs';
+    import 'cropperjs/dist/cropper.css';
     export default {
-        components: {StarRating, FlipCountdown, Clipboard, VueFeedbackReaction, UploadImages},
+        components: {StarRating, VueFeedbackReaction, UploadImages, VueCropper},
         data() {
             return {
                 selected: '',
@@ -1694,7 +1694,7 @@
                 this.ratingPopupModal = true;
                 this.ratingData.value = data;
             },
-            onCopy: function (e) {
+            onCopy: function () {
                 this.$toaster.success( this.$t('link_copied_successfully', this.$store.state.locale) );
             },
             onError: function (e) {
@@ -1984,12 +1984,12 @@
                     } else {
                         setTimeout(function(){
                             // window.location.reload();
-                            $('#v-pills-edit-profile-tab').removeClass('active');
-                            $('#v-pills-edit-profile').removeClass('active');
-                            $('#v-pills-edit-profile').removeClass('show');
-                            $('#v-pills-overview-tab').addClass('active');
-                            $('#v-pills-overview').addClass('active');
-                            $('#v-pills-overview').addClass('show');
+                            ('#v-pills-edit-profile-tab').removeClass('active');
+                            ('#v-pills-edit-profile').removeClass('active');
+                            ('#v-pills-edit-profile').removeClass('show');
+                            ('#v-pills-overview-tab').addClass('active');
+                            ('#v-pills-overview').addClass('active');
+                            ('#v-pills-overview').addClass('show');
                         }, 1000);
                     }
 
@@ -1999,7 +1999,7 @@
                 evt = (evt) ? evt : window.event;
                 var charCode = (evt.which) ? evt.which : evt.keyCode;
                 if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.form.phone_number.length > 10) {
-                    evt.preventDefault();;
+                    evt.preventDefault();
                 } else {
                     return true;
                 }
@@ -2019,8 +2019,8 @@
                         this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
                         return;
                     }
-                    let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
-                    if (fileSzie > 5102) { //5mb
+                    let fileSize =  Math.round((event.srcElement.files[0].size / 1024));
+                    if (fileSize > 5102) { //5mb
                         this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
                         return;
                     }
@@ -2041,8 +2041,8 @@
                         this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
                         return;
                     }
-                    let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
-                    if (fileSzie > 5120) { //5mb
+                    let fileSize =  Math.round((event.srcElement.files[0].size / 1024));
+                    if (fileSize > 5120) { //5mb
                         this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
                         return;
                     }
@@ -2063,8 +2063,8 @@
                         this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
                         return;
                     }
-                    let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
-                    if (fileSzie > 5120) { //5mb
+                    let fileSize =  Math.round((event.srcElement.files[0].size / 1024));
+                    if (fileSize > 5120) { //5mb
                         this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
                         return;
                     }
@@ -2083,8 +2083,8 @@
                         this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
                         return;
                     }
-                    let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
-                    if (fileSzie > 5120) { //5mb
+                    let fileSize =  Math.round((event.srcElement.files[0].size / 1024));
+                    if (fileSize > 5120) { //5mb
                         this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
                         return;
                     }
@@ -2104,8 +2104,8 @@
                         this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
                         return;
                     }
-                    let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
-                    if (fileSzie > 5120) { //5mb
+                    let fileSize =  Math.round((event.srcElement.files[0].size / 1024));
+                    if (fileSize > 5120) { //5mb
                         this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
                         return;
                     }
@@ -2125,8 +2125,8 @@
                         this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
                         return;
                     }
-                    let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
-                    if (fileSzie > 5120) { //5mb
+                    let fileSize =  Math.round((event.srcElement.files[0].size / 1024));
+                    if (fileSize > 5120) { //5mb
                         this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
                         return;
                     }
@@ -2185,12 +2185,12 @@
 
                                 this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
 
-                                $('#v-pills-sell-post-tab').removeClass('active');
-                                $('#v-pills-sell-post').removeClass('active');
-                                $('#v-pills-sell-post').removeClass('show');
-                                $('#v-pills-dashboard-tab').addClass('active');
-                                $('#v-pills-dashboard').addClass('active');
-                                $('#v-pills-dashboard').addClass('show');
+                                ('#v-pills-sell-post-tab').removeClass('active');
+                                ('#v-pills-sell-post').removeClass('active');
+                                ('#v-pills-sell-post').removeClass('show');
+                                ('#v-pills-dashboard-tab').addClass('active');
+                                ('#v-pills-dashboard').addClass('active');
+                                ('#v-pills-dashboard').addClass('show');
                                 this.sellPostCheck()
                                 this.onSellPost();
                                 this.onSellPostLoading = false;
@@ -2268,7 +2268,8 @@
 
                 this.$api.post('rents', uploadInfo, config)
                     .then(response => {
-                        this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
+                      console.log(response)
+                      this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
                         setTimeout(function () {
                                 // this.rentData.game = '';
                                 // this.rentData.max_week = 1;
@@ -2295,6 +2296,7 @@
             },
             clickHandler(item) {
               // event fired when clicking on the input
+              console.log(item)
             },
             onSelected(item) {
               this.rentData.game = item.item;
@@ -2306,7 +2308,7 @@
             },
             onInputChange(text) {
               // event fired when the input changes
-              // console.log(text)
+              console.log(text)
             },
             /**
              * This is what the <input/> value is set to when you are selecting a suggestion.
@@ -2315,7 +2317,7 @@
               return suggestion.item.name;
             },
             focusMe(e) {
-              // console.log(e) // FocusEvent
+              console.log(e) // FocusEvent
             },
             todayDate(daysToAdd = 0) {
               var today = new Date();
@@ -2348,8 +2350,8 @@
                         this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
                         return;
                     }
-                    let fileSzie =  Math.round((event.srcElement.files[0].size / 1024));
-                    if (fileSzie > 5120) { //5mb
+                    let fileSize =  Math.round((event.srcElement.files[0].size / 1024));
+                    if (fileSize > 5120) { //5mb
                         this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
                         return;
                     }
@@ -2466,75 +2468,75 @@
                 });
             },
             rentPostTab() {
-                $('#v-pills-overview-tab').removeClass('active');
-                $('#v-pills-overview').removeClass('active');
-                $('#v-pills-overview').removeClass('show');
-                $('#v-pills-post-rent-tab').addClass('active');
-                $('#v-pills-post-rent').addClass('show');
-                $('#v-pills-post-rent').addClass('active');
-                $('#v-pills-edit-profile-tab').removeClass('active');
-                $('#v-pills-edit-profile').removeClass('active');
-                $('#v-pills-edit-profile').removeClass('show');
-                $('#v-pills-dashboard-tab').removeClass('active');
-                $('#v-pills-dashboard').removeClass('active');
-                $('#v-pills-dashboard').removeClass('show');
-                $('#v-pills-my-earning-tab').removeClass('active');
-                $('#v-pills-my-earning').removeClass('active');
-                $('#v-pills-my-earning').removeClass('show');
-                $('#v-pills-refer-tab').removeClass('active');
-                $('#v-pills-refer').removeClass('active');
-                $('#v-pills-refer').removeClass('show');
-                $('#v-pills-rating-tab').removeClass('active');
-                $('#v-pills-rating').removeClass('active');
-                $('#v-pills-rating').removeClass('show');
+                ('#v-pills-overview-tab').removeClass('active');
+                ('#v-pills-overview').removeClass('active');
+                ('#v-pills-overview').removeClass('show');
+                ('#v-pills-post-rent-tab').addClass('active');
+                ('#v-pills-post-rent').addClass('show');
+                ('#v-pills-post-rent').addClass('active');
+                ('#v-pills-edit-profile-tab').removeClass('active');
+                ('#v-pills-edit-profile').removeClass('active');
+                ('#v-pills-edit-profile').removeClass('show');
+                ('#v-pills-dashboard-tab').removeClass('active');
+                ('#v-pills-dashboard').removeClass('active');
+                ('#v-pills-dashboard').removeClass('show');
+                ('#v-pills-my-earning-tab').removeClass('active');
+                ('#v-pills-my-earning').removeClass('active');
+                ('#v-pills-my-earning').removeClass('show');
+                ('#v-pills-refer-tab').removeClass('active');
+                ('#v-pills-refer').removeClass('active');
+                ('#v-pills-refer').removeClass('show');
+                ('#v-pills-rating-tab').removeClass('active');
+                ('#v-pills-rating').removeClass('active');
+                ('#v-pills-rating').removeClass('show');
             },
             rentGamesTab() {
-                $('#v-pills-overview-tab').removeClass('active');
-                $('#v-pills-overview').removeClass('active');
-                $('#v-pills-overview').removeClass('show');
-                $('#v-pills-post-rent-tab').removeClass('active');
-                $('#v-pills-post-rent').removeClass('show');
-                $('#v-pills-post-rent').removeClass('active');
-                $('#v-pills-edit-profile-tab').removeClass('active');
-                $('#v-pills-edit-profile').removeClass('active');
-                $('#v-pills-edit-profile').removeClass('show');
-                $('#v-pills-dashboard-tab').addClass('active');
-                $('#v-pills-dashboard').addClass('active');
-                $('#v-pills-dashboard').addClass('show');
-                $('#v-pills-my-earning-tab').removeClass('active');
-                $('#v-pills-my-earning').removeClass('active');
-                $('#v-pills-my-earning').removeClass('show');
-                $('#v-pills-refer-tab').removeClass('active');
-                $('#v-pills-refer').removeClass('active');
-                $('#v-pills-refer').removeClass('show');
-                $('#v-pills-rating-tab').removeClass('active');
-                $('#v-pills-rating').removeClass('active');
-                $('#v-pills-rating').removeClass('show');
+                ('#v-pills-overview-tab').removeClass('active');
+                ('#v-pills-overview').removeClass('active');
+                ('#v-pills-overview').removeClass('show');
+                ('#v-pills-post-rent-tab').removeClass('active');
+                ('#v-pills-post-rent').removeClass('show');
+                ('#v-pills-post-rent').removeClass('active');
+                ('#v-pills-edit-profile-tab').removeClass('active');
+                ('#v-pills-edit-profile').removeClass('active');
+                ('#v-pills-edit-profile').removeClass('show');
+                ('#v-pills-dashboard-tab').addClass('active');
+                ('#v-pills-dashboard').addClass('active');
+                ('#v-pills-dashboard').addClass('show');
+                ('#v-pills-my-earning-tab').removeClass('active');
+                ('#v-pills-my-earning').removeClass('active');
+                ('#v-pills-my-earning').removeClass('show');
+                ('#v-pills-refer-tab').removeClass('active');
+                ('#v-pills-refer').removeClass('active');
+                ('#v-pills-refer').removeClass('show');
+                ('#v-pills-rating-tab').removeClass('active');
+                ('#v-pills-rating').removeClass('active');
+                ('#v-pills-rating').removeClass('show');
 
                 this.onRentedGames();
             },
             editProfileTab () {
-                $('#v-pills-edit-profile-tab').addClass('active');
-                $('#v-pills-edit-profile').addClass('active');
-                $('#v-pills-edit-profile').addClass('show');
-                $('#v-pills-overview-tab').removeClass('active');
-                $('#v-pills-overview').removeClass('active');
-                $('#v-pills-overview').removeClass('show');
-                $('#v-pills-post-rent-tab').removeClass('active');
-                $('#v-pills-post-rent').removeClass('show');
-                $('#v-pills-post-rent').removeClass('active');
-                $('#v-pills-dashboard-tab').removeClass('active');
-                $('#v-pills-dashboard').removeClass('active');
-                $('#v-pills-dashboard').removeClass('show');
-                $('#v-pills-my-earning-tab').removeClass('active');
-                $('#v-pills-my-earning').removeClass('show');
-                $('#v-pills-my-earning').removeClass('show');
-                $('#v-pills-refer-tab').removeClass('active');
-                $('#v-pills-refer').removeClass('active');
-                $('#v-pills-refer').removeClass('show');
-                $('#v-pills-rating-tab').removeClass('active');
-                $('#v-pills-rating').removeClass('active');
-                $('#v-pills-rating').removeClass('show');
+                ('#v-pills-edit-profile-tab').addClass('active');
+                ('#v-pills-edit-profile').addClass('active');
+                ('#v-pills-edit-profile').addClass('show');
+                ('#v-pills-overview-tab').removeClass('active');
+                ('#v-pills-overview').removeClass('active');
+                ('#v-pills-overview').removeClass('show');
+                ('#v-pills-post-rent-tab').removeClass('active');
+                ('#v-pills-post-rent').removeClass('show');
+                ('#v-pills-post-rent').removeClass('active');
+                ('#v-pills-dashboard-tab').removeClass('active');
+                ('#v-pills-dashboard').removeClass('active');
+                ('#v-pills-dashboard').removeClass('show');
+                ('#v-pills-my-earning-tab').removeClass('active');
+                ('#v-pills-my-earning').removeClass('show');
+                ('#v-pills-my-earning').removeClass('show');
+                ('#v-pills-refer-tab').removeClass('active');
+                ('#v-pills-refer').removeClass('active');
+                ('#v-pills-refer').removeClass('show');
+                ('#v-pills-rating-tab').removeClass('active');
+                ('#v-pills-rating').removeClass('active');
+                ('#v-pills-rating').removeClass('show');
             }
         },
         created() {
@@ -2565,27 +2567,27 @@
               });
 
             this.$root.$on('userRating', () => {
-                $('#v-pills-rating-tab').addClass('active');
-                $('#v-pills-rating').addClass('active');
-                $('#v-pills-rating').addClass('show');
-                $('#v-pills-edit-profile-tab').removeClass('active');
-                $('#v-pills-edit-profile').removeClass('active');
-                $('#v-pills-edit-profile').removeClass('show');
-                $('#v-pills-overview-tab').removeClass('active');
-                $('#v-pills-overview').removeClass('active');
-                $('#v-pills-overview').removeClass('show');
-                $('#v-pills-post-rent-tab').removeClass('active');
-                $('#v-pills-post-rent').removeClass('show');
-                $('#v-pills-post-rent').removeClass('active');
-                $('#v-pills-dashboard-tab').removeClass('active');
-                $('#v-pills-dashboard').removeClass('active');
-                $('#v-pills-dashboard').removeClass('show');
-                $('#v-pills-my-earning-tab').removeClass('active');
-                $('#v-pills-my-earning').removeClass('show');
-                $('#v-pills-my-earning').removeClass('show');
-                $('#v-pills-refer-tab').removeClass('active');
-                $('#v-pills-refer').removeClass('active');
-                $('#v-pills-refer').removeClass('show');
+                ('#v-pills-rating-tab').addClass('active');
+                ('#v-pills-rating').addClass('active');
+                ('#v-pills-rating').addClass('show');
+                ('#v-pills-edit-profile-tab').removeClass('active');
+                ('#v-pills-edit-profile').removeClass('active');
+                ('#v-pills-edit-profile').removeClass('show');
+                ('#v-pills-overview-tab').removeClass('active');
+                ('#v-pills-overview').removeClass('active');
+                ('#v-pills-overview').removeClass('show');
+                ('#v-pills-post-rent-tab').removeClass('active');
+                ('#v-pills-post-rent').removeClass('show');
+                ('#v-pills-post-rent').removeClass('active');
+                ('#v-pills-dashboard-tab').removeClass('active');
+                ('#v-pills-dashboard').removeClass('active');
+                ('#v-pills-dashboard').removeClass('show');
+                ('#v-pills-my-earning-tab').removeClass('active');
+                ('#v-pills-my-earning').removeClass('show');
+                ('#v-pills-my-earning').removeClass('show');
+                ('#v-pills-refer-tab').removeClass('active');
+                ('#v-pills-refer').removeClass('active');
+                ('#v-pills-refer').removeClass('show');
 
             });
             //Cover image
@@ -2650,10 +2652,10 @@
 
 
             this.$store.watch(
-                (state)=>{
+                ()=>{
                     return this.$store.state.user // could also put a Getter here
                 },
-                (newValue, oldValue)=>{
+                (newValue)=>{
                     this.user = newValue;
                 },
                 //Optional Deep if you need it

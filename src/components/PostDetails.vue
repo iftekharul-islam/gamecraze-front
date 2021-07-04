@@ -10,7 +10,7 @@
                     <li>{{ post.product_no }}</li>
                     <li>{{ post.created_at }}</li>
                     <li>
-                        <img v-for="image in post.images" :src="image" class="img-fluid mr-2" width="200">
+                        <img v-for="(image, index) in post.images" :src="image" :key="index" class="img-fluid mr-2" width="200">
                     </li>
                 </ul>
             </div>
@@ -22,27 +22,16 @@
 
     export default {
         name: 'post-details',
-        props: ['id'],
+        props: ['id', 'slug'],
         data() {
             return {
                 post: ''
             }
         },
-        watch: {
-
-        },
-        methods: {
-
-
-        },
-        computed: {
-
-        },
         created() {
             window.scrollTo(0,0);
             this.$api.get('sell-post/'+ this.id +'?include=subcategory').then(response => {
                 this.post = response.data.data;
-                console.log(this.post)
             });
 
         },

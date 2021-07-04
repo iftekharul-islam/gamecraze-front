@@ -467,7 +467,7 @@ let router = new Router({
             }
         },
         {
-            path: '/sell-post/:id/post-details',
+            path: '/sell-post/:id/:slug',
             name: 'post-details',
             component: PostDetails,
             props: true,

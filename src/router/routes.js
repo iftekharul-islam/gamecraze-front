@@ -57,6 +57,7 @@ import OrderDetails from '../components/OrderDetails';
 import SellPosts from '../components/SellPosts';
 import PostDetails from '../components/PostDetails';
 import SellPost from '../components/SellPostHelp'
+import Cropper from "../components/Cropper";
 
 let router = new Router({
     mode: 'history',
@@ -478,6 +479,14 @@ let router = new Router({
             path: '/about-sell-post',
             name: 'sell-post-help',
             component: SellPost,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/cropper',
+            name: 'cropper',
+            component: Cropper,
             meta: {
                 requiresAuth: false
             }

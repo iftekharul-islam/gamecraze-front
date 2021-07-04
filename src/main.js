@@ -12,8 +12,13 @@ import '@fortawesome/fontawesome-free/js/all.js'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue);
-// Optionally install the BootstrapVue icon components plugin
+//Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
+
+// cropper js
+import VueCropper from 'vue-cropperjs';
+import 'cropperjs/dist/cropper.css';
+Vue.component(VueCropper);
 
 global.jQuery = require('jquery/dist/jquery.min');
 let $ = global.jQuery;

@@ -33,9 +33,8 @@
     import axios from 'axios'
     import VueCropper from 'vue-cropperjs'
     import 'cropperjs/dist/cropper.css'
-    import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
     export default {
-        components: { VueCropper, BootstrapVue,  IconsPlugin},
+        components: { VueCropper},
         props: ['image_name'],
         data() {
             return {

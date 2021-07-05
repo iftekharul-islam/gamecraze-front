@@ -1368,7 +1368,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group post-rent--form-group">
-                                                <label class="label-padding post-rent--form-group--label mt-0">{{ $t('upload_images', $store.state.locale) }} :</label>
+                                                <label class="label-padding post-rent--form-group--label mt-0">{{ $t('cover_image', $store.state.locale) }} :</label>
                                                 <div class=" post-rent--form-group--input">
                                                   <div class="custom-file">
                                                     <a class="btn--secondery" @click="$refs.FileInput.click()">Upload image</a>
@@ -1384,7 +1384,8 @@
                                                               ref="cropper"
                                                               :src="postCoverImage"
                                                               :scalable="false"
-                                                              dragMode="none"
+                                                              dragMode="move"
+                                                              :cropBoxMovable="false"
                                                               :cropBoxResizable="false"
                                                               :minContainerWidth="250"
                                                               :minContainerHeight="300"
@@ -1617,7 +1618,7 @@
               const reader = new FileReader()
               reader.onload = (event) => {
                 this.postCoverImage = event.target.result
-                // this.$refs.cropper.replace(this.postCoverImage)
+                this.$refs.cropper.replace(this.postCoverImage)
               }
               reader.readAsDataURL(file)
             } else {

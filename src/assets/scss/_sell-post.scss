@@ -106,5 +106,21 @@
             }
         }
       }
-    
-
+    .sell-post-modal-img {
+            &:hover {
+                .image-cancel {
+                    opacity: 1;
+                    visibility: visible;
+                    user-select:initial;
+                    z-index: 5;
+                }
+            }
+        
+    }
+    .image-cancel {
+        opacity: 0;
+        visibility: hidden;
+        user-select: none;
+        z-index: -5;
+        transition: all .3s ease-in;
+    }

@@ -1369,7 +1369,36 @@
                                             </div>
                                             <div class="form-group post-rent--form-group">
                                                 <label class="label-padding post-rent--form-group--label mt-0">{{ $t('upload_images', $store.state.locale) }} :</label>
-                                                <VueCropper v-show="selectedFile" ref="cropper" :src="selectedFile" alt="Source Image"></VueCropper>
+                                                <div class=" post-rent--form-group--input">
+                                                  <div class="custom-file">
+                                                    <a class="btn--secondery" @click="$refs.FileInput.click()">Upload image</a>
+                                                    <input ref="FileInput" type="file" style="display: none;" @change="onFileSelect" />
+                                                  </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group post-rent--form-group" v-if="postCoverImage">
+                                              <label class="label-padding post-rent--form-group--label mt-0">Image preview :</label>
+                                              <div class=" post-rent--form-group--input">
+                                                <div class="img-prev">
+                                                  <VueCropper v-show="postCoverImage"
+                                                              ref="cropper"
+                                                              :src="postCoverImage"
+                                                              :scalable="false"
+                                                              dragMode="none"
+                                                              :cropBoxResizable="false"
+                                                              :minContainerWidth="250"
+                                                              :minContainerHeight="300"
+                                                              alt="Disk image preview">
+
+                                                  </VueCropper>
+                                                </div>
+                                                <div class="my-2">
+                                                  <a class="btn--secondery" @click="saveImage(), (dialog = false)">Crop</a>
+                                                </div>
+                                                <div class="img-prev" v-if="sellData.cover_image">
+                                                  <img :src="sellData.cover_image" alt="Cover image preview">
+                                                </div>
+                                              </div>
                                             </div>
                                             <div class="form-group post-rent--form-group">
                                                 <label class=" label-padding post-rent--form-group--label mt-0">{{ $t('upload_images', $store.state.locale) }} :</label>
@@ -1409,10 +1438,14 @@
     import { VueFeedbackReaction } from 'vue-feedback-reaction';
     import VueCropper from 'vue-cropperjs';
     import 'cropperjs/dist/cropper.css';
+    import axios from "axios";
     export default {
         components: {StarRating, VueFeedbackReaction, UploadImages, VueCropper},
         data() {
             return {
+                previewImage : '',
+                postCoverImage: '',
+                postCoverImageName: '',
                 selected: '',
                 sellPostEditModalShow: false,
                 summaryModal: false,
@@ -1447,7 +1480,8 @@
                     product_image: '',
                     phone_no: '',
                     address: '',
-                    summary: ''
+                    summary: '',
+                    cover_image: ''
                 },
                 extend: {
                     week: '',
@@ -1560,7 +1594,9 @@
                 walletHistory: [],
                 copyUrl: '',
                 ratingList: [],
-
+                mime_type: '',
+                dialog: false,
+                croppedImage: ''
             }
         },
         watch: {
@@ -1571,6 +1607,32 @@
             },
         },
         methods: {
+          onFileSelect(e) {
+            const file = e.target.files[0]
+            this.mime_type = file.type
+            console.log(this.mime_type)
+            console.log(file);
+            if (typeof FileReader === 'function') {
+              this.dialog = true
+              const reader = new FileReader()
+              reader.onload = (event) => {
+                this.postCoverImage = event.target.result
+                // this.$refs.cropper.replace(this.postCoverImage)
+              }
+              reader.readAsDataURL(file)
+            } else {
+              alert('Sorry, FileReader API not supported')
+            }
+          },
+          saveImage() {
+            this.sellData.cover_image = this.$refs.cropper.getCroppedCanvas().toDataURL()
+            console.log(this.sellData.cover_image);
+            this.$refs.cropper.getCroppedCanvas().toBlob((blob) => {
+              const formData = new FormData()
+              formData.append('profile_photo', blob, 'name.jpeg')
+              console.log(blob, 'blob');
+            }, this.mime_type)
+          },
             sellPostEditModal(product) {
                 console.log(product)
                 this.sellPostEditModalShow = true
@@ -2058,6 +2120,27 @@
                     fileReader.readAsDataURL(event.target.files[0]);
                 }
             },
+            onSellPostImageChange (event) {
+              let fileReader = new FileReader();
+
+              if (event.srcElement.files.length > 0) {
+                let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+                if (allowedTypes.indexOf(event.srcElement.files[0].type) == -1) {
+                  this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
+                  return;
+                }
+                let fileSize =  Math.round((event.srcElement.files[0].size / 1024));
+                if (fileSize > 5120) { //5mb
+                  this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
+                  return;
+                }
+                this.postCoverImageName = event.srcElement.files[0].name;
+                fileReader.onload = (e) => {
+                  this.postCoverImage = e.target.result;
+                }
+                fileReader.readAsDataURL(event.target.files[0]);
+              }
+            },
             //rent post
             onDiskimageChange (event) {
                 let fileReader = new FileReader();
@@ -2167,7 +2250,8 @@
                         phone_no: this.sellData.phone_no,
                         address: this.sellData.address,
                         images: this.postImages,
-                        condition_summary: this.sellData.summary
+                        condition_summary: this.sellData.summary,
+                        cover_image: this.sellData.cover_image,
                     }
                     let config = {
                         headers: {
@@ -2221,7 +2305,7 @@
                     sub_category_id: this.selected,
                     is_negotiable: this.editPostData.is_negotiable,
                     phone_no: this.editPostData.phone_no,
-                    address: this.editPostData.address,
+                    address: this.editPostData.address
                 };
 
                 this.$api.post('sell-post-update', data, config).then(response => {

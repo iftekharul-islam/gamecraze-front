@@ -608,8 +608,13 @@
 
                                                                                 <div class="form-group post-rent--form-group" v-if="editPostData.images.length">
                                                                                     <label  class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('images', $store.state.locale) }}</label>
-                                                                                    <div class=" post-rent--form-group--input">
-                                                                                        <img v-for="(image, index) in editPostData.images" :key="index" :src="image" class="img-fluid mr-2" width="150" height="200">
+                                                                                    <div class="post-rent--form-group--input d-grid grid-cols-2 grid-sm-cols-3 grid-gap-10 grid-rows-100 grid-auto-rows-100">
+                                                                                       <div class="position-relative sell-post-modal-img" v-for="(image, index) in editPostData.images" :key="index">
+                                                                                            <img :src="image" class="img-fluid h-100" width="150" height="100">
+                                                                                            <span class="image-cancel position-absolute top-0 left-0 w-100 h-100 d-flex align-items-center justify-content-center sellpost-img-bg pointer">
+                                                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M16.2427 6.34315L12.0001 10.5858L7.75744 6.34315L6.34323 7.75736L10.5859 12L6.34323 16.2426L7.75744 17.6569L12.0001 13.4142L16.2427 17.6569L17.6569 16.2426L13.4143 12L17.6569 7.75736L16.2427 6.34315Z" fill="#FFD715"></path></svg>
+                                                                                            </span>
+                                                                                       </div>
                                                                                     </div>
                                                                                 </div>
                                                                                 <!-- form-group Button -->

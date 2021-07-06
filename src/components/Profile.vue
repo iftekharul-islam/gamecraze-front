@@ -618,10 +618,45 @@
                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
+                                                                              <div class="form-group post-rent--form-group">
+                                                                                <label class="label-padding post-rent--form-group--label mt-0">{{ $t('cover_image', $store.state.locale) }} :</label>
+                                                                                <div class=" post-rent--form-group--input">
+                                                                                  <div class="custom-file">
+                                                                                    <a class="btn--secondery" @click="$refs.FileInput.click()">Upload image</a>
+                                                                                    <input ref="FileInput" type="file" style="display: none;" @change="onEditFileSelect" />
+                                                                                  </div>
+                                                                                </div>
+                                                                              </div>
+                                                                              <div class="form-group post-rent--form-group" v-if="editPostData.dialog">
+                                                                                <label class="label-padding post-rent--form-group--label mt-0">Image preview :</label>
+                                                                                <div class=" post-rent--form-group--input">
+                                                                                  <div class="img-prev">
+                                                                                    <VueCropper v-show="editPostData.postCoverImage"
+                                                                                                ref="cropper"
+                                                                                                :src="editPostData.postCoverImage"
+                                                                                                :scalable="false"
+                                                                                                dragMode="move"
+                                                                                                :cropBoxMovable="false"
+                                                                                                :cropBoxResizable="false"
+                                                                                                :minContainerWidth="250"
+                                                                                                :minContainerHeight="300"
+                                                                                                alt="Disk image preview">
+
+                                                                                    </VueCropper>
+                                                                                  </div>
+                                                                                  <div class="my-2">
+                                                                                    <a class="btn--secondery" @click="saveEditImage(), (editPostData.dialog = true)">Crop</a>
+                                                                                    <a class="btn--secondery" @click="editPostData.dialog = false, (editPostData.cover_image = '')">Cancel</a>
+                                                                                  </div>
+                                                                                  <div class="img-prev" v-if="editPostData.cover_image">
+                                                                                    <img :src="editPostData.cover_image" alt="Cover image preview">
+                                                                                  </div>
+                                                                                </div>
+                                                                              </div>
                                                                                 <div class="form-group post-rent--form-group">
                                                                                   <label for="sell-post-address" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('address', $store.state.locale) }}</label>
                                                                                   <div class=" post-rent--form-group--input">
-                                                                                    <UploadImages class="image-box" :max="4" @change="handleImages"/>
+                                                                                    <UploadImages class="image-box" :max="4" @change="handleEditScreenshots"/>
                                                                                   </div>
 
                                                                                 </div>
@@ -1379,8 +1414,8 @@
                                                 <label class="label-padding post-rent--form-group--label mt-0">{{ $t('cover_image', $store.state.locale) }} :</label>
                                                 <div class=" post-rent--form-group--input">
                                                   <div class="custom-file">
-                                                    <a class="btn--secondery" @click="$refs.FileInput.click()">Upload image</a>
-                                                    <input ref="FileInput" type="file" style="display: none;" @change="onFileSelect" />
+                                                    <a class="btn--secondery" @click="$refs.FileInputNew.click()">Upload image</a>
+                                                    <input ref="FileInputNew" type="file" style="display: none;" @change="onFileSelect" />
                                                   </div>
                                                 </div>
                                             </div>
@@ -1411,8 +1446,9 @@
                                               </div>
                                             </div>
                                             <div class="form-group post-rent--form-group">
-                                                <label class=" label-padding post-rent--form-group--label mt-0">{{ $t('upload_images', $store.state.locale) }} :</label>
-                                                <UploadImages class="image-box" :max="4" @change="handleImages"/>
+                                                <label class=" label-padding post-rent--form-group--label mt-0">{{ $t('upload_screenshots', $store.state.locale) }} :</label>
+<!--                                                <UploadImages class="image-box" :max="4" @change="handleImages"/>-->
+                                                <UploadImages class="image-box" :max="4" @change="handleUploadScreenshots"/>
                                             </div>
                                             <!-- Agree terms and condition -->
                                             <div class="form-group post-rent--form-group post-rent--form-group--agree post-rent--form-group--agree-profile mt-a-7">
@@ -1468,6 +1504,7 @@
                 //                 ],
                 postImages: [],
                 editPostData: {
+                    dialog: false,
                     id: '',
                     name: '',
                     description: '',
@@ -1478,6 +1515,10 @@
                     images: '',
                     phone_no: '',
                     address: '',
+                    postImages: [],
+                    cover_image: '',
+                    mime_type: '',
+                    postCoverImage: ''
                 },
                 sellData: {
                     name: '',
@@ -1616,31 +1657,57 @@
             },
         },
         methods: {
-          onFileSelect(e) {
+            onFileSelect(e) {
+              const file = e.target.files[0]
+              this.mime_type = file.type
+              console.log(this.mime_type)
+              console.log(file);
+              if (typeof FileReader === 'function') {
+                this.dialog = true
+                const reader = new FileReader()
+                reader.onload = (event) => {
+                  this.postCoverImage = event.target.result
+                  this.$refs.cropper.replace(this.postCoverImage)
+                }
+                reader.readAsDataURL(file)
+              } else {
+                alert('Sorry, FileReader API not supported')
+              }
+            },
+            saveImage() {
+              this.sellData.cover_image = this.$refs.cropper.getCroppedCanvas().toDataURL()
+              console.log(this.sellData.cover_image);
+              this.$refs.cropper.getCroppedCanvas().toBlob((blob) => {
+                const formData = new FormData()
+                formData.append('profile_photo', blob, 'name.jpeg')
+                console.log(blob, 'blob');
+              }, this.mime_type)
+            },
+          onEditFileSelect(e) {
             const file = e.target.files[0]
-            this.mime_type = file.type
-            console.log(this.mime_type)
+            this.editPostData.mime_type = file.type
+            console.log(this.editPostData.mime_type)
             console.log(file);
             if (typeof FileReader === 'function') {
-              this.dialog = true
+              this.editPostData.dialog = true
               const reader = new FileReader()
               reader.onload = (event) => {
-                this.postCoverImage = event.target.result
-                this.$refs.cropper.replace(this.postCoverImage)
+                this.editPostData.postCoverImage = event.target.result
+                this.$refs.cropper.replace(this.editPostData.postCoverImage)
               }
               reader.readAsDataURL(file)
             } else {
               alert('Sorry, FileReader API not supported')
             }
           },
-          saveImage() {
-            this.sellData.cover_image = this.$refs.cropper.getCroppedCanvas().toDataURL()
-            console.log(this.sellData.cover_image);
+          saveEditImage() {
+            this.editPostData.cover_image = this.$refs.cropper.getCroppedCanvas().toDataURL()
+            console.log(this.editPostData.cover_image);
             this.$refs.cropper.getCroppedCanvas().toBlob((blob) => {
               const formData = new FormData()
               formData.append('profile_photo', blob, 'name.jpeg')
               console.log(blob, 'blob');
-            }, this.mime_type)
+            }, this.editPostData.mime_type)
           },
             sellPostEditModal(product) {
                 console.log(product)
@@ -1657,17 +1724,17 @@
                 this.editPostData.address =  product.address
                 this.selected = product.sub_category_id
             },
-            handleImages(files) {
+            handleEditScreenshots(files) {
                 if (files.length === 0) {
-                    this.postImages = [];
-                    console.log(this.postImages);
+                    this.editPostData.postImages = [];
+                    console.log(this.editPostData.postImages);
                     return;
                 }
                 console.log(files);
-                console.log(this.postImages);
-                if (this.postImages.length > files.length) {
+                console.log(this.editPostData.postImages);
+                if (this.editPostData.postImages.length > files.length) {
                     var val = '';
-                    this.postImages.forEach(function (image, index) {
+                    this.editPostData.postImages.forEach(function (image, index) {
                         console.log(image.name);
                         files.forEach(function (file) {
                             console.log(file.name);
@@ -1678,8 +1745,8 @@
                             }
                         })
                     })
-                    this.postImages.splice(val, 1);
-                    console.log(this.postImages)
+                    this.editPostData.postImages.splice(val, 1);
+                    console.log(this.editPostData.postImages)
                     return
                 }
                 var file = files[files.length - 1];
@@ -1691,14 +1758,56 @@
                         name: file.name,
                         file: fileBase64
                     }
-                    this.postImages.push(data);
-                    console.log(this.postImages)
+                    this.editPostData.postImages.push(data);
+                    console.log(this.editPostData.postImages)
                 }
                 reader.onerror = function (error) {
                     console.log('Error: ', error)
 
                 }
             },
+          handleUploadScreenshots(files) {
+            if (files.length === 0) {
+              this.postImages = [];
+              console.log(this.postImages);
+              return;
+            }
+            console.log(files);
+            console.log(this.postImages);
+            if (this.postImages.length > files.length) {
+              var val = '';
+              this.postImages.forEach(function (image, index) {
+                console.log(image.name);
+                files.forEach(function (file) {
+                  console.log(file.name);
+                  if (image.name != file.name){
+                    console.log(image.name)
+                    val = index
+                    return
+                  }
+                })
+              })
+              this.postImages.splice(val, 1);
+              console.log(this.postImages)
+              return
+            }
+            var file = files[files.length - 1];
+            var reader = new FileReader()
+            reader.readAsDataURL(file)
+            reader.onload = () => {
+              var fileBase64 = reader.result;
+              var data = {
+                name: file.name,
+                file: fileBase64
+              }
+              this.postImages.push(data);
+              console.log(this.postImages)
+            }
+            reader.onerror = function (error) {
+              console.log('Error: ', error)
+
+            }
+          },
             extendModal(lend) {
                 this.extend.week = '';
                 this.extend.price = 0;
@@ -2060,12 +2169,12 @@
                     } else {
                         setTimeout(function(){
                             // window.location.reload();
-                            ('#v-pills-edit-profile-tab').removeClass('active');
-                            ('#v-pills-edit-profile').removeClass('active');
-                            ('#v-pills-edit-profile').removeClass('show');
-                            ('#v-pills-overview-tab').addClass('active');
-                            ('#v-pills-overview').addClass('active');
-                            ('#v-pills-overview').addClass('show');
+                            $('#v-pills-edit-profile-tab').removeClass('active');
+                            $('#v-pills-edit-profile').removeClass('active');
+                            $('#v-pills-edit-profile').removeClass('show');
+                            $('#v-pills-overview-tab').addClass('active');
+                            $('#v-pills-overview').addClass('active');
+                            $('#v-pills-overview').addClass('show');
                         }, 1000);
                     }
 
@@ -2325,12 +2434,18 @@
                     sub_category_id: this.selected,
                     is_negotiable: this.editPostData.is_negotiable,
                     phone_no: this.editPostData.phone_no,
-                    address: this.editPostData.address
+                    address: this.editPostData.address,
+                    images: this.editPostData.postImages,
+                    cover_image: this.editPostData.cover_image
                 };
+                console.log(data);
 
                 this.$api.post('sell-post-update', data, config).then(response => {
                     if (response.data.error == false) {
                         this.sellPostEditModalShow = false;
+                        this.editPostData.postImages = [];
+                        this.editPostData.cover_image = '';
+                        this.editPostData.dialog = false;
                         this.$toaster.success(this.$t('info_update_notification', this.$store.state.locale));
                         this.sellPostCheck()
                         this.onSellPost()

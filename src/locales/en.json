@@ -438,5 +438,7 @@
   "upload_images" : "Upload Images",
   "learn_about_create_sell_post" : "Learn about how to create a sell post",
   "created_at" : "Create Date",
-  "info_update_notification" : "Information successfully updated !!"
+  "info_update_notification" : "Information successfully updated !!",
+  "upload_screenshots" : "Upload Screenshots",
+  "images" : "Images"
 }

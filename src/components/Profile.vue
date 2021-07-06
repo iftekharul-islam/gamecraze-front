@@ -2278,16 +2278,19 @@
                   this.$api.post('sell-post', uploadInfo, config)
                       .then(response => {
                           if (response.status == 200) {
+                              this.dialog = false
                               this.sellData.name = '';
                               this.sellData.description = '';
                               this.sellData.price = '';
                               this.sellData.product_type = '';
                               this.sellData.is_negotiable = '';
                               this.sellData.sub_category_id = '';
-                              this.postImages = [];
                               this.sellData.summary = '';
                               this.sellData.phone_no = '';
                               this.sellData.address = '';
+                              document.querySelector(".clearButton").click();
+                              this.postImages = [];
+                              this.sellData.cover_image = '',
 
                               this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
 

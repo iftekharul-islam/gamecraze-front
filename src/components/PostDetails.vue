@@ -15,7 +15,7 @@
                   </li>
                     <li>
                       <h4>screenshot images</h4>
-                        <img v-for="(image, index) in post.images" :src="image" :key="index" class="img-fluid mr-2" width="200">
+                        <img v-for="(image, index) in post.images" :src="image.url" :key="index" class="img-fluid mr-2" width="200">
                     </li>
                 </ul>
             </div>

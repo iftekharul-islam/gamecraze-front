@@ -97,9 +97,8 @@
                                class="games-categories-section--games--game-card-box game-card-hover-outer">
                     <div class="game-card game-card-hover-inner">
                       <div class="display-image" href="#">
-                        <img :src="item.images[0]" :alt="item.name" class="img-fluid" v-if="item.images[0]">
+                        <img :src="item.cover[0].url" :alt="item.name" class="img-fluid" v-if="item.images[0]">
                         <img src="https://via.placeholder.com/250x300" :alt="item.name" class="img-fluid" v-else>
-
                       </div>
                       <div class="game-card--details">
                         <h6>{{ item.name }}</h6>
@@ -110,7 +109,6 @@
                           <span>৳ {{ item.price }}</span>
                         </div>
                       </div>
-
                     </div>
                   </router-link>
                 </div>

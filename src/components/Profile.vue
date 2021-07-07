@@ -518,8 +518,8 @@
                                                                         </button>
                                                                         <h4 class="text-secondery mb-a-12 f-s-28 text-center">{{ $t('sell_post', $store.state.locale) }}</h4>
                                                                         <!-- form-group -->
-                                                                        <ValidationObserver v-slot="{ handleSubmit }">
-                                                                            <form method="post" id="editSellPost">
+                                                                        <ValidationObserver v-slot="{ invalid }">
+                                                                            <form @submit.prevent="sellPostUpdate" method="post">
                                                                                 <div class="form-group post-rent--form-group">
                                                                                     <label for="sell-post-name" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('name', $store.state.locale) }}</label>
                                                                                     <div class=" post-rent--form-group--input">
@@ -665,7 +665,7 @@
                                                                               <div class="form-group post-rent--form-group offer-edit-btn">
                                                                                   <label class=" label-padding post-rent--form-group--label text-light"></label>
                                                                                   <div class=" post-rent--form-group--input">
-                                                                                      <button type="submit" class="btn--secondery user-id-edit-btn" @click.prevent="handleSubmit(sellPostUpdate)"><span class="w-100">{{ $t('submit', $store.state.locale) }}</span></button>
+                                                                                      <button type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid"><span class="w-100">{{ $t('submit', $store.state.locale) }}</span></button>
                                                                                   </div>
                                                                               </div>
                                                                             </form>
@@ -2225,6 +2225,7 @@
                 this.form.checkpoint = '';
             },
             onSellPostSubmit () {
+              this.onSellPostLoading = true;
               this.$refs.sellForm.validate().then(success => {
                   if (!success) {
                       window.scrollTo({
@@ -2232,14 +2233,17 @@
                           behavior: 'smooth',
                       })
                       this.$toaster.error(this.$t('complete_required_field', this.$store.state.locale));
+                      this.onSellPostLoading = false;
                       return;
                   }
                   if (this.postImages.length ===  0){
                     this.$toaster.error('Screenshot images not uploaded');
+                    this.onSellPostLoading = false;
                     return;
                   }
                   if (this.sellData.cover_image === ''){
                     this.$toaster.error('Cover image not uploaded');
+                    this.onSellPostLoading = false;
                     return;
                   }
                   this.onSellPostLoading = true;

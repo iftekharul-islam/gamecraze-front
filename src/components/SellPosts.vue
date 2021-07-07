@@ -139,9 +139,9 @@ export default {
   data() {
     return {
       min: 0,
-      max: 250,
+      max: 10000,
       minValue: 0,
-      maxValue: 250,
+      maxValue: 10000,
       noPostFound: false,
       posts: [],
       allPosts: [],
@@ -158,7 +158,6 @@ export default {
       sortByDate: '',
       sortNew: '',
       sortUsed: '',
-      value: [],
       step: 5,
       totalSteps: 0,
       percentPerStep: 1,
@@ -383,8 +382,8 @@ export default {
     },
   },
   created() {
-    this.min = 0;
-    this.max = 250;
+    // this.min = 0;
+    // this.max = 250;
     this.posts = [];
     this.getSellPosts();
     this.$api.get('categories?include=subcategory').then(response => {

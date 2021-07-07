@@ -58,6 +58,7 @@ import SellPosts from '../components/SellPosts';
 import PostDetails from '../components/PostDetails';
 import SellPost from '../components/SellPostHelp'
 import Cropper from "../components/Cropper";
+import GamebazarHome from '../components/GamebazarHome';
 
 let router = new Router({
     mode: 'history',
@@ -487,6 +488,14 @@ let router = new Router({
             path: '/cropper',
             name: 'cropper',
             component: Cropper,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/gamebazar',
+            name: 'gamebazar',
+            component: GamebazarHome,
             meta: {
                 requiresAuth: false
             }

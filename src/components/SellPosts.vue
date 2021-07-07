@@ -90,14 +90,14 @@
                   @click="removeCategoryFilter(categoryItem)" class="remove-icon"><i
                   class="fas fa-times"></i></div></span>
             </div>
-            <div class="games-categories-section--games">
+            <div class="games-categories-section--games" v-if="posts.length">
               <div class="row">
-                <div v-for="(item, index) in posts" :key="index" class="col-md-6 col-lg-4 mb-4" v-if="posts.length">
+                <div v-for="(item, index) in posts" :key="index" class="col-md-6 col-lg-4 mb-4" >
                   <router-link :to="{ path: '/sell-post/' + item.id + '/' + item.url_name }"
                                class="games-categories-section--games--game-card-box game-card-hover-outer">
                     <div class="game-card game-card-hover-inner">
                       <div class="display-image" href="#">
-                        <img :src="item.cover[0].url" :alt="item.name" class="img-fluid" v-if="item.images[0]">
+                        <img :src="item.cover[0].url" :alt="item.name" class="img-fluid" v-if="item.cover[0]">
                         <img src="https://via.placeholder.com/250x300" :alt="item.name" class="img-fluid" v-else>
                       </div>
                       <div class="game-card--details">
@@ -112,9 +112,9 @@
                     </div>
                   </router-link>
                 </div>
-                <div class="not-matching" v-if="noPostFound">
-                  <h2>{{ $t('noting_to_show', $store.state.locale) }}</h2>
-                </div>
+              </div>
+              <div class="not-matching" v-if="noPostFound">
+                <h2>{{ $t('noting_to_show', $store.state.locale) }}</h2>
               </div>
             </div>
             <sliding-pagination

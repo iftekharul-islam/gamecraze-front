@@ -77,7 +77,6 @@
                             <img v-if="user.image" :src="user.image" :alt="user.name" class="img-fluid">
                             <img v-else src="../assets/img/avatar.png" :alt="user.name" class="img-fluid">
                         </div>
-                    <!-- avatar icon -->
                         <div class="avatar-edit">
                             <form action="" method="post" id="profile-image-form">
                                 <input @change="onProfileImageChange($event, 'profile')" type="file" id="profileUpload" accept=".png, .jpg, .jpeg">
@@ -88,15 +87,7 @@
                     </div>
                     <div class="users-name">
                         <h3>{{ user.name }} {{ user.last_name}}</h3>
-<!--           <h6>sabertooth_wolf</h6>-->
                     </div>
-<!--                    <div class="user-rating">-->
-<!--                        <i class="fas fa-star"></i>-->
-<!--                        <i class="fas fa-star"></i>-->
-<!--                        <i class="fas fa-star"></i>-->
-<!--                        <i class="fas fa-star-half-alt"></i>-->
-<!--                        <i class="far fa-star"></i>-->
-<!--                    </div>-->
                 </div>
             </div>
             <div class="user-profile-heading--change-photo">
@@ -589,7 +580,7 @@
                                                                                     <label for="sell-post-phone" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('phone_number', $store.state.locale) }}</label>
                                                                                     <div class=" post-rent--form-group--input">
                                                                                         <ValidationProvider name="Phone no" rules="required" v-slot="{ errors }">
-                                                                                            <input type="number" class="form-control renten-input" id="sell-post-phone" placeholder="Enter phone no" v-model="editPostData.phone_no">
+                                                                                            <input type="number" @keypress="isNumber($event)" class="form-control renten-input" id="sell-post-phone" v-model="editPostData.phone_no">
                                                                                             <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
                                                                                         </ValidationProvider>
                                                                                     </div>
@@ -605,21 +596,20 @@
                                                                                     </div>
 
                                                                                 </div>
-
-                                                                                <div class="form-group post-rent--form-group" v-if="editPostData.images.length">
-                                                                                    <label  class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('images', $store.state.locale) }}</label>
-                                                                                    <div class="post-rent--form-group--input d-grid grid-cols-2 grid-sm-cols-3 grid-gap-10 grid-rows-100 grid-auto-rows-100">
-                                                                                       <div class="position-relative sell-post-modal-img" v-for="(image, index) in editPostData.images" :key="index">
-                                                                                            <img :src="image.url" class="img-fluid h-100" width="150" height="200">
-                                                                                            <span class="image-cancel position-absolute top-0 left-0 w-100 h-100 d-flex align-items-center justify-content-center sellpost-img-bg pointer">
+                                                                              <div class="form-group post-rent--form-group" v-if="editPostData.cover.length">
+                                                                                <label  class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('cover_image', $store.state.locale) }}</label>
+                                                                                <div class="post-rent--form-group--input d-grid grid-cols-2 grid-sm-cols-3 grid-gap-10 grid-rows-100 grid-auto-rows-100">
+                                                                                  <div class="position-relative sell-post-modal-img" v-for="(image, index) in editPostData.cover" :key="index">
+                                                                                    <img :src="image.url" class="img-fluid h-100" width="150" height="200">
+                                                                                    <span class="image-cancel position-absolute top-0 left-0 w-100 h-100 d-flex align-items-center justify-content-center sellpost-img-bg pointer">
                                                                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                                                   <path d="M16.2427 6.34315L12.0001 10.5858L7.75744 6.34315L6.34323 7.75736L10.5859 12L6.34323 16.2426L7.75744 17.6569L12.0001 13.4142L16.2427 17.6569L17.6569 16.2426L13.4143 12L17.6569 7.75736L16.2427 6.34315Z" fill="#FFD715"></path></svg>
                                                                                             </span>
-                                                                                       </div>
-                                                                                    </div>
+                                                                                  </div>
                                                                                 </div>
+                                                                              </div>
                                                                               <div class="form-group post-rent--form-group">
-                                                                                <label class="label-padding post-rent--form-group--label mt-0">{{ $t('cover_image', $store.state.locale) }} :</label>
+                                                                                <label class="label-padding post-rent--form-group--label mt-0">{{ $t('upload_cover', $store.state.locale) }} :</label>
                                                                                 <div class=" post-rent--form-group--input">
                                                                                   <div class="custom-file">
                                                                                     <a class="btn--secondery" @click="$refs.FileInput.click()">Upload image</a>
@@ -653,20 +643,31 @@
                                                                                   </div>
                                                                                 </div>
                                                                               </div>
-                                                                                <div class="form-group post-rent--form-group">
-                                                                                  <label for="sell-post-address" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('address', $store.state.locale) }}</label>
-                                                                                  <div class=" post-rent--form-group--input">
-                                                                                    <UploadImages class="image-box" :max="4" @change="handleEditScreenshots"/>
+                                                                              <div class="form-group post-rent--form-group" v-if="editPostData.images.length">
+                                                                                  <label  class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('screenshots', $store.state.locale) }}</label>
+                                                                                  <div class="post-rent--form-group--input d-grid grid-cols-2 grid-sm-cols-3 grid-gap-10 grid-rows-100 grid-auto-rows-100">
+                                                                                     <div class="position-relative sell-post-modal-img" v-for="(image, index) in editPostData.images" :key="index">
+                                                                                          <img :src="image.url" class="img-fluid h-100" width="150" height="200">
+                                                                                          <span class="image-cancel position-absolute top-0 left-0 w-100 h-100 d-flex align-items-center justify-content-center sellpost-img-bg pointer">
+                                                                                              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                                <path d="M16.2427 6.34315L12.0001 10.5858L7.75744 6.34315L6.34323 7.75736L10.5859 12L6.34323 16.2426L7.75744 17.6569L12.0001 13.4142L16.2427 17.6569L17.6569 16.2426L13.4143 12L17.6569 7.75736L16.2427 6.34315Z" fill="#FFD715"></path></svg>
+                                                                                          </span>
+                                                                                     </div>
                                                                                   </div>
-
+                                                                              </div>
+                                                                              <div class="form-group post-rent--form-group">
+                                                                                <label for="sell-post-address" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('upload_screenshots', $store.state.locale) }}</label>
+                                                                                <div class=" post-rent--form-group--input">
+                                                                                  <UploadImages class="image-box" :max="4" @change="handleEditScreenshots"/>
                                                                                 </div>
-                                                                                <!-- form-group Button -->
-                                                                                <div class="form-group post-rent--form-group offer-edit-btn">
-                                                                                    <label class=" label-padding post-rent--form-group--label text-light"></label>
-                                                                                    <div class=" post-rent--form-group--input">
-                                                                                        <button type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid"><span class="w-100">{{ $t('submit', $store.state.locale) }}</span></button>
-                                                                                    </div>
-                                                                                </div>
+                                                                              </div>
+                                                                              <!-- form-group Button -->
+                                                                              <div class="form-group post-rent--form-group offer-edit-btn">
+                                                                                  <label class=" label-padding post-rent--form-group--label text-light"></label>
+                                                                                  <div class=" post-rent--form-group--input">
+                                                                                      <button type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid"><span class="w-100">{{ $t('submit', $store.state.locale) }}</span></button>
+                                                                                  </div>
+                                                                              </div>
                                                                             </form>
                                                                         </ValidationObserver>
                                                                     </div>
@@ -877,7 +878,7 @@
                                                 <div class="post-rent--form-group--input">
                                                     <ValidationProvider name="Disk Image" :rules='{required: diskImageRequired}' v-slot="{ validate, errors }">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="diskUpload"  accept="image/*" @change="onDiskimageChange($event)|| validate($event)">
+                                                        <input type="file" class="custom-file-input" id="diskUpload"  accept="image/*" @change="onDiskImageChange($event)|| validate($event)">
                                                         <label class="custom-file-label text-light" for="diskUpload">{{ selectedDiskName }}</label>
                                                     </div>
                                                     <div class="img-prev">
@@ -893,7 +894,7 @@
                                                 <div class="post-rent--form-group--input">
                                                     <ValidationProvider name="Cover Image" :rules='{required: diskImageRequired}' v-slot="{ validate, errors }">
                                                     <div class="custom-file">
-                                                        <input type="file" class="custom-file-input" id="customFile2" accept="image/*" @change="onCoverimageChange($event)|| validate($event)">
+                                                        <input type="file" class="custom-file-input" id="customFile2" accept="image/*" @change="onCoverImageChange($event)|| validate($event)">
                                                         <label class="custom-file-label text-light" for="customFile2">{{ selectedCoverName }}</label>
 <!--                                                        <label class="custom-file-label text-light" for="customFile2">{{ $t('cover_image', $store.state.locale) }}</label>-->
                                                     </div>
@@ -1447,7 +1448,6 @@
                                             </div>
                                             <div class="form-group post-rent--form-group">
                                                 <label class=" label-padding post-rent--form-group--label mt-0">{{ $t('upload_screenshots', $store.state.locale) }} :</label>
-<!--                                                <UploadImages class="image-box" :max="4" @change="handleImages"/>-->
                                                 <UploadImages class="image-box" :max="4" @change="handleUploadScreenshots"/>
                                             </div>
                                             <!-- Agree terms and condition -->
@@ -1496,12 +1496,6 @@
                 summaryModal: false,
                 onSellPostLoading: false,
                 subCategories: [],
-                // subCategories:[
-                //                     { item: 'A', name: 'Option A' },
-                //                     { item: 'B', name: 'Option B' },
-                //                     { item: 'D', name: 'Option C', notEnabled: true },
-                //                     { item: { d: 1 }, name: 'Option D' }
-                //                 ],
                 postImages: [],
                 editPostData: {
                     dialog: false,
@@ -1516,6 +1510,7 @@
                     phone_no: '',
                     address: '',
                     postImages: [],
+                    cover: '',
                     cover_image: '',
                     mime_type: '',
                     postCoverImage: ''
@@ -1572,7 +1567,6 @@
                 isDigital: false,
                 itemsData: ['Male', 'Female', 'Others'],
                 rents: [],
-                lends: [],
                 orders: [],
                 sellPosts: [],
                 agreement: '',
@@ -1683,32 +1677,32 @@
                 console.log(blob, 'blob');
               }, this.mime_type)
             },
-          onEditFileSelect(e) {
-            const file = e.target.files[0]
-            this.editPostData.mime_type = file.type
-            console.log(this.editPostData.mime_type)
-            console.log(file);
-            if (typeof FileReader === 'function') {
-              this.editPostData.dialog = true
-              const reader = new FileReader()
-              reader.onload = (event) => {
-                this.editPostData.postCoverImage = event.target.result
-                this.$refs.cropper.replace(this.editPostData.postCoverImage)
+            onEditFileSelect(e) {
+              const file = e.target.files[0]
+              this.editPostData.mime_type = file.type
+              console.log(this.editPostData.mime_type)
+              console.log(file);
+              if (typeof FileReader === 'function') {
+                this.editPostData.dialog = true
+                const reader = new FileReader()
+                reader.onload = (event) => {
+                  this.editPostData.postCoverImage = event.target.result
+                  this.$refs.cropper.replace(this.editPostData.postCoverImage)
+                }
+                reader.readAsDataURL(file)
+              } else {
+                alert('Sorry, FileReader API not supported')
               }
-              reader.readAsDataURL(file)
-            } else {
-              alert('Sorry, FileReader API not supported')
-            }
-          },
-          saveEditImage() {
-            this.editPostData.cover_image = this.$refs.cropper.getCroppedCanvas().toDataURL()
-            console.log(this.editPostData.cover_image);
-            this.$refs.cropper.getCroppedCanvas().toBlob((blob) => {
-              const formData = new FormData()
-              formData.append('profile_photo', blob, 'name.jpeg')
-              console.log(blob, 'blob');
-            }, this.editPostData.mime_type)
-          },
+            },
+            saveEditImage() {
+              this.editPostData.cover_image = this.$refs.cropper.getCroppedCanvas().toDataURL()
+              console.log(this.editPostData.cover_image);
+              this.$refs.cropper.getCroppedCanvas().toBlob((blob) => {
+                const formData = new FormData()
+                formData.append('profile_photo', blob, 'name.jpeg')
+                console.log(blob, 'blob');
+              }, this.editPostData.mime_type)
+            },
             sellPostEditModal(product) {
                 console.log(product)
                 this.sellPostEditModalShow = true
@@ -1718,28 +1712,67 @@
                 this.editPostData.description = product.description
                 this.editPostData.price = product.price
                 this.editPostData.is_negotiable =  product.is_negotiable
-                // this.editPostData.selected =  product.sub_category_id
                 this.editPostData.images =  product.images
+                this.editPostData.cover =  product.cover
                 this.editPostData.phone_no =  product.phone_no
                 this.editPostData.address =  product.address
                 this.selected = product.sub_category_id
             },
+            handleUploadScreenshots(files) {
+              if (files.length === 0) {
+                  this.postImages = [];
+                  console.log(this.postImages);
+                  return;
+              }
+              console.log(files);
+              console.log(this.postImages);
+              if (this.postImages.length > files.length) {
+                let val = '';
+                this.postImages.forEach(function (image, index) {
+                  files.forEach(function (file) {
+                    if (image.name !== file.name) {
+                      val = index
+                      return
+                    }
+                  })
+                })
+                this.postImages.splice(val, 1);
+                console.log(this.postImages)
+                return
+              }
+              this.postImages = [];
+              let screenshots = [];
+              files.forEach( function (file) {
+                let reader = new FileReader()
+                reader.readAsDataURL(file)
+                reader.onload = () => {
+                  let fileBase64 = reader.result;
+                  let data = {
+                    name: file.name,
+                    file: fileBase64
+                  }
+                  screenshots.push(data);
+                }
+                reader.onerror = function (error) {
+                  console.log('Error: ', error)
+                }
+              })
+              this.postImages = screenshots;
+              console.log(this.postImages);
+          },
             handleEditScreenshots(files) {
+                console.log(files);
+                console.log(this.editPostData.postImages);
                 if (files.length === 0) {
                     this.editPostData.postImages = [];
                     console.log(this.editPostData.postImages);
                     return;
                 }
-                console.log(files);
-                console.log(this.editPostData.postImages);
                 if (this.editPostData.postImages.length > files.length) {
                     var val = '';
                     this.editPostData.postImages.forEach(function (image, index) {
-                        console.log(image.name);
                         files.forEach(function (file) {
-                            console.log(file.name);
                             if (image.name != file.name){
-                                console.log(image.name)
                                 val = index
                                 return
                             }
@@ -1749,65 +1782,26 @@
                     console.log(this.editPostData.postImages)
                     return
                 }
-                var file = files[files.length - 1];
-                var reader = new FileReader()
+              this.editPostData.postImages = [];
+              let screenshots = [];
+              files.forEach( function (file) {
+                let reader = new FileReader()
                 reader.readAsDataURL(file)
                 reader.onload = () => {
-                    var fileBase64 = reader.result;
-                    var data = {
-                        name: file.name,
-                        file: fileBase64
-                    }
-                    this.editPostData.postImages.push(data);
-                    console.log(this.editPostData.postImages)
+                  let fileBase64 = reader.result;
+                  let data = {
+                    name: file.name,
+                    file: fileBase64
+                  }
+                  screenshots.push(data);
                 }
                 reader.onerror = function (error) {
-                    console.log('Error: ', error)
-
+                  console.log('Error: ', error)
                 }
-            },
-          handleUploadScreenshots(files) {
-            if (files.length === 0) {
-              this.postImages = [];
-              console.log(this.postImages);
-              return;
-            }
-            console.log(files);
-            console.log(this.postImages);
-            if (this.postImages.length > files.length) {
-              var val = '';
-              this.postImages.forEach(function (image, index) {
-                console.log(image.name);
-                files.forEach(function (file) {
-                  console.log(file.name);
-                  if (image.name != file.name){
-                    console.log(image.name)
-                    val = index
-                    return
-                  }
-                })
               })
-              this.postImages.splice(val, 1);
-              console.log(this.postImages)
-              return
-            }
-            var file = files[files.length - 1];
-            var reader = new FileReader()
-            reader.readAsDataURL(file)
-            reader.onload = () => {
-              var fileBase64 = reader.result;
-              var data = {
-                name: file.name,
-                file: fileBase64
-              }
-              this.postImages.push(data);
-              console.log(this.postImages)
-            }
-            reader.onerror = function (error) {
-              console.log('Error: ', error)
-
-            }
-          },
+              this.editPostData.postImages = screenshots;
+              console.log(this.editPostData.postImages);
+            },
             extendModal(lend) {
                 this.extend.week = '';
                 this.extend.price = 0;
@@ -1821,7 +1815,7 @@
                 this.extend.lend_id = lend.id;
             },
             extendSubmit(){
-                var config = {
+                let config = {
                     headers: {
                         'Authorization': 'Bearer ' + this.$store.state.token
                     }
@@ -2043,38 +2037,6 @@
                     this.diskImageRequired = false;
                 }
             },
-            onDelete(rent) {
-                this.$swal({
-                    title: this.$t('post_deleted', this.$store.state.locale),
-                    text: this.$t('delete_confirm', this.$store.state.locale),
-                    icon: "warning",
-                    buttons: true,
-                    dangerMode: true,
-                }).then((willDelete) => {
-                    if (willDelete) {
-                        let config = {
-                            headers: {
-                                'Authorization': 'Bearer ' + this.$store.state.token
-                            }
-                        }
-                        this.$api.delete('rents/' + rent.id, config)
-                            .then(response => {
-                                if (response.data) {
-                                    this.rents.splice(this.rents.indexOf(rent), 1)
-                                }
-                                this.$swal({
-                                    title: this.$t('post_deleted_successful', this.$store.state.locale),
-                                    text: this.$t('post_deleted_successful_msg', this.$store.state.locale),
-                                    timer: 1500
-                                })
-
-                            })
-                    } else {
-                        this.$swal(this.$t('information_safe', this.$store.state.locale));
-                    }
-                });
-
-            },
             onOfferedGames() {
                 this.offerShow = true
                 this.rentShow = false
@@ -2090,10 +2052,6 @@
                 this.offerShow = false
                 this.rentShow = false
             },
-            formattedDateForTimer(date) {
-                let formattedDate = new Date(date)
-                return formattedDate.getMonth()+1 + "/" + formattedDate.getDate() + "/" + formattedDate.getFullYear()
-            },
             formattedDate(date) {
                 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                 let formattedDate = new Date(date)
@@ -2103,45 +2061,6 @@
                 const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
                 let formattedDate = new Date(date)
                 return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
-            },
-            startDate(diskType, datetime) {
-                let date = new Date(datetime);
-                var time = new Date(datetime);
-
-                var hours = time.getHours();
-
-                if (diskType == 0 && hours >= 12) {
-
-                    date.setDate(date.getDate() + 2);
-                } else {
-
-                    date.setDate(date.getDate() + 1);
-                }
-
-                const months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
-            },
-            endDate(diskType, datetime, week) {
-                let date = new Date(datetime);
-
-                if (diskType == 0) {
-
-                    date.setDate(date.getDate() + 1 + week * 7);
-
-                } else {
-
-                    date.setDate(date.getDate() + 1 + week * 7);
-                }
-
-                return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear()
-            },
-            returnDate(diskType, datetime, week) {
-                let date = new Date(datetime);
-
-                date.setDate(date.getDate() + 1 + week * 7);
-
-                const months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
             },
             onProfileUpdate: function() {
                 this.validateUserPhoneEmail();
@@ -2181,9 +2100,10 @@
                 });
             },
             isNumber: function(evt) {
+              console.log(this.editPostData.phone_no.length)
                 evt = (evt) ? evt : window.event;
                 var charCode = (evt.which) ? evt.which : evt.keyCode;
-                if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.form.phone_number.length > 10) {
+                if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.editPostData.phone_no.length > 10) {
                     evt.preventDefault();
                 } else {
                     return true;
@@ -2216,51 +2136,7 @@
                     fileReader.readAsDataURL(event.target.files[0]);
                 }
             },
-            // sell post image
-            onPostimageChange (event) {
-                let fileReader = new FileReader();
-
-                if (event.srcElement.files.length > 0) {
-                    let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
-                    if (allowedTypes.indexOf(event.srcElement.files[0].type) == -1) {
-                        this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
-                        return;
-                    }
-                    let fileSize =  Math.round((event.srcElement.files[0].size / 1024));
-                    if (fileSize > 5120) { //5mb
-                        this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
-                        return;
-                    }
-                    console.log(event.srcElement.files[0].name);
-                    fileReader.onload = (e) => {
-                        console.log(e.target.result);
-                    }
-                    fileReader.readAsDataURL(event.target.files[0]);
-                }
-            },
-            onSellPostImageChange (event) {
-              let fileReader = new FileReader();
-
-              if (event.srcElement.files.length > 0) {
-                let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
-                if (allowedTypes.indexOf(event.srcElement.files[0].type) == -1) {
-                  this.$toaster.warning(this.$t('image_validation', this.$store.state.locale));
-                  return;
-                }
-                let fileSize =  Math.round((event.srcElement.files[0].size / 1024));
-                if (fileSize > 5120) { //5mb
-                  this.$toaster.warning(this.$t('image_size_validation', this.$store.state.locale));
-                  return;
-                }
-                this.postCoverImageName = event.srcElement.files[0].name;
-                fileReader.onload = (e) => {
-                  this.postCoverImage = e.target.result;
-                }
-                fileReader.readAsDataURL(event.target.files[0]);
-              }
-            },
-            //rent post
-            onDiskimageChange (event) {
+            onDiskImageChange (event) {
                 let fileReader = new FileReader();
 
                 if (event.srcElement.files.length > 0) {
@@ -2281,7 +2157,7 @@
                     fileReader.readAsDataURL(event.target.files[0]);
                 }
             },
-            onCoverimageChange (event) {
+            onCoverImageChange (event) {
                 let fileReader = new FileReader();
                 if (event.srcElement.files.length > 0) {
                     let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
@@ -2534,9 +2410,6 @@
               // event fired when the input changes
               console.log(text)
             },
-            /**
-             * This is what the <input/> value is set to when you are selecting a suggestion.
-             */
             getSuggestionValue(suggestion) {
               return suggestion.item.name;
             },
@@ -2632,11 +2505,6 @@
                 {
                     this.rents = response.data.data;
                 });
-
-                this.$api.get('lends', config).then(response =>
-                {
-                    this.lends = response.data;
-                });
             },
             orderCheck() {
                 let config = {
@@ -2644,12 +2512,8 @@
                         'Authorization': 'Bearer ' + this.$store.state.token
                     }
                 };
-
-                this.$api.get('orders?include=lenders', config).then(response =>
-                {
+                this.$api.get('orders?include=lenders', config).then(response => {
                     this.orders = response.data.data;
-                    console.log('orders');
-                    console.log(this.orders);
                 });
             },
             sellPostCheck() {
@@ -2658,10 +2522,8 @@
                         'Authorization': 'Bearer ' + this.$store.state.token
                     }
                 };
-
                 this.$api.get('my-sell-posts?include=subcategory', config).then(response => {
                     this.sellPosts = response.data.data;
-                    console.log(this.sellPosts);
                 });
             },
             ratingCheck() {
@@ -2765,31 +2627,29 @@
         },
         created() {
             window.scrollTo(0,0);
+            let config = {
+              headers: {
+                'Authorization': 'Bearer ' + this.$store.state.token
+              }
+            };
+            this.copyUrl = process.env.VUE_APP_BASE;
             this.orderCheck();
             this.sellPostCheck();
+            this.ratingCheck();
+            this.rentCheck();
             this.$root.$on('ratingNavCheck', () => {
                 this.ratingCheck();
             });
             this.$root.$on('rentGames', () => {
                 this.rentGamesTab();
             });
-            this.copyUrl = process.env.VUE_APP_BASE;
-            let config = {
-                headers: {
-                    'Authorization': 'Bearer ' + this.$store.state.token
-                }
-            };
-            this.ratingCheck();
-            this.rentCheck();
             this.$root.$on('rentPost', () => {
                 this.rentPostTab();
               });
-
             this.$root.$on('profileEdit', () => {
                 this.editProfileTab();
                 this.fromCart = true;
               });
-
             this.$root.$on('userRating', () => {
                 $('#v-pills-rating-tab').addClass('active');
                 $('#v-pills-rating').addClass('active');
@@ -2814,49 +2674,29 @@
                 $('#v-pills-refer').removeClass('show');
 
             });
-            //Cover image
-            this.$api.get('cover-image').then(response =>
-            {
+            this.$api.get('cover-image').then(response => {
                 this.coverImages = response.data.data;
             });
-            //rent posts
-            this.$api.get('games/released-games?include=platforms').then(response =>
-            {
+            this.$api.get('games/released-games?include=platforms').then(response =>{
                 this.games = response.data.data
             });
-
-            this.$api.get('platforms').then (response =>
-            {
+            this.$api.get('platforms').then (response =>{
                 this.platforms = response.data.data
             });
-
-            this.$api.get('disk-conditions').then (response =>
-            {
+            this.$api.get('disk-conditions').then (response =>{
                 this.diskConditions = response.data.data
             });
-
-            this.$api.get('checkpoints?include=area').then (response =>
-            {
+            this.$api.get('checkpoints?include=area').then (response =>{
                 this.checkpoints = response.data.data
             });
-
-            this.$api.get('sub-categories').then (response =>
-            {
+            this.$api.get('sub-categories').then (response =>{
                 this.subCategories = response.data.data
-                console.log('subCategories');
-                console.log(this.subCategories);
             });
-
-            //transaction details
-
-            this.$api.get('transaction-details', config).then (response =>
-            {
+            this.$api.get('transaction-details', config).then (response => {
                 this.total_earn = response.data.transactions_details.total_earning;
                 this.payable_amount = response.data.transactions_details.due;
             });
-
-            this.$api.get('payment-history', config).then (response =>
-            {
+            this.$api.get('payment-history', config).then (response => {
                 this.transactions = response.data.data;
             });
             this.$api.get('user/details', config).then(response =>{
@@ -2867,16 +2707,12 @@
                     this.dummyCover = true;
                 }
             });
-            this.$api.get('referral-history', config).then(response =>
-            {
+            this.$api.get('referral-history', config).then(response => {
                 this.walletTotalSpend = response.data.referred_history.total_spend;
                 this.walletUsableAmount = response.data.referred_history.usable_amount;
                 this.walletHistory = response.data.referred_history.history;
             });
-
-
-            this.$store.watch(
-                ()=>{
+            this.$store.watch(() => {
                     return this.$store.state.user // could also put a Getter here
                 },
                 (newValue)=>{

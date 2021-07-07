@@ -439,5 +439,7 @@
   "created_at" : "পোস্ট তৈরি",
   "info_update_notification" : "তথ্য সফলভাবে আপডেট হয়েছে !!",
   "upload_screenshots" : "আপলোড স্ক্রিনশট",
+  "screenshots" : "স্ক্রিনশট",
+  "upload_cover" : "কভার আপলোড",
   "images" : "ছবি সমূহ"
 }

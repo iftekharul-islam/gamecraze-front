@@ -440,5 +440,7 @@
   "created_at" : "Create Date",
   "info_update_notification" : "Information successfully updated !!",
   "upload_screenshots" : "Upload Screenshots",
+  "screenshots" : "Screenshots",
+  "upload_cover" : "Upload cover",
   "images" : "Images"
 }

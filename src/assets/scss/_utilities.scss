@@ -1429,6 +1429,14 @@
 .br-25 {
     border-radius: 25px;
 }
+// 
+.br-b-r-5 {
+    border-bottom-right-radius: 5px;
+}
+// 
+.br-t-l-5 {
+    border-top-left-radius: 5px;
+}
 
 // ******************Border ***************//
 .border-0 {
@@ -1469,6 +1477,9 @@
 
 .border-secondery {
     border-color: $secondery;
+}
+.border-secondery-opa-25 {
+    border-color: $secondery-opa-25;
 }
 .border-secondery-imp {
     border-color: $secondery !important;
@@ -1530,6 +1541,9 @@
 .bg-secondery {
     background: $secondery;
 }
+.bg-secondery-gradient {
+    background: $secondery-gradient;
+}
 .bg-secondery-opa-25 {
     background: $secondery-opa-25;
 }
@@ -1560,7 +1574,9 @@
 .sellpost-img-bg {
     background: $sellpost-img-bg;
 }
-
+.bg-gamebazar-badge {
+    background: $gamebazar-badge;
+}
 // **************Opacity***********//
 .gamehub-warning-bg {
     background: $gamehub-warning-alert;
@@ -1653,6 +1669,13 @@
 
 .f-s-32 {
     font-size: 32px;
+}
+.f-s-42 {
+    font-size: 42px;
+}
+.f-s-48 {
+    font-size: 48px;
+    line-height: 64px;
 }
 
 // ********color*********//
@@ -1856,11 +1879,13 @@ html {
         width: 150px;
     }
 }
+.w-162 {
+    width: 162px;
+}
+
 .w-328 {
     width: 328px;
 }
-
-
 
 .max-96 {
     max-width: 96px;
@@ -1891,8 +1916,15 @@ html {
     max-width: 446px;
 }
 
+.max-488 {
+    max-width: 488px;
+}
+
 .max-500 {
     max-width: 500px;
+}
+.max-600 {
+    max-width: 600px;
 }
 .max-940 {
     max-width: 940px;
@@ -2799,4 +2831,9 @@ select {
 .col-gap-16 {
     grid-column-gap: 16px;
 }
-
+.col-gap-20 {
+    grid-column-gap: 20px;
+}
+.col-gap-30 {
+    grid-column-gap: 30px;
+}

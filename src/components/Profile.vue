@@ -177,7 +177,7 @@
                                         <button class="mx-4" @click.prevent="onOfferedGames()" :disabled="offerShow" :class="{active: offerShow}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon"> {{ $t('offered_games', $store.state.locale) }}</button>
                                         <button  @click.prevent="onSellPost()" :disabled="postShow" :class="{active: postShow}"><img class="active-yellow" src="../assets/img/offer-icon.png" alt="offer icon"> <img class="active-black" src="../assets/img/offer-icon-black.png" alt="offer icon">  {{ $t('sell_post', $store.state.locale) }}</button>
                                     </div>
-                                <!-- Offer -->
+                                    <!-- Offer -->
                                     <div class="dashboard-content--offer" v-if="rents.length && offerShow">
                                     <!-- new offter design -->
                                         <div class="d-flex flex-wrap"  v-if="rents">
@@ -679,12 +679,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- Norhing to show -->
+                                    <!-- Nothing to show -->
                                     <div class="no-post-found-card mb-0" v-else>
                                         <h5>{{ $t('noting_to_show', $store.state.locale) }} !</h5>
                                     </div>
                                 </div>
-<!--                            </div>-->
                             </div>
                             <!-- Post for Rent -->
                             <div class="tab-pane fade" id="v-pills-post-rent" role="tabpanel" aria-labelledby="v-pills-post-rent-tab">
@@ -766,12 +765,6 @@
                                                             <label for="cod" class="custom-control-label"> {{ $t('cash_on_delivery', $store.state.locale) }} <span class="checkbox-style"></span></label>
                                                         </div>
                                                     </div>
-
-
-<!--                                                    <div class=" custom-radio d-flex">-->
-<!--                                                        <input type="radio" v-model="x" value="1" name="checkpoint_id" id="checkpoint_true" class="custom-control-input">-->
-<!--                                                        <label for="checkpoint_true" class="custom-control-label"> Checkpoint <span class="checkbox-style"></span></label>-->
-<!--                                                    </div>-->
                                                 </div>
                                             </div>
                                             <!-- Select Check point -->
@@ -839,7 +832,6 @@
                                                                 </p>
                                                             </div>
                                                         </div>
-
                                                     </div>
 
                                                 </div>
@@ -896,7 +888,6 @@
                                                     <div class="custom-file">
                                                         <input type="file" class="custom-file-input" id="customFile2" accept="image/*" @change="onCoverImageChange($event)|| validate($event)">
                                                         <label class="custom-file-label text-light" for="customFile2">{{ selectedCoverName }}</label>
-<!--                                                        <label class="custom-file-label text-light" for="customFile2">{{ $t('cover_image', $store.state.locale) }}</label>-->
                                                     </div>
                                                     <div class="img-prev">
                                                         <img v-if="rentData.cover_image" :src="rentData.cover_image" alt="Cover image preview">

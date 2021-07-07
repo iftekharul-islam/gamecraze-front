@@ -346,45 +346,69 @@
             <div class="container">
                  <h3 class="f-s-24 gil-bold text-white mb-a-4">Current Popular Games at GameHub:</h3>
                 <!-- new carousel -->
-                <div class="position-relative">
-                  <carousel
-                  v-if="loadedRelated"
-                  :autoplay ="false"
-                  :loop ="true"
-                  :center ="false"
-                  :nav ="false"
-                  :dots ="false"
-                  :margin ="32"
-                  :responsive="{ 0:{items:1, stagePadding:0, center:false,},
-                                600:{items:2, stagePadding:0, center:false,},
-                                1000:{items:3, stagePadding:0,},
-                                1400:{items:4, stagePadding:0, center:false,}}">
-                    <template slot="prev"><div class="vue-owl-nav vue-owl-nav-left "><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
+              <div class="position-relative">
+                <carousel v-if ="Loadedarticles"
+                          :autoplay ="false"
+                          :loop ="true"
+                          :center ="true"
+                          :nav ="false"
+                          :dots ="true"
+                          :items ="5"
+                          :margin ="10"
+                          :stagePadding ="0">
+                  <template slot="prev"><div class="vue-owl-nav vue-owl-nav-left"><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
 
-                    <template slot="next"><div class="vue-owl-nav vue-owl-nav-right"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
+                  <template slot="next"><div class="vue-owl-nav vue-owl-nav-right"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
 
-                      <div class="item">
-                        <router-link to="/" class="games-categories-section--games--game-card-box game-card-hover-outer">
-                          <div class="game-card game-card-hover-inner">
-                              <a class="display-image" href="javascript:void(0)">
-                                <!-- <img src="" class="img-fluid"> -->
-                              </a>
-                              <div class="game-card--details">
-                                <a href="javascript:void(0)"> <h6>Hola</h6></a>
-                                <div class="d-flex">
-                                  <span >hola<span class="mr-1" >, </span></span>
-                                </div>
-                                <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                                  <div class="game-card--details--platforms"> <a href="javascript:void(0)" ></a> </div>
-                                    <span class="game-rating">hola </span>
-                                </div>
-                              </div>
-                          </div>
-                        </router-link>
+                  <div class="item"  v-for="(article, index) in articles" :key="index">
+                    <div class="notice-box">
+                      <img src="https://via.placeholder.com/250x300" :alt="article" class="w-100">
+                      <div class="noticed-details">
+                        <router-link to="/home" class="small-readmore"><span>{{ $t('read_more', $store.state.locale) }} <i class="fas fa-arrow-right ml-2"></i></span></router-link>
                       </div>
-                  
-                  </carousel>
-                </div>
+                    </div>
+                  </div>
+                </carousel>
+              </div>
+<!--                <div class="position-relative">-->
+<!--                  <carousel-->
+<!--                  v-if="loadedRelated"-->
+<!--                  :autoplay ="false"-->
+<!--                  :loop ="true"-->
+<!--                  :center ="false"-->
+<!--                  :nav ="false"-->
+<!--                  :dots ="false"-->
+<!--                  :margin ="32"-->
+<!--                  :responsive="{ 0:{items:1, stagePadding:0, center:false,},-->
+<!--                                600:{items:2, stagePadding:0, center:false,},-->
+<!--                                1000:{items:3, stagePadding:0,},-->
+<!--                                1400:{items:4, stagePadding:0, center:false,}}">-->
+<!--                    <template slot="prev"><div class="vue-owl-nav vue-owl-nav-left "><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>-->
+
+<!--                    <template slot="next"><div class="vue-owl-nav vue-owl-nav-right"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>-->
+
+<!--                      <div class="item">-->
+<!--                        <router-link to="/" class="games-categories-section&#45;&#45;games&#45;&#45;game-card-box game-card-hover-outer">-->
+<!--                          <div class="game-card game-card-hover-inner">-->
+<!--                              <a class="display-image" href="javascript:void(0)">-->
+<!--                                &lt;!&ndash; <img src="" class="img-fluid"> &ndash;&gt;-->
+<!--                              </a>-->
+<!--                              <div class="game-card&#45;&#45;details">-->
+<!--                                <a href="javascript:void(0)"> <h6>Hola</h6></a>-->
+<!--                                <div class="d-flex">-->
+<!--                                  <span >hola<span class="mr-1" >, </span></span>-->
+<!--                                </div>-->
+<!--                                <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">-->
+<!--                                  <div class="game-card&#45;&#45;details&#45;&#45;platforms"> <a href="javascript:void(0)" ></a> </div>-->
+<!--                                    <span class="game-rating">hola </span>-->
+<!--                                </div>-->
+<!--                              </div>-->
+<!--                          </div>-->
+<!--                        </router-link>-->
+<!--                      </div>-->
+<!--                  -->
+<!--                  </carousel>-->
+<!--                </div>-->
             </div>
         </section>
     </div>
@@ -397,10 +421,12 @@
           props: ['slug'],
           components: { carousel },
         data() {
-            return {
-                 relatedGames: [],
-                   loadedRelated: false,
-            }
+          return {
+            articles: [1, 2, 3, 4],
+            Loadedarticles: true,
+            relatedGames: [],
+            loadedRelated: false,
+          }
         },
         created() {
             window.scrollTo(0,0);

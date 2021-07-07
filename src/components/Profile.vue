@@ -518,8 +518,8 @@
                                                                         </button>
                                                                         <h4 class="text-secondery mb-a-12 f-s-28 text-center">{{ $t('sell_post', $store.state.locale) }}</h4>
                                                                         <!-- form-group -->
-                                                                        <ValidationObserver v-slot="{ invalid }">
-                                                                            <form @submit.prevent="sellPostUpdate" method="post">
+                                                                        <ValidationObserver v-slot="{ handleSubmit }">
+                                                                            <form method="post" id="editSellPost">
                                                                                 <div class="form-group post-rent--form-group">
                                                                                     <label for="sell-post-name" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('name', $store.state.locale) }}</label>
                                                                                     <div class=" post-rent--form-group--input">
@@ -665,7 +665,7 @@
                                                                               <div class="form-group post-rent--form-group offer-edit-btn">
                                                                                   <label class=" label-padding post-rent--form-group--label text-light"></label>
                                                                                   <div class=" post-rent--form-group--input">
-                                                                                      <button type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid"><span class="w-100">{{ $t('submit', $store.state.locale) }}</span></button>
+                                                                                      <button type="submit" class="btn--secondery user-id-edit-btn" @click.prevent="handleSubmit(sellPostUpdate)"><span class="w-100">{{ $t('submit', $store.state.locale) }}</span></button>
                                                                                   </div>
                                                                               </div>
                                                                             </form>
@@ -1376,7 +1376,7 @@
                                                 <label class=" post-rent--form-group--label">{{ $t('phone_number', $store.state.locale) }} :</label>
                                                 <div class=" post-rent--form-group--input">
                                                     <ValidationProvider name="phone number" rules="required" v-slot="{ errors }">
-                                                        <input type="number" class="form-control renten-input" name="phone_no" v-model="sellData.phone_no">
+                                                        <input type="number" @keypress="isNumberOnSell($event)" class="form-control renten-input" name="phone_no" v-model="sellData.phone_no" placeholder="Enter Phone number">
                                                         <span class="text-danger">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
@@ -1385,7 +1385,7 @@
                                                 <label class=" post-rent--form-group--label">{{ $t('address', $store.state.locale) }} :</label>
                                                 <div class=" post-rent--form-group--input">
                                                     <ValidationProvider name="address" rules="required" v-slot="{ errors }">
-                                                        <input type="text" class="form-control renten-input" name="address" v-model="sellData.address">
+                                                        <input type="text" class="form-control renten-input" name="address" v-model="sellData.address" placeholder="Enter address">
                                                         <span class="text-danger">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
@@ -2090,6 +2090,16 @@
 
                 });
             },
+            isNumberOnSell: function(evt) {
+              console.log(this.phone_no.length)
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.phone_no.length > 10) {
+                    evt.preventDefault();
+                } else {
+                    return true;
+                }
+            },
             isNumber: function(evt) {
               console.log(this.editPostData.phone_no.length)
                 evt = (evt) ? evt : window.event;
@@ -2215,14 +2225,6 @@
                 this.form.checkpoint = '';
             },
             onSellPostSubmit () {
-              if (this.postImages.length ===  0){
-                this.$toaster.error('Screenshot images not uploaded');
-                return;
-              }
-              if (this.sellData.cover_image === ''){
-                this.$toaster.error('Cover image not uploaded');
-                return;
-              }
               this.$refs.sellForm.validate().then(success => {
                   if (!success) {
                       window.scrollTo({
@@ -2231,6 +2233,14 @@
                       })
                       this.$toaster.error(this.$t('complete_required_field', this.$store.state.locale));
                       return;
+                  }
+                  if (this.postImages.length ===  0){
+                    this.$toaster.error('Screenshot images not uploaded');
+                    return;
+                  }
+                  if (this.sellData.cover_image === ''){
+                    this.$toaster.error('Cover image not uploaded');
+                    return;
                   }
                   this.onSellPostLoading = true;
                   let uploadInfo = {
@@ -2287,7 +2297,6 @@
               })
             },
             sellPostUpdate(){
-                console.log('hello from sell post update');
                 let config = {
                     headers: {
                         'Authorization': 'Bearer ' + this.$store.state.token
@@ -2305,7 +2314,6 @@
                     images: this.editPostData.postImages,
                     cover_image: this.editPostData.cover_image
                 };
-                console.log(data);
 
                 this.$api.post('sell-post-update', data, config).then(response => {
                     if (response.data.error == false) {

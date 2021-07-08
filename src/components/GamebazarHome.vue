@@ -5,11 +5,11 @@
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="max-488">
-                            <h1 class="f-s-48 text-secondery">Online platform for buying and selling games and game accessories</h1>
+                            <h1 class="f-s-48 text-secondery">Online platform for buying & selling games & accessories</h1>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="gamebazar-banner__content d-grid grid-gap-16 justify-content-end">
+                        <div class="gamebazar-banner__content d-grid grid-gap-16 justify-content-md-end">
                             <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item">
                               <div class=" h-100">
                                    <img src="../assets/img/gamebazar1.png" class="img-fluid h-100" alt="Gamebazar image">
@@ -53,7 +53,7 @@
         <section class="new-post pb-a-11 pt-a-9">
             <div class="container">
                 <h3 class="f-s-24 gil-bold text-white mb-a-4">All new post</h3>
-                <div class="d-grid grid-md-cols-5 col-gap-30">
+                <div class="d-grid grid-sm-cols-2 grid-md-cols-3 grid-lg-cols-4 grid-xl-cols-5 grid-gap-16 grid-gap-md-30 gamebazar-post">
                     <a href="#">
                         <div class="product-img position-relative">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
@@ -134,7 +134,7 @@
         <section class="new-post pb-a-11">
             <div class="container">
                 <h3 class="f-s-24 gil-bold text-white mb-a-4">Play station sell post</h3>
-                <div class="d-grid grid-md-cols-5 col-gap-30">
+                <div class="d-grid grid-sm-cols-2 grid-md-cols-3 grid-lg-cols-4 grid-xl-cols-5 grid-gap-16 grid-gap-md-30 gamebazar-post">
                     <a href="#">
                         <div class="product-img position-relative">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
@@ -215,7 +215,7 @@
         <section class="new-post pb-a-11">
             <div class="container">
                 <h3 class="f-s-24 gil-bold text-white mb-a-4">Controller sell post</h3>
-                <div class="d-grid grid-md-cols-5 col-gap-30">
+                <div class="d-grid grid-sm-cols-2 grid-md-cols-3 grid-lg-cols-4 grid-xl-cols-5 grid-gap-16 grid-gap-md-30 gamebazar-post">
                     <a href="#">
                         <div class="product-img position-relative">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
@@ -295,54 +295,55 @@
         <!-- sell post -->
         <section class="accessories-sell-post position-relative">
             <div class="container">
-                <div class="col-md-6">
-                   
-                <div class="mr-a-10">
-                    <h1 class="f-s-48 max-600 mb-a-5">
-                        Do you have games and accessories?
-                        <span class="text-secondery">Want to sell?</span>
-                        Then <span class="text-secondery">advertise</span> today
-                        And sell.
-                    </h1>
-                    <p class="max-500 opa-8 text-white"> Gamebazar is giving you a golden opportunity to sell games 
-                        and game accessories. Advertise and sell new 
-                        and old games and accessories here.</p>
-                        <a href="#" class="bg-secondery-gradient d-inline-block gil-bold py-2 px-5 primary-text primary-text-hover">Create ads</a>
-                </div>
-                </div>
-                <div class="col-md-6 position-absolute right-0 top-0 pr-0">
-                     <div class="accessories-sellpost">
-                    <img src="../assets/img/gamehome.png" class="img-fluid w-100" alt="Gamebazar image">
-                </div>
-                </div>
+              <div class="row">
+                    <div class="col-md-7 col-lg-6">
+                        <div class="mr-a-md-10 mb-3 mb-md-0">
+                            <h1 class="f-s-28 f-s-md-48 max-600 mb-a-5">
+                                Do you have games and accessories?
+                                <span class="text-secondery">Want to sell?</span>
+                                Then <span class="text-secondery">advertise</span> today
+                                And sell.
+                            </h1>
+                            <p class="max-500 opa-8 text-white"> Gamebazar is giving you a golden opportunity to sell games 
+                                and game accessories. Advertise and sell new 
+                                and old games and accessories here.</p>
+                                <a href="#" class="bg-secondery-gradient d-inline-block gil-bold py-2 px-5 primary-text primary-text-hover">Create ads</a>
+                        </div>
+                    </div>
+                    <div class="col-md-5 col-lg-6 position-initial  pr-md-0">
+                        <div class="accessories-sellpost position-xl-absolute right-0 top-0">
+                                <img src="../assets/img/gamehome.png" class="img-fluid w-100" alt="Gamebazar image">
+                        </div>
+                    </div>
+              </div>
             </div>
         </section>
           <!-- sell post -->
         <section class="accessories-sell-post position-relative">
             <div class="container">
-                
-                <div class="col-md-6 position-absolute left-0 top-0 pl-0">
-                     <div class="accessories-sellpost">
-                    <img src="../assets/img/gamehome.png" class="img-fluid w-100" alt="Gamebazar image">
-                </div>
-                </div>
-                <div class="col-md-6 ml-auto">
-                   
-                <div class="ml-a-10">
-                    <h1 class="f-s-48 max-600 mb-a-5">
-                        <span class="text-secondery">Renting and renting</span> games
-                        The popular medium is GameHub
-                    </h1>
-                    <p class="max-500 opa-8 text-white"> Gamebazar is giving you a golden opportunity to sell games 
-                        and game accessories. Advertise and sell new 
-                        and old games and accessories here.</p>
-                        <a href="#" class="bg-secondery-gradient d-inline-block gil-bold py-2 px-5 primary-text primary-text-hover">Browse gamehub</a>
-                </div>
-                </div>
+               <div class="row accessories-sell-post__row">
+                    <div class="col-md-5 col-lg-6 position-initial pl-md-0">
+                        <div class="accessories-sellpost position-xl-absolute left-0 top-0 ">
+                            <img src="../assets/img/gamehome.png" class="img-fluid w-100" alt="Gamebazar image">
+                        </div>
+                    </div>
+                    <div class="col-md-7 col-lg-6 ml-auto">
+                        <div class="ml-a-md-10 mb-3 mb-md-0">
+                            <h1 class="f-s-28 f-s-md-48 max-600 mb-a-5">
+                                <span class="text-secondery">Renting and renting</span> games
+                                The popular medium is GameHub
+                            </h1>
+                            <p class="max-500 opa-8 text-white"> Gamebazar is giving you a golden opportunity to sell games 
+                                and game accessories. Advertise and sell new 
+                                and old games and accessories here.</p>
+                                <a href="#" class="bg-secondery-gradient d-inline-block gil-bold py-2 px-5 primary-text primary-text-hover">Browse gamehub</a>
+                        </div>
+                    </div>
+               </div>
             </div>
         </section>
-        <!-- RELATED GAME -->
-        <section class="related-game-section" id="related-game">
+        <!--Current Popular -->
+        <section class="related-game-section current-popular" id="related-game">
             <div class="container">
                  <h3 class="f-s-24 gil-bold text-white mb-a-4">Current Popular Games at GameHub:</h3>
                 <!-- new carousel -->
@@ -353,62 +354,44 @@
                           :center ="true"
                           :nav ="false"
                           :dots ="true"
-                          :items ="5"
-                          :margin ="10"
-                          :stagePadding ="0">
+                          :margin ="32"
+                          :stagePadding ="0"
+                          :responsive="{ 0:{items:1, stagePadding:0, center:false,},
+                                600:{items:2, stagePadding:0, center:false,},
+                                1000:{items:3, stagePadding:0,},
+                                1400:{items:4, stagePadding:0, center:false,}}">
                   <template slot="prev"><div class="vue-owl-nav vue-owl-nav-left"><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
 
                   <template slot="next"><div class="vue-owl-nav vue-owl-nav-right"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
 
                   <div class="item"  v-for="(article, index) in articles" :key="index">
-                    <div class="notice-box">
-                      <img src="https://via.placeholder.com/250x300" :alt="article" class="w-100">
-                      <div class="noticed-details">
-                        <router-link to="/home" class="small-readmore"><span>{{ $t('read_more', $store.state.locale) }} <i class="fas fa-arrow-right ml-2"></i></span></router-link>
-                      </div>
-                    </div>
+                    <router-link to="/" class="games-categories-section--games--game-card-box game-card-hover-outer">
+                        <div class="game-card game-card-hover-inner">
+                            <div class="display-image" href="#">
+                                <!-- <img :src="rent.game.data.poster_url" :alt="rent.game.data.name" class="img-fluid"> -->
+                                <img src="../assets/img/category/fifa20.jpg" class="img-fluid w-100" alt="Gamebazar image">
+                            </div>
+                            <div class="game-card--details">
+                                <div> <h6>Fif 2020</h6></div>
+                                <div class="d-flex flex-wrap game-card--category">
+                                    <span >Action<span class="mr-2">, </span></span>
+                                </div>
+                                <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
+
+                                    <div class="game-card--details--platforms"><a href="javascript:void(0)"><img src="../assets/img/ps4-white.png" class="img-fluid w-100" alt="ps4"> </a></div>
+
+                                    <span class="game-rating">95</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </router-link>
                   </div>
                 </carousel>
               </div>
-<!--                <div class="position-relative">-->
-<!--                  <carousel-->
-<!--                  v-if="loadedRelated"-->
-<!--                  :autoplay ="false"-->
-<!--                  :loop ="true"-->
-<!--                  :center ="false"-->
-<!--                  :nav ="false"-->
-<!--                  :dots ="false"-->
-<!--                  :margin ="32"-->
-<!--                  :responsive="{ 0:{items:1, stagePadding:0, center:false,},-->
-<!--                                600:{items:2, stagePadding:0, center:false,},-->
-<!--                                1000:{items:3, stagePadding:0,},-->
-<!--                                1400:{items:4, stagePadding:0, center:false,}}">-->
-<!--                    <template slot="prev"><div class="vue-owl-nav vue-owl-nav-left "><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>-->
-
-<!--                    <template slot="next"><div class="vue-owl-nav vue-owl-nav-right"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>-->
-
-<!--                      <div class="item">-->
-<!--                        <router-link to="/" class="games-categories-section&#45;&#45;games&#45;&#45;game-card-box game-card-hover-outer">-->
-<!--                          <div class="game-card game-card-hover-inner">-->
-<!--                              <a class="display-image" href="javascript:void(0)">-->
-<!--                                &lt;!&ndash; <img src="" class="img-fluid"> &ndash;&gt;-->
-<!--                              </a>-->
-<!--                              <div class="game-card&#45;&#45;details">-->
-<!--                                <a href="javascript:void(0)"> <h6>Hola</h6></a>-->
-<!--                                <div class="d-flex">-->
-<!--                                  <span >hola<span class="mr-1" >, </span></span>-->
-<!--                                </div>-->
-<!--                                <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">-->
-<!--                                  <div class="game-card&#45;&#45;details&#45;&#45;platforms"> <a href="javascript:void(0)" ></a> </div>-->
-<!--                                    <span class="game-rating">hola </span>-->
-<!--                                </div>-->
-<!--                              </div>-->
-<!--                          </div>-->
-<!--                        </router-link>-->
-<!--                      </div>-->
-<!--                  -->
-<!--                  </carousel>-->
-<!--                </div>-->
+              <div class="text-center mt-5">
+                    <a href="#" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block">All games</a>
+              </div>
             </div>
         </section>
     </div>

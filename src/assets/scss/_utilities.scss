@@ -153,6 +153,9 @@
 
 // margin left
 // incresing:5px
+.ml-a-0 {
+    margin-left: 0;
+}
 .ml-a-1 {
     margin-left: 0.313rem;
 }
@@ -192,6 +195,17 @@
 .ml-a-10 {
     margin-left: 3.438rem;
 }
+.ml-a-sm-10 {
+    @include for-min-575 {
+     margin-left: 3.438rem;
+    }
+ }
+.ml-a-md-10 {
+   @include for-min-768 {
+    margin-left: 3.438rem;
+   }
+}
+
 
 .ml-a-11 {
     margin-left: 3.75rem;
@@ -283,6 +297,9 @@
 
 // margin right
 // incresing:5px
+.mr-a-0 {
+    margin-right: 0;
+}
 .mr-a-1 {
     margin-right: 0.313rem;
 }
@@ -321,6 +338,16 @@
 
 .mr-a-10 {
     margin-right: 3.438rem;
+}
+.mr-a-sm-10 {
+    @include for-min-575 {
+        margin-right: 3.438rem;
+    }
+}
+.mr-a-md-10 {
+    @include for-min-768 {
+        margin-right: 3.438rem;
+    }
 }
 
 .mr-a-11 {
@@ -1673,9 +1700,34 @@
 .f-s-42 {
     font-size: 42px;
 }
+
 .f-s-48 {
     font-size: 48px;
     line-height: 64px;
+}
+.f-s-sm-48 {
+    @include for-min-575 {
+        font-size: 48px;
+        line-height: 64px;
+    }
+}
+.f-s-md-48 {
+    @include for-min-768 {
+        font-size: 48px;
+        line-height: 64px;
+    }
+}
+.f-s-lg-48 {
+    @include for-min-992 {
+        font-size: 48px;
+        line-height: 64px;
+    }
+}
+.f-s-xl-48 {
+    @include for-min-1200 {
+        font-size: 48px;
+        line-height: 64px;
+    }
 }
 
 // ********color*********//
@@ -2745,6 +2797,16 @@ select {
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
+.grid-lg-cols-4 {
+    @include for-min-992 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+.grid-xl-cols-4 {
+    @include for-min-1200 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
 
 .grid-cols-5 {
     grid-template-columns: repeat(5, minmax(0, 1fr));
@@ -2756,6 +2818,16 @@ select {
 }
 .grid-md-cols-5 {
     @include for-min-768 {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+.grid-lg-cols-5 {
+    @include for-min-992 {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+}
+.grid-xl-cols-5 {
+    @include for-min-1200 {
         grid-template-columns: repeat(5, minmax(0, 1fr));
     }
 }
@@ -2815,6 +2887,23 @@ select {
 .grid-gap-16 {
     grid-gap: 16px;
 }
+.grid-gap-20 {
+    grid-gap: 20px;
+}
+
+.grid-gap-30 {
+    grid-gap: 30px;
+}
+.grid-gap-sm-30 {
+    @include for-min-575 {
+        grid-gap: 30px;
+    }
+}
+.grid-gap-md-30 {
+    @include for-min-768 {
+        grid-gap: 30px;
+    }
+}
 
 // col-gap
 .col-gap-10 {
@@ -2836,4 +2925,30 @@ select {
 }
 .col-gap-30 {
     grid-column-gap: 30px;
+}
+
+// position
+.position-sm-absolute {
+    @include for-min-575 {
+        position: absolute !important;
+    }
+}
+.position-md-absolute {
+    @include for-min-768 {
+        position: absolute !important;
+    }
+}
+.position-lg-absolute {
+    @include for-min-992 {
+        position: absolute !important;
+    }
+}
+.position-xl-absolute {
+    @include for-min-1200 {
+        position: absolute !important;
+    }
+}
+
+.position-initial {
+    position: initial;
 }

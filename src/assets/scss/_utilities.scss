@@ -1440,7 +1440,9 @@
 .br-0 {
     border-radius: 0;
 }
-
+.br-4 {
+    border-radius: 4px;
+}
 .br-5 {
     border-radius: 5px;
 }
@@ -1457,6 +1459,19 @@
     border-radius: 25px;
 }
 // 
+.br-t-r-0 {
+    border-top-right-radius: 0px;
+}
+.br-b-r-0 {
+    border-bottom-right-radius: 0px;
+}
+.br-t-l-0 {
+    border-top-left-radius: 0px;
+}
+.br-b-l-0 {
+    border-bottom-left-radius: 0px;
+}
+
 .br-b-r-5 {
     border-bottom-right-radius: 5px;
 }
@@ -1501,7 +1516,12 @@
 .border-t-3 {
     border-top: 3px solid;
 }
-
+.black-border {
+    border-color: $text-dark;
+}
+.primary-border {
+    border-color: $primary;
+}
 .border-secondery {
     border-color: $secondery;
 }
@@ -1513,6 +1533,9 @@
 }
 .border-white-50 {
     border-color: $white-50;
+}
+.border-white-25 {
+    border-color: $white-25;
 }
 
 .secondery-border {
@@ -1537,7 +1560,12 @@
 .warning-border {
     border-color: $secondery;
 }
-
+.border-l-white-25 {
+    border-left-color: $white-25;
+}
+.border-r-white-25 {
+    border-right-color: $white-25;
+}
 // ******************Color***************//
 .gamehub-danger {
     color: $gamehub_danger;
@@ -1584,7 +1612,9 @@
 .bg-pattens-blue {
     background: $pattens-blue;
 }
-
+.bg-white-25 {
+    background: $white-25;
+}
 .bg-black-opa {
     background: $black-opacity;
 }

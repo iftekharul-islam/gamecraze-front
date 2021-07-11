@@ -12,7 +12,7 @@
                     <div class="col-md-6">
                         <div class="gamebazar-banner__content d-grid grid-gap-16 justify-content-md-end">
                             <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item">
-                              <div class=" h-100">
+                              <div class=" h-100 br-4 overflow-fidden">
                                    <img src="../assets/img/gamebazar1.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
                               <div class="gamebazar-tag position-absolute">
@@ -22,7 +22,7 @@
                               </div>
                             </a>
                             <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item">
-                              <div class=" h-100">
+                              <div class=" h-100 br-4 overflow-fidden">
                                    <img src="../assets/img/gamebazar2.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
                               <div class="gamebazar-tag position-absolute">
@@ -30,7 +30,7 @@
                               </div>
                             </a>
                             <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item">
-                              <div class=" h-100">
+                              <div class=" h-100 br-4 overflow-fidden">
                                    <img src="../assets/img/gamebazar2.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
                               <div class="gamebazar-tag position-absolute">
@@ -38,7 +38,7 @@
                               </div>
                             </a>
                             <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item">
-                              <div class=" h-100">
+                              <div class=" h-100 br-4 overflow-fidden">
                                    <img src="../assets/img/gamebazar3.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
                               <div class="gamebazar-tag position-absolute">
@@ -85,10 +85,10 @@
                 <h3 class="f-s-24 gil-bold text-white mb-a-4">All new post</h3>
                 <div class="d-grid grid-sm-cols-2 grid-md-cols-3 grid-lg-cols-4 grid-xl-cols-5 grid-gap-16 grid-gap-md-30 gamebazar-post">
                     <router-link to="/sell-posts" >
-                        <div class="product-img position-relative">
-                            <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white">New</span>
-                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium">$123</span>
+                        <div class="product-img position-relative br-4 overflow-hidden">
+                            <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image">
+                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
                         </div>
                         <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
                         <p class="mb-4 text-white">Used 1.5 years</p>
@@ -102,10 +102,10 @@
                         </div>
                     </router-link>
                     <a href="#">
-                        <div class="product-img position-relative">
+                        <div class="product-img position-relative br-4 overflow-hidden">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white">New</span>
-                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium">$123</span>
+                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
                         </div>
                         <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
                         <p class="mb-4 text-white">Used 1.5 years</p>
@@ -119,10 +119,10 @@
                         </div>
                     </a>
                     <a href="#">
-                        <div class="product-img position-relative">
+                        <div class="product-img position-relative br-4 overflow-hidden">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white">New</span>
-                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium">$123</span>
+                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
                         </div>
                         <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
                         <p class="mb-4 text-white">Used 1.5 years</p>
@@ -136,10 +136,10 @@
                         </div>
                     </a>
                     <a href="#">
-                        <div class="product-img position-relative">
+                        <div class="product-img position-relative br-4 overflow-hidden">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white">New</span>
-                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium">$123</span>
+                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
                         </div>
                         <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
                         <p class="mb-4 text-white">Used 1.5 years</p>
@@ -153,10 +153,10 @@
                         </div>
                     </a>
                     <a href="#">
-                        <div class="product-img position-relative">
+                        <div class="product-img position-relative br-4 overflow-hidden">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white">New</span>
-                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium">$123</span>
+                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
                         </div>
                         <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
                         <p class="mb-4 text-white">Used 1.5 years</p>
@@ -171,7 +171,7 @@
                     </a>
                 </div>
                 <div class="text-center mt-5">
-                    <a href="#" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">All post</a>
+                    <router-link to="/sell-posts" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">All post</router-link>
                 </div>
             </div>
         </section>
@@ -181,10 +181,10 @@
                 <h3 class="f-s-24 gil-bold text-white mb-a-4">Play station sell post</h3>
                 <div class="d-grid grid-sm-cols-2 grid-md-cols-3 grid-lg-cols-4 grid-xl-cols-5 grid-gap-16 grid-gap-md-30 gamebazar-post">
                     <router-link to="/sell-posts">
-                        <div class="product-img position-relative">
+                        <div class="product-img position-relative br-4 overflow-hidden">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white">New</span>
-                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium">$123</span>
+                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
                         </div>
                         <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
                         <p class="mb-4 text-white">Used 1.5 years</p>
@@ -198,10 +198,10 @@
                         </div>
                     </router-link>
                     <a href="#">
-                        <div class="product-img position-relative">
+                        <div class="product-img position-relative br-4 overflow-hidden">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white">New</span>
-                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium">$123</span>
+                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
                         </div>
                         <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
                         <p class="mb-4 text-white">Used 1.5 years</p>
@@ -215,10 +215,10 @@
                         </div>
                     </a>
                     <a href="#">
-                        <div class="product-img position-relative">
+                        <div class="product-img position-relative br-4 overflow-hidden">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white">New</span>
-                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium">$123</span>
+                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
                         </div>
                         <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
                         <p class="mb-4 text-white">Used 1.5 years</p>
@@ -232,10 +232,10 @@
                         </div>
                     </a>
                     <a href="#">
-                        <div class="product-img position-relative">
+                        <div class="product-img position-relative br-4 overflow-hidden">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white">New</span>
-                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium">$123</span>
+                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
                         </div>
                         <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
                         <p class="mb-4 text-white">Used 1.5 years</p>
@@ -249,10 +249,10 @@
                         </div>
                     </a>
                     <a href="#">
-                        <div class="product-img position-relative">
+                        <div class="product-img position-relative br-4 overflow-hidden">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white">New</span>
-                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium">$123</span>
+                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
                         </div>
                         <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
                         <p class="mb-4 text-white">Used 1.5 years</p>
@@ -266,10 +266,10 @@
                         </div>
                     </a>
                     <a href="#">
-                        <div class="product-img position-relative">
+                        <div class="product-img position-relative br-4 overflow-hidden">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white">New</span>
-                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium">$123</span>
+                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
                         </div>
                         <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
                         <p class="mb-4 text-white">Used 1.5 years</p>
@@ -284,7 +284,7 @@
                     </a>
                 </div>
                 <div class="text-center mt-5">
-                    <a href="#" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">All post</a>
+                     <router-link to="/sell-posts" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">All post</router-link>
                 </div>
             </div>
         </section>
@@ -294,10 +294,10 @@
                 <h3 class="f-s-24 gil-bold text-white mb-a-4">Controller sell post</h3>
                 <div class="d-grid grid-sm-cols-2 grid-md-cols-3 grid-lg-cols-4 grid-xl-cols-5 grid-gap-16 grid-gap-md-30 gamebazar-post">
                     <router-link to="/sell-posts">
-                        <div class="product-img position-relative">
+                        <div class="product-img position-relative br-4 overflow-hidden">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white">New</span>
-                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium">$123</span>
+                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
                         </div>
                         <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
                         <p class="mb-4 text-white">Used 1.5 years</p>
@@ -311,10 +311,10 @@
                         </div>
                     </router-link>
                     <a href="#">
-                        <div class="product-img position-relative">
+                        <div class="product-img position-relative br-4 overflow-hidden">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white">New</span>
-                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium">$123</span>
+                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
                         </div>
                         <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
                         <p class="mb-4 text-white">Used 1.5 years</p>
@@ -328,10 +328,10 @@
                         </div>
                     </a>
                     <a href="#">
-                        <div class="product-img position-relative">
+                        <div class="product-img position-relative br-4 overflow-hidden">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white">New</span>
-                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium">$123</span>
+                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
                         </div>
                         <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
                         <p class="mb-4 text-white">Used 1.5 years</p>
@@ -345,10 +345,10 @@
                         </div>
                     </a>
                     <a href="#">
-                        <div class="product-img position-relative">
+                        <div class="product-img position-relative br-4 overflow-hidden">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white">New</span>
-                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium">$123</span>
+                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
                         </div>
                         <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
                         <p class="mb-4 text-white">Used 1.5 years</p>
@@ -362,10 +362,10 @@
                         </div>
                     </a>
                     <a href="#">
-                        <div class="product-img position-relative">
+                        <div class="product-img position-relative br-4 overflow-hidden">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white">New</span>
-                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium">$123</span>
+                            <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
                         </div>
                         <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
                         <p class="mb-4 text-white">Used 1.5 years</p>
@@ -380,7 +380,7 @@
                     </a>
                 </div>
                 <div class="text-center mt-5">
-                    <a href="#" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">All post</a>
+                     <router-link to="/sell-posts" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">All post</router-link>
                 </div>
             </div>
         </section>
@@ -482,7 +482,7 @@
                 </carousel>
               </div>
               <div class="text-center mt-5">
-                    <a href="#" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">All games</a>
+                     <router-link to="/games" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">All games</router-link>
               </div>
             </div>
         </section>

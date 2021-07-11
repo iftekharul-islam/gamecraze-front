@@ -23,10 +23,10 @@
             <div class="games-categories-section--categories" id="games-categories-list">
               <!-- Game Type -->
               <div class="select-categories">
-                <h6>{{ $t('select_category', $store.state.locale) }}</h6>
+                <h6 class="">{{ $t('select_category', $store.state.locale) }}</h6>
                 <div class="form-group form-check" v-for="(category, index) in categories" :key="'category' + index"
                      v-if="categories">
-                  <h6 v-if="category.subcategory.data.length">{{ category.name }}</h6>
+                  <h6 v-if="category.subcategory.data.length" class="-ml-20px">{{ category.name }}</h6>
                   <div v-for="(subItem, index) in category.subcategory.data" :key="index"
                        v-if="category.subcategory.data.length">
                     <input type="checkbox" class="custom-control-input" :id="subItem.name + '-game'"
@@ -37,9 +37,9 @@
                 </div>
               </div>
               <!-- Filter -->
-              <div class="select-platforms">
-                <h6 class="margin__bottom">Filter</h6>
-                <div class="form-group form-check">
+              <div class="select-platforms form-check">
+                <h6 class="margin__bottom -ml-20px">Filter</h6>
+                <div class="form-group ">
                   <div>
                     <input type="radio" class="custom-control-input" id="asc_price_filter" name="sort_price"
                            @change="ascPrice($event)">
@@ -70,7 +70,7 @@
                 <h6>Price range</h6>
                 <!-- <vue-range-slider ref="slider" v-model="value" :min="0" :max="1000" :enable-cross="false" :min-range="10"></vue-range-slider> -->
                 <div class="track-container range-slider">
-                  <!--                                     <span class="range-value min">{{ minValue}} </span> <span class="range-value max">{{ maxValue }}</span>-->
+                  <!--  <span class="range-value min">{{ minValue}} </span> <span class="range-value max">{{ maxValue }}</span>-->
                   <div class="range-slider__bar" ref="_vpcTrack"></div>
                   <div class="range-slider__highlight-bar" ref="trackHighlight"></div>
                   <button class="range-slider__ball track1" ref="track1"></button>
@@ -91,41 +91,105 @@
                   class="fas fa-times"></i></div></span>
             </div>
             <div class="games-categories-section--games" v-if="posts.length">
-              <div class="row">
-                <div v-for="(item, index) in posts" :key="index" class="col-md-6 col-lg-4 mb-4" >
-                  <router-link :to="{ path: '/sell-post/' + item.id + '/' + item.url_name }"
-                               class="games-categories-section--games--game-card-box game-card-hover-outer">
-                    <div class="game-card game-card-hover-inner">
-                      <div class="display-image" href="#">
-                        <img :src="item.cover[0].url" :alt="item.name" class="img-fluid" v-if="item.cover[0]">
-                        <img src="https://via.placeholder.com/250x300" :alt="item.name" class="img-fluid" v-else>
-                      </div>
-                      <div class="game-card--details">
-                        <h6>{{ item.name }}</h6>
-                        <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                          <div class="game-card--details--platforms">{{ item.subcategory.data.name }}</div>
-                          <span v-if="item.product_type == 1">New</span>
-                          <span v-if="item.product_type == 2">Used</span>
-                          <span>৳ {{ item.price }}</span>
-                        </div>
-                      </div>
+              <div class="d-grid grid-sm-cols-2 grid-md-cols-3 grid-lg-cols-4 grid-gap-16 grid-gap-md-30 gamebazar-post">
+                  <router-link v-for="(item, index) in posts" :key="index" :to="{ path: '/sell-post/' + item.id + '/' + item.url_name }"
+                               class="">
+                    <div class="product-img position-relative br-4 overflow-hidden">
+                      <img :src="item.cover[0].url" :alt="item.name" class="img-fluid w-100" v-if="item.cover[0]">
+                      <img src="../assets/img/play.png" :alt="item.name" class="img-fluid w-100" v-else>
+
+                      <span v-if="item.product_type == 1" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
+                      <span v-if="item.product_type == 2" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">Used</span>
+
+                      <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">৳ {{ item.price }}</span>
                     </div>
+
+                    <p class="gil-bold mb-4 mt-a-4 text-white">{{ item.name }}</p>
+                        <span v-if="item.product_type == 1" class="mb-4 text-white d-inline-block">New</span>
+                        <span v-if="item.product_type == 2" class="mb-4 text-white d-inline-block">Used 1.5yrs</span>
+                        <div class="d-flex align-items-center text-secondery">
+                            <p class="mb-0">Details</p>
+                            <div class="gamebazar-post__arrow">
+                                <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
+                                </svg>
+                            </div>
+                        </div>
                   </router-link>
-                </div>
               </div>
+
+              <div class="text-center my-5">
+                    <a href="#" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">Load more</a>
+                </div>
+
               <div class="not-matching" v-if="noPostFound">
                 <h2>{{ $t('noting_to_show', $store.state.locale) }}</h2>
               </div>
             </div>
-            <sliding-pagination
+            <div class="mt-5">
+              <sliding-pagination
                 :current="currentPage"
                 :total="totalPages"
                 @page-change="pageChangeHandler"
             ></sliding-pagination>
+            </div>
           </div>
         </div>
       </div>
     </section>
+
+      <!--Current Popular -->
+        <section class="related-game-section current-popular" id="related-game">
+            <div class="container">
+                 <h3 class="f-s-24 gil-bold text-white mb-a-4">Current Popular Games at GameHub:</h3>
+                <!-- new carousel -->
+              <div class="position-relative">
+                <carousel v-if ="Loadedarticles"
+                          :autoplay ="false"
+                          :loop ="true"
+                          :center ="true"
+                          :nav ="false"
+                          :dots ="true"
+                          :margin ="32"
+                          :stagePadding ="0"
+                          :responsive="{ 0:{items:1, stagePadding:0, center:false,},
+                                600:{items:2, stagePadding:0, center:false,},
+                                1000:{items:3, stagePadding:0,},
+                                1400:{items:4, stagePadding:0, center:false,}}">
+                  <template slot="prev"><div class="vue-owl-nav vue-owl-nav-left"><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
+
+                  <template slot="next"><div class="vue-owl-nav vue-owl-nav-right"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
+
+                  <div class="item"  v-for="(article, index) in articles" :key="index">
+                    <router-link to="/" class="games-categories-section--games--game-card-box game-card-hover-outer">
+                        <div class="game-card game-card-hover-inner">
+                            <div class="display-image" href="#">
+                                <!-- <img :src="rent.game.data.poster_url" :alt="rent.game.data.name" class="img-fluid"> -->
+                                <img src="../assets/img/category/fifa20.jpg" class="img-fluid w-100" alt="Gamebazar image">
+                            </div>
+                            <div class="game-card--details">
+                                <div> <h6>Fif 2020</h6></div>
+                                <div class="d-flex flex-wrap game-card--category">
+                                    <span >Action<span class="mr-2">, </span></span>
+                                </div>
+                                <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
+
+                                    <div class="game-card--details--platforms"><a href="javascript:void(0)"><img src="../assets/img/ps4-white.png" class="img-fluid w-100" alt="ps4"> </a></div>
+
+                                    <span class="game-rating">95</span>
+                                </div>
+                            </div>
+
+                        </div>
+                    </router-link>
+                  </div>
+                </carousel>
+              </div>
+              <div class="text-center mt-5">
+                    <a href="#" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">All games</a>
+              </div>
+            </div>
+        </section>
 
   </div>
 </template>
@@ -133,9 +197,10 @@
 <script>
 import SlidingPagination from 'vue-sliding-pagination'
 import 'vue-range-component/dist/vue-range-slider.css'
+import carousel from 'vue-owl-carousel';
 // import VueRangeSlider from 'vue-range-component'
 export default {
-  components: {SlidingPagination},
+  components: {SlidingPagination, carousel},
   data() {
     return {
       min: 0,
@@ -163,6 +228,10 @@ export default {
       percentPerStep: 1,
       trackWidth: null,
       isDragging: false,
+      articles: [1, 2, 3, 4],
+      Loadedarticles: true,
+      relatedGames: [],
+      loadedRelated: false,
       pos: {
         curTrack: null
       }

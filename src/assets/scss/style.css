@@ -1426,6 +1426,10 @@
   border-radius: 0;
 }
 
+.br-4 {
+  border-radius: 4px;
+}
+
 .br-5 {
   border-radius: 5px;
 }
@@ -1440,6 +1444,22 @@
 
 .br-25 {
   border-radius: 25px;
+}
+
+.br-t-r-0 {
+  border-top-right-radius: 0px;
+}
+
+.br-b-r-0 {
+  border-bottom-right-radius: 0px;
+}
+
+.br-t-l-0 {
+  border-top-left-radius: 0px;
+}
+
+.br-b-l-0 {
+  border-bottom-left-radius: 0px;
 }
 
 .br-b-r-5 {
@@ -1494,6 +1514,14 @@
   border-top: 3px solid;
 }
 
+.black-border {
+  border-color: #000;
+}
+
+.primary-border {
+  border-color: #0B0F18;
+}
+
 .border-secondery {
   border-color: #FFD715;
 }
@@ -1508,6 +1536,10 @@
 
 .border-white-50 {
   border-color: #ffffff80;
+}
+
+.border-white-25 {
+  border-color: #ffffff40;
 }
 
 .secondery-border {
@@ -1532,6 +1564,14 @@
 
 .warning-border {
   border-color: #FFD715;
+}
+
+.border-l-white-25 {
+  border-left-color: #ffffff40;
+}
+
+.border-r-white-25 {
+  border-right-color: #ffffff40;
 }
 
 .gamehub-danger {
@@ -1589,6 +1629,10 @@
 
 .bg-pattens-blue {
   background: #DBE6FF;
+}
+
+.bg-white-25 {
+  background: #ffffff40;
 }
 
 .bg-black-opa {
@@ -3214,6 +3258,18 @@ select option {
   margin-right: 0;
 }
 
+@media (min-width: 1200px) {
+  .gamehub-menu-collapse > ul li:last-child {
+    margin-left: 30px;
+  }
+}
+
+@media (max-width: 1199px) {
+  .gamehub-menu-collapse > ul li:last-child {
+    margin-bottom: 20px;
+  }
+}
+
 .gamehub-menu-collapse > ul li a {
   padding: 0 20px;
   color: #B1B2B3;
@@ -3230,6 +3286,7 @@ select option {
 .gamehub-menu-collapse > ul li a.router-link-exact-active {
   position: relative;
   font-family: gilroy-bold;
+  color: #FFD715;
 }
 
 .gamehub-menu-collapse > ul li a.router-link-exact-active::after {
@@ -4096,15 +4153,14 @@ select option {
 }
 
 .gamehub-language .active {
-  background: #FFD715;
-  color: #0B0F18;
+  color: #FFD715;
   font-weight: 700;
+  opacity: 1;
 }
 
 .gamehub-language span {
-  margin-right: 8px;
   height: 27px;
-  padding: 0px 15px;
+  padding: 0px 10px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4114,8 +4170,13 @@ select option {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  color: #FFD715;
+  color: #fff;
+  opacity: .75;
   cursor: pointer;
+}
+
+.gamehub-language > div:first-of-type {
+  border-right: 3px solid #FFD715;
 }
 
 @media (max-width: 380px) {
@@ -11788,14 +11849,29 @@ html {
   }
 }
 
-.gamebazar-post > a svg {
-  -webkit-transition: all .3s ease-in;
-  transition: all .3s ease-in;
+.gamebazar-post > a {
+  overflow: hidden;
 }
 
-.gamebazar-post > a:hover p svg {
-  -webkit-transform: translateX(20px);
-          transform: translateX(20px);
+.gamebazar-post > a:hover .gamebazar-post__arrow {
+  -webkit-transform: translateX(calc(100% - 25px));
+          transform: translateX(calc(100% - 25px));
+}
+
+.gamebazar-post__arrow {
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+  width: 100%;
+  margin-left: 20px;
+}
+
+.gamebazar-search .dropdown-toggle {
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+
+.gamebazar-search .dropdown-toggle::after {
+  margin-left: 20px;
 }
 
 .page_404 {

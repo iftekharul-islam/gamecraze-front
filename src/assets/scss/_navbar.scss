@@ -64,6 +64,12 @@
             }
             &:last-child {
                 margin-right: 0;
+                @include for-min-1200 {
+                    margin-left: 30px;
+                }
+                @include for-max-1199 {
+                    margin-bottom: 20px;
+                }
             }
             a {
                 padding: 0 20px;
@@ -76,6 +82,7 @@
                 &.router-link-exact-active {
                     position: relative;
                     @include gil-bold;
+                    color: $secondery;
                     &::after {
                         content: "";
                         width: 83px;
@@ -759,19 +766,25 @@
         padding-bottom: 20px;
     }
     .active {
-        background: $secondery;
-        color: $primary;
+        // background: $secondery;
+        color: $secondery;
         font-weight: 700;
+        opacity: 1;
     }
     span {
-        margin-right: 8px;
         height: 27px;
-        padding: 0px 15px;
+        padding: 0px 10px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: $secondery;
+        color: $text-light;
+        opacity: .75;
         cursor: pointer;
+    }
+    >div {
+        &:first-of-type {
+            border-right: 3px solid $secondery;
+        }
     }
 }
 .rating-notification {

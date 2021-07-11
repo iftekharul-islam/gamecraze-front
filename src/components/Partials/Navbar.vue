@@ -19,26 +19,24 @@
                 </div>
                 <div class="collapse navbar-collapse custom-collapse gamehub-menu-collapse" id="navbarSupportedContent" @click="modal = false">
                     <ul class="">
-                        <li class="active">
+                        <!-- <li class="active">
                             <router-link @click.native="onMenuItemClick()" class="nav-link active router_link" to="/" >{{ $t('home', $store.state.locale) }}<span class="sr-only">(current)</span></router-link>
-                        </li>
+                        </li> -->
                         <li>
                             <router-link @click.native="onMenuItemClick()" class="router_link" to="/games" :class="{ 'router-link-exact-active router-link-active active': this.$route.path == '/games' }">{{ $t('games', $store.state.locale)}}</router-link>
-                        </li>
-                        <li>
-                            <router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link>
-                        </li>
-                        <li class="active">
-                            <router-link @click.native="onMenuItemClick()" class="nav-link active router_link" to="/sell-posts" >{{ $t('game_bazar', $store.state.locale) }}</router-link>
                         </li>
                         <li class="dropdown position-relative dropdown-hover">
                             <router-link class="router_link no-after" to="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ $t('more', $store.state.locale)}}</router-link>
                                 <div class="dropdown--sub-menu p-0 dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <div class="dropdown--sub-menu--item"><router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link></div>
                                   <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/about-us">{{ $t('about_us', $store.state.locale) }}</router-link></div>
                                   <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/terms">{{ $t('terms', $store.state.locale) }}</router-link></div>
                                   <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/privacy">{{ $t('privacy_policy', $store.state.locale) }}</router-link></div>
                                   <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/frequently-asked-questions">{{ $t('faq', $store.state.locale) }}</router-link></div>
                               </div>
+                        </li>
+                        <li class="active">
+                            <router-link @click.native="onMenuItemClick()" class="nav-link active router_link" to="/gamebazar" >{{ $t('game_bazar', $store.state.locale) }}</router-link>
                         </li>
                     </ul>
                     <!-- language -->

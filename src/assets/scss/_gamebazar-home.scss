@@ -115,16 +115,27 @@
 }
 
 .gamebazar-post {
+
     >a {
-        svg {
-            transition: all .3s ease-in;
-        }
+        overflow: hidden;
         &:hover {
-            p {
-                svg {
-                    transform: translateX(20px);
-                }
+            .gamebazar-post__arrow {
+                transform: translateX(calc(100% - 25px));
             }
+        }
+    }
+    &__arrow {
+        transition: all .3s ease-in;
+        width: 100%;
+        margin-left: 20px;
+    }
+}
+.gamebazar-search {
+    .dropdown-toggle {
+        padding-top: 7px;
+        padding-bottom: 7px;
+        &::after {
+            margin-left: 20px;
         }
     }
 }

@@ -442,5 +442,7 @@
   "upload_screenshots" : "Upload Screenshots",
   "screenshots" : "Screenshots",
   "upload_cover" : "Upload cover",
-  "images" : "Images"
+  "images" : "Images",
+  "upload_screenshots_notification" : "Upload screenshots first !",
+  "upload_cover_notification" : "Upload cover images first !"
 }

@@ -596,11 +596,11 @@
                                                                                     </div>
 
                                                                                 </div>
-                                                                              <div class="form-group post-rent--form-group" v-if="editPostData.cover.length">
+                                                                              <div class="form-group post-rent--form-group" v-if="editPostData.cover != null">
                                                                                 <label  class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('cover_image', $store.state.locale) }}</label>
                                                                                 <div class="post-rent--form-group--input d-grid grid-cols-2 grid-sm-cols-3 grid-gap-10 grid-rows-100 grid-auto-rows-100">
-                                                                                  <div class="position-relative sell-post-modal-img" v-for="(image, index) in editPostData.cover" :key="index">
-                                                                                    <img :src="image.url" class="img-fluid h-100" width="150" height="200">
+                                                                                  <div class="position-relative sell-post-modal-img" :class="{ 'd-none': removeCover === editPostData.cover.id }"  @click="removeCover = editPostData.cover.id">
+                                                                                    <img :src="editPostData.cover.url" class="img-fluid h-100" width="150" height="200">
                                                                                     <span class="image-cancel position-absolute top-0 left-0 w-100 h-100 d-flex align-items-center justify-content-center sellpost-img-bg pointer">
                                                                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                                                                   <path d="M16.2427 6.34315L12.0001 10.5858L7.75744 6.34315L6.34323 7.75736L10.5859 12L6.34323 16.2426L7.75744 17.6569L12.0001 13.4142L16.2427 17.6569L17.6569 16.2426L13.4143 12L17.6569 7.75736L16.2427 6.34315Z" fill="#FFD715"></path></svg>
@@ -646,7 +646,7 @@
                                                                               <div class="form-group post-rent--form-group" v-if="editPostData.images.length">
                                                                                   <label  class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('screenshots', $store.state.locale) }}</label>
                                                                                   <div class="post-rent--form-group--input d-grid grid-cols-2 grid-sm-cols-3 grid-gap-10 grid-rows-100 grid-auto-rows-100">
-                                                                                     <div class="position-relative sell-post-modal-img" v-for="(image, index) in editPostData.images" :key="index">
+                                                                                     <div class="position-relative sell-post-modal-img" :class="{ 'd-none': removeScreenshots.some(data => data === image.id) }" v-for="(image, index) in editPostData.images" :key="index" @click="removeEditScreenshots(image.id)">
                                                                                           <img :src="image.url" class="img-fluid h-100" width="150" height="200">
                                                                                           <span class="image-cancel position-absolute top-0 left-0 w-100 h-100 d-flex align-items-center justify-content-center sellpost-img-bg pointer">
                                                                                               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -665,7 +665,9 @@
                                                                               <div class="form-group post-rent--form-group offer-edit-btn">
                                                                                   <label class=" label-padding post-rent--form-group--label text-light"></label>
                                                                                   <div class=" post-rent--form-group--input">
-                                                                                      <button type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid"><span class="w-100">{{ $t('submit', $store.state.locale) }}</span></button>
+                                                                                      <button type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid"><span class="w-100">
+                                                                                      <span v-if="isEditLoading" class="spinner-border spinner-border-sm"></span>
+                                                                                      {{ $t('submit', $store.state.locale) }}</span></button>
                                                                                   </div>
                                                                               </div>
                                                                             </form>
@@ -696,8 +698,7 @@
                                                 <div class=" post-rent--form-group--input">
                                                     <router-link
                                                             class="secondery-border text-secondery d-flex align-items-center justify-content-center h-48 game-rent-bg"
-                                                            to="/lend-notice" target="_blank">{{
-                                                        $t('learn_about_create_post', $store.state.locale) }}
+                                                            to="/lend-notice" target="_blank">{{$t('learn_about_create_post', $store.state.locale) }}
                                                     </router-link>
                                                 </div>
                                             </div>
@@ -1479,6 +1480,9 @@
         components: {StarRating, VueFeedbackReaction, UploadImages, VueCropper},
         data() {
             return {
+                isEditLoading: false,
+                removeScreenshots: [],
+                removeCover: '',
                 previewImage : '',
                 postCoverImage: '',
                 postCoverImageName: '',
@@ -1642,6 +1646,10 @@
             },
         },
         methods: {
+            removeEditScreenshots(id){
+              this.removeScreenshots.push(id);
+              console.log(this.removeScreenshots)
+            },
             onFileSelect(e) {
               const file = e.target.files[0]
               this.mime_type = file.type
@@ -1708,6 +1716,8 @@
                 this.editPostData.phone_no =  product.phone_no
                 this.editPostData.address =  product.address
                 this.selected = product.sub_category_id
+                this.removeCover = ''
+                this.removeScreenshots = []
             },
             handleUploadScreenshots(files) {
               if (files.length === 0) {
@@ -2301,6 +2311,17 @@
               })
             },
             sellPostUpdate(){
+                this.isEditLoading = true;
+                if (this.editPostData.cover === '') {
+                  this.$toaster.error(this.$t('upload_cover_notification', this.$store.state.locale));
+                  this.isEditLoading = false;
+                  return;
+                }
+                if (this.editPostData.images.length === 0) {
+                  this.$toaster.error(this.$t('upload_screenshots_notification', this.$store.state.locale));
+                  this.isEditLoading = false;
+                  return;
+                }
                 let config = {
                     headers: {
                         'Authorization': 'Bearer ' + this.$store.state.token
@@ -2316,11 +2337,15 @@
                     phone_no: this.editPostData.phone_no,
                     address: this.editPostData.address,
                     images: this.editPostData.postImages,
-                    cover_image: this.editPostData.cover_image
+                    cover_image: this.editPostData.cover_image,
+                    removeCover: this.removeCover,
+                    removeScreenshots: this.removeScreenshots
+
                 };
 
                 this.$api.post('sell-post-update', data, config).then(response => {
                     if (response.data.error == false) {
+                        this.isEditLoading = false;
                         this.sellPostEditModalShow = false;
                         this.editPostData.postImages = [];
                         this.editPostData.cover_image = '';

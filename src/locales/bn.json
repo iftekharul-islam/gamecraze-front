@@ -441,5 +441,7 @@
   "upload_screenshots" : "আপলোড স্ক্রিনশট",
   "screenshots" : "স্ক্রিনশট",
   "upload_cover" : "কভার আপলোড",
-  "images" : "ছবি সমূহ"
+  "images" : "ছবি সমূহ",
+  "upload_screenshots_notification" : "স্ক্রিনশট সমূহ আপলোড করুন !",
+  "upload_cover_notification" : "কভার আপলোড করুন !"
 }

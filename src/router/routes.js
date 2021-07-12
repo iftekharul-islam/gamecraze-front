@@ -59,6 +59,7 @@ import PostDetails from '../components/PostDetails';
 import SellPost from '../components/SellPostHelp'
 import Cropper from "../components/Cropper";
 import GamebazarHome from '../components/GamebazarHome';
+import ProductDetails from '../components/ProductDetails';
 
 let router = new Router({
     mode: 'history',
@@ -496,6 +497,14 @@ let router = new Router({
             path: '/gamebazar',
             name: 'gamebazar',
             component: GamebazarHome,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/product-details',
+            name: 'ProductDetails',
+            component: ProductDetails,
             meta: {
                 requiresAuth: false
             }

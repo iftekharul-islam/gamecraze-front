@@ -70,8 +70,7 @@
     }
     &--tag {
         display: flex;
-        align-items: center;
-        flex-wrap: wrap;
+        align-items: flex-start;
         span {
             display: flex;
             align-items: center;

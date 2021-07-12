@@ -1,0 +1,23 @@
+.before-ball {
+    &::before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        background: $success-ball;
+        display: block;
+        margin-right: 8px;
+        border-radius: 50%;
+    }
+}
+.gamebazar-product-details {
+    .vue-star-rating-rating-text {
+        font-size: 16px;
+        color: $text-light;
+        &::before {
+            content: '(';
+        }
+        &::after {
+            content: ' )';
+        }
+    }
+}

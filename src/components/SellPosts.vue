@@ -27,7 +27,7 @@
                 <div class="form-group form-check" v-for="(category, index) in categories" :key="'category' + index"
                      v-if="categories">
                   <h6 v-if="category.subcategory.data.length" class="-ml-20px">{{ category.name }}</h6>
-                  <div v-for="(subItem, index) in category.subcategory.data" :key="index"
+                  <div class="mb-a-3" v-for="(subItem, index) in category.subcategory.data" :key="index"
                        v-if="category.subcategory.data.length">
                     <input type="checkbox" class="custom-control-input" :id="subItem.name + '-game'"
                            :checked="checkedCategories.includes(subItem.name)"
@@ -40,7 +40,7 @@
               <div class="select-platforms form-check">
                 <h6 class="margin__bottom -ml-20px">Filter</h6>
                 <div class="form-group ">
-                  <div>
+                  <!-- <div>
                     <input type="radio" class="custom-control-input" id="asc_price_filter" name="sort_price"
                            @change="ascPrice($event)">
                     <label class="custom-control-label" for="asc_price_filter">Price (Low To High)</label>
@@ -49,17 +49,17 @@
                     <input type="radio" class="custom-control-input" id="desc_price_filter" name="sort_price"
                            @change="descPrice($event)">
                     <label class="custom-control-label" for="desc_price_filter">Price (High To Low)</label>
-                  </div>
-                  <div>
+                  </div> -->
+                  <div class="mb-a-3">
                     <input type="checkbox" class="custom-control-input" id="date_filter" @change="sortDate($event)">
                     <label class="custom-control-label" for="date_filter">Date (From Today)</label>
                   </div>
-                  <div>
+                  <div class="mb-a-3">
                     <input type="checkbox" class="custom-control-input" id="new_type_filter"
                            @change="sortNewType($event)">
                     <label class="custom-control-label" for="new_type_filter">New Product</label>
                   </div>
-                  <div>
+                  <div class="mb-a-3">
                     <input type="checkbox" class="custom-control-input" id="used_type_filter"
                            @change="sortUsedType($event)">
                     <label class="custom-control-label" for="used_type_filter">Used Product</label>
@@ -84,12 +84,56 @@
             </div>
           </div>
           <div class="col-md-8 col-lg-9 mb-3">
-            <div class="games-categories-section--tag">
-              <span v-for="(categoryItem, categoryIndex) in checkedCategories"
+
+            <div class="games-categories-section--tag mb-a-4">
+              <div class="d-flex align-items-center flex-wrap">
+                <span v-for="(categoryItem, categoryIndex) in checkedCategories"
                     :key="categoryItem + categoryIndex">{{ categoryItem }} <div
                   @click="removeCategoryFilter(categoryItem)" class="remove-icon"><i
                   class="fas fa-times"></i></div></span>
+              </div>
+                 <div class="position-relative ml-auto">
+                      <a class="d-flex align-items-center justify-content-center h-100 px-4 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <svg class="mr-3" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M13.2489 8.81565C14.7689 8.81565 16 10.026 16 11.5194C16 13.0118 14.7689 14.2222 13.2489 14.2222C11.7298 14.2222 10.4978 13.0118 10.4978 11.5194C10.4978 10.026 11.7298 8.81565 13.2489 8.81565ZM6.46663 10.3664C7.1324 10.3664 7.67285 10.8973 7.67285 11.5514C7.67285 12.2046 7.1324 12.7365 6.46663 12.7365H1.20622C0.540441 12.7365 0 12.2046 0 11.5514C0 10.8973 0.540441 10.3664 1.20622 10.3664H6.46663ZM2.7511 0C4.27109 0 5.50219 1.21039 5.50219 2.70285C5.50219 4.19618 4.27109 5.40657 2.7511 5.40657C1.23199 5.40657 0 4.19618 0 2.70285C0 1.21039 1.23199 0 2.7511 0ZM14.7947 1.51866C15.4596 1.51866 16 2.04962 16 2.70285C16 3.35695 15.4596 3.88791 14.7947 3.88791H9.53426C8.86848 3.88791 8.32804 3.35695 8.32804 2.70285C8.32804 2.04962 8.86848 1.51866 9.53426 1.51866H14.7947Z" fill="#FFD715"/>
+                        </svg>
+                        Sorting
+                      </a>
+                      <div class="dropdown-menu w-268 bg-shorting br-4 border-1 secondery-border left-initial-imp right-0-imp top-10-imp p-0 overflow-hidden" aria-labelledby="dropdownMenuLink">
+                        <p class="mb-0 gil-bold text-center text-white py-2 bg-shorting-tile">Price</p>
+                        <div class="d-flex justify-content-center py-4">
+                          <div class="mr-1 position-relative shorting-input high-to-low pr-a-5">
+                              <input type="radio" class="position-absolute -z-index-1 opa-0 " id="desc_price_filter" name="sort_price"
+                                  @change="descPrice($event)">
+                              <label class="mb-0" for="desc_price_filter">High To Low</label>
+                          </div>
+                           <div class=" position-relative pl-a-5 shorting-input">
+                              <input type="radio" class="position-absolute -z-index-1 opa-0" id="asc_price_filter" name="sort_price"
+                                    @change="ascPrice($event)">
+                              <label class="mb-0" for="asc_price_filter">Low To High</label>
+                          </div>
+                          
+                        </div>
+                        <p class="mb-0 gil-bold text-center text-white py-2 bg-shorting-tile">Date</p>
+
+                          <div class="d-flex justify-content-center py-4">
+                            <div class="mr-1 position-relative shorting-input high-to-low pr-a-5">
+                                <input type="radio" class="position-absolute -z-index-1 opa-0 " id="recent_date" name="sort_date" >
+                                <label class="mb-0" for="recent_date">Recent</label>
+                            </div>
+                            <div class=" position-relative pl-a-5 shorting-input">
+                                <input type="radio" class="position-absolute -z-index-1 opa-0" id="older_date" name="sort_date" >
+                                <label class="mb-0" for="older_date">Older</label>
+                            </div>
+                          </div>
+                          <div class="text-right p-4">
+                            <a href="#" class="bg-secondery-gradient br-4 d-inline-block gil-bold primary-text py-2 primary-text-hover px-4">Apply</a>
+                          </div>
+
+                      </div>
+                   </div>
             </div>
+
             <div class="games-categories-section--games" v-if="posts.length">
               <div class="d-grid grid-sm-cols-2 grid-md-cols-3 grid-lg-cols-4 grid-gap-16 grid-gap-md-30 gamebazar-post">
                   <router-link v-for="(item, index) in posts" :key="index" :to="{ path: '/sell-post/' + item.id + '/' + item.url_name }"

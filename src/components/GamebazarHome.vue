@@ -84,7 +84,7 @@
             <div class="container">
                 <h3 class="f-s-24 gil-bold text-white mb-a-4">All new post</h3>
                 <div class="d-grid grid-sm-cols-2 grid-md-cols-3 grid-lg-cols-4 grid-xl-cols-5 grid-gap-16 grid-gap-md-30 gamebazar-post">
-                    <router-link to="/sell-posts" >
+                    <router-link to="/product-details" >
                         <div class="product-img position-relative br-4 overflow-hidden">
                             <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image">
                             <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
@@ -180,7 +180,7 @@
             <div class="container">
                 <h3 class="f-s-24 gil-bold text-white mb-a-4">Play station sell post</h3>
                 <div class="d-grid grid-sm-cols-2 grid-md-cols-3 grid-lg-cols-4 grid-xl-cols-5 grid-gap-16 grid-gap-md-30 gamebazar-post">
-                    <router-link to="/sell-posts">
+                    <router-link to="/product-details">
                         <div class="product-img position-relative br-4 overflow-hidden">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
                             <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
@@ -293,7 +293,7 @@
             <div class="container">
                 <h3 class="f-s-24 gil-bold text-white mb-a-4">Controller sell post</h3>
                 <div class="d-grid grid-sm-cols-2 grid-md-cols-3 grid-lg-cols-4 grid-xl-cols-5 grid-gap-16 grid-gap-md-30 gamebazar-post">
-                    <router-link to="/sell-posts">
+                    <router-link to="/product-details">
                         <div class="product-img position-relative br-4 overflow-hidden">
                             <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
                             <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>

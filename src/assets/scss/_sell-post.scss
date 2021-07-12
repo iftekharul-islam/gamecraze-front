@@ -124,3 +124,65 @@
         z-index: -5;
         transition: all .3s ease-in;
     }
+.shorting-input {
+    input {
+        &:checked {
+            ~label {
+                &::after {
+                    background: $secondery;
+                    border-color: $primary;
+                }
+                &::before {
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+        }
+    }
+    label {
+        color: $text-light;
+        cursor: pointer;
+        // opacity: .75;
+        &::after,
+        &::before {
+            content: '';
+            position: absolute;
+            opacity: 1;
+        }
+        &::after {
+            
+            background: $shorting-input;
+            border: 1px solid $silver;
+            width: 20px;
+            height: 20px;
+            left: 0px;
+            border-radius: 4px;
+        }
+        &::before {
+            border: solid $primary;
+            border-width: 0 0px 2px 2px !important;
+            transform: rotate(
+            -45deg
+            );
+            width: 10px;
+            height: 5px;
+            left: 5px;
+            z-index: 9;
+            top: 6px;
+            opacity: 0;
+            visibility: hidden;
+        }
+    }
+}
+.high-to-low {
+    label {
+        &::after {
+            left: initial;
+            right: 0px;
+        }
+        &::before {
+            left: initial;
+            right: 5px;
+        }
+    }
+}

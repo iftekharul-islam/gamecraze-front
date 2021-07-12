@@ -1279,6 +1279,9 @@
 .right-0 {
     right: 0;
 }
+.right-0-imp {
+    right: 0 !important;
+}
 
 .right-2 {
     right: 2px;
@@ -1318,6 +1321,13 @@
 }
 
 // left
+.left-initial {
+    left: initial;
+}
+.left-initial-imp {
+    left: initial !important;
+}
+
 .left-0 {
     left: 0;
 }
@@ -1377,6 +1387,9 @@
 
 .top-10 {
     top: 10px;
+}
+.top-10-imp {
+    top: 10px !important;
 }
 
 .top-12 {
@@ -1595,6 +1608,9 @@
 .text-badge {
     color: $cart-badge;
 }
+.text-success-ball {
+    color: $success-ball;
+}
 .text-pattens-blue {
     color: $pattens-blue;
 }
@@ -1607,6 +1623,12 @@
 }
 .bg-secondery-opa-25 {
     background: $secondery-opa-25;
+}
+.bg-shorting {
+    background: $shorting-bg;
+}
+.bg-shorting-tile {
+    background: $shorting-title;
 }
 .primary-bg {
     background: $primary;
@@ -1643,6 +1665,10 @@
 // **************Opacity***********//
 .gamehub-warning-bg {
     background: $gamehub-warning-alert;
+}
+
+.opa-0 {
+    opacity: 0;
 }
 
 .opa-1 {
@@ -1732,6 +1758,9 @@
 
 .f-s-32 {
     font-size: 32px;
+}
+.f-s-34 {
+    font-size: 34px;
 }
 .f-s-42 {
     font-size: 42px;
@@ -1847,6 +1876,9 @@ html {
 }
 
 // **************z-index***********//
+.-z-index-1 {
+    z-index: -1;
+}
 .z-index-9 {
     z-index: 9;
 }
@@ -1866,6 +1898,7 @@ html {
 .h-0 {
     height: 0;
 }
+
 
 .h-100 {
     height: 100%;
@@ -1969,6 +2002,9 @@ html {
 }
 .w-162 {
     width: 162px;
+}
+.w-268 {
+    width: 268px;
 }
 
 .w-328 {
@@ -2779,6 +2815,11 @@ select {
 }
 .skew-19-deg {
     transform: skew(19deg);
+}
+
+//rotate
+.rotate-180 {
+    transform: rotate(180deg);
 }
 
 // text shadow

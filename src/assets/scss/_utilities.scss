@@ -847,6 +847,21 @@
 .pl-a-5 {
     padding-left: 1.875rem;
 }
+.pl-a-sm-5 {
+    @include for-min-575 {
+        padding-left: 1.875rem;
+    }
+}
+.pl-a-md-5 {
+    @include for-min-768 {
+        padding-left: 1.875rem;
+    }
+}
+.pl-a-lg-5 {
+    @include for-min-992 {
+        padding-left: 1.875rem;
+    }
+}
 
 .pl-a-6 {
     padding-left: 2rem;
@@ -953,6 +968,21 @@
 
 .pr-a-5 {
     padding-right: 1.875rem;
+}
+.pr-a-sm-5 {
+    @include for-min-575 {
+        padding-right: 1.875rem;
+    }
+}
+.pr-a-md-5 {
+    @include for-min-768 {
+        padding-right: 1.875rem;
+    }
+}
+.pr-a-lg-5 {
+    @include for-min-992 {
+        padding-right: 1.875rem;
+    }
 }
 
 .pr-a-6 {

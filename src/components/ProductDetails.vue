@@ -11,14 +11,19 @@
                     <span class="ml-2 opa-7">Back</span>
                 </a>
                 <div class="row">
-                    <div class="col-md-6">
-                      <lingallery :iid.sync="currentId" :width="600" :height="400" :items="[
-                          {id:'someid1', src: 'https://picsum.photos/600/400/?image=0', thumbnail: 'https://picsum.photos/64/64/?image=0', alt: 'Some alt text', caption: 'Some Caption'},
-                          {id:'someid2', src: 'https://picsum.photos/600/400/?image=10', thumbnail: 'https://picsum.photos/64/64/?image=10', alt: 'Another alt text', caption: 'Another Caption'},
-                          {id:'someid3', src: 'https://picsum.photos/400/600/?image=20', thumbnail: 'https://picsum.photos/64/64/?image=20'}
-                      ]"/>
+                    <div class="col-md-6 pr-a-md-5">
+                      <div class="gamebazar-product-details__gallery">
+                            <lingallery :iid.sync="currentId" accentColor="#ffd715" baseColor="#0B0F18" :width="600" :height="400" :items="[
+                            {id:'someid1', src: 'https://picsum.photos/600/400/?image=0', thumbnail: 'https://picsum.photos/64/64/?image=0'},
+                            {id:'someid2', src: 'https://picsum.photos/600/400/?image=10', thumbnail: 'https://picsum.photos/64/64/?image=10'},
+                            {id:'someid3', src: 'https://picsum.photos/400/600/?image=20', thumbnail: 'https://picsum.photos/64/64/?image=20'},
+                            {id:'someid4', src: 'https://picsum.photos/400/600/?image=30', thumbnail: 'https://picsum.photos/64/64/?image=30'},
+                            {id:'someid5', src: 'https://picsum.photos/400/600/?image=20', thumbnail: 'https://picsum.photos/64/64/?image=20'},
+                            {id:'someid6', src: 'https://picsum.photos/400/600/?image=40', thumbnail: 'https://picsum.photos/64/64/?image=40'},
+                        ]"/>
+                      </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 pl-a-md-5">
                         <div class="gamebazar-product-details__content">
                             <h1 class="f-s-48 gil-bold text-secondery mb-a-6">Sony কন্ট্রোলার 2 সেট</h1>
                             <div class="gamebazar-product-details__content__des">

@@ -665,9 +665,12 @@
                                                                               <div class="form-group post-rent--form-group offer-edit-btn">
                                                                                   <label class=" label-padding post-rent--form-group--label text-light"></label>
                                                                                   <div class=" post-rent--form-group--input">
-                                                                                      <button type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid"><span class="w-100">
-                                                                                      <span v-if="isEditLoading" class="spinner-border spinner-border-sm"></span>
-                                                                                      {{ $t('submit', $store.state.locale) }}</span></button>
+                                                                                      <button type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid">
+                                                                                        <span class="w-100">
+                                                                                          <span v-if="isEditLoading" class="spinner-border spinner-border-sm"></span>
+                                                                                          {{ $t('submit', $store.state.locale) }}
+                                                                                        </span>
+                                                                                      </button>
                                                                                   </div>
                                                                               </div>
                                                                             </form>
@@ -1501,7 +1504,7 @@
                     product_type: '',
                     is_negotiable: '',
                     sub_category_id: '',
-                    images: '',
+                    images: [],
                     phone_no: '',
                     address: '',
                     postImages: [],
@@ -2311,13 +2314,15 @@
               })
             },
             sellPostUpdate(){
+                console.log(this.removeCover.length)
+                console.log(this.editPostData.cover_image)
                 this.isEditLoading = true;
-                if (this.editPostData.cover === '') {
+                if (this.removeCover.length != 0 && this.editPostData.cover_image === '') {
                   this.$toaster.error(this.$t('upload_cover_notification', this.$store.state.locale));
                   this.isEditLoading = false;
                   return;
                 }
-                if (this.editPostData.images.length === 0) {
+                if (this.editPostData.images.length === this.removeScreenshots.length && this.editPostData.postImages.length === 0) {
                   this.$toaster.error(this.$t('upload_screenshots_notification', this.$store.state.locale));
                   this.isEditLoading = false;
                   return;
@@ -2350,6 +2355,8 @@
                         this.editPostData.postImages = [];
                         this.editPostData.cover_image = '';
                         this.editPostData.dialog = false;
+                        this.editPostData.images = [];
+                        this.removeCover = '';
                         this.$toaster.success(this.$t('info_update_notification', this.$store.state.locale));
                         this.sellPostCheck()
                         this.onSellPost()

@@ -15,6 +15,9 @@ Vue.use(BootstrapVue);
 //Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
 
+import Lingallery from 'lingallery';
+Vue.component('lingallery', Lingallery);
+
 // cropper js
 import VueCropper from 'vue-cropperjs';
 import 'cropperjs/dist/cropper.css';

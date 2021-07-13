@@ -12,7 +12,11 @@
                 </a>
                 <div class="row">
                     <div class="col-md-6">
-
+                      <lingallery :iid.sync="currentId" :width="600" :height="400" :items="[
+                          {id:'someid1', src: 'https://picsum.photos/600/400/?image=0', thumbnail: 'https://picsum.photos/64/64/?image=0', alt: 'Some alt text', caption: 'Some Caption'},
+                          {id:'someid2', src: 'https://picsum.photos/600/400/?image=10', thumbnail: 'https://picsum.photos/64/64/?image=10', alt: 'Another alt text', caption: 'Another Caption'},
+                          {id:'someid3', src: 'https://picsum.photos/400/600/?image=20', thumbnail: 'https://picsum.photos/64/64/?image=20'}
+                      ]"/>
                     </div>
                     <div class="col-md-6">
                         <div class="gamebazar-product-details__content">
@@ -205,7 +209,7 @@
           name: 'ProductDetails',
         data() {
           return {
-
+            currentId: null
           }
         },
         created() {

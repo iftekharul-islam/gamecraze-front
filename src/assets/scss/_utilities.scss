@@ -950,6 +950,12 @@
 
 // margin right
 // incresing:5px
+.pr-a-0-max-575 {
+    @include for-max-575 {
+        padding-right: 0;
+    }
+}
+
 .pr-a-1 {
     padding-right: 0.313rem;
 }
@@ -1942,6 +1948,10 @@ html {
     height: 30px !important;
 }
 
+.h-32 {
+    height: 32px !important;
+}
+
 .h-40 {
     height: 40px !important;
 }
@@ -1990,6 +2000,9 @@ html {
 // width
 .w-fit {
     width: fit-content;
+}
+.w-32 {
+    width: 32px;
 }
 
 .w-40 {

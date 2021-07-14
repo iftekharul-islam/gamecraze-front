@@ -944,6 +944,12 @@
   padding-left: 12.5rem;
 }
 
+@media (max-width: 575px) {
+  .pr-a-0-max-575 {
+    padding-right: 0;
+  }
+}
+
 .pr-a-1 {
   padding-right: 0.313rem;
 }
@@ -1977,6 +1983,10 @@ html {
   height: 30px !important;
 }
 
+.h-32 {
+  height: 32px !important;
+}
+
 .h-40 {
   height: 40px !important;
 }
@@ -2035,6 +2045,10 @@ html {
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
+}
+
+.w-32 {
+  width: 32px;
 }
 
 .w-40 {
@@ -11961,6 +11975,27 @@ html {
   left: 0;
 }
 
+.current-popular .vue-owl-nav-right {
+  right: -50px !important;
+}
+
+@media (max-width: 1300px) {
+  .current-popular .vue-owl-nav-right {
+    right: 10px !important;
+  }
+}
+
+.current-popular .vue-owl-nav-left {
+  left: -50px !important;
+}
+
+@media (max-width: 1300px) {
+  .current-popular .vue-owl-nav-left {
+    right: 60px !important;
+    left: initial !important;
+  }
+}
+
 .accessories-sell-post {
   padding-bottom: 150px;
 }
@@ -12013,6 +12048,63 @@ html {
 
 .gamebazar-search .dropdown-toggle::after {
   margin-left: 20px;
+}
+
+.carousel-nav .wl-carousel {
+  position: relative;
+}
+
+.carousel-nav > div > span[style] {
+  display: block !important;
+}
+
+.carousel-nav > div .vue-owl-nav {
+  position: absolute;
+  top: 50%;
+}
+
+@media (max-width: 575px) {
+  .carousel-nav > div .vue-owl-nav {
+    display: none !important;
+  }
+}
+
+@media (max-width: 1300px) {
+  .carousel-nav > div .vue-owl-nav {
+    top: -48px;
+  }
+}
+
+.carousel-nav > div .vue-owl-nav button {
+  background: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: none;
+}
+
+.carousel-nav > div .vue-owl-nav button:focus {
+  outline: none;
+}
+
+.carousel-nav > div .vue-owl-nav.vue-owl-nav-right {
+  right: -40px;
+}
+
+@media (max-width: 1300px) {
+  .carousel-nav > div .vue-owl-nav.vue-owl-nav-right {
+    right: 10px;
+  }
+}
+
+.carousel-nav > div .vue-owl-nav.vue-owl-nav-left {
+  left: -40px;
+}
+
+@media (max-width: 1300px) {
+  .carousel-nav > div .vue-owl-nav.vue-owl-nav-left {
+    right: 50px;
+    left: initial;
+  }
 }
 
 .before-ball::before {
@@ -12083,6 +12175,15 @@ html {
   height: -moz-max-content;
   height: max-content;
   border-radius: 4px;
+}
+
+.gamebazar-step-form .wizard__step.vgw-mobile {
+  display: inline-block !important;
+  width: 33.3333% !important;
+}
+
+.gamebazar-step-form .wizard__step.vgw-mobile .vgw-mobile {
+  display: inline-block !important;
 }
 
 .page_404 {

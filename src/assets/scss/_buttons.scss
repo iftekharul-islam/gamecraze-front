@@ -26,7 +26,7 @@
         @include for-max-575 {
             transform: skew(-16deg);
         }
-        span {
+        > span {
             transform: skew(19deg);
             @include for-max-575 {
                 transform: skew(16deg);

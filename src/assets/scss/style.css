@@ -2937,6 +2937,15 @@ select option {
   background: #141A27;
 }
 
+.bg-step-form-input {
+  background: #2A3141;
+}
+
+.no-focus:focus {
+  background: initial;
+  outline: none;
+}
+
 .outline-none {
   outline: none;
 }
@@ -12192,13 +12201,42 @@ html {
   border-radius: 4px;
 }
 
-.gamebazar-step-form .wizard__step.vgw-mobile {
-  display: inline-block !important;
-  width: 33.3333% !important;
+.gamebazar-step-form .wizard__steps {
+  max-width: 580px;
+  margin: auto;
 }
 
-.gamebazar-step-form .wizard__step.vgw-mobile .vgw-mobile {
-  display: inline-block !important;
+.gamebazar-step-form .wizard__body {
+  max-width: 400px;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.gamebazar-step-form .wizard__body__step {
+  padding: 0 !important;
+}
+
+.gamebazar-step-form .wizard__body__actions {
+  bottom: -40px !important;
+}
+
+.gamebazar-step-form .wizard__arrow {
+  display: none !important;
+}
+
+@media (min-width: 575px) {
+  .gamebazar-step-form .wizard__step.vgw-mobile {
+    display: inline-block !important;
+    width: 33.3333% !important;
+  }
+}
+
+@media (min-width: 575px) {
+  .gamebazar-step-form .wizard__step.vgw-mobile .vgw-mobile {
+    display: inline-block !important;
+  }
 }
 
 .page_404 {

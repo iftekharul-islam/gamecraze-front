@@ -667,7 +667,7 @@
                                                                                   <div class=" post-rent--form-group--input">
                                                                                       <button type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid">
                                                                                         <span class="w-100">
-                                                                                          <span v-if="isEditLoading" class="spinner-border spinner-border-sm"></span>
+                                                                                          <span v-if="isEditLoading" class="spinner-border spinner-border-sm skew-none"></span>
                                                                                           {{ $t('submit', $store.state.locale) }}
                                                                                         </span>
                                                                                       </button>

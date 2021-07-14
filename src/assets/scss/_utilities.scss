@@ -2853,6 +2853,17 @@ select {
 }
 
 // skew 
+.skew-0-deg {
+    transform: skew(0deg);
+}
+
+.skew-inherit {
+    transform: inherit !important;
+}
+.skew-none {
+    transform: none !important;
+}
+
 .-skew-19-deg {
     transform: skew(-19deg);
 }

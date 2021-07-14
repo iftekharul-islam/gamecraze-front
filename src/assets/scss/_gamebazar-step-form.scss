@@ -1,0 +1,27 @@
+.gamebazar-step-form {
+    // .wizard {
+    //     &__steps {
+    //        .wizard-step {
+    //         &.vgw-mobile {
+    //             display: inline-block !important;
+    //             width: 33.3333% !important;
+    //         }
+    //        }
+    //         &__line {
+    //             &.vgw-mobile {
+    //                 display: inline-block !important;
+    //             }
+    //         }
+    //     }
+    // }
+
+    .wizard__step {
+        &.vgw-mobile {
+            display: inline-block !important;
+            width: 33.3333% !important;
+            .vgw-mobile {
+                display: inline-block !important;
+            }
+        }
+    }
+}

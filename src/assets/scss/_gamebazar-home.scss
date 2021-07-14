@@ -93,6 +93,19 @@
                     }
                 }
             }
+            .vue-owl-nav-right {
+                right: -50px !important;
+                @include for-max-1300 {
+                    right: 10px !important;
+                }
+            }
+            .vue-owl-nav-left {
+                left: -50px !important;
+                @include for-max-1300 {
+                    right: 60px !important;
+                    left: initial !important;
+                }
+            }
             
         }
         .accessories-sell-post {
@@ -136,6 +149,50 @@
         padding-bottom: 7px;
         &::after {
             margin-left: 20px;
+        }
+    }
+}
+// carousel nav
+.carousel-nav {
+    .wl-carousel {
+        position: relative;
+    }
+    >div {
+        >span {
+            &[style] {
+                display: block !important;
+            }
+        }
+        .vue-owl-nav {
+            @include for-max-575 {
+                display: none !important;
+            }
+            position: absolute;
+            top: 50%;
+            @include for-max-1300 {
+                top: -48px;
+            }
+            button {
+                background: transparent;
+                box-shadow: none;
+                border: none;
+                &:focus {
+                    outline: none;
+                }
+            }
+            &.vue-owl-nav-right {
+                right: -40px;
+                @include for-max-1300 {
+                    right: 10px;
+                }
+            }
+            &.vue-owl-nav-left {
+                left: -40px;
+                @include for-max-1300 {
+                    right: 50px;
+                    left: initial;
+                }
+            }
         }
     }
 }

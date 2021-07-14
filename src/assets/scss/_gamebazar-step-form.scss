@@ -1,26 +1,37 @@
 .gamebazar-step-form {
-    // .wizard {
-    //     &__steps {
-    //        .wizard-step {
-    //         &.vgw-mobile {
-    //             display: inline-block !important;
-    //             width: 33.3333% !important;
-    //         }
-    //        }
-    //         &__line {
-    //             &.vgw-mobile {
-    //                 display: inline-block !important;
-    //             }
-    //         }
-    //     }
-    // }
+    .wizard {
+        &__steps {
+            max-width: 580px;
+            margin: auto;
+        }
+        &__body {
+            max-width: 400px;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            background: transparent !important;
+            border: none !important;
+            &__step {
+                padding: 0 !important;
+            }
+            &__actions {
+                bottom: -40px !important;
+            }
+        }
+        &__arrow {
+            display: none !important;
+        }
+    }
 
     .wizard__step {
         &.vgw-mobile {
-            display: inline-block !important;
-            width: 33.3333% !important;
-            .vgw-mobile {
+            @include for-min-575 {
                 display: inline-block !important;
+                width: 33.3333% !important;
+            }
+            .vgw-mobile {
+                @include for-min-575 {
+                    display: inline-block !important;
+                }
             }
         }
     }

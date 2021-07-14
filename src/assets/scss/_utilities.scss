@@ -2802,6 +2802,15 @@ select {
         background: $game-details;
     }
 }
+.bg-step-form-input {
+    background: $step-form-input;
+}
+.no-focus {
+    &:focus {
+        background: initial;
+        outline: none;
+    }
+}
 
 //outline
 .outline-none {

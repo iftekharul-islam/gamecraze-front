@@ -98,6 +98,24 @@
                                     <p>{{ $t('terms_body_part_32', $store.state.locale) }} :</p>
                                     <p>{{ $t('terms_body_part_33', $store.state.locale) }}</p>
                                 </div>
+                                 <div class="gamehub-policy-section--content--text--heading">
+                                    <p>{{ $t('terms_body_part_42', $store.state.locale) }} :</p>
+                                    <p>{{ $t('terms_body_part_43', $store.state.locale) }}</p>
+                                    <ul class="bullet-list">
+                                        <li class="bullet-list--item">{{ $t('terms_body_part_44', $store.state.locale) }}</li>
+                                        <li class="bullet-list--item">{{ $t('terms_body_part_45', $store.state.locale) }}</li>
+                                        <li class="bullet-list--item">{{ $t('terms_body_part_46', $store.state.locale) }}</li>
+                                        <li class="bullet-list--item">{{ $t('terms_body_part_47', $store.state.locale) }}</li>
+                                    </ul>
+                                    <p>{{ $t('terms_body_part_48', $store.state.locale) }}</p>
+                                    <ul class="bullet-list">
+                                        <li class="bullet-list--item">{{ $t('terms_body_part_49', $store.state.locale) }}</li>
+                                        <li class="bullet-list--item">{{ $t('terms_body_part_50', $store.state.locale) }}</li>
+                                        <li class="bullet-list--item">{{ $t('terms_body_part_51', $store.state.locale) }}</li>
+                                    </ul>
+                                </div>
+
+
                             </div>
                         </div>
                          <!--  -->

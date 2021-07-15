@@ -26,7 +26,7 @@
               </div>
               <h2 class="f-s-34 gil-bold text-secondery mb-a-6">{{ post.price }} tk</h2>
               <div class=" mt-5">
-                <a class="border-1 bg-secondery-gradient border-secondery-opa-25 primary-text primary-text-hover gil-bold py-2 pl-a-6 pr-a-6 d-inline-block br-4" @click="showSeller = true">Contact the seller</a>
+                <a class="border-1 bg-secondery-gradient border-secondery-opa-25 primary-text primary-text-hover gil-bold py-2 pl-a-6 pr-a-6 d-inline-block br-4 pointer" @click="showSeller = true">Contact the seller</a>
               </div>
               <div class="row border-b-1 border-white-25 pt-a-6">
                 <div class="col-md-6">
@@ -100,112 +100,100 @@
         </div>
       </div>
     </div>
-    <div class="gamebazar-product-similar pb-a-20">
-      <div class="container">
-        <h3 class="text-white f-s-24 gil-bold mb-4">এই ধরনের আরও পোষ্ট</h3>
-        <div class="d-grid grid-sm-cols-2 grid-md-cols-3 grid-lg-cols-4 grid-xl-cols-5 grid-gap-16 grid-gap-md-30 gamebazar-post">
-          <router-link to="/sell-posts" >
-            <div class="product-img position-relative br-4 overflow-hidden">
-              <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image">
-              <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
-              <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
+     <div class="gamebazar-product-similar pb-a-20">
+            <div class="container">
+                <h3 class="text-white f-s-24 gil-bold mb-4">এই ধরনের আরও পোষ্ট</h3>
+                  <!-- carousel -->
+                <div class="position-relative carousel-nav">
+                    <carousel v-if ="Loadedarticles"
+                            :autoplay ="false"
+                            :loop ="true"
+                            :center ="true"
+                            :nav ="false"
+                            :dots ="true"
+                            :margin ="32"
+                            :stagePadding ="0"
+                            :responsive="{ 0:{items:1.5, stagePadding:0, center:false,},
+                                    600:{items:2, stagePadding:0, center:false,},
+                                    1000:{items:3, stagePadding:0,},
+                                    1400:{items:5, stagePadding:0, center:false,}}">
+                    <template slot="prev">
+                        <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center secondery-border br-4 pointer vue-owl-nav-left w-32 h-32">
+                            <button class="owl-prev z-index-9 h-100 w-100">
+                                <span class="prev">
+                                    <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M7.87425 9.69787C8.08224 9.58566 8.21191 9.37228 8.21191 9.14021L8.21191 5.52648L15.3473 5.52648C15.7076 5.52648 16 5.24085 16 4.88891C16 4.53697 15.7076 4.25134 15.3473 4.25134L8.21191 4.25134V0.637613C8.21191 0.404688 8.08224 0.191316 7.87425 0.0799538C7.66625 -0.0331081 7.41213 -0.0254573 7.2111 0.0978057L0.304596 4.3491C0.114876 4.46642 0 4.66959 0 4.88891C0 5.10823 0.114876 5.31141 0.304596 5.42872L7.2111 9.68002C7.31727 9.74462 7.43824 9.77778 7.55921 9.77778C7.66712 9.77778 7.7759 9.75058 7.87425 9.69787Z" fill="#FFD715"/>
+                                    </svg>
+                                    </span> 
+                                </button> 
+                            </div>
+                        </template>
+
+                    <template slot="next">
+                        <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center secondery-border br-4 pointer vue-owl-nav-right w-32 h-32">
+                            <button class="owl-next z-index-9 h-100 w-100">
+                                <span class="next">
+                                        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8.12576 0.30213C7.91776 0.414342 7.78809 0.627714 7.78809 0.859789L7.78809 4.47352L0.652707 4.47352C0.292413 4.47352 4.5817e-07 4.75915 4.27402e-07 5.11109C3.96635e-07 5.46302 0.292413 5.74865 0.652707 5.74865L7.78809 5.74865L7.78809 9.36239C7.78809 9.59531 7.91776 9.80868 8.12575 9.92005C8.33375 10.0331 8.58787 10.0255 8.7889 9.90219L15.6954 5.6509C15.8851 5.53358 16 5.33041 16 5.11109C16 4.89177 15.8851 4.68859 15.6954 4.57128L8.7889 0.319982C8.68273 0.255375 8.56176 0.222222 8.44079 0.222222C8.33288 0.222222 8.2241 0.249424 8.12576 0.30213Z" fill="#FFD715"/>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </template>
+
+                    <div class="item gamebazar-post"  v-for="(article, index) in articles" :key="index">
+                        <router-link to="/product-details" >
+                            <div class="product-img position-relative br-4 overflow-hidden">
+                                <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image">
+                                <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
+                                <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
+                            </div>
+                            <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
+                            <p class="mb-4 text-white">Used 1.5 years</p>
+                            <div class="d-flex align-items-center text-secondery">
+                                <p class="mb-0">Details</p>
+                                <div class="gamebazar-post__arrow">
+                                    <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </router-link>
+                    </div>
+                    </carousel>
+               </div>
+                <div class="text-center mt-5">
+                    <router-link to="/sell-posts" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">All post</router-link>
+                </div>
             </div>
-            <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
-            <p class="mb-4 text-white">Used 1.5 years</p>
-            <div class="d-flex align-items-center text-secondery">
-              <p class="mb-0">Details</p>
-              <div class="gamebazar-post__arrow">
-                <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
-                </svg>
-              </div>
-            </div>
-          </router-link>
-          <a href="#">
-            <div class="product-img position-relative br-4 overflow-hidden">
-              <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-              <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
-              <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
-            </div>
-            <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
-            <p class="mb-4 text-white">Used 1.5 years</p>
-            <div class="d-flex align-items-center text-secondery">
-              <p class="mb-0">Details</p>
-              <div class="gamebazar-post__arrow">
-                <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
-                </svg>
-              </div>
-            </div>
-          </a>
-          <a href="#">
-            <div class="product-img position-relative br-4 overflow-hidden">
-              <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-              <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
-              <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
-            </div>
-            <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
-            <p class="mb-4 text-white">Used 1.5 years</p>
-            <div class="d-flex align-items-center text-secondery">
-              <p class="mb-0">Details</p>
-              <div class="gamebazar-post__arrow">
-                <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
-                </svg>
-              </div>
-            </div>
-          </a>
-          <a href="#">
-            <div class="product-img position-relative br-4 overflow-hidden">
-              <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-              <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
-              <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
-            </div>
-            <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
-            <p class="mb-4 text-white">Used 1.5 years</p>
-            <div class="d-flex align-items-center text-secondery">
-              <p class="mb-0">Details</p>
-              <div class="gamebazar-post__arrow">
-                <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
-                </svg>
-              </div>
-            </div>
-          </a>
-          <a href="#">
-            <div class="product-img position-relative br-4 overflow-hidden">
-              <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image">
-              <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
-              <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
-            </div>
-            <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
-            <p class="mb-4 text-white">Used 1.5 years</p>
-            <div class="d-flex align-items-center text-secondery">
-              <p class="mb-0">Details</p>
-              <div class="gamebazar-post__arrow">
-                <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
-                </svg>
-              </div>
-            </div>
-          </a>
         </div>
-        <div class="text-center mt-5">
-          <router-link to="/sell-posts" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">All post</router-link>
-        </div>
-      </div>
-    </div>
     <div v-if="showSeller">
       <transition name="modal">
-        <div class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal">
+        <div class="modal-mask order-details-extend-modal position-fixed top-0 left-0 h-100 w-full d-flex align-items-center justify-content-center z-index-9">
           <div class="modal-wrapper">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-              <div class="modal-content">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true" @click="showSeller = false" class="close-modal"></span>
+            <div class="modal-dialog modal-dialog-centered w-328" role="document">
+              <div class="modal-content bg-game-details border-1 border-secondery-opa-50 p-a-4 br-0">
+                <button type="button" class="close no-focus text-right" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true" @click="showSeller = false" class="close-modal">
+                     <svg class="secondery-border rounded-circle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M14.2427 4.34315L10.0001 8.58579L5.75744 4.34315L4.34323 5.75736L8.58587 10L4.34323 14.2426L5.75744 15.6569L10.0001 11.4142L14.2427 15.6569L15.6569 14.2426L11.4143 10L15.6569 5.75736L14.2427 4.34315Z" fill="#FFD715"/>
+                    </svg>
+                  </span>
                 </button>
                 <div class="modal-body-content">
-                  <p>{{ $t('exceed_rent_limit', $store.state.locale) }}</p>
+                  <div class="mb-a-6">
+                    <p class="mb-2 opa-8 text-white">Seller name</p>
+                    <p class="mb-0 gil-bold text-white f-s-20">Hosfos Game House</p>
+                  </div>
+                  <div class="mb-a-6">
+                    <p class="mb-2 opa-8 text-white">Mobile no</p>
+                    <p class="mb-0 gil-bold text-secondery f-s-20">01710 451430    01550 019650</p>
+                  </div>
+                  <div class="mb-a-6">
+                    <p class="mb-2 opa-8 text-white">Email address</p>
+                    <p class="mb-0 gil-bold text-white f-s-20">e.rakib@gmail.com</p>
+                  </div>
+                   <router-link to="/games" class="bg-secondery-gradient d-inline-block  py-2 px-5 primary-text primary-text-hover br-4 w-100 text-center">Email seller</router-link>
                 </div>
               </div>
             </div>
@@ -217,8 +205,9 @@
 </template>
 <script>
     import StarRating from 'vue-star-rating';
+    import carousel from 'vue-owl-carousel';
     export default {
-        components: {StarRating},
+        components: {StarRating, carousel},
         name: 'post-details',
         props: ['id', 'slug'],
         data() {
@@ -228,7 +217,11 @@
                 images: '',
                 post: '',
                 currentId: null,
-                rentingAvg : 4
+                rentingAvg : 4,
+                articles: [1, 2, 3, 4],
+                Loadedarticles: true,
+                relatedGames: [],
+                loadedRelated: false,
             }
         },
         methods: {

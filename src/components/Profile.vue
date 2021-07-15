@@ -634,7 +634,7 @@
 
                                                                                     </VueCropper>
                                                                                   </div>
-                                                                                  <div class="my-2">
+                                                                                  <div class="my-2 d-grid grid-cols-2 grid-gap-16">
                                                                                     <a class="btn--secondery" @click="saveEditImage(), (editPostData.dialog = true)">Crop</a>
                                                                                     <a class="btn--secondery" @click="editPostData.dialog = false, (editPostData.cover_image = '')">Cancel</a>
                                                                                   </div>
@@ -1430,9 +1430,9 @@
 
                                                   </VueCropper>
                                                 </div>
-                                                <div class="my-2">
-                                                  <a class="btn--secondery" @click="saveImage(), (dialog = true)">Crop</a>
-                                                  <a class="btn--secondery" @click="dialog = false, (sellData.cover_image === '')">Cancel</a>
+                                                <div class="my-2 d-grid grid-cols-2 grid-gap-16 mr-2">
+                                                  <a class="btn--secondery w-100" @click="saveImage(), (dialog = true)">Crop</a>
+                                                  <a class="btn--secondery w-100" @click="dialog = false, (sellData.cover_image === '')">Cancel</a>
                                                 </div>
                                                 <div class="img-prev" v-if="sellData.cover_image">
                                                   <img :src="sellData.cover_image" alt="Cover image preview">

@@ -188,7 +188,7 @@
         data() {
           return {
             currentId: null,
-             articles: [1, 2, 3, 4],
+            articles: [1, 2, 3, 4],
             Loadedarticles: true,
             relatedGames: [],
             loadedRelated: false,

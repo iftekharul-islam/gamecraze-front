@@ -1592,6 +1592,10 @@
   border-color: rgba(255, 215, 21, 0.25);
 }
 
+.border-secondery-opa-50 {
+  border-color: rgba(255, 215, 21, 0.5);
+}
+
 .border-secondery-imp {
   border-color: #FFD715 !important;
 }
@@ -9556,6 +9560,15 @@ html {
   }
 }
 
+.cropper-container {
+  height: 400px !important;
+}
+
+.cropper-crop-box {
+  width: 300px !important;
+  height: 300px !important;
+}
+
 .set-password {
   padding-bottom: 180px;
   padding-top: 40px;
@@ -12199,6 +12212,7 @@ html {
   height: -moz-max-content;
   height: max-content;
   border-radius: 4px;
+  height: 100%;
 }
 
 .gamebazar-step-form .wizard__steps {

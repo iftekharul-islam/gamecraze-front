@@ -82,9 +82,9 @@
                 </div>
             </div>
             <div class="container pr-a-0-max-575">
-                <h3 class="f-s-24 gil-bold text-white mb-a-4">All new post</h3>
+                <h3 class="f-s-24 gil-bold text-white mb-a-4">New sell posts</h3>
                 <div class="position-relative carousel-nav">
-                    <carousel v-if ="Loadedarticles"
+                    <carousel v-if ="loadLatestPosts"
                             :autoplay ="false"
                             :loop ="true"
                             :center ="true"
@@ -106,7 +106,7 @@
                                     </span> 
                                 </button> 
                             </div>
-                        </template>
+                    </template>
 
                     <template slot="next">
                         <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center secondery-border br-4 pointer vue-owl-nav-right w-32 h-32">
@@ -120,14 +120,16 @@
                             </div>
                         </template>
 
-                    <div class="item gamebazar-post"  v-for="(article, index) in articles" :key="index">
-                        <router-link to="/product-details" >
+                    <div class="item gamebazar-post"  v-for="(post, index) in latestPosts" :key="index">
+                        <router-link :to="'/sell-post/' + post.id + '/' + post.url_name " >
                             <div class="product-img position-relative br-4 overflow-hidden">
-                                <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image">
-                                <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
-                                <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
+                                <img :src="post.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="post.cover.url != null">
+                                <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image" v-else>
+                                <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-if="post.product_type === 1">New</span>
+                                <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-else>Used</span>
+                                <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$ {{ post.price }}</span>
                             </div>
-                            <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
+                            <p class="gil-bold mb-4 mt-a-4 text-white">{{ post.name }}</p>
                             <p class="mb-4 text-white">Used 1.5 years</p>
                             <div class="d-flex align-items-center text-secondery">
                                 <p class="mb-0">Details</p>
@@ -419,10 +421,19 @@
             Loadedarticles: true,
             relatedGames: [],
             loadedRelated: false,
+            latestPosts: [],
+            loadLatestPosts: false
           }
         },
         created() {
             window.scrollTo(0,0);
+          this.$api.get('latest-sell-posts?include=subcategory,user').then(response => {
+            this.latestPosts = response.data.data;
+            if (this.latestPosts.length > 0) {
+              this.loadLatestPosts = true
+            }
+            console.log(this.latestPosts)
+          });
         },
         
     }

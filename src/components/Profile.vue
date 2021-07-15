@@ -448,7 +448,7 @@
                                                             <p class="text-white mb-2">{{ $t('created_at', $store.state.locale) }}</p>
                                                             <p class=" text-secondery mb-0">{{ formattedDate(product.created_at) }} </p>
                                                         </div>
-                                                        <label class="toggle-switch mt-0 mt-sm-1" v-if="product.status == 2">
+                                                        <label class="toggle-switch mt-0 mt-sm-1" v-if="product.status == 1">
                                                             <input type="checkbox" @change="sellPostStatusChange($event,product.id)" :checked="product.is_sold == 1"/>
                                                             <span>
                                                             <span>Sold</span>
@@ -497,7 +497,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="dashboard-content--rented--sell-post--button mb-4">
-                                                        <router-link :to="'/sell-post/' + product.id + '/post-details'" class="d-flex border-1 border-secondery pl-a-7 pr-a-7 py-1 mb-3 bg-secondery text-black game-details-hover mt-2"><span class="">Details</span></router-link>
+                                                        <router-link :to="'/sell-post/' + product.id + '/' + product.url_name " class="d-flex border-1 border-secondery pl-a-7 pr-a-7 py-1 mb-3 bg-secondery text-black game-details-hover mt-2"><span class="">Details</span></router-link>
                                                         <a href="#" class="d-flex border-1 border-secondery pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover mt-2" @click.prevent="sellPostEditModal(product)" v-if="product.status === 2"><span class="w-full text-center">Edit</span></a>
                                                     </div>
                                                 </div>
@@ -1426,8 +1426,6 @@
                                                               dragMode="move"
                                                               :cropBoxMovable="false"
                                                               :cropBoxResizable="false"
-                                                              :minContainerWidth="250"
-                                                              :minContainerHeight="300"
                                                               alt="Disk image preview">
 
                                                   </VueCropper>

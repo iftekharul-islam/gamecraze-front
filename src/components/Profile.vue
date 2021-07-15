@@ -2312,8 +2312,6 @@
               })
             },
             sellPostUpdate(){
-                console.log(this.removeCover.length)
-                console.log(this.editPostData.cover_image)
                 this.isEditLoading = true;
                 if (this.removeCover.length != 0 && this.editPostData.cover_image === '') {
                   this.$toaster.error(this.$t('upload_cover_notification', this.$store.state.locale));

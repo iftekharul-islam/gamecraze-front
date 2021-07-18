@@ -628,8 +628,7 @@
                                                                                                 dragMode="move"
                                                                                                 :cropBoxMovable="false"
                                                                                                 :cropBoxResizable="false"
-                                                                                                :minContainerWidth="250"
-                                                                                                :minContainerHeight="300"
+                                                                                                :ready="cropBoxSet"
                                                                                                 alt="Disk image preview">
 
                                                                                     </VueCropper>
@@ -1422,10 +1421,12 @@
                                                   <VueCropper v-show="postCoverImage"
                                                               ref="cropper"
                                                               :src="postCoverImage"
+                                                              :autoCropArea="0"
                                                               :scalable="false"
                                                               dragMode="move"
                                                               :cropBoxMovable="false"
                                                               :cropBoxResizable="false"
+                                                              :ready="cropBoxSet"
                                                               alt="Disk image preview">
 
                                                   </VueCropper>
@@ -1636,7 +1637,7 @@
                 ratingList: [],
                 mime_type: '',
                 dialog: false,
-                croppedImage: ''
+                croppedImage: '',
             }
         },
         watch: {
@@ -1647,6 +1648,13 @@
             },
         },
         methods: {
+            cropBoxSet(){
+              let data = {
+                width: 363,
+                height: 270
+              }
+              this.$refs.cropper.setCropBoxData(data);
+            },
             removeEditScreenshots(id){
               this.removeScreenshots.push(id);
               console.log(this.removeScreenshots)

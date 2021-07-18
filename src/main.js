@@ -18,11 +18,6 @@ Vue.use(IconsPlugin);
 import Lingallery from 'lingallery';
 Vue.component('lingallery', Lingallery);
 
-// cropper js
-import VueCropper from 'vue-cropperjs';
-import 'cropperjs/dist/cropper.css';
-Vue.component(VueCropper);
-
 global.jQuery = require('jquery/dist/jquery.min');
 let $ = global.jQuery;
 window.$ = $;

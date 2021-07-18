@@ -455,5 +455,15 @@
   "upload_cover" : "Upload cover",
   "images" : "Images",
   "upload_screenshots_notification" : "Upload screenshots first !",
-  "upload_cover_notification" : "Upload cover images first !"
+  "upload_cover_notification" : "Upload cover images first !",
+  "product_details" : "Product details",
+  "product_id" : "Product Id",
+  "availability" : "Availability",
+  "about_seller" : "Learn about sellers",
+  "report_to_post" : "Report this post",
+  "related_post": "Related Post",
+  "all_post" : "All post",
+  "details" : "details",
+  "seller_name" : "Seller name",
+  "email_seller" : "Email seller"
 }

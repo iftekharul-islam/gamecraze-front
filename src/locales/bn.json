@@ -454,5 +454,15 @@
   "upload_cover" : "কভার আপলোড",
   "images" : "ছবি সমূহ",
   "upload_screenshots_notification" : "স্ক্রিনশট সমূহ আপলোড করুন !",
-  "upload_cover_notification" : "কভার আপলোড করুন !"
+  "upload_cover_notification" : "কভার আপলোড করুন !",
+  "product_details" : "পণ্যের বিবরণ",
+  "product_id" : "পণ্যের আইডি",
+  "availability" : "উপস্থিতি",
+  "about_seller" : "বিক্রেতা বিবরণ",
+  "report_to_post" : "এই পোস্টটি রিপোর্ট করুন",
+  "related_post" : "এই ধরনের আরও পোষ্ট",
+  "all_post" : "পোস্ট সমূহ",
+  "details" : "বিস্তারিত",
+  "seller_name" : "বিক্রেতার নাম",
+  "email_seller" : "বিক্রেতাকে ইমেইল"
 }

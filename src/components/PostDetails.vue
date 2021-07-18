@@ -20,7 +20,7 @@
             <div class="gamebazar-product-details__content">
               <h1 class="f-s-48 gil-bold text-secondery mb-a-6">{{ post.name }}</h1>
               <div class="gamebazar-product-details__content__des">
-                <p class="text-white gil-bold mb-4">Product details:</p>
+                <p class="text-white gil-bold mb-4">{{ $t('product_details', $store.state.locale) }}:</p>
                 <p>{{ post.description }}</p>
 
               </div>
@@ -31,22 +31,22 @@
               <div class="row border-b-1 border-white-25 pt-a-6">
                 <div class="col-md-6">
                   <div class="mb-a-6">
-                    <p class="text-white gil-bold mb-2">Publish date</p>
+                    <p class="text-white gil-bold mb-2">{{ $t('available_from', $store.state.locale) }}</p>
                     <p class="text-white gil-regular">{{ formattedDate(post.created_at) }}</p>
                   </div>
                   <div class="mb-a-6">
-                    <p class="text-white gil-bold mb-2">Product Id</p>
+                    <p class="text-white gil-bold mb-2">{{ $t('product_id', $store.state.locale) }}</p>
                     <p class="text-white gil-regular">{{ post.product_no }}</p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="mb-a-6">
-                    <p class="text-white gil-bold mb-2">Avalability</p>
+                    <p class="text-white gil-bold mb-2">{{ $t('availability', $store.state.locale) }}</p>
                     <p class="before-ball d-flex align-items-center text-success-ball" v-if="post.is_sold == 1">In stock</p>
                     <p class="before-ball d-flex align-items-center text-success-ball" v-else>Sold out</p>
                   </div>
                   <div class="mb-a-6">
-                    <p class="text-white gil-bold mb-2">Type</p>
+                    <p class="text-white gil-bold mb-2">{{ $t('product_type', $store.state.locale) }}</p>
                     <p class="before-ball d-flex align-items-center text-success-ball" v-if="post.product_type === 1">New</p>
                     <p class="before-ball d-flex align-items-center text-success-ball" v-if="post.product_type === 2">Used ( {{ post.condition }} )</p>
                   </div>
@@ -62,26 +62,26 @@
 <!--                </div>-->
                 <div class="col-md-6">
                   <div class="mb-a-6">
-                    <p class="text-white gil-bold mb-2">Address</p>
+                    <p class="text-white gil-bold mb-2">{{ $t('address', $store.state.locale) }}</p>
                     <p class="text-white gil-regular">{{ post.address }}</p>
                   </div>
                 </div>
               </div>
 
-              <div class="row pt-a-6">
+              <div class="row pt-a-6" v-if="post.user != null">
                 <div class="col-md-6">
                   <div class="">
-                    <p class="text-white gil-bold f-s-20 mb-4">Learn about sellers</p>
+                    <p class="text-white gil-bold f-s-20 mb-4">{{ $t('about_seller', $store.state.locale) }}</p>
                     <div class="w-80 h-80 overflow-hidden">
-                      <img :src="post.user.data.image" class="img-fluid w-100" alt="Gamebazar image" v-if="post.user.data.image">
+                      <img :src="post.user.data.image" class="img-fluid w-100" alt="Gamebazar image" v-if="post.user.data.image != null">
                       <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image" v-else>
                     </div>
-                    <p class="text-white gil-bold mb-4">{{ post.user.data.name }}</p>
+                    <p class="text-white gil-bold mb-4" v-if="post.user.data.name">{{ post.user.data.name }}</p>
                     <div class="d-flex align-items-center">
                       <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="1" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="rentingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="24"></star-rating>
                     </div>
                     <div class="d-flex align-items-center mt-a-6">
-                      <span class="mr-2 opa-7">All Rating</span>
+                      <span class="mr-2 opa-7">{{ $t('rating', $store.state.locale) }}</span>
                       <svg width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFFBE7"/>
                       </svg>
@@ -90,7 +90,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="h-100 d-flex align-items-end justify-content-end">
-                    <a href="#" class="text-white">Report this post</a>
+                    <a href="#" class="text-white">{{ $t('report_to_post', $store.state.locale) }}</a>
                   </div>
                 </div>
               </div>
@@ -102,10 +102,10 @@
     </div>
      <div class="gamebazar-product-similar pb-a-20">
             <div class="container">
-                <h3 class="text-white f-s-24 gil-bold mb-4">এই ধরনের আরও পোষ্ট</h3>
+                <h3 class="text-white f-s-24 gil-bold mb-4">{{ $t('related_post', $store.state.locale) }}</h3>
                   <!-- carousel -->
                 <div class="position-relative carousel-nav">
-                    <carousel v-if ="Loadedarticles"
+                    <carousel v-if ="loadedRelated"
                             :autoplay ="false"
                             :loop ="true"
                             :center ="true"
@@ -141,17 +141,19 @@
                             </div>
                         </template>
 
-                    <div class="item gamebazar-post"  v-for="(article, index) in articles" :key="index">
-                        <router-link to="/product-details" >
+                    <div class="item gamebazar-post"  v-for="(related, index) in relatedPosts" :key="index">
+                        <router-link :to="'/sell-post/' + related.id + '/' + related.url_name" >
                             <div class="product-img position-relative br-4 overflow-hidden">
-                                <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image">
-                                <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
-                                <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$123</span>
+                              <img :src="related.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="related.cover.url != null">
+                              <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image" v-else>
+                                <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-if="related.product_type === 1">New</span>
+                                <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-if="related.product_type === 2">Used</span>
+                                <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$ {{ related.price }}</span>
                             </div>
-                            <p class="gil-bold mb-4 mt-a-4 text-white">Playstation 4 Slim</p>
+                            <p class="gil-bold mb-4 mt-a-4 text-white">{{ related.name }}</p>
                             <p class="mb-4 text-white">Used 1.5 years</p>
                             <div class="d-flex align-items-center text-secondery">
-                                <p class="mb-0">Details</p>
+                                <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
                                 <div class="gamebazar-post__arrow">
                                     <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
@@ -163,11 +165,11 @@
                     </carousel>
                </div>
                 <div class="text-center mt-5">
-                    <router-link to="/sell-posts" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">All post</router-link>
+                    <router-link to='/gamebazar' class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">{{ $t('all_post', $store.state.locale) }}</router-link>
                 </div>
             </div>
         </div>
-    <div v-if="showSeller">
+    <div v-if="showSeller && post.user != null">
       <transition name="modal">
         <div class="modal-mask order-details-extend-modal position-fixed top-0 left-0 h-100 w-full d-flex align-items-center justify-content-center z-index-9">
           <div class="modal-wrapper">
@@ -182,18 +184,18 @@
                 </button>
                 <div class="modal-body-content">
                   <div class="mb-a-6">
-                    <p class="mb-2 opa-8 text-white">Seller name</p>
-                    <p class="mb-0 gil-bold text-white f-s-20">Hosfos Game House</p>
+                    <p class="mb-2 opa-8 text-white">{{ $t('seller_name', $store.state.locale) }}</p>
+                    <p class="mb-0 gil-bold text-white f-s-20">{{ post.user.data.name }}</p>
                   </div>
                   <div class="mb-a-6">
-                    <p class="mb-2 opa-8 text-white">Mobile no</p>
-                    <p class="mb-0 gil-bold text-secondery f-s-20">01710 451430    01550 019650</p>
+                    <p class="mb-2 opa-8 text-white">{{ $t('phone_number', $store.state.locale) }}</p>
+                    <p class="mb-0 gil-bold text-secondery f-s-20">{{ post.user.data.phone_number }}</p>
                   </div>
                   <div class="mb-a-6">
-                    <p class="mb-2 opa-8 text-white">Email address</p>
-                    <p class="mb-0 gil-bold text-white f-s-20">e.rakib@gmail.com</p>
+                    <p class="mb-2 opa-8 text-white">{{ $t('email', $store.state.locale) }}</p>
+                    <p class="mb-0 gil-bold text-white f-s-20">test@gmail.com</p>
                   </div>
-                   <router-link to="/games" class="bg-secondery-gradient d-inline-block  py-2 px-5 primary-text primary-text-hover br-4 w-100 text-center">Email seller</router-link>
+                   <router-link to="/games" class="bg-secondery-gradient d-inline-block  py-2 px-5 primary-text primary-text-hover br-4 w-100 text-center">{{ $t('email_seller', $store.state.locale) }}</router-link>
                 </div>
               </div>
             </div>
@@ -218,10 +220,8 @@
                 post: '',
                 currentId: null,
                 rentingAvg : 4,
-                articles: [1, 2, 3, 4],
-                Loadedarticles: true,
-                relatedGames: [],
                 loadedRelated: false,
+                relatedPosts: []
             }
         },
         methods: {
@@ -230,16 +230,26 @@
             let formattedDate = new Date(date)
             return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
           },
+          relatedPost(id, cat_id){
+            this.loadedRelated = false
+            this.$api.get('related-sell-posts/' + id + '/' + cat_id + '?include=subcategory,user').then(response => {
+              this.relatedPosts = response.data.data;
+              if (this.relatedPosts.length > 0) {
+                this.loadedRelated = true
+              }
+              console.log(this.relatedPosts)
+            });
+          }
         },
         created() {
             window.scrollTo(0,0);
             this.$api.get('sell-post/'+ this.id +'?include=subcategory,user').then(response => {
                 this.post = response.data.data;
+                this.relatedPost(this.post.id, this.post.sub_category_id)
                 if (this.post.slider.length > 0) {
                   this.images = this.post.slider
                   this.sliderSection = true
                 }
-
                 console.log(this.post)
             });
 

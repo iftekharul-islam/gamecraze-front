@@ -426,7 +426,7 @@
           }
         },
         created() {
-            window.scrollTo(0,0);
+          window.scrollTo(0,0);
           this.$api.get('latest-sell-posts?include=subcategory,user').then(response => {
             this.latestPosts = response.data.data;
             if (this.latestPosts.length > 0) {

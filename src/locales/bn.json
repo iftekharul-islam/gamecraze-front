@@ -464,5 +464,9 @@
   "all_post" : "পোস্ট সমূহ",
   "details" : "বিস্তারিত",
   "seller_name" : "বিক্রেতার নাম",
-  "email_seller" : "বিক্রেতাকে ইমেইল"
+  "email_seller" : "বিক্রেতাকে ইমেইল",
+  "all_games" : "গেমস সমূহ",
+  "new_post" : "নতুন পোস্ট সমূহ",
+  "console_post" : "কনসোল পোস্ট সমূহ",
+  "accessories_post" : "আনুষাঙ্গিক পোস্ট সমূহ"
 }

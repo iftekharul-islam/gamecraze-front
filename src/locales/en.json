@@ -465,5 +465,9 @@
   "all_post" : "All post",
   "details" : "details",
   "seller_name" : "Seller name",
-  "email_seller" : "Email seller"
+  "email_seller" : "Email seller",
+  "all_games" : "All games",
+  "new_post" : "New sell posts",
+  "console_post" : "Console sell post",
+  "accessories_post" : "Accessories sell post"
 }

@@ -104,22 +104,22 @@
                                 <div v-if="auth" class="dropdown-toggle complete-sign-in" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
                                   <span class="user-name" v-if="$store.state.user.name">{{ this.$store.state.user.name }}</span>
                                   <span class="user-name" v-else>{{ this.$store.state.user.phone_number }}</span>
-                                    <span class="complete-sign-in--badge" v-if="user.is_verified == 1"></span>
-                                      <div class="complete-sign-in--nav-profile-img">
-                                          <img v-if="$store.state.user.image" :src="$store.state.user.image" :alt="$store.state.user.name">
-                                          <img v-else src="../../assets/img/avatar.png" alt="profile">
+                                    <span class="complete-sign-in--badge" v-if="user != null && user.is_verified === 1"></span>
+                                    <div class="complete-sign-in--nav-profile-img">
+                                        <img v-if="$store.state.user.image" :src="$store.state.user.image" :alt="$store.state.user.name">
+                                        <img v-else src="../../assets/img/avatar.png" alt="profile">
+                                    </div>
+                                    <div class="dropdown-menu gamehub-dropdown-menu">
+                                      <div class="gamehub-dropdown-menu--top">
+                                        <router-link to="/profile" class="dropdown-item">{{ $t('dashboard', $store.state.locale) }}</router-link>
+                                        <router-link to="/profile" class="dropdown-item" @click.native="clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link>
+                                        <router-link class="router_link dropdown-item" to="/notice-board">{{ $t('noticeboard', $store.state.locale) }}</router-link>
+                                        <router-link to="/contacts" class="dropdown-item" href="#">{{ $t('contact_us', $store.state.locale) }}</router-link>
                                       </div>
-                                        <div class="dropdown-menu gamehub-dropdown-menu">
-                                            <div class="gamehub-dropdown-menu--top">
-                                              <router-link to="/profile" class="dropdown-item">{{ $t('dashboard', $store.state.locale) }}</router-link>
-                                              <router-link to="/profile" class="dropdown-item" @click.native="clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link>
-                                              <router-link class="router_link dropdown-item" to="/notice-board">{{ $t('noticeboard', $store.state.locale) }}</router-link>
-                                              <router-link to="/contacts" class="dropdown-item" href="#">{{ $t('contact_us', $store.state.locale) }}</router-link>
-                                            </div>
-                                            <div class="gamehub-dropdown-menu--bottom">
-                                              <a @click="onLogout" to="/" class="dropdown-item" href="#">{{ $t('logout', $store.state.locale) }}</a>
-                                            </div>
-                                        </div>
+                                      <div class="gamehub-dropdown-menu--bottom">
+                                        <a @click="onLogout" class="dropdown-item" href="#">{{ $t('logout', $store.state.locale) }}</a>
+                                      </div>
+                                    </div>
                                 </div>
                                         
                         </div>
@@ -228,7 +228,6 @@
 
 <script>
     import { VueFeedbackReaction } from 'vue-feedback-reaction';
-    import Profile from '../../components/Profile';
     export default {
         components: {VueFeedbackReaction},
         data() {
@@ -254,10 +253,9 @@
                 selected: "",
                 totalItems: 0,
                 isNavOpen: false,
-                user: {},
+                user: null,
                 isActive : this.$store.state.locale ?? this.$i18n.locale,
                 pendingRating: [],
-
             }
         },
         methods: {
@@ -303,39 +301,39 @@
                 });
             },
             authData () {
+              if (this.$store.state.user === null) {
+                return;
+              }
+              this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
+                if (typeof response.data == 'string') {
+                  this.onLogout();
+                  return;
+                }
+                this.user = response.data.data;
+                if (this.user.status == 0) {
+                  this.onLogout();
+                  return;
+                }
+                if (this.user.locale === '' || this.user.locale == null){
+                  this.localeSet(this.isActive);
+                  return;
+                }
+                this.isActive = this.user.locale;
+                this.$store.dispatch('changeLocale', this.user.locale)
                 var auth = this.$store.getters.ifAuthenticated;
                 if (auth) {
-                    let config = {
-                        headers: {
-                            'Authorization': 'Bearer ' + this.$store.state.token
-                        }
-                    };
-                    this.$api.get('cart-items', config).then(response => {
-                        this.totalItems = response.data.data.cartItems.length;
-                    });
-
-                    this.$api.get('user/details', config).then(response =>{
-                        this.user = response.data.data;
-                        if (this.user.locale === '' || this.user.locale == null){
-                            this.localeSet(this.isActive);
-                            return;
-                        }
-                        this.isActive = this.user.locale;
-                        this.$store.dispatch('changeLocale', this.user.locale)
-                    });
-                    this.navRatingCheck();
-                    this.$store.watch(
-                        (state)=>{
-                            return this.totalItems // could also put a Getter here
-                        },
-                        (newValue, oldValue)=>{
-                            this.totalItems = newValue;
-                        },
-                        //Optional Deep if you need it
-                        { deep:true }
-                    );
+                  let config = {
+                    headers: {
+                      'Authorization': 'Bearer ' + this.$store.state.token
+                    }
+                  };
+                  this.$api.get('cart-items', config).then(response => {
+                    this.totalItems = response.data.data.cartItems.length;
+                  });
+                  this.navRatingCheck();
                 }
                 this.totalItems = 0;
+              });
             },
             localeSet(value){
                 var auth = this.$store.getters.ifAuthenticated;
@@ -425,7 +423,6 @@
                     if (value.name !== 'Profile'){
                         this.authData()
                     }
-
                 },
                 deep: true,
                 immediate: true,
@@ -456,7 +453,6 @@
         },
         created() {
             this.$root.$refs.Navbar = this;
-            // this.$root.$refs.Profile = Profile;
             this.authData();
             this.userProfile = JSON.parse(localStorage.getItem('userProfile'));
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {

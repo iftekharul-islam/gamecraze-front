@@ -139,7 +139,7 @@
                   <router-link v-for="(item, index) in posts" :key="index" :to="{ path: '/sell-post/' + item.id + '/' + item.url_name }"
                                class="">
                     <div class="product-img position-relative br-4 overflow-hidden">
-                      <img :src="item.cover[0].url" :alt="item.name" class="img-fluid w-100" v-if="item.cover[0]">
+                      <img :src="item.cover.url" :alt="item.name" class="img-fluid w-100" v-if="item.cover != null">
                       <img src="../assets/img/play.png" :alt="item.name" class="img-fluid w-100" v-else>
 
                       <span v-if="item.product_type == 1" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
@@ -268,9 +268,9 @@ export default {
       loadedPopular: false,
       populars: [],
       min: 0,
-      max: 10000,
+      max: 100000,
       minValue: 0,
-      maxValue: 10000,
+      maxValue: 100000,
       noPostFound: false,
       posts: [],
       allPosts: [],
@@ -523,6 +523,7 @@ export default {
     });
     this.$api.get('games/popular-games?include=game.assets,game.platforms,game.genres').then(response => {
       this.populars = response.data.data;
+      console.log(this.populars);
       if (this.populars.length > 0) {
         this.loadedPopular = true
       }

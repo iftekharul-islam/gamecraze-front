@@ -123,7 +123,7 @@
                                 <div class="item gamebazar-post"  v-for="(post, index) in latestPosts" :key="index">
                                     <router-link :to="'/sell-post/' + post.id + '/' + post.url_name " >
                                         <div class="product-img position-relative br-4 overflow-hidden">
-                                            <img :src="post.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="post.cover.url != null">
+                                            <img :src="post.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="post.cover != null">
                                             <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image" v-else>
                                             <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-if="post.product_type === 1">New</span>
                                             <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-else>Used</span>
@@ -193,7 +193,7 @@
                     <div class="item gamebazar-post"  v-for="(post, index) in latestPosts" :key="index">
                       <router-link :to="'/sell-post/' + post.id + '/' + post.url_name " >
                         <div class="product-img position-relative br-4 overflow-hidden">
-                          <img :src="post.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="post.cover.url != null">
+                          <img :src="post.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="post.cover != null">
                           <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image" v-else>
                           <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-if="post.product_type === 1">New</span>
                           <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-else>Used</span>
@@ -263,7 +263,7 @@
                     <div class="item gamebazar-post"  v-for="(post, index) in latestPosts" :key="index">
                       <router-link :to="'/sell-post/' + post.id + '/' + post.url_name " >
                         <div class="product-img position-relative br-4 overflow-hidden">
-                          <img :src="post.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="post.cover.url != null">
+                          <img :src="post.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="post.cover != null">
                           <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image" v-else>
                           <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-if="post.product_type === 1">New</span>
                           <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-else>Used</span>

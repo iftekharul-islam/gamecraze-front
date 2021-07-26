@@ -1648,6 +1648,22 @@
             },
         },
         methods: {
+            onLogout() {
+              this.$store.dispatch('logout');
+            },
+            authCheck() {
+              this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
+                if (typeof response.data == 'string') {
+                  this.onLogout();
+                  return;
+                }
+                this.user = response.data.data;
+                if (this.user.status == 0) {
+                  this.onLogout();
+                  return;
+                }
+              })
+            },
             cropBoxSet(){
               let data = {
                 width: 363,
@@ -1662,8 +1678,6 @@
             onFileSelect(e) {
               const file = e.target.files[0]
               this.mime_type = file.type
-              console.log(this.mime_type)
-              console.log(file);
               if (typeof FileReader === 'function') {
                 this.dialog = true
                 const reader = new FileReader()
@@ -1678,18 +1692,14 @@
             },
             saveImage() {
               this.sellData.cover_image = this.$refs.cropper.getCroppedCanvas().toDataURL()
-              console.log(this.sellData.cover_image);
               this.$refs.cropper.getCroppedCanvas().toBlob((blob) => {
                 const formData = new FormData()
                 formData.append('profile_photo', blob, 'name.jpeg')
-                console.log(blob, 'blob');
               }, this.mime_type)
             },
             onEditFileSelect(e) {
               const file = e.target.files[0]
               this.editPostData.mime_type = file.type
-              console.log(this.editPostData.mime_type)
-              console.log(file);
               if (typeof FileReader === 'function') {
                 this.editPostData.dialog = true
                 const reader = new FileReader()
@@ -1704,15 +1714,12 @@
             },
             saveEditImage() {
               this.editPostData.cover_image = this.$refs.cropper.getCroppedCanvas().toDataURL()
-              console.log(this.editPostData.cover_image);
               this.$refs.cropper.getCroppedCanvas().toBlob((blob) => {
                 const formData = new FormData()
                 formData.append('profile_photo', blob, 'name.jpeg')
-                console.log(blob, 'blob');
               }, this.editPostData.mime_type)
             },
             sellPostEditModal(product) {
-                console.log(product)
                 this.sellPostEditModalShow = true
 
                 this.editPostData.id = product.id
@@ -1734,8 +1741,6 @@
                   console.log(this.postImages);
                   return;
               }
-              console.log(files);
-              console.log(this.postImages);
               if (this.postImages.length > files.length) {
                 let val = '';
                 this.postImages.forEach(function (image, index) {
@@ -1747,7 +1752,6 @@
                   })
                 })
                 this.postImages.splice(val, 1);
-                console.log(this.postImages)
                 return
               }
               this.postImages = [];
@@ -1771,11 +1775,8 @@
               console.log(this.postImages);
           },
             handleEditScreenshots(files) {
-                console.log(files);
-                console.log(this.editPostData.postImages);
                 if (files.length === 0) {
                     this.editPostData.postImages = [];
-                    console.log(this.editPostData.postImages);
                     return;
                 }
                 if (this.editPostData.postImages.length > files.length) {
@@ -1789,7 +1790,6 @@
                         })
                     })
                     this.editPostData.postImages.splice(val, 1);
-                    console.log(this.editPostData.postImages)
                     return
                 }
               this.editPostData.postImages = [];
@@ -1810,7 +1810,6 @@
                 }
               })
               this.editPostData.postImages = screenshots;
-              console.log(this.editPostData.postImages);
             },
             extendModal(lend) {
                 this.extend.week = '';
@@ -1839,7 +1838,6 @@
                 };
 
                 this.$api.post('extend-lend', data, config).then(response => {
-                    console.log(response.data.error);
                     if (response.data.error == false) {
                         this.extendModalShow = false;
                         this.$toaster.success("Extend request sent successfully!!");
@@ -1849,7 +1847,6 @@
             },
             rentCost(week, disk_type, game_id) {
                 this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
-                    console.log(response);
                     this.extend.price = response.data.price.discount_price;
                     this.extend.commission =  response.data.price.discount_commission;
                 })
@@ -2245,15 +2242,25 @@
             },
             onSellPostSubmit () {
               this.onSellPostLoading = true;
-              this.$refs.sellForm.validate().then(success => {
+              this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
+                if (typeof response.data == 'string') {
+                  this.onLogout();
+                  return;
+                }
+                this.user = response.data.data;
+                if (this.user.status == 0) {
+                  this.onLogout();
+                  return;
+                }
+                this.$refs.sellForm.validate().then(success => {
                   if (!success) {
-                      window.scrollTo({
-                          top: 400,
-                          behavior: 'smooth',
-                      })
-                      this.$toaster.error(this.$t('complete_required_field', this.$store.state.locale));
-                      this.onSellPostLoading = false;
-                      return;
+                    window.scrollTo({
+                      top: 400,
+                      behavior: 'smooth',
+                    })
+                    this.$toaster.error(this.$t('complete_required_field', this.$store.state.locale));
+                    this.onSellPostLoading = false;
+                    return;
                   }
                   if (this.postImages.length ===  0){
                     this.$toaster.error('Screenshot images not uploaded');
@@ -2267,60 +2274,70 @@
                   }
                   this.onSellPostLoading = true;
                   let uploadInfo = {
-                      name: this.sellData.name,
-                      description: this.sellData.description,
-                      price: this.sellData.price,
-                      product_type: this.sellData.product_type,
-                      is_negotiable: this.sellData.is_negotiable,
-                      sub_category_id: this.sellData.sub_category_id,
-                      phone_no: this.sellData.phone_no,
-                      address: this.sellData.address,
-                      images: this.postImages,
-                      condition_summary: this.sellData.summary,
-                      cover_image: this.sellData.cover_image,
+                    name: this.sellData.name,
+                    description: this.sellData.description,
+                    price: this.sellData.price,
+                    product_type: this.sellData.product_type,
+                    is_negotiable: this.sellData.is_negotiable,
+                    sub_category_id: this.sellData.sub_category_id,
+                    phone_no: this.sellData.phone_no,
+                    address: this.sellData.address,
+                    images: this.postImages,
+                    condition_summary: this.sellData.summary,
+                    cover_image: this.sellData.cover_image,
                   }
                   let config = {
-                      headers: {
-                          'Authorization': 'Bearer ' + this.$store.state.token
-                      }
+                    headers: {
+                      'Authorization': 'Bearer ' + this.$store.state.token
+                    }
                   }
                   this.$api.post('sell-post', uploadInfo, config)
                       .then(response => {
-                          if (response.status == 200) {
-                              this.dialog = false
-                              this.sellData.name = '';
-                              this.sellData.description = '';
-                              this.sellData.price = '';
-                              this.sellData.product_type = '';
-                              this.sellData.is_negotiable = '';
-                              this.sellData.sub_category_id = '';
-                              this.sellData.summary = '';
-                              this.sellData.phone_no = '';
-                              this.sellData.address = '';
-                              document.querySelector(".clearButton").click();
-                              this.postImages = [];
-                              this.sellData.cover_image = '',
+                        if (response.status == 200) {
+                          this.dialog = false
+                          this.sellData.name = '';
+                          this.sellData.description = '';
+                          this.sellData.price = '';
+                          this.sellData.product_type = '';
+                          this.sellData.is_negotiable = '';
+                          this.sellData.sub_category_id = '';
+                          this.sellData.summary = '';
+                          this.sellData.phone_no = '';
+                          this.sellData.address = '';
+                          document.querySelector(".clearButton").click();
+                          this.postImages = [];
+                          this.sellData.cover_image = '',
 
                               this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
 
-                              $('#v-pills-sell-post-tab').removeClass('active');
-                              $('#v-pills-sell-post').removeClass('active');
-                              $('#v-pills-sell-post').removeClass('show');
-                              $('#v-pills-dashboard-tab').addClass('active');
-                              $('#v-pills-dashboard').addClass('active');
-                              $('#v-pills-dashboard').addClass('show');
-                              this.sellPostCheck()
-                              this.onSellPost();
-                              this.onSellPostLoading = false;
-                          }
-
+                          $('#v-pills-sell-post-tab').removeClass('active');
+                          $('#v-pills-sell-post').removeClass('active');
+                          $('#v-pills-sell-post').removeClass('show');
+                          $('#v-pills-dashboard-tab').addClass('active');
+                          $('#v-pills-dashboard').addClass('active');
+                          $('#v-pills-dashboard').addClass('show');
+                          this.sellPostCheck()
+                          this.onSellPost();
+                          this.onSellPostLoading = false;
+                        }
                       }).catch(err => {
-                          console.log(err)
+                    console.log(err)
                   });
+                })
               })
             },
             sellPostUpdate(){
-                this.isEditLoading = true;
+              this.isEditLoading = true;
+              this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
+                if (typeof response.data == 'string') {
+                  this.onLogout();
+                  return;
+                }
+                this.user = response.data.data;
+                if (this.user.status == 0) {
+                  this.onLogout();
+                  return;
+                }
                 if (this.removeCover != '' && this.editPostData.cover_image === '') {
                   this.$toaster.error(this.$t('upload_cover_notification', this.$store.state.locale));
                   this.isEditLoading = false;
@@ -2332,61 +2349,70 @@
                   return;
                 }
                 let config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + this.$store.state.token
-                    }
+                  headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                  }
                 };
                 let data = {
-                    id: this.editPostData.id,
-                    name: this.editPostData.name,
-                    description: this.editPostData.description,
-                    price: this.editPostData.price,
-                    sub_category_id: this.selected,
-                    is_negotiable: this.editPostData.is_negotiable,
-                    phone_no: this.editPostData.phone_no,
-                    address: this.editPostData.address,
-                    images: this.editPostData.postImages,
-                    cover_image: this.editPostData.cover_image,
-                    removeCover: this.removeCover,
-                    removeScreenshots: this.removeScreenshots
+                  id: this.editPostData.id,
+                  name: this.editPostData.name,
+                  description: this.editPostData.description,
+                  price: this.editPostData.price,
+                  sub_category_id: this.selected,
+                  is_negotiable: this.editPostData.is_negotiable,
+                  phone_no: this.editPostData.phone_no,
+                  address: this.editPostData.address,
+                  images: this.editPostData.postImages,
+                  cover_image: this.editPostData.cover_image,
+                  removeCover: this.removeCover,
+                  removeScreenshots: this.removeScreenshots
 
                 };
 
                 this.$api.post('sell-post-update', data, config).then(response => {
-                    if (response.data.error == false) {
-                        this.isEditLoading = false;
-                        this.sellPostEditModalShow = false;
-                        this.editPostData.postImages = [];
-                        this.editPostData.cover_image = '';
-                        this.editPostData.dialog = false;
-                        this.editPostData.images = [];
-                        this.removeCover = '';
-                        this.$toaster.success(this.$t('info_update_notification', this.$store.state.locale));
-                        this.sellPostCheck()
-                        this.onSellPost()
-                    }else {
-                        this.$toaster.fail(response.data.message);
-                    }
-
-                });
+                  if (response.data.error == false) {
+                    this.isEditLoading = false;
+                    this.sellPostEditModalShow = false;
+                    this.editPostData.postImages = [];
+                    this.editPostData.cover_image = '';
+                    this.editPostData.dialog = false;
+                    this.editPostData.images = [];
+                    this.removeCover = '';
+                    this.$toaster.success(this.$t('info_update_notification', this.$store.state.locale));
+                    this.sellPostCheck()
+                    this.onSellPost()
+                  } else {
+                    this.$toaster.fail(response.data.message);
+                  }
+                })
+              })
             },
             onRentSubmit () {
+              this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
+                if (typeof response.data == 'string') {
+                  this.onLogout();
+                  return;
+                }
+                if (response.data.data.status == 0) {
+                  this.onLogout();
+                  return;
+                }
                 this.$refs.form.validate().then(success => {
-                        if (!success) {
-                            window.scrollTo({
-                                top: 400,
-                                behavior: 'smooth',
-                            })
-                            this.$toaster.error(this.$t('complete_required_field', this.$store.state.locale));
-                            return;
-                        }
-                if ( this.rentData.game == '' || this.rentData.game == null) {
+                  if (!success) {
+                    window.scrollTo({
+                      top: 400,
+                      behavior: 'smooth',
+                    })
+                    this.$toaster.error(this.$t('complete_required_field', this.$store.state.locale));
+                    return;
+                  }
+                  if (this.rentData.game == '' || this.rentData.game == null) {
                     this.$toaster.warning(this.$t('games_required_field', this.$store.state.locale));
                     this.isRentLoading = false;
                     return;
-                }
-                this.isRentLoading = true;
-                let  uploadInfo = {
+                  }
+                  this.isRentLoading = true;
+                  let uploadInfo = {
                     game_id: this.rentData.game.id,
                     // availability: this.rentData.availability,
                     max_week: this.rentData.max_week,
@@ -2398,40 +2424,41 @@
                     disk_type: this.rentData.disk_type,
                     game_user_id: this.rentData.gameUserId,
                     game_password: this.rentData.gamePassword,
-                }
-                let config = {
+                  }
+                  let config = {
                     headers: {
-                        'Authorization': 'Bearer ' + this.$store.state.token
+                      'Authorization': 'Bearer ' + this.$store.state.token
                     }
-                }
+                  }
 
-                this.$api.post('rents', uploadInfo, config)
-                    .then(response => {
-                      console.log(response)
-                      this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
+                  this.$api.post('rents', uploadInfo, config)
+                      .then(response => {
+                        console.log(response)
+                        this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
                         setTimeout(function () {
-                                // this.rentData.game = '';
-                                // this.rentData.max_week = 1;
-                                // this.rentData.platform = null;
-                                // this.rentData.disk_condition = '';
-                                // this.rentData.disk_image = '';
-                                // this.rentData.cover_image = '';
-                                // this.rentData.checkpoint = {};
-                                // this.rentData.disk_type = '';
-                                // this.rentData.gameUserId = '';
-                                // this.rentData.gamePassword = '';
-                                // this.activeRentOffers();
+                          // this.rentData.game = '';
+                          // this.rentData.max_week = 1;
+                          // this.rentData.platform = null;
+                          // this.rentData.disk_condition = '';
+                          // this.rentData.disk_image = '';
+                          // this.rentData.cover_image = '';
+                          // this.rentData.checkpoint = {};
+                          // this.rentData.disk_type = '';
+                          // this.rentData.gameUserId = '';
+                          // this.rentData.gamePassword = '';
+                          // this.activeRentOffers();
 
-                            window.location.reload();
-                            // $('#v-pills-post-rent-tab').removeClass('active');
-                            // $('#v-pills-post-rent').removeClass('active');
-                            // $('#v-pills-post-rent').removeClass('show');
-                            // $('#v-pills-dashboard-tab').addClass('active');
-                            // $('#v-pills-dashboard').addClass('active');
-                            // $('#v-pills-dashboard').addClass('show');
+                          window.location.reload();
+                          // $('#v-pills-post-rent-tab').removeClass('active');
+                          // $('#v-pills-post-rent').removeClass('active');
+                          // $('#v-pills-post-rent').removeClass('show');
+                          // $('#v-pills-dashboard-tab').addClass('active');
+                          // $('#v-pills-dashboard').addClass('active');
+                          // $('#v-pills-dashboard').addClass('show');
                         }, 2000);
-                    });
+                      });
                 })
+              })
             },
             clickHandler(item) {
               // event fired when clicking on the input
@@ -2738,7 +2765,7 @@
             this.$api.get('payment-history', config).then (response => {
                 this.transactions = response.data.data;
             });
-            this.$api.get('user/details', config).then(response =>{
+            this.$api.get('user/details/' + this.$store.state.user.id ).then(response =>{
                 this.user = response.data.data;
                 this.nid_verification = this.user.id_verified;
                 this.activeCoverImage = this.user.cover;

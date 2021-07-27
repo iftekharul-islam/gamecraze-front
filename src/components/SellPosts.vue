@@ -515,6 +515,7 @@ export default {
     },
   },
   created() {
+    window.scrollTo(0,0);
     this.posts = [];
     this.getSellPosts();
     this.$api.get('categories?include=subcategory').then(response => {

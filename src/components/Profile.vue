@@ -602,9 +602,9 @@
                                                                                   <div class="position-relative sell-post-modal-img" :class="{ 'd-none': removeCover === editPostData.cover.id }"  @click="removeCover = editPostData.cover.id">
                                                                                     <img :src="editPostData.cover.url" class="img-fluid h-100" width="150" height="200">
                                                                                     <span class="image-cancel position-absolute top-0 left-0 w-100 h-100 d-flex align-items-center justify-content-center sellpost-img-bg pointer">
-                                                                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                                                  <path d="M16.2427 6.34315L12.0001 10.5858L7.75744 6.34315L6.34323 7.75736L10.5859 12L6.34323 16.2426L7.75744 17.6569L12.0001 13.4142L16.2427 17.6569L17.6569 16.2426L13.4143 12L17.6569 7.75736L16.2427 6.34315Z" fill="#FFD715"></path></svg>
-                                                                                            </span>
+                                                                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                                        <path d="M16.2427 6.34315L12.0001 10.5858L7.75744 6.34315L6.34323 7.75736L10.5859 12L6.34323 16.2426L7.75744 17.6569L12.0001 13.4142L16.2427 17.6569L17.6569 16.2426L13.4143 12L17.6569 7.75736L16.2427 6.34315Z" fill="#FFD715"></path></svg>
+                                                                                    </span>
                                                                                   </div>
                                                                                 </div>
                                                                               </div>
@@ -1651,19 +1651,6 @@
             onLogout() {
               this.$store.dispatch('logout');
             },
-            authCheck() {
-              this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
-                if (typeof response.data == 'string') {
-                  this.onLogout();
-                  return;
-                }
-                this.user = response.data.data;
-                if (this.user.status == 0) {
-                  this.onLogout();
-                  return;
-                }
-              })
-            },
             cropBoxSet(){
               let data = {
                 width: 363,
@@ -1823,28 +1810,6 @@
                 this.extend.orderNo = lend.order.order_no;
                 this.extend.lend_id = lend.id;
             },
-            extendSubmit(){
-                let config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + this.$store.state.token
-                    }
-                };
-
-                let data = {
-                    id: this.extend.lend_id,
-                    week: this.extend.week,
-                    amount: this.extend.price,
-                    commission: this.extend.commission,
-                };
-
-                this.$api.post('extend-lend', data, config).then(response => {
-                    if (response.data.error == false) {
-                        this.extendModalShow = false;
-                        this.$toaster.success("Extend request sent successfully!!");
-                    }
-
-                });
-            },
             rentCost(week, disk_type, game_id) {
                 this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
                     this.extend.price = response.data.price.discount_price;
@@ -1852,29 +1817,40 @@
                 })
             },
             ratingSubmit () {
-                this.invalidRating = false;
-                if (this.ratingData.rating === 0 && this.ratingData.comment === ''){
-                    this.invalidRating = true;
-                    return;
+              this.invalidRating = false;
+              this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
+                if (typeof response.data == 'string') {
+                  this.onLogout();
+                  return;
+                }
+                this.user = response.data.data;
+                if (this.user.status == 0) {
+                  this.onLogout();
+                  return;
+                }
+                if (this.ratingData.rating === 0 && this.ratingData.comment === '') {
+                  this.invalidRating = true;
+                  return;
                 }
                 var config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + this.$store.state.token
-                    }
+                  headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                  }
                 };
 
                 let data = {
-                    id: this.ratingData.value.id,
-                    rating: this.ratingData.feedback,
-                    comment: this.ratingData.comment,
+                  id: this.ratingData.value.id,
+                  rating: this.ratingData.feedback,
+                  comment: this.ratingData.comment,
                 };
 
                 this.$api.post('user-rating', data, config).then(response => {
-                    this.$toaster.success( response.data.message );
-                    this.ratingCheck();
-                    this.ratingPopupModal = false;
-                    this.$root.$refs.Navbar.navRatingCheck();
+                  this.$toaster.success(response.data.message);
+                  this.ratingCheck();
+                  this.ratingPopupModal = false;
+                  this.$root.$refs.Navbar.navRatingCheck();
                 });
+              })
             },
             setRatingData (data) {
                 this.ratingPopupModal = true;
@@ -1888,48 +1864,70 @@
                 console.log(e);
             },
             postStatusChange(event, id) {
+              this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
+                if (typeof response.data == 'string') {
+                  this.onLogout();
+                  return;
+                }
+                this.user = response.data.data;
+                if (this.user.status == 0) {
+                  this.onLogout();
+                  return;
+                }
                 var status = event.target.checked;
                 let config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + this.$store.state.token
-                    }
+                  headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                  }
                 };
                 let data = {
-                    id: id,
-                    status: status,
+                  id: id,
+                  status: status,
                 };
 
                 this.$api.post('post-status-update', data, config).then(response => {
-                    if (response.data.error == false) {
-                        this.coverModal = false;
-                        this.$toaster.success(this.$t('rent_post_status', this.$store.state.locale));
-                    }else {
-                        this.$toaster.fail(response.data.message);
-                    }
+                  if (response.data.error == false) {
+                    this.coverModal = false;
+                    this.$toaster.success(this.$t('rent_post_status', this.$store.state.locale));
+                  } else {
+                    this.$toaster.fail(response.data.message);
+                  }
 
                 });
+              })
             },
             sellPostStatusChange(event, id) {
+              this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
+                if (typeof response.data == 'string') {
+                  this.onLogout();
+                  return;
+                }
+                this.user = response.data.data;
+                if (this.user.status == 0) {
+                  this.onLogout();
+                  return;
+                }
                 var status = event.target.checked;
                 let config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + this.$store.state.token
-                    }
+                  headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                  }
                 };
                 let data = {
-                    id: id,
-                    status: status,
+                  id: id,
+                  status: status,
                 };
 
                 this.$api.post('sold-status-update', data, config).then(response => {
-                    if (response.data.error == false) {
-                        this.coverModal = false;
-                        this.$toaster.success(this.$t('rent_post_status', this.$store.state.locale));
-                    }else {
-                        this.$toaster.fail(response.data.message);
-                    }
+                  if (response.data.error == false) {
+                    this.coverModal = false;
+                    this.$toaster.success(this.$t('rent_post_status', this.$store.state.locale));
+                  } else {
+                    this.$toaster.fail(response.data.message);
+                  }
 
                 });
+              })
             },
             credentialModal(rent){
                 this.userGameId = rent.game_user_id;
@@ -1950,80 +1948,113 @@
                 this.imageModalShow = true;
             },
             coverImageSelect(userId){
-                this.dummyCover = false;
+              this.dummyCover = false;
+              this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
+                if (typeof response.data == 'string') {
+                  this.onLogout();
+                  return;
+                }
+                this.user = response.data.data;
+                if (this.user.status == 0) {
+                  this.onLogout();
+                  return;
+                }
                 if (this.coverUrl == '') {
-                    return
+                  return
                 }
                 this.activeCoverImage = this.coverUrl;
                 let config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + this.$store.state.token
-                    }
+                  headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                  }
                 };
                 let data = {
-                    user_id: userId,
-                    cover: this.coverUrl,
+                  user_id: userId,
+                  cover: this.coverUrl,
                 };
 
                 this.$api.post('user-cover-update', data, config).then(response => {
-                    if (response.data.error == false) {
-                        this.coverModal = false;
-                        this.$toaster.success( this.$t('cover_updated', this.$store.state.locale) );
-                    } else {
-                        this.$toaster.warning(response.data.message);
-                    }
+                  if (response.data.error == false) {
+                    this.coverModal = false;
+                    this.$toaster.success(this.$t('cover_updated', this.$store.state.locale));
+                  } else {
+                    this.$toaster.warning(response.data.message);
+                  }
 
                 });
+              })
             },
             rentImageUpdate(rentId, disk, cover){
+              this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
+                if (typeof response.data == 'string') {
+                  this.onLogout();
+                  return;
+                }
+                this.user = response.data.data;
+                if (this.user.status == 0) {
+                  this.onLogout();
+                  return;
+                }
+
                 if (this.editDiskImage == disk) {
-                    disk = null;
+                  disk = null;
                 }
                 if (this.editCoverImage == cover) {
-                    cover = null
+                  cover = null
                 }
                 this.imageModalShow = false;
                 let config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + this.$store.state.token
-                    }
+                  headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                  }
                 };
                 let data = {
-                    cover_image: cover,
-                    disk_image: disk,
-                    id: rentId
+                  cover_image: cover,
+                  disk_image: disk,
+                  id: rentId
                 };
                 this.$api.post('rent-image-update', data, config).then(response => {
-                    if (response.data.error == false) {
-                        this.$toaster.success(this.$t('rent_image_update', this.$store.state.locale));
-                    }else {
-                        this.$toaster.warning(this.$t('image_update_failed', this.$store.state.locale));
-                    }
+                  if (response.data.error == false) {
+                    this.$toaster.success(this.$t('rent_image_update', this.$store.state.locale));
+                  } else {
+                    this.$toaster.warning(this.$t('image_update_failed', this.$store.state.locale));
+                  }
 
                 });
+              })
             },
             gameCredentialUpdate(rentId, userId, gamePassword){
-
+              this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
+                if (typeof response.data == 'string') {
+                  this.onLogout();
+                  return;
+                }
+                this.user = response.data.data;
+                if (this.user.status == 0) {
+                  this.onLogout();
+                  return;
+                }
                 let config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + this.$store.state.token
-                    }
+                  headers: {
+                    'Authorization': 'Bearer ' + this.$store.state.token
+                  }
                 };
                 let data = {
-                    game_user_id: userId,
-                    game_password: gamePassword,
-                    rent_id: rentId
+                  game_user_id: userId,
+                  game_password: gamePassword,
+                  rent_id: rentId
                 };
 
                 this.$api.post('game-credential-update', data, config).then(response => {
-                    if (response.data.error == false) {
-                        this.credentialModalShow = false;
-                        this.$toaster.success(this.$t('credential_updated', this.$store.state.locale));
-                    }else {
-                        this.$toaster.fail(response.data.message);
-                    }
+                  if (response.data.error == false) {
+                    this.credentialModalShow = false;
+                    this.$toaster.success(this.$t('credential_updated', this.$store.state.locale));
+                  } else {
+                    this.$toaster.fail(response.data.message);
+                  }
 
                 });
+              })
             },
             onAgreement(event){
                 this.agreement = '';
@@ -2070,7 +2101,18 @@
                 return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
             },
             onProfileUpdate: function() {
+              this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
+                if (typeof response.data == 'string') {
+                  this.onLogout();
+                  return;
+                }
+                this.user = response.data.data;
+                if (this.user.status == 0) {
+                  this.onLogout();
+                  return;
+                }
                 this.validateUserPhoneEmail();
+              })
             },
             validateUserPhoneEmail: function() {
                 let config = {
@@ -2084,7 +2126,7 @@
                     if ( response.data.error) {
                         this.isEmailExists = response.data.isEmailExists;
                         this.isPhoneExists = response.data.isPhoneExists;
-                         this.$store.commit('setIsProfileUpdateing', false);
+                        this.$store.commit('setIsProfileUpdateing', false);
                         return;
                     }
                     this.$store.dispatch('updateUserDetails', this.form);

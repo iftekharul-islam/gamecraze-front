@@ -1068,7 +1068,7 @@
                                         <div class="my-earning--dashboard--content">
                                             <h4>{{ $t('amount_received', $store.state.locale) }}</h4>
                                             <h2>{{ payable_amount }} Taka</h2>
-                                              <a href="javascript:void(0)" @click="requestModalShow = true" class="bg-secondery d-block text-center primary-text w-full primary-text-shadow gil-bold primary-text-hover py-2">
+                                              <a href="javascript:void(0)" @click="requestModalShow = true; withdrawAmount = payable_amount" class="bg-secondery d-block text-center primary-text w-full primary-text-shadow gil-bold primary-text-hover py-2">
                                                 <span>payment request</span>
                                               </a>
                                         </div>
@@ -1090,22 +1090,22 @@
                                                   <div>
                                                     <div class="border-0">
                                                       <div class="d-flex mb-4">
-<!--                                                        <p class="primary-text gil-medium mb-0">{{ $t('order_no', $store.state.locale) }} :</p>-->
-                                                        <p class="primary-text gil-medium mb-0">Withdrwal amount :</p>
+                                                        <p class="primary-text gil-medium mb-0">{{ $t('withdraw_request', $store.state.locale) }}:</p>
                                                       </div>
                                                       <div class="d-flex align-items-center justify-content-between mt-4">
                                                         <p class="text-light-gray gil-medium mb-0">{{ $t('amount', $store.state.locale) }} :</p>
-                                                        <p class="primary-text gil-medium mb-0">BDT {{ payable_amount }} TK</p>
+                                                      </div>
+                                                      <div class="d-flex align-items-center justify-content-between mt-4">
+                                                        <input type="number" min="100" max="5000" class="form-control bg-game-details focus-game-details border-half border-secondery-imp no-default-arrow br-0 shadow-none cursor-pointer text-white gil-medium" v-model="withdrawAmount" />
                                                       </div>
                                                     </div>
                                                   </div>
 
                                                   <div class="d-flex justify-content-center mt-5">
-                                                    <a href="javascript:void(0)" class="bg-secondery d-block text-center primary-text w-full primary-text-shadow gil-bold primary-text-hover py-2">
-                                                      <span> {{ $t('extend_request', $store.state.locale) }}</span>
+                                                    <a href="javascript:void(0)" @click.prevent="submitWithdraw" :disabled="withdrawLoading" class="bg-secondery d-block text-center primary-text w-full primary-text-shadow gil-bold primary-text-hover py-2">
+                                                      <span> {{ $t('submit', $store.state.locale) }} <i v-if="withdrawLoading" class="spinner-border spinner-border-sm"></i></span>
                                                     </a>
                                                   </div>
-                                                </ValidationObserver>
                                               </div>
                                             </div>
                                           </div>
@@ -1508,6 +1508,8 @@
         components: {StarRating, VueFeedbackReaction, UploadImages, VueCropper},
         data() {
             return {
+                withdrawAmount: 0,
+                withdrawLoading: false,
                 requestModalShow: false,
                 isEditLoading: false,
                 removeScreenshots: [],
@@ -1675,6 +1677,50 @@
             },
         },
         methods: {
+            submitWithdraw() {
+              this.withdrawLoading = true;
+              if (this.withdrawAmount === ''){
+                this.$toaster.error('Please enter an amount');
+                this.withdrawLoading = false;
+                return;
+              }
+              if (100 > this.withdrawAmount){
+                this.$toaster.error('Amount should be more than 100');
+                this.withdrawLoading = false;
+                return;
+              }
+              if (this.withdrawAmount > 5000){
+                this.$toaster.error('Amount should be less than 5000');
+                this.withdrawLoading = false;
+                return;
+              }
+
+              if (this.withdrawAmount > this.payable_amount){
+                this.$toaster.error('Amount should be less than payable amount');
+                this.withdrawLoading = false;
+                return;
+              }
+
+              var config = {
+                headers: {
+                  'Authorization': 'Bearer ' + this.$store.state.token
+                }
+              };
+
+              let data = {
+                amount: this.withdrawAmount,
+              };
+
+              this.$api.post('withdraw-request', data, config).then(response => {
+                if (response.data.error == false) {
+                  this.requestModalShow = false;
+                  this.withdrawLoading = false;
+                  this.$toaster.success("Withdraw request sent successfully!!");
+                  return;
+                }
+                this.$toaster.error("Withdraw request is not available!!");
+              });
+            },
             onLogout() {
               this.$store.dispatch('logout');
             },

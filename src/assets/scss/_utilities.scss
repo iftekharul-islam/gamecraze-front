@@ -1449,6 +1449,14 @@
 .top-full {
     top: 100%;
 }
+.top-full-10px {
+    top: calc(100% + 10px);
+}
+.top-full-10px-imp {
+    top: calc(100% + 10px) !important;
+}
+
+
 
 // bottom
 .bottom-0 {

@@ -274,13 +274,11 @@
         autoPromoApply() {
             let code = this.$store.state.promo ?? false;
             if (code) {
-                console.log('i m in autoApplyCode');
                 this.promoCode = code;
                 this.applyCode();
             }
         },
         applyCode() {
-            console.log('i m in applyCode');
             this.isLoadingCode = true;
             this.promoError = false;
             this.discountAmount = 0;
@@ -331,7 +329,7 @@
                         'Authorization': 'Bearer ' + this.$store.state.token
                     }
                 };
-                this.$api.get('user/details', config).then(response => {
+                this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
                     this.user = response.data.data;
                     if (this.user.wallet != 0) {
                         this.availableWallet = true;
@@ -341,7 +339,6 @@
                     console.log(err);
                 });
                 this.$api.get('cart-items', config).then(response => {
-                    console.log(response);
                     this.newCartItems = response.data.data.cartItems;
                     this.totalPrice = response.data.data.totalRegularPrice;
                     this.mainAmount = this.totalPrice;
@@ -508,7 +505,6 @@
             this.newCartItems = JSON.parse(this.newCartItems);
               if (this.newCartItems) {
                   for (let i = 0; i < this.newCartItems.length; i++) {
-                      console.log(this.newCartItems[i])
                       this.gameIds.push(this.newCartItems[i]);
                   }
               }
@@ -516,8 +512,6 @@
         }
     },
     created() {
-        console.log('the promo code');
-        console.log(this.$store.state.promo);
         window.scrollTo(0,0);
         this.authData();
         this.$api.get('delivery-charge').then(response => {

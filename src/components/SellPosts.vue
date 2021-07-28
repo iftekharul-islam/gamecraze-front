@@ -50,10 +50,10 @@
                            @change="descPrice($event)">
                     <label class="custom-control-label" for="desc_price_filter">Price (High To Low)</label>
                   </div> -->
-                  <div class="mb-a-3">
-                    <input type="checkbox" class="custom-control-input" id="date_filter" @change="sortDate($event)">
-                    <label class="custom-control-label" for="date_filter">Date (From Today)</label>
-                  </div>
+<!--                  <div class="mb-a-3">-->
+<!--                    <input type="checkbox" class="custom-control-input" id="date_filter" @change="sortDate($event)">-->
+<!--                    <label class="custom-control-label" for="date_filter">Date (From Today)</label>-->
+<!--                  </div>-->
                   <div class="mb-a-3">
                     <input type="checkbox" class="custom-control-input" id="new_type_filter"
                            @change="sortNewType($event)">
@@ -118,11 +118,11 @@
 
                           <div class="d-flex justify-content-center py-4">
                             <div class="mr-1 position-relative shorting-input high-to-low pr-a-5">
-                                <input type="radio" class="position-absolute -z-index-1 opa-0 " id="recent_date" name="sort_date" >
+                                <input type="radio" class="position-absolute -z-index-1 opa-0 " id="recent_date" name="sort_date" @change="descDate($event)">
                                 <label class="mb-0" for="recent_date">Recent</label>
                             </div>
                             <div class=" position-relative pl-a-5 shorting-input">
-                                <input type="radio" class="position-absolute -z-index-1 opa-0" id="older_date" name="sort_date" >
+                                <input type="radio" class="position-absolute -z-index-1 opa-0" id="older_date" name="sort_date" @change="ascDate($event)">
                                 <label class="mb-0" for="older_date">Older</label>
                             </div>
                           </div>
@@ -165,17 +165,16 @@
               <div class="text-center my-5">
                     <a href="#" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">Load more</a>
                 </div>
-
-              <div class="not-matching" v-if="noPostFound">
-                <h2>{{ $t('noting_to_show', $store.state.locale) }}</h2>
-              </div>
             </div>
-            <div class="mt-5">
+            <div class="not-matching" v-if="noPostFound">
+              <h2>{{ $t('noting_to_show', $store.state.locale) }}</h2>
+            </div>
+            <div class="mt-5" v-if="totalPages > 1">
               <sliding-pagination
                 :current="currentPage"
                 :total="totalPages"
-                @page-change="pageChangeHandler"
-            ></sliding-pagination>
+                @page-change="pageChangeHandler">
+              </sliding-pagination>
             </div>
           </div>
         </div>
@@ -278,13 +277,13 @@ export default {
       checkedCategories: [],
       queryCategories: [],
       isHidden: false,
-      noGameFound: false,
       pagination: '',
       currentPage: 0,
       totalPages: 0,
       ascByPrice: '',
       descByPrice: '',
-      sortByDate: '',
+      ascByDate: '',
+      descByDate: '',
       sortNew: '',
       sortUsed: '',
       step: 5,
@@ -292,10 +291,6 @@ export default {
       percentPerStep: 1,
       trackWidth: null,
       isDragging: false,
-      articles: [1, 2, 3, 4],
-      Loadedarticles: true,
-      relatedGames: [],
-      loadedRelated: false,
       pos: {
         curTrack: null
       }
@@ -327,17 +322,24 @@ export default {
     },
     ascPrice(event) {
       this.descByPrice = '',
-          this.ascByPrice = event.target.checked === true ? 1 : '';
+      this.ascByPrice = event.target.checked === true ? 1 : '';
       this.getSellPosts();
     },
     descPrice(event) {
       this.ascByPrice = '',
-          this.descByPrice = event.target.checked === true ? 1 : '';
+      this.descByPrice = event.target.checked === true ? 1 : '';
       this.getSellPosts();
     },
-    sortDate(event) {
-      this.sortByDate = event.target.checked === true ? 1 : '';
-      console.log(this.sortByDate)
+    ascDate(event) {
+      this.descByDate = '';
+      this.ascByDate = event.target.checked === true ? 1 : '';
+      console.log(this.ascByDate)
+      this.getSellPosts();
+    },
+    descDate(event) {
+      this.ascByDate = '';
+      this.descByDate = event.target.checked === true ? 1 : '';
+      console.log(this.descByDate)
       this.getSellPosts();
     },
     sortNewType(event) {
@@ -387,7 +389,7 @@ export default {
     },
     getSellPosts(page_no = '') {
       this.noPostFound = false;
-      this.$api.get('sell-posts?include=subcategory&page=' + page_no + '&subcategory=' + this.queryCategories + '&ascPrice=' + this.ascByPrice + '&descPrice=' + this.descByPrice + '&sortDate=' + this.sortByDate + '&sortNew=' + this.sortNew + '&sortUsed=' + this.sortUsed + '&minPrice=' + this.minValue + '&maxPrice=' + this.maxValue).then(response => {
+      this.$api.get('sell-posts?include=subcategory&page=' + page_no + '&subcategory=' + this.queryCategories + '&ascPrice=' + this.ascByPrice + '&descPrice=' + this.descByPrice + '&ascDate=' + this.ascByDate + '&descDate=' + this.descByDate + '&sortNew=' + this.sortNew + '&sortUsed=' + this.sortUsed + '&minPrice=' + this.minValue + '&maxPrice=' + this.maxValue).then(response => {
         this.posts = response.data.data;
         this.allPosts = this.posts;
         this.pagination = response.data.meta.pagination;

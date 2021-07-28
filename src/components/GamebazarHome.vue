@@ -5,8 +5,8 @@
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="max-488">
-                            <h1 class="f-s-48 text-secondery">Online platform for buying & selling games & accessories</h1>
-                            <router-link class="router_link border-1 border-secondery-opa-25 mb-3 text-secondery mt-a-4 py-2 pl-a-6 pr-a-6 d-inline-block br-4" to="/create-ad">Sell post</router-link>
+                            <h1 class="f-s-48 text-secondery">{{ $t('game_bazar_title_1', $store.state.locale) }} <br> {{ $t('game_bazar_title_2', $store.state.locale) }}</h1>
+                            <router-link class="router_link border-1 border-secondery-opa-25 mb-3 text-secondery mt-a-4 py-2 pl-a-6 pr-a-6 d-inline-block br-4" to="/create-ad">{{ $t('sell_post', $store.state.locale) }}</router-link>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -110,14 +110,14 @@
 
                             <template slot="next">
                               <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center secondery-border br-4 pointer vue-owl-nav-right w-32 h-32">
-                                  <button class="owl-next z-index-9 h-100 w-100">
-                                    <span class="next">
-                                            <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                <path d="M8.12576 0.30213C7.91776 0.414342 7.78809 0.627714 7.78809 0.859789L7.78809 4.47352L0.652707 4.47352C0.292413 4.47352 4.5817e-07 4.75915 4.27402e-07 5.11109C3.96635e-07 5.46302 0.292413 5.74865 0.652707 5.74865L7.78809 5.74865L7.78809 9.36239C7.78809 9.59531 7.91776 9.80868 8.12575 9.92005C8.33375 10.0331 8.58787 10.0255 8.7889 9.90219L15.6954 5.6509C15.8851 5.53358 16 5.33041 16 5.11109C16 4.89177 15.8851 4.68859 15.6954 4.57128L8.7889 0.319982C8.68273 0.255375 8.56176 0.222222 8.44079 0.222222C8.33288 0.222222 8.2241 0.249424 8.12576 0.30213Z" fill="#FFD715"/>
-                                            </svg>
-                                        </span>
-                                    </button>
-                                </div>
+                                <button class="owl-next z-index-9 h-100 w-100">
+                                  <span class="next">
+                                    <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M8.12576 0.30213C7.91776 0.414342 7.78809 0.627714 7.78809 0.859789L7.78809 4.47352L0.652707 4.47352C0.292413 4.47352 4.5817e-07 4.75915 4.27402e-07 5.11109C3.96635e-07 5.46302 0.292413 5.74865 0.652707 5.74865L7.78809 5.74865L7.78809 9.36239C7.78809 9.59531 7.91776 9.80868 8.12575 9.92005C8.33375 10.0331 8.58787 10.0255 8.7889 9.90219L15.6954 5.6509C15.8851 5.53358 16 5.33041 16 5.11109C16 4.89177 15.8851 4.68859 15.6954 4.57128L8.7889 0.319982C8.68273 0.255375 8.56176 0.222222 8.44079 0.222222C8.33288 0.222222 8.2241 0.249424 8.12576 0.30213Z" fill="#FFD715"/>
+                                    </svg>
+                                  </span>
+                                </button>
+                              </div>
                             </template>
 
                                 <div class="item gamebazar-post"  v-for="(post, index) in latestPosts" :key="index">
@@ -295,15 +295,13 @@
                     <div class="col-md-7 col-lg-6">
                         <div class="mr-a-md-10 mb-3 mb-md-0">
                             <h1 class="f-s-28 f-s-md-48 max-600 mb-a-5">
-                                Do you have games and accessories?
-                                <span class="text-secondery">Want to sell?</span>
-                                Then <span class="text-secondery">advertise</span> today
-                                And sell.
+                              {{ $t('game_bazar_title_4', $store.state.locale) }}
+                                <span class="text-secondery">{{ $t('game_bazar_title_5', $store.state.locale) }}</span>
+                              {{ $t('then', $store.state.locale) }} <span class="text-secondery">{{ $t('advertise', $store.state.locale) }}</span>
+                              {{ $t('game_bazar_title_6', $store.state.locale) }}
                             </h1>
-                            <p class="max-500 opa-8 text-white"> Gamebazar is giving you a golden opportunity to sell games 
-                                and game accessories. Advertise and sell new 
-                                and old games and accessories here.</p>
-                                <router-link to="/create-ad" class="bg-secondery-gradient d-inline-block gil-bold py-2 px-5 primary-text primary-text-hover br-4">Create ads</router-link>
+                            <p class="max-500 opa-8 text-white">{{ $t('game_bazar_title_3', $store.state.locale) }}</p>
+                                <router-link to="/create-ad" class="bg-secondery-gradient d-inline-block gil-bold py-2 px-5 primary-text primary-text-hover br-4">{{ $t('create_ads', $store.state.locale) }}</router-link>
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-6 position-initial  pr-md-0">
@@ -326,13 +324,12 @@
                     <div class="col-md-7 col-lg-6 ml-auto">
                         <div class="ml-a-md-10 mb-3 mb-md-0">
                             <h1 class="f-s-28 f-s-md-48 max-600 mb-a-5">
-                                <span class="text-secondery">Renting and renting</span> games
-                                The popular medium is GameHub
+                              {{ $t('game_bazar_title_8', $store.state.locale) }}
+                              <span class="text-secondery">{{ $t('game_bazar_title_9', $store.state.locale) }}</span>
+                              {{ $t('game_bazar_title_10', $store.state.locale) }}
                             </h1>
-                            <p class="max-500 opa-8 text-white"> Gamebazar is giving you a golden opportunity to sell games 
-                                and game accessories. Advertise and sell new 
-                                and old games and accessories here.</p>
-                                <a href="#" class="bg-secondery-gradient d-inline-block gil-bold py-2 px-5 primary-text primary-text-hover br-4">Browse gamehub</a>
+                            <p class="max-500 opa-8 text-white"> {{ $t('game_bazar_title_11', $store.state.locale) }}</p>
+                                <a href="#" class="bg-secondery-gradient d-inline-block gil-bold py-2 px-5 primary-text primary-text-hover br-4">{{ $t('browse_gamehub', $store.state.locale) }}</a>
                         </div>
                     </div>
                </div>
@@ -341,7 +338,7 @@
         <!--Current Popular -->
         <section class="pb-a-21 current-popular" id="related-game">
             <div class="container">
-                 <h3 class="f-s-24 gil-bold text-white mb-a-4">Popular Games at GameHub:</h3>
+                 <h3 class="f-s-24 gil-bold text-white mb-a-4">{{ $t('popular_games_at_gamehub', $store.state.locale) }} :</h3>
                 <!-- new carousel -->
               <div class="position-relative carousel-nav">
                 <carousel

@@ -1068,8 +1068,51 @@
                                         <div class="my-earning--dashboard--content">
                                             <h4>{{ $t('amount_received', $store.state.locale) }}</h4>
                                             <h2>{{ payable_amount }} Taka</h2>
+                                              <a href="javascript:void(0)" @click="requestModalShow = true" class="bg-secondery d-block text-center primary-text w-full primary-text-shadow gil-bold primary-text-hover py-2">
+                                                <span>payment request</span>
+                                              </a>
                                         </div>
                                     </div>
+                                  <!-- Extend modal -->
+                                  <div v-if="requestModalShow">
+                                    <transition name="modal">
+                                      <div class="modal-mask order-details-extend-modal position-fixed top-0 left-0 h-100 w-full d-flex align-items-center justify-content-center z-index-9">
+                                        <div class="modal-wrapper">
+                                          <div class="modal-dialog modal-dialog-centered w-328" role="document">
+                                            <div class="modal-content bg-pattens-blue border-2 border-secondery p-a-4 br-0">
+                                              <button type="button" class="close position-absolute right-10 top-10 w-fit" data-dismiss="modal" aria-label="Close">
+                                                <svg aria-hidden="true" @click="requestModalShow = false" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                  <path d="M16.2427 6.34315L12.0001 10.5858L7.75744 6.34315L6.34323 7.75736L10.5859 12L6.34323 16.2426L7.75744 17.6569L12.0001 13.4142L16.2427 17.6569L17.6569 16.2426L13.4143 12L17.6569 7.75736L16.2427 6.34315Z" fill="#0B0F18"/>
+                                                  <rect x="0.5" y="0.5" width="23" height="23" rx="11.5" stroke="#0B0F18"/>
+                                                </svg>
+                                              </button>
+                                              <div class="modal-body-content">
+                                                  <div>
+                                                    <div class="border-0">
+                                                      <div class="d-flex mb-4">
+<!--                                                        <p class="primary-text gil-medium mb-0">{{ $t('order_no', $store.state.locale) }} :</p>-->
+                                                        <p class="primary-text gil-medium mb-0">Withdrwal amount :</p>
+                                                      </div>
+                                                      <div class="d-flex align-items-center justify-content-between mt-4">
+                                                        <p class="text-light-gray gil-medium mb-0">{{ $t('amount', $store.state.locale) }} :</p>
+                                                        <p class="primary-text gil-medium mb-0">BDT {{ payable_amount }} TK</p>
+                                                      </div>
+                                                    </div>
+                                                  </div>
+
+                                                  <div class="d-flex justify-content-center mt-5">
+                                                    <a href="javascript:void(0)" class="bg-secondery d-block text-center primary-text w-full primary-text-shadow gil-bold primary-text-hover py-2">
+                                                      <span> {{ $t('extend_request', $store.state.locale) }}</span>
+                                                    </a>
+                                                  </div>
+                                                </ValidationObserver>
+                                              </div>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </transition>
+                                  </div>
                                     <!-- payment history -->
                                     <div class="my-earning--payment-history">
                                         <h4 class="my-earning--payment-history--heading">{{ $t('payment_history', $store.state.locale) }}</h4>
@@ -1094,23 +1137,6 @@
                                             </table>
                                         </div>
                                         <span class="text-center d-block mt-a-18" v-else>{{ $t('no_trans_found', $store.state.locale) }}</span>
-<!--                                        <nav aria-label="Page navigation example" class="my-earning&#45;&#45;payment-history&#45;&#45;pagination">-->
-<!--                                            <ul class="pagination">-->
-<!--                                                <li class="page-item">-->
-<!--                                                    <a class="page-link" href="#" aria-label="Previous">-->
-<!--                                                        <span aria-hidden="true"><i class="fas fa-arrow-left"></i></span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                                <li class="page-item"><a class="page-link active" href="#">1</a></li>-->
-<!--                                                <li class="page-item"><a class="page-link" href="#">2</a></li>-->
-<!--                                                <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-<!--                                                <li class="page-item">-->
-<!--                                                    <a class="page-link" href="#" aria-label="Next">-->
-<!--                                                        <span aria-hidden="true"><i class="fas fa-arrow-right"></i></span>-->
-<!--                                                    </a>-->
-<!--                                                </li>-->
-<!--                                            </ul>-->
-<!--                                        </nav>-->
                                     </div>
                                 </div>
                             </div>
@@ -1482,6 +1508,7 @@
         components: {StarRating, VueFeedbackReaction, UploadImages, VueCropper},
         data() {
             return {
+                requestModalShow: false,
                 isEditLoading: false,
                 removeScreenshots: [],
                 removeCover: '',

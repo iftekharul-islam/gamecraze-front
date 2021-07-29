@@ -21,7 +21,7 @@
               <h1 class="f-s-48 gil-bold text-secondery mb-a-6">{{ post.name }}</h1>
               <div class="gamebazar-product-details__content__des">
                 <p class="text-white gil-bold mb-4">{{ $t('product_details', $store.state.locale) }}:</p>
-                <p>{{ post.description }}</p>
+                <p v-html="post.description"></p>
 
               </div>
               <h2 class="f-s-34 gil-bold text-secondery mb-a-6">{{ post.price }} tk</h2>

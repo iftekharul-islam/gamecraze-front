@@ -59,3 +59,23 @@
         }
     }
 }
+.gamebazar-product-details__content__des {
+    ul {
+        color: white;
+        list-style: initial;
+        li {
+            &::before {
+                display: block;
+                content: '';
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background: white;
+                margin-right: 8px;
+            }
+            pre {
+                color: white;
+            }
+        }
+    }
+}

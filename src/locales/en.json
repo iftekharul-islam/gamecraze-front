@@ -487,5 +487,6 @@
   "browse_gamehub" : "Browse gamehub",
   "popular_games_at_gamehub" : "Popular Games at GameHub",
   "withdraw_request" : "Withdraw Request",
-  "incorrect_password" : "Incorrect password"
+  "incorrect_password" : "Incorrect password",
+  "phone_seller" : "Call seller"
 }

@@ -216,3 +216,67 @@
     -ms-user-select: none; /* IE 10 and IE 11 */
     user-select: none;
   }
+
+//   filter show
+.filter-show-mobile {
+    @include for-max-768 {
+        position: fixed;
+        width: calc(100% - 40px);
+        z-index: 99999;
+        left: 0;
+        right: 0;
+        margin:auto ;
+        transform: translateX(-120%);
+        transition: all .3s ease-in;
+        border-radius: 5px;
+        background: $shorting-bg;
+    }
+    .custom-control-input {
+        &:checked {
+            ~.custom-control-label {
+                opacity: .95;
+                &::after {
+                    left: initial !important;
+                    right: 0 !important;
+                }
+                &::before {
+                    left: initial !important;
+                    right: 3px !important;
+                }
+            }
+        }
+    }
+    label {
+        @include for-max-768 {
+            text-align: right;
+            user-select: none;
+            padding-left: 0;
+            padding-right: 30px;
+            opacity: .75;
+        }
+        &::before {
+            @include for-max-768 {
+                left: initial;
+                right: 0;
+            }
+        }
+    }
+    .form-group {
+        .mb-a-3 {
+            @include for-max-768 {
+                text-align: right;
+            }
+           
+        }
+    }
+    &.filterShow {
+        transform: translateX(0);
+        transition: all .3s ease-in;
+    }
+}
+.sorting-mobile {
+    @include for-max-768 {
+        border: none;
+        background: $game-details;
+    }
+}

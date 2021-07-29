@@ -1318,6 +1318,11 @@
 .right-0-imp {
     right: 0 !important;
 }
+.right-md-0-imp {
+    @include for-min-768 {
+        right: 0 !important;
+    }
+}
 
 .right-2 {
     right: 2px;
@@ -1541,6 +1546,9 @@
 // 
 .br-t-l-5 {
     border-top-left-radius: 5px;
+}
+.br-t-r-5 {
+    border-top-right-radius: 5px;
 }
 
 // ******************Border ***************//
@@ -1774,7 +1782,9 @@
 .f-s-16 {
     font-size: 16px;
 }
-
+.f-s-16-imp {
+    font-size: 16px !important;
+}
 .f-s-18 {
     font-size: 18px;
 }
@@ -2143,6 +2153,16 @@ html {
     width: initial;
    }
 }
+.w-md-initial {
+    @include for-min-768 {
+     width: initial;
+    }
+ }
+ .w-lg-initial {
+    @include for-min-992 {
+     width: initial;
+    }
+ }
 .max-md-760 {
     @include for-min-992 {
         max-width: 760px;
@@ -2819,6 +2839,11 @@ select {
 .no-focus {
     &:focus {
         background: initial;
+        outline: none;
+    }
+}
+.no-outline-focus {
+    &:focus {
         outline: none;
     }
 }

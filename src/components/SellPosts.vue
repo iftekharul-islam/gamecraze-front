@@ -6,7 +6,7 @@
         <div class="row">
           <div class="col-md-4 col-lg-3 mb-3">
             <div class="text-right">
-              <button id="btn--filter" class="btn--filter" v-on:click="toggleMenu()">
+              <!-- <button id="btn--filter" class="btn--filter" v-on:click="toggleMenu()">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"
                      width="40" height="35">
                   <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="256" x2="256" y1="22" y2="498">
@@ -18,90 +18,117 @@
                       fill="url(#a)"/>
                 </svg>
                 <span>{{ $t('filter', $store.state.locale) }}</span>
-              </button>
+              </button> -->
             </div>
-            <div class="games-categories-section--categories" id="games-categories-list">
-              <!-- Game Type -->
-              <div class="select-categories">
-                <h6 class="">{{ $t('select_category', $store.state.locale) }}</h6>
-                <div class="form-group form-check" v-for="(category, index) in categories" :key="'category' + index"
-                     v-if="categories">
-                  <h6 v-if="category.subcategory.data.length" class="-ml-20px">{{ category.name }}</h6>
-                  <div class="mb-a-3" v-for="(subItem, index) in category.subcategory.data" :key="index"
-                       v-if="category.subcategory.data.length">
-                    <input type="checkbox" class="custom-control-input" :id="subItem.name + '-game'"
-                           :checked="checkedCategories.includes(subItem.name)"
-                           @change="changeCheckedCategories(subItem.name)">
-                    <label class="custom-control-label" :for="subItem.name + '-game'">{{ subItem.name }}</label>
-                  </div>
+            <div class="games-categories-section--categories filter-show-mobile p-0" id="games-categories-list" :class="{ filterShow : filterShow }">
+              <div class="bg-shorting-tile p-3 d-flex align-items-center justify-content-between br-t-r-5 br-t-l-5 d-md-none">
+                <span class="fs-20 text-secondery gil-bold opa-9">{{ $t('filter', $store.state.locale) }}</span>
+                <span @click="filterShow = false" class="pointer">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M3.66671 1.06789L3.66666 1.06794L3.67262 1.07396L7.5496 4.9897L7.9049 5.34856L8.26021 4.9897L12.1372 1.07396L12.1372 1.07401L12.1431 1.06789C12.8678 0.310704 14.0645 0.310705 14.7892 1.06789L14.7891 1.06794L14.7951 1.07396C15.5238 1.8099 15.5238 3.00455 14.7951 3.74049L10.9181 7.65623L10.5698 8.00802L10.9181 8.35981L14.7951 12.2756C15.5238 13.0115 15.5238 14.2062 14.7951 14.9421C14.4168 15.3242 13.9429 15.5 13.4661 15.5C12.9894 15.5 12.5155 15.3242 12.1372 14.9421L8.26021 11.0263L7.9049 10.6675L7.5496 11.0263L3.67262 14.9421L3.66656 14.9482L3.66071 14.9545C3.32515 15.3177 2.83124 15.5 2.34367 15.5C1.86357 15.5 1.39846 15.3225 1.0584 14.9545L1.05255 14.9482L1.04649 14.9421C0.317836 14.2062 0.317836 13.0115 1.04649 12.2756L4.92347 8.35981L5.27178 8.00802L4.92347 7.65623L1.04649 3.74049C0.317837 3.00455 0.317836 1.8099 1.04649 1.07396L1.04654 1.07401L1.0524 1.06789C1.7771 0.310705 2.94201 0.310705 3.66671 1.06789ZM7.5531 4.28259L4.02793 0.722167H0.691183C-0.230394 1.65296 -0.230394 3.16149 0.691183 4.09228L4.56816 8.00802L0.691183 11.9238C-0.230394 12.8546 -0.230394 14.3631 0.691183 15.2939C1.13608 15.7753 1.73987 16 2.34367 16C2.94746 16 3.58303 15.7753 4.02793 15.2939L7.5531 11.7335L7.5496 11.7299L7.9049 11.3781L8.26021 11.7299L8.25671 11.7335L11.7819 15.2939C12.2586 15.7753 12.8624 16 13.4661 16C14.0699 16 14.6737 15.7753 15.1504 15.2939C16.072 14.3631 16.072 12.8546 15.1504 11.9238L11.2734 8.00802L15.1504 4.09228C16.072 3.16149 16.072 1.65296 15.1504 0.722167C14.2288 -0.240722 12.7035 -0.240722 11.7819 0.722167L8.25671 4.28259L8.26021 4.28612L7.9049 4.63791L7.5496 4.28612L7.5531 4.28259Z" fill="white" stroke="#ffffff"/>
+                    </svg>
+                </span>
+              </div>
+                <div class="p-a-5 overflow-auto">
+                    <!-- Game Type -->
+                    <div class="select-categories">
+                      <h6 class="">{{ $t('select_category', $store.state.locale) }}</h6>
+                      <div class="form-group form-check" v-for="(category, index) in categories" :key="'category' + index"
+                          v-if="categories">
+                        <h6 v-if="category.subcategory.data.length" class="-ml-20px">{{ category.name }}</h6>
+                        <div class="mb-a-3" v-for="(subItem, index) in category.subcategory.data" :key="index"
+                            v-if="category.subcategory.data.length">
+                          <input type="checkbox" class="custom-control-input" :id="subItem.name + '-game'"
+                                :checked="checkedCategories.includes(subItem.name)"
+                                @change="changeCheckedCategories(subItem.name)">
+                          <label class="custom-control-label" :for="subItem.name + '-game'">{{ subItem.name }}</label>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Filter -->
+                    <div class="select-platforms form-check">
+                      <h6 class="margin__bottom -ml-20px">Filter</h6>
+                      <div class="form-group ">
+                        <!-- <div>
+                          <input type="radio" class="custom-control-input" id="asc_price_filter" name="sort_price"
+                                @change="ascPrice($event)">
+                          <label class="custom-control-label" for="asc_price_filter">Price (Low To High)</label>
+                        </div>
+                        <div>
+                          <input type="radio" class="custom-control-input" id="desc_price_filter" name="sort_price"
+                                @change="descPrice($event)">
+                          <label class="custom-control-label" for="desc_price_filter">Price (High To Low)</label>
+                        </div> -->
+      <!--                  <div class="mb-a-3">-->
+      <!--                    <input type="checkbox" class="custom-control-input" id="date_filter" @change="sortDate($event)">-->
+      <!--                    <label class="custom-control-label" for="date_filter">Date (From Today)</label>-->
+      <!--                  </div>-->
+                        <div class="mb-a-3">
+                          <input type="checkbox" class="custom-control-input" id="new_type_filter"
+                                @change="sortNewType($event)">
+                          <label class="custom-control-label" for="new_type_filter">New Product</label>
+                        </div>
+                        <div class="mb-a-3">
+                          <input type="checkbox" class="custom-control-input" id="used_type_filter"
+                                @change="sortUsedType($event)">
+                          <label class="custom-control-label" for="used_type_filter">Used Product</label>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="select-platforms">
+                      <h6>Price range</h6>
+                      <!-- <vue-range-slider ref="slider" v-model="value" :min="0" :max="1000" :enable-cross="false" :min-range="10"></vue-range-slider> -->
+                      <div class="track-container range-slider">
+                        <!--  <span class="range-value min">{{ minValue}} </span> <span class="range-value max">{{ maxValue }}</span>-->
+                        <div class="range-slider__bar" ref="_vpcTrack"></div>
+                        <div class="range-slider__highlight-bar" ref="trackHighlight"></div>
+                        <button class="range-slider__ball track1" ref="track1"></button>
+                        <button class="range-slider__ball track2" ref="track2"></button>
+                      </div>
+                    </div>
+                    <div class="select-platforms d-grid grid-cols-2 col-gap-16 mt-3">
+                      <input type="number" class="text-center gil-medium" :min="min" :max="max" v-model="minValue">
+                      <input type="number" class="text-center gil-medium" :min="min" :max="max" v-model="maxValue">
+                    </div>
+                    <!-- button show in mobile -->
+                    <div class="d-md-none mt-4">
+                      <a href="#" class="d-block py-2 border-1 border-white-50 br-4 text-white mb-3 text-center gil-bold">{{ $t('clear_filters', $store.state.locale) }}</a>
+                      <a @click="filterShow = false"
+                         href="#" class="d-block py-2 bg-secondery-gradient br-4 text-black text-center gil-bold primary-text-hover">{{ $t('apply', $store.state.locale) }}</a>
+                    </div>
+
                 </div>
-              </div>
-              <!-- Filter -->
-              <div class="select-platforms form-check">
-                <h6 class="margin__bottom -ml-20px">Filter</h6>
-                <div class="form-group ">
-                  <!-- <div>
-                    <input type="radio" class="custom-control-input" id="asc_price_filter" name="sort_price"
-                           @change="ascPrice($event)">
-                    <label class="custom-control-label" for="asc_price_filter">Price (Low To High)</label>
-                  </div>
-                  <div>
-                    <input type="radio" class="custom-control-input" id="desc_price_filter" name="sort_price"
-                           @change="descPrice($event)">
-                    <label class="custom-control-label" for="desc_price_filter">Price (High To Low)</label>
-                  </div> -->
-<!--                  <div class="mb-a-3">-->
-<!--                    <input type="checkbox" class="custom-control-input" id="date_filter" @change="sortDate($event)">-->
-<!--                    <label class="custom-control-label" for="date_filter">Date (From Today)</label>-->
-<!--                  </div>-->
-                  <div class="mb-a-3">
-                    <input type="checkbox" class="custom-control-input" id="new_type_filter"
-                           @change="sortNewType($event)">
-                    <label class="custom-control-label" for="new_type_filter">New Product</label>
-                  </div>
-                  <div class="mb-a-3">
-                    <input type="checkbox" class="custom-control-input" id="used_type_filter"
-                           @change="sortUsedType($event)">
-                    <label class="custom-control-label" for="used_type_filter">Used Product</label>
-                  </div>
-                </div>
-              </div>
-              <div class="select-platforms">
-                <h6>Price range</h6>
-                <!-- <vue-range-slider ref="slider" v-model="value" :min="0" :max="1000" :enable-cross="false" :min-range="10"></vue-range-slider> -->
-                <div class="track-container range-slider">
-                  <!--  <span class="range-value min">{{ minValue}} </span> <span class="range-value max">{{ maxValue }}</span>-->
-                  <div class="range-slider__bar" ref="_vpcTrack"></div>
-                  <div class="range-slider__highlight-bar" ref="trackHighlight"></div>
-                  <button class="range-slider__ball track1" ref="track1"></button>
-                  <button class="range-slider__ball track2" ref="track2"></button>
-                </div>
-              </div>
-              <div class="select-platforms d-grid grid-cols-2 col-gap-16 mt-3">
-                <input type="number" class="text-center gil-medium" :min="min" :max="max" v-model="minValue">
-                <input type="number" class="text-center gil-medium" :min="min" :max="max" v-model="maxValue">
-              </div>
             </div>
+
           </div>
           <div class="col-md-8 col-lg-9 mb-3">
 
-            <div class="games-categories-section--tag mb-a-4">
-              <div class="d-flex align-items-center flex-wrap">
+            <div class="games-categories-section--tag mb-a-4 flex-column-reverse flex-md-row px-a-1">
+              <div class="d-flex align-items-center flex-wrap mt-3 mt-md-0">
                 <span v-for="(categoryItem, categoryIndex) in checkedCategories"
                     :key="categoryItem + categoryIndex">{{ categoryItem }} <div
                   @click="removeCategoryFilter(categoryItem)" class="remove-icon"><i
                   class="fas fa-times"></i></div></span>
               </div>
-                 <div class="position-relative ml-auto">
-                      <a class="d-flex align-items-center justify-content-center h-100 px-4 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border"
-                       href="#" role="button" :class="showDrawer ? 'highlight': '' " @click="show" >
-                        <svg class="mr-3" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M13.2489 8.81565C14.7689 8.81565 16 10.026 16 11.5194C16 13.0118 14.7689 14.2222 13.2489 14.2222C11.7298 14.2222 10.4978 13.0118 10.4978 11.5194C10.4978 10.026 11.7298 8.81565 13.2489 8.81565ZM6.46663 10.3664C7.1324 10.3664 7.67285 10.8973 7.67285 11.5514C7.67285 12.2046 7.1324 12.7365 6.46663 12.7365H1.20622C0.540441 12.7365 0 12.2046 0 11.5514C0 10.8973 0.540441 10.3664 1.20622 10.3664H6.46663ZM2.7511 0C4.27109 0 5.50219 1.21039 5.50219 2.70285C5.50219 4.19618 4.27109 5.40657 2.7511 5.40657C1.23199 5.40657 0 4.19618 0 2.70285C0 1.21039 1.23199 0 2.7511 0ZM14.7947 1.51866C15.4596 1.51866 16 2.04962 16 2.70285C16 3.35695 15.4596 3.88791 14.7947 3.88791H9.53426C8.86848 3.88791 8.32804 3.35695 8.32804 2.70285C8.32804 2.04962 8.86848 1.51866 9.53426 1.51866H14.7947Z" fill="#FFD715"/>
-                        </svg>
-                        Sorting
-                      </a>
+                 <div class="position-relative ml-md-auto w-full w-md-initial">
+                    <div class="d-flex flex-row-reverse flex-md-row align-items-center">
+                        <button class="br-4 bg-game-details d-flex no-outline-focus align-items-center justify-content-center d-md-none flex-1 border-0 py-2" @click="filterShow = !filterShow" :aria-pressed="filterShow ? 'true' : 'false'">
+                          <svg class="mr-2" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                             <path d="M5.82408 11.0593L9.70774 11.0712C9.9499 11.072 10.1459 11.2748 10.1459 11.5234V13.7083C10.1459 13.9577 10.0043 14.1834 9.78352 14.2878L6.25816 15.9432C6.17579 15.9813 6.08848 16 6.00117 16C5.88504 16 5.7689 15.9661 5.66758 15.899C5.49049 15.7819 5.38341 15.58 5.38341 15.3636V11.5116C5.38341 11.2613 5.5811 11.0585 5.82408 11.0593ZM14.2975 0C15.2381 0 16 0.784842 16 1.7538V2.97901C16 3.44906 15.8163 3.90045 15.4901 4.22966L10.2861 9.49362C10.1963 9.58525 10.0744 9.63616 9.94842 9.63532L5.59115 9.62174C5.45853 9.62174 5.33251 9.56489 5.2419 9.46562L0.459614 4.2059C0.163912 3.88094 0 3.45161 0 3.00616V1.75465C0 0.78569 0.761905 0 1.70255 0H14.2975Z" fill="#FFD715"/>
+                          </svg>
+                          <span class="m-0 text-secondery f-s-16-imp p-0">{{ $t('filter', $store.state.locale) }}</span>
+                        </button>
+                        <a class="d-flex align-items-center justify-content-center flex-1 h-100 px-0 px-md-4 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border mr-3 mr-md-0 sorting-mobile"
+                          href="#" role="button" :class="showDrawer ? 'highlight': '' " @click="show" >
+                          <svg class="mr-3" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M13.2489 8.81565C14.7689 8.81565 16 10.026 16 11.5194C16 13.0118 14.7689 14.2222 13.2489 14.2222C11.7298 14.2222 10.4978 13.0118 10.4978 11.5194C10.4978 10.026 11.7298 8.81565 13.2489 8.81565ZM6.46663 10.3664C7.1324 10.3664 7.67285 10.8973 7.67285 11.5514C7.67285 12.2046 7.1324 12.7365 6.46663 12.7365H1.20622C0.540441 12.7365 0 12.2046 0 11.5514C0 10.8973 0.540441 10.3664 1.20622 10.3664H6.46663ZM2.7511 0C4.27109 0 5.50219 1.21039 5.50219 2.70285C5.50219 4.19618 4.27109 5.40657 2.7511 5.40657C1.23199 5.40657 0 4.19618 0 2.70285C0 1.21039 1.23199 0 2.7511 0ZM14.7947 1.51866C15.4596 1.51866 16 2.04962 16 2.70285C16 3.35695 15.4596 3.88791 14.7947 3.88791H9.53426C8.86848 3.88791 8.32804 3.35695 8.32804 2.70285C8.32804 2.04962 8.86848 1.51866 9.53426 1.51866H14.7947Z" fill="#FFD715"/>
+                          </svg>
+                          Sorting
+                        </a>
+                    </div>
+                      
                         <transition name="slide">
-                          <div class="dropdown-menu w-268 bg-shorting br-4 border-1 d-block secondery-border left-initial-imp right-0-imp top-full-10px-imp p-0 overflow-hidden" v-if="showDrawer">
+                          <div class="dropdown-menu w-268 bg-shorting br-4 border-1 d-block secondery-border left-initial-imp right-md-0-imp top-full-10px-imp p-0 overflow-hidden" v-if="showDrawer">
                             <p class="mb-0 gil-bold text-center text-white py-2 bg-shorting-tile">Price</p>
                             <div class="d-flex justify-content-center py-4">
                               <div class="mr-1 position-relative shorting-input high-to-low pr-a-5">
@@ -296,6 +323,7 @@ export default {
       percentPerStep: 1,
       trackWidth: null,
       isDragging: false,
+      filterShow: false,
       pos: {
         curTrack: null
       }

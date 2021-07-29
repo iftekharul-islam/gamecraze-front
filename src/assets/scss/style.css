@@ -1308,6 +1308,12 @@
   right: 0 !important;
 }
 
+@media (min-width: 768px) {
+  .right-md-0-imp {
+    right: 0 !important;
+  }
+}
+
 .right-2 {
   right: 2px;
 }
@@ -1538,6 +1544,10 @@
 
 .br-t-l-5 {
   border-top-left-radius: 5px;
+}
+
+.br-t-r-5 {
+  border-top-right-radius: 5px;
 }
 
 .border-0 {
@@ -1807,6 +1817,10 @@
 
 .f-s-16 {
   font-size: 16px;
+}
+
+.f-s-16-imp {
+  font-size: 16px !important;
 }
 
 .f-s-18 {
@@ -2209,6 +2223,18 @@ html {
 
 @media (min-width: 575px) {
   .w-sm-initial {
+    width: initial;
+  }
+}
+
+@media (min-width: 768px) {
+  .w-md-initial {
+    width: initial;
+  }
+}
+
+@media (min-width: 992px) {
+  .w-lg-initial {
     width: initial;
   }
 }
@@ -2955,6 +2981,10 @@ select option {
 
 .no-focus:focus {
   background: initial;
+  outline: none;
+}
+
+.no-outline-focus:focus {
   outline: none;
 }
 
@@ -11908,6 +11938,77 @@ html {
   /* IE 10 and IE 11 */
   -moz-user-select: none;
        user-select: none;
+}
+
+@media (max-width: 768px) {
+  .filter-show-mobile {
+    position: fixed;
+    width: calc(100% - 40px);
+    z-index: 99999;
+    left: 0;
+    right: 0;
+    margin: auto;
+    -webkit-transform: translateX(-120%);
+            transform: translateX(-120%);
+    -webkit-transition: all .3s ease-in;
+    transition: all .3s ease-in;
+    border-radius: 5px;
+    background: #444957;
+  }
+}
+
+.filter-show-mobile .custom-control-input:checked ~ .custom-control-label {
+  opacity: .95;
+}
+
+.filter-show-mobile .custom-control-input:checked ~ .custom-control-label::after {
+  left: initial !important;
+  right: 0 !important;
+}
+
+.filter-show-mobile .custom-control-input:checked ~ .custom-control-label::before {
+  left: initial !important;
+  right: 3px !important;
+}
+
+@media (max-width: 768px) {
+  .filter-show-mobile label {
+    text-align: right;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    padding-left: 0;
+    padding-right: 30px;
+    opacity: .75;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-show-mobile label::before {
+    left: initial;
+    right: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .filter-show-mobile .form-group .mb-a-3 {
+    text-align: right;
+  }
+}
+
+.filter-show-mobile.filterShow {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
+@media (max-width: 768px) {
+  .sorting-mobile {
+    border: none;
+    background: #141A27;
+  }
 }
 
 .gamebazar-banner {

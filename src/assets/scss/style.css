@@ -12206,6 +12206,21 @@ html {
   height: 100%;
 }
 
+.gamebazar-product-details__content__des ul {
+  color: white;
+  list-style: initial;
+}
+
+.gamebazar-product-details__content__des ul li::before {
+  display: block;
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: white;
+  margin-right: 8px;
+}
+
 .gamebazar-step-form .wizard__steps {
   max-width: 580px;
   margin: auto;

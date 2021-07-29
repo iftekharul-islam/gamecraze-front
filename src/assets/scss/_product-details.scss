@@ -9,6 +9,18 @@
         border-radius: 50%;
     }
 }
+
+.before-danger-ball {
+    &::before {
+        content: '';
+        width: 10px;
+        height: 10px;
+        background: $danger-border;
+        display: block;
+        margin-right: 8px;
+        border-radius: 50%;
+    }
+}
 .gamebazar-product-details {
     .vue-star-rating-rating-text {
         font-size: 16px;

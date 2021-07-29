@@ -1690,6 +1690,10 @@
   color: #40C057;
 }
 
+.text-danger-ball {
+  color: #dc3545;
+}
+
 .text-pattens-blue {
   color: #DBE6FF;
 }
@@ -12312,6 +12316,16 @@ html {
   width: 10px;
   height: 10px;
   background: #40C057;
+  display: block;
+  margin-right: 8px;
+  border-radius: 50%;
+}
+
+.before-danger-ball::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background: #dc3545;
   display: block;
   margin-right: 8px;
   border-radius: 50%;

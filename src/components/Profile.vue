@@ -535,7 +535,7 @@
                                                                                     <label for="sell-post-des" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('description', $store.state.locale) }}</label>
                                                                                     <div class=" post-rent--form-group--input">
                                                                                         <ValidationProvider name="description" rules="required" v-slot="{ errors }">
-                                                                                            <input type="text" class="form-control renten-input" id="sell-post-des" placeholder="Enter sell post description" v-model="editPostData.description">
+                                                                                            <ckeditor v-model="editPostData.description" :config="editorConfig"></ckeditor>
                                                                                             <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
                                                                                         </ValidationProvider>
                                                                                     </div>
@@ -544,7 +544,7 @@
                                                                                     <label for="sell-post-price" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('price', $store.state.locale) }}</label>
                                                                                     <div class=" post-rent--form-group--input">
                                                                                         <ValidationProvider name="price" rules="required" v-slot="{ errors }">
-                                                                                            <input type="text" class="form-control renten-input" id="sell-post-price" placeholder="Enter price" v-model="editPostData.price">
+                                                                                            <input type="text" @keypress="isNumber($event)" class="form-control renten-input" id="sell-post-price" placeholder="Enter price" v-model="editPostData.price">
                                                                                             <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
                                                                                         </ValidationProvider>
                                                                                     </div>
@@ -1349,7 +1349,7 @@
                                                 <label class=" post-rent--form-group--label">{{ $t('description', $store.state.locale) }} :</label>
                                                 <div class=" post-rent--form-group--input">
                                                     <ValidationProvider name="description" rules="required" v-slot="{ errors }">
-                                                        <textarea type="text" class="form-control renten-input" name="description" v-model="sellData.description"></textarea>
+                                                        <ckeditor v-model="sellData.description" :config="editorConfig"></ckeditor>
                                                         <span class="text-danger">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
@@ -1358,7 +1358,7 @@
                                                 <label class=" post-rent--form-group--label">{{ $t('price', $store.state.locale) }} (BDT):</label>
                                                 <div class=" post-rent--form-group--input">
                                                     <ValidationProvider name="price" rules="required|integer" v-slot="{ errors }">
-                                                        <input type="number" class="form-control renten-input" name="price" v-model="sellData.price">
+                                                        <input type="number" @keypress="isNumber($event)" class="form-control renten-input" name="price" v-model="sellData.price">
                                                         <span class="text-danger">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
@@ -1508,6 +1508,9 @@
         components: {StarRating, VueFeedbackReaction, UploadImages, VueCropper},
         data() {
             return {
+                editorConfig:{
+
+                },
                 withdrawAmount: 0,
                 withdrawLoading: false,
                 requestModalShow: false,

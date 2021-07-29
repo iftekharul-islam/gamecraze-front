@@ -1444,6 +1444,14 @@
   top: 100%;
 }
 
+.top-full-10px {
+  top: calc(100% + 10px);
+}
+
+.top-full-10px-imp {
+  top: calc(100% + 10px) !important;
+}
+
 .bottom-0 {
   bottom: 0;
 }
@@ -11863,6 +11871,45 @@ html {
   right: 5px;
 }
 
+.slide-enter {
+  opacity: 0;
+  -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+  -webkit-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+}
+
+.slide-enter-to {
+  opacity: 1;
+  -webkit-transform: translateY(0px);
+          transform: translateY(0px);
+  -webkit-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+}
+
+.slide-leave-to {
+  opacity: 0;
+  -webkit-transform: translateY(-20px);
+          transform: translateY(-20px);
+  -webkit-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+}
+
+@media (max-width: 250px) {
+  .drawer-language-value {
+    opacity: 0;
+  }
+}
+
+.control {
+  -webkit-user-select: none;
+  /* Safari */
+  -ms-user-select: none;
+  /* IE 10 and IE 11 */
+  -moz-user-select: none;
+       user-select: none;
+}
+
 .gamebazar-banner {
   background-image: -webkit-gradient(linear, left top, right top, from(rgba(11, 15, 24, 0.85)), color-stop(0%, rgba(11, 15, 24, 0.85)), color-stop(0.01%, rgba(11, 15, 24, 0.85)), to(rgba(11, 15, 24, 0.95))), url(../img/gamebazar-banner.png);
   background-image: linear-gradient(90deg, rgba(11, 15, 24, 0.85) 0%, rgba(11, 15, 24, 0.85) 0%, rgba(11, 15, 24, 0.85) 0.01%, rgba(11, 15, 24, 0.95) 100%), url(../img/gamebazar-banner.png);
@@ -12057,9 +12104,19 @@ html {
   overflow: hidden;
 }
 
+.gamebazar-post > a .product-img img {
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
+}
+
 .gamebazar-post > a:hover .gamebazar-post__arrow {
-  -webkit-transform: translateX(calc(100% - 25px));
-          transform: translateX(calc(100% - 25px));
+  -webkit-transform: translateX(calc(16px));
+          transform: translateX(calc(16px));
+}
+
+.gamebazar-post > a:hover .product-img img {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 .gamebazar-post__arrow {
@@ -12067,6 +12124,20 @@ html {
   transition: all .3s ease-in;
   width: 100%;
   margin-left: 20px;
+}
+
+.product-img {
+  max-height: 210px;
+}
+
+@media (min-width: 1400px) {
+  .product-img {
+    height: 160px;
+  }
+}
+
+.product-img img {
+  height: 100%;
 }
 
 .gamebazar-search .dropdown-toggle {
@@ -12088,7 +12159,7 @@ html {
 
 .carousel-nav > div .vue-owl-nav {
   position: absolute;
-  top: 50%;
+  top: 38%;
 }
 
 @media (max-width: 575px) {

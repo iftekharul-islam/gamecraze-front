@@ -131,9 +131,20 @@
 
     >a {
         overflow: hidden;
+        .product-img {
+            img {
+                transition: all .3s ease-in;
+            }
+        }
         &:hover {
             .gamebazar-post__arrow {
-                transform: translateX(calc(100% - 25px));
+                // transform: translateX(calc(100% - 25px));
+                transform: translateX(calc(16px));
+            }
+            .product-img {
+                img {
+                    transform: scale(1.1);
+                }
             }
         }
     }
@@ -141,6 +152,15 @@
         transition: all .3s ease-in;
         width: 100%;
         margin-left: 20px;
+    }
+}
+.product-img {
+    max-height: 210px;
+    @include for-min-1400 {
+        height: 160px;
+    }
+    img {
+        height: 100%;
     }
 }
 .gamebazar-search {
@@ -168,7 +188,7 @@
                 display: none !important;
             }
             position: absolute;
-            top: 50%;
+            top: 38%;
             @include for-max-1300 {
                 top: -48px;
             }

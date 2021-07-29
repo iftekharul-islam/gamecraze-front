@@ -45,7 +45,7 @@
                                         <br v-if="errors[0]">
                                     </ValidationProvider>
                                     <span class="error-message"
-                                        v-if="$store.state.notFoundEmail && !$store.state.inactiveUser">{{ $t('password', $store.state.locale) }}<br></span>
+                                        v-if="$store.state.notFoundEmail && !$store.state.inactiveUser">{{ $t('incorrect_password', $store.state.locale) }}<br></span>
                                         <span class="error-message" v-if="$store.state.inactiveUser">{{ $t('inactive_user', $store.state.locale) }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between" v-if="!$store.state.notSetPassword">

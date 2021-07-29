@@ -12292,6 +12292,10 @@ html {
   margin-right: 8px;
 }
 
+.gamebazar-product-details__content__des ul li pre {
+  color: white;
+}
+
 .gamebazar-step-form .wizard__steps {
   max-width: 580px;
   margin: auto;

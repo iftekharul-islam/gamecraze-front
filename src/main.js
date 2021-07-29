@@ -18,6 +18,9 @@ Vue.use(IconsPlugin);
 import Lingallery from 'lingallery';
 Vue.component('lingallery', Lingallery);
 
+import CKEditor from 'ckeditor4-vue';
+Vue.use( CKEditor );
+
 global.jQuery = require('jquery/dist/jquery.min');
 let $ = global.jQuery;
 window.$ = $;

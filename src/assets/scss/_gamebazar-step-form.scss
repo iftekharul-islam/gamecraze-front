@@ -11,6 +11,7 @@
             margin-right: auto !important;
             background: transparent !important;
             border: none !important;
+            padding-bottom: 50px;
             &__step {
                 padding: 0 !important;
                 .beforeUpload {
@@ -57,7 +58,7 @@
                         &:nth-of-type(3n+3) {
                             .plus {
                                 top: calc(100% + 16px);
-                                left: calc(-200% - 32px);
+                                left: calc(-200% - 36px);
                             }
                         }
                     }
@@ -77,6 +78,7 @@
                 display: flex;
                 justify-content: flex-end;
                 background: transparent !important;
+                border: none !important;
                 a {
                     width: 100% !important;
                     background: $secondery-gradient;

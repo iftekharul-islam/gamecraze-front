@@ -461,6 +461,15 @@
                     padding-left: 27px;
                 }
             }
+            .image-box {
+                margin-left: 0 !important;
+                width: 100% !important;
+                .imgsPreview {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-gap: 16px;
+                }
+            }
         }
         &--label {
             margin: 0;
@@ -566,6 +575,10 @@
             @include for-max-768 {
                 margin-left: 33px;
             }
+        }
+        .image-box {
+            flex-basis: 456px;
+            margin-left: 20px;
         }
     }
     // end form group

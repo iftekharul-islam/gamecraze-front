@@ -211,7 +211,16 @@
     margin-left: 3.438rem;
    }
 }
-
+.ml-a-lg-10 {
+    @include for-min-992 {
+     margin-left: 3.438rem;
+    }
+ }
+ .ml-a-xl-10 {
+    @include for-min-1200 {
+     margin-left: 3.438rem;
+    }
+ }
 
 .ml-a-11 {
     margin-left: 3.75rem;
@@ -2023,6 +2032,9 @@ html {
 }
 .max-h-80pr {
     max-height: 80%;
+}
+.min-h-250 {
+    min-height: 250px;
 }
 // width
 .w-fit {

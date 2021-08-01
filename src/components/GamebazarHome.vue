@@ -5,13 +5,13 @@
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="max-488">
-                            <h1 class="f-s-48 text-secondery">{{ $t('game_bazar_title_1', $store.state.locale) }} <br> {{ $t('game_bazar_title_2', $store.state.locale) }}</h1>
+                            <h1 class="f-s-48 text-secondery gil-bold font-weight-bold">{{ $t('game_bazar_title_1', $store.state.locale) }} <br> {{ $t('game_bazar_title_2', $store.state.locale) }}</h1>
                             <router-link class="router_link border-1 border-secondery-opa-25 mb-3 text-secondery mt-a-4 py-2 pl-a-6 pr-a-6 d-inline-block br-4" to="/create-ad">{{ $t('sell_post', $store.state.locale) }}</router-link>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="gamebazar-banner__content d-grid grid-gap-16 justify-content-md-end">
-                            <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item">
+                            <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4">
                               <div class=" h-100 br-4 overflow-fidden">
                                    <img src="../assets/img/gamebazar1.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
@@ -21,7 +21,7 @@
                                   <span class="gil-bold f-s-20 text-white underline">Controller</span>
                               </div>
                             </a>
-                            <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item">
+                            <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4">
                               <div class=" h-100 br-4 overflow-fidden">
                                    <img src="../assets/img/gamebazar2.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
@@ -29,7 +29,7 @@
                                   <span class="gil-bold f-s-20 text-white underline mt-auto">Controller</span>
                               </div>
                             </a>
-                            <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item">
+                            <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4">
                               <div class=" h-100 br-4 overflow-fidden">
                                    <img src="../assets/img/gamebazar2.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
@@ -37,7 +37,7 @@
                                   <span class="gil-bold f-s-20 text-white underline mt-auto">Controller</span>
                               </div>
                             </a>
-                            <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item">
+                            <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4">
                               <div class=" h-100 br-4 overflow-fidden">
                                    <img src="../assets/img/gamebazar3.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
@@ -56,7 +56,7 @@
             <div class="container">
                 <div class="col-md-8 mx-auto py-5">
                     <div class="gamebazar-search">
-                        <div class="d-flex">
+                        <div class="d-flex justify-content-center">
                             <!-- <div class="position-relative">
                                 <a class="bg-secondery-gradient d-flex align-items-center justify-content-center h-100 px-4 br-4 primary-text primary-text-hover dropdown-toggle br-t-r-0 br-b-r-0 border-1 black-border border-r-white-25" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     All product
@@ -129,8 +129,8 @@
                                             <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-else>Used</span>
                                             <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5"> ৳ {{ post.price }}</span>
                                         </div>
-                                        <p class="gil-bold mb-4 mt-a-4 text-white">{{ post.name }}</p>
-                                        <p class="mb-4 text-white">Used 1.5 years</p>
+                                        <p class="gil-bold mb-3 mt-a-4 text-white">{{ post.name }}</p>
+                                        <p class="mb-3 text-white">Used 1.5 years</p>
                                         <div class="d-flex align-items-center text-secondery">
                                             <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
                                             <div class="gamebazar-post__arrow">
@@ -199,8 +199,8 @@
                           <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-else>Used</span>
                           <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5"> ৳ {{ post.price }}</span>
                         </div>
-                        <p class="gil-bold mb-4 mt-a-4 text-white">{{ post.name }}</p>
-                        <p class="mb-4 text-white">Used 1.5 years</p>
+                        <p class="gil-bold mb-3 mt-a-4 text-white">{{ post.name }}</p>
+                        <p class="mb-3 text-white">Used 1.5 years</p>
                         <div class="d-flex align-items-center text-secondery">
                           <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
                           <div class="gamebazar-post__arrow">
@@ -269,8 +269,8 @@
                           <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-else>Used</span>
                           <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5"> ৳ {{ post.price }}</span>
                         </div>
-                        <p class="gil-bold mb-4 mt-a-4 text-white">{{ post.name }}</p>
-                        <p class="mb-4 text-white">Used 1.5 years</p>
+                        <p class="gil-bold mb-3 mt-a-4 text-white">{{ post.name }}</p>
+                        <p class="mb-3 text-white">Used 1.5 years</p>
                         <div class="d-flex align-items-center text-secondery">
                           <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
                           <div class="gamebazar-post__arrow">
@@ -292,7 +292,7 @@
         <section class="accessories-sell-post position-relative">
             <div class="container">
               <div class="row">
-                    <div class="col-md-7 col-lg-6">
+                    <div class="col-md-7 col-lg-7">
                         <div class="mr-a-md-10 mb-3 mb-md-0">
                             <h1 class="f-s-28 f-s-md-48 max-600 mb-a-5">
                               {{ $t('game_bazar_title_4', $store.state.locale) }}
@@ -321,8 +321,8 @@
                             <img src="../assets/img/gamehome.png" class="img-fluid w-100" alt="Gamebazar image">
                         </div>
                     </div>
-                    <div class="col-md-7 col-lg-6 ml-auto">
-                        <div class="ml-a-md-10 mb-3 mb-md-0">
+                    <div class="col-md-7 col-lg-7 ml-xl-auto">
+                        <div class="ml-a-xl-10 mb-3 mb-xl-0">
                             <h1 class="f-s-28 f-s-md-48 max-600 mb-a-5">
                               {{ $t('game_bazar_title_8', $store.state.locale) }}
                               <span class="text-secondery">{{ $t('game_bazar_title_9', $store.state.locale) }}</span>

@@ -212,6 +212,18 @@
   }
 }
 
+@media (min-width: 992px) {
+  .ml-a-lg-10 {
+    margin-left: 3.438rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .ml-a-xl-10 {
+    margin-left: 3.438rem;
+  }
+}
+
 .ml-a-11 {
   margin-left: 3.75rem;
 }
@@ -2073,6 +2085,10 @@ html {
 
 .max-h-80pr {
   max-height: 80%;
+}
+
+.min-h-250 {
+  min-height: 250px;
 }
 
 .w-fit {
@@ -8739,6 +8755,19 @@ html {
   padding-left: 27px;
 }
 
+.post-rent--form-group--input .image-box {
+  margin-left: 0 !important;
+  width: 100% !important;
+}
+
+.post-rent--form-group--input .image-box .imgsPreview {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+}
+
 .post-rent--form-group--label {
   margin: 0;
   -ms-flex-preferred-size: 202px;
@@ -8888,6 +8917,12 @@ html {
   }
 }
 
+.post-rent--form-group .image-box {
+  -ms-flex-preferred-size: 456px;
+      flex-basis: 456px;
+  margin-left: 20px;
+}
+
 .post-rent--form-group-img {
   height: initial;
 }
@@ -8943,7 +8978,7 @@ html {
   }
 }
 
-@media (min-width: 1800px) {
+@media (min-width: 1700px) {
   .dashboard-content {
     margin-left: 0px;
   }
@@ -12181,16 +12216,22 @@ html {
 }
 
 .accessories-sell-post {
-  padding-bottom: 150px;
+  padding-bottom: 200px;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1500px) {
+  .accessories-sell-post {
+    padding-bottom: 150px;
+  }
+}
+
+@media (max-width: 1199px) {
   .accessories-sell-post {
     padding-bottom: 50px;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1199px) {
   .accessories-sell-post__row {
     -webkit-box-orient: vertical;
     -webkit-box-direction: reverse;
@@ -12201,6 +12242,43 @@ html {
 
 .accessories-sellpost {
   max-width: 650px;
+}
+
+@media (min-width: 1500px) {
+  .accessories-sellpost {
+    max-width: 650px;
+    width: 100%;
+  }
+}
+
+@media (min-width: 1600px) {
+  .accessories-sellpost {
+    max-width: 700px;
+  }
+}
+
+@media (min-width: 1700px) {
+  .accessories-sellpost {
+    max-width: 750px;
+  }
+}
+
+@media (min-width: 1800px) {
+  .accessories-sellpost {
+    max-width: 800px;
+  }
+}
+
+@media (min-width: 1850px) {
+  .accessories-sellpost {
+    max-width: 850px;
+  }
+}
+
+@media (max-width: 1400px) {
+  .accessories-sellpost {
+    max-width: 550px;
+  }
 }
 
 @media (max-width: 1199px) {
@@ -12427,6 +12505,7 @@ html {
   margin-right: auto !important;
   background: transparent !important;
   border: none !important;
+  padding-bottom: 50px;
 }
 
 .gamebazar-step-form .wizard__body__step {
@@ -12488,7 +12567,7 @@ html {
 
 .gamebazar-step-form .wizard__body__step .imgsPreview .imageHolder:nth-of-type(3n+3) .plus {
   top: calc(100% + 16px);
-  left: calc(-200% - 32px);
+  left: calc(-200% - 36px);
 }
 
 .gamebazar-step-form .wizard__body__step .imgsPreview .plus {
@@ -12510,6 +12589,7 @@ html {
       -ms-flex-pack: end;
           justify-content: flex-end;
   background: transparent !important;
+  border: none !important;
 }
 
 .gamebazar-step-form .wizard__body__actions a {

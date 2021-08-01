@@ -544,7 +544,7 @@
                                                                                     <label for="sell-post-price" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('price', $store.state.locale) }}</label>
                                                                                     <div class=" post-rent--form-group--input">
                                                                                         <ValidationProvider name="price" rules="required" v-slot="{ errors }">
-                                                                                            <input type="text" @keypress="isNumber($event)" class="form-control renten-input" id="sell-post-price" placeholder="Enter price" v-model="editPostData.price">
+                                                                                            <input type="text" @keypress="isNumberOnEditPrice($event)" class="form-control renten-input" id="sell-post-price" placeholder="Enter price" v-model="editPostData.price">
                                                                                             <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
                                                                                         </ValidationProvider>
                                                                                     </div>
@@ -1069,7 +1069,7 @@
                                             <h4>{{ $t('amount_received', $store.state.locale) }}</h4>
                                             <h2>{{ payable_amount }} Taka</h2>
                                               <a href="javascript:void(0)" @click="requestModalShow = true; withdrawAmount = payable_amount" class="bg-secondery d-block text-center primary-text w-full primary-text-shadow gil-bold primary-text-hover py-2">
-                                                <span>payment request</span>
+                                                <span>{{ $t('withdraw_request', $store.state.locale) }}</span>
                                               </a>
                                         </div>
                                     </div>
@@ -1358,7 +1358,7 @@
                                                 <label class=" post-rent--form-group--label">{{ $t('price', $store.state.locale) }} (BDT):</label>
                                                 <div class=" post-rent--form-group--input">
                                                     <ValidationProvider name="price" rules="required|integer" v-slot="{ errors }">
-                                                        <input type="number" @keypress="isNumber($event)" class="form-control renten-input" name="price" v-model="sellData.price">
+                                                        <input type="number" @keypress="isNumberOnPostPrice($event)" class="form-control renten-input" name="price" v-model="sellData.price">
                                                         <span class="text-danger">{{ errors[0] }}</span>
                                                     </ValidationProvider>
                                                 </div>
@@ -2225,17 +2225,15 @@
                 });
             },
             isNumberOnSell: function(evt) {
-              console.log(this.phone_no.length)
                 evt = (evt) ? evt : window.event;
                 var charCode = (evt.which) ? evt.which : evt.keyCode;
-                if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.phone_no.length > 10) {
+                if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.sellData.phone_no.length > 10) {
                     evt.preventDefault();
                 } else {
                     return true;
                 }
             },
             isNumber: function(evt) {
-              console.log(this.editPostData.phone_no.length)
                 evt = (evt) ? evt : window.event;
                 var charCode = (evt.which) ? evt.which : evt.keyCode;
                 if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.editPostData.phone_no.length > 10) {
@@ -2243,6 +2241,24 @@
                 } else {
                     return true;
                 }
+            },
+            isNumberOnPostPrice: function(evt) {
+              evt = (evt) ? evt : window.event;
+              var charCode = (evt.which) ? evt.which : evt.keyCode;
+              if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.sellData.price.length > 10) {
+                evt.preventDefault();
+              } else {
+                return true;
+              }
+            },
+            isNumberOnEditPrice: function(evt) {
+              evt = (evt) ? evt : window.event;
+              var charCode = (evt.which) ? evt.which : evt.keyCode;
+              if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.editPostData.price.length > 10) {
+                evt.preventDefault();
+              } else {
+                return true;
+              }
             },
             isValidString: function(evt) {
                 evt = (evt) ? evt : window.event;

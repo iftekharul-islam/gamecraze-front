@@ -43,7 +43,7 @@
                   <div class="mb-a-6">
                     <p class="text-white gil-bold mb-2">{{ $t('availability', $store.state.locale) }}</p>
                     <p class="before-ball d-flex align-items-center text-success-ball" v-if="post.is_sold == 1">In stock</p>
-                    <p class="before-ball d-flex align-items-center text-success-ball" v-else>Sold out</p>
+                    <p class="before-danger-ball d-flex align-items-center text-danger-ball" v-else>Sold out</p>
                   </div>
                   <div class="mb-a-6">
                     <p class="text-white gil-bold mb-2">{{ $t('product_type', $store.state.locale) }}</p>
@@ -144,7 +144,7 @@
                     <div class="item gamebazar-post"  v-for="(related, index) in relatedPosts" :key="index">
                         <router-link :to="'/sell-post/' + related.id + '/' + related.url_name" >
                             <div class="product-img position-relative br-4 overflow-hidden">
-                              <img :src="related.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="related.cover.url != null">
+                              <img :src="related.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="related.cover != null">
                               <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image" v-else>
                                 <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-if="related.product_type === 1">New</span>
                                 <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-if="related.product_type === 2">Used</span>
@@ -191,11 +191,12 @@
                     <p class="mb-2 opa-8 text-white">{{ $t('phone_number', $store.state.locale) }}</p>
                     <p class="mb-0 gil-bold text-secondery f-s-20">{{ post.user.data.phone_number }}</p>
                   </div>
-                  <div class="mb-a-6">
+                  <div class="mb-a-6" v-if="post.user.data.email != null">
                     <p class="mb-2 opa-8 text-white">{{ $t('email', $store.state.locale) }}</p>
-                    <p class="mb-0 gil-bold text-white f-s-20">test@gmail.com</p>
+                    <p class="mb-0 gil-bold text-white f-s-20">{{ post.user.data.email }}</p>
                   </div>
-                   <router-link to="/games" class="bg-secondery-gradient d-inline-block  py-2 px-5 primary-text primary-text-hover br-4 w-100 text-center">{{ $t('email_seller', $store.state.locale) }}</router-link>
+                   <a :href="`mailto:${post.user.data.email}`" class="bg-secondery-gradient d-inline-block  py-2 px-5 primary-text primary-text-hover br-4 w-100 text-center" v-if="post.user.data.email != null">{{ $t('email_seller', $store.state.locale) }}</a>
+                   <a :href="`tel:+88${ post.user.data.phone_no }`" class="bg-secondery-gradient d-inline-block  py-2 px-5 primary-text primary-text-hover br-4 w-100 text-center" v-else>{{ $t('phone_seller', $store.state.locale) }}</a>
                 </div>
               </div>
             </div>

@@ -109,12 +109,16 @@
             
         }
         .accessories-sell-post {
-            padding-bottom: 150px;
-            @include for-max-992 {
+            padding-bottom: 200px;
+            @include for-max-1500 {
+                padding-bottom: 150px;
+            }
+
+            @include for-max-1199 {
                 padding-bottom: 50px;
             }
             &__row {
-                @include for-max-768 {
+                @include for-max-1199 {
                     flex-direction: column-reverse;
                 }
             }
@@ -122,6 +126,26 @@
 
 .accessories-sellpost {
     max-width: 650px;
+    @include for-min-1500 {
+        max-width: 650px;
+        width: 100%;
+    }
+    @include for-min-1600 {
+        max-width: 700px;
+    }
+    @include for-min-1700 {
+        max-width: 750px;
+    }
+    @include for-min-1800 {
+        max-width: 800px;
+    }
+    @include for-min-1850 {
+        max-width: 850px;
+    }
+
+    @include for-max-1400 {
+        max-width: 550px;
+    }
     @include for-max-1199 {
         max-width: 100%;
     }

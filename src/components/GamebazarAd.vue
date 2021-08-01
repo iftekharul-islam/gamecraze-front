@@ -10,7 +10,11 @@
                 <vue-good-wizard 
                     :steps="steps"
                     :onNext="nextClicked" 
-                    :onBack="backClicked">
+                    :onBack="backClicked"
+                    previousStepLabel="Previous"
+                    nextStepLabel="Continue"
+                    finalStepLabel="Post"
+                    ref="wizard">
                     <div slot="page1" class="">
                         <div class="group mb-a-6">
                           <label for="product-category" class="mb-3 w-100">পণ্যের ক্যাটাগরি সিলেক্ট করুন</label>
@@ -44,7 +48,7 @@
                           <label for="product-price" class="mb-3 w-100">পণ্যের মূল্য (টাকায়)</label>
                           <input type="text" id="product-price" rows="5" class=" px-3 w-100 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" />
                         </div>
-                        <div class="group">
+                        <div class="group mb-a-6">
                           <div class="d-grid grid-cols-2 grid-gap-16">
                             <div class="group flex-1">
                               <label for="waranty" class="w-100">ওয়ারেন্টি আছে?</label>
@@ -60,11 +64,54 @@
                             </div>
                           </div>
                         </div>
+                         <div class="group mb-a-6">
+                          <div class="d-grid grid-cols-3 grid-gap-16">
+                            <div class="group flex-1">
+                              <label for="years" class="w-100">Years</label>
+                              <select name="" id="years" class=" px-3 bg-step-form-input h-40 border-1 triangle-select-arrow no-default-arrow border-secondery-opa-25 text-white no-focus w-100 br-4">
+                                <option value="">1 Years</option>
+                                <option value="">2 Years</option>
+                                <option value="">3 Years</option>
+                                <option value="">4 Years</option>
+                                <option value="">5 Years</option>
+                              </select>
+                            </div>
+                            <div class="group flex-1">
+                              <label for="months" class="w-100 ">Month</label>
+                              <select name="" id="months" class="px-3 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus w-100 br-4">
+                                <option value="">Jan</option>
+                                <option value="">Feb</option>
+                                <option value="">Mar</option>
+                                <option value="">Apr</option>
+                                <option value="">May</option>
+                                <option value="">Jun</option>
+                                <option value="">Jul</option>
+                                <option value="">Aug</option>
+                                <option value="">Sep</option>
+                                <option value="">Oct</option>
+                                <option value="">Nov</option>
+                                <option value="">Dec</option>
+                              </select>
+                            </div>
+                            <div class="group flex-1">
+                              <label for="days" class="w-100 ">Day</label>
+                              <select name="" id="days" class="px-3 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus w-100 br-4">
+                                <option value="">1 Days</option>
+                                <option value="">2 Days</option>
+                                <option value="">3 Days</option>
+                                <option value="">4 Days</option>
+                                <option value="">5 Days</option>
+                                <option value="">6 Days</option>
+                                <option value="">7 Days</option>
+                              </select>
+                            </div>
+                          </div>
+                        </div>
 
                     </div>
                     
 
-                    <div slot="page2">
+                    <div class="min-h-250" slot="page2">
                         <div class="group mb-a-6">
                           <label for="product-category" class="mb-3 w-100">পণ্যের ক্যাটাগরি সিলেক্ট করুন</label>
                           <div>
@@ -133,13 +180,19 @@
     },
     methods: {
       nextClicked(currentPage) {
+        const _this = this;
+        _this.$refs.wizard.isMobile = false;
         console.log('next clicked', currentPage)
         return true; //return false if you want to prevent moving to next page
       },
       backClicked(currentPage) {
+         const _this = this;
+        _this.$refs.wizard.isMobile = false;
         console.log('back clicked', currentPage);
         return true; //return false if you want to prevent moving to previous page
-      }
+      },
+      handleEditScreenshots() {
+      },
     },
   };
 </script>

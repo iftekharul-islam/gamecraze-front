@@ -179,9 +179,9 @@
                       <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">৳ {{ item.price }}</span>
                     </div>
 
-                    <p class="gil-bold mb-4 mt-a-4 text-white">{{ item.name }}</p>
-                        <span v-if="item.product_type == 1" class="mb-4 text-white d-inline-block">New</span>
-                        <span v-if="item.product_type == 2" class="mb-4 text-white d-inline-block">Used 1.5yrs</span>
+                    <p class="gil-bold mb-3 mt-a-4 text-white">{{ item.name }}</p>
+                        <span v-if="item.product_type == 1" class="mb-3 text-white d-inline-block">New</span>
+                        <span v-if="item.product_type == 2" class="mb-3 text-white d-inline-block">Used 1.5yrs</span>
                         <div class="d-flex align-items-center text-secondery">
                             <p class="mb-0">Details</p>
                             <div class="gamebazar-post__arrow">

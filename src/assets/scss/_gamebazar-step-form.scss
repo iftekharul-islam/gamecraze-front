@@ -1,24 +1,212 @@
 .gamebazar-step-form {
     .wizard {
         &__steps {
-            max-width: 580px;
+            max-width: 400px;
             margin: auto;
         }
         &__body {
             max-width: 400px;
+            min-height: initial !important;
             margin-left: auto !important;
             margin-right: auto !important;
             background: transparent !important;
             border: none !important;
             &__step {
                 padding: 0 !important;
+                .beforeUpload {
+                       svg {
+                           display: none;
+                       }
+                       input {
+                           left: 0;
+                       }
+                        position: relative;
+                        height: 92px;
+                        width: 122px;
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            width: 100%;
+                            height: 100%;
+                            background: $step-form-input url(../img/camera-icon-ad.png) no-repeat 50% 50%;
+                            top: 0;
+                            left: 0;
+                            border-radius: 4px;
+                            border: 1px solid $secondery-opa-5;
+                        }
+                }  
+                .imgsPreview {
+                    display: grid;
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                    grid-template-rows: 92px;
+                    grid-auto-rows: 92px;
+                    grid-gap: 16px;
+                    .clearButton {
+                        display: none;
+                    }
+                    .imageHolder {
+                        margin: 0;
+                        height: initial;
+                        border-radius: 4px;
+                        width: 100%;
+                        border: 1px solid $secondery-opa-5;
+                        img {
+                            border-radius: 4px;
+                            
+                        }
+                        &:nth-of-type(3n+3) {
+                            .plus {
+                                top: calc(100% + 16px);
+                                left: calc(-200% - 32px);
+                            }
+                        }
+                    }
+                    .plus {
+                        width: 122px !important;
+                        height: 92px !important;
+                        background: $step-form-input url(../img/camera-icon-ad.png) no-repeat 50% 50% !important;
+                        border-radius: 4px !important;
+                        top: 0;
+                        left: calc(100% + 16px);
+                        border: 1px solid $secondery-opa-5 !important;
+                    }
+                }              
             }
             &__actions {
                 bottom: -40px !important;
+                display: flex;
+                justify-content: flex-end;
+                background: transparent !important;
+                a {
+                    width: 100% !important;
+                    background: $secondery-gradient;
+                    font-weight: bold !important;
+                    font-family: gilroy-bold !important;
+                    color: $primary !important;
+                    border-radius: 4px;
+                    flex-basis: 48%;
+                    &:last-of-type {
+                        margin-left: auto !important;
+                    }
+                    .vgw-icon {
+                        display: none !important;
+                    }
+                    &::after {
+                        display: none !important;
+                    }
+                    &.wizard__back {
+                        background: transparent !important;
+                        border: 1px solid $secondery-opa-5;
+                        color: $secondery !important;
+                    }
+                    span {
+                        vertical-align: initial !important;
+                    }
+                }
             }
         }
         &__arrow {
             display: none !important;
+        }
+        &__step {
+          @include for-min-575 {
+            padding-left: 0 !important;
+            top: -50px !important;
+            &:first-of-type {
+                text-align: left !important;
+                .wizard__step__indicator {
+                    left: 0 !important;
+                    &::after {
+                        content: '1';
+                    }
+                }
+            }
+            &:nth-child(2) {
+                text-align: center !important;
+                .wizard__step__indicator {
+                    left: 0 !important;
+                    right: 0 !important;
+                    margin: auto !important;
+                    &::after {
+                        content: '2';
+                    }
+                }
+            }
+            &:last-of-type {
+                text-align: right !important;
+                .wizard__step__indicator {
+                    right: 0 !important;
+                    left: initial !important;
+                    &::after {
+                        content: '3';
+                    }
+                }
+            }
+          }
+            &:not(:first-child) {
+                .wizard__step__line {
+                    background: $secondery !important;
+                    @include for-min-575 {
+                        width: 200% !important;
+                        left: -100% !important;
+                    }
+                }
+            }
+            &.active {
+                &:not(:first-child) {
+                    .wizard__step__line {
+                        background: $secondery !important;
+                    }
+                   
+                }
+                .wizard__step__indicator {
+                    background: $secondery !important;
+                    &::after {
+                        color: $text-black;
+                    }
+                }
+            }
+            &__indicator {
+                width: 32px !important;
+                height: 32px !important;
+                bottom: -4px !important;
+                display: flex !important;
+                align-items: center;
+                justify-content: center;
+                background: $primary !important;
+                border: 1px solid $secondery !important;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    color: $text-light;
+                }
+            }
+            &__label {
+                top: 70px !important;
+                position: relative;
+            }
+        }
+    }
+    &__input-btn {
+        input {
+            position: absolute;
+            visibility: hidden;
+            &:checked {
+               ~ label {
+                    border-color: $secondery;
+                    opacity: 1;
+                    &::after {
+                        content: '';
+                        width: 8px;
+                        height: 8px;
+                        border-radius: 50%;
+                        background: $secondery;
+                        position: absolute;
+                        top: 8px;
+                        left: 8px;
+                    }
+                }
+            }
         }
     }
 
@@ -35,4 +223,10 @@
             }
         }
     }
+}
+.triangle-select-arrow {
+    background: $step-form-input url(../img/triangle-down-gray.png);
+    background-repeat: no-repeat;
+    background-position: 90% 50%;
+
 }

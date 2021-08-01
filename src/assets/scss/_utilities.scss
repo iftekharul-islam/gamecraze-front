@@ -1711,7 +1711,9 @@
 .gray-header {
     background: $gray-header;
 }
-
+.bg-transparent {
+    background: transparent;
+}
 .game-rent-bg {
     background: $game-rent-alert;
 }

@@ -5,8 +5,8 @@
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="max-488">
-                            <h1 class="f-s-48 text-secondery gil-bold font-weight-bold">{{ $t('game_bazar_title_1', $store.state.locale) }} <br> {{ $t('game_bazar_title_2', $store.state.locale) }}</h1>
-                            <router-link class="router_link border-1 border-secondery-opa-25 mb-3 text-secondery mt-a-4 py-2 pl-a-6 pr-a-6 d-inline-block br-4" to="/create-ad">{{ $t('sell_post', $store.state.locale) }}</router-link>
+                            <h1 class="f-s-48 text-secondery gil-bold font-weight-bold mb-a-6">{{ $t('game_bazar_title_1', $store.state.locale) }} <br> {{ $t('game_bazar_title_2', $store.state.locale) }}</h1>
+                            <router-link class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative" to="/create-ad">{{ $t('sell_post', $store.state.locale) }}</router-link>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -144,7 +144,7 @@
                     </carousel>
               </div>
                 <div class="text-center mt-5">
-                    <router-link to="/sell-posts" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">{{ $t('all_post', $store.state.locale) }}</router-link>
+                    <router-link to="/sell-posts" class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_post', $store.state.locale) }}</router-link>
                 </div>
             </div>
         </section>
@@ -214,7 +214,7 @@
                   </carousel>
                </div>
                 <div class="text-center mt-5">
-                     <router-link to="/sell-posts" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">{{ $t('all_post', $store.state.locale) }}</router-link>
+                     <router-link to="/sell-posts" class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_post', $store.state.locale) }}</router-link>
                 </div>
             </div>
         </section>
@@ -284,7 +284,7 @@
                   </carousel>
                </div>
                 <div class="text-center mt-5">
-                     <router-link to="/sell-posts" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">All post</router-link>
+                     <router-link to="/sell-posts" class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">All post</router-link>
                 </div>
             </div>
         </section>
@@ -301,7 +301,7 @@
                               {{ $t('game_bazar_title_6', $store.state.locale) }}
                             </h1>
                             <p class="max-500 opa-8 text-white">{{ $t('game_bazar_title_3', $store.state.locale) }}</p>
-                                <router-link to="/create-ad" class="bg-secondery-gradient d-inline-block gil-bold py-2 px-5 primary-text primary-text-hover br-4">{{ $t('create_ads', $store.state.locale) }}</router-link>
+                                <router-link to="/create-ad" class=" btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('create_ads', $store.state.locale) }} <span></span> <span></span></router-link>
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-6 position-initial  pr-md-0">
@@ -331,8 +331,8 @@
                             <p class="max-500 opa-8 text-white"> {{ $t('game_bazar_title_11', $store.state.locale) }}</p>
                                 
                             <div class="d-flex align-items-center">
-                              <a href="#" class="bg-secondery-gradient d-inline-block gil-bold py-2 px-5 primary-text primary-text-hover br-4 mr-3">{{ $t('lend', $store.state.locale) }}</a>
-                              <a href="#" class="bg-secondery-gradient d-inline-block gil-bold py-2 px-5 primary-text primary-text-hover br-4">{{ $t('rent_button', $store.state.locale) }}</a>
+                              <a href="#" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative mr-3">{{ $t('lend', $store.state.locale) }} <span></span> <span></span></a>
+                              <a href="#" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('rent_button', $store.state.locale) }} <span></span> <span></span></a>
                             </div>
                         </div>
                     </div>
@@ -405,7 +405,7 @@
                 </carousel>
               </div>
               <div class="text-center mt-5">
-                     <router-link to="/games" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">{{ $t('all_games', $store.state.locale) }}</router-link>
+                     <router-link to="/games" class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_games', $store.state.locale) }}</router-link>
               </div>
             </div>
         </section>

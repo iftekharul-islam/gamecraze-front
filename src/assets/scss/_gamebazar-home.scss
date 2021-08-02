@@ -220,18 +220,32 @@
                 background: transparent;
                 box-shadow: none;
                 border: none;
+                transition: all .3s ease-in;
                 &:focus {
                     outline: none;
                 }
+                &:hover {
+                    background: $secondery;
+                    svg {
+                        path {
+                            fill : $primary;
+                        }
+                    }
+                }
+                svg {
+                    fill {
+                        transition: all .3s ease-in;
+                    }
+                }
             }
             &.vue-owl-nav-right {
-                right: -40px;
+                right: -50px;
                 @include for-max-1300 {
                     right: 10px;
                 }
             }
             &.vue-owl-nav-left {
-                left: -40px;
+                left: -50px;
                 @include for-max-1300 {
                     right: 50px;
                     left: initial;

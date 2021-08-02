@@ -2396,6 +2396,32 @@ select {
         }
     }
 }
+.svg-primary-hover,
+.svg-secondery-hover {
+    svg {
+        path {
+            transition: all .3s ease-in;
+        }
+    }
+}
+.svg-primary-hover {
+    &:hover {
+        svg {
+            path {
+                fill: $primary
+            }
+        }
+    }
+}
+.svg-secondery-hover {
+    &:hover {
+        svg {
+            path {
+                fill: $secondery
+            }
+        }
+    }
+}
 
 // game hover effect
 .game-card-hover-outer {

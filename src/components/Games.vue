@@ -13,7 +13,7 @@
                       </div>
                         <div v-if="isHidden" class="games-categories-section--categories" id="games-categories-list">
                             <!-- Game Type -->
-                            <div class="select-categories">
+                            <div class="select-categories mb-a-6">
                                 <h6>{{ $t('game_type', $store.state.locale) }}</h6>
                                 <div class="form-group form-check">
                                     <input type="checkbox" class="custom-control-input" id="digital_copy" :checked="checkedDiskType.includes('digital_copy')" @change="changeCheckedDiskType('digital_copy')">
@@ -26,7 +26,7 @@
                             </div>
 
                             <!-- select categories -->
-                            <div class="select-categories">
+                            <div class="select-categories mb-a-6">
                                 <h6>{{ $t('select_category', $store.state.locale) }}</h6>
                                 <div class="form-group form-check" v-for="(category, index) in categories" :key="'category' + index">
                                     <input type="checkbox" class="custom-control-input" :id="category.name + '-game'" :checked="checkedCategories.includes(category.slug)" @change="changeCheckedCategories(category.slug)">

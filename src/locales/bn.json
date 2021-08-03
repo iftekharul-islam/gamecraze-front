@@ -51,6 +51,7 @@
   "digital_copy" : "ডিজিটাল কপি",
   "physical_copy" : "ফিজিক্যাল কপি",
   "select_category" : "বিভাগ নির্বাচন করুন",
+  "select_product_category" : "পণ্যের ক্যাটাগরি সিলেক্ট করুন",
   "select_platform" : "প্ল্যাটফর্ম নির্বাচন করুন",
   "clear_filters" : "ফিল্টারগুলি মুছে ফেলুন",
   "apply" : "প্রয়োগ করুন",
@@ -449,7 +450,7 @@
   "learn_about_create_sell_post" : "বিক্রয় পোস্ট তৈরি সম্পর্কে জানুন",
   "created_at" : "পোস্ট তৈরি",
   "info_update_notification" : "তথ্য সফলভাবে আপডেট হয়েছে !!",
-  "upload_screenshots" : "আপলোড স্ক্রিনশট",
+  "upload_screenshots" : "পণ্যের স্ক্রিনশট আপলোড করুন",
   "screenshots" : "স্ক্রিনশট",
   "upload_cover" : "কভার আপলোড",
   "images" : "ছবি সমূহ",
@@ -487,5 +488,15 @@
   "popular_games_at_gamehub" : "গেমহাব এর জনপ্রিয় গেম",
   "withdraw_request" : "উত্তোলনকৃত আবেদন",
   "incorrect_password" : "পাসওয়ার্ডটি সঠিক নয়",
-  "phone_seller" : "ফোন করুন"
+  "phone_seller" : "ফোন করুন",
+  "new" : "নতুন",
+  "Used" : "ব্যবহৃত",
+  "your_product" : "আপনার পণ্যটি",
+  "year" : "বছর",
+  "month" : "মাস",
+  "day" : "দিন",
+  "is_warranty_available" : "ওয়ারেন্টি আছে ?",
+  "image_preview" : "চিত্রের পূর্বরূপ",
+  "cover_img_upload_failed" : "cover image upload failed !!",
+  "screenshots_upload_failed" : "screenshots upload failed !!"
 }

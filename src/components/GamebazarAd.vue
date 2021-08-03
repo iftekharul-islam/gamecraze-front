@@ -3,147 +3,218 @@
     <div class="gamebazar-step-form pt-5 pb-a-25">
         <div class="container">
             <div class="mx-auto">
-              <div class="max-400 mx-auto">
-                <h3 class="text-white gil-bold f-s-28 mb-5">পণ্যের বিজ্ঞাপন দিতে নিচের
+                <div class="max-400 mx-auto mb-5">
+                  <router-link
+                      class="secondery-border text-secondery d-flex align-items-center justify-content-center h-48 game-rent-bg"
+                      to="/about-sell-post">{{$t('learn_about_create_sell_post', $store.state.locale) }}
+                  </router-link>
+                </div>
+                <div class="max-400 mx-auto">
+                  <h3 class="text-white gil-bold f-s-28 mb-5">পণ্যের বিজ্ঞাপন দিতে নিচের
                     ফরম টি পূরণ করুন।</h3>
-              </div>
-                <vue-good-wizard 
+                </div>
+                <vue-good-wizard
+                    ref="wizard"
                     :steps="steps"
                     :onNext="nextClicked" 
                     :onBack="backClicked"
                     previousStepLabel="Previous"
                     nextStepLabel="Continue"
-                    finalStepLabel="Post"
-                    ref="wizard">
-                    <div slot="page1" class="">
-                        <div class="group mb-a-6">
-                          <label for="product-category" class="mb-3 w-100">পণ্যের ক্যাটাগরি সিলেক্ট করুন</label>
-                          <select name="" class="w-100 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus br-4 px-3" id="product-category">
-                            <option value="">প্লে-ষ্টেশন 5</option>
-                          </select>
-                        </div>
-                        <div class="group mb-a-6">
-                          <label for="" class="mb-3 w-100">আপনার পণ্যটি</label>
-
-                          <div class="d-grid grid-cols-2 grid-gap-16">
-                            <div class="gamebazar-step-form__input-btn">
-                              <input type="radio" id="my-product" name="my-product" class="bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
-                              <label for="my-product" class="border-1 border-secondery-opa-50 py-2 w-full d-block br-4 text-center pointer opa-7 position-relative bg-step-form-input">New</label>
-                            </div>
-                            <div class="gamebazar-step-form__input-btn">
-                              <input type="radio" id="my-product2" name="my-product" class="bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
-                              <label for="my-product2" class="border-1 border-secondery-opa-50 py-2 w-full d-block br-4 text-center pointer opa-7 position-relative bg-step-form-input">Old</label>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="group mb-a-6">
-                          <label for="product-name" class="mb-3 w-100">পণ্যের নাম</label>
-                          <input type="text" id="product-name" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
-                        </div>
-                        <div class="group mb-a-6">
-                          <label for="product-des" class="mb-3 w-100">পণ্যের নাম</label>
-                          <textarea id="product-des" rows="5" class=" px-3 w-100 bg-step-form-input border-1 border-secondery-opa-25 text-white no-focus br-4"></textarea>
-                        </div>
-                        <div class="group mb-a-6">
-                          <label for="product-price" class="mb-3 w-100">পণ্যের মূল্য (টাকায়)</label>
-                          <input type="text" id="product-price" rows="5" class=" px-3 w-100 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" />
-                        </div>
-                        <div class="group mb-a-6">
-                          <div class="d-grid grid-cols-2 grid-gap-16">
-                            <div class="group flex-1">
-                              <label for="waranty" class="w-100">ওয়ারেন্টি আছে?</label>
-                              <select name="" id="waranty" class=" px-3 bg-step-form-input h-40 border-1 triangle-select-arrow no-default-arrow border-secondery-opa-25 text-white no-focus w-100 br-4">
-                                <option value="">Yes</option>
+                    finalStepLabel="Post">
+                    <div slot="page1" >
+                      <ValidationObserver ref="sellForm1">
+                        <form id="sellForm1">
+                          <div class="group mb-a-6">
+                            <label class="mb-3 w-100">{{ $t('select_product_category', $store.state.locale) }}</label>
+                            <ValidationProvider name="Category" rules="required" v-slot="{ errors }">
+                              <select name="category" class="w-100 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus br-4 px-3" id="product-category" v-model="sub_category_id" required>
+                                <option>{{ $t('select_category', $store.state.locale) }}</option>
+                                <option :value="category.id" v-for="(category, index) in subCategories" :key="index">{{ category.name }}</option>
                               </select>
-                            </div>
-                            <div class="group flex-1">
-                              <label for="waranty-time" class="w-100 ">ওয়ারেন্টি টাইম</label>
-                              <select name="" id="waranty-time" class="px-3 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus w-100 br-4">
-                                <option value="">1 years</option>
-                              </select>
-                            </div>
+                              <span class="text-danger">{{ errors[0] }}</span>
+                            </ValidationProvider>
                           </div>
-                        </div>
-                         <div class="group mb-a-6">
+                          <div class="group mb-a-6">
+                            <label class="mb-3 w-100">{{ $t('your_product', $store.state.locale) }}</label>
+                            <ValidationProvider name="Product type" rules="required" v-slot="{ errors }">
+                              <div class="d-grid grid-cols-2 grid-gap-16">
+                                <div class="gamebazar-step-form__input-btn">
+                                    <input type="radio" id="my-product" name="my-product" class="bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" @click="usedModal = false" value="1" v-model="product_type">
+                                    <label for="my-product" class="border-1 border-secondery-opa-50 py-2 w-full d-block br-4 text-center pointer opa-7 position-relative bg-step-form-input">{{ $t('new', $store.state.locale) }}</label>
+                                </div>
+                                <div class="gamebazar-step-form__input-btn">
+                                  <input type="radio" id="my-product2" name="my-product" class="bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" @click="usedModal = true" value="2" v-model="product_type">
+                                  <label for="my-product2" class="border-1 border-secondery-opa-50 py-2 w-full d-block br-4 text-center pointer opa-7 position-relative bg-step-form-input">{{ $t('Used', $store.state.locale) }}</label>
+                                </div>
+                              </div>
+                              <span class="text-danger">{{ errors[0] }}</span>
+                            </ValidationProvider>
+                          </div>
+                        <div class="group mb-a-6" v-if="usedModal">
+                          <ValidationProvider name="Warranty time" :rules="{required : usedModal}" v-slot="{ errors }">
                           <div class="d-grid grid-cols-3 grid-gap-16">
                             <div class="group flex-1">
-                              <label for="years" class="w-100">Years</label>
-                              <select name="" id="years" class=" px-3 bg-step-form-input h-40 border-1 triangle-select-arrow no-default-arrow border-secondery-opa-25 text-white no-focus w-100 br-4">
-                                <option value="">1 Years</option>
-                                <option value="">2 Years</option>
-                                <option value="">3 Years</option>
-                                <option value="">4 Years</option>
-                                <option value="">5 Years</option>
+                              <label class="w-100">{{ $t('year', $store.state.locale) }}</label>
+                              <select v-model="used_product.year" class=" px-3 bg-step-form-input h-40 border-1 triangle-select-arrow no-default-arrow border-secondery-opa-25 text-white no-focus w-100 br-4">
+                                <option :value="item" v-for="(item, index) in 12" :key="index">{{ item }} Year</option>
                               </select>
                             </div>
                             <div class="group flex-1">
-                              <label for="months" class="w-100 ">Month</label>
-                              <select name="" id="months" class="px-3 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus w-100 br-4">
-                                <option value="">Jan</option>
-                                <option value="">Feb</option>
-                                <option value="">Mar</option>
-                                <option value="">Apr</option>
-                                <option value="">May</option>
-                                <option value="">Jun</option>
-                                <option value="">Jul</option>
-                                <option value="">Aug</option>
-                                <option value="">Sep</option>
-                                <option value="">Oct</option>
-                                <option value="">Nov</option>
-                                <option value="">Dec</option>
+                              <label class="w-100 ">{{ $t('month', $store.state.locale) }}</label>
+                              <select name="" id="months" v-model="used_product.month" class="px-3 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus w-100 br-4">
+                                <option :value="item" v-for="(item, index) in 12" :key="index">{{ item }} Month</option>
                               </select>
                             </div>
                             <div class="group flex-1">
-                              <label for="days" class="w-100 ">Day</label>
-                              <select name="" id="days" class="px-3 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus w-100 br-4">
-                                <option value="">1 Days</option>
-                                <option value="">2 Days</option>
-                                <option value="">3 Days</option>
-                                <option value="">4 Days</option>
-                                <option value="">5 Days</option>
-                                <option value="">6 Days</option>
-                                <option value="">7 Days</option>
+                              <label class="w-100 ">{{ $t('day', $store.state.locale) }}</label>
+                              <select name="" id="days" v-model="used_product.day" class="px-3 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus w-100 br-4">
+                                <option :value="item" v-for="(item, index) in 30" :key="index">{{ item }} Day</option>
                               </select>
                             </div>
                           </div>
+                          <span class="text-danger">{{ errors[0] }}</span>
+                          </ValidationProvider>
                         </div>
-
+                          <div class="group mb-a-6">
+                            <label for="product-name" class="mb-3 w-100">{{ $t('product_name', $store.state.locale) }}</label>
+                            <ValidationProvider name="name" rules="required" v-slot="{ errors }">
+                              <input type="text" id="product-name" v-model="name" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
+                              <span class="text-danger">{{ errors[0] }}</span>
+                            </ValidationProvider>
+                          </div>
+                          <div class="group mb-a-6">
+                            <label class="mb-3 w-100">{{ $t('description', $store.state.locale) }}</label>
+                            <ValidationProvider name="Description" rules="required" v-slot="{ errors }">
+                              <ckeditor v-model="description" :config="editorConfig"></ckeditor>
+                              <span class="text-danger">{{ errors[0] }}</span>
+                            </ValidationProvider>
+                          </div>
+                          <div class="group mb-a-6">
+                            <label class="mb-3 w-100">{{ $t('price', $store.state.locale) }}</label>
+                            <ValidationProvider name="product price" rules="required" v-slot="{ errors }">
+                              <input type="number" name="product price" class=" px-3 w-100 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" v-model="price"/>
+                              <span class="text-danger">{{ errors[0] }}</span>
+                            </ValidationProvider>
+                          </div>
+                          <div class="group mb-a-6 ml-3">
+                              <input class="custom-control-input platform" id="is_negotiable" name="is_negotiable" type="checkbox" value="" v-model="is_negotiable">
+                              <label class="custom-control-label ml-2" for="is_negotiable">{{ $t('is_negotiable', $store.state.locale) }}</label>
+                          </div>
+                          <div class="group mb-a-6">
+                            <label class="w-100">{{ $t('is_warranty_available', $store.state.locale) }}</label>
+                            <ValidationProvider name="warranty" rules="required" v-slot="{ errors }">
+                              <select name="" id="warranty" @change="warrantyCheck()" class=" px-3 bg-step-form-input h-40 border-1 triangle-select-arrow no-default-arrow border-secondery-opa-25 text-white no-focus w-100 br-4" v-model="warranty_availability">
+                                <option value="1">Yes</option>
+                                <option value="2">No</option>
+                              </select>
+                              <span class="text-danger">{{ errors[0] }}</span>
+                            </ValidationProvider>
+                          </div>
+                           <div class="group mb-a-6" v-if="warrantyModal">
+                           <ValidationProvider name="warranty period" :rules="{required : warrantyModal}" v-slot="{ errors }">
+                            <div class="d-grid grid-cols-3 grid-gap-16">
+                              <div class="group flex-1">
+                                <label class="w-100">{{ $t('year', $store.state.locale) }}</label>
+                                <select v-model="warranty.year" class="px-3 bg-step-form-input h-40 border-1 triangle-select-arrow no-default-arrow border-secondery-opa-25 text-white no-focus w-100 br-4">
+                                  <option :value="item" v-for="(item, index) in 12" :key="index">{{ item }} Year</option>
+                                </select>
+                              </div>
+                              <div class="group flex-1">
+                                <label class="w-100 ">{{ $t('month', $store.state.locale) }}</label>
+                                <select v-model="warranty.day" class="px-3 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus w-100 br-4">
+                                  <option :value="item" v-for="(item, index) in 12" :key="index">{{ item }} Month</option>
+                                </select>
+                              </div>
+                              <div class="group flex-1">
+                                <label  class="w-100 ">{{ $t('day', $store.state.locale) }}</label>
+                                <select v-model="warranty.day" class="px-3 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus w-100 br-4">
+                                  <option :value="item" v-for="(item, index) in 30" :key="index">{{ item }} Days</option>
+                                </select>
+                              </div>
+                            </div>
+                             <span class="text-danger">{{ errors[0] }}</span>
+                           </ValidationProvider>
+                          </div>
+                        </form>
+                      </ValidationObserver>
                     </div>
-                    
 
                     <div class="min-h-250" slot="page2">
                         <div class="group mb-a-6">
-                          <label for="product-category" class="mb-3 w-100">পণ্যের ক্যাটাগরি সিলেক্ট করুন</label>
+                          <label class="mb-3 w-100">{{ $t('cover_image', $store.state.locale) }}</label>
                           <div>
-                             <UploadImages class="w-100 p-0 bg-transparent border-0" :max="6" maxError="Max files exceed" @change="handleEditScreenshots"/>
+                            <a class="btn--secondery" @click="$refs.FileInputNew.click()">Upload image</a>
+                            <input ref="FileInputNew" type="file" style="display: none;" @change="onFileSelect" />
                           </div>
                         </div>
+                        <div class="group mb-a-6" v-if="dialog">
+                          <label class="mb-3 w-100">{{ $t('image_preview', $store.state.locale) }}</label>
+                          <div class="img-prev">
+                            <VueCropper v-show="postCoverImage"
+                                        ref="cropper"
+                                        :src="postCoverImage"
+                                        :autoCropArea="0"
+                                        :scalable="false"
+                                        dragMode="move"
+                                        :cropBoxMovable="false"
+                                        :cropBoxResizable="false"
+                                        :ready="cropBoxSet"
+                                        alt="Disk image preview">
+
+                            </VueCropper>
+                          </div>
+                          <div class="my-2 d-grid grid-cols-2 grid-gap-16 mr-2">
+                            <a class="btn--secondery w-100" @click="saveImage(), (dialog = true)">Crop</a>
+                            <a class="btn--secondery w-100" @click="dialog = false, (cover_image = '')">Cancel</a>
+                          </div>
+                          <div class="img-prev" v-if="cover_image">
+                            <img :src="cover_image" alt="Cover image preview">
+                          </div>
+                        </div>
+                        <div class="group mb-a-6">
+                          <label class="mb-3 w-100">{{ $t('upload_screenshots', $store.state.locale) }}</label>
+                             <UploadImages class="w-100 p-0 bg-transparent border-0" :max="4" maxError="Max image upload limit is 4" @change="uploadScreenshots"/>
+                        </div>
                     </div>
+
                     <div slot="page3">
+                      <ValidationObserver ref="sellForm2">
+                        <form id="sellForm2">
                         <div>
+<!--                            <div class="group mb-a-6">-->
+<!--                              <label for="seller-name" class="mb-3 w-100">বিক্রেতার নাম</label>-->
+<!--                              <input type="text" id="seller-name" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">-->
+<!--                            </div>-->
                             <div class="group mb-a-6">
-                              <label for="seller-name" class="mb-3 w-100">বিক্রেতার নাম</label>
-                              <input type="text" id="seller-name" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
+                              <label for="mobile-no" class="mb-3 w-100">{{ $t('phone_number', $store.state.locale) }}</label>
+                              <ValidationProvider name="phone number" rules="required" v-slot="{ errors }">
+                                <input type="number" v-model="phone_no" id="mobile-no" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
+                                <span class="text-danger">{{ errors[0] }}</span>
+                              </ValidationProvider>
                             </div>
                             <div class="group mb-a-6">
-                              <label for="mobile-no" class="mb-3 w-100">মোবাইল নং</label>
-                              <input type="text" id="mobile-no" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
+                              <label for="email" class="mb-3 w-100">{{ $t('email', $store.state.locale) }}</label>
+                              <ValidationProvider name="email" rules="required" v-slot="{ errors }">
+                                <input type="text" id="email"  v-model="email" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
+                                <span class="text-danger">{{ errors[0] }}</span>
+                              </ValidationProvider>
                             </div>
+<!--                            <div class="group mb-a-6">-->
+<!--                              <label class="mb-3 w-100">জেলা শহর</label>-->
+<!--                              <select name="" class="w-100 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus br-4 px-3" id="city">-->
+<!--                                <option value="">Dhaka</option>-->
+<!--                              </select>-->
+<!--                            </div>-->
                             <div class="group mb-a-6">
-                              <label for="email" class="mb-3 w-100">ই-মেইল</label>
-                              <input type="text" id="email" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
-                            </div>
-                            <div class="group mb-a-6">
-                              <label for="city" class="mb-3 w-100">জেলা শহর</label>
-                              <select name="" class="w-100 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus br-4 px-3" id="city">
-                                <option value="">Dhaka</option>
-                              </select>
-                            </div>
-                            <div class="group mb-a-6">
-                              <label for="address" class="mb-3 w-100">ঠিকানা</label>
-                              <input type="text" id="address" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
+                              <label for="address" class="mb-3 w-100">{{ $t('address', $store.state.locale) }}</label>
+                              <ValidationProvider name="address" rules="required" v-slot="{ errors }">
+                                <input type="text" id="address" v-model="address" class="px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
+                                <span class="text-danger">{{ errors[0] }}</span>
+                              </ValidationProvider>
                             </div>
                         </div>
+                        </form>
+                      </ValidationObserver>
                     </div>
                 </vue-good-wizard>
             </div>
@@ -153,22 +224,53 @@
 </template>
 
 <script>
-  import Vue from 'vue';
-  import VueGoodWizard from 'vue-good-wizard';
   import UploadImages from "vue-upload-drop-images";
-  Vue.use(VueGoodWizard);
+  import VueCropper from 'vue-cropperjs';
+  import 'cropperjs/dist/cropper.css';
   export default {
-    components: {UploadImages},
-    name: 'demo',
+    components: {UploadImages, VueCropper},
     data(){
       return {
+        user: '',
+        postCoverImage: '',
+        dialog: false,
+        mime_type: '',
+        cover_image: '',
+        postImages: [],
+        warrantyModal: false,
+        editorConfig:{
+        },
+        usedModal: false,
+        subCategories: [],
+        name: '',
+        description: '',
+        price: '',
+        product_type: '',
+        used_product: {
+          year: '',
+          month: '',
+          day: '',
+        },
+        is_negotiable: '',
+        sub_category_id: '',
+        warranty_availability: '',
+        warranty: {
+          year: '',
+          month: '',
+          day: '',
+        },
+        product_image: '',
+        phone_no: '',
+        email: '',
+        address: '',
+        summary: '',
         steps: [
           {
-            label: `Product Description`,
+            label: `Description`,
             slot: 'page1',
           },
           {
-            label: `Product photos`,
+            label: `photos`,
             slot: 'page2',
           },
           {
@@ -179,11 +281,164 @@
       };
     },
     methods: {
+      cropBoxSet(){
+        let data = {
+          width: 363,
+          height: 270
+        }
+        this.$refs.cropper.setCropBoxData(data);
+      },
+      onFileSelect(e) {
+        const file = e.target.files[0]
+        console.log(file);
+        if (file != undefined) {
+          this.mime_type = file.type
+          if (typeof FileReader === 'function') {
+            this.dialog = true
+            const reader = new FileReader()
+            reader.onload = (event) => {
+              this.postCoverImage = event.target.result
+              this.$refs.cropper.replace(this.postCoverImage)
+            }
+            reader.readAsDataURL(file)
+          } else {
+            alert('Sorry, FileReader API not supported')
+          }
+        }
+      },
+      saveImage() {
+        this.cover_image = this.$refs.cropper.getCroppedCanvas().toDataURL()
+        this.$refs.cropper.getCroppedCanvas().toBlob((blob) => {
+          const formData = new FormData()
+          formData.append('profile_photo', blob, 'name.jpeg')
+        }, this.mime_type)
+      },
+      uploadScreenshots(files) {
+        if (files.length === 0) {
+          this.postImages = [];
+          console.log(this.postImages);
+          return;
+        }
+        if (this.postImages.length > files.length) {
+          let val = '';
+          this.postImages.forEach(function (image, index) {
+            files.forEach(function (file) {
+              if (image.name !== file.name) {
+                val = index
+                return
+              }
+            })
+          })
+          this.postImages.splice(val, 1);
+          return
+        }
+        this.postImages = [];
+        let screenshots = [];
+        files.forEach( function (file) {
+          let reader = new FileReader()
+          reader.readAsDataURL(file)
+          reader.onload = () => {
+            let fileBase64 = reader.result;
+            let data = {
+              name: file.name,
+              file: fileBase64
+            }
+            screenshots.push(data);
+          }
+          reader.onerror = function (error) {
+            console.log('Error: ', error)
+          }
+        })
+        this.postImages = screenshots;
+        console.log(this.postImages);
+      },
+      warrantyCheck() {
+        this.warrantyModal = false;
+        if (this.warranty_availability == 1){
+          this.warrantyModal = true;
+        }
+      },
       nextClicked(currentPage) {
         const _this = this;
         _this.$refs.wizard.isMobile = false;
         console.log('next clicked', currentPage)
-        return true; //return false if you want to prevent moving to next page
+        if (currentPage == 0) {
+          this.$refs.sellForm1.validate().then(success => {
+            if (success) {
+              _this.$refs.wizard.goNext(true);
+            }
+          });
+          return false; //don't proceed by default.
+        }
+        if (currentPage == 1) {
+          if (this.cover_image == '') {
+            this.$toaster.warning(this.$t('cover_img_upload_failed', this.$store.state.locale));
+            return;
+          }
+          if (this.postImages.length === 0) {
+            this.$toaster.warning(this.$t('screenshots_upload_failed', this.$store.state.locale));
+            return;
+          }
+          _this.$refs.wizard.goNext(true);
+        }
+        if (currentPage == 2) {
+          this.$refs.sellForm2.validate().then(success => {
+            if (success) {
+              this.onSellPostSubmit()
+            }
+            return false;
+          });
+        }
+        return true;
+      },
+      onSellPostSubmit () {
+        this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
+          if (typeof response.data == 'string') {
+            this.onLogout();
+            return;
+          }
+          this.user = response.data.data;
+          if (this.user.status == 0) {
+            this.onLogout();
+            return;
+          }
+
+            let uploadInfo = {
+              sub_category_id: this.sub_category_id,
+              product_type: this.product_type,
+              used_year: this.used_product.year,
+              used_month: this.used_product.month,
+              used_day: this.used_product.day,
+              name: this.name,
+              description: this.description,
+              price: this.price,
+              is_negotiable: this.is_negotiable,
+              warranty_availability: this.warranty_availability,
+              warranty_year: this.warranty.year,
+              warranty_month: this.warranty.month,
+              warranty_day: this.warranty.day,
+              cover_image: this.cover_image,
+              images: this.postImages,
+              phone_no: this.phone_no,
+              email: this.email,
+              address: this.address,
+            }
+            console.log(uploadInfo)
+            let config = {
+              headers: {
+                'Authorization': 'Bearer ' + this.$store.state.token
+              }
+            }
+            this.$api.post('sell-post', uploadInfo, config)
+                .then(response => {
+                  if (response.status == 200) {
+                    this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
+                    this.$router.push('/gamebazar');
+                  }
+                }).catch(err => {
+              console.log(err)
+            });
+        })
       },
       backClicked(currentPage) {
          const _this = this;
@@ -191,8 +446,11 @@
         console.log('back clicked', currentPage);
         return true; //return false if you want to prevent moving to previous page
       },
-      handleEditScreenshots() {
-      },
     },
+    created() {
+      this.$api.get('sub-categories').then (response =>{
+        this.subCategories = response.data.data
+      });
+    }
   };
 </script>

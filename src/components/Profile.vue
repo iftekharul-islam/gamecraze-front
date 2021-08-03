@@ -1339,7 +1339,7 @@
                                             <div class="form-group post-rent--form-group">
                                                 <label class=" post-rent--form-group--label">{{ $t('product_name', $store.state.locale) }} :</label>
                                                 <div class=" post-rent--form-group--input">
-                                                    <ValidationProvider name="name" rules="required" v-slot="{ errors }">
+                                                    <ValidationProvider name="Name" rules="required" v-slot="{ errors }">
                                                         <input type="text" class="form-control renten-input" name="name" v-model="sellData.name">
                                                         <span class="text-danger">{{ errors[0] }}</span>
                                                     </ValidationProvider>
@@ -1836,7 +1836,7 @@
               })
               this.postImages = screenshots;
               console.log(this.postImages);
-          },
+            },
             handleEditScreenshots(files) {
                 if (files.length === 0) {
                     this.editPostData.postImages = [];

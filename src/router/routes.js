@@ -515,7 +515,7 @@ let router = new Router({
             name: 'GamebazarAd',
             component: GamebazarAd,
             meta: {
-                requiresAuth: false
+                requiresAuth: true
             }
         },
         {

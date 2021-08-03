@@ -47,10 +47,10 @@
   "news_&_blog" : "News & blogs",
   "filter" : "Filter",
   "game_type" : "Game type",
-  "disk_type" : "Disk Type",
   "digital_copy" : "Digital copy",
   "physical_copy" : "Physical copy",
   "select_category" : "Select Category",
+  "select_product_category" : "Select product Category",
   "select_platform" : "Select Platforms",
   "clear_filters" : "Clear Filters",
   "apply" : "Apply",
@@ -488,5 +488,15 @@
   "popular_games_at_gamehub" : "Popular Games at GameHub",
   "withdraw_request" : "Withdraw Request",
   "incorrect_password" : "Incorrect password",
-  "phone_seller" : "Call seller"
+  "phone_seller" : "Call seller",
+  "new" : "New",
+  "Used" : "Used",
+  "your_product" : "Your Product",
+  "years" : "Years",
+  "month" : "Month",
+  "Days" : "Days",
+  "is_warranty_available" : "Is warranty available ?",
+  "image_preview" : "Image preview",
+  "cover_img_upload_failed" : "কভার ইমেজ আপলোড করুন  !!",
+  "screenshots_upload_failed" : "স্ক্রিনশটস আপলোড করুন  !!"
 }

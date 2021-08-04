@@ -189,14 +189,14 @@
                   </div>
                   <div class="mb-a-6">
                     <p class="mb-2 opa-8 text-white">{{ $t('phone_number', $store.state.locale) }}</p>
-                    <p class="mb-0 gil-bold text-secondery f-s-20">{{ post.user.data.phone_number }}</p>
+                    <p class="mb-0 gil-bold text-secondery f-s-20">{{ post.phone_no ? post.phone_no : post.user.data.phone_number }}</p>
                   </div>
                   <div class="mb-a-6" v-if="post.user.data.email != null">
                     <p class="mb-2 opa-8 text-white">{{ $t('email', $store.state.locale) }}</p>
-                    <p class="mb-0 gil-bold text-white f-s-20">{{ post.user.data.email }}</p>
+                    <p class="mb-0 gil-bold text-white f-s-20">{{ post.email ? post.email : post.user.data.email}}</p>
                   </div>
-                   <a :href="`mailto:${post.user.data.email}`" class="bg-secondery-gradient d-inline-block  py-2 px-5 primary-text primary-text-hover br-4 w-100 text-center" v-if="post.user.data.email != null">{{ $t('email_seller', $store.state.locale) }}</a>
-                   <a :href="`tel:+88${ post.user.data.phone_no }`" class="bg-secondery-gradient d-inline-block  py-2 px-5 primary-text primary-text-hover br-4 w-100 text-center" v-else>{{ $t('phone_seller', $store.state.locale) }}</a>
+                   <a :href="`mailto:${ post.email ? post.email : post.user.data.email}`" class="bg-secondery-gradient d-inline-block  py-2 px-5 primary-text primary-text-hover br-4 w-100 text-center" v-if="post.user.data.email != null">{{ $t('email_seller', $store.state.locale) }}</a>
+                   <a :href="`tel:+88${ post.phone_no ? post.phone_no : post.user.data.phone_number }`" class="bg-secondery-gradient d-inline-block  py-2 px-5 primary-text primary-text-hover br-4 w-100 text-center" v-else>{{ $t('phone_seller', $store.state.locale) }}</a>
                 </div>
               </div>
             </div>

@@ -2801,6 +2801,9 @@
 
                 this.onRentedGames();
             },
+          sellPostTab() {
+            this.onSellPost();
+          },
             editProfileTab () {
                 $('#v-pills-edit-profile-tab').addClass('active');
                 $('#v-pills-edit-profile').addClass('active');
@@ -2841,11 +2844,17 @@
                 this.ratingCheck();
             });
             this.$root.$on('rentGames', () => {
+                console.log('hello 2')
                 this.rentGamesTab();
             });
+            this.$root.$on('sellPostDashboard', () => {
+              console.log('hello')
+              this.sellPostTab();
+              // this.sellPostTab();
+            });
             this.$root.$on('rentPost', () => {
-                this.rentPostTab();
-              });
+              this.rentPostTab();
+            });
             this.$root.$on('profileEdit', () => {
                 this.editProfileTab();
                 this.fromCart = true;

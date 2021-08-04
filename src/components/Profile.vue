@@ -532,7 +532,7 @@
                                                                                 </div>
                                                                                 <!-- form-group -->
                                                                                 <div class="form-group post-rent--form-group">
-                                                                                    <label for="sell-post-des" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('description', $store.state.locale) }}</label>
+                                                                                    <label class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('description', $store.state.locale) }}</label>
                                                                                     <div class=" post-rent--form-group--input">
                                                                                         <ValidationProvider name="description" rules="required" v-slot="{ errors }">
                                                                                             <ckeditor v-model="editPostData.description" :config="editorConfig"></ckeditor>
@@ -579,12 +579,21 @@
                                                                                 <div class="form-group post-rent--form-group">
                                                                                     <label for="sell-post-phone" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('phone_number', $store.state.locale) }}</label>
                                                                                     <div class=" post-rent--form-group--input">
-                                                                                        <ValidationProvider name="Phone no" rules="required" v-slot="{ errors }">
+                                                                                        <ValidationProvider name="Phone no" rules="required|min:11|max:11" v-slot="{ errors }">
                                                                                             <input type="number" @keypress="isNumber($event)" class="form-control renten-input" id="sell-post-phone" v-model="editPostData.phone_no">
                                                                                             <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
                                                                                         </ValidationProvider>
                                                                                     </div>
 
+                                                                                </div>
+                                                                                <div class="form-group post-rent--form-group">
+                                                                                  <label for="sell-post-email" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('email', $store.state.locale) }}</label>
+                                                                                  <div class=" post-rent--form-group--input">
+                                                                                    <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
+                                                                                      <input type="text" class="form-control renten-input" id="sell-post-email" v-model="editPostData.email">
+                                                                                      <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                                                                                    </ValidationProvider>
+                                                                                  </div>
                                                                                 </div>
                                                                                 <div class="form-group post-rent--form-group">
                                                                                     <label for="sell-post-address" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('address', $store.state.locale) }}</label>
@@ -1537,6 +1546,7 @@
                     sub_category_id: '',
                     images: [],
                     phone_no: '',
+                    email: '',
                     address: '',
                     postImages: [],
                     cover: '',
@@ -1783,6 +1793,7 @@
               }, this.editPostData.mime_type)
             },
             sellPostEditModal(product) {
+                console.log(product);
                 this.sellPostEditModalShow = true
 
                 this.editPostData.id = product.id
@@ -1793,6 +1804,7 @@
                 this.editPostData.images =  product.images
                 this.editPostData.cover =  product.cover
                 this.editPostData.phone_no =  product.phone_no
+                this.editPostData.email =  product.email
                 this.editPostData.address =  product.address
                 this.selected = product.sub_category_id
                 this.removeCover = ''
@@ -2495,6 +2507,7 @@
                   sub_category_id: this.selected,
                   is_negotiable: this.editPostData.is_negotiable,
                   phone_no: this.editPostData.phone_no,
+                  email: this.editPostData.email,
                   address: this.editPostData.address,
                   images: this.editPostData.postImages,
                   cover_image: this.editPostData.cover_image,
@@ -2776,34 +2789,6 @@
                 $('#v-pills-rating').removeClass('active');
                 $('#v-pills-rating').removeClass('show');
             },
-            rentGamesTab() {
-                $('#v-pills-overview-tab').removeClass('active');
-                $('#v-pills-overview').removeClass('active');
-                $('#v-pills-overview').removeClass('show');
-                $('#v-pills-post-rent-tab').removeClass('active');
-                $('#v-pills-post-rent').removeClass('show');
-                $('#v-pills-post-rent').removeClass('active');
-                $('#v-pills-edit-profile-tab').removeClass('active');
-                $('#v-pills-edit-profile').removeClass('active');
-                $('#v-pills-edit-profile').removeClass('show');
-                $('#v-pills-dashboard-tab').addClass('active');
-                $('#v-pills-dashboard').addClass('active');
-                $('#v-pills-dashboard').addClass('show');
-                $('#v-pills-my-earning-tab').removeClass('active');
-                $('#v-pills-my-earning').removeClass('active');
-                $('#v-pills-my-earning').removeClass('show');
-                $('#v-pills-refer-tab').removeClass('active');
-                $('#v-pills-refer').removeClass('active');
-                $('#v-pills-refer').removeClass('show');
-                $('#v-pills-rating-tab').removeClass('active');
-                $('#v-pills-rating').removeClass('active');
-                $('#v-pills-rating').removeClass('show');
-
-                this.onRentedGames();
-            },
-          sellPostTab() {
-            this.onSellPost();
-          },
             editProfileTab () {
                 $('#v-pills-edit-profile-tab').addClass('active');
                 $('#v-pills-edit-profile').addClass('active');
@@ -2844,13 +2829,10 @@
                 this.ratingCheck();
             });
             this.$root.$on('rentGames', () => {
-                console.log('hello 2')
-                this.rentGamesTab();
+              this.onRentedGames();
             });
             this.$root.$on('sellPostDashboard', () => {
-              console.log('hello')
-              this.sellPostTab();
-              // this.sellPostTab();
+              this.onSellPost();
             });
             this.$root.$on('rentPost', () => {
               this.rentPostTab();

@@ -4,6 +4,23 @@
     <section class="games-categories-section">
       <div class="container">
         <div class="row">
+           <div class="col-md-6 ml-auto">
+              <div class="gamebazar-search mb-a-6">
+                <div class="d-flex justify-content-end">
+                    <div class="search-append  d-flex w-75 align-items-center position-relative border-1 black-border br-4 overflow-hidden">
+                        <input type="search" class="h-100 br-4 bg-white-25 border-0 text-white opa-8" placeholder="Search here ....">
+                        <div class="search-icon pointer position-absolute right-0 top-0 px-3 h-100 d-flex align-items-center justify-content-center bg-secondery-gradient">
+                            <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M6.84199 13.9454C8.42078 13.9454 9.87214 13.392 11.0301 12.4742L14.7898 16.3057L15.9991 15.0733L12.2395 11.2418C13.1409 10.0608 13.684 8.58168 13.684 6.97272C13.684 3.12814 10.6145 0 6.84199 0C3.06949 0 0 3.12814 0 6.97272C0 10.8173 3.06949 13.9454 6.84199 13.9454ZM6.84199 1.74318C9.67201 1.74318 11.9735 4.08863 11.9735 6.97272C11.9735 9.85681 9.67201 12.2023 6.84199 12.2023C4.01197 12.2023 1.7105 9.85681 1.7105 6.97272C1.7105 4.08863 4.01197 1.74318 6.84199 1.74318Z" fill="black"/>
+                            </svg>
+                        </div>
+                    </div>
+                    
+                </div>
+              </div>
+           </div>
+        </div>
+        <div class="row">
           <div class="col-md-4 col-lg-3 mb-3">
             <div class="text-right">
               <!-- <button id="btn--filter" class="btn--filter" v-on:click="toggleMenu()">
@@ -33,7 +50,7 @@
                     <!-- Game Type -->
                     <div class="select-categories">
                       <h6 class="">{{ $t('select_category', $store.state.locale) }}</h6>
-                      <div class="form-group form-check" v-for="(category, index) in categories" :key="'category' + index"
+                      <div class="form-group form-check mb-a-6" v-for="(category, index) in categories" :key="'category' + index"
                           v-if="categories">
                         <h6 v-if="category.subcategory.data.length" class="-ml-20px">{{ category.name }}</h6>
                         <div class="mb-a-3" v-for="(subItem, index) in category.subcategory.data" :key="index"
@@ -75,26 +92,30 @@
                         </div>
                       </div>
                     </div>
-                    <div class="select-platforms">
+                    <div class="select-platforms mt-a-6">
                       <h6>Price range</h6>
                       <!-- <vue-range-slider ref="slider" v-model="value" :min="0" :max="1000" :enable-cross="false" :min-range="10"></vue-range-slider> -->
                       <div class="track-container range-slider">
                         <!--  <span class="range-value min">{{ minValue}} </span> <span class="range-value max">{{ maxValue }}</span>-->
                         <div class="range-slider__bar" ref="_vpcTrack"></div>
                         <div class="range-slider__highlight-bar" ref="trackHighlight"></div>
-                        <button class="range-slider__ball track1" ref="track1"></button>
-                        <button class="range-slider__ball track2" ref="track2"></button>
+                        <button class="range-slider__ball track1 position-relative" ref="track1">
+                          <span class="position-absolute inline-block "><div class="triangle-rounded"></div> <input type="number" class="p-0 border-0 w-initial text-center gil-medium pe-none" :min="min" :max="max" v-model="minValue"></span>
+                        </button>
+                        <button class="range-slider__ball track2" ref="track2">
+                          <span class="position-absolute inline-block"><div class="triangle-rounded"></div><input type="number" class="p-0 border-0 w-initial text-center gil-medium pe-none" :min="min" :max="max" v-model="maxValue"></span>
+                        </button>
                       </div>
                     </div>
                     <div class="select-platforms d-grid grid-cols-2 col-gap-16 mt-3">
-                      <input type="number" class="text-center gil-medium" :min="min" :max="max" v-model="minValue">
-                      <input type="number" class="text-center gil-medium" :min="min" :max="max" v-model="maxValue">
+                      
+                     
                     </div>
                     <!-- button show in mobile -->
-                    <div class="d-md-none mt-4">
+                    <div class=" mt-4">
                       <a href="#" class="d-block py-2 border-1 border-white-50 br-4 text-white mb-3 text-center gil-bold">{{ $t('clear_filters', $store.state.locale) }}</a>
                       <a @click="filterShow = false"
-                         href="#" class="d-block py-2 bg-secondery-gradient br-4 text-black text-center gil-bold primary-text-hover">{{ $t('apply', $store.state.locale) }}</a>
+                         href="#" class="d-block d-md-none py-2 bg-secondery-gradient br-4 text-black text-center gil-bold primary-text-hover">{{ $t('apply', $store.state.locale) }}</a>
                     </div>
 
                 </div>
@@ -105,7 +126,7 @@
 
             <div class="games-categories-section--tag mb-a-4 flex-column-reverse flex-md-row px-a-1">
               <div class="d-flex align-items-center flex-wrap mt-3 mt-md-0">
-                <span v-for="(categoryItem, categoryIndex) in checkedCategories"
+                <span class="tag-span" v-for="(categoryItem, categoryIndex) in checkedCategories"
                     :key="categoryItem + categoryIndex">{{ categoryItem }} <div
                   @click="removeCategoryFilter(categoryItem)" class="remove-icon"><i
                   class="fas fa-times"></i></div></span>
@@ -116,15 +137,15 @@
                           <svg class="mr-2" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                              <path d="M5.82408 11.0593L9.70774 11.0712C9.9499 11.072 10.1459 11.2748 10.1459 11.5234V13.7083C10.1459 13.9577 10.0043 14.1834 9.78352 14.2878L6.25816 15.9432C6.17579 15.9813 6.08848 16 6.00117 16C5.88504 16 5.7689 15.9661 5.66758 15.899C5.49049 15.7819 5.38341 15.58 5.38341 15.3636V11.5116C5.38341 11.2613 5.5811 11.0585 5.82408 11.0593ZM14.2975 0C15.2381 0 16 0.784842 16 1.7538V2.97901C16 3.44906 15.8163 3.90045 15.4901 4.22966L10.2861 9.49362C10.1963 9.58525 10.0744 9.63616 9.94842 9.63532L5.59115 9.62174C5.45853 9.62174 5.33251 9.56489 5.2419 9.46562L0.459614 4.2059C0.163912 3.88094 0 3.45161 0 3.00616V1.75465C0 0.78569 0.761905 0 1.70255 0H14.2975Z" fill="#FFD715"/>
                           </svg>
-                          <span class="m-0 text-secondery f-s-16-imp p-0">{{ $t('filter', $store.state.locale) }}</span>
+                          <span class="m-0 text-secondery f-s-16-imp p-0 border-0 bg-transparent">{{ $t('filter', $store.state.locale) }}</span>
                         </button>
-                        <a class="d-flex align-items-center justify-content-center flex-1 h-100 px-0 px-md-4 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border mr-3 mr-md-0 sorting-mobile"
-                          href="#" role="button" :class="showDrawer ? 'highlight': '' " @click="show" >
+                        <button class="d-flex bg-transparent align-items-center justify-content-center flex-1 h-100 px-0 px-md-4 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border mr-3 mr-md-0 sorting-mobile"
+                           role="button" :class="showDrawer ? 'highlight': '' " @click="show" >
                           <svg class="mr-3" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M13.2489 8.81565C14.7689 8.81565 16 10.026 16 11.5194C16 13.0118 14.7689 14.2222 13.2489 14.2222C11.7298 14.2222 10.4978 13.0118 10.4978 11.5194C10.4978 10.026 11.7298 8.81565 13.2489 8.81565ZM6.46663 10.3664C7.1324 10.3664 7.67285 10.8973 7.67285 11.5514C7.67285 12.2046 7.1324 12.7365 6.46663 12.7365H1.20622C0.540441 12.7365 0 12.2046 0 11.5514C0 10.8973 0.540441 10.3664 1.20622 10.3664H6.46663ZM2.7511 0C4.27109 0 5.50219 1.21039 5.50219 2.70285C5.50219 4.19618 4.27109 5.40657 2.7511 5.40657C1.23199 5.40657 0 4.19618 0 2.70285C0 1.21039 1.23199 0 2.7511 0ZM14.7947 1.51866C15.4596 1.51866 16 2.04962 16 2.70285C16 3.35695 15.4596 3.88791 14.7947 3.88791H9.53426C8.86848 3.88791 8.32804 3.35695 8.32804 2.70285C8.32804 2.04962 8.86848 1.51866 9.53426 1.51866H14.7947Z" fill="#FFD715"/>
                           </svg>
                           Sorting
-                        </a>
+                        </button>
                     </div>
                       
                         <transition name="slide">
@@ -180,8 +201,8 @@
                     </div>
 
                     <p class="gil-bold mb-3 mt-a-4 text-white">{{ item.name }}</p>
-                        <span v-if="item.product_type == 1" class="mb-3 text-white d-inline-block">New</span>
-                        <span v-if="item.product_type == 2" class="mb-3 text-white d-inline-block">Used 1.5yrs</span>
+                        <span v-if="item.product_type == 1" class="mb-2 text-white d-inline-block">New</span>
+                        <span v-if="item.product_type == 2" class="mb-2 text-white d-inline-block">Used 1.5yrs</span>
                         <div class="d-flex align-items-center text-secondery">
                             <p class="mb-0">Details</p>
                             <div class="gamebazar-post__arrow">
@@ -194,7 +215,7 @@
               </div>
 
               <div class="text-center my-5">
-                    <a href="#" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">Load more</a>
+                    <a href="#" class="btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">Load more</a>
                 </div>
             </div>
             <div class="not-matching" v-if="noPostFound">
@@ -278,7 +299,7 @@
                 </carousel>
               </div>
               <div class="text-center mt-5">
-                    <a href="#" class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">{{ $t('all_games', $store.state.locale) }}</a>
+                    <a href="#" class="btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_games', $store.state.locale) }}</a>
               </div>
             </div>
         </section>

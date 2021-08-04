@@ -2166,6 +2166,9 @@ html {
 .w-full {
     width: 100%;
 }
+.w-initial {
+    width: initial;
+}
 .w-sm-initial {
    @include for-min-575 {
     width: initial;

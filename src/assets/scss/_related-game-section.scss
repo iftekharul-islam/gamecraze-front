@@ -33,6 +33,16 @@
                 .arrow {
                     color: $text-dark;
                 }
+                svg {
+                    path {
+                        fill: $text-dark;
+                    }
+                }
+            }
+            svg {
+                path {
+                    transition: all .3s ease-in;
+                }
             }
             .arrow {
                 color: $text-light;

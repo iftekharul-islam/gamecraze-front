@@ -28,7 +28,7 @@
                             <label class="mb-3 w-100">{{ $t('select_product_category', $store.state.locale) }}</label>
                             <ValidationProvider name="Category" rules="required" v-slot="{ errors }">
                               <select name="category" class="w-100 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus br-4 px-3" id="product-category" v-model="sub_category_id" required>
-                                <option>{{ $t('select_category', $store.state.locale) }}</option>
+                                <option value="">{{ $t('select_category', $store.state.locale) }}</option>
                                 <option :value="category.id" v-for="(category, index) in subCategories" :key="index">{{ category.name }}</option>
                               </select>
                               <span class="text-danger">{{ errors[0] }}</span>
@@ -44,14 +44,13 @@
                                 </div>
                                 <div class="gamebazar-step-form__input-btn">
                                   <input type="radio" id="my-product2" name="my-product" class="bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" @click="usedModal = true" value="2" v-model="product_type">
-                                  <label for="my-product2" class="border-1 border-secondery-opa-50 py-2 w-full d-block br-4 text-center pointer opa-7 position-relative bg-step-form-input">{{ $t('Used', $store.state.locale) }}</label>
+                                  <label for="my-product2" class="border-1 border-secondery-opa-50 py-2 w-full d-block br-4 text-center pointer opa-7 position-relative bg-step-form-input">{{ $t('used', $store.state.locale) }}</label>
                                 </div>
                               </div>
                               <span class="text-danger">{{ errors[0] }}</span>
                             </ValidationProvider>
                           </div>
                         <div class="group mb-a-6" v-if="usedModal">
-                          <ValidationProvider name="Warranty time" :rules="{required : usedModal}" v-slot="{ errors }">
                           <div class="d-grid grid-cols-3 grid-gap-16">
                             <div class="group flex-1">
                               <label class="w-100">{{ $t('year', $store.state.locale) }}</label>
@@ -72,8 +71,6 @@
                               </select>
                             </div>
                           </div>
-                          <span class="text-danger">{{ errors[0] }}</span>
-                          </ValidationProvider>
                         </div>
                           <div class="group mb-a-6">
                             <label for="product-name" class="mb-3 w-100">{{ $t('product_name', $store.state.locale) }}</label>
@@ -111,7 +108,6 @@
                             </ValidationProvider>
                           </div>
                            <div class="group mb-a-6" v-if="warrantyModal">
-                           <ValidationProvider name="warranty period" :rules="{required : warrantyModal}" v-slot="{ errors }">
                             <div class="d-grid grid-cols-3 grid-gap-16">
                               <div class="group flex-1">
                                 <label class="w-100">{{ $t('year', $store.state.locale) }}</label>
@@ -121,7 +117,7 @@
                               </div>
                               <div class="group flex-1">
                                 <label class="w-100 ">{{ $t('month', $store.state.locale) }}</label>
-                                <select v-model="warranty.day" class="px-3 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus w-100 br-4">
+                                <select v-model="warranty.month" class="px-3 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus w-100 br-4">
                                   <option :value="item" v-for="(item, index) in 12" :key="index">{{ item }} Month</option>
                                 </select>
                               </div>
@@ -132,8 +128,6 @@
                                 </select>
                               </div>
                             </div>
-                             <span class="text-danger">{{ errors[0] }}</span>
-                           </ValidationProvider>
                           </div>
                         </form>
                       </ValidationObserver>
@@ -187,14 +181,14 @@
 <!--                            </div>-->
                             <div class="group mb-a-6">
                               <label for="mobile-no" class="mb-3 w-100">{{ $t('phone_number', $store.state.locale) }}</label>
-                              <ValidationProvider name="phone number" rules="required" v-slot="{ errors }">
+                              <ValidationProvider name="phone number" rules="required|max:11|min:11" v-slot="{ errors }">
                                 <input type="number" v-model="phone_no" id="mobile-no" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
                                 <span class="text-danger">{{ errors[0] }}</span>
                               </ValidationProvider>
                             </div>
                             <div class="group mb-a-6">
                               <label for="email" class="mb-3 w-100">{{ $t('email', $store.state.locale) }}</label>
-                              <ValidationProvider name="email" rules="required" v-slot="{ errors }">
+                              <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                                 <input type="text" id="email"  v-model="email" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
                                 <span class="text-danger">{{ errors[0] }}</span>
                               </ValidationProvider>
@@ -433,7 +427,9 @@
                 .then(response => {
                   if (response.status == 200) {
                     this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
-                    this.$router.push('/gamebazar');
+                    this.$router.push('/profile').then(res => {
+                      this.$root.$emit('sellPostDashboard');
+                    });
                   }
                 }).catch(err => {
               console.log(err)

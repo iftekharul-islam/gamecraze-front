@@ -490,13 +490,13 @@
   "incorrect_password" : "Incorrect password",
   "phone_seller" : "Call seller",
   "new" : "New",
-  "Used" : "Used",
+  "used" : "Used",
   "your_product" : "Your Product",
   "years" : "Years",
   "month" : "Month",
   "Days" : "Days",
   "is_warranty_available" : "Is warranty available ?",
   "image_preview" : "Image preview",
-  "cover_img_upload_failed" : "কভার ইমেজ আপলোড করুন  !!",
-  "screenshots_upload_failed" : "স্ক্রিনশটস আপলোড করুন  !!"
+  "cover_img_upload_failed" : "কভার ইমেজ আপলোড করুন !!",
+  "screenshots_upload_failed" : "স্ক্রিনশটস আপলোড করুন !!"
 }

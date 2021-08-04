@@ -50,7 +50,7 @@
   "digital_copy" : "Digital copy",
   "physical_copy" : "Physical copy",
   "select_category" : "Select Category",
-  "select_product_category" : "Select product Category",
+  "select_product_category" : "Select Product Category",
   "select_platform" : "Select Platforms",
   "clear_filters" : "Clear Filters",
   "apply" : "Apply",
@@ -441,7 +441,7 @@
   "grand_total": "Grand total",
   "product_name": "Product Name",
   "product_type": "Product Type",
-  "is_negotiable": "Is negotiable",
+  "is_negotiable": "Is Negotiable",
   "sub_category": "Sub category",
   "sell_post": "Sell Post",
   "game_bazar" : "Game bazar",
@@ -495,8 +495,8 @@
   "year" : "Year",
   "month" : "Month",
   "day" : "Day",
-  "is_warranty_available" : "Is warranty available ?",
+  "is_warranty_available" : "Is Warranty Available ?",
   "image_preview" : "Image preview",
-  "cover_img_upload_failed" : "কভার ইমেজ আপলোড করুন !!",
-  "screenshots_upload_failed" : "স্ক্রিনশটস আপলোড করুন !!"
+  "cover_img_upload_failed" : "cover image upload failed !!",
+  "screenshots_upload_failed" : "screenshots upload failed !!"
 }

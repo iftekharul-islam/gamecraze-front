@@ -137,7 +137,7 @@
                         <div class="group mb-a-6">
                           <label class="mb-3 w-100">{{ $t('cover_image', $store.state.locale) }}</label>
                           <div>
-                            <a class="btn--secondery" @click="$refs.FileInputNew.click()">Upload image</a>
+                            <a class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="$refs.FileInputNew.click()">Upload image <span></span> <span></span></a>
                             <input ref="FileInputNew" type="file" style="display: none;" @change="onFileSelect" />
                           </div>
                         </div>
@@ -157,9 +157,9 @@
 
                             </VueCropper>
                           </div>
-                          <div class="my-2 d-grid grid-cols-2 grid-gap-16 mr-2">
-                            <a class="btn--secondery w-100" @click="saveImage(), (dialog = true)">Crop</a>
-                            <a class="btn--secondery w-100" @click="dialog = false, (cover_image = '')">Cancel</a>
+                          <div class="my-3 d-grid grid-cols-2 grid-gap-16">
+                            <a class="btn--secondery-hover br-4 text-center gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="saveImage(), (dialog = true)">Crop <span></span> <span></span></a>
+                            <a class="btn--secondery-hover br-4 text-center gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="dialog = false, (cover_image = '')">Cancel <span></span> <span></span></a>
                           </div>
                           <div class="img-prev" v-if="cover_image">
                             <img :src="cover_image" alt="Cover image preview">
@@ -447,6 +447,10 @@
       this.$api.get('sub-categories').then (response =>{
         this.subCategories = response.data.data
       });
-    }
+    },
+    mounted() {
+      // document.querySelector('.wizard__next').add
+      // $('.wizard__next').addClass('')
+    },
   };
 </script>

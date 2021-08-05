@@ -50,15 +50,17 @@
                     <!-- Game Type -->
                     <div class="select-categories">
                       <h6 class="">{{ $t('select_category', $store.state.locale) }}</h6>
-                      <div class="form-group form-check mb-a-6" v-for="(category, index) in categories" :key="'category' + index"
-                          v-if="categories">
-                        <h6 v-if="category.subcategory.data.length" class="-ml-20px">{{ category.name }}</h6>
-                        <div class="mb-a-3" v-for="(subItem, index) in category.subcategory.data" :key="index"
-                            v-if="category.subcategory.data.length">
-                          <input type="checkbox" class="custom-control-input" :id="subItem.name + '-game'"
-                                :checked="checkedCategories.includes(subItem.name)"
-                                @change="changeCheckedCategories(subItem.name)">
-                          <label class="custom-control-label" :for="subItem.name + '-game'">{{ subItem.name }}</label>
+                      <div v-if="categories.length">
+                        <div class="form-group form-check mb-a-6" v-for="(category, index) in categories" :key="'category' + index">
+                          <h6 v-if="category.subcategory.data.length" class="-ml-20px">{{ category.name }}</h6>
+                          <div v-if="category.subcategory.data.length">
+                            <div class="mb-a-3" v-for="(subItem, index) in category.subcategory.data" :key="index">
+                              <input type="checkbox" class="custom-control-input" :id="subItem.name + '-game'"
+                                     :checked="checkedCategories.includes(subItem.name)"
+                                     @change="changeCheckedCategories(subItem.name)">
+                              <label class="custom-control-label" :for="subItem.name + '-game'">{{ subItem.name }}</label>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -147,7 +149,7 @@
                           Sorting
                         </button>
                     </div>
-                      
+
                         <transition name="slide">
                           <div class="dropdown-menu w-268 bg-shorting br-4 border-1 d-block secondery-border left-initial-imp right-md-0-imp top-full-10px-imp p-0 overflow-hidden" v-if="showDrawer">
                             <p class="mb-0 gil-bold text-center text-white py-2 bg-shorting-tile">Price</p>
@@ -162,7 +164,7 @@
                                         @change="ascPrice($event)">
                                   <label class="mb-0" for="asc_price_filter">Low To High</label>
                               </div>
-                              
+
                             </div>
                             <p class="mb-0 gil-bold text-center text-white py-2 bg-shorting-tile">Date</p>
 

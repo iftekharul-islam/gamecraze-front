@@ -10,8 +10,7 @@
                   </router-link>
                 </div>
                 <div class="max-400 mx-auto">
-                  <h3 class="text-white gil-bold f-s-28 mb-5">পণ্যের বিজ্ঞাপন দিতে নিচের
-                    ফরম টি পূরণ করুন।</h3>
+                  <h3 class="text-white gil-bold f-s-28 mb-5">{{$t('step_form_top_title', $store.state.locale) }}</h3>
                 </div>
                 <vue-good-wizard
                     ref="wizard"
@@ -31,7 +30,7 @@
                                 <option value="">{{ $t('select_category', $store.state.locale) }}</option>
                                 <option :value="category.id" v-for="(category, index) in subCategories" :key="index">{{ category.name }}</option>
                               </select>
-                              <span class="text-danger">{{ errors[0] }}</span>
+                              <span class="text-step-error">{{ errors[0] }}</span>
                             </ValidationProvider>
                           </div>
                           <div class="group mb-a-6">
@@ -47,7 +46,7 @@
                                   <label for="my-product2" class="border-1 border-secondery-opa-50 py-2 w-full d-block br-4 text-center pointer opa-7 position-relative bg-step-form-input">{{ $t('used', $store.state.locale) }}</label>
                                 </div>
                               </div>
-                              <span class="text-danger">{{ errors[0] }}</span>
+                              <span class="text-step-error">{{ errors[0] }}</span>
                             </ValidationProvider>
                           </div>
                         <div class="group mb-a-6" v-if="usedModal">
@@ -76,21 +75,21 @@
                             <label for="product-name" class="mb-3 w-100">{{ $t('product_name', $store.state.locale) }}</label>
                             <ValidationProvider name="name" rules="required" v-slot="{ errors }">
                               <input type="text" id="product-name" v-model="name" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
-                              <span class="text-danger">{{ errors[0] }}</span>
+                              <span class="text-step-error">{{ errors[0] }}</span>
                             </ValidationProvider>
                           </div>
                           <div class="group mb-a-6">
                             <label class="mb-3 w-100">{{ $t('description', $store.state.locale) }}</label>
                             <ValidationProvider name="Description" rules="required" v-slot="{ errors }">
                               <ckeditor v-model="description" :config="editorConfig"></ckeditor>
-                              <span class="text-danger">{{ errors[0] }}</span>
+                              <span class="text-step-error">{{ errors[0] }}</span>
                             </ValidationProvider>
                           </div>
                           <div class="group mb-a-6">
                             <label class="mb-3 w-100">{{ $t('price', $store.state.locale) }}</label>
                             <ValidationProvider name="product price" rules="required" v-slot="{ errors }">
                               <input type="number" name="product price" class=" px-3 w-100 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" v-model="price"/>
-                              <span class="text-danger">{{ errors[0] }}</span>
+                              <span class="text-step-error">{{ errors[0] }}</span>
                             </ValidationProvider>
                           </div>
                           <div class="group mb-a-6 ml-3">
@@ -104,7 +103,7 @@
                                 <option value="1">Yes</option>
                                 <option value="2">No</option>
                               </select>
-                              <span class="text-danger">{{ errors[0] }}</span>
+                              <span class="text-step-error">{{ errors[0] }}</span>
                             </ValidationProvider>
                           </div>
                            <div class="group mb-a-6" v-if="warrantyModal">
@@ -183,14 +182,14 @@
                               <label for="mobile-no" class="mb-3 w-100">{{ $t('phone_number', $store.state.locale) }}</label>
                               <ValidationProvider name="phone number" rules="required|max:11|min:11" v-slot="{ errors }">
                                 <input type="number" v-model="phone_no" id="mobile-no" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
-                                <span class="text-danger">{{ errors[0] }}</span>
+                                <span class="text-step-error">{{ errors[0] }}</span>
                               </ValidationProvider>
                             </div>
                             <div class="group mb-a-6">
                               <label for="email" class="mb-3 w-100">{{ $t('email', $store.state.locale) }}</label>
                               <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                                 <input type="text" id="email"  v-model="email" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
-                                <span class="text-danger">{{ errors[0] }}</span>
+                                <span class="text-step-error">{{ errors[0] }}</span>
                               </ValidationProvider>
                             </div>
 <!--                            <div class="group mb-a-6">-->
@@ -203,7 +202,7 @@
                               <label for="address" class="mb-3 w-100">{{ $t('address', $store.state.locale) }}</label>
                               <ValidationProvider name="address" rules="required" v-slot="{ errors }">
                                 <input type="text" id="address" v-model="address" class="px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
-                                <span class="text-danger">{{ errors[0] }}</span>
+                                <span class="text-step-error">{{ errors[0] }}</span>
                               </ValidationProvider>
                             </div>
                         </div>
@@ -264,7 +263,7 @@
             slot: 'page1',
           },
           {
-            label: `photos`,
+            label: `Photos`,
             slot: 'page2',
           },
           {
@@ -451,6 +450,8 @@
     mounted() {
       // document.querySelector('.wizard__next').add
       // $('.wizard__next').addClass('')
+      $(".final-step").append(" <span>Post</span> <i></i>");
+       $('.final-step').contents().filter((_, el) => el.nodeType === 3).remove();
     },
   };
 </script>

@@ -158,7 +158,6 @@
           }
     }
     &--secondery-hover {
-        text-transform: uppercase!important;
         padding-top: 12px;
         padding-bottom: 12px;
         letter-spacing: 2px;
@@ -240,7 +239,7 @@
             width: 100%;
             height: 100%;
             display: block;
-            background: $pink;
+            background: $gamebazar-badge;
             position: absolute;
             left: 0%;
             opacity: 1;

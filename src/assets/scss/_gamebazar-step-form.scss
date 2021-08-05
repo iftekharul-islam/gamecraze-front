@@ -131,6 +131,7 @@
                         -moz-transition: all .3s ease-in-out !important;
                         -o-transition: all .3s ease-in-out !important;
                         transition: all .3s ease-in-out !important;
+                        text-transform: capitalize !important;
                         &::after,
                         &::before {
                             content: '' !important;
@@ -198,7 +199,7 @@
                         width: 100% !important;
                         height: 100% !important;
                         display: block !important;
-                        background: $pink !important;
+                        background: $gamebazar-badge !important;
                         position: absolute !important;
                         left: 0% !important;
                         opacity: 1 !important;
@@ -311,9 +312,6 @@
         }
         &__arrow {
             display: none !important;
-            &::after {
-               
-            }
         }
         &__step {
           @include for-min-575 {
@@ -370,6 +368,7 @@
                     background: $secondery !important;
                     &::after {
                         color: $text-black;
+                        font-weight: bold;
                     }
                 }
             }
@@ -385,7 +384,9 @@
                 &::after {
                     content: '';
                     position: absolute;
-                    color: $text-light;
+                    color: $secondery;
+                    font-weight: bold;
+                    font-size: 16px;
                 }
             }
             &__label {
@@ -443,5 +444,6 @@
     background: $step-form-input url(../img/triangle-down-gray.png) !important;
     background-repeat: no-repeat !important;
     background-position: 90% 50% !important;
+    color: $white-50 !important;
 
 }

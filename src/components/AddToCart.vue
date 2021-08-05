@@ -85,7 +85,7 @@
                    <div class="cart-section--item-price-box--payment-method secondery-border mt-a-6">
                             <p class="mb-0">{{ $t('payment_method', $store.state.locale) }}</p>
                             <div class="cart-section--item-price-box--payment-method--content d-flex flex-wrap align-items-center justify-content-between content">
-                                <div class="checkbox-parents">
+                                <div class="checkbox-parents" v-if="digitalIsExist">
                                     <input type="radio" id="cod" name="payment" value="cod" class="checkbox-parents--input" v-model="paymentMethod">
                                     <label for="cod" class="checkbox-parents--label">Cash on Delivery</label>
                                 </div>
@@ -102,14 +102,12 @@
                   <!-- Enter Adsress -->
                     <ValidationObserver v-slot="{ handleSubmit }">
                       <form class="" @submit.prevent="handleSubmit(onCheckout)" method="post">
-                          <div class="">
-                            <div class="cart-delivery-address">
-                                <label for="address">{{ $t('enter_address', $store.state.locale) }}</label>
-                                <ValidationProvider name="address" rules="required" v-slot="{ errors }">
-                                  <textarea id="address" type="text" v-model="address" class="promo-code-field"></textarea>
-                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                </ValidationProvider>
-                            </div>
+                          <div class="cart-delivery-address" v-if="digitalIsExist">
+                              <label for="address">{{ $t('enter_address', $store.state.locale) }}</label>
+                              <ValidationProvider name="address" :rules="{required: digitalIsExist}" v-slot="{ errors }">
+                                <textarea id="address" type="text" v-model="address" class="promo-code-field"></textarea>
+                              <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                              </ValidationProvider>
                           </div>
                         <!-- Agree terms condition -->
                         <div class="post-rent--form-group--agree pl-a-6 mt-a-3">
@@ -131,9 +129,8 @@
                         <!-- PLace Order button -->
                       </form>
               </ValidationObserver>
-              <!-- End Enter Adsress -->
+              <!-- End Enter Address -->
               </div>
-               
                 <div v-if="showModal">
                     <transition name="modal">
                         <div class="modal-mask seller-information-modal upgrade-modal cart-warning-modal multiple-user-warning-modal z-index-99">
@@ -213,11 +210,10 @@
                             <button type="button" class="close m-0 close-modal" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"></span>
                             </button>
-                            <p>Opps !!! The game <span v-for="(item, index) in cart" v-if="item.rent.id == id">{{ item.rent.game.data.name }}</span> you wanted to rent is not available at this moment.</p>
+                            <p>Opps !!! The game <span v-for="(item, index) in cart" :key="index"> <strong v-if="item.rent.id == id">{{ item.rent.game.data.name }}</strong></span> you wanted to rent is not available at this moment.</p>
                         </div>
                     </div>
                 </div>
-                
             </div>
           </div>
         </section>
@@ -228,6 +224,7 @@
   export default {
       data() {
           return {
+              digitalIsExist: false,
               isLoadingCode: false,
               discountAmount: false,
               promoCode: '',
@@ -239,7 +236,7 @@
               checkedGame: '',
               lendWeek: '',
               cart: [],
-              paymentMethod: 'cod',
+              paymentMethod: 'bkashpay',
               isLoading: false,
               price: [],
               newCartItems: [],
@@ -323,6 +320,7 @@
         },
         authData () {
             var auth = this.$store.getters.ifAuthenticated;
+            this.digitalIsExist = false;
             if (auth){
                 var config = {
                     headers: {
@@ -332,7 +330,7 @@
                 this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
                     this.user = response.data.data;
                     if (this.user.wallet != 0) {
-                        this.availableWallet = true;
+                        this.availableWallet = false;
                     }
                 })
                     .catch( err => {
@@ -344,9 +342,14 @@
                     this.mainAmount = this.totalPrice;
                     this.deliveryCharge = response.data.data.deliveryCharge;
                     this.autoPromoApply();
+                    console.log('newCartItems')
+                    console.log(this.newCartItems)
                     if (this.newCartItems) {
                         for (let i = 0; i < this.newCartItems.length; i++) {
                             this.rentIds.push(this.newCartItems[i].rent_id);
+                            if (this.newCartItems[i].disk_type == 1){
+                              this.digitalIsExist = true;
+                            }
                         }
                     }
                     if (!this.newCartItems.length) {

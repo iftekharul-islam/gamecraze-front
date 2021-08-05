@@ -24,7 +24,7 @@
                 <p v-html="post.description"></p>
 
               </div>
-              <h2 class="f-s-34 gil-bold text-secondery mb-a-6">{{ post.price }} tk</h2>
+              <p><span class="f-s-34 gil-bold text-secondery mb-a-6">{{ post.price }} tk </span><small v-if="post.is_negotiable ==1">Negotiable</small></p>
               <div class=" mt-5">
                 <a class="border-1 bg-secondery-gradient border-secondery-opa-25 primary-text primary-text-hover gil-bold py-2 pl-a-6 pr-a-6 d-inline-block br-4 pointer" @click="showSeller = true">Contact the seller</a>
               </div>
@@ -35,8 +35,51 @@
                     <p class="text-white gil-regular">{{ formattedDate(post.created_at) }}</p>
                   </div>
                   <div class="mb-a-6">
+                    <p class="text-white gil-bold mb-2">{{ $t('product_type', $store.state.locale) }}</p>
+                    <p class="before-ball d-flex align-items-center text-success-ball" v-if="post.product_type === 1">
+                      {{ $t('new', $store.state.locale) }}
+                    </p>
+                    <p class="before-ball d-flex align-items-center text-success-ball" v-if="post.product_type === 2">
+                      {{ $t('used', $store.state.locale) }}
+                      <span v-if="post.used_year != null">
+                              {{ post.used_year }}
+                              {{ $t('year', $store.state.locale) }}
+                      </span>
+                      <span v-if="post.used_month != null">
+                              {{ post.used_month }}
+                              {{ $t('month', $store.state.locale) }}
+                      </span>
+                      <span v-if="post.used_day != null">
+                              {{ post.used_day }}
+                              {{ $t('day', $store.state.locale) }}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="mb-a-6">
                     <p class="text-white gil-bold mb-2">{{ $t('product_id', $store.state.locale) }}</p>
                     <p class="text-white gil-regular">{{ post.product_no }}</p>
+                  </div>
+                  <div class="mb-a-6">
+                    <p class="text-white gil-bold mb-2">{{ $t('warranty', $store.state.locale) }}</p>
+                    <p class="d-flex align-items-center text-success-ball" v-if="post.warranty_availability == 1">
+                      <span v-if="post.warranty_year != null">
+                          {{ post.warranty_year }}
+                          {{ $t('year', $store.state.locale) }}
+                      </span>
+                      <span v-if="post.warranty_month != null">
+                          {{ post.warranty_month }}
+                          {{ $t('month', $store.state.locale) }}
+                      </span>
+                      <span v-if="post.warranty_day != null">
+                          {{ post.warranty_day }}
+                          {{ $t('day', $store.state.locale) }}
+                      </span>
+                    </p>
+                    <p class="d-flex align-items-center text-success-ball" v-else>
+                      N/A
+                    </p>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -45,12 +88,7 @@
                     <p class="before-ball d-flex align-items-center text-success-ball" v-if="post.is_sold == 1">In stock</p>
                     <p class="before-danger-ball d-flex align-items-center text-danger-ball" v-else>Sold out</p>
                   </div>
-                  <div class="mb-a-6">
-                    <p class="text-white gil-bold mb-2">{{ $t('product_type', $store.state.locale) }}</p>
-                    <p class="before-ball d-flex align-items-center text-success-ball" v-if="post.product_type === 1">New</p>
-                    <p class="before-ball d-flex align-items-center text-success-ball" v-if="post.product_type === 2">Used ( {{ post.condition }} )</p>
-                  </div>
-                </div>
+              </div>
               </div>
 
               <div class="row border-b-1 border-white-25 pt-a-6">

@@ -472,10 +472,22 @@
                                                         <div class="mb-4">
                                                             <p class="text-white mb-2">{{ $t('product_type', $store.state.locale) }}</p>
                                                             <p class=" text-secondery mb-0" v-if="product.product_type == 1">
-                                                                New
+                                                              {{ $t('new', $store.state.locale) }}
                                                             </p>
                                                             <p class=" text-secondery mb-0" v-else>
-                                                                Used
+                                                              {{ $t('used', $store.state.locale) }}
+                                                              <span v-if="product.used_year != null">
+                                                                {{ product.used_year }}
+                                                                {{ $t('year', $store.state.locale) }}
+                                                              </span>
+                                                              <span v-if="product.used_month != null">
+                                                                {{ product.used_month }}
+                                                                {{ $t('month', $store.state.locale) }}
+                                                              </span>
+                                                              <span v-if="product.used_day != null">
+                                                                {{ product.used_day }}
+                                                                {{ $t('day', $store.state.locale) }}
+                                                            </span>
                                                             </p>
                                                         </div>
                                                     </div>

@@ -498,5 +498,6 @@
   "is_warranty_available" : "ওয়ারেন্টি আছে ?",
   "image_preview" : "চিত্রের পূর্বরূপ",
   "cover_img_upload_failed" : "কভার ইমেজ আপলোড করুন !!",
-  "screenshots_upload_failed" : "স্ক্রিনশটস আপলোড করুন !!"
+  "screenshots_upload_failed" : "স্ক্রিনশটস আপলোড করুন !!",
+  "warranty" : "ওয়ারেন্টি"
 }

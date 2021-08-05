@@ -386,7 +386,7 @@
                 }
             });
 
-            this.$api.get('user/details', config).then(response => {
+          this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
                 this.achievedDiscount = false;
                 this.user_type = response.data.data.is_verified;
                 this.achievedDiscount = response.data.data.achieve_discount;

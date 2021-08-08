@@ -136,17 +136,17 @@
                         <p class="mb-3 text-white" v-if="post.product_type != 1">
                           {{ $t('used', $store.state.locale) }}
                           <span v-if="post.used_year != null">
-                            {{ post.used_year }}
-                            {{ $t('year', $store.state.locale) }}
-                          </span>
+                              {{ post.used_year }} &nbsp;
+                              {{ $t('year', $store.state.locale) }}&nbsp;
+                            </span>
                           <span v-if="post.used_month != null">
-                            {{ post.used_month }}
-                            {{ $t('month', $store.state.locale) }}
-                          </span>
+                              {{ post.used_month }}&nbsp;
+                              {{ $t('month', $store.state.locale) }}&nbsp;
+                            </span>
                           <span v-if="post.used_day != null">
-                            {{ post.used_day }}
-                            {{ $t('day', $store.state.locale) }}
-                          </span>
+                              {{ post.used_day }}&nbsp;
+                              {{ $t('day', $store.state.locale) }}
+                            </span>
                         </p>
                         <div class="d-flex align-items-center text-secondery">
                           <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
@@ -223,15 +223,15 @@
                       <p class="mb-3 text-white" v-if="post.product_type != 1">
                         {{ $t('used', $store.state.locale) }}
                         <span v-if="post.used_year != null">
-                              {{ post.used_year }}
-                              {{ $t('year', $store.state.locale) }}
+                              {{ post.used_year }} &nbsp;
+                              {{ $t('year', $store.state.locale) }}&nbsp;
                             </span>
                         <span v-if="post.used_month != null">
-                              {{ post.used_month }}
-                              {{ $t('month', $store.state.locale) }}
+                              {{ post.used_month }}&nbsp;
+                              {{ $t('month', $store.state.locale) }}&nbsp;
                             </span>
                         <span v-if="post.used_day != null">
-                              {{ post.used_day }}
+                              {{ post.used_day }}&nbsp;
                               {{ $t('day', $store.state.locale) }}
                             </span>
                       </p>
@@ -296,7 +296,7 @@
                             <p class="max-500 opa-8 text-white"> {{ $t('game_bazar_title_11', $store.state.locale) }}</p>
                                 
                             <div class="d-flex align-items-center">
-                              <router-link to="/profile" @click.native="onMenuItemClick(); clickProfile()" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative mr-3">{{ $t('lend', $store.state.locale) }} <span></span> <span></span></router-link>
+                              <router-link to="/profile" @click.native="clickToProfile()" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative mr-3">{{ $t('lend', $store.state.locale) }} <span></span> <span></span></router-link>
                               <router-link to="/games" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('rent_button', $store.state.locale) }} <span></span> <span></span></router-link>
                             </div>
                         </div>
@@ -396,7 +396,7 @@
           }
         },
          methods: {
-           clickProfile() {
+           clickToProfile() {
              var auth = this.$store.getters.ifAuthenticated;
              if (!auth) {
                this.$router.push('/lend-notice');
@@ -421,7 +421,6 @@
           });
           this.$api.get('category-list?include=products').then(response => {
             this.categories = response.data.data;
-            console.log(this.categories)
             if (this.categories.length > 0) {
               this.loadCategories = true
             }

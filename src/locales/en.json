@@ -505,5 +505,8 @@
   "seller_details" : "Seller Details",
   "previous" : "Previous",
   "continue" : "Continue",
-  "crop" : "crop"
+  "crop" : "crop",
+  "in_stock" : "In stock",
+  "stock_out" : "Sold out",
+  "not_available" : "Not Available"
 }

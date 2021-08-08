@@ -500,5 +500,10 @@
   "cover_img_upload_failed" : "cover image upload failed !!",
   "screenshots_upload_failed" : "screenshots upload failed !!",
   "step_form_top_title" : "Fill out the form below to advertise the product.",
-  "warranty" : "Warranty"
+  "warranty" : "Warranty",
+  "photos" : "Photos",
+  "seller_details" : "Seller Details",
+  "previous" : "Previous",
+  "continue" : "Continue",
+  "crop" : "crop"
 }

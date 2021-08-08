@@ -500,5 +500,10 @@
   "cover_img_upload_failed" : "কভার ইমেজ আপলোড করুন !!",
   "screenshots_upload_failed" : "স্ক্রিনশটস আপলোড করুন !!",
   "step_form_top_title" : "পণ্যের বিজ্ঞাপন দিতে নিচের ফরম টি পূরণ করুন।",
-  "warranty" : "ওয়ারেন্টি"
+  "warranty" : "ওয়ারেন্টি",
+  "photos" : "ছবি সমূহ",
+  "seller_details" : "বিক্রেতা বিবরণ",
+  "previous" : "পূর্ববর্তী",
+  "continue" : "চালিয়ে যান",
+  "crop" : "ক্রপ"
 }

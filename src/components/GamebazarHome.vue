@@ -296,8 +296,8 @@
                             <p class="max-500 opa-8 text-white"> {{ $t('game_bazar_title_11', $store.state.locale) }}</p>
                                 
                             <div class="d-flex align-items-center">
-                              <a href="#" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative mr-3">{{ $t('lend', $store.state.locale) }} <span></span> <span></span></a>
-                              <a href="#" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('rent_button', $store.state.locale) }} <span></span> <span></span></a>
+                              <router-link to="/profile" @click.native="onMenuItemClick(); clickProfile()" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative mr-3">{{ $t('lend', $store.state.locale) }} <span></span> <span></span></router-link>
+                              <router-link to="/games" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('rent_button', $store.state.locale) }} <span></span> <span></span></router-link>
                             </div>
                         </div>
                     </div>
@@ -395,6 +395,16 @@
 
           }
         },
+         methods: {
+           clickProfile() {
+             var auth = this.$store.getters.ifAuthenticated;
+             if (!auth) {
+               this.$router.push('/lend-notice');
+               return
+             }
+             this.$root.$emit('rentPost');
+           },
+         },
         created() {
           window.scrollTo(0,0);
           this.$api.get('latest-sell-posts?include=subcategory,user').then(response => {

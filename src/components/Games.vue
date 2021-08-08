@@ -42,8 +42,8 @@
                                 </div>
                             </div>
                             <div class="clear">
-                                <a href="javascript:void(0)" class="clear-filters btn--secondery" id="clear-filters" @click="clearFilter()"><span>{{ $t('clear_filters', $store.state.locale) }}</span></a>
-                                <a href="javascript:void(0)" class="clear-filters btn--secondery d-flex d-sm-none" id="filter-apply" v-on:click="toggleMenu()"><span>{{ $t('apply', $store.state.locale) }}</span></a>
+                                <a href="javascript:void(0)" class="clear-filters btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative" id="clear-filters" @click="clearFilter()">{{ $t('clear_filters', $store.state.locale) }}<span></span> <span></span></a>
+                                <a href="javascript:void(0)" class="clear-filters d-sm-none btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative" id="filter-apply" v-on:click="toggleMenu()">{{ $t('apply', $store.state.locale) }}<span></span><span></span></a>
                             </div>
                         </div>
                     </div>

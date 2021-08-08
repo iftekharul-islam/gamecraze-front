@@ -443,7 +443,7 @@
   "product_type": "পণ্যের ধরন",
   "is_negotiable": "আলোচনা সাপেক্ষে",
   "sub_category": "সাব ক্যাটাগরি সমূহ",
-  "sell_post": "বিক্রয়ের জন্য পোস্ট",
+  "sell_post": "সেল পোস্ট",
   "game_bazar" : "গেম বাজার",
   "condition_summary" : "পণ্য সংক্ষিপ্তসার",
   "upload_images" : "আপলোড ছবি",
@@ -499,6 +499,6 @@
   "image_preview" : "চিত্রের পূর্বরূপ",
   "cover_img_upload_failed" : "কভার ইমেজ আপলোড করুন !!",
   "screenshots_upload_failed" : "স্ক্রিনশটস আপলোড করুন !!",
-  "step_form_top_title" : "পণ্যের বিজ্ঞাপন দিতে নিচের ফরম টি পূরণ করুন।"
+  "step_form_top_title" : "পণ্যের বিজ্ঞাপন দিতে নিচের ফরম টি পূরণ করুন।",
   "warranty" : "ওয়ারেন্টি"
 }

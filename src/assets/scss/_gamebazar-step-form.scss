@@ -308,6 +308,23 @@
                         }
                     }
                 }
+                .final-step {
+                    border: 1px solid $secondery;
+                    border-radius: 4px !important;
+                    padding-top: inherit !important;
+                    padding-bottom: inherit !important;
+                    padding-right: inherit !important;
+                    background: $secondery-gradient !important;
+                    text-transform: capitalize !important;
+                    color: $primary !important;
+                    &:hover {
+                        opacity: .7;
+                    }
+                    &::after,
+                    &::before {
+                        display: none !important;
+                    }
+                }
             }
         }
         &__arrow {
@@ -432,6 +449,7 @@
             }
         }
     }
+    
 }
 // .gamebazar-step-form {
 //     select {

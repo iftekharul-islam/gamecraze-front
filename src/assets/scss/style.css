@@ -6714,11 +6714,6 @@ html {
   transition: all .3s ease-in;
 }
 
-.clear-filters:hover {
-  border: 1px solid #FFD715;
-  background: #0B0F18 !important;
-}
-
 @media (max-width: 575px) {
   .clear-filters {
     padding: 15px;
@@ -12946,6 +12941,26 @@ html {
   border: 0 !important;
 }
 
+.gamebazar-step-form .wizard__body__actions .final-step {
+  border: 1px solid #FFD715;
+  border-radius: 4px !important;
+  padding-top: inherit !important;
+  padding-bottom: inherit !important;
+  padding-right: inherit !important;
+  background: -webkit-gradient(linear, right top, left top, from(#FFD715), to(#FFB81F)) !important;
+  background: linear-gradient(270deg, #FFD715 0%, #FFB81F 100%) !important;
+  text-transform: capitalize !important;
+  color: #0B0F18 !important;
+}
+
+.gamebazar-step-form .wizard__body__actions .final-step:hover {
+  opacity: .7;
+}
+
+.gamebazar-step-form .wizard__body__actions .final-step::after, .gamebazar-step-form .wizard__body__actions .final-step::before {
+  display: none !important;
+}
+
 .gamebazar-step-form .wizard__arrow {
   display: none !important;
 }
@@ -13326,6 +13341,7 @@ html {
   transition: all .3s ease-in-out;
   background: transparent !important;
   border-radius: 4px;
+  z-index: 99;
 }
 
 .btn--secondery-hover:hover {
@@ -13343,6 +13359,14 @@ html {
   opacity: 1;
   -webkit-transform: translateX(-100%);
   transform: translateX(-100%);
+}
+
+.btn--secondery-hover:hover::before {
+  z-index: 12;
+}
+
+.btn--secondery-hover:hover::after {
+  z-index: 15;
 }
 
 .btn--secondery-hover:hover span:first-of-type::before {
@@ -13387,7 +13411,7 @@ html {
   left: 0%;
   opacity: 1;
   top: 0;
-  z-index: -12;
+  z-index: -1;
   -webkit-transition: all 0.65s cubic-bezier(0.77, 0, 0.175, 1);
   transition: all 0.65s cubic-bezier(0.77, 0, 0.175, 1);
 }

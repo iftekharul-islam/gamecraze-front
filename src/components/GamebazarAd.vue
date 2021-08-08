@@ -17,9 +17,9 @@
                     :steps="steps"
                     :onNext="nextClicked" 
                     :onBack="backClicked"
-                    :previousStepLabel="$t('select_product_category', $store.state.locale)"
-                    :nextStepLabel="$t('continue', $store.state.locale)"
-                    finalStepLabel="$t('post', $store.state.locale)">
+                    previousStepLabel="Previous"
+                    nextStepLabel="Continue"
+                    finalStepLabel="Post">
                     <div slot="page1" >
                       <ValidationObserver ref="sellForm1">
                         <form id="sellForm1">
@@ -136,7 +136,7 @@
                         <div class="group mb-a-6">
                           <label class="mb-3 w-100">{{ $t('cover_image', $store.state.locale) }}</label>
                           <div>
-                            <a class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="$refs.FileInputNew.click()">{{ $t('upload_images', $store.state.locale) }}<span></span> <span></span></a>
+                            <a class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="$refs.FileInputNew.click()">Upload image <span></span> <span></span></a>
                             <input ref="FileInputNew" type="file" style="display: none;" @change="onFileSelect" />
                           </div>
                         </div>
@@ -157,8 +157,8 @@
                             </VueCropper>
                           </div>
                           <div class="my-3 d-grid grid-cols-2 grid-gap-16">
-                            <a class="btn--secondery-hover br-4 text-center gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="saveImage(), (dialog = true)">{{ $t('crop', $store.state.locale) }} <span></span> <span></span></a>
-                            <a class="btn--secondery-hover br-4 text-center gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="dialog = false, (cover_image = '')">{{ $t('cancel', $store.state.locale) }} <span></span> <span></span></a>
+                            <a class="btn--secondery-hover br-4 text-center gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="saveImage(), (dialog = true)">Crop <span></span> <span></span></a>
+                            <a class="btn--secondery-hover br-4 text-center gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="dialog = false, (cover_image = '')">Cancel <span></span> <span></span></a>
                           </div>
                           <div class="img-prev" v-if="cover_image">
                             <img :src="cover_image" alt="Cover image preview">
@@ -166,7 +166,7 @@
                         </div>
                         <div class="group mb-a-6">
                           <label class="mb-3 w-100">{{ $t('upload_screenshots', $store.state.locale) }}</label>
-                             <UploadImages class="w-100 p-0 bg-transparent border-0" :max="4" maxError="Max image upload limit is 4" @change="uploadScreenshots"/>
+                             <UploadImages class="w-100 p-0 bg-transparent border-0" :max="4" maxError="Max image upload limit is 4" @change.prevent="uploadScreenshots"/>
                         </div>
                     </div>
 
@@ -259,15 +259,15 @@
         summary: '',
         steps: [
           {
-            label: this.$t('description', this.$store.state.locale),
+            label: `Description`,
             slot: 'page1',
           },
           {
-            label: this.$t('photos', this.$store.state.locale),
+            label: `Photos`,
             slot: 'page2',
           },
           {
-            label: this.$t('seller_details', this.$store.state.locale),
+            label: `Seller details`,
             slot: 'page3',
           },
         ],
@@ -361,7 +361,7 @@
               _this.$refs.wizard.goNext(true);
             }
           });
-          return false; //don't proceed by default.
+          return false; 
         }
         if (currentPage == 1) {
           if (this.cover_image == '') {
@@ -451,7 +451,7 @@
       // document.querySelector('.wizard__next').add
       // $('.wizard__next').addClass('')
       $(".final-step").append(" <span>Post</span> <i></i>");
-       $('.final-step').contents().filter((_, el) => el.nodeType === 3).remove();
+          $('.final-step').contents().filter((_, el) => el.nodeType === 3).remove();
     },
   };
 </script>

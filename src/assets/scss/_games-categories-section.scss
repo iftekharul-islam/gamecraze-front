@@ -139,10 +139,6 @@
     &-filters {
         margin: auto;
         transition: all .3s ease-in;
-        &:hover {
-            border: 1px solid $secondery;
-            background: $primary !important;
-        }
         @include for-max-575 {
             padding: 15px;
         }

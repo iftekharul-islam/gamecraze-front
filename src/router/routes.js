@@ -32,7 +32,7 @@ import Payment from "../components/Payment";
 import Success from "../components/payment/Success";
 import Fail from "../components/payment/Fail";
 import RentDetails from "../components/RentDetails";
-import RentPostedUser from "@/components/RentPostedUser";
+import RentPostedUser from "../components/RentPostedUser";
 import Support from "../components/Support";
 import Faq from "../components/Faq";
 import About from '../components/About';
@@ -57,9 +57,7 @@ import OrderDetails from '../components/OrderDetails';
 import SellPosts from '../components/SellPosts';
 import PostDetails from '../components/PostDetails';
 import SellPost from '../components/SellPostHelp'
-import Cropper from "../components/Cropper";
 import GamebazarHome from '../components/GamebazarHome';
-import ProductDetails from '../components/ProductDetails';
 import GamebazarAd from '../components/GamebazarAd';
 
 let router = new Router({
@@ -487,25 +485,9 @@ let router = new Router({
             }
         },
         {
-            path: '/cropper',
-            name: 'cropper',
-            component: Cropper,
-            meta: {
-                requiresAuth: false
-            }
-        },
-        {
             path: '/gamebazar',
             name: 'gamebazar',
             component: GamebazarHome,
-            meta: {
-                requiresAuth: false
-            }
-        },
-        {
-            path: '/product-details',
-            name: 'ProductDetails',
-            component: ProductDetails,
             meta: {
                 requiresAuth: false
             }

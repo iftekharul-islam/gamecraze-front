@@ -134,9 +134,9 @@
                           {{ $t('new', $store.state.locale) }}
                         </p>
                         <p class="mb-3 text-white" v-if="post.product_type != 1">
-                          {{ $t('used', $store.state.locale) }}
+                          {{ $t('used', $store.state.locale) }}&nbsp;
                           <span v-if="post.used_year != null">
-                              {{ post.used_year }} &nbsp;
+                              {{ post.used_year }}&nbsp;
                               {{ $t('year', $store.state.locale) }}&nbsp;
                             </span>
                           <span v-if="post.used_month != null">
@@ -221,9 +221,9 @@
                         {{ $t('new', $store.state.locale) }}
                       </p>
                       <p class="mb-3 text-white" v-if="post.product_type != 1">
-                        {{ $t('used', $store.state.locale) }}
+                        {{ $t('used', $store.state.locale) }}&nbsp;
                         <span v-if="post.used_year != null">
-                              {{ post.used_year }} &nbsp;
+                              : {{ post.used_year }}&nbsp;
                               {{ $t('year', $store.state.locale) }}&nbsp;
                             </span>
                         <span v-if="post.used_month != null">

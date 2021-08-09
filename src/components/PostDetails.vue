@@ -40,7 +40,7 @@
                       {{ $t('new', $store.state.locale) }}
                     </p>
                     <p class="before-ball d-flex align-items-center text-success-ball" v-if="post.product_type === 2">
-                      {{ $t('used', $store.state.locale) }} &nbsp;
+                      {{ $t('used', $store.state.locale) }}&nbsp;
                       <span v-if="post.used_year != null">
                               {{ post.used_year }}&nbsp;
                               {{ $t('year', $store.state.locale) }}&nbsp;
@@ -78,7 +78,7 @@
                       </span>
                     </p>
                     <p class="d-flex align-items-center text-success-ball" v-else>
-                      {{ $t('day', $store.state.locale) }}
+                      {{ $t('not_available', $store.state.locale) }}
                     </p>
                   </div>
                 </div>

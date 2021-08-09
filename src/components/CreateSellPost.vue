@@ -443,6 +443,7 @@
       },
     },
     created() {
+      window.scrollTo(0,0);
       this.$api.get('sub-categories').then (response =>{
         this.subCategories = response.data.data
       });

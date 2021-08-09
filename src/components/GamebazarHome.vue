@@ -6,7 +6,7 @@
                     <div class="col-md-6">
                         <div class="max-488">
                             <h1 class="f-s-48 text-secondery gil-bold font-weight-bold mb-a-6">{{ $t('game_bazar_title_1', $store.state.locale) }} <br> {{ $t('game_bazar_title_2', $store.state.locale) }}</h1>
-                            <router-link class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative" to="/create-ad">{{ $t('sell_post', $store.state.locale) }}</router-link>
+                            <router-link class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative" to="/create-sell-post">{{ $t('sell_post', $store.state.locale) }}</router-link>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -134,9 +134,9 @@
                           {{ $t('new', $store.state.locale) }}
                         </p>
                         <p class="mb-3 text-white" v-if="post.product_type != 1">
-                          {{ $t('used', $store.state.locale) }}
+                          {{ $t('used', $store.state.locale) }}&nbsp;
                           <span v-if="post.used_year != null">
-                              {{ post.used_year }} &nbsp;
+                              {{ post.used_year }}&nbsp;
                               {{ $t('year', $store.state.locale) }}&nbsp;
                             </span>
                           <span v-if="post.used_month != null">
@@ -221,9 +221,9 @@
                         {{ $t('new', $store.state.locale) }}
                       </p>
                       <p class="mb-3 text-white" v-if="post.product_type != 1">
-                        {{ $t('used', $store.state.locale) }}
+                        {{ $t('used', $store.state.locale) }}&nbsp;
                         <span v-if="post.used_year != null">
-                              {{ post.used_year }} &nbsp;
+                              : {{ post.used_year }}&nbsp;
                               {{ $t('year', $store.state.locale) }}&nbsp;
                             </span>
                         <span v-if="post.used_month != null">
@@ -266,7 +266,7 @@
                               {{ $t('game_bazar_title_6', $store.state.locale) }}
                             </h1>
                             <p class="max-500 opa-8 text-white">{{ $t('game_bazar_title_3', $store.state.locale) }}</p>
-                                <router-link to="/create-ad" class=" btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('create_ads', $store.state.locale) }} <span></span> <span></span></router-link>
+                                <router-link to="/create-sell-post" class=" btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('create_ads', $store.state.locale) }} <span></span> <span></span></router-link>
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-6 position-initial  pr-md-0">

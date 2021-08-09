@@ -16,10 +16,12 @@
                             <a href="#" class="d-block game-name-img"><h2>{{game.name}}</h2></a>
                             <p>{{game.description.substring(0, 300) | strippedContent}} . . .</p>
                             <a href="#description" class="read-more">{{ $t('read_more', $store.state.locale) }}</a>
-                            <router-link :to="{ path: '/rent-price/' + game.slug}" class="btn--secondery rent-now border-0" v-if="!auth" ><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></router-link>
-                            <router-link to="/login" class="border-0" v-if="!rentExist"><span></span></router-link>
-                            <button class="btn--secondery rent-now border-0"  data-toggle="modal" data-target="#warning" v-else-if="rentLimit <= myLends && rentButton"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></button>
-                            <router-link :to="{ path: '/rent-posted-users/' + game.slug}" class="btn--secondery rent-now border-0" v-else-if="rentButton"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></router-link>
+                            <div class="rent-now">
+                                <router-link :to="{ path: '/rent-price/' + game.slug}" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative border-0" v-if="!auth" >{{ $t('rent_now', $store.state.locale) }} <span></span> <span></span></router-link>
+                                <router-link to="/login" class="border-0" v-if="!rentExist"><span></span></router-link>
+                                <button class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative border-0"  data-toggle="modal" data-target="#warning" v-else-if="rentLimit <= myLends && rentButton">{{ $t('rent_now', $store.state.locale) }} <span></span> <span></span></button>
+                                <router-link :to="{ path: '/rent-posted-users/' + game.slug}" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative border-0" v-else-if="rentButton">{{ $t('rent_now', $store.state.locale) }} <span></span> <span></span></router-link>
+                            </div>
                             <div class="d-flex games-header-section--platforms">
                                 <p style="text-transform: uppercase">{{ $t('platform', $store.state.locale) }}:</p>
                                 <a href="javascript:void(0)" v-for="(platform, index) in game.platforms.data" :key="index"><img :src="platform.url" alt="windows"></a>

@@ -3,13 +3,13 @@
     <!-- Product details -->
     <div class="gamebazar-product-details pb-a-20">
       <div class="container">
-        <a href="#" class="d-flex align-items-center mt-a-6 mb-a-6 svg-secondery-hover">
+        <router-link to="/gamebazar" class="d-flex align-items-center mt-a-6 mb-a-6 svg-secondery-hover">
 
           <svg class="rotate-180" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFFBE7"/>
           </svg>
           <span class="ml-2 opa-7">Back</span>
-        </a>
+        </router-link>
         <div class="row">
           <div class="col-md-6 pr-a-md-5" v-if="sliderSection">
             <div class="gamebazar-product-details__gallery">
@@ -26,7 +26,7 @@
               </div>
               <p><span class="f-s-34 gil-bold text-secondery mb-a-6">{{ post.price }} tk </span><small v-if="post.is_negotiable ==1">Negotiable</small></p>
               <div class=" mt-5">
-                <a class="border-1 bg-secondery-gradient border-secondery-opa-25 primary-text primary-text-hover gil-bold py-2 pl-a-6 pr-a-6 d-inline-block br-4 pointer" @click="showSeller = true">Contact the seller</a>
+                <a class=" btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="showSeller = true">Contact the seller <span></span> <span></span></a>
               </div>
               <div class="row border-b-1 border-white-25 pt-a-6">
                 <div class="col-md-6">

@@ -121,9 +121,11 @@
                         </div>
                            <!-- Place Order button -->
                             <div class="checkout-btn">
-                                <button class="btn--cart-btn w-100 gil-bold" :disabled="isLoading">
+                                <button class="btn--secondery-hover br-4 gil-bold border-0 font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative w-100 gil-bold" :disabled="isLoading">
                                     {{ $t('place_order', $store.state.locale) }}
-                                    <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
+                                    <i v-if="isLoading" class="spinner-border spinner-border-sm"></i>
+                                    <span></span>
+                                    <span></span>
                                 </button>
                             </div>
                         <!-- PLace Order button -->

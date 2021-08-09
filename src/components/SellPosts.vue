@@ -83,12 +83,12 @@
       <!--                    <label class="custom-control-label" for="date_filter">Date (From Today)</label>-->
       <!--                  </div>-->
                         <div class="mb-a-3">
-                          <input type="checkbox" class="custom-control-input" id="new_type_filter"
+                          <input type="radio" name="newold" class="custom-control-input" id="new_type_filter"
                                 @change="sortNewType($event)">
                           <label class="custom-control-label" for="new_type_filter">New Product</label>
                         </div>
                         <div class="mb-a-3">
-                          <input type="checkbox" class="custom-control-input" id="used_type_filter"
+                          <input type="radio" name="newold" class="custom-control-input" id="used_type_filter"
                                 @change="sortUsedType($event)">
                           <label class="custom-control-label" for="used_type_filter">Used Product</label>
                         </div>
@@ -215,10 +215,9 @@
                         </div>
                   </router-link>
               </div>
-
-              <div class="text-center my-5">
+              <!-- <div class="text-center my-5">
                     <a href="#" class="btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">Load more</a>
-                </div>
+                </div> -->
             </div>
             <div class="not-matching" v-if="noPostFound">
               <h2>{{ $t('noting_to_show', $store.state.locale) }}</h2>

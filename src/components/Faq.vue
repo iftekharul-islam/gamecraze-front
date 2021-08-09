@@ -244,7 +244,7 @@
                         <!-- end collapse -->
                         <div class="support-bottom">
                             <p class="mb-0 mr-a-6">{{ $t('question_query', $store.state.locale) }}</p>
-                            <a href="/contacts" class="btn--secondery"><span class="text-uppercase">{{ $t('contact_us', $store.state.locale) }}</span></a>
+                            <a href="/contacts" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('contact_us', $store.state.locale) }} <span></span> <span></span></a>
                         </div>
 
                     </div>

@@ -1,3 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-size: 16px;
+    background: $primary;
+    color: $text-light;
+    padding-top: 80px;
+    @include gil-regular;
+    @include for-max-991 {
+        padding-top: 56px;
+    }
+}
+
+h1,
+h2,
+h3,
+h4 {
+    @include gil-bold;
+}
+
+h5,
+h6 {
+    @include gil-medium;
+}
+
+h1 {
+    font-size: 36px;
+    @include for-min-992 {
+        font-size: 72px;
+    }
+}
+
+h2 {
+    font-size: 28px;
+    font-style: italic;
+    @include for-min-992 {
+        font-size: 40px;
+    }
+}
+
+h3 {
+    font-size: 22px;
+    @include for-min-992 {
+        font-size: 48px;
+    }
+}
+
+h6 {
+    font-size: 20px;
+    @include for-min-992 {
+        font-size: 24px;
+    }
+}
+p {
+    opacity: .95;
+}
+
 // margin top
 // incresing:5px
 .mt-a-1 {
@@ -2557,10 +2618,6 @@ select {
         opacity: 0;
         &:checked {
             &~.checkbox-parents--label {
-                &::after {
-                    // border-color: red;
-                    // background: red;
-                }
                 &::before {
                     border: solid $secondery;
                     border-width: 0 0px 2px 2px;

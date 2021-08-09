@@ -1,6 +1,7 @@
 .c-sliding-pagination {
     &__list {
         display: flex;
+        justify-content: center;
     }
     &__list-element {
         padding: 0;

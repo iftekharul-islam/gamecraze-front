@@ -97,7 +97,7 @@
                                     1000:{items:3, stagePadding:0,},
                                     1400:{items:5, stagePadding:0, center:false,}}">
                     <template slot="prev">
-                      <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center secondery-border br-4 pointer vue-owl-nav-left w-32 h-32">
+                      <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center border-secondery-opa-50 br-4 pointer vue-owl-nav-left w-32 h-32 border-1">
                         <button class="owl-prev z-index-9 h-100 w-100">
                           <span class="prev">
                               <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -109,7 +109,7 @@
                     </template>
 
                     <template slot="next">
-                      <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center secondery-border br-4 pointer vue-owl-nav-right w-32 h-32">
+                      <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center border-secondery-opa-50 border-1 br-4 pointer vue-owl-nav-right w-32 h-32">
                         <button class="owl-next z-index-9 h-100 w-100">
                           <span class="next">
                             <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -184,7 +184,7 @@
                                       1000:{items:3, stagePadding:0,},
                                       1400:{items:5, stagePadding:0, center:false,}}">
                   <template slot="prev">
-                    <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center secondery-border br-4 pointer vue-owl-nav-left w-32 h-32">
+                    <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center border-secondery-opa-50 br-4 pointer vue-owl-nav-left w-32 h-32 border-1">
                       <button class="owl-prev z-index-9 h-100 w-100">
                             <span class="prev">
                                 <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -196,7 +196,7 @@
                   </template>
 
                   <template slot="next">
-                    <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center secondery-border br-4 pointer vue-owl-nav-right w-32 h-32">
+                    <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center border-secondery-opa-50 border-1 br-4 pointer vue-owl-nav-right w-32 h-32">
                       <button class="owl-next z-index-9 h-100 w-100">
                             <span class="next">
                               <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -323,7 +323,7 @@
                                 1000:{items:3, stagePadding:0,},
                                 1400:{items:4, stagePadding:0, center:false,}}">
                   <template slot="prev">
-                    <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center secondery-border br-4 pointer vue-owl-nav-left w-32 h-32">
+                    <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center border-secondery-opa-50 br-4 pointer vue-owl-nav-left w-32 h-32 border-1">
                       <button class="owl-prev z-index-9 h-100 w-100">
                           <span class="prev">
                               <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -335,7 +335,7 @@
                   </template>
 
                   <template slot="next">
-                    <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center secondery-border br-4 pointer vue-owl-nav-right w-32 h-32">
+                    <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center border-secondery-opa-50 border-1 br-4 pointer vue-owl-nav-right w-32 h-32">
                       <button class="owl-next z-index-9 h-100 w-100">
                           <span class="next">
                               <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">

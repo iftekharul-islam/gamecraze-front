@@ -933,8 +933,10 @@
                                                 </div>
                                             </div>
                                             <div class="form-group post-rent--form-group post-rent-btn">
-                                                <button class="btn--secondery w-100 border-0 post-rent--form-group--btn" :disabled="isRentLoading">
-                                                    <span class="mr-2">{{ $t('submit', $store.state.locale) }} <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i></span>
+                                                <button class="btn--secondery-hover br-4 gil-bold font-weight-bold border-0 primary-text pl-a-6 pr-a-6 d-inline-block position-relative post-rent--form-group--btn" :disabled="isRentLoading">
+                                                    <div class="mr-2">{{ $t('submit', $store.state.locale) }} <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i></div>
+                                                    <span></span>
+                                                    <span></span>
                                                 </button>
                                             </div>
 
@@ -1068,8 +1070,10 @@
                                             </div>
                                             <div class="form-group row">
                                             <div class="offset-md-3 col-md-9 col-xl-8 mt-4 post-rent--input">
-                                                    <button class="btn--secondery w-100 border-0" :disabled="$store.state.isProfileUpdating">
-                                                        <span class="mr-2">{{ $t('update_profile', $store.state.locale) }} <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm text-dark"></i>  </span>
+                                                    <button class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative w-100 border-0" :disabled="$store.state.isProfileUpdating">
+                                                        <div class="mr-2">{{ $t('update_profile', $store.state.locale) }} <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm text-dark"></i>  </div>
+                                                        <span></span>
+                                                        <span></span>
                                                     </button>
                                                 </div>
                                             </div>
@@ -1190,7 +1194,7 @@
                                     <!-- refer amount -->
                                     <div class="d-flex flex-column flex-sm-row text-center text-sm-left align-items-center justify-content-between">
                                         <h6 class="mr-4 gray-text">{{ $t('want_to_earn', $store.state.locale) }}</h6>
-                                        <router-link to="/games" class="btn--secondery mr-3"><span style="text-transform: uppercase">{{ $t('rent_games', $store.state.locale) }}</span></router-link>
+                                        <router-link to="/games" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('rent_games', $store.state.locale) }}<span></span> <span></span></router-link>
                                     </div>
                                     <!-- refer history -->
                                     <div class="refer-history">
@@ -1456,7 +1460,7 @@
                                                 <label class="label-padding post-rent--form-group--label mt-0">{{ $t('cover_image', $store.state.locale) }} :</label>
                                                 <div class=" post-rent--form-group--input">
                                                   <div class="custom-file">
-                                                    <a class="btn--secondery" @click="$refs.FileInputNew.click()">Upload image</a>
+                                                    <a class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="$refs.FileInputNew.click()">Upload image <span></span> <span></span></a>
                                                     <input ref="FileInputNew" type="file" style="display: none;" @change="onFileSelect" />
                                                   </div>
                                                 </div>
@@ -1502,8 +1506,10 @@
                                                 </div>
                                             </div>
                                             <div class="form-group post-rent--form-group post-rent-btn">
-                                                <button class="btn--secondery w-100 border-0 post-rent--form-group--btn" :disabled="onSellPostLoading">
-                                                    <span class="mr-2">{{ $t('submit', $store.state.locale) }} <i v-if="onSellPostLoading" class="spinner-border spinner-border-sm"></i></span>
+                                                <button class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative w-100 border-0 post-rent--form-group--btn" :disabled="onSellPostLoading">
+                                                    <div class="mr-2">{{ $t('submit', $store.state.locale) }} <i v-if="onSellPostLoading" class="spinner-border spinner-border-sm"></i></div>
+                                                    <span></span>
+                                                    <span></span>
                                                 </button>
                                             </div>
 

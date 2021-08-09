@@ -58,7 +58,7 @@ import SellPosts from '../components/SellPosts';
 import PostDetails from '../components/PostDetails';
 import SellPost from '../components/SellPostHelp'
 import GamebazarHome from '../components/GamebazarHome';
-import CreateSellPost from '../components/CreateSellPost';
+import GamebazarAd from '../components/GamebazarAd';
 
 let router = new Router({
     mode: 'history',
@@ -493,9 +493,9 @@ let router = new Router({
             }
         },
         {
-            path: '/create-sell-post',
-            name: 'create-sell-post',
-            component: CreateSellPost,
+            path: '/create-ad',
+            name: 'GamebazarAd',
+            component: GamebazarAd,
             meta: {
                 requiresAuth: true
             }

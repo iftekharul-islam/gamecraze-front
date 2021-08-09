@@ -78,7 +78,7 @@
                       </span>
                     </p>
                     <p class="d-flex align-items-center text-success-ball" v-else>
-                      {{ $t('day', $store.state.locale) }}
+                      {{ $t('not_available', $store.state.locale) }}
                     </p>
                   </div>
                 </div>

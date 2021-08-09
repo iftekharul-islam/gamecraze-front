@@ -166,7 +166,7 @@
                         </div>
                         <div class="group mb-a-6">
                           <label class="mb-3 w-100">{{ $t('upload_screenshots', $store.state.locale) }}</label>
-                             <UploadImages class="w-100 p-0 bg-transparent border-0" :max="4" maxError="Max image upload limit is 4" @change.prevent="uploadScreenshots"/>
+                             <UploadImages class="w-100 p-0 bg-transparent border-0" :max="4" maxError="Max image upload limit is 4" @change="uploadScreenshots"/>
                         </div>
                     </div>
 

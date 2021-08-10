@@ -17,9 +17,9 @@
                     :steps="steps"
                     :onNext="nextClicked" 
                     :onBack="backClicked"
-                    previousStepLabel="Previous"
-                    nextStepLabel="Continue"
-                    finalStepLabel="Post">
+                    :previousStepLabel="$t('previous', $store.state.locale)"
+                    :nextStepLabel="$t('continue', $store.state.locale)"
+                    :finalStepLabel="$t('post', $store.state.locale)">
                     <div slot="page1" >
                       <ValidationObserver ref="sellForm1">
                         <form id="sellForm1">
@@ -99,7 +99,8 @@
                           <div class="group mb-a-6">
                             <label class="w-100">{{ $t('is_warranty_available', $store.state.locale) }}</label>
                             <ValidationProvider name="warranty" rules="required" v-slot="{ errors }">
-                              <select name="" id="warranty" @change="warrantyCheck()" class=" px-3 bg-step-form-input h-40 border-1 triangle-select-arrow no-default-arrow border-secondery-opa-25 text-white no-focus w-100 br-4" v-model="warranty_availability">
+                              <select id="warranty" @change="warrantyCheck()" class=" px-3 bg-step-form-input h-40 border-1 triangle-select-arrow no-default-arrow border-secondery-opa-25 text-white no-focus w-100 br-4" v-model="warranty_availability">
+                                <option value="">Select condition</option>
                                 <option value="1">Yes</option>
                                 <option value="2">No</option>
                               </select>

@@ -86,7 +86,7 @@
                   <div class="mb-a-6">
                     <p class="text-white gil-bold mb-2">{{ $t('availability', $store.state.locale) }}</p>
                     <p class="before-ball d-flex align-items-center text-success-ball" v-if="post.is_sold == 1">{{ $t('in_stock', $store.state.locale) }}</p>
-                    <p class="before-danger-ball d-flex align-items-center text-danger-ball" v-else>{{ $t('in_stock', $store.state.locale) }}</p>
+                    <p class="before-danger-ball d-flex align-items-center text-danger-ball" v-else>{{ $t('sold_out', $store.state.locale) }}</p>
                   </div>
               </div>
               </div>

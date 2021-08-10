@@ -508,5 +508,6 @@
   "crop" : "crop",
   "in_stock" : "In stock",
   "stock_out" : "Sold out",
-  "not_available" : "Not Available"
+  "not_available" : "Not Available",
+  "sold_out" : "Sold out"
 }

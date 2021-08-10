@@ -56,7 +56,6 @@
                                   :suggestions="filteredOptions"
                                   @focus="focusMe"
                                   @keyup.enter="searchGame"
-                                  @click="clickHandler"
                                   @input="onInputChange"
                                   @selected="onSelected"
                                   :get-suggestion-value="getSuggestionValue"
@@ -382,9 +381,6 @@
           onLogout() {
               this.$store.dispatch('logout');
           },
-          clickHandler(item) {
-            // event fired when clicking on the input
-          },
           onSelected(item) {
             this.selected = item.item.game.data;
             this.query = this.selected.name;
@@ -401,7 +397,7 @@
             return suggestion.item.game.data.name;
           },
           focusMe(e) {
-            // console.log(e) // FocusEvent
+            console.log(e) // FocusEvent
           }, 
           // totalCartItems(){
           //   let cartItems = localStorage.getItem('cartItems');

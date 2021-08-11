@@ -1817,6 +1817,10 @@ p {
   background: #0B0F18;
 }
 
+.bg-vie-all-gamebazar {
+  background: #313338;
+}
+
 .bg-game-details {
   background: #141A27;
 }
@@ -2147,6 +2151,10 @@ html {
 
 .h-70 {
   height: 70px !important;
+}
+
+.h-75 {
+  height: 75px !important;
 }
 
 .h-80 {
@@ -12580,6 +12588,94 @@ html {
 
 .new-post .owl-dots {
   display: none !important;
+}
+
+.gamebazar__search {
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .gamebazar__search {
+    width: 50%;
+  }
+}
+
+.gamebazar__search .autosuggest__results-container {
+  position: absolute;
+  z-index: 9;
+  width: calc(100% + 48px);
+}
+
+.gamebazar__search .autosuggest__results-container ul {
+  width: 100%;
+  margin-left: 0;
+  border-color: #484B52;
+  background: #484B52;
+  border-radius: 4px;
+  height: 445px;
+}
+
+.gamebazar__search .autosuggest__results-container ul li {
+  border: 0;
+}
+
+.gamebazar__search .autosuggest__results-container ul li:hover span {
+  color: #000 !important;
+}
+
+.gamebazar__search .autosuggest__results-container ul li .bg-vie-all-gamebazar {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.gamebazar__search .autosuggest__results-container ul li:not(:first-child) .bg-vie-all-gamebazar {
+  display: none;
+}
+
+.gamebazar__search .autosuggest__results-container ul::-webkit-scrollbar-track {
+  background-color: #8D8D8D !important;
+  border-radius: 4px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.gamebazar__search .autosuggest__results-container ul::-webkit-scrollbar {
+  width: 10px;
+  background: #484B52;
+}
+
+.gamebazar__search .autosuggest__results-container ul::-webkit-scrollbar-thumb {
+  border-left: 1px solid #8D8D8D;
+  border-right: 1px solid #8D8D8D !important;
+  border-right: 0;
+  background: #484B52;
+  border-radius: 30px;
+}
+
+.gamebazar__search #autosuggest > div:first-of-type {
+  -webkit-transform: initial;
+          transform: initial;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  border: 1px solid #484B52;
+}
+
+.gamebazar__search #autosuggest input {
+  padding: 0;
+  height: 100%;
+  border: 0;
+  background: #484B52;
+  color: #fff;
+  padding-left: 16px;
+}
+
+.gamebazar__search #autosuggest input:focus {
+  outline: none !important;
+}
+
+.search-icon {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
 
 .before-ball::before {

@@ -6,37 +6,45 @@
         <div class="row">
            <div class="col-md-6 ml-auto">
               <div class="gamebazar-search mb-a-6">
-                <div class="d-flex justify-content-end">
-                  <div class="search-input-design">
-                    <vue-autosuggest
-                        v-model="query"
-                        :suggestions="filteredOptions"
-                        @focus="focusMe"
-                        @keyup.enter="searchProduct"
-                        @click="clickHandler"
-                        @input="onInputChange"
-                        @selected="onSelected"
-                        :get-suggestion-value="getSuggestionValue"
-                        :input-props="{id:'autosuggest__input',class:'auto-suggest-menu'}">
-                      <div  slot-scope="{ suggestion }">
-                        <span>{{ suggestion.item.name }}</span>
-                      </div>
-                    </vue-autosuggest>
-                    <button class="btn gamehub-search-btn" @click="searchProduct()">
-                      <i class="fa fa-search gamehub-search-btn--icon"></i>
-                    </button>
-                  </div>
-                    <div class="search-append  d-flex w-75 align-items-center position-relative border-1 black-border br-4 overflow-hidden">
-                        <input type="search" class="h-100 br-4 bg-white-25 border-0 text-white opa-8" placeholder="Search here ....">
-                        <div class="search-icon pointer position-absolute right-0 top-0 px-3 h-100 d-flex align-items-center justify-content-center bg-secondery-gradient">
-                            <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M6.84199 13.9454C8.42078 13.9454 9.87214 13.392 11.0301 12.4742L14.7898 16.3057L15.9991 15.0733L12.2395 11.2418C13.1409 10.0608 13.684 8.58168 13.684 6.97272C13.684 3.12814 10.6145 0 6.84199 0C3.06949 0 0 3.12814 0 6.97272C0 10.8173 3.06949 13.9454 6.84199 13.9454ZM6.84199 1.74318C9.67201 1.74318 11.9735 4.08863 11.9735 6.97272C11.9735 9.85681 9.67201 12.2023 6.84199 12.2023C4.01197 12.2023 1.7105 9.85681 1.7105 6.97272C1.7105 4.08863 4.01197 1.74318 6.84199 1.74318Z" fill="black"/>
-                            </svg>
+                        <div class="d-flex justify-content-end">
+                          <div class="gamebazar__search position-relative">
+                            <vue-autosuggest
+                                v-model="query"
+                                :suggestions="filteredOptions"
+                                @focus="focusMe"
+                                @keyup.enter="searchProduct"
+                                @click="clickHandler"
+                                @input="onInputChange"
+                                @selected="onSelected"
+                                :get-suggestion-value="getSuggestionValue"
+                                :input-props="{id:'autosuggest__input',class:'auto-suggest-menu'}">
+                              <div  slot-scope="{ suggestion }" class="w-100">
+                                <div class="d-flex align-items-center justify-content-between">
+                                  
+                                   <div class="d-flex align-items-center">
+                                      <div class="w-100px h-75 overflow-hidden br-4">
+                                         <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2020/11/PS5-PS4-Game-Forced-Install-Problem.jpg" class="img-fluid  h-100" alt="Gamehub Logo logo">
+                                      </div>
+                                      <div class="ml-3">
+                                        <span class="d-block gil-bold mb-2">{{ suggestion.item.name }}</span>
+                                        <span>Used 1.3 Years</span>
+                                      </div>
+                                   </div>
+                                   <span class="text-secondery gil-bold font-weight-bold">600 tk</span>
+                                </div>
+                                 <div class="bg-vie-all-gamebazar position-absolute bottom-0 left-0 w-100 py-2 text-center">
+                                   <a href="/sell-posts" class="gil-bold text-secondery">View all</a>
+                                </div>
+                              </div>
+                            </vue-autosuggest>
+                          </div>
+                          <div class="search-icon pointer  px-3 d-flex align-items-center justify-content-center bg-secondery-gradient">
+                              <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                  <path d="M6.84199 13.9454C8.42078 13.9454 9.87214 13.392 11.0301 12.4742L14.7898 16.3057L15.9991 15.0733L12.2395 11.2418C13.1409 10.0608 13.684 8.58168 13.684 6.97272C13.684 3.12814 10.6145 0 6.84199 0C3.06949 0 0 3.12814 0 6.97272C0 10.8173 3.06949 13.9454 6.84199 13.9454ZM6.84199 1.74318C9.67201 1.74318 11.9735 4.08863 11.9735 6.97272C11.9735 9.85681 9.67201 12.2023 6.84199 12.2023C4.01197 12.2023 1.7105 9.85681 1.7105 6.97272C1.7105 4.08863 4.01197 1.74318 6.84199 1.74318Z" fill="black"/>
+                              </svg>
+                          </div>
                         </div>
                     </div>
-                    
-                </div>
-              </div>
            </div>
         </div>
         <div class="row">

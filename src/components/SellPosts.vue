@@ -22,6 +22,9 @@
                         <span>{{ suggestion.item.name }}</span>
                       </div>
                     </vue-autosuggest>
+                    <button class="btn gamehub-search-btn" @click="searchProduct()">
+                      <i class="fa fa-search gamehub-search-btn--icon"></i>
+                    </button>
                   </div>
                     <div class="search-append  d-flex w-75 align-items-center position-relative border-1 black-border br-4 overflow-hidden">
                         <input type="search" class="h-100 br-4 bg-white-25 border-0 text-white opa-8" placeholder="Search here ....">
@@ -129,7 +132,9 @@
                 <span class="tag-span" v-for="(categoryItem, categoryIndex) in checkedCategories"
                     :key="categoryItem + categoryIndex">{{ categoryItem }} <div
                   @click="removeCategoryFilter(categoryItem)" class="remove-icon"><i
-                  class="fas fa-times"></i></div></span>
+                  class="fas fa-times"></i></div>
+                </span>
+                <span v-if="$route.query.search">{{$route.query.search}} <div @click="removeSearchKey()" class="remove-icon"><i class="fas fa-times"></i></div></span>
               </div>
                  <div class="position-relative ml-md-auto w-full w-md-initial">
                     <div class="d-flex flex-row-reverse flex-md-row align-items-center">
@@ -327,6 +332,7 @@ export default {
   components: {SlidingPagination, carousel},
   data() {
     return {
+      searchKey: '',
       products: [],
       query: '',
       showDrawer: false,
@@ -364,11 +370,24 @@ export default {
     }
   },
   methods: {
+    removeSearchKey() {
+      let query = Object.assign({}, this.$route.query);
+      delete query.search;
+      this.$router.replace({ query });
+      this.getSellPosts();
+    },
     focusMe(e) {
       console.log(e)
     },
     searchProduct() {
-
+      if(this.query !== '') {
+        this.$router.push({name: 'sell-post', query: {categories: this.$route.query.categories, search: this.query}})
+        this.getSellPosts();
+      }
+      else {
+        this.$router.push({name: 'sell-post', query: {categories: this.$route.query.categories}})
+        this.getSellPosts();
+      }
     },
     clickHandler() {
 
@@ -435,10 +454,12 @@ export default {
       this.getSellPosts();
     },
     sortNewType(event) {
+      this.sortUsed = '';
       this.sortNew = event.target.checked === true ? 1 : '';
       this.getSellPosts();
     },
     sortUsedType(event) {
+      this.sortNew = '';
       this.sortUsed = event.target.checked === true ? 1 : '';
       this.getSellPosts();
     },
@@ -477,8 +498,15 @@ export default {
 
     },
     getSellPosts(page_no = '') {
+      if (this.$route.query.search) {
+        this.searchKey = this.$route.query.search
+      }
+      else {
+        this.searchKey = '';
+        this.query = '';
+      }
       this.noPostFound = false;
-      this.$api.get('sell-posts?include=subcategory&page=' + page_no + '&subcategory=' + this.queryCategories + '&ascPrice=' + this.ascByPrice + '&descPrice=' + this.descByPrice + '&ascDate=' + this.ascByDate + '&descDate=' + this.descByDate + '&sortNew=' + this.sortNew + '&sortUsed=' + this.sortUsed + '&minPrice=' + this.minValue + '&maxPrice=' + this.maxValue).then(response => {
+      this.$api.get('sell-posts?include=subcategory&page=' + page_no + '&subcategory=' + this.queryCategories + '&ascPrice=' + this.ascByPrice + '&descPrice=' + this.descByPrice + '&ascDate=' + this.ascByDate + '&descDate=' + this.descByDate + '&sortNew=' + this.sortNew + '&sortUsed=' + this.sortUsed + '&minPrice=' + this.minValue + '&maxPrice=' + this.maxValue + '&search=' + this.searchKey).then(response => {
         this.posts = response.data.data;
         this.allPosts = this.posts;
         this.pagination = response.data.meta.pagination;
@@ -602,11 +630,12 @@ export default {
       if (this.checkedCategories.length) {
         this.$router.push({
           query: Object.assign({}, this.$route.query, {
-            categories: this.checkedCategories.join()
+            categories: this.checkedCategories.join(),
+            search: this.$route.query.search
           })
         })
       } else {
-        this.$router.push({query: {}});
+        this.$router.push({query: {search: this.$route.query.search}})
       }
       this.fetchFilteredPosts();
     },
@@ -634,6 +663,9 @@ export default {
       this.products = response.data.data;
       console.log(this.products)
     });
+    this.$root.$on('searchEvent', () => {
+      this.getSellPosts();
+    })
   },
   mounted() {
     // calc per step value

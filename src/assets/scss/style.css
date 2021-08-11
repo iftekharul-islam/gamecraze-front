@@ -12187,6 +12187,10 @@ html {
           transform: translateX(0);
   -webkit-transition: all .3s ease-in;
   transition: all .3s ease-in;
+  top: 70px;
+  bottom: 30px;
+  overflow: auto;
+  max-height: 100%;
 }
 
 @media (max-width: 768px) {
@@ -12602,7 +12606,7 @@ html {
 
 .gamebazar__search .autosuggest__results-container {
   position: absolute;
-  z-index: 9;
+  z-index: 19;
   width: calc(100% + 48px);
 }
 
@@ -12613,6 +12617,18 @@ html {
   background: #484B52;
   border-radius: 4px;
   height: 445px;
+}
+
+@media (max-width: 768px) {
+  .gamebazar__search .autosuggest__results-container ul {
+    height: 350px;
+  }
+}
+
+@media (max-width: 575px) {
+  .gamebazar__search .autosuggest__results-container ul {
+    height: 300px;
+  }
 }
 
 .gamebazar__search .autosuggest__results-container ul li {

@@ -267,7 +267,7 @@
         }
         .autosuggest__results-container {
             position: absolute;
-            z-index: 9;
+            z-index: 19;
             width: calc(100% + 48px);
             ul {
                 width: 100%;
@@ -276,6 +276,12 @@
                 background: $gamebazar-search-input;
                 border-radius: 4px;
                 height: 445px;
+                @include for-max-768 {
+                    height: 350px;
+                }
+                 @include for-max-575 {
+                    height: 300px;
+                }
                 li {
                     border: 0;
                     &:hover {

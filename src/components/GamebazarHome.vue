@@ -9,7 +9,7 @@
                             <router-link class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative" to="/create-sell-post">{{ $t('sell_post', $store.state.locale) }}</router-link>
                         </div>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 mt-3 mt-md-0">
                         <div class="gamebazar-banner__content d-grid grid-gap-16 justify-content-md-end">
                             <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4">
                               <div class=" h-100 br-4 overflow-fidden">
@@ -278,8 +278,8 @@
                             <h1 class="f-s-28 f-s-md-48 max-600 mb-a-5">
                               {{ $t('game_bazar_title_4', $store.state.locale) }}
                                 <span class="text-secondery">{{ $t('game_bazar_title_5', $store.state.locale) }}</span>
-                              {{ $t('then', $store.state.locale) }} <span class="text-secondery">{{ $t('advertise', $store.state.locale) }}</span>
-                              {{ $t('game_bazar_title_6', $store.state.locale) }}
+                            <span class="text-secondery">  {{ $t('game_bazar_title_6', $store.state.locale) }}</span>
+                              <!-- {{ $t('game_bazar_title_6', $store.state.locale) }} -->
                             </h1>
                             <p class="max-500 opa-8 text-white">{{ $t('game_bazar_title_3', $store.state.locale) }}</p>
                                 <router-link to="/create-sell-post" class=" btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('create_ads', $store.state.locale) }} <span></span> <span></span></router-link>

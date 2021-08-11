@@ -198,7 +198,7 @@
                  </div>
             </div>
             <div class="games-categories-section--games" v-if="posts.length">
-              <div class="d-grid grid-sm-cols-2 grid-md-cols-3 grid-lg-cols-4 grid-gap-16 grid-gap-md-30 gamebazar-post">
+              <div class="d-grid grid-cols-2 grid-md-cols-3 grid-lg-cols-4 grid-gap-16 grid-gap-md-30 gamebazar-post">
                   <router-link v-for="(item, index) in posts" :key="index" :to="{ path: '/sell-post/' + item.id + '/' + item.url_name }"
                                class="">
                     <div class="product-img position-relative br-4 overflow-hidden">

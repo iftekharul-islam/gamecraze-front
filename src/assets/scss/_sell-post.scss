@@ -303,6 +303,10 @@
     &.filterShow {
         transform: translateX(0);
         transition: all .3s ease-in;
+        top: 70px;
+        bottom: 30px;
+        overflow: auto;
+        max-height: 100%;
     }
 }
 .sorting-mobile {

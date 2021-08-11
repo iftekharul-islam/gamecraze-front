@@ -23,22 +23,40 @@
                                   
                                    <div class="d-flex align-items-center">
                                       <div class="w-100px h-75 overflow-hidden br-4">
-                                         <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2020/11/PS5-PS4-Game-Forced-Install-Problem.jpg" class="img-fluid  h-100" alt="Gamehub Logo logo">
+                                         <img :src="suggestion.item.cover.url" class="img-fluid  h-100" alt="Gamehub Logo logo" v-if="suggestion.item.cover != null">
+                                         <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2020/11/PS5-PS4-Game-Forced-Install-Problem.jpg" class="img-fluid  h-100" alt="Gamehub Logo logo" v-else>
                                       </div>
                                       <div class="ml-3">
                                         <span class="d-block gil-bold mb-2">{{ suggestion.item.name }}</span>
-                                        <span>Used 1.3 Years</span>
+                                        <span v-if="suggestion.item.product_type === 1">
+                                          {{ $t('new', $store.state.locale) }}
+                                        </span>
+                                        <span v-if="suggestion.item.product_type === 2">
+                                          {{ $t('used', $store.state.locale) }}&nbsp;
+                                            <span v-if="suggestion.item.used_year != null">
+                                                  {{ suggestion.item.used_year }}&nbsp;
+                                                  {{ $t('year', $store.state.locale) }}&nbsp;
+                                            </span>
+                                            <span v-if="suggestion.item.used_month != null">
+                                                  {{ suggestion.item.used_month }}&nbsp;
+                                                  {{ $t('month', $store.state.locale) }}&nbsp;
+                                            </span>
+                                            <span v-if="suggestion.item.used_day != null">
+                                                  {{ suggestion.item.used_day }}&nbsp;
+                                                  {{ $t('day', $store.state.locale) }}
+                                            </span>
+                                        </span>
                                       </div>
                                    </div>
-                                   <span class="text-secondery gil-bold font-weight-bold">600 tk</span>
+                                   <span class="text-secondery gil-bold font-weight-bold">৳ {{ suggestion.item.price }}</span>
                                 </div>
-                                 <div class="bg-vie-all-gamebazar position-absolute bottom-0 left-0 w-100 py-2 text-center">
-                                   <a href="/sell-posts" class="gil-bold text-secondery">View all</a>
-                                </div>
+<!--                                 <div class="bg-vie-all-gamebazar position-absolute bottom-0 left-0 w-100 py-2 text-center">-->
+<!--                                   <a href="/sell-posts" class="gil-bold text-secondery">View all</a>-->
+<!--                                </div>-->
                               </div>
                             </vue-autosuggest>
                           </div>
-                          <div class="search-icon pointer  px-3 d-flex align-items-center justify-content-center bg-secondery-gradient">
+                          <div class="search-icon pointer  px-3 d-flex align-items-center justify-content-center bg-secondery-gradient" @change="searchProduct()">
                               <svg width="16" height="17" viewBox="0 0 16 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                                   <path d="M6.84199 13.9454C8.42078 13.9454 9.87214 13.392 11.0301 12.4742L14.7898 16.3057L15.9991 15.0733L12.2395 11.2418C13.1409 10.0608 13.684 8.58168 13.684 6.97272C13.684 3.12814 10.6145 0 6.84199 0C3.06949 0 0 3.12814 0 6.97272C0 10.8173 3.06949 13.9454 6.84199 13.9454ZM6.84199 1.74318C9.67201 1.74318 11.9735 4.08863 11.9735 6.97272C11.9735 9.85681 9.67201 12.2023 6.84199 12.2023C4.01197 12.2023 1.7105 9.85681 1.7105 6.97272C1.7105 4.08863 4.01197 1.74318 6.84199 1.74318Z" fill="black"/>
                               </svg>
@@ -485,7 +503,6 @@ export default {
       if (index > -1) {
         this.checkedCategories.splice(index, 1);
       }
-      console.log(this.checkedCategories)
     },
     changeCheckedCategories(value) {
       const index = this.checkedCategories.indexOf(value);
@@ -626,7 +643,6 @@ export default {
       return [
         {
           data: this.products.filter(option => {
-            console.log(option.name)
             return option.name.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
           })
         }
@@ -669,9 +685,8 @@ export default {
     });
     this.$api.get('all-sell-post').then(response => {
       this.products = response.data.data;
-      console.log(this.products)
     });
-    this.$root.$on('searchEvent', () => {
+    this.$root.$on('searchProductEvent', () => {
       this.getSellPosts();
     })
   },

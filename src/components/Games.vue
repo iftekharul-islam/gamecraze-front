@@ -96,7 +96,6 @@
 </template>
 
 <script>
-    import StarRating from 'vue-star-rating'
     export default {
         data() {
             return {
@@ -117,9 +116,6 @@
                 isHidden: false,
                 noGameFound: false
             }
-        },
-        components: {
-            StarRating
         },
       methods: {
         removeSearchKey() {

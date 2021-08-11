@@ -1765,7 +1765,9 @@ p {
 .primary-bg {
     background: $primary;
 }
-
+.bg-vie-all-gamebazar {
+    background: $gamebazar-view-all;
+}
 .bg-game-details {
     background: $game-details;
 }
@@ -2080,7 +2082,9 @@ html {
 .h-70 {
     height: 70px !important;
 }
-
+.h-75 {
+    height: 75px !important;
+}
 .h-80 {
     height: 80px !important;
 }

@@ -7,6 +7,22 @@
            <div class="col-md-6 ml-auto">
               <div class="gamebazar-search mb-a-6">
                 <div class="d-flex justify-content-end">
+                  <div class="search-input-design">
+                    <vue-autosuggest
+                        v-model="query"
+                        :suggestions="filteredOptions"
+                        @focus="focusMe"
+                        @keyup.enter="searchProduct"
+                        @click="clickHandler"
+                        @input="onInputChange"
+                        @selected="onSelected"
+                        :get-suggestion-value="getSuggestionValue"
+                        :input-props="{id:'autosuggest__input',class:'auto-suggest-menu'}">
+                      <div  slot-scope="{ suggestion }">
+                        <span>{{ suggestion.item.name }}</span>
+                      </div>
+                    </vue-autosuggest>
+                  </div>
                     <div class="search-append  d-flex w-75 align-items-center position-relative border-1 black-border br-4 overflow-hidden">
                         <input type="search" class="h-100 br-4 bg-white-25 border-0 text-white opa-8" placeholder="Search here ....">
                         <div class="search-icon pointer position-absolute right-0 top-0 px-3 h-100 d-flex align-items-center justify-content-center bg-secondery-gradient">
@@ -311,7 +327,9 @@ export default {
   components: {SlidingPagination, carousel},
   data() {
     return {
-       showDrawer: false,
+      products: [],
+      query: '',
+      showDrawer: false,
       loadedPopular: false,
       populars: [],
       min: 0,
@@ -346,6 +364,28 @@ export default {
     }
   },
   methods: {
+    focusMe(e) {
+      console.log(e)
+    },
+    searchProduct() {
+
+    },
+    clickHandler() {
+
+    },
+    onInputChange(text) {
+      // event fired when the input changes
+      console.log(text)
+    },
+    onSelected(item) {
+      console.log(item);
+      this.selected = item.item;
+      this.query = this.selected.name;
+      this.$router.push('/sell-post/' + this.selected.id + '/' + this.selected.url_name);
+    },
+    getSuggestionValue(suggestion) {
+      return suggestion.name;
+    },
     show(e) {
       this.showDrawer = !this.showDrawer;
     },
@@ -545,6 +585,18 @@ export default {
       this.setTrackHightlight()
     }
   },
+  computed: {
+    filteredOptions() {
+      return [
+        {
+          data: this.products.filter(option => {
+            console.log(option.name)
+            return option.name.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
+          })
+        }
+      ];
+    },
+  },
   watch: {
     checkedCategories: function () {
       if (this.checkedCategories.length) {
@@ -577,6 +629,10 @@ export default {
       if (this.populars.length > 0) {
         this.loadedPopular = true
       }
+    });
+    this.$api.get('all-sell-post').then(response => {
+      this.products = response.data.data;
+      console.log(this.products)
     });
   },
   mounted() {

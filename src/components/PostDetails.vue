@@ -26,7 +26,7 @@
               </div>
               <p><span class="f-s-34 gil-bold text-secondery mb-a-6">{{ post.price }} tk </span><small v-if="post.is_negotiable ==1">Negotiable</small></p>
               <div class=" mt-5">
-                <a class=" btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="showSeller = true">Contact the seller <span></span> <span></span></a>
+                <a class=" btn--secondery-hover br-4 gil-bold font-weight-bold primary-text-imp pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="showSeller = true">Contact the seller <span></span> <span></span></a>
               </div>
               <div class="row border-b-1 border-white-25 pt-a-6">
                 <div class="col-md-6">
@@ -209,7 +209,7 @@
         </div>
     <div v-if="showSeller && post.user != null">
       <transition name="modal">
-        <div class="modal-mask order-details-extend-modal position-fixed top-0 left-0 h-100 w-full d-flex align-items-center justify-content-center z-index-9">
+        <div class="modal-mask order-details-extend-modal position-fixed top-0 left-0 h-100 w-full d-flex align-items-center justify-content-center z-index-99">
           <div class="modal-wrapper">
             <div class="modal-dialog modal-dialog-centered w-328" role="document">
               <div class="modal-content bg-game-details border-1 border-secondery-opa-50 p-a-4 br-0">

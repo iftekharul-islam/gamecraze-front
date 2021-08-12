@@ -1,7 +1,112 @@
 <template>
     <div>
         <!-- footer -->
-        <section class="copyright-section">
+        <footer class="footer-section">
+             <div class="footer-section--content">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-11 ml-auto">
+                            <!-- <div class="footer-top">
+                            <a href="/" class="footer-logo"><img src="../assets/img/logo/gamehublogo.svg" alt="logo"></a>
+                            <div class="footer-top--right">
+                            </div>
+                        </div> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-middle">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-11 ml-auto">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="footer-menu-content mb-5 mb-sm-0">
+                                        <div class="footer-top mb-3 mb-sm-5">
+                                            <a href="/" class="footer-logo"><img src="../../assets/img/logo/gamehublogo.svg" alt="logo"></a>
+                                            <div class="footer-top--right">
+                                            </div>
+                                        </div>
+                                        <p class="footer-menu-content--about-gamehub">
+                                            {{ $t('gamehub_title', $store.state.locale) }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-md-3">
+                                    <div class="footer-menu-content mb-5 mb-sm-0">
+                                        <div class="footer-menu-content--address">
+                                            <p class="footer-menu-content--address--text">{{ $t('email_us', $store.state.locale) }}</p>
+                                            <p class="footer-menu-content--address--text"><a href="mailto:contact@augnitive.com">contact@augnitive.com</a></p>
+                                        </div>
+                                        <div class="footer-menu-content--address">
+                                            <p class="footer-menu-content--address--text">{{ $t('cell_number', $store.state.locale) }}</p>
+                                            <p class="footer-menu-content--address--text"><a href="tel:+8801886-614533">01886-614533</a></p>
+                                        </div>
+                                        <div class="footer-menu-content--address">
+                                            <p class="footer-menu-content--address--text">{{ $t('office', $store.state.locale) }}</p>
+                                            <p class="footer-menu-content--address--text">House: 941, Road: 14, Avenue: 2,
+                                                Mirpur DOHS, Dhaka 1216</p>
+                                        </div>
+                                    </div>
+                                </div>
+                        <div class="col-6 col-md-3">
+                            <div class="footer-menu-content">
+                                <ul>
+                                    <li><router-link to="/about-us">{{ $t('about_gamehub', $store.state.locale) }}</router-link></li>
+                                    <li><router-link to="/profile">{{ $t('rent_games', $store.state.locale) }}</router-link></li>
+                                    <li><router-link to="/games">{{ $t('lend_games', $store.state.locale) }}</router-link></li>
+                                    <li><router-link to="/terms">{{ $t('terms_&_condition', $store.state.locale) }}</router-link></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <div class="footer-menu-content" v-if="platforms">
+                                <ul>
+                                    <li>
+                                        <router-link to="/sponsors">{{ $t('ask_for_sponsorship', $store.state.locale) }}</router-link>
+                                    </li>
+                                    <li>
+                                        <router-link to="/contacts">{{ $t('contact_us', $store.state.locale) }}</router-link>
+                                    </li>
+                                    <li>
+                                        <router-link to="/frequently-asked-questions">{{ $t('faq', $store.state.locale) }}</router-link>
+                                    </li>
+                                    <li>
+                                        <router-link to="/news">{{ $t('news_&_blog', $store.state.locale) }}</router-link>
+                                    </li>
+                                    <li>
+                                        <router-link to="/privacy">{{ $t('privacy_policy', $store.state.locale) }}</router-link>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-section--content">
+                <div class="container">
+                     <div class="row">
+                         <div class="col-md-11 ml-auto">
+                             <div class="footer-bottom">
+                                <p>©2021 Game Hub</p>
+                                   <p>Powered By: <a href="https://augnitive.com/?utm_source=GameHub&utm_medium=GH%20Footer&utm_campaign=GH%20Traffic" target="_blank">Augnitive</a></p>
+                                <div class="footer-bottom--social">
+                                    <a href="https://www.facebook.com/gamehub.bangladesh" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                    <a href="https://twitter.com/BdGamehub" target="_blank"><i class="fab fa-twitter"></i></a>
+                                    <a href="https://www.instagram.com/gamehub.bd" target="_blank"><i class="fab fa-instagram"></i></a>
+                                    <a href="https://www.youtube.com/channel/UCEtVjE3POZd-DKXpjpjJ53g" target="_blank"><i class="fab fa-youtube"></i></a>
+                                </div>
+                            </div>
+                         </div>
+                     </div>
+                </div>
+            </div>
+        </footer>
+        <!-- footer -->
+        <!-- <section class="copyright-section">
             <div class="container">
                 <div class="row">
                     <div class="col-md-10 mx-auto">
@@ -18,72 +123,8 @@
                     </div>
                 </div>
             </div>
-        </section>
-<!--        <div class="border w-100 rented-brdr"></div>-->
-<!--        <section class="more-rented sign-in-bg">-->
-<!--            <div class="container-fluid rented-menu-width mt-3">-->
-<!--                <div class="footer-menu">-->
-<!--                    <div class="menu-1">-->
-<!--                        <ul class="rented-menu-part-1">-->
-<!--                            <li class="">-->
-<!--                                <router-link to="/">Home</router-link>-->
-<!--                            </li>-->
-<!--                            <li class="">-->
-<!--                                <router-link to="/games">Games</router-link>-->
-<!--                            </li>-->
-<!--                            <li class="">-->
-<!--                                <router-link to="">Supports</router-link>-->
-<!--                            </li>-->
-<!--                            <li class="">-->
-<!--                                <router-link to="/contacts">Contact us</router-link>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                    <div class="menu-2">-->
-<!--                        <ul class="rented-menu-part-2">-->
-<!--                            <li class="">-->
-<!--                                <a class="" href="#">Game shops</a>-->
-<!--                            </li>-->
-<!--                            <li class="">-->
-<!--                                <a class="" href="#">Top buyer/sellers</a>-->
-<!--                            </li>-->
-<!--                            <li class="">-->
-<!--                                <a class="" href="#"> Trailer/Gameplay/Walkthrough(YouTube/Twitch)</a>-->
-<!--                            </li>-->
-<!--                            <li class="">-->
-<!--                                <a class="" href="#">Latest News</a>-->
-<!--                            </li>-->
-<!--                            <li class="">-->
-<!--                                <a class="" href="#">Supports</a>-->
-<!--                            </li>-->
-<!--                        </ul>-->
-<!--                    </div>-->
-<!--                    <div class="contact">-->
-<!--                        <div class="social">-->
-<!--                            <h6>Follow Us :</h6>-->
-<!--                            <div class="Social-media">-->
-<!--                                <a href="#"><i class="fab fa-facebook"></i></a>-->
-<!--                                <a href="#"><i class="fab fa-twitter"></i></a>-->
-<!--                                <a href="#"><i class="fab fa-youtube"></i></a>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                        <div class="contact-us">-->
-<!--                            <h6>Contact Us :</h6>-->
-<!--                            <address>-->
-<!--                                Cell : +8801700000000 <br>-->
-<!--                                e-mail : contact@gamehub.com.bd-->
-<!--                            </address>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </section>-->
-<!--        &lt;!&ndash; footer &ndash;&gt;-->
-<!--        <footer class="">-->
-<!--            <div class="container-fluid footer-width">-->
-<!--                <p>&copy; 2020 @ Game Hub <span></span> Developed by: Augnitive</p>-->
-<!--            </div>-->
-<!--        </footer>-->
+        </section> -->
+
     </div>
 </template>
 <script>

@@ -509,5 +509,19 @@
   "in_stock" : "In stock",
   "stock_out" : "Sold out",
   "not_available" : "Not Available",
-  "sold_out" : "Sold out"
+  "sold_out" : "Sold out",
+  "sellpost_help_title_1" : "Welcome to Game Bazar’s Sell Post feature. This will help you post your unused games, consols, controllers or anything up for a quick sell. Here are the mentioned steps for a quick sell post: ",
+  "sellpost_list_1" : "Login to your Gamehub account using email or phone number.",
+  "sellpost_list_2" : "Click on your profile and select the dashboard. ",
+  "sellpost_list_3" : "Under the dashboard click on the sell post at the bottom.",
+  "sellpost_list_4" : "Enter your product name for example if you are selling games put the name of the games there. ",
+  "sellpost_list_5" : "Now on the description box provide a small description about the product you are selling. It can be the product quality or anything that you wish to communicate. ",
+  "sellpost_list_6" : "Now provide the asking price for the product.",
+  "sellpost_list_7" : "Then select is it new or used.",
+  "sellpost_list_8" : "If you select negotiable the buying will know the product can price can be bargained with ",
+  "sellpost_list_9" : " Now you have to provide your phone number and the address from where the product needs to be picked up.",
+  "sellpost_list_10" : "Select the sub category from the list.  ",
+  "sellpost_list_11" : "Upload the cover image by clicking on the upload button.",
+  "sellpost_list_12" : "You also have to share more images by clicking on the screenshot button.",
+  "sellpost_help_title_2" : "Finally you need to click submit. It will take 2 to 3 hours to approve your sale post. "
 }

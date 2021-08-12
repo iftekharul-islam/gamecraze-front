@@ -11,12 +11,30 @@
                   </div>
               </div>
           </div>
-          <div class="lend-notice-content">
+          <div class="sellpost-help">
               <div class="container">
-                  <p class="f-s-20 main-text"><i>Sell post help</i> </p>
                   <div class="row">
-                      <div class="col-md-5 mx-auto">
-                         <div class="lend-notice-content-btn">
+                      <div class="col-md-8 mx-auto">
+                           <div class="">
+                                <h5 class="my-5">{{ $t('sellpost_help_title_1', $store.state.locale) }} :</h5>
+                                <ul class="bullet-list">
+                                    <li class="bullet-list--item">{{ $t('sellpost_list_1', $store.state.locale) }}</li>
+                                    <li class="bullet-list--item">{{ $t('sellpost_list_2', $store.state.locale) }}</li>
+                                    <li class="bullet-list--item">{{ $t('sellpost_list_3', $store.state.locale) }}</li>
+                                    <li class="bullet-list--item">{{ $t('sellpost_list_4', $store.state.locale) }}</li>
+                                    <li class="bullet-list--item">{{ $t('sellpost_list_5', $store.state.locale) }}</li>
+                                    <li class="bullet-list--item">{{ $t('sellpost_list_6', $store.state.locale) }}</li>
+                                    <li class="bullet-list--item">{{ $t('sellpost_list_7', $store.state.locale) }}</li>
+                                    <li class="bullet-list--item">{{ $t('sellpost_list_8', $store.state.locale) }}</li>
+                                    <li class="bullet-list--item">{{ $t('sellpost_list_9', $store.state.locale) }}</li>
+                                    <li class="bullet-list--item">{{ $t('sellpost_list_10', $store.state.locale) }}</li>
+                                    <li class="bullet-list--item">{{ $t('sellpost_list_10', $store.state.locale) }}</li>
+                                    <li class="bullet-list--item">{{ $t('sellpost_list_11', $store.state.locale) }}</li>
+                                    <li class="bullet-list--item">{{ $t('sellpost_list_12', $store.state.locale) }}</li>
+                                </ul>
+                                <h5>{{ $t('sellpost_help_title_2', $store.state.locale) }}</h5>
+                            </div>
+                            <div class="lend-notice-content-btn mx-auto">
                               <router-link to="/create-sell-post" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative w-100 text-center">{{ $t('sell_post', $store.state.locale) }}<span></span> <span></span></router-link>
                          </div>
                       </div>

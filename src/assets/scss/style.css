@@ -12694,6 +12694,10 @@ html {
   border-bottom-right-radius: 4px;
 }
 
+.sellpost-help {
+  padding-bottom: 180px;
+}
+
 .before-ball::before {
   content: '';
   width: 10px;

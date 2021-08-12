@@ -1717,6 +1717,9 @@ p {
 .primary-text {
     color: $primary;
 }
+.primary-text-imp {
+    color: $primary !important;
+}
 .gray-text {
     color: $gray;
 }
@@ -1727,7 +1730,7 @@ p {
     color: $game-rating;
 }
 .text-step-error {
-    color: $step-error-text;
+    color: $gamebazar-badge;
 }
 
 .text-black {

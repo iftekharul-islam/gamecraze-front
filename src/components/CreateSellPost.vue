@@ -25,8 +25,8 @@
                         <form id="sellForm1">
                           <div class="group mb-a-6">
                             <label class="mb-3 w-100">{{ $t('select_product_category', $store.state.locale) }}</label>
-                            <ValidationProvider name="Category" rules="required" v-slot="{ errors }">
-                              <select name="category" class="w-100 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus br-4 px-3" id="product-category" v-model="sub_category_id" required>
+                            <ValidationProvider name="Category" rules="required" v-slot="{ errors, classes }">
+                              <select name="Category" :class="classes" class="w-100 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus br-4 px-3" id="product-category" v-model="sub_category_id" required>
                                 <option value="">{{ $t('select_category', $store.state.locale) }}</option>
                                 <option :value="category.id" v-for="(category, index) in subCategories" :key="index">{{ category.name }}</option>
                               </select>
@@ -35,15 +35,15 @@
                           </div>
                           <div class="group mb-a-6">
                             <label class="mb-3 w-100">{{ $t('your_product', $store.state.locale) }}</label>
-                            <ValidationProvider name="Product type" rules="required" v-slot="{ errors }">
+                            <ValidationProvider name="Product type" rules="required" v-slot="{ errors, classes }">
                               <div class="d-grid grid-cols-2 grid-gap-16">
                                 <div class="gamebazar-step-form__input-btn">
-                                    <input type="radio" id="my-product" name="my-product" class="bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" @click="usedModal = false" value="1" v-model="product_type">
-                                    <label for="my-product" class="border-1 border-secondery-opa-50 py-2 w-full d-block br-4 text-center pointer opa-7 position-relative bg-step-form-input">{{ $t('new', $store.state.locale) }}</label>
+                                    <input type="radio" id="my-product" name="my-product"  class="bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" @click="usedModal = false" value="1" v-model="product_type">
+                                    <label for="my-product" :class="classes" class="border-1 border-secondery-opa-50 py-2 w-full d-block br-4 text-center pointer opa-7 position-relative bg-step-form-input">{{ $t('new', $store.state.locale) }}</label>
                                 </div>
                                 <div class="gamebazar-step-form__input-btn">
-                                  <input type="radio" id="my-product2" name="my-product" class="bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" @click="usedModal = true" value="2" v-model="product_type">
-                                  <label for="my-product2" class="border-1 border-secondery-opa-50 py-2 w-full d-block br-4 text-center pointer opa-7 position-relative bg-step-form-input">{{ $t('used', $store.state.locale) }}</label>
+                                  <input type="radio" id="my-product2" name="my-product"  class="bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" @click="usedModal = true" value="2" v-model="product_type">
+                                  <label for="my-product2" :class="classes" class="border-1 border-secondery-opa-50 py-2 w-full d-block br-4 text-center pointer opa-7 position-relative bg-step-form-input">{{ $t('used', $store.state.locale) }}</label>
                                 </div>
                               </div>
                               <span class="text-step-error">{{ errors[0] }}</span>
@@ -73,22 +73,22 @@
                         </div>
                           <div class="group mb-a-6">
                             <label for="product-name" class="mb-3 w-100">{{ $t('product_name', $store.state.locale) }}</label>
-                            <ValidationProvider name="name" rules="required" v-slot="{ errors }">
-                              <input type="text" id="product-name" v-model="name" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
+                            <ValidationProvider name="name" rules="required" v-slot="{ errors, classes }">
+                              <input type="text" id="product-name" v-model="name" :class="classes" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
                               <span class="text-step-error">{{ errors[0] }}</span>
                             </ValidationProvider>
                           </div>
                           <div class="group mb-a-6">
                             <label class="mb-3 w-100">{{ $t('description', $store.state.locale) }}</label>
-                            <ValidationProvider name="Description" rules="required" v-slot="{ errors }">
-                              <ckeditor v-model="description" :config="editorConfig"></ckeditor>
+                            <ValidationProvider name="Description" rules="required" v-slot="{ errors, classes }">
+                              <ckeditor v-model="description" :class="classes" :config="editorConfig"></ckeditor>
                               <span class="text-step-error">{{ errors[0] }}</span>
                             </ValidationProvider>
                           </div>
                           <div class="group mb-a-6">
                             <label class="mb-3 w-100">{{ $t('price', $store.state.locale) }}</label>
-                            <ValidationProvider name="product price" rules="required" v-slot="{ errors }">
-                              <input type="number" name="product price" class=" px-3 w-100 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" v-model="price"/>
+                            <ValidationProvider name="product price" rules="required" v-slot="{ errors, classes }">
+                              <input type="number" name="product price" :class="classes" class=" px-3 w-100 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" v-model="price"/>
                               <span class="text-step-error">{{ errors[0] }}</span>
                             </ValidationProvider>
                           </div>
@@ -98,8 +98,8 @@
                           </div>
                           <div class="group mb-a-6">
                             <label class="w-100">{{ $t('is_warranty_available', $store.state.locale) }}</label>
-                            <ValidationProvider name="warranty" rules="required" v-slot="{ errors }">
-                              <select id="warranty" @change="warrantyCheck()" class=" px-3 bg-step-form-input h-40 border-1 triangle-select-arrow no-default-arrow border-secondery-opa-25 text-white no-focus w-100 br-4" v-model="warranty_availability">
+                            <ValidationProvider name="warranty" rules="required" v-slot="{ errors, classes }">
+                              <select id="warranty" @change="warrantyCheck()" :class="classes" class=" px-3 bg-step-form-input h-40 border-1 triangle-select-arrow no-default-arrow border-secondery-opa-25 text-white no-focus w-100 br-4" v-model="warranty_availability">
                                 <option value="">Select condition</option>
                                 <option value="1">Yes</option>
                                 <option value="2">No</option>
@@ -181,15 +181,15 @@
 <!--                            </div>-->
                             <div class="group mb-a-6">
                               <label for="mobile-no" class="mb-3 w-100">{{ $t('phone_number', $store.state.locale) }}</label>
-                              <ValidationProvider name="phone number" rules="required|max:11|min:11" v-slot="{ errors }">
-                                <input type="number" v-model="phone_no" id="mobile-no" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
+                              <ValidationProvider name="phone number" rules="required|max:11|min:11" v-slot="{ errors, classes }">
+                                <input type="number" :class="classes" v-model="phone_no" id="mobile-no" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
                                 <span class="text-step-error">{{ errors[0] }}</span>
                               </ValidationProvider>
                             </div>
                             <div class="group mb-a-6">
                               <label for="email" class="mb-3 w-100">{{ $t('email', $store.state.locale) }}</label>
-                              <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
-                                <input type="text" id="email"  v-model="email" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
+                              <ValidationProvider name="email" rules="required|email" v-slot="{ errors, classes }">
+                                <input type="text" id="email" :class="classes" v-model="email" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
                                 <span class="text-step-error">{{ errors[0] }}</span>
                               </ValidationProvider>
                             </div>
@@ -201,8 +201,8 @@
 <!--                            </div>-->
                             <div class="group mb-a-6">
                               <label for="address" class="mb-3 w-100">{{ $t('address', $store.state.locale) }}</label>
-                              <ValidationProvider name="address" rules="required" v-slot="{ errors }">
-                                <input type="text" id="address" v-model="address" class="px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
+                              <ValidationProvider name="address" rules="required" v-slot="{ errors, classes }">
+                                <input type="text" id="address" :class="classes" v-model="address" class="px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
                                 <span class="text-step-error">{{ errors[0] }}</span>
                               </ValidationProvider>
                             </div>

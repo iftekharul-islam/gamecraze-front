@@ -1756,6 +1756,10 @@ p {
   color: #0B0F18;
 }
 
+.primary-text-imp {
+  color: #0B0F18 !important;
+}
+
 .gray-text {
   color: #808080;
 }
@@ -1769,7 +1773,7 @@ p {
 }
 
 .text-step-error {
-  color: #f16a46;
+  color: #F53A50;
 }
 
 .text-black {
@@ -13098,6 +13102,42 @@ html {
   background-repeat: no-repeat !important;
   background-position: 90% 50% !important;
   color: #ffffff80 !important;
+}
+
+.failed {
+  border: 1px solid;
+  border-color: #F53A50;
+  animation: shake 200ms 2 linear;
+  -moz-animation: shake 150ms 2 linear;
+  -webkit-animation: shake 150ms 2 linear;
+  -o-animation: shake 150ms 2 linear;
+}
+
+@keyframes shake {
+  0% {
+    -webkit-transform: translate(3px, 0);
+            transform: translate(3px, 0);
+  }
+  50% {
+    -webkit-transform: translate(-3px, 0);
+            transform: translate(-3px, 0);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+  }
+}
+
+@-webkit-keyframes shake {
+  0% {
+    -webkit-transform: translate(3px, 0);
+  }
+  50% {
+    -webkit-transform: translate(-3px, 0);
+  }
+  100% {
+    -webkit-transform: translate(0, 0);
+  }
 }
 
 .page_404 {

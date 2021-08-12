@@ -114,13 +114,13 @@
                       <h6 class="margin__bottom -ml-20px">Filter</h6>
                       <div class="form-group ">
                         <div class="mb-a-3">
-                          <input type="radio" name="newold" class="custom-control-input" id="new_type_filter"
-                                @change="sortNewType($event)">
+                          <input type="checkbox" name="newold" class="custom-control-input" id="new_type_filter"
+                                @change="sortNewType($event)" :checked="sortNewChecked">
                           <label class="custom-control-label" for="new_type_filter">New Product</label>
                         </div>
                         <div class="mb-a-3">
-                          <input type="radio" name="newold" class="custom-control-input" id="used_type_filter"
-                                @change="sortUsedType($event)">
+                          <input type="checkbox" name="newold" class="custom-control-input" id="used_type_filter"
+                                @change="sortUsedType($event)" :checked="sortUsedChecked">
                           <label class="custom-control-label" for="used_type_filter">Used Product</label>
                         </div>
                       </div>
@@ -141,11 +141,10 @@
                       </div>
                     </div>
                     <div class="select-platforms d-grid grid-cols-2 col-gap-16 mt-3">
-                     
                     </div>
                     <!-- button show in mobile -->
                     <div class=" mt-4">
-                      <a href="#" class="d-block py-2 border-1 border-white-50 br-4 text-white mb-3 text-center gil-bold">{{ $t('clear_filters', $store.state.locale) }}</a>
+                      <a href="javascript:void(0)" class="d-block py-2 border-1 border-white-50 br-4 text-white mb-3 text-center gil-bold" @click="clearFilter"> {{ $t('clear_filters', $store.state.locale) }}</a>
                       <a @click="filterShow = false"
                          href="#" class="d-block d-md-none py-2 bg-secondery-gradient br-4 text-black text-center gil-bold primary-text-hover">{{ $t('apply', $store.state.locale) }}</a>
                     </div>
@@ -384,6 +383,8 @@ export default {
       descByDate: '',
       sortNew: '',
       sortUsed: '',
+      sortNewChecked: false,
+      sortUsedChecked: false,
       step: 5,
       totalSteps: 0,
       percentPerStep: 1,
@@ -396,6 +397,15 @@ export default {
     }
   },
   methods: {
+    clearFilter() {
+      this.$router.push({query: {}});
+      this.checkedCategories = [];
+      this.getSellPosts();
+      this.sortNew = '';
+      this.sortUsed = '';
+      this.sortUsedChecked = false;
+      this.sortNewChecked = false;
+    },
     removeSearchKey() {
       let query = Object.assign({}, this.$route.query);
       delete query.search;
@@ -480,16 +490,32 @@ export default {
       this.getSellPosts();
     },
     sortNewType(event) {
+      console.log(event.target.checked);
+      console.log(this.sortNewChecked);
+      console.log(this.sortUsedChecked);
+      this.sortNewChecked = false
+      this.sortUsedChecked = false
+      this.sortNew = '';
       this.sortUsed = '';
-      this.sortNew = event.target.checked === true ? 1 : '';
+      if (event.target.checked === true){
+        this.sortNewChecked = true;
+        this.sortNew = 1;
+      }
       this.getSellPosts();
     },
     sortUsedType(event) {
+      this.sortNewChecked = false
+      this.sortUsedChecked = false
       this.sortNew = '';
-      this.sortUsed = event.target.checked === true ? 1 : '';
+      this.sortUsed = '';
+      if (event.target.checked === true){
+        this.sortUsedChecked = true;
+        this.sortUsed = 1;
+      }
       this.getSellPosts();
     },
     pageChangeHandler(selectedPage) {
+      window.scrollTo(0,0);
       this.currentPage = selectedPage
       this.getSellPosts(selectedPage);
     },

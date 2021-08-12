@@ -16,7 +16,7 @@
                 </div>
             </div>
 
-            <div class="footer-middle">
+            <div class="footer-middle" v-if="largeFooter">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-11 ml-auto">
@@ -61,7 +61,7 @@
                             </div>
                         </div>
                         <div class="col-6 col-md-3">
-                            <div class="footer-menu-content" v-if="platforms">
+                            <div class="footer-menu-content">
                                 <ul>
                                     <li>
                                         <router-link to="/sponsors">{{ $t('ask_for_sponsorship', $store.state.locale) }}</router-link>
@@ -129,5 +129,22 @@
 </template>
 <script>
     export default {
+      data() {
+        return {
+          largeFooter: false
+        }
+      },
+      watch: {
+        "$route": {
+          handler: function(value) {
+            this.largeFooter = false;
+            if (value.name === 'Home' || value.name === 'gamebazar' || value.name === 'sell-post' || value.name === 'rent-post-details' || value.name === 'CreateSellPost'){
+                this.largeFooter = true
+            }
+          },
+          deep: true,
+          immediate: true,
+        },
+      },
     }
 </script>

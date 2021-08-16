@@ -50,23 +50,29 @@
                    <div class="gamehub-input-group gamehub-input-group-searchbar">
                    <div class="gamehub-input-group--content">
 
-                            <div class="search-input-design">
-                              <vue-autosuggest
-                                  v-model="query"
-                                  :suggestions="filteredOptions"
-                                  @focus="focusMe"
-                                  @keyup.enter="searchGame"
-                                  @input="onInputChange"
-                                  @selected="onSelected"
-                                  :get-suggestion-value="getSuggestionValue"
-                                  :input-props="{id:'autosuggest__input',class:'auto-suggest-menu'}">
-                                <div  slot-scope="{suggestion}" style="display: flex; align-items: center;">
-                                  <span @click="onMenuItemClick()">{{suggestion.item.game.data.name}}</span>
+                            <div :class="{ animateNavebar: navbarAnimate }">
+                                <div class="search-input-design searchbar-input">
+                                    <vue-autosuggest
+                                        v-model="query"
+                                        :suggestions="filteredOptions"
+                                        @focus="focusMe"
+                                        @keyup.enter="searchGame"
+                                        @input="onInputChange"
+                                        @selected="onSelected"
+                                        :get-suggestion-value="getSuggestionValue"
+                                        :input-props="{id:'autosuggest__input',class:'auto-suggest-menu'}">
+                                        <div  slot-scope="{suggestion}" style="display: flex; align-items: center;">
+                                        <span @click="onMenuItemClick()">{{suggestion.item.game.data.name}}</span>
+                                        </div>
+                                    </vue-autosuggest>
                                 </div>
-                              </vue-autosuggest>
+                                <button class="btn gamehub-search-btn" @click="onMenuItemClick(), navbarAnimate = !navbarAnimate" type="search" @click.prevent="searchGame">
+                                    <i class="fa fa-search gamehub-search-btn--icon"></i>
+                                </button>
                             </div>
                             
-                            <button class="btn gamehub-search-btn" @click="onMenuItemClick()" type="search" @click.prevent="searchGame">
+                            
+                            <button :class="{ dnone: navbarAnimate }" class="btn gamehub-search-btn-2" @click=" navbarAnimate = !navbarAnimate" type="search">
                                 <i class="fa fa-search gamehub-search-btn--icon"></i>
                             </button>
                         </div>
@@ -231,6 +237,7 @@
         components: {VueFeedbackReaction},
         data() {
             return {
+                navbarAnimate: false,
                 invalidRating: false,
                 ratingNavModal: false,
                 ratingData: {

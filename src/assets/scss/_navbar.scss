@@ -384,9 +384,9 @@
         margin-left: 20px;
     }
     input {
-        height: 36px;
+        height: 100%;
         border: none;
-        width: 135px;
+        width: 100%;
         margin: auto;
         position: relative;
         left: 3px;
@@ -395,7 +395,7 @@
         color: #fff;
         padding-left: 15px;
         padding-right: 8px;
-        transform: skew(21deg);
+        // transform: skew(21deg);
         &:focus {
             outline: none;
             border: none;
@@ -412,43 +412,95 @@
         >div {
             &:first-of-type {
                 @include for-max-1199 {
-                    transform: skew(0deg);
+                    // transform: skew(0deg);
                 }
                 input {
                     @include for-max-1199 {
-                        transform: skew(0deg);
+                        // transform: skew(0deg);
                     }
                 }
             }
         }
     }
+    &.searchbar-input {
+        width: 0;
+        // transition: all .3s ease-in;
+    }
+    
 }
-
+.animateNavebar {
+    width: 140px;
+    // transition: all .3s ease-in;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: #000000bd;
+    left: 0;
+    z-index: 9;
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+    .searchbar-input {
+        width: 60%;
+        top: 2px;
+    }
+    .gamehub-search-btn {
+        display: block;
+        z-index: 10;
+    }
+    #autosuggest {
+        >div {
+            &:first-of-type {
+                border: 1px solid $secondery;
+                height: 45px;
+            }
+        }
+    }
+}
 .gamehub-search-btn {
     width: 45px;
-    height: 40px;
+    height: 45px;
     background: $secondery;
-    transform: skew(-21deg);
     border-radius: 0;
     position: relative;
     left: -3px;
-    @include for-max-1199 {
-        transform: skew(0deg);
-    }
+    top: 2px;
     &:focus {
         outline: none;
         border: none;
         box-shadow: none;
     }
     &--icon {
-        transform: skew(21deg);
         color: $text-dark;
         font-size: 18px;
-        @include for-max-1199 {
-            transform: skew(0deg);
-        }
     }
 }
+.gamehub-search-btn-2 {
+    width: 45px;
+    height: 45px;
+    border-radius: 0;
+    position: relative;
+    left: -3px;
+    top: 2px;
+    &:focus {
+        outline: none;
+        border: none;
+        box-shadow: none;
+    }
+    .gamehub-search-btn--icon {
+        color: $text-light;
+        font-size: 18px;
+        opacity: .5;
+    }
+}
+.gamehub-search-btn {
+    display: none;
+}
+.dnone {
+    display: none;
+}
+
 
 .gamehub-dropdown-menu {
     border-radius: 5px;
@@ -571,15 +623,7 @@
     }
 }
 
-#autosuggest {
-    >div {
-        &:first-of-type {
-            transform: skew(-21deg);
-            border: 2px solid $secondery;
-            height: 40px;
-        }
-    }
-}
+
 
 // delete moadl
 .swal-modal {

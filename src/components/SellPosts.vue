@@ -17,14 +17,14 @@
                                 @input="onInputChange"
                                 @selected="onSelected"
                                 :get-suggestion-value="getSuggestionValue"
-                                :input-props="{id:'autosuggest__input',class:'auto-suggest-menu'}">
+                                :input-props="{id:'autosuggest__input',class:'auto-suggest-menu',placeholder:'Search...'}">
                               <div  slot-scope="{ suggestion }" class="w-100">
                                 <div class="d-flex align-items-center justify-content-between">
                                   
                                    <div class="d-flex align-items-center">
-                                      <div class="w-100px h-75 overflow-hidden br-4">
-                                         <img :src="suggestion.item.cover.url" class="img-fluid  h-100" alt="Gamehub Logo logo" v-if="suggestion.item.cover != null">
-                                         <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2020/11/PS5-PS4-Game-Forced-Install-Problem.jpg" class="img-fluid  h-100" alt="Gamehub Logo logo" v-else>
+                                      <div class="w-100px min-w-100 h-75 overflow-hidden br-4">
+                                         <img :src="suggestion.item.cover.url" class="img-fluid  h-100 w-100" alt="Gamehub Logo logo" v-if="suggestion.item.cover != null">
+                                         <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2020/11/PS5-PS4-Game-Forced-Install-Problem.jpg" class="img-fluid  h-100 w-100" alt="Gamehub Logo logo" v-else>
                                       </div>
                                       <div class="ml-3">
                                         <span class="d-block gil-bold mb-2">{{ suggestion.item.name }}</span>

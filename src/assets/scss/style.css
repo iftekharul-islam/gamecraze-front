@@ -2299,6 +2299,10 @@ html {
   max-width: 940px;
 }
 
+.min-w-100 {
+  min-width: 100px;
+}
+
 .w-148-100 {
   width: 148px;
 }
@@ -3981,9 +3985,9 @@ select option {
 }
 
 .search-input-design input {
-  height: 36px;
+  height: 100%;
   border: none;
-  width: 135px;
+  width: 100%;
   margin: auto;
   position: relative;
   left: 3px;
@@ -3992,8 +3996,6 @@ select option {
   color: #fff;
   padding-left: 15px;
   padding-right: 8px;
-  -webkit-transform: skew(21deg);
-          transform: skew(21deg);
 }
 
 .search-input-design input:focus {
@@ -4015,36 +4017,51 @@ select option {
   }
 }
 
-@media (max-width: 1199px) {
-  .search-input-design #autosuggest > div:first-of-type {
-    -webkit-transform: skew(0deg);
-            transform: skew(0deg);
-  }
+.search-input-design.searchbar-input {
+  width: 0;
 }
 
-@media (max-width: 1199px) {
-  .search-input-design #autosuggest > div:first-of-type input {
-    -webkit-transform: skew(0deg);
-            transform: skew(0deg);
-  }
+.animateNavebar {
+  width: 140px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000bd;
+  left: 0;
+  z-index: 9;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  padding-top: 60px;
+}
+
+.animateNavebar .searchbar-input {
+  width: 60%;
+  top: 2px;
+}
+
+.animateNavebar .gamehub-search-btn {
+  display: block;
+  z-index: 10;
+}
+
+.animateNavebar #autosuggest > div:first-of-type {
+  border: 1px solid #FFD715;
+  height: 45px;
 }
 
 .gamehub-search-btn {
   width: 45px;
-  height: 40px;
+  height: 45px;
   background: #FFD715;
-  -webkit-transform: skew(-21deg);
-          transform: skew(-21deg);
   border-radius: 0;
   position: relative;
   left: -3px;
-}
-
-@media (max-width: 1199px) {
-  .gamehub-search-btn {
-    -webkit-transform: skew(0deg);
-            transform: skew(0deg);
-  }
+  top: 2px;
 }
 
 .gamehub-search-btn:focus {
@@ -4055,17 +4072,38 @@ select option {
 }
 
 .gamehub-search-btn--icon {
-  -webkit-transform: skew(21deg);
-          transform: skew(21deg);
   color: #000;
   font-size: 18px;
 }
 
-@media (max-width: 1199px) {
-  .gamehub-search-btn--icon {
-    -webkit-transform: skew(0deg);
-            transform: skew(0deg);
-  }
+.gamehub-search-btn-2 {
+  width: 45px;
+  height: 45px;
+  border-radius: 0;
+  position: relative;
+  left: -3px;
+  top: 2px;
+}
+
+.gamehub-search-btn-2:focus {
+  outline: none;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.gamehub-search-btn-2 .gamehub-search-btn--icon {
+  color: #fff;
+  font-size: 18px;
+  opacity: .5;
+}
+
+.gamehub-search-btn {
+  display: none;
+}
+
+.dnone {
+  display: none;
 }
 
 .gamehub-dropdown-menu {
@@ -4212,13 +4250,6 @@ select option {
 .autosuggest__results-container ul li:hover {
   background: #FFD715;
   color: #000;
-}
-
-#autosuggest > div:first-of-type {
-  -webkit-transform: skew(-21deg);
-          transform: skew(-21deg);
-  border: 2px solid #FFD715;
-  height: 40px;
 }
 
 .swal-modal {

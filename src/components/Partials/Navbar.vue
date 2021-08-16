@@ -50,12 +50,13 @@
                    <div class="gamehub-input-group gamehub-input-group-searchbar">
                    <div class="gamehub-input-group--content">
 
-                            <div :class="{ animateNavebar: navbarAnimate }">
-                                <div class="search-input-design searchbar-input">
+                            <div :class="{ animateNavebar: navbarAnimate }"  >
+                                <div class="search-input-design searchbar-input" >
                                     <vue-autosuggest
                                         v-model="query"
                                         :suggestions="filteredOptions"
                                         @focus="focusMe"
+                                        
                                         @keyup.enter="searchGame"
                                         @input="onInputChange"
                                         @selected="onSelected"
@@ -72,7 +73,7 @@
                             </div>
                             
                             
-                            <button :class="{ dnone: navbarAnimate }" class="btn gamehub-search-btn-2" @click=" navbarAnimate = !navbarAnimate" type="search">
+                            <button :class="{ dnone: navbarAnimate }" class="btn gamehub-search-btn-2" @click="toggleNavbarAnimate(), navbarAnimate = !navbarAnimate" type="search">
                                 <i class="fa fa-search gamehub-search-btn--icon"></i>
                             </button>
                         </div>
@@ -235,6 +236,7 @@
     import { VueFeedbackReaction } from 'vue-feedback-reaction';
     export default {
         components: {VueFeedbackReaction},
+       
         data() {
             return {
                 navbarAnimate: false,
@@ -262,6 +264,7 @@
                 user: null,
                 isActive : this.$store.state.locale ?? this.$i18n.locale,
                 pendingRating: [],
+                searchClick: 0,
             }
         },
         methods: {
@@ -405,7 +408,10 @@
           },
           focusMe(e) {
             console.log(e) // FocusEvent
-          }, 
+          },
+          toggleNavbarAnimate(e) {
+
+          },
           // totalCartItems(){
           //   let cartItems = localStorage.getItem('cartItems');
           //   if (cartItems) {

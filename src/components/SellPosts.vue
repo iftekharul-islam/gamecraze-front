@@ -127,18 +127,19 @@
                     </div>
                     <div class="select-platforms mt-a-6">
                       <h6>Price range</h6>
+                      <vue-slider v-model="priceRange"  :min-range="100" :max="100000" @change="getValue"></vue-slider>
                       <!-- <vue-range-slider ref="slider" v-model="value" :min="0" :max="1000" :enable-cross="false" :min-range="10"></vue-range-slider> -->
-                      <div class="track-container range-slider">
-                        <!--  <span class="range-value min">{{ minValue}} </span> <span class="range-value max">{{ maxValue }}</span>-->
-                        <div class="range-slider__bar" ref="_vpcTrack"></div>
-                        <div class="range-slider__highlight-bar" ref="trackHighlight"></div>
-                        <button class="range-slider__ball track1 position-relative" ref="track1">
-                          <span class="position-absolute inline-block "><div class="triangle-rounded"></div> <input type="number" class="p-0 border-0 w-initial text-center gil-medium pe-none" :min="min" :max="max" v-model="minValue"></span>
-                        </button>
-                        <button class="range-slider__ball track2" ref="track2">
-                          <span class="position-absolute inline-block"><div class="triangle-rounded"></div><input type="number" class="p-0 border-0 w-initial text-center gil-medium pe-none" :min="min" :max="max" v-model="maxValue"></span>
-                        </button>
-                      </div>
+<!--                      <div class="track-container range-slider">-->
+<!--                        &lt;!&ndash;  <span class="range-value min">{{ minValue}} </span> <span class="range-value max">{{ maxValue }}</span>&ndash;&gt;-->
+<!--                        <div class="range-slider__bar" ref="_vpcTrack"></div>-->
+<!--                        <div class="range-slider__highlight-bar" ref="trackHighlight"></div>-->
+<!--                        <button class="range-slider__ball track1 position-relative" ref="track1">-->
+<!--                          <span class="position-absolute inline-block "><div class="triangle-rounded"></div> <input type="number" class="p-0 border-0 w-initial text-center gil-medium pe-none" :min="min" :max="max" v-model="minValue"></span>-->
+<!--                        </button>-->
+<!--                        <button class="range-slider__ball track2" ref="track2">-->
+<!--                          <span class="position-absolute inline-block"><div class="triangle-rounded"></div><input type="number" class="p-0 border-0 w-initial text-center gil-medium pe-none" :min="min" :max="max" v-model="maxValue"></span>-->
+<!--                        </button>-->
+<!--                      </div>-->
                     </div>
                     <div class="select-platforms d-grid grid-cols-2 col-gap-16 mt-3">
                     </div>
@@ -248,7 +249,7 @@
                         </span>
                         </span>
                         <div class="d-flex align-items-center text-secondery">
-                            <p class="mb-0">Details</p>
+                            <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
                             <div class="gamebazar-post__arrow">
                                 <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
@@ -353,20 +354,19 @@
 import SlidingPagination from 'vue-sliding-pagination'
 import 'vue-range-component/dist/vue-range-slider.css'
 import carousel from 'vue-owl-carousel';
+import VueSlider from 'vue-slider-component'
+import 'vue-slider-component/theme/default.css'
 export default {
-  components: {SlidingPagination, carousel},
+  components: {SlidingPagination, carousel, VueSlider},
   data() {
     return {
+      priceRange: [0, 100000],
       searchKey: '',
       products: [],
       query: '',
       showDrawer: false,
       loadedPopular: false,
       populars: [],
-      min: 0,
-      max: 100000,
-      minValue: 0,
-      maxValue: 100000,
       noPostFound: false,
       posts: [],
       allPosts: [],
@@ -385,18 +385,16 @@ export default {
       sortUsed: '',
       sortNewChecked: false,
       sortUsedChecked: false,
-      step: 5,
-      totalSteps: 0,
-      percentPerStep: 1,
-      trackWidth: null,
       isDragging: false,
       filterShow: false,
-      pos: {
-        curTrack: null
-      }
     }
   },
   methods: {
+    getValue(value, index) {
+      // console.log(value);
+      console.log(this.priceRange);
+      this.getSellPosts();
+    },
     clearFilter() {
       this.$router.push({query: {}});
       this.checkedCategories = [];
@@ -409,18 +407,17 @@ export default {
     removeSearchKey() {
       let query = Object.assign({}, this.$route.query);
       delete query.search;
-      this.$router.replace({ query });
+      this.$router.replace({query});
       this.getSellPosts();
     },
     focusMe(e) {
       console.log(e)
     },
     searchProduct() {
-      if(this.query !== '') {
+      if (this.query !== '') {
         this.$router.push({name: 'sell-post', query: {categories: this.$route.query.categories, search: this.query}})
         this.getSellPosts();
-      }
-      else {
+      } else {
         this.$router.push({name: 'sell-post', query: {categories: this.$route.query.categories}})
         this.getSellPosts();
       }
@@ -444,37 +441,14 @@ export default {
     show(e) {
       this.showDrawer = !this.showDrawer;
     },
-    setMinValue() {
-      setTimeout(() => {
-        console.log(this.minValue)
-        if ( this.minValue > this.min &&  this.maxValue > this.minValue ){
-          this.setRangeTrack();
-          this.getSellPosts();
-        }
-      },1500)
-    },
-    setMaxValue() {
-      setTimeout(() => {
-        console.log(this.maxValue)
-        if (this.maxValue > this.minValue && this.max > this.maxValue) {
-          this.setRangeTrack();
-          this.getSellPosts();
-        }
-      },1500)
-    },
-    setValue() {
-      var arr = [];
-      arr.push(this.minValue, this.maxValue);
-      console.log(arr);
-    },
     ascPrice(event) {
       this.descByPrice = '',
-      this.ascByPrice = event.target.checked === true ? 1 : '';
+          this.ascByPrice = event.target.checked === true ? 1 : '';
       this.getSellPosts();
     },
     descPrice(event) {
       this.ascByPrice = '',
-      this.descByPrice = event.target.checked === true ? 1 : '';
+          this.descByPrice = event.target.checked === true ? 1 : '';
       this.getSellPosts();
     },
     ascDate(event) {
@@ -490,14 +464,12 @@ export default {
       this.getSellPosts();
     },
     sortNewType(event) {
-      console.log(event.target.checked);
-      console.log(this.sortNewChecked);
-      console.log(this.sortUsedChecked);
+      console.log(this.priceRange);
       this.sortNewChecked = false
       this.sortUsedChecked = false
       this.sortNew = '';
       this.sortUsed = '';
-      if (event.target.checked === true){
+      if (event.target.checked === true) {
         this.sortNewChecked = true;
         this.sortNew = 1;
       }
@@ -508,14 +480,14 @@ export default {
       this.sortUsedChecked = false
       this.sortNew = '';
       this.sortUsed = '';
-      if (event.target.checked === true){
+      if (event.target.checked === true) {
         this.sortUsedChecked = true;
         this.sortUsed = 1;
       }
       this.getSellPosts();
     },
     pageChangeHandler(selectedPage) {
-      window.scrollTo(0,0);
+      window.scrollTo(0, 0);
       this.currentPage = selectedPage
       this.getSellPosts(selectedPage);
     },
@@ -551,13 +523,12 @@ export default {
     getSellPosts(page_no = '') {
       if (this.$route.query.search) {
         this.searchKey = this.$route.query.search
-      }
-      else {
+      } else {
         this.searchKey = '';
         this.query = '';
       }
       this.noPostFound = false;
-      this.$api.get('sell-posts?include=subcategory&page=' + page_no + '&subcategory=' + this.queryCategories + '&ascPrice=' + this.ascByPrice + '&descPrice=' + this.descByPrice + '&ascDate=' + this.ascByDate + '&descDate=' + this.descByDate + '&sortNew=' + this.sortNew + '&sortUsed=' + this.sortUsed + '&minPrice=' + this.minValue + '&maxPrice=' + this.maxValue + '&search=' + this.searchKey).then(response => {
+      this.$api.get('sell-posts?include=subcategory&page=' + page_no + '&subcategory=' + this.queryCategories + '&ascPrice=' + this.ascByPrice + '&descPrice=' + this.descByPrice + '&ascDate=' + this.ascByDate + '&descDate=' + this.descByDate + '&sortNew=' + this.sortNew + '&sortUsed=' + this.sortUsed + '&priceRange=' + this.priceRange  + '&search=' + this.searchKey).then(response => {
         this.posts = response.data.data;
         this.allPosts = this.posts;
         this.pagination = response.data.meta.pagination;
@@ -569,100 +540,6 @@ export default {
         }
       });
     },
-    moveTrack(track, ev) {
-
-      let percentInPx = this.getPercentInPx();
-
-      let trackX = Math.round(this.$refs._vpcTrack.getBoundingClientRect().left);
-      let clientX = ev.clientX;
-      let moveDiff = clientX - trackX;
-
-      let moveInPct = moveDiff / percentInPx
-      // console.log(moveInPct)
-
-      if (moveInPct < 1 || moveInPct > 100) return;
-      let value = (Math.round(moveInPct / this.percentPerStep) * this.step) + this.min;
-      if (track === 'track1') {
-        if (value >= (this.maxValue - this.step)) return;
-        this.minValue = value;
-      }
-
-      if (track === 'track2') {
-        if (value <= (this.minValue + this.step)) return;
-        this.maxValue = value;
-      }
-
-      this.$refs[track].style.left = moveInPct + '%';
-      this.setTrackHightlight()
-
-    },
-    mousedown(ev, track) {
-
-      if (this.isDragging) return;
-      this.isDragging = true;
-      this.pos.curTrack = track;
-    },
-
-    touchstart(ev, track) {
-      this.mousedown(ev, track)
-    },
-
-    mouseup(ev, track) {
-      if (!this.isDragging) return;
-      this.isDragging = false
-    },
-
-    touchend(ev, track) {
-      this.mouseup(ev, track)
-    },
-
-    mousemove(ev, track) {
-      if (!this.isDragging) return;
-      this.moveTrack(track, ev)
-    },
-
-    touchmove(ev, track) {
-      this.mousemove(ev.changedTouches[0], track)
-    },
-
-    valueToPercent(value) {
-      return ((value - this.min) / this.step) * this.percentPerStep
-    },
-
-    setTrackHightlight() {
-      this.$refs.trackHighlight.style.left = this.valueToPercent(this.minValue) + '%'
-      this.$refs.trackHighlight.style.width = (this.valueToPercent(this.maxValue) - this.valueToPercent(this.minValue)) + '%'
-    },
-
-    getPercentInPx() {
-      let trackWidth = this.$refs._vpcTrack.offsetWidth;
-      let oneStepInPx = trackWidth / this.totalSteps;
-      // 1 percent in px
-      let percentInPx = oneStepInPx / this.percentPerStep;
-
-      return percentInPx;
-    },
-
-    setClickMove(ev) {
-      let track1Left = this.$refs.track1.getBoundingClientRect().left;
-      let track2Left = this.$refs.track2.getBoundingClientRect().left;
-      // console.log('track1Left', track1Left)
-      if (ev.clientX < track1Left) {
-        this.moveTrack('track1', ev)
-      } else if ((ev.clientX - track1Left) < (track2Left - ev.clientX)) {
-        this.moveTrack('track1', ev)
-      } else {
-        this.moveTrack('track2', ev)
-      }
-    },
-    setRangeTrack() {
-      // set track1 initilal
-      document.querySelector('.track1').style.left = this.valueToPercent(this.minValue) + '%'
-      // track2 initial position
-      document.querySelector('.track2').style.left = this.valueToPercent(this.maxValue) + '%'
-      // set initial track highlight
-      this.setTrackHightlight()
-    }
   },
   computed: {
     filteredOptions() {
@@ -689,15 +566,9 @@ export default {
       }
       this.fetchFilteredPosts();
     },
-    minValue: function () {
-      this.setMinValue()
-    },
-    maxValue: function () {
-      this.setMaxValue()
-    },
   },
   created() {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
     this.posts = [];
     this.getSellPosts();
     this.$api.get('categories?include=subcategory').then(response => {
@@ -715,45 +586,8 @@ export default {
     this.$root.$on('searchProductEvent', () => {
       this.getSellPosts();
     })
-  },
-  mounted() {
-    // calc per step value
-    this.totalSteps = (this.max - this.min) / this.step;
-
-    // percent the track button to be moved on each step
-    this.percentPerStep = 100 / this.totalSteps;
-    // console.log('percentPerStep', this.percentPerStep)
-
-    this.setRangeTrack();
-
-    var self = this;
-
-    ['mouseup', 'mousemove'].forEach(type => {
-      document.body.addEventListener(type, (ev) => {
-        // ev.preventDefault();
-        if (self.isDragging && self.pos.curTrack) {
-          self[type](ev, self.pos.curTrack)
-        }
-      })
-    });
-
-    ['mousedown', 'mouseup', 'mousemove', 'touchstart', 'touchmove', 'touchend'].forEach(type => {
-      document.querySelector('.track1').addEventListener(type, (ev) => {
-        ev.stopPropagation();
-        self[type](ev, 'track1')
-      })
-
-      document.querySelector('.track2').addEventListener(type, (ev) => {
-        ev.stopPropagation();
-        self[type](ev, 'track2')
-      })
-    })
   }
-
-
 }
-
-// for range slider
 
 
 </script>

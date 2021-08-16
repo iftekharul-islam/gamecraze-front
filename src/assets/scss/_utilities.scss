@@ -2206,6 +2206,13 @@ html {
 .max-940 {
     max-width: 940px;
 }
+
+// min width
+.min-w-100 {
+    min-width: 100px;
+}
+
+
 .w-148-100 {
     width: 148px;
     @include for-max-575 {

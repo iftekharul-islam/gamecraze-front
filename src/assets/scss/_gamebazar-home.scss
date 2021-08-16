@@ -254,11 +254,11 @@
         }
     }
 }
-.new-post {
+
     .owl-dots {
         display: none !important;
     }
-}
+
 .gamebazar {
     &__search {
         width: 100%;
@@ -330,7 +330,7 @@
             }
             input {
                 padding: 0;
-                height: 100%;
+                height: 40px;
                 border: 0;
                 background: $gamebazar-search-input;
                 color: $text-light;

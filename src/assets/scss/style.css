@@ -1821,6 +1821,10 @@ p {
   background: #0B0F18;
 }
 
+.primary-bg-5 {
+  background: #0b0f1880;
+}
+
 .bg-vie-all-gamebazar {
   background: #313338;
 }
@@ -2103,6 +2107,10 @@ html {
   z-index: 9999;
 }
 
+.z-index-99999 {
+  z-index: 99999;
+}
+
 .h-0 {
   height: 0;
 }
@@ -2179,6 +2187,10 @@ html {
 
 .max-h-80pr {
   max-height: 80%;
+}
+
+.max-h-100pr {
+  max-height: 100%;
 }
 
 .min-h-250 {
@@ -2281,6 +2293,10 @@ html {
 
 .max-446 {
   max-width: 446px;
+}
+
+.max-460 {
+  max-width: 460px;
 }
 
 .max-488 {
@@ -4039,9 +4055,23 @@ select option {
   padding-top: 60px;
 }
 
+@media (max-width: 575px) {
+  .animateNavebar {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+}
+
 .animateNavebar .searchbar-input {
   width: 60%;
   top: 2px;
+}
+
+@media (max-width: 575px) {
+  .animateNavebar .searchbar-input {
+    width: 70%;
+  }
 }
 
 .animateNavebar .gamehub-search-btn {
@@ -4052,6 +4082,25 @@ select option {
 .animateNavebar #autosuggest > div:first-of-type {
   border: 1px solid #FFD715;
   height: 45px;
+}
+
+.animate-navbar-icon {
+  display: none;
+  position: absolute;
+  right: 15%;
+  top: 66px;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+@media (max-width: 575px) {
+  .animate-navbar-icon {
+    right: 15px;
+  }
+}
+
+.block {
+  display: block;
 }
 
 .gamehub-search-btn {
@@ -11957,88 +12006,73 @@ html {
   color: #000 !important;
 }
 
-.range-slider {
-  width: 100%;
-  position: relative;
-  cursor: pointer;
-  height: 2px;
-  margin-top: 65px;
+.vue-slider-dot-handle {
+  background: #FFD715 !important;
 }
 
-.range-slider__bar, .range-slider__highlight-bar {
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 2px;
+.vue-slider-dot-tooltip-top {
+  visibility: visible !important;
 }
 
-.range-slider__bar {
-  background-color: #666A73;
+.vue-slider-dot-tooltip-inner {
+  background: -webkit-gradient(linear, right top, left top, from(#FFD715), to(#FFB81F)) !important;
+  background: linear-gradient(270deg, #FFD715 0%, #FFB81F 100%) !important;
+  border-color: #FFD715 !important;
 }
 
-.range-slider__bar::after, .range-slider__bar::before {
+.vue-slider-dot-tooltip-text {
+  color: #0B0F18;
+}
+
+.vue-slider-process {
+  background: -webkit-gradient(linear, right top, left top, from(#FFD715), to(#FFB81F));
+  background: linear-gradient(270deg, #FFD715 0%, #FFB81F 100%);
+}
+
+.vue-slider-rail {
+  background-color: #666A73 !important;
+}
+
+.vue-slider-rail::after, .vue-slider-rail::before {
   content: '';
-  height: 15px;
   width: 2px;
-  background: #666A73;
+  height: 20px;
   position: absolute;
-  top: -6px;
+  top: -8px;
+  background-color: #666A73 !important;
 }
 
-.range-slider__bar::before {
+.vue-slider-rail::before {
   right: 0;
 }
 
-.range-slider__bar::after {
-  left: 0;
+.report-post-modal {
+  display: none;
 }
 
-.range-slider__highlight-bar {
-  background-color: #FFD715;
-  z-index: 2;
+.reportModalOpen {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
-.range-slider__ball {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  outline: none;
-  display: block;
-  position: absolute;
-  z-index: 2;
-  width: 1rem;
-  height: 1rem;
-  border-radius: 50%;
-  top: calc(-50% - 0.39rem);
-  margin-left: -1rem;
-  border: 2px solid #FFD715;
-  background: #FFD715;
-  -ms-touch-action: pan-x;
-  touch-action: pan-x;
-  transition: box-shadow .3s ease-out,background-color .3s ease,-webkit-transform .3s ease-out;
-  -webkit-transition: background-color .3s ease,-webkit-transform .3s ease-out,-webkit-box-shadow .3s ease-out;
-  transition: background-color .3s ease,-webkit-transform .3s ease-out,-webkit-box-shadow .3s ease-out;
-  transition: transform .3s ease-out,box-shadow .3s ease-out,background-color .3s ease;
-  transition: transform .3s ease-out,box-shadow .3s ease-out,background-color .3s ease,-webkit-transform .3s ease-out,-webkit-box-shadow .3s ease-out;
-  transition: transform .3s ease-out,box-shadow .3s ease-out,background-color .3s ease,-webkit-transform .3s ease-out;
-}
-
-.range-slider__ball:focus {
-  outline: none;
-}
-
-.range-slider__ball span {
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  top: -42px;
-  left: -25px;
-  background: #FFD715;
+.report-group .beforeUpload {
+  background: url(../img/camera-icon-ad.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 60px;
+  height: 60px;
+  border: 1px solid rgba(255, 215, 21, 0.5);
   border-radius: 4px;
+  background-size: 25px;
 }
 
-.range-slider__ball span input {
-  background: transparent;
+.report-group .beforeUpload svg {
+  display: none !important;
+}
+
+.report-group .beforeUpload .mainMessage {
+  display: none !important;
 }
 
 .sell-post-modal-img:hover .image-cancel {
@@ -12625,7 +12659,7 @@ html {
   }
 }
 
-.new-post .owl-dots {
+.owl-dots {
   display: none !important;
 }
 
@@ -12713,7 +12747,7 @@ html {
 
 .gamebazar__search #autosuggest input {
   padding: 0;
-  height: 100%;
+  height: 40px;
   border: 0;
   background: #484B52;
   color: #fff;

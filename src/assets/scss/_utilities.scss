@@ -1768,6 +1768,10 @@ p {
 .primary-bg {
     background: $primary;
 }
+.primary-bg-5 {
+    background: $primary-op-5;
+}
+
 .bg-vie-all-gamebazar {
     background: $gamebazar-view-all;
 }
@@ -2035,6 +2039,9 @@ html {
 .z-index-9999 {
     z-index: 9999;
 }
+.z-index-99999 {
+    z-index: 99999;
+}
 // height
 .h-0 {
     height: 0;
@@ -2104,6 +2111,11 @@ html {
 .max-h-80pr {
     max-height: 80%;
 }
+
+.max-h-100pr {
+    max-height: 100%;
+}
+
 .min-h-250 {
     min-height: 250px;
 }
@@ -2191,6 +2203,10 @@ html {
 
 .max-446 {
     max-width: 446px;
+}
+
+.max-460 {
+    max-width: 460px;
 }
 
 .max-488 {

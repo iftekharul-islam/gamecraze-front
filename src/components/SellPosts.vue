@@ -236,6 +236,7 @@
                               {{ $t('day', $store.state.locale) }}
                         </span>
                         </span>
+                        <span class="mb-2 text-white d-block">Category</span>
                         <div class="d-flex align-items-center text-secondery">
                             <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
                             <div class="gamebazar-post__arrow">

@@ -4055,9 +4055,23 @@ select option {
   padding-top: 60px;
 }
 
+@media (max-width: 575px) {
+  .animateNavebar {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+  }
+}
+
 .animateNavebar .searchbar-input {
   width: 60%;
   top: 2px;
+}
+
+@media (max-width: 575px) {
+  .animateNavebar .searchbar-input {
+    width: 70%;
+  }
 }
 
 .animateNavebar .gamehub-search-btn {
@@ -4068,6 +4082,25 @@ select option {
 .animateNavebar #autosuggest > div:first-of-type {
   border: 1px solid #FFD715;
   height: 45px;
+}
+
+.animate-navbar-icon {
+  display: none;
+  position: absolute;
+  right: 15%;
+  top: 66px;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+@media (max-width: 575px) {
+  .animate-navbar-icon {
+    right: 15px;
+  }
+}
+
+.block {
+  display: block;
 }
 
 .gamehub-search-btn {

@@ -39,18 +39,17 @@
                             <router-link @click.native="onMenuItemClick()" class="nav-link active router_link" to="/gamebazar" >{{ $t('game_bazar', $store.state.locale) }}</router-link>
                         </li>
                     </ul>
-                    <!-- language -->
-                    <div class="locale-changer gamehub-language">
-                        <div v-for="(lang) in $i18n.availableLocales" @click="languageChange(lang)" >
-                            <span @click="onMenuItemClick()" v-if="lang == 'bn'" v-bind:class="{ active: isActive === 'bn' }">বাংলা</span>
-                            <span @click="onMenuItemClick()" v-if="lang == 'en'" v-bind:class="{ active: isActive === 'en' }">English</span>
-                        </div>
-                    </div>
-                   <!-- search bar -->
+
+                     <!-- search bar -->
                    <div class="gamehub-input-group gamehub-input-group-searchbar">
-                   <div class="gamehub-input-group--content">
+                        <div class="gamehub-input-group--content">
 
                             <div :class="{ animateNavebar: navbarAnimate }"  >
+                                <span class="animate-navbar-icon" 
+                                @click="navbarAnimate = !navbarAnimate"
+                                :class="{ block: navbarAnimate }">
+                                    <i class="fas fa-times"></i>
+                                </span>
                                 <div class="search-input-design searchbar-input" >
                                     <vue-autosuggest
                                         v-model="query"
@@ -77,7 +76,15 @@
                                 <i class="fa fa-search gamehub-search-btn--icon"></i>
                             </button>
                         </div>
-                </div>
+                   </div>
+                    <!-- language -->
+                    <div class="locale-changer gamehub-language">
+                        <div v-for="(lang) in $i18n.availableLocales" @click="languageChange(lang)" >
+                            <span @click="onMenuItemClick()" v-if="lang == 'bn'" v-bind:class="{ active: isActive === 'bn' }">বাংলা</span>
+                            <span @click="onMenuItemClick()" v-if="lang == 'en'" v-bind:class="{ active: isActive === 'en' }">English</span>
+                        </div>
+                    </div>
+                  
                 </div>
                 
                 <!-- sign in button and cart icon out side of collapse -->

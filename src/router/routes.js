@@ -127,7 +127,7 @@ let router = new Router({
         },
         {
             path: '/profile',
-            name: 'Profile',
+            name: 'profile',
             component: Profile,
             props: true,
             meta: {

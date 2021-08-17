@@ -21,9 +21,6 @@ Vue.component('lingallery', Lingallery);
 import CKEditor from 'ckeditor4-vue';
 Vue.use( CKEditor );
 
-import VueGoodWizard from 'vue-good-wizard';
-Vue.use(VueGoodWizard);
-
 global.jQuery = require('jquery/dist/jquery.min');
 let $ = global.jQuery;
 window.$ = $;

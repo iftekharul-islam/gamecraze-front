@@ -416,7 +416,6 @@
 <script>
    import carousel from 'vue-owl-carousel';
      export default {
-          name: 'GamebazarHome',
           components: { carousel },
         data() {
           return {

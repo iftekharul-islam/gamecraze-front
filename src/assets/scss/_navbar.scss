@@ -441,9 +441,15 @@
     display: flex;
     justify-content: center;
     padding-top: 60px;
+    @include for-max-575 {
+        justify-content: flex-start;
+    }
     .searchbar-input {
         width: 60%;
         top: 2px;
+        @include for-max-575 {
+            width: 70%;
+        }
     }
     .gamehub-search-btn {
         display: block;
@@ -457,6 +463,20 @@
             }
         }
     }
+}
+.animate-navbar-icon {
+    display: none;
+    position: absolute;
+    right: 15%;
+    top: 66px;
+    cursor: pointer;
+    font-size: 25px;
+    @include for-max-575 {
+        right: 15px;
+    }
+}
+.block {
+    display: block;
 }
 .gamehub-search-btn {
     width: 45px;

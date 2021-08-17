@@ -403,6 +403,7 @@ export default {
       this.sortUsed = '';
       this.sortUsedChecked = false;
       this.sortNewChecked = false;
+      this.priceRange= [0, 100000];
     },
     removeSearchKey() {
       let query = Object.assign({}, this.$route.query);

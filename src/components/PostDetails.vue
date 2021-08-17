@@ -118,12 +118,6 @@
                     <div class="d-flex align-items-center">
                       <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="1" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="rentingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="24"></star-rating>
                     </div>
-                    <div class="d-flex align-items-center mt-a-6">
-                      <span class="mr-2 opa-7">{{ $t('rating', $store.state.locale) }}</span>
-                      <svg width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFFBE7"/>
-                      </svg>
-                    </div>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -138,75 +132,178 @@
         </div>
       </div>
     </div>
-     <div class="gamebazar-product-similar pb-a-20">
-            <div class="container">
-                <h3 class="text-white f-s-24 gil-bold mb-4">{{ $t('related_post', $store.state.locale) }}</h3>
-                  <!-- carousel -->
-                <div class="position-relative carousel-nav">
-                    <carousel v-if ="loadedRelated"
-                            :autoplay ="false"
-                            :loop ="true"
-                            :center ="true"
-                            :nav ="false"
-                            :dots ="true"
-                            :margin ="32"
-                            :stagePadding ="0"
-                            :responsive="{ 0:{items:1.5, stagePadding:0, center:false,},
-                                    600:{items:2, stagePadding:0, center:false,},
-                                    1000:{items:3, stagePadding:0,},
-                                    1400:{items:5, stagePadding:0, center:false,}}">
-                    <template slot="prev">
-                        <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center secondery-border br-4 pointer vue-owl-nav-left w-32 h-32">
-                            <button class="owl-prev z-index-9 h-100 w-100">
-                                <span class="prev">
-                                    <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M7.87425 9.69787C8.08224 9.58566 8.21191 9.37228 8.21191 9.14021L8.21191 5.52648L15.3473 5.52648C15.7076 5.52648 16 5.24085 16 4.88891C16 4.53697 15.7076 4.25134 15.3473 4.25134L8.21191 4.25134V0.637613C8.21191 0.404688 8.08224 0.191316 7.87425 0.0799538C7.66625 -0.0331081 7.41213 -0.0254573 7.2111 0.0978057L0.304596 4.3491C0.114876 4.46642 0 4.66959 0 4.88891C0 5.10823 0.114876 5.31141 0.304596 5.42872L7.2111 9.68002C7.31727 9.74462 7.43824 9.77778 7.55921 9.77778C7.66712 9.77778 7.7759 9.75058 7.87425 9.69787Z" fill="#FFD715"/>
-                                    </svg>
-                                    </span> 
-                                </button> 
-                            </div>
-                        </template>
+    <div class="gamebazar-product-similar pb-a-20" v-if="loadedRelated">
+          <div class="container">
+              <h3 class="text-white f-s-24 gil-bold mb-4">{{ $t('related_post', $store.state.locale) }}</h3>
+                <!-- carousel -->
+              <div class="position-relative carousel-nav">
+                  <carousel v-if ="loadedRelated"
+                          :autoplay ="false"
+                          :loop ="true"
+                          :center ="true"
+                          :nav ="false"
+                          :dots ="true"
+                          :margin ="32"
+                          :stagePadding ="0"
+                          :responsive="{ 0:{items:1.5, stagePadding:0, center:false,},
+                                  600:{items:2, stagePadding:0, center:false,},
+                                  1000:{items:3, stagePadding:0,},
+                                  1400:{items:5, stagePadding:0, center:false,}}">
+                  <template slot="prev">
+                      <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center secondery-border br-4 pointer vue-owl-nav-left w-32 h-32">
+                          <button class="owl-prev z-index-9 h-100 w-100">
+                              <span class="prev">
+                                  <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M7.87425 9.69787C8.08224 9.58566 8.21191 9.37228 8.21191 9.14021L8.21191 5.52648L15.3473 5.52648C15.7076 5.52648 16 5.24085 16 4.88891C16 4.53697 15.7076 4.25134 15.3473 4.25134L8.21191 4.25134V0.637613C8.21191 0.404688 8.08224 0.191316 7.87425 0.0799538C7.66625 -0.0331081 7.41213 -0.0254573 7.2111 0.0978057L0.304596 4.3491C0.114876 4.46642 0 4.66959 0 4.88891C0 5.10823 0.114876 5.31141 0.304596 5.42872L7.2111 9.68002C7.31727 9.74462 7.43824 9.77778 7.55921 9.77778C7.66712 9.77778 7.7759 9.75058 7.87425 9.69787Z" fill="#FFD715"/>
+                                  </svg>
+                                  </span>
+                              </button>
+                          </div>
+                      </template>
 
-                    <template slot="next">
-                        <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center secondery-border br-4 pointer vue-owl-nav-right w-32 h-32">
-                            <button class="owl-next z-index-9 h-100 w-100">
-                                <span class="next">
-                                        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M8.12576 0.30213C7.91776 0.414342 7.78809 0.627714 7.78809 0.859789L7.78809 4.47352L0.652707 4.47352C0.292413 4.47352 4.5817e-07 4.75915 4.27402e-07 5.11109C3.96635e-07 5.46302 0.292413 5.74865 0.652707 5.74865L7.78809 5.74865L7.78809 9.36239C7.78809 9.59531 7.91776 9.80868 8.12575 9.92005C8.33375 10.0331 8.58787 10.0255 8.7889 9.90219L15.6954 5.6509C15.8851 5.53358 16 5.33041 16 5.11109C16 4.89177 15.8851 4.68859 15.6954 4.57128L8.7889 0.319982C8.68273 0.255375 8.56176 0.222222 8.44079 0.222222C8.33288 0.222222 8.2241 0.249424 8.12576 0.30213Z" fill="#FFD715"/>
-                                        </svg>
-                                    </span>
-                                </button>
-                            </div>
-                        </template>
+                  <template slot="next">
+                      <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center secondery-border br-4 pointer vue-owl-nav-right w-32 h-32">
+                          <button class="owl-next z-index-9 h-100 w-100">
+                              <span class="next">
+                                      <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M8.12576 0.30213C7.91776 0.414342 7.78809 0.627714 7.78809 0.859789L7.78809 4.47352L0.652707 4.47352C0.292413 4.47352 4.5817e-07 4.75915 4.27402e-07 5.11109C3.96635e-07 5.46302 0.292413 5.74865 0.652707 5.74865L7.78809 5.74865L7.78809 9.36239C7.78809 9.59531 7.91776 9.80868 8.12575 9.92005C8.33375 10.0331 8.58787 10.0255 8.7889 9.90219L15.6954 5.6509C15.8851 5.53358 16 5.33041 16 5.11109C16 4.89177 15.8851 4.68859 15.6954 4.57128L8.7889 0.319982C8.68273 0.255375 8.56176 0.222222 8.44079 0.222222C8.33288 0.222222 8.2241 0.249424 8.12576 0.30213Z" fill="#FFD715"/>
+                                      </svg>
+                                  </span>
+                              </button>
+                          </div>
+                      </template>
 
-                    <div class="item gamebazar-post"  v-for="(related, index) in relatedPosts" :key="index">
-                        <router-link :to="'/sell-post/' + related.id + '/' + related.url_name" >
-                            <div class="product-img position-relative br-4 overflow-hidden">
-                              <img :src="related.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="related.cover != null">
-                              <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image" v-else>
-                                <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-if="related.product_type === 1">New</span>
-                                <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-if="related.product_type === 2">Used</span>
-                                <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$ {{ related.price }}</span>
-                            </div>
-                            <p class="gil-bold mb-4 mt-a-4 text-white">{{ related.name }}</p>
-                            <p class="mb-4 text-white">Used 1.5 years</p>
-                            <div class="d-flex align-items-center text-secondery">
-                                <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
-                                <div class="gamebazar-post__arrow">
-                                    <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
-                                    </svg>
-                                </div>
-                            </div>
-                        </router-link>
-                    </div>
-                    </carousel>
-               </div>
-                <div class="text-center mt-5">
-                    <router-link to='/sell-posts' class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">{{ $t('all_post', $store.state.locale) }}</router-link>
+                  <div class="item gamebazar-post"  v-for="(related, index) in relatedPosts" :key="index">
+                      <router-link :to="'/sell-post/' + related.id + '/' + related.url_name" @click.native="gameDetails(related.id)">
+                          <div class="product-img position-relative br-4 overflow-hidden">
+                            <img :src="related.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="related.cover != null">
+                            <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image" v-else>
+                              <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-if="related.product_type === 1">New</span>
+                              <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-if="related.product_type === 2">Used</span>
+                              <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$ {{ related.price }}</span>
+                          </div>
+                          <p class="gil-bold mb-4 mt-a-4 text-white">{{ related.name }}</p>
+                          <p class="mb-3 text-white" v-if="related.product_type === 1">
+                            {{ $t('new', $store.state.locale) }}
+                          </p>
+                          <p class="mb-3 text-white" v-else>
+                            {{ $t('used', $store.state.locale) }}&nbsp;
+                            <span v-if="related.used_year != null">
+                              {{ related.used_year }}&nbsp;
+                              {{ $t('year', $store.state.locale) }}&nbsp;
+                            </span>
+                            <span v-if="related.used_month != null">
+                              {{ related.used_month }}&nbsp;
+                              {{ $t('month', $store.state.locale) }}&nbsp;
+                            </span>
+                            <span v-if="related.used_day != null">
+                              {{ related.used_day }}&nbsp;
+                              {{ $t('day', $store.state.locale) }}
+                            </span>
+                          </p>
+                          <div class="d-flex align-items-center text-secondery">
+                              <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
+                              <div class="gamebazar-post__arrow">
+                                  <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
+                                  </svg>
+                              </div>
+                          </div>
+                      </router-link>
+                  </div>
+                  </carousel>
+             </div>
+              <div class="text-center mt-5">
+                  <router-link to='/sell-posts' class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">{{ $t('all_post', $store.state.locale) }}</router-link>
+              </div>
+          </div>
+      </div>
+    <div class="gamebazar-product-similar pb-a-20" v-else>
+      <div class="container">
+        <h3 class="text-white f-s-24 gil-bold mb-4">{{ $t('might_also_like', $store.state.locale) }}</h3>
+        <!-- carousel -->
+        <div class="position-relative carousel-nav">
+          <carousel v-if ="loadLatestPosts"
+                    :autoplay ="false"
+                    :loop ="true"
+                    :center ="true"
+                    :nav ="false"
+                    :dots ="true"
+                    :margin ="32"
+                    :stagePadding ="0"
+                    :responsive="{ 0:{items:1.5, stagePadding:0, center:false,},
+                                  600:{items:2, stagePadding:0, center:false,},
+                                  1000:{items:3, stagePadding:0,},
+                                  1400:{items:5, stagePadding:0, center:false,}}">
+            <template slot="prev">
+              <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center secondery-border br-4 pointer vue-owl-nav-left w-32 h-32">
+                <button class="owl-prev z-index-9 h-100 w-100">
+                        <span class="prev">
+                            <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7.87425 9.69787C8.08224 9.58566 8.21191 9.37228 8.21191 9.14021L8.21191 5.52648L15.3473 5.52648C15.7076 5.52648 16 5.24085 16 4.88891C16 4.53697 15.7076 4.25134 15.3473 4.25134L8.21191 4.25134V0.637613C8.21191 0.404688 8.08224 0.191316 7.87425 0.0799538C7.66625 -0.0331081 7.41213 -0.0254573 7.2111 0.0978057L0.304596 4.3491C0.114876 4.46642 0 4.66959 0 4.88891C0 5.10823 0.114876 5.31141 0.304596 5.42872L7.2111 9.68002C7.31727 9.74462 7.43824 9.77778 7.55921 9.77778C7.66712 9.77778 7.7759 9.75058 7.87425 9.69787Z" fill="#FFD715"/>
+                            </svg>
+                          </span>
+                </button>
+              </div>
+            </template>
+
+            <template slot="next">
+              <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center secondery-border br-4 pointer vue-owl-nav-right w-32 h-32">
+                <button class="owl-next z-index-9 h-100 w-100">
+                    <span class="next">
+                        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8.12576 0.30213C7.91776 0.414342 7.78809 0.627714 7.78809 0.859789L7.78809 4.47352L0.652707 4.47352C0.292413 4.47352 4.5817e-07 4.75915 4.27402e-07 5.11109C3.96635e-07 5.46302 0.292413 5.74865 0.652707 5.74865L7.78809 5.74865L7.78809 9.36239C7.78809 9.59531 7.91776 9.80868 8.12575 9.92005C8.33375 10.0331 8.58787 10.0255 8.7889 9.90219L15.6954 5.6509C15.8851 5.53358 16 5.33041 16 5.11109C16 4.89177 15.8851 4.68859 15.6954 4.57128L8.7889 0.319982C8.68273 0.255375 8.56176 0.222222 8.44079 0.222222C8.33288 0.222222 8.2241 0.249424 8.12576 0.30213Z" fill="#FFD715"/>
+                        </svg>
+                    </span>
+                </button>
+              </div>
+            </template>
+
+            <div class="item gamebazar-post"  v-for="(post, index) in latestPosts" :key="index">
+              <router-link :to="'/sell-post/' + post.id + '/' + post.url_name" @click.native="gameDetails(post.id)">
+                <div class="product-img position-relative br-4 overflow-hidden">
+                  <img :src="post.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="post.cover != null">
+                  <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image" v-else>
+                  <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-if="post.product_type === 1">New</span>
+                  <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-if="post.product_type === 2">Used</span>
+                  <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$ {{ post.price }}</span>
                 </div>
+                <p class="gil-bold mb-4 mt-a-4 text-white">{{ post.name }}</p>
+                <p class="mb-3 text-white" v-if="post.product_type === 1">
+                  {{ $t('new', $store.state.locale) }}
+                </p>
+                <p class="mb-3 text-white" v-else>
+                  {{ $t('used', $store.state.locale) }}&nbsp;
+                  <span v-if="post.used_year != null">
+                              {{ post.used_year }}&nbsp;
+                              {{ $t('year', $store.state.locale) }}&nbsp;
+                            </span>
+                  <span v-if="post.used_month != null">
+                              {{ post.used_month }}&nbsp;
+                              {{ $t('month', $store.state.locale) }}&nbsp;
+                            </span>
+                  <span v-if="post.used_day != null">
+                              {{ post.used_day }}&nbsp;
+                              {{ $t('day', $store.state.locale) }}
+                            </span>
+                </p>
+                <div class="d-flex align-items-center text-secondery">
+                  <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
+                  <div class="gamebazar-post__arrow">
+                    <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
+                    </svg>
+                  </div>
+                </div>
+              </router-link>
             </div>
+          </carousel>
         </div>
+        <div class="text-center mt-5">
+          <router-link to='/sell-posts' class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">{{ $t('all_post', $store.state.locale) }}</router-link>
+        </div>
+      </div>
+    </div>
     <div v-if="showSeller && post.user != null">
       <transition name="modal">
         <div class="modal-mask order-details-extend-modal position-fixed top-0 left-0 h-100 w-full d-flex align-items-center justify-content-center z-index-99">
@@ -260,7 +357,10 @@
                 currentId: null,
                 rentingAvg : 4,
                 loadedRelated: false,
-                relatedPosts: []
+                relatedPosts: [],
+                latestPosts:  [],
+                loadLatestPosts: false,
+
             }
         },
         methods: {
@@ -276,22 +376,28 @@
               if (this.relatedPosts.length > 0) {
                 this.loadedRelated = true
               }
-              console.log(this.relatedPosts)
+            });
+          },
+          gameDetails(id){
+            window.scrollTo(0,0);
+            this.$api.get('sell-post/'+ id +'?include=subcategory,user').then(response => {
+              this.post = response.data.data;
+              this.relatedPost(this.post.id, this.post.sub_category_id)
+              if (this.post.slider.length > 0) {
+                this.images = this.post.slider
+                this.sliderSection = true
+              }
             });
           }
         },
         created() {
-            window.scrollTo(0,0);
-            this.$api.get('sell-post/'+ this.id +'?include=subcategory,user').then(response => {
-                this.post = response.data.data;
-                this.relatedPost(this.post.id, this.post.sub_category_id)
-                if (this.post.slider.length > 0) {
-                  this.images = this.post.slider
-                  this.sliderSection = true
-                }
-                console.log(this.post)
-            });
-
+          this.gameDetails(this.id);
+          this.$api.get('latest-sell-posts?include=subcategory,user').then(response => {
+            this.latestPosts = response.data.data;
+            if (this.latestPosts.length > 0) {
+              this.loadLatestPosts = true
+            }
+          });
         },
     }
 </script>

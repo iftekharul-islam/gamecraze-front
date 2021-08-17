@@ -126,7 +126,7 @@
                       </div>
                     </div>
                     <div class="select-platforms mt-a-6">
-                      <h6>Price range</h6>
+                      <h6 class="mb-5">Price range</h6>
                       <vue-slider v-model="priceRange"  :min-range="100" :max="100000" @change="getValue"></vue-slider>
                       <!-- <vue-range-slider ref="slider" v-model="value" :min="0" :max="1000" :enable-cross="false" :min-range="10"></vue-range-slider> -->
 <!--                      <div class="track-container range-slider">-->

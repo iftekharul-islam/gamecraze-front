@@ -126,20 +126,8 @@
                       </div>
                     </div>
                     <div class="select-platforms mt-a-6">
-                      <h6>Price range</h6>
-                      <vue-slider v-model="priceRange"  :min-range="100" :max="100000" @change="getValue"></vue-slider>
-                      <!-- <vue-range-slider ref="slider" v-model="value" :min="0" :max="1000" :enable-cross="false" :min-range="10"></vue-range-slider> -->
-<!--                      <div class="track-container range-slider">-->
-<!--                        &lt;!&ndash;  <span class="range-value min">{{ minValue}} </span> <span class="range-value max">{{ maxValue }}</span>&ndash;&gt;-->
-<!--                        <div class="range-slider__bar" ref="_vpcTrack"></div>-->
-<!--                        <div class="range-slider__highlight-bar" ref="trackHighlight"></div>-->
-<!--                        <button class="range-slider__ball track1 position-relative" ref="track1">-->
-<!--                          <span class="position-absolute inline-block "><div class="triangle-rounded"></div> <input type="number" class="p-0 border-0 w-initial text-center gil-medium pe-none" :min="min" :max="max" v-model="minValue"></span>-->
-<!--                        </button>-->
-<!--                        <button class="range-slider__ball track2" ref="track2">-->
-<!--                          <span class="position-absolute inline-block"><div class="triangle-rounded"></div><input type="number" class="p-0 border-0 w-initial text-center gil-medium pe-none" :min="min" :max="max" v-model="maxValue"></span>-->
-<!--                        </button>-->
-<!--                      </div>-->
+                      <h6 class="mb-5">Price range</h6>
+                      <vue-slider v-model="priceRange" :min-range="100" :max="100000" @change="getValue" :process="process" :dot-options="dotOptions"></vue-slider>
                     </div>
                     <div class="select-platforms d-grid grid-cols-2 col-gap-16 mt-3">
                     </div>
@@ -354,7 +342,8 @@
 import SlidingPagination from 'vue-sliding-pagination'
 import 'vue-range-component/dist/vue-range-slider.css'
 import carousel from 'vue-owl-carousel';
-import VueSlider from 'vue-slider-component'
+import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'
+import 'vue-slider-component/dist-css/vue-slider-component.css'
 import 'vue-slider-component/theme/default.css'
 export default {
   components: {SlidingPagination, carousel, VueSlider},
@@ -387,6 +376,16 @@ export default {
       sortUsedChecked: false,
       isDragging: false,
       filterShow: false,
+      process: dotsPos => [
+        [dotsPos[0], dotsPos[1], { backgroundColor: '#FFD715'}],
+      ],
+      dotOptions: [{
+        tooltip: 'always',
+        tooltipStyle:{ backgroundColor: '#FFD715', borderColor: '#FFD715', color: 'black'}
+      }, {
+        tooltip: 'always',
+        tooltipStyle:{ backgroundColor: '#FFD715', borderColor: '#FFD715', color: 'black'}
+      }]
     }
   },
   methods: {

@@ -488,6 +488,7 @@ let router = new Router({
             path: '/gamebazar',
             name: 'gamebazar',
             component: GamebazarHome,
+            props: true,
             meta: {
                 requiresAuth: false
             }

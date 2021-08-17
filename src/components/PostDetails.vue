@@ -366,15 +366,20 @@
         beforeRouteEnter(to, from, next) {
           next(vm => {
             vm.prevRoute = from
+            console.log(vm.prevRoute.name);
           })
         },
         methods: {
           routeBack(){
             if (this.prevRoute.name === 'profile'){
-              this.$router.push('/profile').then( () => {
+                this.$router.push('/profile').then( () => {
                 this.$root.$emit('sellPostDashboard');
               });
               return
+            }
+            if (this.prevRoute.name === 'gamebazar'){
+                this.$router.push('/gamebazar')
+                return
             }
             this.$router.go(-1);
           },

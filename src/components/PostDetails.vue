@@ -122,8 +122,45 @@
                 </div>
                 <div class="col-md-6">
                   <div class="h-100 d-flex align-items-end justify-content-end">
-                    <a href="#" class="text-white">{{ $t('report_to_post', $store.state.locale) }}</a>
+                    <a href="#" class="text-white" @click=" reportModalShow = !reportModalShow">{{ $t('report_to_post', $store.state.locale) }}</a>
                   </div>
+                  <!-- report post modal -->
+                  <transition name="slide">
+                    <div 
+                      :class="{reportModalOpen : reportModalShow}"
+                    class="report-post-modal primary-bg-5 position-fixed top-0 left-0 w-100 h-100 align-items-center justify-content-center z-index-99999 p-3">
+                      <div class="report-post-modal__content max-460 w-full border-1 border-secondery-opa-50 p-4 bg-game-details br-4 max-h-100pr overflow-auto position-relative">
+                        <span class="position-absolute top-10 right-10 pointer f-s-18 opa-8" @click=" reportModalShow = !reportModalShow">
+                          X
+                        </span>
+                        <p class="mb-3">Product name</p>
+                        <p class="text-secondery gil-bold f-s-20">Sony controller 2 সেট</p>
+                        <div class="report-group mb-a-6">
+                          <p class="mb-2 gil-regular">Cause of report</p>
+                          <textarea name="" id="" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 p-3" rows="3"></textarea>
+                        </div>
+                        <div class="report-group mb-a-6">
+                          <p class="mb-2 gil-regular">Add photo (if possible)</p>
+                          <UploadImages class="w-100 p-0 bg-transparent border-0" :max="1" maxError="Max image upload limit is 1" @change="uploadScreenshots"/>
+                        </div>
+                        <div class="report-group mb-a-6">
+                          <p class="mb-2 gil-regular">Your name</p>
+                          <input type="text" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 pl-3 ">
+                        </div>
+                        <div class="report-group mb-a-6">
+                          <p class="mb-2 gil-regular">Your email</p>
+                          <input type="text" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 pl-3 ">
+                        </div>
+                        <div class="report-group mb-a-6">
+                          <p class="mb-2 gil-regular">Mobile</p>
+                          <input type="text" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 pl-3 ">
+                        </div>
+                        <div class="report-group mb-a-6 text-right">
+                          <a href="#" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative">Report now <span></span> <span></span></a>
+                        </div>
+                      </div>
+                    </div>
+                  </transition>
                 </div>
               </div>
 
@@ -342,14 +379,16 @@
   </div>
 </template>
 <script>
+    import UploadImages from "vue-upload-drop-images";
     import StarRating from 'vue-star-rating';
     import carousel from 'vue-owl-carousel';
     export default {
-        components: {StarRating, carousel},
+        components: {StarRating, carousel, UploadImages},
         name: 'post-details',
         props: ['id', 'slug'],
         data() {
             return {
+                reportModalShow: false,
                 showSeller: false,
                 sliderSection: false,
                 images: '',

@@ -167,7 +167,7 @@
                         <p class="mb-3 text-white" v-if="post.product_type === 1">
                           {{ $t('new', $store.state.locale) }}
                         </p>
-                        <p class="mb-3 text-white" v-if="post.product_type != 1">
+                        <p class="mb-3 text-white" v-else>
                           {{ $t('used', $store.state.locale) }}&nbsp;
                           <span v-if="post.used_year != null">
                               {{ post.used_year }}&nbsp;

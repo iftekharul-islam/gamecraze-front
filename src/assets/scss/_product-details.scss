@@ -1,4 +1,5 @@
-.before-ball {
+.before-ball,
+.white-ball {
     &::before {
         content: '';
         width: 10px;
@@ -7,6 +8,11 @@
         display: block;
         margin-right: 8px;
         border-radius: 50%;
+    }
+}
+.white-ball {
+    &::before {
+        background: $text-light !important;
     }
 }
 

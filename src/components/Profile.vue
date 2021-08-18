@@ -675,10 +675,10 @@
                                                                                      </div>
                                                                                   </div>
                                                                               </div>
-                                                                              <div class="form-group post-rent--form-group">
+                                                                              <div class="form-group post-rent--form-group gamebazar-step-form ">
                                                                                 <label for="sell-post-address" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('upload_screenshots', $store.state.locale) }}</label>
-                                                                                <div class=" post-rent--form-group--input">
-                                                                                  <UploadImages class="image-box" :max="4" @change="handleEditScreenshots"/>
+                                                                                <div class=" post-rent--form-group--input wizard__body__step">
+                                                                                  <UploadImages class="image-boxs w-100 p-0 bg-transparent border-0" :max="4" @change="handleEditScreenshots"/>
                                                                                 </div>
                                                                               </div>
                                                                               <!-- form-group Button -->

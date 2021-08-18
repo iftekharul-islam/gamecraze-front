@@ -36,10 +36,10 @@
                   </div>
                   <div class="mb-a-6">
                     <p class="text-white gil-bold mb-2">{{ $t('product_type', $store.state.locale) }}</p>
-                    <p class="before-ball d-flex align-items-center text-success-ball" v-if="post.product_type === 1">
+                    <p class="white-ball d-flex align-items-center text-white" v-if="post.product_type === 1">
                       {{ $t('new', $store.state.locale) }}
                     </p>
-                    <p class="before-ball d-flex align-items-center text-success-ball" v-if="post.product_type === 2">
+                    <p class="white-ball d-flex align-items-center text-white" v-if="post.product_type === 2">
                       {{ $t('used', $store.state.locale) }}&nbsp;
                       <span v-if="post.used_year != null">
                               {{ post.used_year }}&nbsp;
@@ -77,7 +77,7 @@
                           {{ $t('day', $store.state.locale) }}
                       </span>
                     </p>
-                    <p class="d-flex align-items-center text-success-ball" v-else>
+                    <p class="d-flex align-items-center text-danger" v-else>
                       {{ $t('not_available', $store.state.locale) }}
                     </p>
                   </div>

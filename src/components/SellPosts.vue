@@ -541,7 +541,7 @@ export default {
     });
     this.$api.get('games/popular-games?include=game.assets,game.platforms,game.genres').then(response => {
       this.populars = response.data.data;
-      if (this.populars.length > 0) {
+      if (this.populars.length) {
         this.loadedPopular = true
       }
     });

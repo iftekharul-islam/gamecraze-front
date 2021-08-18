@@ -481,13 +481,13 @@ export default {
     window.scrollTo(0, 0);
     this.$api.get('latest-sell-posts?include=subcategory,user').then(response => {
       this.latestPosts = response.data.data;
-      if (this.latestPosts.length > 0) {
+      if (this.latestPosts.length) {
         this.loadLatestPosts = true
       }
     });
     this.$api.get('games/popular-games?include=game.assets,game.platforms,game.genres').then(response => {
       this.populars = response.data.data;
-      if (this.populars.length > 0) {
+      if (this.populars.length) {
         this.loadedPopular = true
       }
     });

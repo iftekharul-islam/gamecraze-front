@@ -436,8 +436,6 @@ export default {
       this.$router.push({
         name: 'sell-posts',
         query: {categories: category}
-      }).then(() => {
-        this.$root.$emit('queryOnCategoryEvent')
       })
     },
     searchProduct() {

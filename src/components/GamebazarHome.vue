@@ -445,8 +445,9 @@ export default {
         })
         this.$root.$emit('searchProductEvent')
       } else {
-        this.$router.push({name: 'sell-post', query: {categories: this.$route.query.categories}})
-        this.$root.$emit('searchProductEvent')
+        this.$router.push({
+          name: 'sell-posts'
+        })
       }
     },
     onSelected(item) {

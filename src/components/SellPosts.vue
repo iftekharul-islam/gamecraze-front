@@ -359,15 +359,20 @@ export default {
       sortUsedChecked: false,
       isDragging: false,
       filterShow: false,
+      baseColor: '#FFD715',
       process: dotsPos => [
-        [dotsPos[0], dotsPos[1], {backgroundColor: '#FFD715'}],
+        [
+          dotsPos[0],
+          dotsPos[1],
+          {backgroundColor: this.baseColor}
+        ],
       ],
       dotOptions: [{
         tooltip: 'always',
-        tooltipStyle: {backgroundColor: '#FFD715', borderColor: '#FFD715', color: 'black'}
+        tooltipStyle: {backgroundColor: this.baseColor, borderColor: this.baseColor, color: 'black'}
       }, {
         tooltip: 'always',
-        tooltipStyle: {backgroundColor: '#FFD715', borderColor: '#FFD715', color: 'black'}
+        tooltipStyle: {backgroundColor: this.baseColor, borderColor: this.baseColor, color: 'black'}
       }]
     }
   },

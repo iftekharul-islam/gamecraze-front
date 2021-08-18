@@ -158,13 +158,31 @@
                           </svg>
                           <span class="m-0 text-secondery f-s-16-imp p-0 border-0 bg-transparent">{{ $t('filter', $store.state.locale) }}</span>
                         </button>
-                        <button class="d-flex bg-transparent align-items-center justify-content-center flex-1 h-100 px-0 px-md-4 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border mr-3 mr-md-0 sorting-mobile"
-                           role="button" :class="showDrawer ? 'highlight': '' " @click="show" >
-                          <svg class="mr-3" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M13.2489 8.81565C14.7689 8.81565 16 10.026 16 11.5194C16 13.0118 14.7689 14.2222 13.2489 14.2222C11.7298 14.2222 10.4978 13.0118 10.4978 11.5194C10.4978 10.026 11.7298 8.81565 13.2489 8.81565ZM6.46663 10.3664C7.1324 10.3664 7.67285 10.8973 7.67285 11.5514C7.67285 12.2046 7.1324 12.7365 6.46663 12.7365H1.20622C0.540441 12.7365 0 12.2046 0 11.5514C0 10.8973 0.540441 10.3664 1.20622 10.3664H6.46663ZM2.7511 0C4.27109 0 5.50219 1.21039 5.50219 2.70285C5.50219 4.19618 4.27109 5.40657 2.7511 5.40657C1.23199 5.40657 0 4.19618 0 2.70285C0 1.21039 1.23199 0 2.7511 0ZM14.7947 1.51866C15.4596 1.51866 16 2.04962 16 2.70285C16 3.35695 15.4596 3.88791 14.7947 3.88791H9.53426C8.86848 3.88791 8.32804 3.35695 8.32804 2.70285C8.32804 2.04962 8.86848 1.51866 9.53426 1.51866H14.7947Z" fill="#FFD715"/>
-                          </svg>
-                          Sorting
-                        </button>
+                        <!-- shorting -->
+                        <div class="d-flex">
+                            <button class="d-flex bg-transparent align-items-center justify-content-center flex-1 h-100 px-2 px-md-4 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border mr-3 sorting-mobile"
+                            role="button" :class="showDrawer ? 'highlight': '' " @click="show" >
+                            Date
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M4.94169 11.4C5.10002 11.4 5.25836 11.4584 5.38336 11.5834L10 16.2L14.6167 11.5834C14.8584 11.3417 15.2584 11.3417 15.5 11.5834C15.7417 11.825 15.7417 12.225 15.5 12.4667L10.4417 17.525C10.2 17.7667 9.80002 17.7667 9.55836 17.525L4.50002 12.4667C4.25836 12.225 4.25836 11.825 4.50002 11.5834C4.61669 11.4584 4.78336 11.4 4.94169 11.4Z" fill="#FFD715"/>
+                              <path d="M10 2.29165C10.3417 2.29165 10.625 2.57498 10.625 2.91665L10.625 16.9417C10.625 17.2833 10.3417 17.5667 10 17.5667C9.65833 17.5667 9.375 17.2833 9.375 16.9417L9.375 2.91665C9.375 2.57498 9.65833 2.29165 10 2.29165Z" fill="#FFD715"/>
+                            </svg>
+                          </button>
+                          <button class="d-flex bg-transparent align-items-center justify-content-center flex-1 h-100 px-2 px-md-4 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border mr-3 sorting-mobile"
+                            role="button" :class="showDrawer ? 'highlight': '' " @click="show" >
+                            Price
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M15.0583 8.59995C14.9 8.59995 14.7416 8.54162 14.6166 8.41662L9.99998 3.79995L5.38331 8.41662C5.14164 8.65829 4.74164 8.65829 4.49998 8.41662C4.25831 8.17495 4.25831 7.77495 4.49998 7.53328L9.55831 2.47495C9.79998 2.23328 10.2 2.23328 10.4416 2.47495L15.5 7.53328C15.7416 7.77495 15.7416 8.17495 15.5 8.41662C15.3833 8.54162 15.2166 8.59995 15.0583 8.59995Z" fill="#FFD715"/>
+                              <path d="M10 17.7084C9.65833 17.7084 9.375 17.425 9.375 17.0834V3.05835C9.375 2.71668 9.65833 2.43335 10 2.43335C10.3417 2.43335 10.625 2.71668 10.625 3.05835V17.0834C10.625 17.425 10.3417 17.7084 10 17.7084Z" fill="#FFD715"/>
+                            </svg>
+                          </button>
+                          <button class="d-flex bg-transparent align-items-center justify-content-center flex-1 h-42 px-2 px-md-3 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border mr-3 mr-md-0 sorting-mobile"
+                            role="button" :class="showDrawer ? 'highlight': '' " @click="show" >
+                            <svg class="mx-auto" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M13.2489 8.81565C14.7689 8.81565 16 10.026 16 11.5194C16 13.0118 14.7689 14.2222 13.2489 14.2222C11.7298 14.2222 10.4978 13.0118 10.4978 11.5194C10.4978 10.026 11.7298 8.81565 13.2489 8.81565ZM6.46663 10.3664C7.1324 10.3664 7.67285 10.8973 7.67285 11.5514C7.67285 12.2046 7.1324 12.7365 6.46663 12.7365H1.20622C0.540441 12.7365 0 12.2046 0 11.5514C0 10.8973 0.540441 10.3664 1.20622 10.3664H6.46663ZM2.7511 0C4.27109 0 5.50219 1.21039 5.50219 2.70285C5.50219 4.19618 4.27109 5.40657 2.7511 5.40657C1.23199 5.40657 0 4.19618 0 2.70285C0 1.21039 1.23199 0 2.7511 0ZM14.7947 1.51866C15.4596 1.51866 16 2.04962 16 2.70285C16 3.35695 15.4596 3.88791 14.7947 3.88791H9.53426C8.86848 3.88791 8.32804 3.35695 8.32804 2.70285C8.32804 2.04962 8.86848 1.51866 9.53426 1.51866H14.7947Z" fill="#FFD715"/>
+                            </svg>
+                          </button>
+                        </div>
                     </div>
                     <transition name="slide">
                           <div class="dropdown-menu w-268 bg-shorting br-4 border-1 d-block secondery-border left-initial-imp right-md-0-imp top-full-10px-imp p-0 overflow-hidden" v-if="showDrawer">

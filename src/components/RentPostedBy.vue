@@ -153,9 +153,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="d-flex justify-content-center mt-5" v-if="!isExistsInCart">
-                                                        <a href="javascript:void(0)" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative" @click.prevent="handleSubmit(onAddToCart)">
-                                                            <div><i class="fas fa-shopping-cart mr-2"></i> {{ $t('add_to_cart', $store.state.locale) }}</div>
-                                                            <span></span>
+                                                        <a href="javascript:void(0)" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative" @click.prevent="handleSubmit(onAddToCart)">
+                                                            <div class="position-relative"><i class="fas fa-shopping-cart mr-2"></i> {{ $t('add_to_cart', $store.state.locale) }}</div>
                                                             <span></span>
                                                         </a>
                                                     </div>

@@ -633,7 +633,7 @@
                                                                                 <label class="label-padding post-rent--form-group--label mt-0">{{ $t('upload_cover', $store.state.locale) }} :</label>
                                                                                 <div class=" post-rent--form-group--input">
                                                                                   <div class="custom-file">
-                                                                                    <a class="btn--secondery" @click="$refs.FileInput.click()">Upload image</a>
+                                                                                    <a class=" btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer" @click="$refs.FileInput.click()"><span></span> <div class="text-center position-relative">Upload image</div></a>
                                                                                     <input ref="FileInput" type="file" style="display: none;" @change="onEditFileSelect" />
                                                                                   </div>
                                                                                 </div>
@@ -655,8 +655,8 @@
                                                                                     </VueCropper>
                                                                                   </div>
                                                                                   <div class="my-2 d-grid grid-cols-2 grid-gap-16">
-                                                                                    <a class="btn--secondery" @click="saveEditImage(), (editPostData.dialog = true)">Crop</a>
-                                                                                    <a class="btn--secondery" @click="editPostData.dialog = false, (editPostData.cover_image = '')">Cancel</a>
+                                                                                    <a class=" btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer" @click="saveEditImage(), (editPostData.dialog = true)"><span></span> <div class="position-relative text-center">Crop</div></a>
+                                                                                    <a class=" btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer" @click="editPostData.dialog = false, (editPostData.cover_image = '')"><span></span> <div class="position-relative text-center">Cancel</div></a>
                                                                                   </div>
                                                                                   <div class="img-prev" v-if="editPostData.cover_image">
                                                                                     <img :src="editPostData.cover_image" alt="Cover image preview">
@@ -685,11 +685,12 @@
                                                                               <div class="form-group post-rent--form-group offer-edit-btn">
                                                                                   <label class=" label-padding post-rent--form-group--label text-light"></label>
                                                                                   <div class=" post-rent--form-group--input">
-                                                                                      <button type="submit" class="btn--secondery user-id-edit-btn" :disabled="invalid">
-                                                                                        <span class="w-100">
-                                                                                          <span v-if="isEditLoading" class="spinner-border spinner-border-sm skew-none"></span>
+                                                                                      <button type="submit" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer user-id-edit-btn" :disabled="invalid">
+                                                                                          <span></span>
+                                                                                        <div class="w-100 position-relative">
+                                                                                          <div v-if="isEditLoading" class="spinner-border spinner-border-sm skew-none"></div>
                                                                                           {{ $t('submit', $store.state.locale) }}
-                                                                                        </span>
+                                                                                        </div>
                                                                                       </button>
                                                                                   </div>
                                                                               </div>
@@ -933,8 +934,8 @@
                                                 </div>
                                             </div>
                                             <div class="form-group post-rent--form-group post-rent-btn">
-                                                <button class="btn--secondery-hover br-4 gil-bold font-weight-bold border-0 primary-text pl-a-6 pr-a-6 d-inline-block position-relative post-rent--form-group--btn" :disabled="isRentLoading">
-                                                    <div class="mr-2">{{ $t('submit', $store.state.locale) }} <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i></div>
+                                                <button class="btn--secondery-hover br-4 gil-bold font-weight-bold border-0 primary-text d-inline-block position-relative post-rent--form-group--btn" :disabled="isRentLoading">
+                                                    <div class="mr-2 position-relative">{{ $t('submit', $store.state.locale) }} <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i></div>
                                                     <span></span>
                                                     <span></span>
                                                 </button>
@@ -1070,9 +1071,8 @@
                                             </div>
                                             <div class="form-group row">
                                             <div class="offset-md-3 col-md-9 col-xl-8 mt-4 post-rent--input">
-                                                    <button class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative w-100 border-0" :disabled="$store.state.isProfileUpdating">
-                                                        <div class="mr-2">{{ $t('update_profile', $store.state.locale) }} <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm text-dark"></i>  </div>
-                                                        <span></span>
+                                                    <button class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative w-100 border-0" :disabled="$store.state.isProfileUpdating">
+                                                        <div class="mr-2 position-relative">{{ $t('update_profile', $store.state.locale) }} <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm text-dark"></i>  </div>
                                                         <span></span>
                                                     </button>
                                                 </div>
@@ -1194,7 +1194,7 @@
                                     <!-- refer amount -->
                                     <div class="d-flex flex-column flex-sm-row text-center text-sm-left align-items-center justify-content-between">
                                         <h6 class="mr-4 gray-text">{{ $t('want_to_earn', $store.state.locale) }}</h6>
-                                        <router-link to="/games" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('rent_games', $store.state.locale) }}<span></span> <span></span></router-link>
+                                        <router-link to="/games" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('rent_games', $store.state.locale) }}</div></router-link>
                                     </div>
                                     <!-- refer history -->
                                     <div class="refer-history">
@@ -1460,7 +1460,7 @@
                                                 <label class="label-padding post-rent--form-group--label mt-0">{{ $t('cover_image', $store.state.locale) }} :</label>
                                                 <div class=" post-rent--form-group--input">
                                                   <div class="custom-file">
-                                                    <a class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="$refs.FileInputNew.click()">Upload image <span></span> <span></span></a>
+                                                    <a class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer" @click="$refs.FileInputNew.click()"> <span></span> <div class="position-relative">Upload image</div></a>
                                                     <input ref="FileInputNew" type="file" style="display: none;" @change="onFileSelect" />
                                                   </div>
                                                 </div>
@@ -1506,9 +1506,8 @@
                                                 </div>
                                             </div>
                                             <div class="form-group post-rent--form-group post-rent-btn">
-                                                <button class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative w-100 border-0 post-rent--form-group--btn" :disabled="onSellPostLoading">
-                                                    <div class="mr-2">{{ $t('submit', $store.state.locale) }} <i v-if="onSellPostLoading" class="spinner-border spinner-border-sm"></i></div>
-                                                    <span></span>
+                                                <button class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative w-100 border-0 post-rent--form-group--btn" :disabled="onSellPostLoading">
+                                                    <div class="mr-2 position-relative">{{ $t('submit', $store.state.locale) }} <i v-if="onSellPostLoading" class="spinner-border spinner-border-sm"></i></div>
                                                     <span></span>
                                                 </button>
                                             </div>

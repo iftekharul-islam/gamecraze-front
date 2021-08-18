@@ -137,7 +137,7 @@
                         <div class="group mb-a-6">
                           <label class="mb-3 w-100">{{ $t('cover_image', $store.state.locale) }}</label>
                           <div>
-                            <a class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="$refs.FileInputNew.click()">Upload image <span></span> <span></span></a>
+                            <a class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer" @click="$refs.FileInputNew.click()"> <span></span> <div class="position-relative">Upload image</div></a>
                             <input ref="FileInputNew" type="file" style="display: none;" @change="onFileSelect" />
                           </div>
                         </div>

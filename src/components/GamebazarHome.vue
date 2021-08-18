@@ -493,7 +493,7 @@ export default {
     });
     this.$api.get('category-list?include=products').then(response => {
       this.categories = response.data.data;
-      if (this.categories.length > 0) {
+      if (this.categories.length) {
         this.loadCategories = true
       }
     });

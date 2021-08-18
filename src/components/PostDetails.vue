@@ -26,7 +26,7 @@
               </div>
               <p><span class="f-s-34 gil-bold text-secondery mb-a-6">{{ post.price }} tk </span><small v-if="post.is_negotiable ==1">Negotiable</small></p>
               <div class=" mt-5">
-                <a class=" btn--secondery-hover br-4 gil-bold font-weight-bold primary-text-imp pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="showSeller = true">Contact the seller <span></span> <span></span></a>
+                <a class=" btn--secondery-hover br-4 gil-bold font-weight-bold primary-text-imp pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="showSeller = true"> <span></span> <div class="position-relative">Contact the seller</div></a>
               </div>
               <div class="row border-b-1 border-white-25 pt-a-6">
                 <div class="col-md-6">
@@ -156,7 +156,7 @@
                           <input type="text" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 pl-3 ">
                         </div>
                         <div class="report-group mb-a-6 text-right">
-                          <a href="#" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative">Report now <span></span> <span></span></a>
+                          <a href="#" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative"> <span></span> <div class="position-relative">Report now</div></a>
                         </div>
                       </div>
                     </div>

@@ -3,25 +3,24 @@
         <section class="gamebazar-banner">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-md-6">
-                        <div class="max-488">
-                            <h1 class="f-s-48 text-secondery gil-bold font-weight-bold mb-a-6">{{ $t('game_bazar_title_1', $store.state.locale) }} <br> {{ $t('game_bazar_title_2', $store.state.locale) }}</h1>
+                    <div class="col-md-7">
+                        <div class="max-600">
+                            <h1 class="f-s-48 text-secondery gil-bold font-weight-bold mb-a-6">{{ $t('game_bazar_title_1', $store.state.locale) }} </h1>
+                            <p class="gil-medium op-8">{{ $t('game_bazar_title_2', $store.state.locale) }}</p>
                             <router-link class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative" to="/create-sell-post">{{ $t('sell_post', $store.state.locale) }}</router-link>
                         </div>
                     </div>
-                    <div class="col-md-6 mt-3 mt-md-0">
+                    <div class="col-md-5 mt-3 mt-md-0">
                         <div class="gamebazar-banner__content d-grid grid-gap-16 justify-content-md-end">
-                            <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4">
+                            <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4 user-select-none pointer-initial ">
                               <div class=" h-100 br-4 overflow-fidden">
                                    <img src="../assets/img/gamebazar1.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
                               <div class="gamebazar-tag position-absolute">
                                   <span class="gil-bold f-s-20 text-white underline">Controller</span>
-                                  <span class="gil-bold f-s-20 text-white underline">Controller</span>
-                                  <span class="gil-bold f-s-20 text-white underline">Controller</span>
                               </div>
                             </a>
-                            <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4">
+                            <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4 user-select-none pointer-initial ">
                               <div class=" h-100 br-4 overflow-fidden">
                                    <img src="../assets/img/gamebazar2.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
@@ -29,7 +28,7 @@
                                   <span class="gil-bold f-s-20 text-white underline mt-auto">Controller</span>
                               </div>
                             </a>
-                            <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4">
+                            <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4 user-select-none pointer-initial ">
                               <div class=" h-100 br-4 overflow-fidden">
                                    <img src="../assets/img/gamebazar2.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
@@ -37,7 +36,7 @@
                                   <span class="gil-bold f-s-20 text-white underline mt-auto">Controller</span>
                               </div>
                             </a>
-                            <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4">
+                            <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4 user-select-none pointer-initial ">
                               <div class=" h-100 br-4 overflow-fidden">
                                    <img src="../assets/img/gamebazar3.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
@@ -296,7 +295,11 @@
                               <!-- {{ $t('game_bazar_title_6', $store.state.locale) }} -->
                             </h1>
                             <p class="max-500 opa-8 text-white">{{ $t('game_bazar_title_3', $store.state.locale) }}</p>
-                                <router-link to="/create-sell-post" class=" btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('create_ads', $store.state.locale) }} <span></span> <span></span></router-link>
+                                <router-link to="/create-sell-post"
+                                  class=" btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative"> 
+                                  <span></span>
+                                  <div class="position-relative">{{ $t('create_ads', $store.state.locale) }}</div>
+                               </router-link>
                         </div>
                     </div>
                     <div class="col-md-5 col-lg-6 position-initial  pr-md-0">
@@ -326,8 +329,8 @@
                             <p class="max-500 opa-8 text-white"> {{ $t('game_bazar_title_11', $store.state.locale) }}</p>
 
                             <div class="d-flex align-items-center">
-                              <router-link to="/profile" @click.native="clickToProfile()" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative mr-3">{{ $t('lend', $store.state.locale) }} <span></span> <span></span></router-link>
-                              <router-link to="/games" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('rent_button', $store.state.locale) }} <span></span> <span></span></router-link>
+                              <router-link to="/profile" @click.native="clickToProfile()" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative mr-3"> <span></span> <div class="position-relative">{{ $t('lend', $store.state.locale) }}</div></router-link>
+                              <router-link to="/games" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative"> <span></span> <div class="position-relative">{{ $t('rent_button', $store.state.locale) }}</div></router-link>
                             </div>
                         </div>
                     </div>
@@ -408,7 +411,24 @@
 </template>
 
 <script>
-import carousel from 'vue-owl-carousel';
+   import carousel from 'vue-owl-carousel';
+     export default {
+          components: { carousel },
+        data() {
+          return {
+             isHovering: false,
+            query: '',
+            loadedRelated: false,
+            relatedGames: [],
+            loadLatestPosts: false,
+            loadCategories: false,
+            categories: [],
+            latestPosts: [],
+            loadedPopular: false,
+            populars: [],
+            posts: [],
+            selected: '',
+
 
 export default {
   components: {carousel},

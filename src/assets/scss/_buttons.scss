@@ -158,177 +158,55 @@
           }
     }
     &--secondery-hover {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        letter-spacing: 2px;
-        border-radius:0px;
-        overflow: hidden!important;
-        -webkit-transition: all .3s ease-in-out;
-        -moz-transition: all .3s ease-in-out;
-        -o-transition: all .3s ease-in-out;
-        transition: all .3s ease-in-out;
-        background: transparent!important;
-        border-radius: 4px;
-        z-index: 99;
+        background: $secondery-gradient !important;
+        --tw-bg-opacity: 1;
+        align-items: center;
+        overflow: hidden;
+        padding: 9px 30px;
+        --tw-text-opacity: 1;
+        transform: translate(0px, 0px);
+        border-radius: 9999px;
+        border: 1px solid $secondery !important;
         &:hover {
 	        color: $text-light !important;
-            &::before,
-            &:before {
-                opacity: 1;
-                -webkit-transform: translateX(100%);
-                -moz-transform: translateX(100%);
-                -ms-transform: translateX(100%);
-                transform: translateX(100%);
-            }
-            &::after,
-            &::after {
-                opacity: 1;
-                opacity: 1;
-                -webkit-transform: translateX(-100%);
-                -moz-transform: translateX(-100%);
-                -ms-transform: translateX(-100%);
-                transform: translateX(-100%);
-            }
-            &::before {
-                z-index: 12;
-            }
-            &::after {
-                z-index: 15;
-            }
             span {
-                &:first-of-type {
-                    &::before {
-                        transition-delay: 1.2s;
-                    }
-                    &::after {
-                        transition-delay: .8s;
-                    }
-                    &::after,
-                    &::before {
-                        width: 100%;
-                        background: $secondery;
-                    }
-                }
-                &:last-of-type {
-                    &::before {
-                        transition-delay: 1.4s;
-                    }
-                    &::after {
-                        transition-delay: 1s;
-                    }
-                    &::after,
-                    &::before {
-                        height: 100%;
-                        background: $secondery;
-                    }
-                }
+                opacity: 1;
+                --tw-scale-x: 1;
+                --tw-scale-y: 1;
             }
-        }
-        &::before {
-            content: '';
-            width: 100%;
-            height: 100%;
-            display: block;
-            background: $secondery-gradient;
-            position: absolute;
-            border-radius: 4px;
-            left: 0%;
-            opacity: 1;
-            top: 0;
-            z-index: -1;
-            -webkit-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
-               -moz-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
-                 -o-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
-                    transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-        &::after {
-            content: '';
-            width: 100%;
-            height: 100%;
-            display: block;
-            background: $gamebazar-badge;
-            position: absolute;
-            left: 0%;
-            opacity: 1;
-            top: 0;
-            z-index: -15;
-            border-radius: 4px;
-            -webkit-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
-               -moz-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
-                 -o-transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
-                    transition: all .65s cubic-bezier(0.77, 0, 0.175, 1);
         }
         span {
+            --tw-bg-opacity: 1;
+            background-color: $primary;
+            border-radius: 9999px;
+            opacity: .5;
+            pointer-events: none;
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
             width: 100%;
-            height: 100%;
-            &::after,
-            &::before {
-                content: '';
-                position: absolute;
-            }
-            &:first-of-type {
-                &::after,
-                &::before {
-                    width: 0;
-                    height: 2px;
-                    position: absolute;
-                    transition: all 0.4s linear;
-                    background: $secondery;
-                }
-                &::before {
-                    right: 0;
-                    top: 0;
-                    transition-delay: 0.4s;
-                }
-                &::after {
-                    left: 0;
-                    bottom: 0;
-                    transition-delay: 0s;
-                }
-            }
-            &:last-of-type {
-                &::after,
-                &::before {
-                    content: "";
-                    width: 2px;
-                    height: 0;
-                    position: absolute;
-                    transition: all 0.4s linear;
-                    background: $secondery;
-                }
-                &::before {
-                    -webkit-transition-delay: 0s;
-                    transition-delay: 0s;
-                    left: 0;
-                    top: 0;
-                }
-                &::after {
-                    -webkit-transition-delay: 0.6s;
-                    transition-delay: 0.6s;
-                    right: 0;
-                    bottom: 0;
-                }
-            }
+            --tw-translate-x: 0;
+            --tw-translate-y: 0;
+            --tw-rotate: 0;
+            --tw-skew-x: 0;
+            --tw-skew-y: 0;
+            --tw-scale-x: 1;
+            --tw-scale-y: 1;
+            transform: translateX(var(--tw-translate-x)) translateY(var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+            --tw-scale-x: 0;
+            --tw-scale-y: 0;
+            --tw-translate-x: -50%;
+            --tw-translate-y: -50%;
+            padding-bottom: 100%;
+            transition: transform .3s cubic-bezier(.215,.61,.355,1),opacity .3s cubic-bezier(.215,.61,.355,1);
         }
+        .position-relative {
+            z-index: 9;
+        }
+        
     }
 }
-// .btn--secondery-hover:hover::before, .btn11:hover::before{
-// 	opacity:1;
-//   	-webkit-transform: translateX(100%);
-// 	     -moz-transform: translateX(100%);
-// 	      -ms-transform: translateX(100%);
-// 	          transform: translateX(100%);
-// }
-// .btn--secondery-hover:hover::after, .btn11:hover::after{
-// 	opacity:1;
-//     -webkit-transform: translateX(-100%);
-// 	     -moz-transform: translateX(-100%);
-// 	      -ms-transform: translateX(-100%);
-// 	          transform: translateX(-100%);
-// }
+
 
 .bn {
     .btn {

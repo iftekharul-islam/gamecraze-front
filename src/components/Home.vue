@@ -13,7 +13,7 @@
                             {{ $t('largest', $store.state.locale) }} <span>{{ $t('online', $store.state.locale) }}</span><br> <span>{{ $t('banner_platform', $store.state.locale) }}</span> {{ $t('for_rent_in', $store.state.locale) }}<span>{{ $t('bangladesh_on_banner', $store.state.locale) }}</span>
                             </h1>
                         <h6>{{ $t('home_banner_text', $store.state.locale) }}</h6>
-                        <router-link to="/games" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('begin_journey', $store.state.locale) }}<span></span> <span></span></router-link>
+                        <router-link to="/games" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('begin_journey', $store.state.locale) }}</div></router-link>
                     </div>
                 </div>
             </div>
@@ -214,7 +214,7 @@
                             </div>
                         </div>
                         <div class="text-center mt-5">
-                            <a href="/news" class="btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative m-auto ">{{ $t('view_all', $store.state.locale) }}<span></span> <span></span></a>
+                            <a href="/news" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative m-auto "><span></span> <div class="position-relative">{{ $t('view_all', $store.state.locale) }}</div></a>
                         </div>
                     </div>
                 </div>

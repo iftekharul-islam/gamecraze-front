@@ -12786,7 +12786,8 @@ html {
   padding-bottom: 180px;
 }
 
-.before-ball::before {
+.before-ball::before,
+.white-ball::before {
   content: '';
   width: 10px;
   height: 10px;
@@ -12794,6 +12795,10 @@ html {
   display: block;
   margin-right: 8px;
   border-radius: 50%;
+}
+
+.white-ball::before {
+  background: #fff !important;
 }
 
 .before-danger-ball::before {
@@ -12940,7 +12945,7 @@ html {
       grid-template-rows: 92px;
   grid-auto-rows: 92px;
   grid-gap: 16px;
-  min-height: 170px;
+  min-height: 200px;
 }
 
 .gamebazar-step-form .wizard__body__step .imgsPreview .clearButton {

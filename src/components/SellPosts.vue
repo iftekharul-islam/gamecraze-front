@@ -11,16 +11,13 @@
                             <vue-autosuggest
                                 v-model="query"
                                 :suggestions="filteredOptions"
-                                @focus="focusMe"
                                 @keyup.enter="searchProduct"
-                                @click="clickHandler"
-                                @input="onInputChange"
                                 @selected="onSelected"
                                 :get-suggestion-value="getSuggestionValue"
                                 :input-props="{id:'autosuggest__input',class:'auto-suggest-menu',placeholder:'Search...'}">
                               <div  slot-scope="{ suggestion }" class="w-100">
                                 <div class="d-flex align-items-center justify-content-between">
-                                  
+
                                    <div class="d-flex align-items-center">
                                       <div class="w-100px min-w-100 h-75 overflow-hidden br-4">
                                          <img :src="suggestion.item.cover.url" class="img-fluid  h-100 w-100" alt="Gamehub Logo logo" v-if="suggestion.item.cover != null">
@@ -68,19 +65,6 @@
         <div class="row">
           <div class="col-md-4 col-lg-3 mb-3">
             <div class="text-right">
-              <!-- <button id="btn--filter" class="btn--filter" v-on:click="toggleMenu()">
-                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 512 512"
-                     width="40" height="35">
-                  <linearGradient id="a" gradientUnits="userSpaceOnUse" x1="256" x2="256" y1="22" y2="498">
-                    <stop offset="0" stop-color="#00efd1"/>
-                    <stop offset="1" stop-color="#00acea"/>
-                  </linearGradient>
-                  <path
-                      d="m412.943 69h-313.886c-5.523 0-10.057 4.936-10.057 10.458v64.164c0 .326.046.65.077.972.014.146.055.288.075.432.024.17.052.341.085.51s.083.344.126.515c.033.135.066.27.105.4.052.177.115.35.177.523.044.124.087.249.136.371.068.168.143.331.219.494.059.124.116.249.179.371.079.152.164.3.25.448.074.127.15.254.23.379s.18.267.274.4.185.254.283.378.2.24.3.357c.057.066.176.138.237.2l114.247 124.683v157.487a9.939 9.939 0 0 0 5.739 9.078 9.839 9.839 0 0 0 4.158.922 9.948 9.948 0 0 0 6.467-2.386l80.194-68.334a9.926 9.926 0 0 0 3.442-7.614v-89.153l114.25-124.679c.061-.065.146-.137.2-.2.1-.117.217-.235.314-.357s.2-.25.291-.378.19-.263.277-.4.159-.252.233-.379c.086-.148.172-.3.251-.448.063-.122.121-.247.18-.371.075-.163.15-.326.218-.494.05-.122.092-.247.136-.371.062-.173.124-.346.176-.523.039-.133.07-.268.1-.4.043-.171.088-.341.121-.515s.055-.34.078-.51c.021-.144.076-.286.09-.432.031-.322.077-.646.077-.972v-64.168c.008-5.522-4.526-10.458-10.049-10.458zm-124.25 195.6a9.6 9.6 0 0 0 -2.693 6.568v88.42l-60 51.312v-139.732a9.6 9.6 0 0 0 -2.693-6.565l-101.532-110.603h268.45zm114.307-130.6h-294v-45h294z"
-                      fill="url(#a)"/>
-                </svg>
-                <span>{{ $t('filter', $store.state.locale) }}</span>
-              </button> -->
             </div>
             <div class="games-categories-section--categories filter-show-mobile p-0" id="games-categories-list" :class="{ filterShow : filterShow }">
               <div class="bg-shorting-tile p-3 d-flex align-items-center justify-content-between br-t-r-5 br-t-l-5 d-md-none">
@@ -265,9 +249,6 @@
                         </div>
                   </router-link>
               </div>
-              <!-- <div class="text-center my-5">
-                    <a href="#" class="btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">Load more</a>
-                </div> -->
             </div>
             <div class="not-matching" v-if="noPostFound">
               <h2>{{ $t('noting_to_show', $store.state.locale) }}</h2>
@@ -364,6 +345,7 @@ import carousel from 'vue-owl-carousel';
 import VueSlider from 'vue-slider-component/dist-css/vue-slider-component.umd.min.js'
 import 'vue-slider-component/dist-css/vue-slider-component.css'
 import 'vue-slider-component/theme/default.css'
+
 export default {
   components: {SlidingPagination, carousel, VueSlider},
   data() {
@@ -395,22 +377,25 @@ export default {
       sortUsedChecked: false,
       isDragging: false,
       filterShow: false,
+      baseColor: '#FFD715',
       process: dotsPos => [
-        [dotsPos[0], dotsPos[1], { backgroundColor: '#FFD715'}],
+        [
+          dotsPos[0],
+          dotsPos[1],
+          {backgroundColor: this.baseColor}
+        ],
       ],
       dotOptions: [{
         tooltip: 'always',
-        tooltipStyle:{ backgroundColor: '#FFD715', borderColor: '#FFD715', color: 'black'}
+        tooltipStyle: {backgroundColor: this.baseColor, borderColor: this.baseColor, color: 'black'}
       }, {
         tooltip: 'always',
-        tooltipStyle:{ backgroundColor: '#FFD715', borderColor: '#FFD715', color: 'black'}
+        tooltipStyle: {backgroundColor: this.baseColor, borderColor: this.baseColor, color: 'black'}
       }]
     }
   },
   methods: {
-    getValue(value, index) {
-      // console.log(value);
-      console.log(this.priceRange);
+    getValue() {
       this.getSellPosts();
     },
     clearFilter() {
@@ -421,16 +406,13 @@ export default {
       this.sortUsed = '';
       this.sortUsedChecked = false;
       this.sortNewChecked = false;
-      this.priceRange= [0, 100000];
+      this.priceRange = [0, 100000];
     },
     removeSearchKey() {
       let query = Object.assign({}, this.$route.query);
       delete query.search;
       this.$router.replace({query});
       this.getSellPosts();
-    },
-    focusMe(e) {
-      console.log(e)
     },
     searchProduct() {
       if (this.query !== '') {
@@ -441,15 +423,7 @@ export default {
         this.getSellPosts();
       }
     },
-    clickHandler() {
-
-    },
-    onInputChange(text) {
-      // event fired when the input changes
-      console.log(text)
-    },
     onSelected(item) {
-      console.log(item);
       this.selected = item.item;
       this.query = this.selected.name;
       this.$router.push('/sell-post/' + this.selected.id + '/' + this.selected.url_name);
@@ -457,7 +431,7 @@ export default {
     getSuggestionValue(suggestion) {
       return suggestion.name;
     },
-    show(e) {
+    show() {
       this.showDrawer = !this.showDrawer;
     },
     ascPrice(event) {
@@ -473,17 +447,14 @@ export default {
     ascDate(event) {
       this.descByDate = '';
       this.ascByDate = event.target.checked === true ? 1 : '';
-      console.log(this.ascByDate)
       this.getSellPosts();
     },
     descDate(event) {
       this.ascByDate = '';
       this.descByDate = event.target.checked === true ? 1 : '';
-      console.log(this.descByDate)
       this.getSellPosts();
     },
     sortNewType(event) {
-      console.log(this.priceRange);
       this.sortNewChecked = false
       this.sortUsedChecked = false
       this.sortNew = '';
@@ -537,7 +508,6 @@ export default {
         this.queryCategories = []
       }
       this.getSellPosts();
-
     },
     getSellPosts(page_no = '') {
       if (this.$route.query.search) {
@@ -553,7 +523,6 @@ export default {
         this.pagination = response.data.meta.pagination;
         this.currentPage = this.pagination.current_page
         this.totalPages = this.pagination.total_pages
-        console.log(this.posts)
         if (!this.posts.length) {
           this.noPostFound = true;
         }
@@ -595,7 +564,7 @@ export default {
     });
     this.$api.get('games/popular-games?include=game.assets,game.platforms,game.genres').then(response => {
       this.populars = response.data.data;
-      if (this.populars.length > 0) {
+      if (this.populars.length) {
         this.loadedPopular = true
       }
     });
@@ -604,6 +573,10 @@ export default {
     });
     this.$root.$on('searchProductEvent', () => {
       this.getSellPosts();
+    })
+    this.$root.$on('queryOnCategoryEvent', () => {
+      this.fetchFilteredPosts();
+      this.checkedCategories.push(this.queryCategories);
     })
   }
 }

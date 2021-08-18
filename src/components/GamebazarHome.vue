@@ -60,10 +60,7 @@
                             <vue-autosuggest
                                 v-model="query"
                                 :suggestions="filteredOptions"
-                                @focus="focusMe"
                                 @keyup.enter="searchProduct"
-                                @click="clickHandler"
-                                @input="onInputChange"
                                 @selected="onSelected"
                                 :get-suggestion-value="getSuggestionValue"
                                 :input-props="{id:'autosuggest__input',class:'auto-suggest-menu',placeholder:'Search...'}">
@@ -99,9 +96,6 @@
                                   </div>
                                   <span class="text-secondery gil-bold font-weight-bold">৳ {{ suggestion.item.price }}</span>
                                 </div>
-                                <!--                                 <div class="bg-vie-all-gamebazar position-absolute bottom-0 left-0 w-100 py-2 text-center">-->
-                                <!--                                   <a href="/sell-posts" class="gil-bold text-secondery">View all</a>-->
-                                <!--                                </div>-->
                               </div>
                             </vue-autosuggest>
                           </div>
@@ -283,7 +277,7 @@
                 </carousel>
               </div>
               <div class="text-center mt-5">
-                <router-link to="/sell-posts" class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_post', $store.state.locale) }}</router-link>
+                <a href="#" @click.prevent="queryOnCategory(category.name)" class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_post', $store.state.locale) }}</a>
               </div>
             </div>
           </section>
@@ -333,7 +327,7 @@
                               {{ $t('game_bazar_title_10', $store.state.locale) }}
                             </h1>
                             <p class="max-500 opa-8 text-white"> {{ $t('game_bazar_title_11', $store.state.locale) }}</p>
-                                
+
                             <div class="d-flex align-items-center">
                               <router-link to="/profile" @click.native="clickToProfile()" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative mr-3"> <span></span> <div class="position-relative">{{ $t('lend', $store.state.locale) }}</div></router-link>
                               <router-link to="/games" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative"> <span></span> <div class="position-relative">{{ $t('rent_button', $store.state.locale) }}</div></router-link>
@@ -435,81 +429,99 @@
             posts: [],
             selected: '',
 
-          }
-        },
-        methods: {
-           focusMe(e) {
-             console.log(e)
-           },
-          searchProduct() {
-            if(this.query !== '') {
-              this.$router.push({name: 'sell-post', query: {categories: this.$route.query.categories, search: this.query}})
-              this.$root.$emit('searchProductEvent')
-            }
-            else {
-              this.$router.push({name: 'sell-post', query: {categories: this.$route.query.categories}})
-              this.$root.$emit('searchProductEvent')
-            }
-          },
-           clickHandler() {
 
-           },
-           onInputChange(text) {
-             // event fired when the input changes
-             console.log(text)
-           },
-           onSelected(item) {
-             this.selected = item.item;
-             this.query = this.selected.name;
-             this.$router.push('/sell-post/' + this.selected.id + '/' + this.selected.url_name);
-           },
-           getSuggestionValue(suggestion) {
-             return suggestion.item.name;
-           },
-           clickToProfile() {
-             var auth = this.$store.getters.ifAuthenticated;
-             if (!auth) {
-               this.$router.push('/lend-notice');
-               return
-             }
-             this.$root.$emit('rentPost');
-           },
-         },
-        computed: {
-          filteredOptions() {
-            return [
-              {
-                data: this.posts.filter(option => {
-                  return option.name.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
-                })
-              }
-            ];
-          },
-        },
-        created() {
-          window.scrollTo(0,0);
-          this.$api.get('latest-sell-posts?include=subcategory,user').then(response => {
-            this.latestPosts = response.data.data;
-            if (this.latestPosts.length > 0) {
-              this.loadLatestPosts = true
-            }
-          });
-          this.$api.get('games/popular-games?include=game.assets,game.platforms,game.genres').then(response => {
-            this.populars = response.data.data;
-            if (this.populars.length > 0) {
-              this.loadedPopular = true
-            }
-          });
-          this.$api.get('category-list?include=products').then(response => {
-            this.categories = response.data.data;
-            if (this.categories.length > 0) {
-              this.loadCategories = true
-            }
-          });
-          this.$api.get('all-sell-post').then(response => {
-            this.posts = response.data.data;
-          });
-        },
-        
+export default {
+  components: {carousel},
+  data() {
+    return {
+      query: '',
+      loadedRelated: false,
+      relatedGames: [],
+      loadLatestPosts: false,
+      loadCategories: false,
+      categories: [],
+      latestPosts: [],
+      loadedPopular: false,
+      populars: [],
+      posts: [],
+      selected: '',
+
     }
+  },
+  methods: {
+    queryOnCategory(category) {
+      this.$router.push({
+        name: 'sell-posts',
+        query: {categories: category}
+      }).then(() => {
+        this.$root.$emit('queryOnCategoryEvent')
+      })
+    },
+    searchProduct() {
+      if (this.query !== '') {
+        this.$router.push({
+          name: 'sell-posts',
+          query: {categories: this.$route.query.categories, search: this.query}
+        })
+        this.$root.$emit('searchProductEvent')
+      } else {
+        this.$router.push({
+          name: 'sell-posts'
+        })
+      }
+    },
+    onSelected(item) {
+      this.selected = item.item;
+      this.query = this.selected.name;
+      this.$router.push('/sell-post/' + this.selected.id + '/' + this.selected.url_name);
+    },
+    getSuggestionValue(suggestion) {
+      return suggestion.item.name;
+    },
+    clickToProfile() {
+      var auth = this.$store.getters.ifAuthenticated;
+      if (!auth) {
+        this.$router.push('/lend-notice');
+        return
+      }
+      this.$root.$emit('rentPost');
+    },
+  },
+  computed: {
+    filteredOptions() {
+      return [
+        {
+          data: this.posts.filter(option => {
+            return option.name.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
+          })
+        }
+      ];
+    },
+  },
+  created() {
+    window.scrollTo(0, 0);
+    this.$api.get('latest-sell-posts?include=subcategory,user').then(response => {
+      this.latestPosts = response.data.data;
+      if (this.latestPosts.length) {
+        this.loadLatestPosts = true
+      }
+    });
+    this.$api.get('games/popular-games?include=game.assets,game.platforms,game.genres').then(response => {
+      this.populars = response.data.data;
+      if (this.populars.length) {
+        this.loadedPopular = true
+      }
+    });
+    this.$api.get('category-list?include=products').then(response => {
+      this.categories = response.data.data;
+      if (this.categories.length) {
+        this.loadCategories = true
+      }
+    });
+    this.$api.get('all-sell-post').then(response => {
+      this.posts = response.data.data;
+    });
+  },
+}
 </script>
+

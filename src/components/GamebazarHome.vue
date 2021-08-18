@@ -412,23 +412,6 @@
 
 <script>
    import carousel from 'vue-owl-carousel';
-     export default {
-          components: { carousel },
-        data() {
-          return {
-             isHovering: false,
-            query: '',
-            loadedRelated: false,
-            relatedGames: [],
-            loadLatestPosts: false,
-            loadCategories: false,
-            categories: [],
-            latestPosts: [],
-            loadedPopular: false,
-            populars: [],
-            posts: [],
-            selected: '',
-
 
 export default {
   components: {carousel},

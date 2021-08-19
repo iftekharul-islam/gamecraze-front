@@ -13,7 +13,7 @@
         background: $trans-nav-bg;
     }
     @include for-max-1199 {
-        padding: 20px 0;
+        padding: 20px 13px;
     }
 }
 
@@ -24,7 +24,7 @@
         padding-top: 0;
     }
     @include for-max-575 {
-        padding-left: 60px;
+        padding-left: 0px;
     }
     img {
         width: 120px;
@@ -39,10 +39,12 @@
 
 .gamehub-menu-collapse {
     @include for-max-1199 {
-        padding-top: 60px;
-        margin-top: 20px;
-        position: relative;
-        background: $trans-nav-bg;
+        // padding-top: 60px;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        background: $game-details;
     }
     >ul {
         margin: auto;
@@ -55,6 +57,10 @@
         }
         li {
             padding-left: 0;
+            position: relative;
+            @include for-max-1199 {
+                position: initial;
+            }
             @include for-max-992 {
                 margin-bottom: 10px;
                 width: fit-content;
@@ -96,10 +102,21 @@
                         transform: skew(-50deg);
                         @include for-max-1199 {
                             width: 50px;
+                            display: none;
                         }
                         @include for-max-992 {
                             top: 28px;
                         }
+                    }
+                    svg {
+                        path {
+                            fill: $secondery;
+                        }
+                    }
+                }
+                svg {
+                    path {
+                        transition: all .3s ease-in;
                     }
                 }
             }
@@ -124,6 +141,11 @@
             &:hover {
                 a {
                     color: $secondery;
+                    svg {
+                        path {
+                            fill: $secondery;
+                        }
+                    }
                 }
             }
         }
@@ -209,19 +231,20 @@
 
 .signin-cart-group {
     @include for-max-1199 {
-        position: absolute;
-        top: 17px;
-        right: 50px;
+        // position: absolute;
+        // top: 17px;
+        // right: 50px;
     }
     @include for-max-575 {
-        right: 20px;
+        // right: 20px;
     }
 }
 
 .gamehub-input-group-searchbar {
     @include for-max-1199 {
-        position: absolute;
-        top: 20px;
+        // position: absolute;
+        // top: 20px;
+        margin-left: auto;
     }
 }
 
@@ -360,6 +383,7 @@
     @include for-max-575 {
         width: 80px;
         height: 35px;
+        margin: 0 10px;
     }
     span {
         display: inline-block;
@@ -528,7 +552,7 @@
     border: 1px solid $secondery;
     top: 59px;
     @include for-max-575 {
-        right: -20px;
+        // right: -20px;
         left: initial;
     }
     &--top {
@@ -737,7 +761,7 @@
 
 .dropdown {
     @include for-max-1199 {
-        width: 100% !important;
+        // width: 100% !important;
     }
     &--sub-menu {
         position: absolute;
@@ -751,11 +775,19 @@
         display: none;
         right: 0;
         border-radius: 0;
+        border-bottom: 1px solid $secondery;
         @include for-max-1199 {
-            width: 100%;
+            width: calc(100% - 40px);
+            top: -240px;
+            border: 1px solid $secondery;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 20px !important;
+            &.show {
+                // display: flex !important;
+            }
         }
         @include for-max-575 {
-            left: -15px;
         }
         a {
             padding: 10px 20px !important;
@@ -795,6 +827,10 @@
             &:hover {
                 background: $secondery;
             }
+            @include for-max-1199 {
+                background-color: $game-details;
+                border: none !important;
+            }
         }
     }
     &:hover {
@@ -803,7 +839,7 @@
                 display: block;
             }
             @include for-max-1199 {
-                height: 260px;
+                // height: 260px;
             }
         }
         &::after {
@@ -818,16 +854,19 @@
         border-bottom: 5px solid $gray-border;
         content: '';
         transition: all .3s ease-in;
+        @include for-max-1199 {
+            display: none;
+        }
     }
 }
 // language
 .gamehub-language {
-    margin-right: 32px;
+    margin-right: 16px;
     display: flex;
     align-items: center;
     @include for-max-1199 {
         padding-left: 15px;
-        padding-bottom: 20px;
+        // padding-bottom: 20px;
     }
     .active {
         // background: $secondery;
@@ -872,3 +911,8 @@
     }
 }
 
+body {
+    #hubspot-messages-iframe-container {
+        bottom: 68px !important;
+    }
+}

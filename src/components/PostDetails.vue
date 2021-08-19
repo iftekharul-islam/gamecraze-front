@@ -134,10 +134,10 @@
                           X
                         </span>
                         <ValidationObserver v-slot="{ handleSubmit }">
-                            <p class="mb-3">Product name</p>
+                            <p class="mb-3">{{ $t('product_name', $store.state.locale) }}</p>
                             <p class="text-secondery gil-bold f-s-20">{{ post.name }}</p>
                             <div class="report-group mb-a-6">
-                              <p class="mb-2 gil-regular">Cause of report</p>
+                              <p class="mb-2 gil-regular">{{ $t('cause_of_report', $store.state.locale) }}</p>
                               <ValidationProvider name="Report reason" rules="required" v-slot="{ errors }">
                                 <textarea v-model="report.reason" id="" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 p-3" rows="3"></textarea>
                                 <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
@@ -148,21 +148,21 @@
 <!--                              <UploadImages class="w-100 p-0 bg-transparent border-0" :max="1" maxError="Max image upload limit is 1" @change="uploadScreenshots"/>-->
 <!--                            </div>-->
                             <div class="report-group mb-a-6">
-                              <p class="mb-2 gil-regular">Your name</p>
+                              <p class="mb-2 gil-regular">{{ $t('your_name', $store.state.locale) }}</p>
                               <ValidationProvider name="Reporter name" rules="required" v-slot="{ errors }">
                                 <input type="text" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 pl-3 " v-model="report.name" :readonly="authExist">
                                 <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
                               </ValidationProvider>
                             </div>
                             <div class="report-group mb-a-6">
-                              <p class="mb-2 gil-regular">Your email</p>
+                              <p class="mb-2 gil-regular">{{ $t('your_email', $store.state.locale) }}</p>
                               <ValidationProvider name="Reporter email" rules="required|email" v-slot="{ errors }">
                                 <input type="text" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 pl-3 " v-model="report.email" :readonly="authExist">
                                 <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
                               </ValidationProvider>
                             </div>
                             <div class="report-group mb-a-6">
-                              <p class="mb-2 gil-regular">Mobile no</p>
+                              <p class="mb-2 gil-regular">{{ $t('phone_number', $store.state.locale) }}</p>
                               <ValidationProvider name="Reporter phone no" rules="required|integer|max:11" v-slot="{ errors }">
                                 <input type="number" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 pl-3 " v-model="report.phone_no" :readonly="authExist">
                                 <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
@@ -172,7 +172,7 @@
                               <a href="#" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative" @click.prevent="handleSubmit(reportSubmit)">
                                 <span></span>
                                 <div v-if="submitLoading" class="spinner-border spinner-border-sm skew-none"></div>
-                                <div class="position-relative">Report now</div>
+                                <div class="position-relative">{{ $t('report_now', $store.state.locale) }}</div>
                               </a>
                             </div>
                         </ValidationObserver>
@@ -256,7 +256,7 @@
                               {{ $t('day', $store.state.locale) }}
                             </span>
                           </p>
-                          <p class="mb-3 text-white">Category</p>
+                          <p class="mb-3 text-white">{{ related.subcategory.data.name }}&nbsp;</p>
                           <div class="d-flex align-items-center text-secondery">
                               <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
                               <div class="gamebazar-post__arrow">

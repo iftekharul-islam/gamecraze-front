@@ -531,7 +531,6 @@ export default {
       }
     },
     fetchFilteredPosts() {
-      this.noPostFound = false;
       if (this.$route.query.categories) {
         this.queryCategories = this.$route.query.categories
       } else {
@@ -546,20 +545,19 @@ export default {
         this.searchKey = '';
         this.query = '';
       }
-      this.noPostFound = false;
       this.$api.get('sell-posts?include=subcategory&page=' + page_no + '&subcategory=' + this.queryCategories + '&ascPrice=' + this.ascByPrice + '&descPrice=' + this.descByPrice + '&ascDate=' + this.ascByDate + '&descDate=' + this.descByDate + '&sortNew=' + this.sortNew + '&sortUsed=' + this.sortUsed + '&priceRange=' + this.priceRange  + '&search=' + this.searchKey).then(response => {
         this.posts = response.data.data;
         this.allPosts = this.posts;
         this.pagination = response.data.meta.pagination;
         this.currentPage = this.pagination.current_page
         this.totalPages = this.pagination.total_pages
-        if (!this.posts.length) {
+        this.noPostFound = false;
+        if (this.posts.length == 0) {
           this.noPostFound = true;
         }
       });
     },
     getUrlParams(){
-      this.noPostFound = false;
       if (this.$route.query.categories) {
         this.queryCategories = this.$route.query.categories.split(',')
       } else {

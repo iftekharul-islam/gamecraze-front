@@ -523,5 +523,9 @@
   "sellpost_list_10" : "Select the sub category from the list.  ",
   "sellpost_list_11" : "Upload the cover image by clicking on the upload button.",
   "sellpost_list_12" : "You also have to share more images by clicking on the screenshot button.",
-  "sellpost_help_title_2" : "Finally you need to click submit. It will take 2 to 3 hours to approve your sale post. "
+  "sellpost_help_title_2" : "Finally you need to click submit. It will take 2 to 3 hours to approve your sale post. ",
+  "your_name" : "Your name",
+  "your_email" : "Your email",
+  "report_now" : "Report now",
+  "cause_of_report" : "Cause of report"
 }

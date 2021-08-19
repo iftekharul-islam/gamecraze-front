@@ -1734,6 +1734,10 @@ p {
 }
 .text-step-error {
     color: $gamebazar-badge;
+    &::before {
+        content: '*';
+        margin-right: 4px;
+    }
 }
 
 .text-black {

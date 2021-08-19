@@ -17,6 +17,12 @@ body {
   font-family: gilroy-regular;
 }
 
+@media (max-width: 1199px) {
+  body {
+    padding-bottom: 100px;
+  }
+}
+
 @media (max-width: 991px) {
   body {
     padding-top: 56px;
@@ -3515,7 +3521,7 @@ select option {
 
 @media (max-width: 1199px) {
   .gamehub-menu {
-    padding: 20px 0;
+    padding: 20px 13px;
   }
 }
 
@@ -3532,7 +3538,7 @@ select option {
 
 @media (max-width: 575px) {
   .navbar-brand {
-    padding-left: 60px;
+    padding-left: 0px;
   }
 }
 
@@ -3554,10 +3560,11 @@ select option {
 
 @media (max-width: 1199px) {
   .gamehub-menu-collapse {
-    padding-top: 60px;
-    margin-top: 20px;
-    position: relative;
-    background: #141a27e0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background: #141A27;
   }
 }
 
@@ -3581,6 +3588,13 @@ select option {
 
 .gamehub-menu-collapse > ul li {
   padding-left: 0;
+  position: relative;
+}
+
+@media (max-width: 1199px) {
+  .gamehub-menu-collapse > ul li {
+    position: initial;
+  }
 }
 
 @media (max-width: 992px) {
@@ -3650,6 +3664,7 @@ select option {
 @media (max-width: 1199px) {
   .gamehub-menu-collapse > ul li a.router-link-exact-active::after {
     width: 50px;
+    display: none;
   }
 }
 
@@ -3657,6 +3672,15 @@ select option {
   .gamehub-menu-collapse > ul li a.router-link-exact-active::after {
     top: 28px;
   }
+}
+
+.gamehub-menu-collapse > ul li a.router-link-exact-active svg path {
+  fill: #FFD715;
+}
+
+.gamehub-menu-collapse > ul li a svg path {
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
 }
 
 .gamehub-menu-collapse > ul li.dropdown:hover::after {
@@ -3681,6 +3705,10 @@ select option {
 
 .gamehub-menu-collapse > ul li:hover a {
   color: #FFD715;
+}
+
+.gamehub-menu-collapse > ul li:hover a svg path {
+  fill: #FFD715;
 }
 
 .toggler-position {
@@ -3776,23 +3804,8 @@ select option {
 }
 
 @media (max-width: 1199px) {
-  .signin-cart-group {
-    position: absolute;
-    top: 17px;
-    right: 50px;
-  }
-}
-
-@media (max-width: 575px) {
-  .signin-cart-group {
-    right: 20px;
-  }
-}
-
-@media (max-width: 1199px) {
   .gamehub-input-group-searchbar {
-    position: absolute;
-    top: 20px;
+    margin-left: auto;
   }
 }
 
@@ -3979,6 +3992,7 @@ select option {
   .sign-in {
     width: 80px;
     height: 35px;
+    margin: 0 10px;
   }
 }
 
@@ -4183,7 +4197,6 @@ select option {
 
 @media (max-width: 575px) {
   .gamehub-dropdown-menu {
-    right: -20px;
     left: initial;
   }
 }
@@ -4426,12 +4439,6 @@ select option {
   top: 5px;
 }
 
-@media (max-width: 1199px) {
-  .dropdown {
-    width: 100% !important;
-  }
-}
-
 .dropdown--sub-menu {
   position: absolute;
   top: 47px;
@@ -4449,17 +4456,17 @@ select option {
   display: none;
   right: 0;
   border-radius: 0;
+  border-bottom: 1px solid #FFD715;
 }
 
 @media (max-width: 1199px) {
   .dropdown--sub-menu {
-    width: 100%;
-  }
-}
-
-@media (max-width: 575px) {
-  .dropdown--sub-menu {
-    left: -15px;
+    width: calc(100% - 40px);
+    top: -240px;
+    border: 1px solid #FFD715;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 20px !important;
   }
 }
 
@@ -4511,15 +4518,16 @@ select option {
   background: #FFD715;
 }
 
-@media (min-width: 1200px) {
-  .dropdown:hover .dropdown--sub-menu {
-    display: block;
+@media (max-width: 1199px) {
+  .dropdown--sub-menu--item {
+    background-color: #141A27;
+    border: none !important;
   }
 }
 
-@media (max-width: 1199px) {
+@media (min-width: 1200px) {
   .dropdown:hover .dropdown--sub-menu {
-    height: 260px;
+    display: block;
   }
 }
 
@@ -4539,8 +4547,14 @@ select option {
   transition: all .3s ease-in;
 }
 
+@media (max-width: 1199px) {
+  .dropdown::after {
+    display: none;
+  }
+}
+
 .gamehub-language {
-  margin-right: 32px;
+  margin-right: 16px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4552,7 +4566,6 @@ select option {
 @media (max-width: 1199px) {
   .gamehub-language {
     padding-left: 15px;
-    padding-bottom: 20px;
   }
 }
 
@@ -4604,6 +4617,10 @@ select option {
 
 .rating-notification--list:hover p:last-of-type span {
   color: #0B0F18 !important;
+}
+
+body #hubspot-messages-iframe-container {
+  bottom: 68px !important;
 }
 
 .slider-section {

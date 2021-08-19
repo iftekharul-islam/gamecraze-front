@@ -446,7 +446,6 @@
               phone_no: this.report.phone_no,
               reason: this.report.reason,
             }
-            console.log(data);
             this.$api.post('post-report', data).then(response => {
               if (response.data.error == false) {
                 this.submitLoading = false

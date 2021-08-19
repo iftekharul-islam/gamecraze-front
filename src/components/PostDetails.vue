@@ -406,7 +406,6 @@
         beforeRouteEnter(to, from, next) {
           next(vm => {
             vm.prevRoute = from
-            console.log(vm.prevRoute.name);
           })
         },
         methods: {

@@ -1782,6 +1782,11 @@ p {
   color: #F53A50;
 }
 
+.text-step-error::before {
+  content: '*';
+  margin-right: 4px;
+}
+
 .text-black {
   color: #000;
 }

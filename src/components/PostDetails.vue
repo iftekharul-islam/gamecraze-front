@@ -126,38 +126,56 @@
                   </div>
                   <!-- report post modal -->
                   <transition name="slide">
-                    <div 
+                    <div
                       :class="{reportModalOpen : reportModalShow}"
                     class="report-post-modal primary-bg-5 position-fixed top-0 left-0 w-100 h-100 align-items-center justify-content-center z-index-99999 p-3">
                       <div class="report-post-modal__content max-460 w-full border-1 border-secondery-opa-50 p-4 bg-game-details br-4 max-h-100pr overflow-auto position-relative">
                         <span class="position-absolute top-10 right-10 pointer f-s-18 opa-8" @click=" reportModalShow = !reportModalShow">
                           X
                         </span>
-                        <p class="mb-3">Product name</p>
-                        <p class="text-secondery gil-bold f-s-20">Sony controller 2 সেট</p>
-                        <div class="report-group mb-a-6">
-                          <p class="mb-2 gil-regular">Cause of report</p>
-                          <textarea name="" id="" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 p-3" rows="3"></textarea>
-                        </div>
-                        <div class="report-group mb-a-6">
-                          <p class="mb-2 gil-regular">Add photo (if possible)</p>
-                          <UploadImages class="w-100 p-0 bg-transparent border-0" :max="1" maxError="Max image upload limit is 1" @change="uploadScreenshots"/>
-                        </div>
-                        <div class="report-group mb-a-6">
-                          <p class="mb-2 gil-regular">Your name</p>
-                          <input type="text" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 pl-3 ">
-                        </div>
-                        <div class="report-group mb-a-6">
-                          <p class="mb-2 gil-regular">Your email</p>
-                          <input type="text" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 pl-3 ">
-                        </div>
-                        <div class="report-group mb-a-6">
-                          <p class="mb-2 gil-regular">Mobile</p>
-                          <input type="text" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 pl-3 ">
-                        </div>
-                        <div class="report-group mb-a-6 text-right">
-                          <a href="#" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative"> <span></span> <div class="position-relative">Report now</div></a>
-                        </div>
+                        <ValidationObserver v-slot="{ handleSubmit }">
+                            <p class="mb-3">{{ $t('product_name', $store.state.locale) }}</p>
+                            <p class="text-secondery gil-bold f-s-20">{{ post.name }}</p>
+                            <div class="report-group mb-a-6">
+                              <p class="mb-2 gil-regular">{{ $t('cause_of_report', $store.state.locale) }}</p>
+                              <ValidationProvider name="Report reason" rules="required" v-slot="{ errors }">
+                                <textarea v-model="report.reason" id="" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 p-3" rows="3"></textarea>
+                                <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                              </ValidationProvider>
+                            </div>
+<!--                            <div class="report-group mb-a-6">-->
+<!--                              <p class="mb-2 gil-regular">Add photo (if possible)</p>-->
+<!--                              <UploadImages class="w-100 p-0 bg-transparent border-0" :max="1" maxError="Max image upload limit is 1" @change="uploadScreenshots"/>-->
+<!--                            </div>-->
+                            <div class="report-group mb-a-6">
+                              <p class="mb-2 gil-regular">{{ $t('your_name', $store.state.locale) }}</p>
+                              <ValidationProvider name="Reporter name" rules="required" v-slot="{ errors }">
+                                <input type="text" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 pl-3 " v-model="report.name" :readonly="authExist">
+                                <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                              </ValidationProvider>
+                            </div>
+                            <div class="report-group mb-a-6">
+                              <p class="mb-2 gil-regular">{{ $t('your_email', $store.state.locale) }}</p>
+                              <ValidationProvider name="Reporter email" rules="required|email" v-slot="{ errors }">
+                                <input type="text" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 pl-3 " v-model="report.email" :readonly="authExist">
+                                <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                              </ValidationProvider>
+                            </div>
+                            <div class="report-group mb-a-6">
+                              <p class="mb-2 gil-regular">{{ $t('phone_number', $store.state.locale) }}</p>
+                              <ValidationProvider name="Reporter phone no" rules="required|integer|max:11" v-slot="{ errors }">
+                                <input type="number" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 pl-3 " v-model="report.phone_no" :readonly="authExist">
+                                <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                              </ValidationProvider>
+                            </div>
+                            <div class="report-group mb-a-6 text-right">
+                              <a href="#" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative" @click.prevent="handleSubmit(reportSubmit)">
+                                <span></span>
+                                <div v-if="submitLoading" class="spinner-border spinner-border-sm skew-none"></div>
+                                <div class="position-relative">{{ $t('report_now', $store.state.locale) }}</div>
+                              </a>
+                            </div>
+                        </ValidationObserver>
                       </div>
                     </div>
                   </transition>
@@ -238,7 +256,7 @@
                               {{ $t('day', $store.state.locale) }}
                             </span>
                           </p>
-                          <p class="mb-3 text-white">Category</p>
+                          <p class="mb-3 text-white">{{ related.subcategory.data.name }}&nbsp;</p>
                           <div class="d-flex align-items-center text-secondery">
                               <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
                               <div class="gamebazar-post__arrow">
@@ -389,7 +407,16 @@
         props: ['id', 'slug'],
         data() {
             return {
+                authExist: this.auth(),
                 reportModalShow: false,
+                report: {
+                  name: this.auth() ? this.$store.state.user.name : '',
+                  email: this.auth() ? this.$store.state.user.email : '',
+                  phone_no: this.auth() ? this.$store.state.user.phone_number : '',
+                  reason: '',
+                  image: ''
+                },
+                submitLoading: false,
                 showSeller: false,
                 sliderSection: false,
                 images: '',
@@ -409,6 +436,28 @@
           })
         },
         methods: {
+          reportSubmit(){
+            this.submitLoading = true;
+            let data = {
+              user_id: this.auth() ? this.$store.state.user.id : null,
+              product_id: this.post.id,
+              name: this.report.name,
+              email: this.report.email,
+              phone_no: this.report.phone_no,
+              reason: this.report.reason,
+            }
+            this.$api.post('post-report', data).then(response => {
+              if (response.data.error == false) {
+                this.submitLoading = false
+                this.reportModalShow = false
+                this.$toaster.success("Report request sent successfully!!");
+              }
+
+            });
+          },
+          auth(){
+            return this.$store.getters.ifAuthenticated
+          },
           routeBack(){
             if (this.prevRoute.name === 'profile'){
                 this.$router.push('/profile').then( () => {
@@ -449,6 +498,7 @@
           }
         },
         created() {
+          window.scrollTo(0,0);
           this.gameDetails(this.id);
           this.$api.get('latest-sell-posts?include=subcategory,user').then(response => {
             this.latestPosts = response.data.data;

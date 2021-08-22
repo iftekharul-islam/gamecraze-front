@@ -74,12 +74,13 @@
                         <div class="gamehub-input-group--content">
 
                             <div :class="{ animateNavebar: navbarAnimate }"  >
-                                <span class="animate-navbar-icon" 
+                                <div class="d-flex position-absolute animate-nav">
+                                    <span class="animate-navbar-icon order-3" 
                                 @click="navbarAnimate = !navbarAnimate"
                                 :class="{ block: navbarAnimate }">
                                     <i class="fas fa-times"></i>
                                 </span>
-                                <div class="search-input-design searchbar-input" >
+                                <div class="search-input-design searchbar-input gamebazar__search position-relative" >
                                     <vue-autosuggest
                                         v-model="query"
                                         :suggestions="filteredOptions"
@@ -89,15 +90,25 @@
                                         @input="onInputChange"
                                         @selected="onSelected"
                                         :get-suggestion-value="getSuggestionValue"
-                                        :input-props="{id:'autosuggest__input',class:'auto-suggest-menu'}">
-                                        <div  slot-scope="{suggestion}" style="display: flex; align-items: center;">
-                                        <span @click="onMenuItemClick()">{{suggestion.item.game.data.name}}</span>
+                                        :input-props="{id:'autosuggest__input',class:'auto-suggest-menu '}">
+                                        <div  slot-scope="{suggestion}">
+                                            <div class="d-flex align-items-center">
+                                                <div class="w-100px min-w-100 h-75 overflow-hidden br-4">
+                                                    <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2020/11/PS5-PS4-Game-Forced-Install-Problem.jpg" class="img-fluid  h-100 w-100" alt="Gamehub Logo logo">
+                                                </div>
+                                                <div class="ml-3">
+                                                   <span class="gil-bold" @click="onMenuItemClick()">{{suggestion.item.game.data.name}}</span>
+                                                   <span class="d-block">Used 1.5 years</span>
+                                                </div>
+                                                 <span class="text-secondery gil-bold font-weight-bold price d-block w-100px ml-auto">৳ 555</span>
+                                            </div>
                                         </div>
                                     </vue-autosuggest>
                                 </div>
-                                <button class="btn gamehub-search-btn" @click="onMenuItemClick(), navbarAnimate = !navbarAnimate" type="search" @click.prevent="searchGame">
+                                <button class="btn gamehub-search-btn animate-nav-btn" @click="onMenuItemClick(), navbarAnimate = !navbarAnimate" type="search" @click.prevent="searchGame">
                                     <i class="fa fa-search gamehub-search-btn--icon"></i>
                                 </button>
+                                </div>
                             </div>
                             
                             

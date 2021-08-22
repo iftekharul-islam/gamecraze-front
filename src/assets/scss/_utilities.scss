@@ -2744,6 +2744,18 @@ select {
         flex: initial;
     }
 }
+.order-1 {
+    order: 1;
+}
+.order-2 {
+    order: 2;
+}
+.order-3 {
+    order: 3;
+}
+.order-4 {
+    order: 4;
+}
 // After
 .no-after {
     &::after {
@@ -3031,6 +3043,9 @@ select {
         bottom: 0;
         position: absolute;
     }
+}
+.text-underline {
+    text-decoration: underline;
 }
 // scroll
 .custom-scroll {

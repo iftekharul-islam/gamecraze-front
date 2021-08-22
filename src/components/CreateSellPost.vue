@@ -30,7 +30,7 @@
                                 <option value="">{{ $t('select_category', $store.state.locale) }}</option>
                                 <option :value="category.id" v-for="(category, index) in subCategories" :key="index">{{ category.name }}</option>
                               </select>
-                              <span class="text-step-error mt-2 d-inline-block">{{ errors[0] }}</span>
+                              <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
                             </ValidationProvider>
                           </div>
                           <div class="group mb-a-6">
@@ -75,21 +75,21 @@
                             <label for="product-name" class="mb-3 w-100">{{ $t('product_name', $store.state.locale) }}</label>
                             <ValidationProvider name="name" rules="required" v-slot="{ errors, classes }">
                               <input type="text" id="product-name" v-model="name" :class="classes" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
-                              <span class="text-step-error mt-2 d-inline-block">{{ errors[0] }}</span>
+                              <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
                             </ValidationProvider>
                           </div>
                           <div class="group mb-a-6">
                             <label class="mb-3 w-100">{{ $t('description', $store.state.locale) }}</label>
                             <ValidationProvider name="Description" rules="required" v-slot="{ errors, classes }">
                               <ckeditor v-model="description" :class="classes" :config="editorConfig"></ckeditor>
-                              <span class="text-step-error mt-2 d-inline-block">{{ errors[0] }}</span>
+                              <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
                             </ValidationProvider>
                           </div>
                           <div class="group mb-a-6">
                             <label class="mb-3 w-100">{{ $t('price', $store.state.locale) }}</label>
                             <ValidationProvider name="product price" rules="required" v-slot="{ errors, classes }">
                               <input type="number" name="product price" :class="classes" class=" px-3 w-100 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" v-model="price"/>
-                              <span class="text-step-error mt-2 d-inline-block">{{ errors[0] }}</span>
+                              <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
                             </ValidationProvider>
                           </div>
                           <div class="group mb-a-6 ml-3">
@@ -104,7 +104,7 @@
                                 <option value="1">Yes</option>
                                 <option value="2">No</option>
                               </select>
-                              <span class="text-step-error mt-2 d-inline-block">{{ errors[0] }}</span>
+                              <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
                             </ValidationProvider>
                           </div>
                            <div class="group mb-a-6" v-if="warrantyModal">
@@ -185,14 +185,14 @@
                               <label for="mobile-no" class="mb-3 w-100">{{ $t('phone_number', $store.state.locale) }}</label>
                               <ValidationProvider name="phone number" rules="required|max:11|min:11" v-slot="{ errors, classes }">
                                 <input type="number" :class="classes" v-model="phone_no" id="mobile-no" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
-                                <span class="text-step-error mt-2 d-inline-block">{{ errors[0] }}</span>
+                                <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
                               </ValidationProvider>
                             </div>
                             <div class="group mb-a-6">
                               <label for="email" class="mb-3 w-100">{{ $t('email', $store.state.locale) }}</label>
                               <ValidationProvider name="email" rules="required|email" v-slot="{ errors, classes }">
                                 <input type="text" id="email" :class="classes" v-model="email" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
-                                <span class="text-step-error mt-2 d-inline-block">{{ errors[0] }}</span>
+                                <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
                               </ValidationProvider>
                             </div>
 <!--                            <div class="group mb-a-6">-->
@@ -205,7 +205,7 @@
                               <label for="address" class="mb-3 w-100">{{ $t('address', $store.state.locale) }}</label>
                               <ValidationProvider name="address" rules="required" v-slot="{ errors, classes }">
                                 <input type="text" id="address" :class="classes" v-model="address" class="px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
-                                <span class="text-step-error mt-2 d-inline-block">{{ errors[0] }}</span>
+                                <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
                               </ValidationProvider>
                             </div>
                         </div>

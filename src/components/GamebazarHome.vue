@@ -109,7 +109,7 @@
                 </div>
             </div>
             <div class="container pr-a-0-max-575">
-                <h3 class="f-s-24 gil-bold text-white mb-a-4">{{ $t('new_post', $store.state.locale) }}</h3>
+                <h3 class="f-s-24 gil-bold text-white mb-a-4 text-uppercase">new Posts</h3>
                 <div class="position-relative carousel-nav">
                   <carousel v-if ="loadLatestPosts"
                             :autoplay ="false"
@@ -157,25 +157,6 @@
                           <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5"> ৳ {{ post.price }}</span>
                         </div>
                         <p class="gil-bold mb-3 mt-a-4 text-white">{{ post.name }}</p>
-                        <p class="mb-3 text-white" v-if="post.product_type === 1">
-                          {{ $t('new', $store.state.locale) }}
-                        </p>
-                        <p class="mb-3 text-white" v-else>
-                          {{ $t('used', $store.state.locale) }}&nbsp;
-                          <span v-if="post.used_year != null">
-                              {{ post.used_year }}&nbsp;
-                              {{ $t('year', $store.state.locale) }}&nbsp;
-                            </span>
-                          <span v-if="post.used_month != null">
-                              {{ post.used_month }}&nbsp;
-                              {{ $t('month', $store.state.locale) }}&nbsp;
-                            </span>
-                          <span v-if="post.used_day != null">
-                              {{ post.used_day }}&nbsp;
-                              {{ $t('day', $store.state.locale) }}
-                            </span>
-                        </p>
-                        <small class="mb-3 text-white">{{ post.subcategory.data.name }}</small>
                         <div class="d-flex align-items-center text-secondery">
                           <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
                           <div class="gamebazar-post__arrow">
@@ -196,7 +177,7 @@
         <div v-if="categories.length">
           <section class="new-post pb-a-11" v-for="(category, index) in categories" :key="index">
             <div class="container">
-              <h3 class="f-s-24 gil-bold text-white mb-a-4">{{ category.name }}</h3>
+              <h3 class="f-s-24 gil-bold text-white mb-a-4 text-uppercase">{{ category.name }}</h3>
               <!-- carousel -->
               <div class="position-relative carousel-nav">
                 <carousel v-if ="loadCategories"
@@ -245,25 +226,6 @@
                         <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5"> ৳ {{ post.price }}</span>
                       </div>
                       <p class="gil-bold mb-3 mt-a-4 text-white">{{ post.name }}</p>
-                      <p class="mb-3 text-white" v-if="post.product_type === 1">
-                        {{ $t('new', $store.state.locale) }}
-                      </p>
-                      <p class="mb-3 text-white" v-if="post.product_type != 1">
-                        {{ $t('used', $store.state.locale) }}&nbsp;
-                        <span v-if="post.used_year != null">
-                              {{ post.used_year }}&nbsp;
-                              {{ $t('year', $store.state.locale) }}&nbsp;
-                        </span>
-                        <span v-if="post.used_month != null">
-                              {{ post.used_month }}&nbsp;
-                              {{ $t('month', $store.state.locale) }}&nbsp;
-                        </span>
-                        <span v-if="post.used_day != null">
-                              {{ post.used_day }}&nbsp;
-                              {{ $t('day', $store.state.locale) }}
-                        </span>
-                      </p>
-                      <p class="mb-3 text-white">Category</p>
                       <div class="d-flex align-items-center text-secondery">
                         <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
                         <div class="gamebazar-post__arrow">

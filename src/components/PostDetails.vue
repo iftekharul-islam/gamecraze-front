@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Product details -->
-    <div class="gamebazar-product-details pb-a-20">
+    <div class="gamebazar-product-details pb-a-20" v-if="post">
       <div class="container">
         <a href="#" @click.prevent="routeBack" class="d-flex align-items-center mt-a-6 mb-a-6 svg-secondery-hover">
 
@@ -115,9 +115,6 @@
                       <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image" v-else>
                     </div>
                     <p class="text-white gil-bold mb-4" v-if="post.user.data.name">{{ post.user.data.name }}</p>
-                    <div class="d-flex align-items-center">
-                      <star-rating :star-points="[23,2, 14,17, 0,19, 10,34, 7,50, 23,43, 38,50, 36,34, 46,19, 31,17]" :border-width="1" :active-border-color="['#FFD715']" border-color="#D8D8D8" :rounded-corners="true" :read-only="true" :rating="rentingAvg" inactive-color="#D8D8D8" active-color="#FFD715" v-bind:star-size="24"></star-rating>
-                    </div>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -238,25 +235,6 @@
                               <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$ {{ related.price }}</span>
                           </div>
                           <p class="gil-bold mb-4 mt-a-4 text-white">{{ related.name }}</p>
-                          <p class="mb-3 text-white" v-if="related.product_type === 1">
-                            {{ $t('new', $store.state.locale) }}
-                          </p>
-                          <p class="mb-3 text-white" v-else>
-                            {{ $t('used', $store.state.locale) }}&nbsp;
-                            <span v-if="related.used_year != null">
-                              {{ related.used_year }}&nbsp;
-                              {{ $t('year', $store.state.locale) }}&nbsp;
-                            </span>
-                            <span v-if="related.used_month != null">
-                              {{ related.used_month }}&nbsp;
-                              {{ $t('month', $store.state.locale) }}&nbsp;
-                            </span>
-                            <span v-if="related.used_day != null">
-                              {{ related.used_day }}&nbsp;
-                              {{ $t('day', $store.state.locale) }}
-                            </span>
-                          </p>
-                          <p class="mb-3 text-white">{{ related.subcategory.data.name }}&nbsp;</p>
                           <div class="d-flex align-items-center text-secondery">
                               <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
                               <div class="gamebazar-post__arrow">

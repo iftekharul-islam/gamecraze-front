@@ -46,7 +46,7 @@
                                   <label for="my-product2" :class="classes" class="border-1 border-secondery-opa-50 py-2 w-full d-block br-4 text-center pointer opa-7 position-relative bg-step-form-input">{{ $t('used', $store.state.locale) }}</label>
                                 </div>
                               </div>
-                              <span class="text-step-error mt-2 d-inline-block">{{ errors[0] }}</span>
+                              <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
                             </ValidationProvider>
                           </div>
                         <div class="group mb-a-6" v-if="usedModal">
@@ -140,6 +140,7 @@
                             <a class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer" @click="$refs.FileInputNew.click()"> <span></span> <div class="position-relative">Upload image</div></a>
                             <input ref="FileInputNew" type="file" style="display: none;" @change="onFileSelect" />
                           </div>
+                          <span class="text-step-error mt-2 d-inline-block" v-if="coverError">* Please add cover image</span>
                         </div>
                         <div class="group mb-a-6" v-if="dialog">
                           <label class="mb-3 w-100">{{ $t('image_preview', $store.state.locale) }}</label>
@@ -167,7 +168,8 @@
                         </div>
                         <div class="group mb-a-6">
                           <label class="mb-3 w-100">{{ $t('upload_screenshots', $store.state.locale) }}</label>
-                             <UploadImages class="w-100 p-0 bg-transparent border-0" :max="4" maxError="Max image upload limit is 4" @change="uploadScreenshots"/>
+                            <UploadImages class="w-100 p-0 bg-transparent border-0" :max="4" maxError="Max image upload limit is 4" @change="uploadScreenshots"/>
+                            <span class="text-step-error mt-2 d-inline-block" v-if="screenshotsError">* Please add upload screenshots</span>
                         </div>
                     </div>
 
@@ -225,6 +227,8 @@
     components: {UploadImages, VueCropper},
     data(){
       return {
+        coverError: false,
+        screenshotsError: false,
         user: '',
         postCoverImage: '',
         dialog: false,
@@ -283,6 +287,7 @@
         this.$refs.cropper.setCropBoxData(data);
       },
       onFileSelect(e) {
+        this.coverError = false;
         const file = e.target.files[0]
         console.log(file);
         if (file != undefined) {
@@ -308,6 +313,7 @@
         }, this.mime_type)
       },
       uploadScreenshots(files) {
+        this.screenshotsError = false;
         if (files.length === 0) {
           this.postImages = [];
           console.log(this.postImages);
@@ -366,11 +372,13 @@
         }
         if (currentPage == 1) {
           if (this.cover_image == '') {
-            this.$toaster.warning(this.$t('cover_img_upload_failed', this.$store.state.locale));
+            this.coverError = true;
+            // this.$toaster.warning(this.$t('cover_img_upload_failed', this.$store.state.locale));
             return;
           }
           if (this.postImages.length === 0) {
-            this.$toaster.warning(this.$t('screenshots_upload_failed', this.$store.state.locale));
+            this.screenshotsError = true;
+            // this.$toaster.warning(this.$t('screenshots_upload_failed', this.$store.state.locale));
             return;
           }
           _this.$refs.wizard.goNext(true);

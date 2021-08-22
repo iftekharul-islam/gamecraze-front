@@ -122,7 +122,7 @@
                 </div>
                 <div class="col-md-6">
                   <div class="h-100 d-flex align-items-end justify-content-end">
-                    <a href="#" class="text-white" @click=" reportModalShow = !reportModalShow">{{ $t('report_to_post', $store.state.locale) }}</a>
+                    <a href="#" class="text-white text-underline" @click=" reportModalShow = !reportModalShow">{{ $t('report_to_post', $store.state.locale) }}</a>
                   </div>
                   <!-- report post modal -->
                   <transition name="slide">
@@ -140,7 +140,7 @@
                               <p class="mb-2 gil-regular">{{ $t('cause_of_report', $store.state.locale) }}</p>
                               <ValidationProvider name="Report reason" rules="required" v-slot="{ errors }">
                                 <textarea v-model="report.reason" id="" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 p-3" rows="3"></textarea>
-                                <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                                <span v-if="errors.length" class="error-message d-block text-left mt-2 sellpost-error">{{ errors[0] }}</span>
                               </ValidationProvider>
                             </div>
 <!--                            <div class="report-group mb-a-6">-->
@@ -170,9 +170,8 @@
                             </div>
                             <div class="report-group mb-a-6 text-right">
                               <a href="#" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative" @click.prevent="handleSubmit(reportSubmit)">
-                                <span></span>
+                                 {{ $t('report_now', $store.state.locale) }}
                                 <div v-if="submitLoading" class="spinner-border spinner-border-sm skew-none"></div>
-                                <div class="position-relative">{{ $t('report_now', $store.state.locale) }}</div>
                               </a>
                             </div>
                         </ValidationObserver>
@@ -270,7 +269,7 @@
                   </carousel>
              </div>
               <div class="text-center mt-5">
-                  <router-link to='/sell-posts' class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">{{ $t('all_post', $store.state.locale) }}</router-link>
+                  <router-link to='/sell-posts' class="btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_post', $store.state.locale) }}</router-link>
               </div>
           </div>
       </div>

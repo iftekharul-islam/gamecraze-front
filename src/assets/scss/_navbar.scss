@@ -304,6 +304,9 @@
         }
         .dropdown-menu {
             left: initial;
+            @include for-max-575 {
+                right: 0;
+            }
         }
     }
     // end content
@@ -432,44 +435,44 @@
             width: 100%;
         }
     }
-    #autosuggest {
-        >div {
-            &:first-of-type {
-                @include for-max-1199 {
-                    // transform: skew(0deg);
-                }
-                input {
-                    @include for-max-1199 {
-                        // transform: skew(0deg);
-                    }
+    &.searchbar-input {
+        width: 0;
+    }
+    .autosuggest__results-container {
+        width: calc(100% + 40px) !important;
+        ul {
+            height: 300px !important;
+        }
+    }
+        .price {
+            top: -44px;
+            right: 30px;
+        }
+        #autosuggest {
+            > div {
+                &:first-of-type {
+                    display: none;
                 }
             }
         }
-    }
-    &.searchbar-input {
-        width: 0;
-        // transition: all .3s ease-in;
-    }
-    
 }
+
 .animateNavebar {
-    width: 140px;
-    // transition: all .3s ease-in;
-    position: fixed;
     top: 0;
     width: 100%;
     height: 100%;
-    background: #000000bd;
     left: 0;
     z-index: 9;
     display: flex;
-    justify-content: center;
-    padding-top: 60px;
+    justify-content: flex-end;
     @include for-max-575 {
         justify-content: flex-start;
+        position: fixed;
     }
+    
     .searchbar-input {
-        width: 60%;
+        max-width: 400px;
+        width: 100%;
         top: 2px;
         @include for-max-575 {
             width: 70%;
@@ -482,23 +485,50 @@
     #autosuggest {
         >div {
             &:first-of-type {
-                border: 1px solid $secondery;
+                border: 1px solid $gamebazar-search-input;
                 height: 45px;
+                background: $gamebazar-search-input;
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
+            }
+        }
+    }
+    .animate-nav {
+        @include for-min-992 {
+            width: 400px;
+        }
+        @include for-max-575 {
+            width: 100%;
+        }
+    }
+    .animate-nav-btn {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+    .animate-navbar-icon {
+        display: flex;
+        // position: absolute;
+        right: 15%;
+        margin-left: 10px;
+        cursor: pointer;
+        align-items: center;
+        font-size: 25px;
+        @include for-max-575 {
+            right: 15px;
+        }
+    }
+    #autosuggest {
+        > div {
+            &:first-of-type {
+                display: block;
             }
         }
     }
 }
 .animate-navbar-icon {
     display: none;
-    position: absolute;
-    right: 15%;
-    top: 66px;
-    cursor: pointer;
-    font-size: 25px;
-    @include for-max-575 {
-        right: 15px;
-    }
 }
+
 .block {
     display: block;
 }

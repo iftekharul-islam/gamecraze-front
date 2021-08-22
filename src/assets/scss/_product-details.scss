@@ -76,6 +76,11 @@
             }
         }
     }
+    .sellpost-error {
+        &::after {
+            top: 1px;
+        }
+    }
 }
 .gamebazar-product-details__content__des {
     ul {

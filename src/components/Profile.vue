@@ -107,7 +107,6 @@
                             <a class="nav-link" id="v-pills-my-earning-tab" data-toggle="pill" href="#v-pills-my-earning" role="tab" aria-controls="v-pills-my-earning" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/earn.png" alt="profile icon"> <img src="../assets/img/active-earn.png" class="img-active" alt="profile icon"></div> <span>{{ $t('my_earning', $store.state.locale) }}</span></a>
                             <a class="nav-link" id="v-pills-refer-tab" data-toggle="pill" href="#v-pills-refer" role="tab" aria-controls="v-pills-refer" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/refer.png" alt="profile icon"> <img src="../assets/img/refer-active.png" class="img-active" alt="profile icon"></div> <span>{{ $t('refer_friend', $store.state.locale) }}</span></a>
                             <a class="nav-link" id="v-pills-rating-tab" data-toggle="pill" href="#v-pills-rating" role="tab" aria-controls="v-pills-rating" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/star-not-active.png" alt="profile icon"> <img src="../assets/img/star-active.png" class="img-active" alt="profile icon"></div> <span>{{ $t('rating', $store.state.locale) }}</span></a>
-                            <a class="nav-link" id="v-pills-sell-post-tab" data-toggle="pill" href="#v-pills-sell-post" role="tab" aria-controls="v-pills-sell-post" aria-selected="false"><div class="user-profile-details--nav--img"><img src="../assets/img/star-not-active.png" alt="profile icon"> <img src="../assets/img/star-active.png" class="img-active" alt="profile icon"></div> <span>{{ $t('sell_post', $store.state.locale) }}</span></a>
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -1345,177 +1344,6 @@
                                         </div>
                                     </div>
                               </div>
-                            <!-- Sell post -->
-                            <div class="tab-pane fade" id="v-pills-sell-post" role="tabpanel" aria-labelledby="v-pills-sell-post-tab">
-                                <div class="post-rent">
-                                    <ValidationObserver ref="sellForm">
-                                        <form @submit.prevent="onSellPostSubmit" method="post" id="sellForm">
-                                            <!-- form-group -->
-                                            <div class="form-group post-rent--form-group">
-                                                <label class=" post-rent--form-group--label"></label>
-                                                <div class=" post-rent--form-group--input">
-                                                    <router-link
-                                                            class="secondery-border text-secondery d-flex align-items-center justify-content-center h-48 game-rent-bg"
-                                                            to="/about-sell-post">{{$t('learn_about_create_sell_post', $store.state.locale) }}
-                                                    </router-link>
-                                                </div>
-                                            </div>
-
-                                            <div class="form-group post-rent--form-group">
-                                                <label class=" post-rent--form-group--label">{{ $t('product_name', $store.state.locale) }} :</label>
-                                                <div class=" post-rent--form-group--input">
-                                                    <ValidationProvider name="Name" rules="required" v-slot="{ errors }">
-                                                        <input type="text" class="form-control renten-input" name="name" v-model="sellData.name">
-                                                        <span class="text-danger">{{ errors[0] }}</span>
-                                                    </ValidationProvider>
-                                                </div>
-                                            </div>
-                                            <div class="form-group post-rent--form-group">
-                                                <label class=" post-rent--form-group--label">{{ $t('description', $store.state.locale) }} :</label>
-                                                <div class=" post-rent--form-group--input">
-                                                    <ValidationProvider name="description" rules="required" v-slot="{ errors }">
-                                                        <ckeditor v-model="sellData.description" :config="editorConfig"></ckeditor>
-                                                        <span class="text-danger">{{ errors[0] }}</span>
-                                                    </ValidationProvider>
-                                                </div>
-                                            </div>
-                                            <div class="form-group post-rent--form-group">
-                                                <label class=" post-rent--form-group--label">{{ $t('price', $store.state.locale) }} (BDT):</label>
-                                                <div class=" post-rent--form-group--input">
-                                                    <ValidationProvider name="price" rules="required|integer" v-slot="{ errors }">
-                                                        <input type="number" @keypress="isNumberOnPostPrice($event)" class="form-control renten-input" name="price" v-model="sellData.price">
-                                                        <span class="text-danger">{{ errors[0] }}</span>
-                                                    </ValidationProvider>
-                                                </div>
-                                            </div>
-                                            <div class="form-group post-rent--form-group" >
-                                                <label class=" label-padding post-rent--form-group--label mt-0">{{ $t('product_type', $store.state.locale) }} :</label>
-                                                <div class="post-rent--form-group--input">
-                                                    <ValidationProvider name="Product type" rules="required" v-slot="{ errors }">
-                                                        <div class=" post-rent--form-group--input--radio-group ">
-                                                            <div class="form-check form-check-inline custom-radio">
-                                                                <input class="custom-control-input platform" id="new_type" @click="summaryModal = false" name="product_type" type="radio" value="1" v-model="sellData.product_type">
-                                                                <label class="custom-control-label ml-2" for="new_type">New</label>
-                                                            </div>
-                                                            <div class="form-check form-check-inline custom-radio">
-                                                                <input class="custom-control-input platform" id="used_type" @click="summaryModal = true" name="product_type" type="radio" value="2" v-model="sellData.product_type">
-                                                                <label class="custom-control-label ml-2" for="used_type">Used</label>
-                                                            </div>
-                                                        </div>
-                                                        <span v-if="errors.length" class="error-message platform-error">{{ errors[0] }}</span>
-                                                    </ValidationProvider>
-                                                </div>
-                                            </div>
-                                            <div class="form-group post-rent--form-group" v-if="summaryModal">
-                                                <label class=" post-rent--form-group--label">{{ $t('condition_summary', $store.state.locale) }} :</label>
-                                                <div class=" post-rent--form-group--input">
-                                                    <ValidationProvider name="address" rules="required" v-slot="{ errors }">
-                                                        <input type="text" class="form-control renten-input" name="condition_summary" v-model="sellData.summary">
-                                                        <span class="text-danger">{{ errors[0] }}</span>
-                                                    </ValidationProvider>
-                                                </div>
-                                            </div>
-                                            <div class="form-group post-rent--form-group" >
-                                                <label class=" label-padding post-rent--form-group--label mt-0">{{ $t('is_negotiable', $store.state.locale) }} :</label>
-                                                <div class="post-rent--form-group--input">
-                                                    <div class=" post-rent--form-group--input--radio-group ">
-                                                        <div class="form-check form-check-inline custom-radio">
-                                                            <input class="custom-control-input platform" id="is_negotiable" name="is_negotiable" type="checkbox" value="" v-model="sellData.is_negotiable">
-                                                            <label class="custom-control-label ml-2" for="is_negotiable">{{ $t('is_negotiable', $store.state.locale) }}</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group post-rent--form-group">
-                                                <label class=" post-rent--form-group--label">{{ $t('phone_number', $store.state.locale) }} :</label>
-                                                <div class=" post-rent--form-group--input">
-                                                    <ValidationProvider name="phone number" rules="required" v-slot="{ errors }">
-                                                        <input type="number" @keypress="isNumberOnSell($event)" class="form-control renten-input" name="phone_no" v-model="sellData.phone_no" placeholder="Enter Phone number">
-                                                        <span class="text-danger">{{ errors[0] }}</span>
-                                                    </ValidationProvider>
-                                                </div>
-                                            </div>
-                                            <div class="form-group post-rent--form-group">
-                                                <label class=" post-rent--form-group--label">{{ $t('address', $store.state.locale) }} :</label>
-                                                <div class=" post-rent--form-group--input">
-                                                    <ValidationProvider name="address" rules="required" v-slot="{ errors }">
-                                                        <input type="text" class="form-control renten-input" name="address" v-model="sellData.address" placeholder="Enter address">
-                                                        <span class="text-danger">{{ errors[0] }}</span>
-                                                    </ValidationProvider>
-                                                </div>
-                                            </div>
-                                            <div class="form-group post-rent--form-group">
-                                                <label class=" post-rent--form-group--label">{{ $t('sub_category', $store.state.locale) }} :</label>
-                                                <div class=" post-rent--form-group--input">
-                                                    <ValidationProvider name="Sub Category" rules="required" v-slot="{ errors }">
-                                                        <select class="custom-select" id="sub_category" name="sub_category" v-model="sellData.sub_category_id">
-                                                            <option value="">Select sub category</option>
-                                                            <option :value="category.id" v-for="(category, index) in subCategories" :key="index">{{ category.name }}</option>
-                                                        </select>
-                                                        <span class="text-danger">{{ errors[0] }}</span>
-                                                    </ValidationProvider>
-                                                </div>
-                                            </div>
-                                            <div class="form-group post-rent--form-group">
-                                                <label class="label-padding post-rent--form-group--label mt-0">{{ $t('cover_image', $store.state.locale) }} :</label>
-                                                <div class=" post-rent--form-group--input">
-                                                  <div class="custom-file">
-                                                    <a class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer" @click="$refs.FileInputNew.click()"> <span></span> <div class="position-relative">Upload image</div></a>
-                                                    <input ref="FileInputNew" type="file" style="display: none;" @change="onFileSelect" />
-                                                  </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group post-rent--form-group" v-if="dialog">
-                                              <label class="label-padding post-rent--form-group--label mt-0">Image preview :</label>
-                                              <div class=" post-rent--form-group--input">
-                                                <div class="img-prev">
-                                                  <VueCropper v-show="postCoverImage"
-                                                              ref="cropper"
-                                                              :src="postCoverImage"
-                                                              :autoCropArea="0"
-                                                              :scalable="false"
-                                                              dragMode="move"
-                                                              :cropBoxMovable="false"
-                                                              :cropBoxResizable="false"
-                                                              :ready="cropBoxSet"
-                                                              alt="Disk image preview">
-
-                                                  </VueCropper>
-                                                </div>
-                                                <div class="my-2 d-grid grid-cols-2 grid-gap-16 mr-2">
-                                                  <a class="btn--secondery w-100" @click="saveImage(), (dialog = true)">Crop</a>
-                                                  <a class="btn--secondery w-100" @click="dialog = false, (sellData.cover_image === '')">Cancel</a>
-                                                </div>
-                                                <div class="img-prev" v-if="sellData.cover_image">
-                                                  <img :src="sellData.cover_image" alt="Cover image preview">
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div class="form-group post-rent--form-group">
-                                                <label class=" label-padding post-rent--form-group--label mt-0">{{ $t('upload_screenshots', $store.state.locale) }} :</label>
-                                                <UploadImages class="image-box" :max="4" @change="handleUploadScreenshots"/>
-                                            </div>
-                                            <!-- Agree terms and condition -->
-                                            <div class="form-group post-rent--form-group post-rent--form-group--agree post-rent--form-group--agree-profile mt-a-7">
-                                                <div class="checkbox-parents">
-                                                    <ValidationProvider name="Terms & Conditions" rules="required" v-slot="{ errors }">
-                                                        <input type="checkbox" id="terms-agree-sell-post" class="checkbox-parents--input" v-model="agreement" @change="onAgreement($event)">
-                                                        <label for="terms-agree-sell-post" class="checkbox-parents--label">{{ $t('i_agree', $store.state.locale) }} <router-link to="/terms" target="_blank" class="text-secondery"><u>{{ $t('terms', $store.state.locale) }}</u></router-link></label>
-                                                        <span v-if="errors.length" class="error-message d-block ml--28">{{ errors[0] }}</span>
-                                                    </ValidationProvider>
-                                                </div>
-                                            </div>
-                                            <div class="form-group post-rent--form-group post-rent-btn">
-                                                <button class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative w-100 border-0 post-rent--form-group--btn" :disabled="onSellPostLoading">
-                                                    <div class="mr-2 position-relative">{{ $t('submit', $store.state.locale) }} <i v-if="onSellPostLoading" class="spinner-border spinner-border-sm"></i></div>
-                                                    <span></span>
-                                                </button>
-                                            </div>
-
-                                        </form>
-                                    </ValidationObserver>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -1548,7 +1376,6 @@
                 postCoverImageName: '',
                 selected: '',
                 sellPostEditModalShow: false,
-                summaryModal: false,
                 onSellPostLoading: false,
                 subCategories: [],
                 postImages: [],
@@ -1570,19 +1397,6 @@
                     cover_image: '',
                     mime_type: '',
                     postCoverImage: ''
-                },
-                sellData: {
-                    name: '',
-                    description: '',
-                    price: '',
-                    product_type: '',
-                    is_negotiable: '',
-                    sub_category_id: '',
-                    product_image: '',
-                    phone_no: '',
-                    address: '',
-                    summary: '',
-                    cover_image: ''
                 },
                 extend: {
                     week: '',
@@ -1695,7 +1509,6 @@
                 copyUrl: '',
                 ratingList: [],
                 mime_type: '',
-                dialog: false,
                 croppedImage: '',
             }
         },
@@ -1763,7 +1576,6 @@
             },
             removeEditScreenshots(id){
               this.removeScreenshots.push(id);
-              console.log(this.removeScreenshots)
             },
             onFileSelect(e) {
               const file = e.target.files[0]
@@ -1779,13 +1591,6 @@
               } else {
                 alert('Sorry, FileReader API not supported')
               }
-            },
-            saveImage() {
-              this.sellData.cover_image = this.$refs.cropper.getCroppedCanvas().toDataURL()
-              this.$refs.cropper.getCroppedCanvas().toBlob((blob) => {
-                const formData = new FormData()
-                formData.append('profile_photo', blob, 'name.jpeg')
-              }, this.mime_type)
             },
             onEditFileSelect(e) {
               const file = e.target.files[0]
@@ -1810,7 +1615,6 @@
               }, this.editPostData.mime_type)
             },
             sellPostEditModal(product) {
-                console.log(product);
                 this.sellPostEditModalShow = true
 
                 this.editPostData.id = product.id
@@ -1826,45 +1630,6 @@
                 this.selected = product.sub_category_id
                 this.removeCover = ''
                 this.removeScreenshots = []
-            },
-            handleUploadScreenshots(files) {
-              if (files.length === 0) {
-                  this.postImages = [];
-                  console.log(this.postImages);
-                  return;
-              }
-              if (this.postImages.length > files.length) {
-                let val = '';
-                this.postImages.forEach(function (image, index) {
-                  files.forEach(function (file) {
-                    if (image.name !== file.name) {
-                      val = index
-                      return
-                    }
-                  })
-                })
-                this.postImages.splice(val, 1);
-                return
-              }
-              this.postImages = [];
-              let screenshots = [];
-              files.forEach( function (file) {
-                let reader = new FileReader()
-                reader.readAsDataURL(file)
-                reader.onload = () => {
-                  let fileBase64 = reader.result;
-                  let data = {
-                    name: file.name,
-                    file: fileBase64
-                  }
-                  screenshots.push(data);
-                }
-                reader.onerror = function (error) {
-                  console.log('Error: ', error)
-                }
-              })
-              this.postImages = screenshots;
-              console.log(this.postImages);
             },
             handleEditScreenshots(files) {
                 if (files.length === 0) {
@@ -2047,9 +1812,6 @@
                 this.editDiskImage = rent.disk_image;
                 this.editCoverImage = rent.cover_image;
                 this.userRentId = rent.id;
-
-                console.log(this.lendCoverImage);
-
                 this.imageModalShow = true;
             },
             coverImageSelect(userId){
@@ -2253,15 +2015,6 @@
 
                 });
             },
-            isNumberOnSell: function(evt) {
-                evt = (evt) ? evt : window.event;
-                var charCode = (evt.which) ? evt.which : evt.keyCode;
-                if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.sellData.phone_no.length > 10) {
-                    evt.preventDefault();
-                } else {
-                    return true;
-                }
-            },
             isNumber: function(evt) {
                 evt = (evt) ? evt : window.event;
                 var charCode = (evt.which) ? evt.which : evt.keyCode;
@@ -2270,15 +2023,6 @@
                 } else {
                     return true;
                 }
-            },
-            isNumberOnPostPrice: function(evt) {
-              evt = (evt) ? evt : window.event;
-              var charCode = (evt.which) ? evt.which : evt.keyCode;
-              if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.sellData.price.length > 10) {
-                evt.preventDefault();
-              } else {
-                return true;
-              }
             },
             isNumberOnEditPrice: function(evt) {
               evt = (evt) ? evt : window.event;
@@ -2374,7 +2118,6 @@
                     this.selectedEditDiskName = event.srcElement.files[0].name;
                     fileReader.onload = (e) => {
                         this.lendDiskImage = e.target.result;
-                        console.log(this.lendDiskImage);
                     }
                     fileReader.readAsDataURL(event.target.files[0]);
                 }
@@ -2395,99 +2138,12 @@
                     this.selectedEditCoverName = event.srcElement.files[0].name;
                     fileReader.onload = (e) => {
                         this.lendCoverImage = e.target.result;
-                        console.log(this.lendCoverImage);
                     }
                     fileReader.readAsDataURL(event.target.files[0]);
                 }
             },
             onEmpty () {
                 this.form.checkpoint = '';
-            },
-            onSellPostSubmit () {
-              this.onSellPostLoading = true;
-              this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
-                if (typeof response.data == 'string') {
-                  this.onLogout();
-                  return;
-                }
-                this.user = response.data.data;
-                if (this.user.status == 0) {
-                  this.onLogout();
-                  return;
-                }
-                this.$refs.sellForm.validate().then(success => {
-                  if (!success) {
-                    window.scrollTo({
-                      top: 400,
-                      behavior: 'smooth',
-                    })
-                    this.$toaster.error(this.$t('complete_required_field', this.$store.state.locale));
-                    this.onSellPostLoading = false;
-                    return;
-                  }
-                  if (this.postImages.length ===  0){
-                    this.$toaster.error('Screenshot images not uploaded');
-                    this.onSellPostLoading = false;
-                    return;
-                  }
-                  if (this.sellData.cover_image === ''){
-                    this.$toaster.error('Cover image not uploaded');
-                    this.onSellPostLoading = false;
-                    return;
-                  }
-                  this.onSellPostLoading = true;
-                  let uploadInfo = {
-                    name: this.sellData.name,
-                    description: this.sellData.description,
-                    price: this.sellData.price,
-                    product_type: this.sellData.product_type,
-                    is_negotiable: this.sellData.is_negotiable,
-                    sub_category_id: this.sellData.sub_category_id,
-                    phone_no: this.sellData.phone_no,
-                    address: this.sellData.address,
-                    images: this.postImages,
-                    condition_summary: this.sellData.summary,
-                    cover_image: this.sellData.cover_image,
-                  }
-                  let config = {
-                    headers: {
-                      'Authorization': 'Bearer ' + this.$store.state.token
-                    }
-                  }
-                  this.$api.post('sell-post', uploadInfo, config)
-                      .then(response => {
-                        if (response.status == 200) {
-                          this.dialog = false
-                          this.sellData.name = '';
-                          this.sellData.description = '';
-                          this.sellData.price = '';
-                          this.sellData.product_type = '';
-                          this.sellData.is_negotiable = '';
-                          this.sellData.sub_category_id = '';
-                          this.sellData.summary = '';
-                          this.sellData.phone_no = '';
-                          this.sellData.address = '';
-                          document.querySelector(".clearButton").click();
-                          this.postImages = [];
-                          this.sellData.cover_image = '',
-
-                              this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
-
-                          $('#v-pills-sell-post-tab').removeClass('active');
-                          $('#v-pills-sell-post').removeClass('active');
-                          $('#v-pills-sell-post').removeClass('show');
-                          $('#v-pills-dashboard-tab').addClass('active');
-                          $('#v-pills-dashboard').addClass('active');
-                          $('#v-pills-dashboard').addClass('show');
-                          this.sellPostCheck()
-                          this.onSellPost();
-                          this.onSellPostLoading = false;
-                        }
-                      }).catch(err => {
-                    console.log(err)
-                  });
-                })
-              })
             },
             sellPostUpdate(){
               this.isEditLoading = true;
@@ -2597,7 +2253,6 @@
 
                   this.$api.post('rents', uploadInfo, config)
                       .then(response => {
-                        console.log(response)
                         this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
                         setTimeout(function () {
                           // this.rentData.game = '';

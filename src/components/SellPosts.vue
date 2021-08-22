@@ -229,25 +229,6 @@
                     </div>
 
                     <p class="gil-bold mb-3 mt-a-4 text-white">{{ item.name }}</p>
-                        <span v-if="item.product_type == 1" class="mb-2 text-white d-inline-block">
-                          {{ $t('new', $store.state.locale) }}&nbsp;
-                        </span>
-                        <span v-if="item.product_type == 2" class="mb-2 text-white d-inline-block">
-                          {{ $t('used', $store.state.locale) }}&nbsp;
-                        <span v-if="item.used_year != null">
-                              {{ item.used_year }}&nbsp;
-                              {{ $t('year', $store.state.locale) }}&nbsp;
-                        </span>
-                        <span v-if="item.used_month != null">
-                              {{ item.used_month }}&nbsp;
-                              {{ $t('month', $store.state.locale) }}&nbsp;
-                        </span>
-                        <span v-if="item.used_day != null">
-                              {{ item.used_day }}&nbsp;
-                              {{ $t('day', $store.state.locale) }}
-                        </span>
-                        </span>
-                        <small class="mb-2 text-white d-block">{{ item.subcategory.data.name }}</small>
                         <div class="d-flex align-items-center text-secondery">
                             <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
                             <div class="gamebazar-post__arrow">

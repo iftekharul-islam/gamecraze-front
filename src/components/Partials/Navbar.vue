@@ -84,23 +84,19 @@
                                     <vue-autosuggest
                                         v-model="query"
                                         :suggestions="filteredOptions"
-                                        @focus="focusMe"
-                                        
                                         @keyup.enter="searchGame"
-                                        @input="onInputChange"
                                         @selected="onSelected"
                                         :get-suggestion-value="getSuggestionValue"
                                         :input-props="{id:'autosuggest__input',class:'auto-suggest-menu '}">
                                         <div  slot-scope="{suggestion}">
                                             <div class="d-flex align-items-center">
                                                 <div class="w-100px min-w-100 h-75 overflow-hidden br-4">
-                                                    <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2020/11/PS5-PS4-Game-Forced-Install-Problem.jpg" class="img-fluid  h-100 w-100" alt="Gamehub Logo logo">
+                                                    <img :src="suggestion.item.game.data.poster_url" class="img-fluid  h-100 w-100" :alt="suggestion.item.game.data.name" v-if="suggestion.item.game.data.poster_url">
+                                                    <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2020/11/PS5-PS4-Game-Forced-Install-Problem.jpg" class="img-fluid  h-100 w-100" alt="Gamehub Logo logo" v-else>
                                                 </div>
                                                 <div class="ml-3">
-                                                   <span class="gil-bold" @click="onMenuItemClick()">{{suggestion.item.game.data.name}}</span>
-                                                   <span class="d-block">Used 1.5 years</span>
+                                                   <span class="gil-bold">{{suggestion.item.game.data.name}}</span>
                                                 </div>
-                                                 <span class="text-secondery gil-bold font-weight-bold price d-block w-100px ml-auto">৳ 555</span>
                                             </div>
                                         </div>
                                     </vue-autosuggest>
@@ -110,9 +106,7 @@
                                 </button>
                                 </div>
                             </div>
-                            
-                            
-                            <button :class="{ dnone: navbarAnimate }" class="btn gamehub-search-btn-2" @click="toggleNavbarAnimate(), navbarAnimate = !navbarAnimate" type="search">
+                            <button :class="{ dnone: navbarAnimate }" class="btn gamehub-search-btn-2" @click="navbarAnimate = !navbarAnimate" type="search">
                                 <i class="fa fa-search gamehub-search-btn--icon"></i>
                             </button>
                         </div>
@@ -259,7 +253,6 @@
     import { VueFeedbackReaction } from 'vue-feedback-reaction';
     export default {
         components: {VueFeedbackReaction},
-       
         data() {
             return {
                 navbarAnimate: false,
@@ -297,7 +290,7 @@
                     this.invalidRating = true;
                     return;
                 }
-                var config = {
+                let config = {
                     headers: {
                         'Authorization': 'Bearer ' + this.$store.state.token
                     }
@@ -389,19 +382,20 @@
 
                 })
             },
-            clickProfile() {
-                var auth = this.$store.getters.ifAuthenticated;
-                if (!auth) {
-                    this.$router.push('/lend-notice');
-                    return
-                }
-                this.$root.$emit('rentPost');
-            },
-            clickOnRating(data) {
-                this.ratingNavModal = true;
-                this.ratingData.value = data;
-            },
+          clickProfile() {
+              var auth = this.$store.getters.ifAuthenticated;
+              if (!auth) {
+                  this.$router.push('/lend-notice');
+                  return
+              }
+              this.$root.$emit('rentPost');
+          },
+          clickOnRating(data) {
+              this.ratingNavModal = true;
+              this.ratingData.value = data;
+          },
           searchGame() {
+              this.navbarAnimate = false;
               if(this.query !== '') {
                 this.$router.push({name: 'games', query: {categories: this.$route.query.categories, platforms: this.$route.query.platforms, search: this.query}})
                 this.$root.$emit('searchEvent')
@@ -415,33 +409,18 @@
               this.$store.dispatch('logout');
           },
           onSelected(item) {
+            this.navbarAnimate = false;
             this.selected = item.item.game.data;
             this.query = this.selected.name;
             this.$router.push('/game-details/' + this.selected.slug);
-          },
-          onInputChange(text) {
-            // event fired when the input changes
-            // console.log(text)
           },
           /**
            * This is what the <input/> value is set to when you are selecting a suggestion.
            */
           getSuggestionValue(suggestion) {
+            console.log(suggestion.item)
             return suggestion.item.game.data.name;
           },
-          focusMe(e) {
-            console.log(e) // FocusEvent
-          },
-          toggleNavbarAnimate(e) {
-
-          },
-          // totalCartItems(){
-          //   let cartItems = localStorage.getItem('cartItems');
-          //   if (cartItems) {
-          //     let cart = JSON.parse(cartItems);
-          //     this.totalItems = cart.length;
-          //   }
-          // },
           onMenuItemClick() {
             if( window.innerWidth < 992 ) {
                 let elem = this.$refs.btnMenuToggle;

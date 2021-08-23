@@ -109,10 +109,9 @@
                 </div>
             </div>
             <div class="container pr-a-0-max-575">
-                <h3 class="f-s-24 gil-bold text-white mb-a-4 text-uppercase">new Posts</h3>
-                <div class="position-relative carousel-nav">
-                  <carousel v-if ="loadLatestPosts"
-                            :autoplay ="false"
+                <h3 class="f-s-24 gil-bold text-white mb-a-4 text-uppercase">New Posts</h3>
+                <div class="position-relative carousel-nav" v-if ="loadLatestPosts">
+                  <carousel :autoplay ="false"
                             :loop ="true"
                             :center ="true"
                             :nav ="false"
@@ -169,6 +168,9 @@
                     </div>
                   </carousel>
               </div>
+                <div class="text-center" v-else>
+                  <h2>{{ $t('noting_to_show', $store.state.locale) }}</h2>
+                </div>
                 <div class="text-center mt-5">
                     <router-link to="/sell-posts" class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_post', $store.state.locale) }}</router-link>
                 </div>

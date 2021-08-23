@@ -111,8 +111,8 @@
                   <div class="">
                     <p class="text-white gil-bold f-s-20 mb-4">{{ $t('about_seller', $store.state.locale) }}</p>
                     <div class="w-80 h-80 overflow-hidden">
-                      <img :src="post.user.data.image" class="img-fluid w-100" alt="Gamebazar image" v-if="post.user.data.image != null">
-                      <img src="../assets/img/play.png" class="img-fluid w-100" alt="Gamebazar image" v-else>
+                      <img :src="post.user.data.image" class="img-fluid w-100" alt="Gamebazar image" v-if="post.user.data.image != ''">
+                      <img src="../assets/img/avatar.png" class="img-fluid w-100" alt="Gamebazar image" v-else>
                     </div>
                     <p class="text-white gil-bold mb-4" v-if="post.user.data.name">{{ post.user.data.name }}</p>
                   </div>
@@ -302,24 +302,6 @@
                   <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">$ {{ post.price }}</span>
                 </div>
                 <p class="gil-bold mb-4 mt-a-4 text-white">{{ post.name }}</p>
-                <p class="mb-3 text-white" v-if="post.product_type === 1">
-                  {{ $t('new', $store.state.locale) }}
-                </p>
-                <p class="mb-3 text-white" v-else>
-                  {{ $t('used', $store.state.locale) }}&nbsp;
-                  <span v-if="post.used_year != null">
-                              {{ post.used_year }}&nbsp;
-                              {{ $t('year', $store.state.locale) }}&nbsp;
-                            </span>
-                  <span v-if="post.used_month != null">
-                              {{ post.used_month }}&nbsp;
-                              {{ $t('month', $store.state.locale) }}&nbsp;
-                            </span>
-                  <span v-if="post.used_day != null">
-                              {{ post.used_day }}&nbsp;
-                              {{ $t('day', $store.state.locale) }}
-                            </span>
-                </p>
                 <div class="d-flex align-items-center text-secondery">
                   <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
                   <div class="gamebazar-post__arrow">

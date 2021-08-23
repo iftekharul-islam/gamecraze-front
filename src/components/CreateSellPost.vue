@@ -362,6 +362,7 @@
         if (currentPage == 0) {
           this.$refs.sellForm1.validate().then(success => {
             if (success) {
+              window.scrollTo(0,0);
               _this.$refs.wizard.goNext(true);
             }
           });
@@ -381,6 +382,7 @@
             this.screenshotsError = true;
             return;
           }
+          window.scrollTo(0,0);
           _this.$refs.wizard.goNext(true);
         }
         if (currentPage == 2) {

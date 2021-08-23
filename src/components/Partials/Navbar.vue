@@ -43,16 +43,14 @@
                             </router-link>
                         </li>
                         <li class="dropdown dropdown-hover">
-                            <router-link class="router_link no-after flex-column d-inline-flex align-items-center justify-content-center" to="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="h-mbl-30">
-                                    <svg class="d-xl-none mb-2" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M11.472 0C14.184 0 16 1.904 16 4.736V11.272C16 14.096 14.184 16 11.472 16H4.536C1.824 16 0 14.096 0 11.272V4.736C0 1.904 1.824 0 4.536 0H11.472ZM11.584 7.0408C11.056 7.0408 10.624 7.472 10.624 8C10.624 8.528 11.056 8.96 11.584 8.96C12.112 8.96 12.536 8.528 12.536 8C12.536 7.472 12.112 7.0408 11.584 7.0408ZM8 7.0408C7.472 7.0408 7.04 7.472 7.04 8C7.04 8.528 7.472 8.96 8 8.96C8.528 8.96 8.96 8.528 8.96 8C8.96 7.472 8.528 7.0408 8 7.0408ZM4.416 7.0408C3.888 7.0408 3.456 7.472 3.456 8C3.456 8.528 3.888 8.96 4.416 8.96C4.944 8.96 5.376 8.528 5.376 8C5.376 7.472 4.944 7.0408 4.416 7.0408Z" fill="#C4C4C4"/>
-                                    </svg>
-                                </div>
+                            <a class="router_link no-after flex-column d-inline-flex align-items-center justify-content-center" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <svg class="d-xl-none mb-2" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11.472 0C14.184 0 16 1.904 16 4.736V11.272C16 14.096 14.184 16 11.472 16H4.536C1.824 16 0 14.096 0 11.272V4.736C0 1.904 1.824 0 4.536 0H11.472ZM11.584 7.0408C11.056 7.0408 10.624 7.472 10.624 8C10.624 8.528 11.056 8.96 11.584 8.96C12.112 8.96 12.536 8.528 12.536 8C12.536 7.472 12.112 7.0408 11.584 7.0408ZM8 7.0408C7.472 7.0408 7.04 7.472 7.04 8C7.04 8.528 7.472 8.96 8 8.96C8.528 8.96 8.96 8.528 8.96 8C8.96 7.472 8.528 7.0408 8 7.0408ZM4.416 7.0408C3.888 7.0408 3.456 7.472 3.456 8C3.456 8.528 3.888 8.96 4.416 8.96C4.944 8.96 5.376 8.528 5.376 8C5.376 7.472 4.944 7.0408 4.416 7.0408Z" fill="#C4C4C4"/>
+                                </svg>
                                 {{ $t('more', $store.state.locale)}}
-                                </router-link>
-                                <div class="dropdown--sub-menu p-0 dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                  <div class="dropdown--sub-menu--item d-none d-md-block"><router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link></div>
+                            </a>
+                              <div class="dropdown--sub-menu p-0 dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                  <div class="dropdown--sub-menu--item"><router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link></div>
                                   <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/about-us">{{ $t('about_us', $store.state.locale) }}</router-link></div>
                                   <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/terms">{{ $t('terms', $store.state.locale) }}</router-link></div>
                                   <div class="dropdown--sub-menu--item"><router-link @click.native="onMenuItemClick()" class="router_link" to="/privacy">{{ $t('privacy_policy', $store.state.locale) }}</router-link></div>

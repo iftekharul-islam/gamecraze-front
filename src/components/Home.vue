@@ -434,7 +434,7 @@
                     this.getRentGames();
                     this.getFeaturedArticles();
                     this.getArticles();
-                    this.getFeaturedVideo(5);
+                    this.getFeaturedVideo(6);
                     this.featuredPlatforms(4);
                 }
             }

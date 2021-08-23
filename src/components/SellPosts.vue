@@ -65,7 +65,7 @@
             </div>
             <div class="games-categories-section--categories filter-show-mobile p-0" id="games-categories-list" :class="{ filterShow : filterShow }">
               <div class="bg-shorting-tile p-3 d-flex align-items-center justify-content-between br-t-r-5 br-t-l-5 d-md-none">
-                <span class="fs-20 text-secondery gil-bold opa-9">{{ $t('filter', $store.state.locale) }}</span>
+                <span class="f-s-20 text-secondery gil-bold opa-9">{{ $t('filter', $store.state.locale) }}</span>
                 <span @click="filterShow = false" class="pointer">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M3.66671 1.06789L3.66666 1.06794L3.67262 1.07396L7.5496 4.9897L7.9049 5.34856L8.26021 4.9897L12.1372 1.07396L12.1372 1.07401L12.1431 1.06789C12.8678 0.310704 14.0645 0.310705 14.7892 1.06789L14.7891 1.06794L14.7951 1.07396C15.5238 1.8099 15.5238 3.00455 14.7951 3.74049L10.9181 7.65623L10.5698 8.00802L10.9181 8.35981L14.7951 12.2756C15.5238 13.0115 15.5238 14.2062 14.7951 14.9421C14.4168 15.3242 13.9429 15.5 13.4661 15.5C12.9894 15.5 12.5155 15.3242 12.1372 14.9421L8.26021 11.0263L7.9049 10.6675L7.5496 11.0263L3.67262 14.9421L3.66656 14.9482L3.66071 14.9545C3.32515 15.3177 2.83124 15.5 2.34367 15.5C1.86357 15.5 1.39846 15.3225 1.0584 14.9545L1.05255 14.9482L1.04649 14.9421C0.317836 14.2062 0.317836 13.0115 1.04649 12.2756L4.92347 8.35981L5.27178 8.00802L4.92347 7.65623L1.04649 3.74049C0.317837 3.00455 0.317836 1.8099 1.04649 1.07396L1.04654 1.07401L1.0524 1.06789C1.7771 0.310705 2.94201 0.310705 3.66671 1.06789ZM7.5531 4.28259L4.02793 0.722167H0.691183C-0.230394 1.65296 -0.230394 3.16149 0.691183 4.09228L4.56816 8.00802L0.691183 11.9238C-0.230394 12.8546 -0.230394 14.3631 0.691183 15.2939C1.13608 15.7753 1.73987 16 2.34367 16C2.94746 16 3.58303 15.7753 4.02793 15.2939L7.5531 11.7335L7.5496 11.7299L7.9049 11.3781L8.26021 11.7299L8.25671 11.7335L11.7819 15.2939C12.2586 15.7753 12.8624 16 13.4661 16C14.0699 16 14.6737 15.7753 15.1504 15.2939C16.072 14.3631 16.072 12.8546 15.1504 11.9238L11.2734 8.00802L15.1504 4.09228C16.072 3.16149 16.072 1.65296 15.1504 0.722167C14.2288 -0.240722 12.7035 -0.240722 11.7819 0.722167L8.25671 4.28259L8.26021 4.28612L7.9049 4.63791L7.5496 4.28612L7.5531 4.28259Z" fill="white" stroke="#ffffff"/>
@@ -75,7 +75,7 @@
                 <div class="p-a-5 overflow-auto">
                     <!-- Game Type -->
                     <div class="select-categories">
-                      <h6 class="">{{ $t('select_category', $store.state.locale) }}</h6>
+                      <h6 class=" d-none d-lg-block">{{ $t('select_category', $store.state.locale) }}</h6>
                       <div v-if="categories.length">
                         <div class="form-group form-check mb-a-6" v-for="(category, index) in categories" :key="'category' + index">
                           <h6 v-if="category.subcategory.data.length" class="-ml-20px">{{ category.name }}</h6>
@@ -132,15 +132,15 @@
                 <span v-if="$route.query.search">{{$route.query.search}} <div @click="removeSearchKey()" class="remove-icon"><i class="fas fa-times"></i></div></span>
               </div>
                  <div class="position-relative ml-md-auto w-full w-md-initial">
-                    <div class="d-flex flex-row-reverse flex-md-row align-items-center">
-                        <button class="br-4 bg-game-details d-flex no-outline-focus align-items-center justify-content-center d-md-none flex-1 border-0 py-2" @click="filterShow = !filterShow" :aria-pressed="filterShow ? 'true' : 'false'">
+                    <div class="d-flex flex-row-reverse flex-md-row align-items-center justify-content-md-end">
+                        <button class=" grow-1 br-4 bg-game-details d-flex no-outline-focus align-items-center justify-content-center d-md-none flex-1 border-0 py-2" @click="filterShow = !filterShow" :aria-pressed="filterShow ? 'true' : 'false'">
                           <svg class="mr-2" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                              <path d="M5.82408 11.0593L9.70774 11.0712C9.9499 11.072 10.1459 11.2748 10.1459 11.5234V13.7083C10.1459 13.9577 10.0043 14.1834 9.78352 14.2878L6.25816 15.9432C6.17579 15.9813 6.08848 16 6.00117 16C5.88504 16 5.7689 15.9661 5.66758 15.899C5.49049 15.7819 5.38341 15.58 5.38341 15.3636V11.5116C5.38341 11.2613 5.5811 11.0585 5.82408 11.0593ZM14.2975 0C15.2381 0 16 0.784842 16 1.7538V2.97901C16 3.44906 15.8163 3.90045 15.4901 4.22966L10.2861 9.49362C10.1963 9.58525 10.0744 9.63616 9.94842 9.63532L5.59115 9.62174C5.45853 9.62174 5.33251 9.56489 5.2419 9.46562L0.459614 4.2059C0.163912 3.88094 0 3.45161 0 3.00616V1.75465C0 0.78569 0.761905 0 1.70255 0H14.2975Z" fill="#FFD715"/>
                           </svg>
                           <span class="m-0 text-secondery f-s-16-imp p-0 border-0 bg-transparent">{{ $t('filter', $store.state.locale) }}</span>
                         </button>
                         <!-- shorting -->
-                        <div class="d-flex">
+                        <div class="d-flex grow-1 grow-md-initial ">
                           <button v-if="descByDateTag" class="d-flex bg-transparent align-items-center justify-content-center flex-1 h-100 px-2 px-md-4 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border mr-3 sorting-mobile">
                             Date
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -178,29 +178,34 @@
                         </div>
                     </div>
                     <transition name="slide">
-                          <div class="dropdown-menu w-268 bg-shorting br-4 border-1 d-block secondery-border left-initial-imp right-md-0-imp top-full-10px-imp p-0 overflow-hidden" v-if="showDrawer">
-                            <p class="mb-0 gil-bold text-center text-white py-2 bg-shorting-tile">Price</p>
-                            <div class="d-flex justify-content-center py-4">
-                              <div class="mr-1 position-relative shorting-input high-to-low pr-a-5">
+                         <div v-if="showDrawer" class="shorting-menu px-4 px-md-0 overflow-hidden position-md-absolute left-initial-imp right-md-0-imp w-md-268 z-index-99">
+                            <div class="shorting-menu__content w-full w-md-268 bg-shorting br-4 border-1 d-block secondery-border left-initial-imp right-md-0-imp top-full-10px-imp p-0 overflow-hidden" >
+                              <div class="d-md-none d-flex align-items-center justify-content-between bg-shorting-tile px-3 py-2">
+                                <p class="mb-0 gil-bold">Shorting</p>
+                                <p class="mb-0 pointer"  @click.prevent=" showDrawer = false"><i class="fas fa-times"></i></p>
+                              </div>
+                            <p class="mb-0 gil-bold text-md-center text-white py-2 bg-md-shorting-tile px-3">Price</p>
+                            <div class="d-flex flex-column flex-md-row align-items-end align-items-md-center justify-content-center py-4">
+                              <div class="mr-1 position-relative shorting-input high-to-low pr-a-5 mb-2 mb-md-0">
                                   <input type="checkbox" class="position-absolute -z-index-1 opa-0 " id="desc_price_filter" name="sort_price"
                                       @change="descPrice($event)" :checked="descByPriceTag">
                                   <label class="mb-0" for="desc_price_filter">High To Low</label>
                               </div>
-                              <div class=" position-relative pl-a-5 shorting-input">
+                              <div class=" position-relative pl-a-5 shorting-input mr-1 mr-md-0 pr-a-5 pr-md-0">
                                   <input type="checkbox" class="position-absolute -z-index-1 opa-0" id="asc_price_filter" name="sort_price"
                                         @change="ascPrice($event)" :checked="ascByPriceTag">
                                   <label class="mb-0" for="asc_price_filter">Low To High</label>
                               </div>
 
                             </div>
-                            <p class="mb-0 gil-bold text-center text-white py-2 bg-shorting-tile">Date</p>
+                            <p class="mb-0 gil-bold text-md-center text-white py-2 bg-md-shorting-tile px-3">Date</p>
 
-                              <div class="d-flex justify-content-center py-4">
-                                <div class="mr-1 position-relative shorting-input high-to-low pr-a-5">
+                              <div class="d-flex flex-column flex-md-row align-items-end align-items-md-center justify-content-center py-4">
+                                <div class="mr-1 position-relative shorting-input high-to-low pr-a-5 mb-2 mb-md-0">
                                     <input type="checkbox" class="position-absolute -z-index-1 opa-0 " id="recent_date" name="sort_date" @change="descDate($event)" :checked="descByDateTag">
                                     <label class="mb-0" for="recent_date">Recent</label>
                                 </div>
-                                <div class=" position-relative pl-a-5 shorting-input">
+                                <div class=" position-relative pl-a-5 shorting-input mr-1 mr-md-0 pr-a-5">
                                     <input type="checkbox" class="position-absolute -z-index-1 opa-0" id="older_date" name="sort_date" @change="ascDate($event)" :checked="ascByDateTag">
                                     <label class="mb-0" for="older_date">Older</label>
                                 </div>
@@ -211,7 +216,8 @@
                               </div>
 
                           </div>
-                        </transition>
+                         </div>
+                    </transition>
                  </div>
             </div>
             <div class="games-categories-section--games" v-if="posts.length">
@@ -257,7 +263,7 @@
     <!--Current Popular -->
     <section class="related-game-section current-popular" id="related-game">
           <div class="container">
-               <h3 class="f-s-24 gil-bold text-white mb-a-4">{{ $t('popular_games_at_gamehub', $store.state.locale) }} :</h3>
+               <h3 class="f-s-24 gil-bold text-white mb-a-4">{{ $t('popular_games_at_gamehub', $store.state.locale) }} </h3>
               <!-- new carousel -->
             <div class="position-relative">
               <carousel

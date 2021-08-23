@@ -150,6 +150,10 @@
             height: 20px;
             left: 0px;
             border-radius: 4px;
+            @include for-max-768 {
+                left: initial;
+                right: 0;
+            }
         }
         &::before {
             border: solid $primary;
@@ -314,4 +318,19 @@ $background_color_2: inherit;
     margin: auto;
     top: 21px;
     transform: rotate(136deg);
+}
+.shorting-menu {
+    @include for-max-575 {
+        position: fixed;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: $primary;
+        z-index: 99;
+        top: 0;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 100px;
+    }
 }

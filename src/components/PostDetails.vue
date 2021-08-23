@@ -134,7 +134,7 @@
                             <p class="mb-3">{{ $t('product_name', $store.state.locale) }}</p>
                             <p class="text-secondery gil-bold f-s-20">{{ post.name }}</p>
                             <div class="report-group mb-a-6">
-                              <p class="mb-2 gil-regular">{{ $t('cause_of_report', $store.state.locale) }}</p>
+                              <p class="mb-2 gil-regular">{{ $t('cause_of_report', $store.state.locale) }} <span class="text-danger">*</span></p>
                               <ValidationProvider name="Report reason" rules="required" v-slot="{ errors }">
                                 <textarea v-model="report.reason" id="" class="w-full br-4 border-1 border-secondery-opa-50 bg-step-form-input focus-primary text-white opa-8 p-3" rows="3"></textarea>
                                 <span v-if="errors.length" class="error-message d-block text-left mt-2 sellpost-error">{{ errors[0] }}</span>

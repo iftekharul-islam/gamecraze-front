@@ -10,18 +10,20 @@
         grid-template-rows: 128px;
         grid-auto-rows: 128px;
         grid-template-columns: repeat(3, minmax(0, 162px));
-        @include for-max-992 {
-            grid-template-columns: repeat(2, minmax(0, 162px));
+        @include for-max-575 {
+            grid-template-rows: 88px;
+            grid-auto-rows: 88px;
         }
         &__item {
             &:first-of-type {
                 grid-row: 1/3;
             }
+            
             &:last-of-type {
                 grid-row: 1/3;
                 grid-column: 3/4;
                 @include for-max-992 {
-                    grid-column: 2/3;
+                    grid-column: 3/4;
                 }
             }
             &:hover {
@@ -106,6 +108,11 @@
                     left: initial !important;
                 }
             }
+            .owl-dots {
+                @include for-max-575 {
+                    display: block !important;
+                }
+            }
             
         }
         .accessories-sell-post {
@@ -180,8 +187,14 @@
 }
 .product-img {
     max-height: 210px;
+    @include for-min-575 {
+        height: 140px;
+    }
     @include for-min-1400 {
         height: 160px;
+    }
+    @include for-max-575 {
+        height: 150px;
     }
     img {
         height: 100%;

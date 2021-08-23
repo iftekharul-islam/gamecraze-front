@@ -203,11 +203,8 @@
         &--nav {
             a {
                 font-size: 18px;
-                @include for-max-991 {
-                    font-size: 12px;
-                }
-                @include for-max-575 {
-                    font-size: 7px;
+                @include for-max-768 {
+                    font-size: 16px;
                 }
             }
         }
@@ -216,6 +213,12 @@
 .user-profile-details {
     padding-top: 50px;
     padding-bottom: 200px;
+    &--nav-menu {
+        @include for-max-768 {
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+    }
     &--nav {
         flex-direction: column;
         @include for-min-1200 {
@@ -226,6 +229,9 @@
             flex-wrap: nowrap;
             justify-content: space-between;
             margin-bottom: 40px;
+            @include for-max-768 {
+                width: 800px;
+            }
             @include for-max-575 {
                 margin-bottom: 20px;
             }
@@ -249,9 +255,6 @@
                 flex-direction: column;
                 align-items: center;
                 padding: 0;
-            }
-            @include for-max-575 {
-                font-size: 10px;
             }
             @include for-min-992 {
                 &:last-of-type {

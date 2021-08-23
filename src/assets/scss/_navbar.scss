@@ -15,6 +15,11 @@
     @include for-max-1199 {
         padding: 20px 13px;
     }
+    .container {
+        @include for-max-575 {
+            flex-wrap: nowrap;
+        }
+    }
 }
 
 .navbar-brand {
@@ -75,6 +80,9 @@
                 }
                 @include for-max-1199 {
                     margin-bottom: 20px;
+                }
+                @include for-max-575 {
+                    margin-bottom: 10px;
                 }
             }
             a {
@@ -255,6 +263,9 @@
     @include for-max-1199 {
         flex-wrap: wrap;
     }
+    @include for-max-575 {
+        flex-wrap: nowrap;
+    }
     &--content {
         margin-right: 0;
         height: 40px;
@@ -319,6 +330,9 @@
     margin: 0 20px;
     display: flex;
     align-items: center;
+    @include for-max-575 {
+        margin: 0 10px 0 0;
+    }
     &::after {
         display: none !important;
     }
@@ -808,14 +822,11 @@
         border-bottom: 1px solid $secondery;
         @include for-max-1199 {
             width: calc(100% - 40px);
-            top: -240px;
+            top: -215px;
             border: 1px solid $secondery;
             margin-left: auto;
             margin-right: auto;
             padding-bottom: 20px !important;
-            &.show {
-                // display: flex !important;
-            }
         }
         @include for-max-575 {
         }

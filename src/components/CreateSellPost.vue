@@ -289,7 +289,6 @@
       onFileSelect(e) {
         this.coverError = false;
         const file = e.target.files[0]
-        console.log(file);
         if (file != undefined) {
           this.mime_type = file.type
           if (typeof FileReader === 'function') {
@@ -316,7 +315,6 @@
         this.screenshotsError = false;
         if (files.length === 0) {
           this.postImages = [];
-          console.log(this.postImages);
           return;
         }
         if (this.postImages.length > files.length) {
@@ -350,7 +348,6 @@
           }
         })
         this.postImages = screenshots;
-        console.log(this.postImages);
       },
       warrantyCheck() {
         this.warrantyModal = false;
@@ -371,14 +368,17 @@
           return false; 
         }
         if (currentPage == 1) {
+          if (this.cover_image == '' && this.postImages.length === 0) {
+            this.coverError = true;
+            this.screenshotsError = true;
+            return;
+          }
           if (this.cover_image == '') {
             this.coverError = true;
-            // this.$toaster.warning(this.$t('cover_img_upload_failed', this.$store.state.locale));
             return;
           }
           if (this.postImages.length === 0) {
             this.screenshotsError = true;
-            // this.$toaster.warning(this.$t('screenshots_upload_failed', this.$store.state.locale));
             return;
           }
           _this.$refs.wizard.goNext(true);
@@ -405,49 +405,47 @@
             return;
           }
 
-            let uploadInfo = {
-              sub_category_id: this.sub_category_id,
-              product_type: this.product_type,
-              used_year: this.used_product.year,
-              used_month: this.used_product.month,
-              used_day: this.used_product.day,
-              name: this.name,
-              description: this.description,
-              price: this.price,
-              is_negotiable: this.is_negotiable,
-              warranty_availability: this.warranty_availability,
-              warranty_year: this.warranty.year,
-              warranty_month: this.warranty.month,
-              warranty_day: this.warranty.day,
-              cover_image: this.cover_image,
-              images: this.postImages,
-              phone_no: this.phone_no,
-              email: this.email,
-              address: this.address,
+          let uploadInfo = {
+            sub_category_id: this.sub_category_id,
+            product_type: this.product_type,
+            used_year: this.used_product.year,
+            used_month: this.used_product.month,
+            used_day: this.used_product.day,
+            name: this.name,
+            description: this.description,
+            price: this.price,
+            is_negotiable: this.is_negotiable,
+            warranty_availability: this.warranty_availability,
+            warranty_year: this.warranty.year,
+            warranty_month: this.warranty.month,
+            warranty_day: this.warranty.day,
+            cover_image: this.cover_image,
+            images: this.postImages,
+            phone_no: this.phone_no,
+            email: this.email,
+            address: this.address,
+          }
+          let config = {
+            headers: {
+              'Authorization': 'Bearer ' + this.$store.state.token
             }
-            console.log(uploadInfo)
-            let config = {
-              headers: {
-                'Authorization': 'Bearer ' + this.$store.state.token
-              }
-            }
-            this.$api.post('sell-post', uploadInfo, config)
-                .then(response => {
-                  if (response.status == 200) {
-                    this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
-                    this.$router.push('/profile').then(res => {
-                      this.$root.$emit('sellPostDashboard');
-                    });
-                  }
-                }).catch(err => {
-              console.log(err)
-            });
+          }
+          this.$api.post('sell-post', uploadInfo, config)
+              .then(response => {
+                if (response.status == 200) {
+                  this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
+                  this.$router.push('/profile').then(res => {
+                    this.$root.$emit('sellPostDashboard');
+                  });
+                }
+              }).catch(err => {
+            console.log(err)
+          });
         })
       },
       backClicked(currentPage) {
          const _this = this;
         _this.$refs.wizard.isMobile = false;
-        console.log('back clicked', currentPage);
         return true; //return false if you want to prevent moving to previous page
       },
     },
@@ -456,12 +454,6 @@
       this.$api.get('sub-categories').then (response =>{
         this.subCategories = response.data.data
       });
-    },
-    mounted() {
-      // document.querySelector('.wizard__next').add
-      // $('.wizard__next').addClass('')
-      $(".final-step").append(" <span>Post</span> <i></i>");
-          $('.final-step').contents().filter((_, el) => el.nodeType === 3).remove();
     },
   };
 </script>

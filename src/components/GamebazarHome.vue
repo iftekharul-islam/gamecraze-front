@@ -5,7 +5,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-7">
                         <div class="max-600">
-                            <h1 class="f-s-48 text-secondery gil-bold font-weight-bold mb-a-6">{{ $t('game_bazar_title_1', $store.state.locale) }} </h1>
+                            <h1 class="f-s-30 f-s-sm-48 text-secondery gil-bold font-weight-bold mb-a-6">{{ $t('game_bazar_title_1', $store.state.locale) }} </h1>
                             <p class="gil-medium op-8">{{ $t('game_bazar_title_2', $store.state.locale) }}</p>
                             <router-link class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative" to="/create-sell-post">{{ $t('sell_post', $store.state.locale) }}</router-link>
                         </div>
@@ -17,7 +17,7 @@
                                    <img src="../assets/img/gamebazar1.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
                               <div class="gamebazar-tag position-absolute">
-                                  <span class="gil-bold f-s-20 text-white underline">Controller</span>
+                                  <span class="gil-bold f-s-14 f-s-sm-20 text-white underline">Controller</span>
                               </div>
                             </a>
                             <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4 user-select-none pointer-initial ">
@@ -25,7 +25,7 @@
                                    <img src="../assets/img/gamebazar2.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
                               <div class="gamebazar-tag position-absolute">
-                                  <span class="gil-bold f-s-20 text-white underline mt-auto">Controller</span>
+                                  <span class="gil-bold f-s-14 f-s-sm-20 text-white underline mt-auto">Controller</span>
                               </div>
                             </a>
                             <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4 user-select-none pointer-initial ">
@@ -33,7 +33,7 @@
                                    <img src="../assets/img/gamebazar2.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
                               <div class="gamebazar-tag position-absolute">
-                                  <span class="gil-bold f-s-20 text-white underline mt-auto">Controller</span>
+                                  <span class="gil-bold f-s-14 f-s-sm-20 text-white underline mt-auto">Controller</span>
                               </div>
                             </a>
                             <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4 user-select-none pointer-initial ">
@@ -41,7 +41,7 @@
                                    <img src="../assets/img/gamebazar3.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
                               <div class="gamebazar-tag position-absolute">
-                                  <span class="gil-bold f-s-20 text-white underline mt-auto">Controller</span>
+                                  <span class="gil-bold f-s-14 f-s-sm-20 text-white underline mt-auto">Controller</span>
                               </div>
                             </a>
                         </div>
@@ -53,7 +53,7 @@
         <section class="new-post pb-a-11 pt-a-9">
                <!-- search bar -->
             <div class="container">
-                <div class="col-md-8 mx-auto py-5">
+                <div class="col-md-8 mx-auto py-sm-5 mb-4 mb-sm-0">
                     <div class="gamebazar-search">
                         <div class="d-flex justify-content-center">
                           <div class="gamebazar__search position-relative">
@@ -304,7 +304,7 @@
         <!--Current Popular -->
         <section class="pb-a-21 current-popular" id="related-game">
             <div class="container">
-                 <h3 class="f-s-24 gil-bold text-white mb-a-4">{{ $t('popular_games_at_gamehub', $store.state.locale) }} :</h3>
+                 <h3 class="f-s-24 gil-bold text-white mb-a-4">{{ $t('popular_games_at_gamehub', $store.state.locale) }} </h3>
                 <!-- new carousel -->
               <div class="position-relative carousel-nav">
                 <carousel
@@ -315,8 +315,8 @@
                     :nav ="false"
                     :dots ="false"
                     :margin ="32"
-                    :responsive="{ 0:{items:1, stagePadding:0, center:false,},
-                                600:{items:2, stagePadding:0, center:false,},
+                    :responsive="{ 0:{items:1, stagePadding:0, center:false,dots:true,},
+                                600:{items:2, stagePadding:0, center:false, dots:false,},
                                 1000:{items:3, stagePadding:0,},
                                 1400:{items:4, stagePadding:0, center:false,}}">
                   <template slot="prev">

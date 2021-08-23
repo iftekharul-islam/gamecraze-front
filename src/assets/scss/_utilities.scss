@@ -1772,6 +1772,11 @@ p {
 .bg-shorting-tile {
     background: $shorting-title;
 }
+.bg-md-shorting-tile {
+    @include for-min-768 {
+        background: $shorting-title;
+    }
+}
 .primary-bg {
     background: $primary;
 }
@@ -1886,6 +1891,11 @@ p {
 
 .f-s-20 {
     font-size: 20px;
+}
+.f-s-sm-20 {
+    @include for-min-575 {
+        font-size: 20px;
+    }
 }
 
 .f-s-22 {
@@ -2066,6 +2076,11 @@ html {
 .h-30 {
     height: 30px !important;
 }
+.h-mbl-30 {
+    @include for-max-768 {
+        height: 30px !important;
+    }
+}
 
 .h-32 {
     height: 32px !important;
@@ -2180,6 +2195,12 @@ html {
 }
 .w-268 {
     width: 268px;
+}
+
+.w-md-268 {
+   @include for-min-768 {
+    width: 268px;
+   }
 }
 
 .w-328 {
@@ -2744,6 +2765,16 @@ select {
         flex: initial;
     }
 }
+
+.grow-1 {
+    flex-grow: 1;
+}
+.grow-md-initial {
+    @include for-min-768 {
+        flex-grow: initial;
+    }
+}
+
 .order-1 {
     order: 1;
 }
@@ -2756,6 +2787,7 @@ select {
 .order-4 {
     order: 4;
 }
+
 // After
 .no-after {
     &::after {

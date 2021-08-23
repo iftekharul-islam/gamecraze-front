@@ -140,7 +140,7 @@
                             <a class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer" @click="$refs.FileInputNew.click()"> <span></span> <div class="position-relative">Upload image</div></a>
                             <input ref="FileInputNew" type="file" style="display: none;" @change="onFileSelect" />
                           </div>
-                          <span class="text-step-error mt-2 d-inline-block" v-if="coverError">* Please add cover image</span>
+                          <span class="text-step-error mt-2 d-inline-block" v-if="coverError"> Please add cover image</span>
                         </div>
                         <div class="group mb-a-6" v-if="dialog">
                           <label class="mb-3 w-100">{{ $t('image_preview', $store.state.locale) }}</label>
@@ -169,7 +169,7 @@
                         <div class="group mb-a-6">
                           <label class="mb-3 w-100">{{ $t('upload_screenshots', $store.state.locale) }}</label>
                             <UploadImages class="w-100 p-0 bg-transparent border-0" :max="4" maxError="Max image upload limit is 4" @change="uploadScreenshots"/>
-                            <span class="text-step-error mt-2 d-inline-block" v-if="screenshotsError">* Please add upload screenshots</span>
+                            <span class="text-step-error mt-2 d-inline-block" v-if="screenshotsError"> Please add upload screenshots</span>
                         </div>
                     </div>
 

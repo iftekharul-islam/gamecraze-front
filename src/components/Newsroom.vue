@@ -79,13 +79,10 @@
                 this.$api.get('articles').then(response => {
                     if (response.status == 200) {
                         this.news = response.data.data;
-                        // this.currentPage = response.data.meta.pagination.current_page;
-                        // this.totalPage = response.data.meta.pagination.total_pages;
                         return;
                     }
 
                     this.$toaster.error('Something went wrong.');
-                    console.log('status: ', response.status);
                 });
             },
             getFeaturedNews: function(number) {

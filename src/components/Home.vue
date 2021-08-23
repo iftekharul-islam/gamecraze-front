@@ -206,15 +206,15 @@
                                 </div>
                             </div>
 
-                            <div class="notice-box" v-for="(article, index) in articles" :key="index" v-if="featuredArticle.id !== article.id">
+                            <div class="notice-box" v-for="(article, index) in articles" :key="index">
                                 <img :src=article.thumbnail :alt="article.title" class="w-100">
                                 <div class="noticed-details">
-                                    <router-link :to="{ name: 'NewsStory', params: { slug: article.slug }}" class="small-readmore"><span>{{ $t('read_more', $store.state.locale) }} <i class="fas fa-arrow-right ml-2"></i></span></router-link>
+                                  <router-link :to="{ name: 'NewsStory', params: { slug: article.slug }}" class="small-readmore"><span>{{ $t('read_more', $store.state.locale) }} <i class="fas fa-arrow-right ml-2"></i></span></router-link>
                                 </div>
                             </div>
                         </div>
                         <div class="text-center mt-5">
-                            <a href="/news" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative m-auto "><span></span> <div class="position-relative">{{ $t('view_all', $store.state.locale) }}</div></a>
+                            <router-link to="/news" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative m-auto "><span></span> <div class="position-relative">{{ $t('view_all', $store.state.locale) }}</div></router-link>
                         </div>
                     </div>
                 </div>
@@ -224,16 +224,6 @@
         <section class="noticed-board-section-mobile d-block d-sm-none">
             <div class="container">
                 <div class="col-12 p-0">
-                     <!-- <div id="owl-notice-mobile" class="owl-carousel owl-theme">
-                         <div class="item"  v-for="(article, index) in articles" :key="index">
-                             <div class="notice-box">
-                                <img :src=article.thumbnail :alt="article.title" class="w-100">
-                                <div class="noticed-details">
-                                    <router-link :to="{ name: 'NewsStory', params: { slug: article.slug }}" class="small-readmore"><span>Read More <i class="fas fa-arrow-right ml-2"></i></span></router-link>
-                                </div>
-                            </div>
-                         </div>
-                     </div> -->
                     <div class="position-relative">
                         <carousel v-if ="Loadedarticles"
                             :autoplay ="false"
@@ -258,11 +248,6 @@
                             </div>
                         </carousel>
                     </div>
-
-
-
-
-
                 </div>
             </div>
         </section>
@@ -318,6 +303,7 @@
                 Loadedarticles: false,
                 featuredArticle: null,
                 isLoggedIn: false,
+                articles: [],
                 videos: [],
                 platforms: [],
                 email: '',
@@ -326,31 +312,6 @@
             }
         },
         methods: {
-            carouselNotice: function () {
-            $('#owl-notice-mobile').owlCarousel({
-			loop: true,
-			margin: 10,
-			nav: true,
-			dots:false,
-            autoplay:true,
-            autoplayTimeout: 2000,
-            autoplayHoverPause: true,
-			navText: [
-				'<i class="fas fa-arrow-left arrow"></i>',
-				'<i class="fas fa-arrow-right arrow"></i>'
-			],
-			responsive:{
-				0:{
-					items: 1,
-					stagePadding: 50,
-					dots:true,
-					dots:false,
-                    nav: true,
-				}
-			}
-        });
-
-            },
             getTrendingGames: function () {
                 this.loadedTrending = false;
                 this.$api.get('games/trending?include=game,game.assets,game.genres,game.platforms').then(response => {
@@ -370,7 +331,7 @@
             getNewGames: function () {
                 this.loadedUpcoming = false;
                 this.$api.get('games/upcoming-games?include=assets,genres,platforms').then(response => {
-                    var vm = this;
+                    let vm = this;
                     vm.upcomingGames = response.data.data;
                     this.loadedUpcoming = true;
                 });
@@ -387,16 +348,16 @@
             getArticles: function () {
                 this.$api.get('top-articles?number=4').then(response => {
                     if (response.status == 200) {
-                        let vm = this;
-                        vm.articles = response.data.data;
-                        this.Loadedarticles = true;
-                        Vue.nextTick(function() {
-                            vm.carouselNotice();
-                        }.bind(vm));
+                        this.articles = response.data.data;
+                        if (this.featuredArticle && this.articles){
+                          let index = this.articles.findIndex((item) => item.id === this.featuredArticle.id);
+                          if (index !== -1) this.articles.splice(index, 1);
+                          this.Loadedarticles = true;
+                        }
                     }
                 });
             },
-            getFeturedVideo: function (number) {
+            getFeaturedVideo: function (number) {
                 this.loadedVideos = false;
                 this.$api.get('featured-videos?number=' + number).then(response => {
                     if (response.status == 200) {
@@ -411,7 +372,6 @@
                     this.$toaster.warning('Please login to set reminder');
                     return;
                 }
-
                 let config = {
                     headers: {
                         'Authorization': 'Bearer ' + this.$store.state.token
@@ -463,21 +423,18 @@
                 let promo = this.$route.query.promo;
                 if (promo != null) {
                     this.$store.dispatch('setPromo', promo);
-                    console.log('store promo code');
-                    console.log(this.$store.state.promo);
                 }
             },
         },
         watch: {
             '$route' (to) {
-                console.log(to);
                 if (to.name == 'Home') {
                     this.getTrendingGames();
                     this.getNewGames();
                     this.getRentGames();
                     this.getFeaturedArticles();
                     this.getArticles();
-                    this.getFeturedVideo(5);
+                    this.getFeaturedVideo(5);
                     this.featuredPlatforms(4);
                 }
             }
@@ -489,7 +446,6 @@
         },
         created() {
             this.getUrlCode();
-            // console.log(this.$route.query.promo);
             window.scrollTo(0,0);
 
             this.getTrendingGames();
@@ -497,7 +453,7 @@
             this.getRentGames();
             this.getFeaturedArticles();
             this.getArticles();
-            this.getFeturedVideo(5);
+            this.getFeaturedVideo(5);
             this.featuredPlatforms(4);
 
             if (this.$store.getters.ifAuthenticated) {

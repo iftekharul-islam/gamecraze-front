@@ -434,7 +434,7 @@
                                         <div class="dashboard-content--rented new-rented">
                                             <!-- new rented design -->
                                             <div class="d-flex flex-wrap" v-if="sellPosts">
-                                                <div class="dashboard-content--rented--box dashboard-content--rented--sell-post flex-wrap d-flex justify-content-between w-100 mr-0  bg-game-details border-2 warning-border" v-for="(product, index) in sellPosts" :key="index">
+                                                <div class="dashboard-content--rented--box dashboard-content--rented--sell-post flex-wrap d-flex justify-content-between w-100 mr-0  bg-game-details border-2 warning-border inactive-sellpost-box" v-for="(product, index) in sellPosts" :key="index">
                                                     <!-- order id -->
                                                     <div class="order-id flex-none flex-sm-initial w-full w-sm-initial">
                                                         <p class="f-s-20 gil-bold text-secondery" v-if="product">{{ product.product_no }}</p>
@@ -510,6 +510,14 @@
                                                         </div>
                                                     </div>
                                                     <div class="dashboard-content--rented--sell-post--button mb-4">
+                                                        <div class=" pt-5 inactive">
+                                                            <span class="bg-rejected text-white text-center py-2 position-absolute top-0 right-0 w-152">
+                                                                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                    <path d="M1.03327 10.0501L2.15827 11.3668C2.3666 11.6168 2.5416 12.0834 2.5416 12.4168L2.5416 13.8334C2.5416 14.7168 3.2666 15.4418 4.14994 15.4418L5.5666 15.4418C5.89993 15.4418 6.37494 15.6168 6.62494 15.8251L7.9416 16.9501C8.5166 17.4418 9.45827 17.4418 10.0333 16.9501L11.3666 15.8251C11.6166 15.6168 12.0833 15.4418 12.4166 15.4418L13.8583 15.4418C14.7416 15.4418 15.4666 14.7168 15.4666 13.8334L15.4666 12.4168C15.4666 12.0918 15.6333 11.6251 15.8416 11.3751L16.9666 10.0501C17.4499 9.46676 17.4499 8.53343 16.9666 7.96676L15.8416 6.64176C15.6333 6.4001 15.4666 5.9251 15.4666 5.6001L15.4666 4.1751C15.4666 3.29176 14.7416 2.56676 13.8583 2.56676L12.4083 2.56676C12.0833 2.56676 11.6083 2.39176 11.3583 2.18343L10.0416 1.05843C9.4666 0.566764 8.52494 0.566764 7.94994 1.05843L6.63327 2.18343C6.38327 2.39176 5.9166 2.56676 5.58327 2.56676L4.1666 2.56676C3.28327 2.56676 2.55827 3.29176 2.55827 4.1751L2.55827 5.59176C2.55827 5.9251 2.38327 6.39176 2.17494 6.64176L1.04994 7.95843C0.541602 8.5251 0.541602 9.46676 1.03327 10.0501ZM9.62494 12.2251C9.62494 12.5668 9.3416 12.8501 8.99994 12.8501C8.65827 12.8501 8.37494 12.5668 8.37494 12.2251L8.37494 8.2001C8.37494 7.85843 8.65827 7.5751 8.99994 7.5751C9.3416 7.5751 9.62494 7.85843 9.62494 8.2001L9.62494 12.2251ZM8.99994 4.94176C9.45827 4.94176 9.83327 5.31676 9.83327 5.7751C9.83327 6.23343 9.4666 6.60843 8.99994 6.60843C8.5416 6.60843 8.1666 6.23343 8.1666 5.7751C8.1666 5.31676 8.53327 4.94176 8.99994 4.94176Z" fill="white"/>
+                                                                </svg>
+                                                                Inactive
+                                                            </span>
+                                                        </div>
                                                         <router-link :to="'/sell-post/' + product.id + '/' + product.url_name " class="d-flex border-1 border-secondery pl-a-7 pr-a-7 py-1 mb-3 bg-secondery text-black game-details-hover mt-2"><span class="">Details</span></router-link>
                                                         <a href="#" class="d-flex border-1 border-secondery pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover mt-2" @click.prevent="sellPostEditModal(product)" v-if="product.status === 2"><span class="w-full text-center">Edit</span></a>
                                                     </div>

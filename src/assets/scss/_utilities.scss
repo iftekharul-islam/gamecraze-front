@@ -1478,6 +1478,9 @@ p {
 .top--1 {
     top: -1px;
 }
+.top--10 {
+    top: -10px;
+}
 
 .top-0 {
     top: 0;
@@ -1576,6 +1579,9 @@ p {
 .bottom-50 {
     bottom: 50px;
 }
+
+// right
+
 
 // ******************Border Radius***************//
 .br-0 {
@@ -1765,6 +1771,9 @@ p {
 }
 .bg-secondery-opa-25 {
     background: $secondery-opa-25;
+}
+.bg-rejected {
+    background: $rejected;
 }
 .bg-shorting {
     background: $shorting-bg;
@@ -2189,6 +2198,9 @@ html {
     @include for-min-575 {
         width: 150px;
     }
+}
+.w-152 {
+    width: 152px;
 }
 .w-162 {
     width: 162px;

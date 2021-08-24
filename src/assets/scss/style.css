@@ -1494,6 +1494,10 @@ p {
   top: -1px;
 }
 
+.top--10 {
+  top: -10px;
+}
+
 .top-0 {
   top: 0;
 }
@@ -1818,6 +1822,10 @@ p {
 
 .bg-secondery-opa-25 {
   background: rgba(255, 215, 21, 0.25);
+}
+
+.bg-rejected {
+  background: #FF3030;
 }
 
 .bg-shorting {
@@ -2280,6 +2288,10 @@ html {
   .w-sm-150 {
     width: 150px;
   }
+}
+
+.w-152 {
+  width: 152px;
 }
 
 .w-162 {
@@ -9540,6 +9552,19 @@ html {
 
 .dashboard-content .timer {
   margin-top: -60px;
+}
+
+.inactive {
+  display: none;
+}
+
+.inactive-sellpost-box {
+  border-color: #FF3030;
+  position: relative;
+}
+
+.inactive-sellpost-box .inactive {
+  display: block;
 }
 
 @media (min-width: 1200px) {

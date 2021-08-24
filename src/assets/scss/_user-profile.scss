@@ -779,6 +779,17 @@
     }
     
 }
+// in active sellpost
+.inactive {
+    display: none;
+}
+.inactive-sellpost-box {
+    border-color: $rejected ;
+    position: relative;
+    .inactive {
+        display: block;
+    }
+}
 
 .rented-note,
 .dashboard-tab-button,

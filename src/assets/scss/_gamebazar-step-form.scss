@@ -266,6 +266,43 @@
     }
     
 }
+
+.step-form {
+    &__line {
+        position: relative;
+        flex: 1;
+        a {
+            width: 30px;
+            height: 30px;
+            background: $primary;
+            border-radius: 50%;
+            border: 1px solid $secondery;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: $secondery;
+        }
+        &::before {
+            content: '';
+            width: 100%;
+            height: 2px;
+            background: $secondery;
+            position: absolute;
+            left: 0;
+            z-index: -1;
+        }
+        &.active {
+            a {
+                background: $secondery;
+                color: $primary;
+            }
+        }
+    }
+}
+
+
+
 // .gamebazar-step-form {
 //     select {
 //         background: $step-form-input url(../img/triangle-down-gray.png);

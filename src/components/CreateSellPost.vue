@@ -14,9 +14,9 @@
             <!-- step bar -->
             <div class="max-400 mx-auto mb-4">
               <ul class="d-flex step-form">
-                <li class="step-form__line p-0 active"> <a href="#" class="pe-none">1</a></li>
-                <li class="step-form__line p-0"> <a href="#" class="pe-none mx-auto">2</a></li>
-                <li class="step-form__line p-0"> <a href="#" class="pe-none ml-auto">3</a></li>
+                <li class="step-form__line p-0 active"> <a href="#" @click.prevent="backToFirstStep">1</a></li>
+                <li class="step-form__line p-0" :class="{ 'active' : twoActive }"> <a href="#" class="mx-auto" :class="{ 'user-select-none' : twoActive }" @click.prevent="confirmFirstStep">2</a></li>
+                <li class="step-form__line p-0" :class="{ 'active' : threeActive }"> <a href="#" class="ml-auto" :class="{ 'user-select-none' : accessThreeStep }" @click.prevent="goToFinal">3</a></li>
               </ul>
             </div>
             <div class="max-400 mx-auto" v-show="one">
@@ -220,7 +220,7 @@
                   <div class="d-flex flex-column align-items-center flex-sm-row  mt-5">
                       <a href="#" @click.prevent="backToSecondStep" class="flex-1 mr-3 w-full btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative text-center"><span>{{ $t('previous', $store.state.locale) }}</span></a>
                       <a href="#" @click.prevent="finalSubmit" class="flex-1 w-full btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative text-center" :class="{'pe-none' :  submitLoading}">
-                        <span>{{ $t('continue', $store.state.locale) }}</span>
+                        <span>{{ $t('post', $store.state.locale) }}</span>
                         <div v-if="submitLoading" class="spinner-border spinner-border-sm skew-none"></div>
                       </a>
                   </div>
@@ -244,6 +244,10 @@
         one: true,
         two: false,
         three: false,
+        oneActive: true,
+        twoActive: false,
+        threeActive: false,
+        accessThreeStep: false,
         submitLoading: false,
         coverError: false,
         screenshotsError: false,
@@ -286,37 +290,50 @@
       confirmFirstStep() {
         this.$refs.sellForm1.validate().then(success => {
           if (success) {
-            window.scrollTo(0,0);
+            window.scrollTo(0,20);
             this.one = false;
             this.two = true;
+            this.three = false;
+            this.twoActive = true;
+            this.threeActive = false;
           }
         });
       },
       backToFirstStep() {
+        window.scrollTo(0,0);
         this.one = true;
         this.two = false;
+        this.three = false;
+        this.twoActive = false;
+        this.threeActive = false;
       },
       confirmSecondStep() {
-        // if (this.cover_image == '' && this.postImages.length === 0) {
-        //   this.coverError = true;
-        //   this.screenshotsError = true;
-        //   return;
-        // }
-        // if (this.cover_image == '') {
-        //   this.coverError = true;
-        //   return;
-        // }
-        // if (this.postImages.length === 0) {
-        //   this.screenshotsError = true;
-        //   return;
-        // }
-        window.scrollTo(0,0);
+        if (this.cover_image == '' && this.postImages.length === 0) {
+          this.coverError = true;
+          this.screenshotsError = true;
+          return false;
+        }
+        if (this.cover_image == '') {
+          this.coverError = true;
+          return false;
+        }
+        if (this.postImages.length === 0) {
+          this.screenshotsError = true;
+          return false;
+        }
+        window.scrollTo(0,20);
+        this.one = false
         this.two = false;
         this.three = true;
+        this.twoActive = true;
+        this.threeActive = true;
+        this.accessThreeStep = true;
       },
       backToSecondStep() {
+        window.scrollTo(0,0);
         this.three = false;
         this.two = true;
+        this.threeActive = false;
       },
       finalSubmit() {
         this.submitLoading = true;
@@ -326,6 +343,11 @@
           }
           return false;
         });
+      },
+      goToFinal(){
+        if (this.accessThreeStep){
+          this.confirmSecondStep();
+        }
       },
       cropBoxSet(){
         let data = {

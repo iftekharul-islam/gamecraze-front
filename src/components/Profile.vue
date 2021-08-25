@@ -94,7 +94,7 @@
 
             </div>
         </section>
-    <!-- user profile details -->
+        <!-- user profile details -->
         <section class="user-profile-details">
             <div class="container">
                 <div class="row">
@@ -434,7 +434,7 @@
                                         <div class="dashboard-content--rented new-rented">
                                             <!-- new rented design -->
                                             <div class="d-flex flex-wrap" v-if="sellPosts">
-                                                <div class="dashboard-content--rented--box dashboard-content--rented--sell-post flex-wrap d-flex justify-content-between w-100 mr-0  bg-game-details border-2 warning-border inactive-sellpost-box" v-for="(product, index) in sellPosts" :key="index">
+                                                <div class="dashboard-content--rented--box dashboard-content--rented--sell-post flex-wrap d-flex justify-content-between w-100 mr-0  bg-game-details border-2 warning-border" v-for="(product, index) in sellPosts" :class="{ 'inactive-sellpost-box' : sellPostWarning(product) }" :key="index">
                                                     <!-- order id -->
                                                     <div class="order-id flex-none flex-sm-initial w-full w-sm-initial">
                                                         <p class="f-s-20 gil-bold text-secondery" v-if="product">{{ product.product_no }}</p>
@@ -1375,6 +1375,7 @@
                 editorConfig:{
 
                 },
+                warningText: '',
                 withdrawAmount: 0,
                 withdrawLoading: false,
                 requestModalShow: false,
@@ -1530,6 +1531,15 @@
             },
         },
         methods: {
+            sellPostWarning(post){
+              let subcategory = post.subcategory.data.status
+              let category = post.subcategory.data.category.data.status
+              if (subcategory === 0 || category === 0){
+                this.warningText = 'Its category is inactive';
+                return true;
+              }
+              return false;
+            },
             submitWithdraw() {
               this.withdrawLoading = true;
               if (this.withdrawAmount === ''){
@@ -2417,8 +2427,9 @@
                         'Authorization': 'Bearer ' + this.$store.state.token
                     }
                 };
-                this.$api.get('my-sell-posts?include=subcategory', config).then(response => {
+                this.$api.get('my-sell-posts?include=subcategory.category', config).then(response => {
                     this.sellPosts = response.data.data;
+                    console.log(this.sellPosts)
                 });
             },
             ratingCheck() {
@@ -2604,7 +2615,7 @@
                 })
               }
             ];
-          }
+          },
         },
     }
 </script>

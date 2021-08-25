@@ -684,10 +684,10 @@
                                                                                      </div>
                                                                                   </div>
                                                                               </div>
-                                                                              <div class="form-group post-rent--form-group gamebazar-step-form ">
+                                                                              <div class="form-group post-rent--form-group gamebazar-step-form " v-if="editPostData.secreenShotsLimit">
                                                                                 <label for="sell-post-address" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('upload_screenshots', $store.state.locale) }}</label>
                                                                                 <div class=" post-rent--form-group--input wizard__body__step">
-                                                                                  <UploadImages class="image-boxs w-100 p-0 bg-transparent border-0" :max="4" @change="handleEditScreenshots"/>
+                                                                                  <UploadImages class="image-boxs w-100 p-0 bg-transparent border-0" :max="editPostData.secreenShotsLimit" @change="handleEditScreenshots"/>
                                                                                 </div>
                                                                               </div>
                                                                               <!-- form-group Button -->
@@ -1391,6 +1391,7 @@
                 subCategories: [],
                 postImages: [],
                 editPostData: {
+                    secreenShotsLimit: 4,
                     dialog: false,
                     id: '',
                     name: '',
@@ -1596,6 +1597,8 @@
             },
             removeEditScreenshots(id){
               this.removeScreenshots.push(id);
+              this.editPostData.secreenShotsLimit = this.removeScreenshots.length + this.editPostData.secreenShotsLimit;
+              console.log(this.editPostData.secreenShotsLimit)
             },
             onFileSelect(e) {
               const file = e.target.files[0]
@@ -1650,6 +1653,11 @@
                 this.selected = product.sub_category_id
                 this.removeCover = ''
                 this.removeScreenshots = []
+                this.editPostData.secreenShotsLimit = 4
+                if(this.editPostData.images.length){
+                  this.editPostData.secreenShotsLimit = this.editPostData.secreenShotsLimit - this.editPostData.images.length;
+                  console.log(this.editPostData.secreenShotsLimit)
+                }
             },
             handleEditScreenshots(files) {
                 if (files.length === 0) {
@@ -2429,7 +2437,6 @@
                 };
                 this.$api.get('my-sell-posts?include=subcategory.category', config).then(response => {
                     this.sellPosts = response.data.data;
-                    console.log(this.sellPosts)
                 });
             },
             ratingCheck() {

@@ -527,5 +527,7 @@
   "your_name" : "Your name",
   "your_email" : "Your email",
   "report_now" : "Report now",
-  "cause_of_report" : "Cause of report"
+  "cause_of_report" : "Cause of report",
+  "please_upload_cover_photo" : "Please add cover image",
+  "please_upload_screenshots" : "Please upload screenshots"
 }

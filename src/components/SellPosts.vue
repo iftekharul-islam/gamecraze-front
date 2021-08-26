@@ -7,7 +7,7 @@
            <div class="col-md-6 ml-auto">
               <div class="gamebazar-search mb-a-6">
                         <div class="d-flex justify-content-end">
-                          <div class="gamebazar__search position-relative">
+                          <div class="gamebazar__search sellpost_search position-relative">
                             <vue-autosuggest
                                 v-model="query"
                                 :suggestions="filteredOptions"
@@ -16,19 +16,19 @@
                                 :get-suggestion-value="getSuggestionValue"
                                 :input-props="{id:'autosuggest__input',class:'auto-suggest-menu',placeholder:'Search...'}">
                               <div  slot-scope="{ suggestion }" class="w-100">
-                                <div class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between">
 
-                                   <div class="d-flex align-items-center">
-                                      <div class="w-100px min-w-100 h-75 overflow-hidden br-4">
+                                   <div class="d-flex align-items-md-center">
+                                      <div class="gamebazar__search__img overflow-hidden br-4">
                                          <img :src="suggestion.item.cover.url" class="img-fluid  h-100 w-100" alt="Gamehub Logo logo" v-if="suggestion.item.cover != null">
                                          <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2020/11/PS5-PS4-Game-Forced-Install-Problem.jpg" class="img-fluid  h-100 w-100" alt="Gamehub Logo logo" v-else>
                                       </div>
                                       <div class="ml-3">
-                                        <span class="d-block gil-bold mb-2">{{ suggestion.item.name }}</span>
-                                        <span v-if="suggestion.item.product_type === 1">
+                                        <span class="d-block gil-bold mb-2 name max-sm-160">{{ suggestion.item.name }}</span>
+                                        <span class="name" v-if="suggestion.item.product_type === 1">
                                           {{ $t('new', $store.state.locale) }}
                                         </span>
-                                        <span v-if="suggestion.item.product_type === 2">
+                                        <span class="name w-152 d-block" v-if="suggestion.item.product_type === 2">
                                           {{ $t('used', $store.state.locale) }}&nbsp;
                                             <span v-if="suggestion.item.used_year != null">
                                                   {{ suggestion.item.used_year }}&nbsp;
@@ -45,7 +45,7 @@
                                         </span>
                                       </div>
                                    </div>
-                                   <span class="text-secondery gil-bold font-weight-bold">৳ {{ suggestion.item.price }}</span>
+                                   <span class="text-secondery gil-bold font-weight-bold name">৳ {{ suggestion.item.price }}</span>
                                 </div>
                               </div>
                             </vue-autosuggest>
@@ -234,7 +234,7 @@
                       <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">৳ {{ item.price }}</span>
                     </div>
 
-                    <p class="gil-bold mb-3 mt-a-4 text-white">{{ item.name }}</p>
+                    <p class="gil-bold mb-3 mt-a-4 text-white post-name">{{ item.name }}</p>
                         <div class="d-flex align-items-center text-secondery">
                             <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
                             <div class="gamebazar-post__arrow">

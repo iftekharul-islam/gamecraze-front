@@ -198,7 +198,8 @@
                           :stagePadding ="0"
                           :responsive="{ 0:{items:1.5, stagePadding:0, center:false,},
                                   600:{items:2, stagePadding:0, center:false,},
-                                  1000:{items:3, stagePadding:0,},
+                                  1000:{items:3, stagePadding:0, center:false,},
+                                  1200:{items:4, stagePadding:0, center:false,},
                                   1400:{items:5, stagePadding:0, center:false,}}">
                   <template slot="prev">
                       <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center secondery-border br-4 pointer vue-owl-nav-left w-32 h-32">
@@ -266,7 +267,8 @@
                     :stagePadding ="0"
                     :responsive="{ 0:{items:1.5, stagePadding:0, center:false,},
                                   600:{items:2, stagePadding:0, center:false,},
-                                  1000:{items:3, stagePadding:0,},
+                                  1000:{items:3, stagePadding:0, center:false,},
+                                  1200:{items:4, stagePadding:0, center:false,},
                                   1400:{items:5, stagePadding:0, center:false,}}">
             <template slot="prev">
               <div class="vue-owl-nav d-flex align-items-center z-index-9 justify-content-center secondery-border br-4 pointer vue-owl-nav-left w-32 h-32">

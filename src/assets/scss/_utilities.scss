@@ -2086,7 +2086,7 @@ html {
     height: 30px !important;
 }
 .h-mbl-30 {
-    @include for-max-768 {
+    @include for-max-1199 {
         height: 30px !important;
     }
 }
@@ -2234,6 +2234,18 @@ html {
     max-width: 150px;
    }
 }
+
+.max-sm-160 {
+    @include for-min-575 {
+     max-width: 160px;
+    }
+ }
+
+.max-sm-200 {
+    @include for-min-575 {
+     max-width: 200px;
+    }
+ }
 .max-328 {
     max-width: 328px;
 }

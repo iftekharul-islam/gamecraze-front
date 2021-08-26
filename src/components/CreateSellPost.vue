@@ -128,7 +128,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="d-flex flex-column align-items-center flex-sm-row justify-content-end mt-5">
+                  <div class="d-flex align-items-center flex-sm-row justify-content-end mt-5">
                     <div class="modal-content--description--form--call">
                       <a href="#" @click.prevent="confirmFirstStep" class=" btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative"><span>{{ $t('continue', $store.state.locale) }}</span></a>
                     </div>
@@ -143,7 +143,7 @@
                     <a class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer" @click="$refs.FileInputNew.click()"> <span></span> <div class="position-relative">Upload image</div></a>
                     <input ref="FileInputNew" type="file" style="display: none;" @change="onFileSelect" />
                   </div>
-                  <span class="text-step-error mt-2 d-inline-block" v-if="coverError"> Please add cover image</span>
+                  <span class="text-step-error mt-2 d-inline-block" v-if="coverError">{{ $t('please_upload_cover_photo', $store.state.locale) }}</span>
                 </div>
                 <div class="group mb-a-6" v-if="dialog">
                   <label class="mb-3 w-100">{{ $t('image_preview', $store.state.locale) }}</label>
@@ -175,9 +175,9 @@
                      <UploadImages class="w-100 p-0 bg-transparent border-0" :max="4" maxError="Max image upload limit is 4" @change="uploadScreenshots"/>
                   </div>
                  
-                    <span class="text-step-error mt-2 d-inline-block" v-if="screenshotsError"> Please add upload screenshots</span>
+                    <span class="text-step-error mt-2 d-inline-block" v-if="screenshotsError"> {{ $t('please_upload_screenshots', $store.state.locale) }}</span>
                 </div>
-                <div class="d-flex flex-column align-items-center flex-sm-row mt-5">
+                <div class="d-flex align-items-center flex-sm-row mt-5">
                     <a href="#" @click.prevent="backToFirstStep" class="flex-1 mr-3 w-full btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative text-center"><span>{{ $t('previous', $store.state.locale) }}</span></a>
                     <a href="#" @click.prevent="confirmSecondStep" class="flex-1 w-full btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative text-center"><span>{{ $t('continue', $store.state.locale) }}</span></a>
                 </div>
@@ -382,6 +382,7 @@
         }, this.mime_type)
       },
       uploadScreenshots(files) {
+        console.log(files)
         this.screenshotsError = false;
         if (files.length === 0) {
           this.postImages = [];

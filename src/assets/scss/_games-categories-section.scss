@@ -76,6 +76,9 @@
     &--tag {
         display: flex;
         align-items: flex-start;
+        @include for-max-992 {
+            flex-wrap: wrap;
+        }
         span {
             display: flex;
             align-items: center;

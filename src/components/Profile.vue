@@ -443,7 +443,7 @@
                                                     <div class="start-date d-flex flex-column">
                                                         <div class="mb-4">
                                                             <p class="text-white mb-2">{{ $t('name', $store.state.locale) }}</p>
-                                                            <p class=" text-secondery mb-0">{{ product.name }}</p>
+                                                            <p class=" text-secondery mb-0 max-sm-200">{{ product.name }}</p>
                                                         </div>
                                                         <div class="text-white  mb-4">
                                                             <p class="text-white mb-2">{{ $t('created_at', $store.state.locale) }}</p>

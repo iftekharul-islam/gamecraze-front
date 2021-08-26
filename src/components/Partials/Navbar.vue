@@ -21,7 +21,7 @@
                 </div> -->
                 <!-- navbar middle content -->
                 <div class="d-flex custom-collapse gamehub-menu-collapse mr-xl-auto">
-                    <ul class="d-flex justify-content-between justify-content-xl-start pl-xl-4">
+                    <ul class="d-flex justify-content-between justify-content-xl-start pl-xl-4 gamehub-menu-collapse-list">
                         <li class="d-xl-none">
                             <router-link @click.native="onMenuItemClick()" class="router_link  flex-column d-inline-flex align-items-center justify-content-center" to="/" >
                             <div class="h-mbl-30">
@@ -98,7 +98,7 @@
                                         :input-props="{id:'autosuggest__input',class:'auto-suggest-menu' ,placeholder: $t('search_game', $store.state.locale) }">
                                         <div  slot-scope="{suggestion}">
                                             <div class="d-flex align-items-center">
-                                                <div class="w-100px min-w-100 h-75 overflow-hidden br-4">
+                                                <div class="gamebazar__search__img overflow-hidden br-4">
                                                     <img :src="suggestion.item.game.data.poster_url" class="img-fluid  h-100 w-100 object-cover" :alt="suggestion.item.game.data.name" v-if="suggestion.item.game.data.poster_url">
                                                     <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2020/11/PS5-PS4-Game-Forced-Install-Problem.jpg" class="img-fluid object-cover h-100 w-100" alt="Gamehub Logo logo" v-else>
                                                 </div>

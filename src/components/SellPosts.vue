@@ -133,14 +133,14 @@
               </div>
                  <div class="position-relative ml-md-auto w-full w-md-initial">
                     <div class="d-flex flex-row-reverse flex-md-row align-items-center justify-content-md-end">
-                        <button class=" grow-1 br-4 bg-game-details d-flex no-outline-focus align-items-center justify-content-center d-md-none flex-1 border-0 py-2" @click="filterShow = !filterShow" :aria-pressed="filterShow ? 'true' : 'false'">
+                        <button class=" flex-1 br-4 bg-game-details d-flex no-outline-focus align-items-center justify-content-center d-md-none flex-1 border-0 py-2" @click="filterShow = !filterShow" :aria-pressed="filterShow ? 'true' : 'false'">
                           <svg class="mr-2" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                              <path d="M5.82408 11.0593L9.70774 11.0712C9.9499 11.072 10.1459 11.2748 10.1459 11.5234V13.7083C10.1459 13.9577 10.0043 14.1834 9.78352 14.2878L6.25816 15.9432C6.17579 15.9813 6.08848 16 6.00117 16C5.88504 16 5.7689 15.9661 5.66758 15.899C5.49049 15.7819 5.38341 15.58 5.38341 15.3636V11.5116C5.38341 11.2613 5.5811 11.0585 5.82408 11.0593ZM14.2975 0C15.2381 0 16 0.784842 16 1.7538V2.97901C16 3.44906 15.8163 3.90045 15.4901 4.22966L10.2861 9.49362C10.1963 9.58525 10.0744 9.63616 9.94842 9.63532L5.59115 9.62174C5.45853 9.62174 5.33251 9.56489 5.2419 9.46562L0.459614 4.2059C0.163912 3.88094 0 3.45161 0 3.00616V1.75465C0 0.78569 0.761905 0 1.70255 0H14.2975Z" fill="#FFD715"/>
                           </svg>
                           <span class="m-0 text-secondery f-s-16-imp p-0 border-0 bg-transparent">{{ $t('filter', $store.state.locale) }}</span>
                         </button>
                         <!-- shorting -->
-                        <div class="d-flex grow-1 grow-md-initial ">
+                        <div class="d-flex flex-1 grow-md-initial mr-3 mr-md-0">
                           <button v-if="descByDateTag" class="d-flex bg-transparent align-items-center justify-content-center flex-1 h-100 px-2 px-md-4 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border mr-3 sorting-mobile">
                             Date
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -169,7 +169,7 @@
                               <path d="M10 2.29165C10.3417 2.29165 10.625 2.57498 10.625 2.91665L10.625 16.9417C10.625 17.2833 10.3417 17.5667 10 17.5667C9.65833 17.5667 9.375 17.2833 9.375 16.9417L9.375 2.91665C9.375 2.57498 9.65833 2.29165 10 2.29165Z" fill="#FFD715"/>
                             </svg>
                           </button>
-                          <button class="d-flex bg-transparent align-items-center justify-content-center flex-1 h-42 px-2 px-md-3 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border mr-3 mr-md-0 sorting-mobile"
+                          <button class="d-flex bg-transparent align-items-center justify-content-center flex-1 h-42 px-2 px-md-3 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border  mr-md-0 sorting-mobile"
                             role="button" :class="showDrawer ? 'highlight': '' " @click="showDrawer = !showDrawer" >
                             <svg class="mx-auto" width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M13.2489 8.81565C14.7689 8.81565 16 10.026 16 11.5194C16 13.0118 14.7689 14.2222 13.2489 14.2222C11.7298 14.2222 10.4978 13.0118 10.4978 11.5194C10.4978 10.026 11.7298 8.81565 13.2489 8.81565ZM6.46663 10.3664C7.1324 10.3664 7.67285 10.8973 7.67285 11.5514C7.67285 12.2046 7.1324 12.7365 6.46663 12.7365H1.20622C0.540441 12.7365 0 12.2046 0 11.5514C0 10.8973 0.540441 10.3664 1.20622 10.3664H6.46663ZM2.7511 0C4.27109 0 5.50219 1.21039 5.50219 2.70285C5.50219 4.19618 4.27109 5.40657 2.7511 5.40657C1.23199 5.40657 0 4.19618 0 2.70285C0 1.21039 1.23199 0 2.7511 0ZM14.7947 1.51866C15.4596 1.51866 16 2.04962 16 2.70285C16 3.35695 15.4596 3.88791 14.7947 3.88791H9.53426C8.86848 3.88791 8.32804 3.35695 8.32804 2.70285C8.32804 2.04962 8.86848 1.51866 9.53426 1.51866H14.7947Z" fill="#FFD715"/>

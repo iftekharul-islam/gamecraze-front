@@ -3587,6 +3587,11 @@ select option {
           user-select: none;
 }
 
+.object-cover {
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 @media (max-width: 575px) {
   .body-home .gamehub-menu {
     background: transparent;

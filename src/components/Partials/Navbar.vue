@@ -44,9 +44,11 @@
                         </li>
                         <li class="dropdown dropdown-hover">
                             <a class="router_link no-after flex-column d-inline-flex align-items-center justify-content-center" href="javascript:void(0)" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="h-mbl-30">
                                 <svg class="d-xl-none mb-2" width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M11.472 0C14.184 0 16 1.904 16 4.736V11.272C16 14.096 14.184 16 11.472 16H4.536C1.824 16 0 14.096 0 11.272V4.736C0 1.904 1.824 0 4.536 0H11.472ZM11.584 7.0408C11.056 7.0408 10.624 7.472 10.624 8C10.624 8.528 11.056 8.96 11.584 8.96C12.112 8.96 12.536 8.528 12.536 8C12.536 7.472 12.112 7.0408 11.584 7.0408ZM8 7.0408C7.472 7.0408 7.04 7.472 7.04 8C7.04 8.528 7.472 8.96 8 8.96C8.528 8.96 8.96 8.528 8.96 8C8.96 7.472 8.528 7.0408 8 7.0408ZM4.416 7.0408C3.888 7.0408 3.456 7.472 3.456 8C3.456 8.528 3.888 8.96 4.416 8.96C4.944 8.96 5.376 8.528 5.376 8C5.376 7.472 4.944 7.0408 4.416 7.0408Z" fill="#C4C4C4"/>
                                 </svg>
+                                </div>
                                 {{ $t('more', $store.state.locale)}}
                             </a>
                               <div class="dropdown--sub-menu p-0 dropdown-menu" aria-labelledby="dropdownMenuButton">
@@ -93,12 +95,12 @@
                                         @keyup.enter="searchGame"
                                         @selected="onSelected"
                                         :get-suggestion-value="getSuggestionValue"
-                                        :input-props="{id:'autosuggest__input',class:'auto-suggest-menu '}">
+                                        :input-props="{id:'autosuggest__input',class:'auto-suggest-menu' ,placeholder: $t('search_game', $store.state.locale) }">
                                         <div  slot-scope="{suggestion}">
                                             <div class="d-flex align-items-center">
                                                 <div class="w-100px min-w-100 h-75 overflow-hidden br-4">
-                                                    <img :src="suggestion.item.game.data.poster_url" class="img-fluid  h-100 w-100" :alt="suggestion.item.game.data.name" v-if="suggestion.item.game.data.poster_url">
-                                                    <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2020/11/PS5-PS4-Game-Forced-Install-Problem.jpg" class="img-fluid  h-100 w-100" alt="Gamehub Logo logo" v-else>
+                                                    <img :src="suggestion.item.game.data.poster_url" class="img-fluid  h-100 w-100 object-cover" :alt="suggestion.item.game.data.name" v-if="suggestion.item.game.data.poster_url">
+                                                    <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2020/11/PS5-PS4-Game-Forced-Install-Problem.jpg" class="img-fluid object-cover h-100 w-100" alt="Gamehub Logo logo" v-else>
                                                 </div>
                                                 <div class="ml-3">
                                                    <span class="gil-bold">{{suggestion.item.game.data.name}}</span>

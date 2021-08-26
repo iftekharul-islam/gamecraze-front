@@ -2,16 +2,16 @@
     <div>
         <section class="gamebazar-banner">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-7">
+                <div class="row align-items-lg-center">
+                    <div class="col-lg-7">
                         <div class="max-600">
                             <h1 class="f-s-30 f-s-sm-48 text-secondery gil-bold font-weight-bold mb-a-6">{{ $t('game_bazar_title_1', $store.state.locale) }} </h1>
                             <p class="gil-medium op-8">{{ $t('game_bazar_title_2', $store.state.locale) }}</p>
                             <router-link class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative" to="/create-sell-post">{{ $t('sell_post', $store.state.locale) }}</router-link>
                         </div>
                     </div>
-                    <div class="col-md-5 mt-3 mt-md-0">
-                        <div class="gamebazar-banner__content d-grid grid-gap-16 justify-content-md-end">
+                    <div class="col-lg-5 mt-3 mt-lg-0">
+                        <div class="gamebazar-banner__content d-grid grid-gap-16 justify-content-lg-end">
                             <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4 user-select-none pointer-initial ">
                               <div class=" h-100 br-4 overflow-fidden">
                                    <img src="../assets/img/gamebazar1.png" class="img-fluid h-100" alt="Gamebazar image">
@@ -252,9 +252,9 @@
         <section class="accessories-sell-post position-relative">
             <div class="container">
               <div class="row">
-                    <div class="col-md-7 col-lg-7">
-                        <div class="mr-a-md-10 mb-3 mb-md-0">
-                            <h1 class="f-s-28 f-s-md-48 max-600 mb-a-5">
+                    <div class="col-md-12 col-xl-7">
+                        <div class="mr-a-xl-10 mb-3 mb-xl-0">
+                            <h1 class="f-s-28 f-s-md-48 max-xl-600 mb-a-5">
                               {{ $t('game_bazar_title_4', $store.state.locale) }}
                                 <span class="text-secondery">{{ $t('game_bazar_title_5', $store.state.locale) }}</span>
                             <span class="text-secondery">  {{ $t('game_bazar_title_6', $store.state.locale) }}</span>
@@ -268,7 +268,7 @@
                                </router-link>
                         </div>
                     </div>
-                    <div class="col-md-5 col-lg-6 position-initial  pr-md-0">
+                    <div class="col-md-12 col-xl-5 position-initial  pr-md-0">
                         <div class="accessories-sellpost position-xl-absolute right-0 top-0">
                                 <img src="../assets/img/gamehome.png" class="img-fluid w-100" alt="Gamebazar image">
                         </div>
@@ -280,14 +280,14 @@
         <section class="accessories-sell-post position-relative">
             <div class="container">
                <div class="row accessories-sell-post__row">
-                    <div class="col-md-5 col-lg-6 position-initial pl-md-0">
+                    <div class="col-md-12 col-xl-6 position-initial pl-md-0">
                         <div class="accessories-sellpost position-xl-absolute left-0 top-0 ">
                             <img src="../assets/img/gamehome.png" class="img-fluid w-100" alt="Gamebazar image">
                         </div>
                     </div>
-                    <div class="col-md-7 col-lg-7 ml-xl-auto">
+                    <div class="col-md-12 col-xl-7 ml-xl-auto mb-3 mb-xl-0">
                         <div class="ml-a-xl-10 mb-3 mb-xl-0">
-                            <h1 class="f-s-28 f-s-md-48 max-600 mb-a-5">
+                            <h1 class="f-s-28 f-s-md-48 max-xl-600 mb-a-5">
                               {{ $t('game_bazar_title_8', $store.state.locale) }}
                               <span class="text-secondery">{{ $t('game_bazar_title_9', $store.state.locale) }}</span>
                               {{ $t('game_bazar_title_10', $store.state.locale) }}

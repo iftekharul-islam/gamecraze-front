@@ -428,6 +428,16 @@ p {
         margin-right: 3.438rem;
     }
 }
+.mr-a-lg-10 {
+    @include for-min-992 {
+        margin-right: 3.438rem;
+    }
+}
+.mr-a-xl-10 {
+    @include for-min-1200 {
+        margin-right: 3.438rem;
+    }
+}
 
 .mr-a-11 {
     margin-right: 3.75rem;
@@ -2276,6 +2286,26 @@ html {
 }
 .max-600 {
     max-width: 600px;
+}
+.max-sm-600 {
+    @include for-min-575 {
+        max-width: 600px;
+    }
+}
+.max-md-600 {
+    @include for-min-768 {
+        max-width: 600px;
+    }
+}
+.max-lg-600 {
+    @include for-min-992 {
+        max-width: 600px;
+    }
+}
+.max-xl-600 {
+    @include for-min-1200 {
+        max-width: 600px;
+    }
 }
 .max-940 {
     max-width: 940px;

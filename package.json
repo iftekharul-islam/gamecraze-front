@@ -12,7 +12,7 @@
     "@bachdgvn/vue-otp-input": "^1.0.8",
     "@syncfusion/ej2-vue-dropdowns": "^18.1.56",
     "animate.css": "^4.1.0",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.0",
     "bootstrap-scss": "^4.5.0",
     "bootstrap-vue": "^2.15.0",

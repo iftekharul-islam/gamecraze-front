@@ -167,7 +167,7 @@
         display: inline-block;
         outline: none;
         background: $secondery-gradient;
-        border: 1px solid $secondery;
+        border: 1px solid $secondery !important;
         z-index: 1;
         &::after {
             position: absolute;
@@ -183,6 +183,7 @@
             transition: all 0.3s ease;
         }
         &:hover {
+            color: $text-light;
 	        &::after {
                 top: auto;
                 bottom: 0;

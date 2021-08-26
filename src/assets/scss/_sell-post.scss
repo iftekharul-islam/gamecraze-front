@@ -168,6 +168,10 @@
             top: 6px;
             opacity: 0;
             visibility: hidden;
+            @include for-max-768 {
+                left: initial;
+                right: 5px;
+            }
         }
     }
 }
@@ -333,4 +337,7 @@ $background_color_2: inherit;
         justify-content: center;
         padding-top: 100px;
     }
+}
+.cropper-crop-box {
+    transform: translateX(17px) translateY(50%) !important;
 }

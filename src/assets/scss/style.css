@@ -452,6 +452,18 @@ p {
   }
 }
 
+@media (min-width: 992px) {
+  .mr-a-lg-10 {
+    margin-right: 3.438rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .mr-a-xl-10 {
+    margin-right: 3.438rem;
+  }
+}
+
 .mr-a-11 {
   margin-right: 3.75rem;
 }
@@ -2376,6 +2388,30 @@ html {
 
 .max-600 {
   max-width: 600px;
+}
+
+@media (min-width: 575px) {
+  .max-sm-600 {
+    max-width: 600px;
+  }
+}
+
+@media (min-width: 768px) {
+  .max-md-600 {
+    max-width: 600px;
+  }
+}
+
+@media (min-width: 992px) {
+  .max-lg-600 {
+    max-width: 600px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .max-xl-600 {
+    max-width: 600px;
+  }
 }
 
 .max-940 {
@@ -12404,6 +12440,13 @@ html {
   visibility: hidden;
 }
 
+@media (max-width: 768px) {
+  .shorting-input label::before {
+    left: initial;
+    right: 5px;
+  }
+}
+
 .high-to-low label::after {
   left: initial;
   right: 0px;
@@ -12588,6 +12631,11 @@ html {
             justify-content: center;
     padding-top: 100px;
   }
+}
+
+.cropper-crop-box {
+  -webkit-transform: translateX(17px) translateY(50%) !important;
+          transform: translateX(17px) translateY(50%) !important;
 }
 
 .gamebazar-banner {
@@ -13246,6 +13294,7 @@ html {
 
 .gamebazar-step-form .wizard__body__step {
   padding: 0 !important;
+  min-height: 200px;
 }
 
 .gamebazar-step-form .wizard__body__step .beforeUpload {
@@ -13283,7 +13332,6 @@ html {
       grid-template-rows: 92px;
   grid-auto-rows: 92px;
   grid-gap: 16px;
-  min-height: 200px;
 }
 
 .gamebazar-step-form .wizard__body__step .imgsPreview .clearButton {

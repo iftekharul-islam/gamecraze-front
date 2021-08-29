@@ -5,8 +5,10 @@
     }
     .vue-owl-nav {
         position: absolute;
-        top: -70px !important;
         right: 0;
+        @include for-max-1300 {
+            top: -45px !important;
+        }
         @include for-max-575 {
             top: -50px !important;
         }

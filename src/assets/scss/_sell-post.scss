@@ -326,7 +326,7 @@ $background_color_2: inherit;
 .shorting-menu {
     @include for-max-575 {
         position: fixed;
-        left: 0;
+        left: 0 !important;
         width: 100%;
         height: 100%;
         background: $primary;
@@ -339,5 +339,21 @@ $background_color_2: inherit;
     }
 }
 .cropper-crop-box {
-    transform: translateX(17px) translateY(50%) !important;
+    transform: translateX(17px) translateY(5px) !important;
+}
+.cropper-container {
+    height: 280px !important;
+}
+
+.tk-sign {
+    
+    visibility: hidden;
+}
+.taka {
+    position: absolute;
+    left: 10px;
+    top: 9px;
+}
+.price-valid {
+    padding-left: 22px;
 }

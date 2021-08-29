@@ -449,7 +449,7 @@
                                                             <p class="text-white mb-2">{{ $t('created_at', $store.state.locale) }}</p>
                                                             <p class=" text-secondery mb-0">{{ formattedDate(product.created_at) }} </p>
                                                         </div>
-                                                        <label class="toggle-switch mt-0 mt-sm-1">
+                                                        <label class="toggle-switch mt-0 mt-sm-1 h-60">
                                                             <input type="checkbox" @change="sellPostStatusChange($event,product.id)" :checked="product.is_sold == 1"/>
                                                             <span>
                                                             <span>Sold</span>
@@ -466,7 +466,7 @@
                                                         <div class="mb-4">
                                                             <p class="text-white mb-2">{{ $t('price', $store.state.locale) }}</p>
                                                             <p class=" text-secondery mb-0">
-                                                                {{ product.price  }}
+                                                               ৳ {{ product.price  }}
                                                                 <span v-if="product.is_negotiable">( Negotiable )</span>
                                                             </p>
                                                         </div>
@@ -517,6 +517,9 @@
                                                                 </svg>
                                                                 Inactive
                                                             </span>
+                                                            <div class="inactive-msg">
+                                                                <p>Someone has reported your post. And we found inappropriate stuff in your post. </p>
+                                                            </div>
                                                         </div>
                                                         <router-link :to="'/sell-post/' + product.id + '/' + product.url_name " class="d-flex border-1 border-secondery pl-a-7 pr-a-7 py-1 mb-3 bg-secondery text-black game-details-hover mt-2"><span class="">Details</span></router-link>
                                                         <a href="#" class="d-flex border-1 border-secondery pl-a-7 pr-a-7 py-1 bg-secondery text-black game-details-hover mt-2" @click.prevent="sellPostEditModal(product)" v-if="product.status === 2"><span class="w-full text-center">Edit</span></a>
@@ -571,7 +574,7 @@
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="form-group post-rent--form-group" >
-                                                                                    <label class="label-padding post-rent--form-group--label text-light text-left">{{ $t('is_negotiable', $store.state.locale) }} :</label>
+                                                                                    <label class="label-padding post-rent--form-group--label text-light text-left">{{ $t('is_negotiable', $store.state.locale) }} </label>
                                                                                     <div class="post-rent--form-group--input">
                                                                                         <div class=" post-rent--form-group--input--radio-group ">
                                                                                             <div class="form-check form-check-inline custom-radio">
@@ -639,7 +642,7 @@
                                                                                 </div>
                                                                               </div>
                                                                               <div class="form-group post-rent--form-group">
-                                                                                <label class="label-padding post-rent--form-group--label mt-0">{{ $t('upload_cover', $store.state.locale) }} :</label>
+                                                                                <label class="label-padding post-rent--form-group--label mt-0">{{ $t('upload_cover', $store.state.locale) }} </label>
                                                                                 <div class=" post-rent--form-group--input">
                                                                                   <div class="custom-file">
                                                                                     <a class=" btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer" @click="$refs.FileInput.click()"><span></span> <div class="text-center position-relative">Upload image</div></a>
@@ -687,7 +690,8 @@
                                                                               <div class="form-group post-rent--form-group gamebazar-step-form " v-if="editPostData.secreenShotsLimit">
                                                                                 <label for="sell-post-address" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('upload_screenshots', $store.state.locale) }}</label>
                                                                                 <div class=" post-rent--form-group--input wizard__body__step">
-                                                                                  <UploadImages class="image-boxs w-100 p-0 bg-transparent border-0" :max="editPostData.secreenShotsLimit" @change="handleEditScreenshots"/>
+                                                                                  <UploadImages class="image-boxs w-100 p-0 bg-transparent border-0" 
+                                                                                  :maxError="'Max image upload remaining is ' + editPostData.secreenShotsLimit" :max="editPostData.secreenShotsLimit" @change="handleEditScreenshots"/>
                                                                                 </div>
                                                                               </div>
                                                                               <!-- form-group Button -->

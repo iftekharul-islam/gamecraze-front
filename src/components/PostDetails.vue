@@ -31,7 +31,7 @@
               <div class="row border-b-1 border-white-25 pt-a-6">
                 <div class="col-md-6">
                   <div class="mb-a-6">
-                    <p class="text-white gil-bold mb-2">{{ $t('available_from', $store.state.locale) }}</p>
+                    <p class="text-white gil-bold mb-2">{{ $t('create_post', $store.state.locale) }}</p>
                     <p class="text-white gil-regular">{{ formattedDate(post.created_at) }}</p>
                   </div>
                   <div class="mb-a-6">
@@ -230,9 +230,9 @@
                           <div class="product-img position-relative br-4 overflow-hidden">
                             <img :src="related.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="related.cover != null">
                             <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image" v-else>
-                              <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-if="related.product_type === 1">New</span>
-                              <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-if="related.product_type === 2">Used</span>
-                              <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">৳ {{ related.price }}</span>
+                              <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3" v-if="related.product_type === 1">New</span>
+                              <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3" v-if="related.product_type === 2">Used</span>
+                              <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ {{ related.price }}</span>
                           </div>
                           <p class="gil-bold mb-4 mt-a-4 text-white">{{ related.name }}</p>
                           <div class="d-flex align-items-center text-secondery">
@@ -299,9 +299,9 @@
                 <div class="product-img position-relative br-4 overflow-hidden">
                   <img :src="post.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="post.cover != null">
                   <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image" v-else>
-                  <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-if="post.product_type === 1">New</span>
-                  <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5" v-if="post.product_type === 2">Used</span>
-                  <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">৳ {{ post.price }}</span>
+                  <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3" v-if="post.product_type === 1">New</span>
+                  <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3" v-if="post.product_type === 2">Used</span>
+                  <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ {{ post.price }}</span>
                 </div>
                 <p class="gil-bold mb-4 mt-a-4 text-white">{{ post.name }}</p>
                 <div class="d-flex align-items-center text-secondery">
@@ -341,11 +341,11 @@
                   </div>
                   <div class="mb-a-6">
                     <p class="mb-2 opa-8 text-white">{{ $t('phone_number', $store.state.locale) }}</p>
-                    <p class="mb-0 gil-bold text-secondery f-s-20">{{ post.phone_no ? post.phone_no : post.user.data.phone_number }}</p>
+                    <a :href="`tel:+88${ post.phone_no ? post.phone_no : post.user.data.phone_number }`" class="mb-0 gil-bold text-secondery f-s-20">{{ post.phone_no ? post.phone_no : post.user.data.phone_number }}</a>
                   </div>
                   <div class="mb-a-6" v-if="post.user.data.email != null">
                     <p class="mb-2 opa-8 text-white">{{ $t('email', $store.state.locale) }}</p>
-                    <p class="mb-0 gil-bold text-white f-s-20">{{ post.email ? post.email : post.user.data.email}}</p>
+                    <a :href="`mailto:${ post.email ? post.email : post.user.data.email}`" class="mb-0 gil-bold text-white f-s-20">{{ post.email ? post.email : post.user.data.email}}</a>
                   </div>
                    <a :href="`mailto:${ post.email ? post.email : post.user.data.email}`" class="bg-secondery-gradient d-inline-block  py-2 px-5 primary-text primary-text-hover br-4 w-100 text-center" v-if="post.user.data.email != null">{{ $t('email_seller', $store.state.locale) }}</a>
                    <a :href="`tel:+88${ post.phone_no ? post.phone_no : post.user.data.phone_number }`" class="bg-secondery-gradient d-inline-block  py-2 px-5 primary-text primary-text-hover br-4 w-100 text-center" v-else>{{ $t('phone_seller', $store.state.locale) }}</a>

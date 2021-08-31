@@ -73,7 +73,7 @@
                            <p class="text-secondery gil-bold mb-0" v-else >Available for {{ post.max_number_of_week }} week(s)</p>
                        </div>
                         <div class="mb-4">
-                            <p class="text-white mb-1">{{ $t('available_from', $store.state.locale) }}</p>
+                            <p class="text-white mb-1">{{ $t('create_post', $store.state.locale) }}</p>
                             <p class="text-secondery gil-bold mb-0">{{ formattedDate(post.availability_from_date)}}</p>
                         </div>
                    </div>
@@ -133,7 +133,7 @@
 
                                                             </tr>
                                                             <tr>
-                                                                <td>{{ $t('available_from', $store.state.locale) }} :</td>
+                                                                <td>{{ $t('create_post', $store.state.locale) }} :</td>
                                                                 <td v-if="post">{{ formattedDate(post.availability_from_date) }}</td>
                                                             </tr>
                                                             <tr>

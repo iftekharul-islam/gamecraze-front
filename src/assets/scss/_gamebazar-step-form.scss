@@ -19,6 +19,7 @@
             &__step {
                 padding: 0 !important;
                 min-height: 200px;
+                margin-left: 0;
                 .beforeUpload {
                        svg {
                            display: none;
@@ -362,4 +363,11 @@
     }
   }
 
- 
+ .user-profile-details {
+     .wizard__body__step {
+         margin-left: 20px;
+     }
+     .error {
+         text-align: left !important;
+     }
+ }

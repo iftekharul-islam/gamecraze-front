@@ -17,7 +17,7 @@
 <!--                            <th scope="col">Checkpoint</th>-->
                             <th scope="col">{{ $t('disk_type', $store.state.locale) }}</th>
                             <th scope="col">{{ $t('platform', $store.state.locale) }}</th>
-                            <th scope="col">{{ $t('available_from', $store.state.locale) }}</th>
+                            <th scope="col">{{ $t('create_post', $store.state.locale) }}</th>
                             <th scope="col">{{ $t('available_for', $store.state.locale) }}</th>
                             <th scope="col">{{ $t('price_for_1st_week', $store.state.locale) }}</th>
                         </tr>
@@ -79,7 +79,7 @@
 
                                                                     </tr>
                                                                     <tr>
-                                                                        <td>{{ $t('available_from', $store.state.locale) }} :</td>
+                                                                        <td>{{ $t('create_post', $store.state.locale) }} :</td>
                                                                         <td v-if="modalData">{{ formattedDate(modalData.availability_from_date) }}</td>
                                                                     </tr>
                                                                     <tr>

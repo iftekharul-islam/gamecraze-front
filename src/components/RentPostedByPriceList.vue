@@ -11,7 +11,7 @@
                             <th scope="col">{{ $t('status', $store.state.locale) }}</th>
                             <th scope="col">{{ $t('disk_type', $store.state.locale) }}</th>
                             <th scope="col">{{ $t('platform', $store.state.locale) }}</th>
-                            <th scope="col">{{ $t('available_from', $store.state.locale) }}</th>
+                            <th scope="col">{{ $t('create_post', $store.state.locale) }}</th>
                             <th scope="col">{{ $t('available_for', $store.state.locale) }}</th>
                             <th scope="col">{{ $t('price_for_1st_week', $store.state.locale) }}</th>
                         </tr>

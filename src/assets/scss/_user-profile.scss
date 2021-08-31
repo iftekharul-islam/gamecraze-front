@@ -788,6 +788,21 @@
     position: relative;
     .inactive {
         display: block;
+        &:hover {
+            .inactive-msg {
+                visibility: visible;
+            }
+        }
+    }
+    .inactive-msg {
+        width: 292px;
+        padding: 20px;
+        background: $gamebazar-search-input;
+        border: 1px solid $rejected;
+        right: 0;
+        top: 13px;
+        position: absolute;
+        visibility: hidden;
     }
 }
 
@@ -798,7 +813,7 @@
         width: 880px;
     }
     @include for-min-1400 {
-        width: 855px;
+        width: 925px;
     }
 }
 

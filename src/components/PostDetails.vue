@@ -92,12 +92,12 @@
               </div>
 
               <div class="row border-b-1 border-white-25 pt-a-6">
-<!--                <div class="col-md-6">-->
-<!--                  <div class="mb-a-6">-->
-<!--                    <p class="text-white gil-bold mb-2">Location</p>-->
-<!--                    <p class="text-white gil-regular">25 June 2021</p>-->
-<!--                  </div>-->
-<!--                </div>-->
+                <div class="col-md-6">
+                  <div class="mb-a-6">
+                    <p class="text-white gil-bold mb-2">{{ $t('location', $store.state.locale) }}</p>
+                    <p class="text-white gil-regular">{{ post.area }}, {{ post.thana.data.name }}, {{ post.thana.data.district.data.name }}, {{ post.thana.data.district.data.division.data.name }}</p>
+                  </div>
+                </div>
                 <div class="col-md-6">
                   <div class="mb-a-6">
                     <p class="text-white gil-bold mb-2">{{ $t('address', $store.state.locale) }}</p>
@@ -448,7 +448,7 @@
           },
           gameDetails(id){
             window.scrollTo(0,0);
-            this.$api.get('sell-post/'+ id +'?include=subcategory,user').then(response => {
+            this.$api.get('sell-post/'+ id +'?include=subcategory,user,thana.district.division').then(response => {
               this.post = response.data.data;
               this.relatedPost(this.post.id, this.post.sub_category_id)
               if (this.post.slider.length > 0) {

@@ -620,6 +620,22 @@
                                                                                   </div>
                                                                                 </div>
                                                                                 <div class="form-group post-rent--form-group">
+                                                                                  <label class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('location', $store.state.locale) }}</label>
+                                                                                  <div class=" post-rent--form-group--input">
+                                                                                      <v-select :options="thanas" label="item_data" @input="cleanUpValidation" v-model="editPostData.thana_id" :reduce="thana => thana.id"></v-select>
+                                                                                      <span class="error-message d-block text-left mt-2" v-if="errorLocation">Please select location</span>
+                                                                                  </div>
+                                                                                </div>
+                                                                                <div class="form-group post-rent--form-group">
+                                                                                  <label for="sell-post-area" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('area', $store.state.locale) }}</label>
+                                                                                  <div class=" post-rent--form-group--input">
+                                                                                    <ValidationProvider name="Area" rules="required" v-slot="{ errors }">
+                                                                                      <input type="text" class="form-control renten-input" id="sell-post-area" placeholder="Enter sell post area" v-model="editPostData.area">
+                                                                                      <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                                                                                    </ValidationProvider>
+                                                                                  </div>
+                                                                                </div>
+                                                                                <div class="form-group post-rent--form-group">
                                                                                     <label for="sell-post-address" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('address', $store.state.locale) }}</label>
                                                                                     <div class=" post-rent--form-group--input">
                                                                                         <ValidationProvider name="Address" rules="required" v-slot="{ errors }">
@@ -627,7 +643,6 @@
                                                                                             <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
                                                                                         </ValidationProvider>
                                                                                     </div>
-
                                                                                 </div>
                                                                               <div class="form-group post-rent--form-group" v-if="editPostData.cover != null">
                                                                                 <label  class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('cover_image', $store.state.locale) }}</label>
@@ -807,15 +822,15 @@
                                             </div>
                                             <!-- Select Check point -->
                                               <!-- form-group -->
-                                           <div class="form-group post-rent--form-group" v-show="x === '1'">
-                                                    <label class="post-rent--form-group--label">{{ $t('select_checkpoint', $store.state.locale) }} :</label>
-                                                    <div class="post-rent--form-group--input">
-                                                        <select class="form-control" id="checkpoint" v-model="rentData.checkpoint">
-                                                            <option value="" disabled>Please Select Near Checkpoint</option>
-                                                            <option v-for="(checkpoint, index) in checkpoints" :key="index" :value="checkpoint">{{ checkpoint.name }}, Area: {{ checkpoint.area.data.name }}</option>
-                                                        </select>
-                                                    </div>
-                                            </div>
+<!--                                           <div class="form-group post-rent&#45;&#45;form-group" v-show="x === '1'">-->
+<!--                                                    <label class="post-rent&#45;&#45;form-group&#45;&#45;label">{{ $t('select_checkpoint', $store.state.locale) }} :</label>-->
+<!--                                                    <div class="post-rent&#45;&#45;form-group&#45;&#45;input">-->
+<!--                                                        <select class="form-control" id="checkpoint" v-model="rentData.checkpoint">-->
+<!--                                                            <option value="" disabled>Please Select Near Checkpoint</option>-->
+<!--                                                            <option v-for="(checkpoint, index) in checkpoints" :key="index" :value="checkpoint">{{ checkpoint.name }}, Area: {{ checkpoint.area.data.name }}</option>-->
+<!--                                                        </select>-->
+<!--                                                    </div>-->
+<!--                                            </div>-->
                                               <!-- form-group -->
                                             <div class="form-group post-rent--form-group">
 
@@ -1376,6 +1391,8 @@
         components: {StarRating, VueFeedbackReaction, UploadImages, VueCropper},
         data() {
             return {
+                errorLocation: false,
+                thanas: [],
                 editorConfig:{
 
                 },
@@ -1407,6 +1424,8 @@
                     images: [],
                     phone_no: '',
                     email: '',
+                    thana_id: null,
+                    area: '',
                     address: '',
                     postImages: [],
                     cover: '',
@@ -1536,6 +1555,12 @@
             },
         },
         methods: {
+            cleanUpValidation(value) {
+              this.errorLocation = false;
+              if(value == null){
+                this.errorLocation = true;
+              }
+            },
             sellPostWarning(post){
               let subcategory = post.subcategory.data.status
               let category = post.subcategory.data.category.data.status
@@ -1653,6 +1678,8 @@
                 this.editPostData.cover =  product.cover
                 this.editPostData.phone_no =  product.phone_no
                 this.editPostData.email =  product.email
+                this.editPostData.thana_id =  product.thana_id
+                this.editPostData.area = product.area
                 this.editPostData.address =  product.address
                 this.selected = product.sub_category_id
                 this.removeCover = ''
@@ -1660,7 +1687,6 @@
                 this.editPostData.secreenShotsLimit = 4
                 if(this.editPostData.images.length){
                   this.editPostData.secreenShotsLimit = this.editPostData.secreenShotsLimit - this.editPostData.images.length;
-                  console.log(this.editPostData.secreenShotsLimit)
                 }
             },
             handleEditScreenshots(files) {
@@ -2178,6 +2204,10 @@
                 this.form.checkpoint = '';
             },
             sellPostUpdate(){
+              if(this.editPostData.thana_id == null){
+                this.errorLocation = true;
+                return;
+              }
               this.isEditLoading = true;
               this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
                 if (typeof response.data == 'string') {
@@ -2217,7 +2247,9 @@
                   images: this.editPostData.postImages,
                   cover_image: this.editPostData.cover_image,
                   removeCover: this.removeCover,
-                  removeScreenshots: this.removeScreenshots
+                  removeScreenshots: this.removeScreenshots,
+                  thana_id: this.editPostData.thana_id,
+                  area: this.editPostData.area
 
                 };
 
@@ -2581,9 +2613,9 @@
             this.$api.get('disk-conditions').then (response =>{
                 this.diskConditions = response.data.data
             });
-            this.$api.get('checkpoints?include=area').then (response =>{
-                this.checkpoints = response.data.data
-            });
+            // this.$api.get('checkpoints?include=area').then (response =>{
+            //     this.checkpoints = response.data.data
+            // });
             this.$api.get('sub-categories').then (response =>{
                 this.subCategories = response.data.data
             });
@@ -2606,6 +2638,12 @@
                 this.walletTotalSpend = response.data.referred_history.total_spend;
                 this.walletUsableAmount = response.data.referred_history.usable_amount;
                 this.walletHistory = response.data.referred_history.history;
+            });
+            this.$api.get('thana-list?include=district.division').then (response =>{
+              this.thanas = response.data.data
+              this.thanas.map(function (thana){
+                return thana.item_data = thana.name + ', ' + thana.district.data.name + ', ' + thana.district.data.division.data.name;
+              });
             });
             this.$store.watch(() => {
                     return this.$store.state.user // could also put a Getter here

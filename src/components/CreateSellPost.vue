@@ -202,10 +202,6 @@
               <ValidationObserver ref="sellForm2">
                 <form id="sellForm2">
                 <div>
-<!--                            <div class="group mb-a-6">-->
-<!--                              <label for="seller-name" class="mb-3 w-100">বিক্রেতার নাম</label>-->
-<!--                              <input type="text" id="seller-name" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">-->
-<!--                            </div>-->
                     <div class="group mb-a-6">
                       <label for="mobile-no" class="mb-3 w-100">{{ $t('phone_number', $store.state.locale) }}</label>
                       <ValidationProvider name="phone number" rules="required|max:11|min:11" v-slot="{ errors, classes }">
@@ -220,12 +216,18 @@
                         <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
                       </ValidationProvider>
                     </div>
-<!--                            <div class="group mb-a-6">-->
-<!--                              <label class="mb-3 w-100">জেলা শহর</label>-->
-<!--                              <select name="" class="w-100 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus br-4 px-3" id="city">-->
-<!--                                <option value="">Dhaka</option>-->
-<!--                              </select>-->
-<!--                            </div>-->
+                    <div class="group mb-a-6">
+                      <label class="mb-3 w-100">{{ $t('selected_location', $store.state.locale) }}</label>
+                      <v-select :options="thanas" label="item_data" @input="checkValidation" :reduce="thana => thana.id" v-model="thana_id" ></v-select>
+                      <span class="text-step-error mt-2 d-inline-block" v-if="errorLocation">Please select a location</span>
+                    </div>
+                    <div class="group mb-a-6">
+                      <label class="mb-3 w-100">Area</label>
+                      <ValidationProvider name="area" rules="required" v-slot="{ errors, classes }">
+                        <input type="text" :class="classes" v-model="area" class="px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
+                        <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
+                      </ValidationProvider>
+                    </div>
                     <div class="group mb-a-6">
                       <label for="address" class="mb-3 w-100">{{ $t('address', $store.state.locale) }}</label>
                       <ValidationProvider name="address" rules="required" v-slot="{ errors, classes }">
@@ -257,6 +259,11 @@
     components: {UploadImages, VueCropper},
     data(){
       return {
+        errorLocation: false,
+        thanas: [],
+        districts: [],
+        thana_id: null,
+        area: '',
         one: true,
         two: false,
         three: false,
@@ -314,6 +321,12 @@
     }
   },
     methods: {
+      checkValidation(value) {
+        this.errorLocation = false;
+        if(value == null){
+          this.errorLocation = true;
+        }
+      },
       confirmFirstStep() {
         this.$refs.sellForm1.validate().then(success => {
           if (success) {
@@ -363,11 +376,17 @@
         this.threeActive = false;
       },
       finalSubmit() {
+        if(this.thana_id == null){
+          this.errorLocation = true;
+          return;
+        }
         this.submitLoading = true;
         this.$refs.sellForm2.validate().then(success => {
           if (success) {
             this.postSubmit()
+            return
           }
+          this.submitLoading = false;
           return false;
         });
       },
@@ -485,6 +504,8 @@
             images: this.postImages,
             phone_no: this.phone_no,
             email: this.email,
+            thana_id: this.thana_id,
+            area: this.area,
             address: this.address,
           }
           let config = {
@@ -512,6 +533,13 @@
       this.$api.get('sub-categories').then (response =>{
         this.subCategories = response.data.data
       });
+      this.$api.get('thana-list?include=district.division').then (response =>{
+        this.thanas = response.data.data
+        this.thanas.map(function (thana){
+          return thana.item_data = thana.name + ', ' + thana.district.data.name + ', ' + thana.district.data.division.data.name;
+        });
+      });
+
     },
   };
 </script>

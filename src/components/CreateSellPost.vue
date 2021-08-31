@@ -1,11 +1,23 @@
 <template>
   <div>
     <div class="gamebazar-step-form pt-5 pb-a-25">
+     
         <div class="container">
+           <div class="mb-4">
+              <router-link to="/gamebazar" class="d-flex align-items-center mt-a-6 mb-a-6 svg-secondery-hover">
+              <svg width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2">
+                <path d="M11.8114 14.5468C12.1234 14.3785 12.3179 14.0584 12.3179 13.7103V8.28972H23.0209C23.5614 8.28972 24 7.86127 24 7.33337C24 6.80546 23.5614 6.37702 23.0209 6.37702H12.3179V0.956419C12.3179 0.607032 12.1234 0.286973 11.8114 0.119931C11.4994 -0.0496622 11.1182 -0.038186 10.8166 0.146709L0.456894 6.52366C0.172314 6.69963 0 7.00438 0 7.33337C0 7.66235 0.172314 7.96711 0.456894 8.14308L10.8166 14.52C10.9759 14.6169 11.1574 14.6667 11.3388 14.6667C11.5007 14.6667 11.6639 14.6259 11.8114 14.5468Z" fill="white"/>
+              </svg>
+              {{$t('back', $store.state.locale) }}
+              </router-link>
+          </div>
             <div class="max-400 mx-auto mb-5">
               <router-link
-                  class="secondery-border text-secondery d-flex align-items-center justify-content-center h-48 game-rent-bg"
-                  to="/about-sell-post">{{$t('learn_about_create_sell_post', $store.state.locale) }}
+                  class="gil-medium text-secondery d-flex align-items-center justify-content-end h-48"
+                  to="/about-sell-post">{{$t('create_post_tutorial', $store.state.locale) }}
+                  <svg width="20" height="20" class="ml-2" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0.440118 11.26L1.79012 12.84C2.04012 13.14 2.25012 13.7 2.25012 14.1L2.25012 15.8C2.25012 16.86 3.12012 17.73 4.18012 17.73L5.88012 17.73C6.28012 17.73 6.85012 17.94 7.15012 18.19L8.73012 19.54C9.42012 20.13 10.5501 20.13 11.2401 19.54L12.8401 18.19C13.1401 17.94 13.7001 17.73 14.1001 17.73L15.8301 17.73C16.8901 17.73 17.7601 16.86 17.7601 15.8L17.7601 14.1C17.7601 13.71 17.9601 13.15 18.2101 12.85L19.5601 11.26C20.1401 10.56 20.1401 9.44004 19.5601 8.76004L18.2101 7.17004C17.9601 6.88004 17.7601 6.31004 17.7601 5.92004L17.7601 4.21004C17.7601 3.15004 16.8901 2.28004 15.8301 2.28004L14.0901 2.28004C13.7001 2.28004 13.1301 2.07004 12.8301 1.82004L11.2501 0.470042C10.5601 -0.119958 9.43012 -0.119958 8.74012 0.470042L7.16012 1.82004C6.86012 2.07004 6.30012 2.28004 5.90012 2.28004L4.20012 2.28004C3.14012 2.28004 2.27012 3.15004 2.27012 4.21004L2.27012 5.91004C2.27012 6.31004 2.06012 6.87004 1.81012 7.17004L0.460116 8.75004C-0.149884 9.43004 -0.149882 10.56 0.440118 11.26ZM10.7501 13.87C10.7501 14.28 10.4101 14.62 10.0001 14.62C9.59012 14.62 9.25012 14.28 9.25012 13.87L9.25012 9.04004C9.25012 8.63004 9.59012 8.29004 10.0001 8.29004C10.4101 8.29004 10.7501 8.63004 10.7501 9.04004L10.7501 13.87ZM10.0001 5.13004C10.5501 5.13004 11.0001 5.58004 11.0001 6.13004C11.0001 6.68004 10.5601 7.13004 10.0001 7.13004C9.45012 7.13004 9.00012 6.68004 9.00012 6.13004C9.00012 5.58004 9.44012 5.13004 10.0001 5.13004Z" fill="#FFD715"/>
+                  </svg>
               </router-link>
             </div>
             <div class="max-400 mx-auto">
@@ -26,7 +38,7 @@
                     <label class="mb-3 w-100">{{ $t('select_product_category', $store.state.locale) }}</label>
                     <ValidationProvider name="Category" rules="required" v-slot="{ errors, classes }">
                       <select name="Category" :class="classes" class="w-100 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus br-4 px-3" id="product-category" v-model="sub_category_id" required>
-                        <option value="">{{ $t('select_category', $store.state.locale) }}</option>
+                        <option value="">Select category</option>
                         <option :value="category.id" v-for="(category, index) in subCategories" :key="index">{{ category.name }}</option>
                       </select>
                       <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
@@ -73,7 +85,8 @@
                   <div class="group mb-a-6">
                     <label for="product-name" class="mb-3 w-100">{{ $t('product_name', $store.state.locale) }}</label>
                     <ValidationProvider name="name" rules="required" v-slot="{ errors, classes }">
-                      <input type="text" id="product-name" v-model="name" :class="classes" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
+                      <input type="text" id="product-name" v-model="name" :class="classes" class=" px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" 
+                        :placeholder="$t('enter_product_name', $store.state.locale)">
                       <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
                     </ValidationProvider>
                   </div>
@@ -87,7 +100,10 @@
                   <div class="group mb-a-6">
                     <label class="mb-3 w-100">{{ $t('price', $store.state.locale) }}</label>
                     <ValidationProvider name="product price" rules="required" v-slot="{ errors, classes }">
-                      <input type="number" name="product price" :class="classes" class=" px-3 w-100 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" v-model="price"/>
+                      <div class="position-relative overflow-hidden">
+                        <input type="number" name="product price" :class="classes" class="price-valid pr-3 w-100 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" v-model="price"/>
+                        <label v-if="tkShow" class="taka" :class="{'tk-sign': errors[0]}">৳</label>
+                      </div>
                       <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
                     </ValidationProvider>
                   </div>
@@ -221,7 +237,7 @@
                       <a href="#" @click.prevent="backToSecondStep" class="flex-1 mr-3 w-full btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative text-center"><span>{{ $t('previous', $store.state.locale) }}</span></a>
                       <a href="#" @click.prevent="finalSubmit" class="flex-1 w-full btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative text-center" :class="{'pe-none' :  submitLoading}">
                         <span>{{ $t('post', $store.state.locale) }}</span>
-                        <div v-if="submitLoading" class="spinner-border spinner-border-sm skew-none"></div>
+                        <div v-if="submitLoading" class="spinner-border spinner-border-sm skew-none ml-3"></div>
                       </a>
                   </div>
                 </div>
@@ -284,8 +300,19 @@
         email: '',
         address: '',
         summary: '',
+        tkShow: false
       };
     },
+    watch: {
+    price: function (val) {
+      if(val) {
+        this.tkShow = true;
+      }
+      else {
+        this.tkShow = false;
+      }
+    }
+  },
     methods: {
       confirmFirstStep() {
         this.$refs.sellForm1.validate().then(success => {
@@ -478,7 +505,7 @@
             console.log(err)
           });
         })
-      },
+      }
     },
     created() {
       window.scrollTo(0,0);

@@ -1654,8 +1654,28 @@ p {
   border-bottom-right-radius: 5px;
 }
 
+.br-t-l-2 {
+  border-top-left-radius: 2px;
+}
+
+.br-t-l-3 {
+  border-top-left-radius: 3px;
+}
+
 .br-t-l-5 {
   border-top-left-radius: 5px;
+}
+
+.br-t-r-2 {
+  border-top-right-radius: 2px;
+}
+
+.br-t-r-3 {
+  border-top-right-radius: 3px;
+}
+
+.br-t-r-4 {
+  border-top-right-radius: 4px;
 }
 
 .br-t-r-5 {
@@ -2162,18 +2182,18 @@ html {
   height: 100%;
 }
 
+@media (max-width: 1199px) {
+  .h-mbl-18 {
+    height: 18px !important;
+  }
+}
+
 .h-25 {
   height: 25px !important;
 }
 
 .h-30 {
   height: 30px !important;
-}
-
-@media (max-width: 1199px) {
-  .h-mbl-30 {
-    height: 30px !important;
-  }
 }
 
 .h-32 {
@@ -2416,6 +2436,10 @@ html {
 
 .max-940 {
   max-width: 940px;
+}
+
+.max-w-76pr {
+  max-width: 76%;
 }
 
 .min-w-100 {
@@ -3725,7 +3749,7 @@ select option {
   .gamehub-menu-collapse > ul {
     display: block;
     margin-left: 0px;
-    padding-bottom: 0;
+    padding: 10px 0 8px 0;
   }
 }
 
@@ -3737,12 +3761,13 @@ select option {
 @media (max-width: 1199px) {
   .gamehub-menu-collapse > ul li {
     position: initial;
+    padding: 0;
+    margin-bottom: 0;
   }
 }
 
 @media (max-width: 992px) {
   .gamehub-menu-collapse > ul li {
-    margin-bottom: 10px;
     width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
@@ -3773,7 +3798,7 @@ select option {
 
 @media (max-width: 992px) {
   .gamehub-menu-collapse > ul li:last-child {
-    margin-bottom: 10px;
+    margin-bottom: 0px;
   }
 }
 
@@ -7981,6 +8006,10 @@ html {
   left: -12px;
 }
 
+.bn .shorting-menu__content label {
+  font-size: 14px;
+}
+
 .related-game-section {
   padding-bottom: 150px;
 }
@@ -7991,8 +8020,13 @@ html {
 
 .related-game-section .vue-owl-nav {
   position: absolute;
-  top: -70px !important;
   right: 0;
+}
+
+@media (max-width: 1300px) {
+  .related-game-section .vue-owl-nav {
+    top: -45px !important;
+  }
 }
 
 @media (max-width: 575px) {
@@ -9647,6 +9681,21 @@ html {
   display: block;
 }
 
+.inactive-sellpost-box .inactive:hover .inactive-msg {
+  visibility: visible;
+}
+
+.inactive-sellpost-box .inactive-msg {
+  width: 292px;
+  padding: 20px;
+  background: #484B52;
+  border: 1px solid #FF3030;
+  right: 0;
+  top: 13px;
+  position: absolute;
+  visibility: hidden;
+}
+
 @media (min-width: 1200px) {
   .rented-note,
   .dashboard-tab-button,
@@ -9659,7 +9708,7 @@ html {
   .rented-note,
   .dashboard-tab-button,
   .no-post-found-card {
-    width: 855px;
+    width: 925px;
   }
 }
 
@@ -12614,7 +12663,7 @@ html {
 @media (max-width: 575px) {
   .shorting-menu {
     position: fixed;
-    left: 0;
+    left: 0 !important;
     width: 100%;
     height: 100%;
     background: #0B0F18;
@@ -12634,8 +12683,26 @@ html {
 }
 
 .cropper-crop-box {
-  -webkit-transform: translateX(17px) translateY(50%) !important;
-          transform: translateX(17px) translateY(50%) !important;
+  -webkit-transform: translateX(17px) translateY(5px) !important;
+          transform: translateX(17px) translateY(5px) !important;
+}
+
+.cropper-container {
+  height: 280px !important;
+}
+
+.tk-sign {
+  visibility: hidden;
+}
+
+.taka {
+  position: absolute;
+  left: 10px;
+  top: 9px;
+}
+
+.price-valid {
+  padding-left: 22px;
 }
 
 .gamebazar-banner {
@@ -13295,6 +13362,7 @@ html {
 .gamebazar-step-form .wizard__body__step {
   padding: 0 !important;
   min-height: 200px;
+  margin-left: 0;
 }
 
 .gamebazar-step-form .wizard__body__step .beforeUpload {
@@ -13658,6 +13726,14 @@ html {
   100% {
     -webkit-transform: translate(0, 0);
   }
+}
+
+.user-profile-details .wizard__body__step {
+  margin-left: 20px;
+}
+
+.user-profile-details .error {
+  text-align: left !important;
 }
 
 .page_404 {

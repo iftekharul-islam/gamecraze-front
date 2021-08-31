@@ -64,7 +64,7 @@
             <div class="text-right">
             </div>
             <div class="games-categories-section--categories filter-show-mobile p-0" id="games-categories-list" :class="{ filterShow : filterShow }">
-              <div class="bg-shorting-tile p-3 d-flex align-items-center justify-content-between br-t-r-5 br-t-l-5 d-md-none">
+              <div class="bg-shorting-tile p-3 d-flex align-items-center justify-content-between 3 br-t-l-3 d-md-none">
                 <span class="f-s-20 text-secondery gil-bold opa-9">{{ $t('filter', $store.state.locale) }}</span>
                 <span @click="filterShow = false" class="pointer">
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -141,29 +141,29 @@
                         </button>
                         <!-- shorting -->
                         <div class="d-flex flex-1 grow-md-initial mr-3 mr-md-0">
-                          <button v-if="descByDateTag" class="d-flex bg-transparent align-items-center justify-content-center flex-1 h-100 px-2 px-md-4 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border mr-3 sorting-mobile">
-                            Date
+                          <button v-if="descByDateTag" class="no-outline-focus d-flex bg-transparent align-items-center justify-content-center flex-1 h-100 px-2 px-md-4 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border mr-3 sorting-mobile">
+                            {{ $t('date', $store.state.locale) }}
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M15.0583 8.59995C14.9 8.59995 14.7416 8.54162 14.6166 8.41662L9.99998 3.79995L5.38331 8.41662C5.14164 8.65829 4.74164 8.65829 4.49998 8.41662C4.25831 8.17495 4.25831 7.77495 4.49998 7.53328L9.55831 2.47495C9.79998 2.23328 10.2 2.23328 10.4416 2.47495L15.5 7.53328C15.7416 7.77495 15.7416 8.17495 15.5 8.41662C15.3833 8.54162 15.2166 8.59995 15.0583 8.59995Z" fill="#FFD715"/>
                               <path d="M10 17.7084C9.65833 17.7084 9.375 17.425 9.375 17.0834V3.05835C9.375 2.71668 9.65833 2.43335 10 2.43335C10.3417 2.43335 10.625 2.71668 10.625 3.05835V17.0834C10.625 17.425 10.3417 17.7084 10 17.7084Z" fill="#FFD715"/>
                             </svg>
                           </button>
-                          <button v-if="ascByDateTag" class="d-flex bg-transparent align-items-center justify-content-center flex-1 h-100 px-2 px-md-4 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border mr-3 sorting-mobile">
-                            Date
+                          <button v-if="ascByDateTag" class="no-outline-focus d-flex bg-transparent align-items-center justify-content-center flex-1 h-100 px-2 px-md-4 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border mr-3 sorting-mobile">
+                             {{ $t('date', $store.state.locale) }}
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M4.94169 11.4C5.10002 11.4 5.25836 11.4584 5.38336 11.5834L10 16.2L14.6167 11.5834C14.8584 11.3417 15.2584 11.3417 15.5 11.5834C15.7417 11.825 15.7417 12.225 15.5 12.4667L10.4417 17.525C10.2 17.7667 9.80002 17.7667 9.55836 17.525L4.50002 12.4667C4.25836 12.225 4.25836 11.825 4.50002 11.5834C4.61669 11.4584 4.78336 11.4 4.94169 11.4Z" fill="#FFD715"/>
                               <path d="M10 2.29165C10.3417 2.29165 10.625 2.57498 10.625 2.91665L10.625 16.9417C10.625 17.2833 10.3417 17.5667 10 17.5667C9.65833 17.5667 9.375 17.2833 9.375 16.9417L9.375 2.91665C9.375 2.57498 9.65833 2.29165 10 2.29165Z" fill="#FFD715"/>
                             </svg>
                           </button>
-                          <button class="d-flex bg-transparent align-items-center justify-content-center flex-1 h-100 px-2 px-md-4 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border mr-3 sorting-mobile" v-if="descByPriceTag">
-                            Price
+                          <button class="no-outline-focus d-flex bg-transparent align-items-center justify-content-center flex-1 h-100 px-2 px-md-4 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border mr-3 sorting-mobile" v-if="descByPriceTag">
+                             {{ $t('prices', $store.state.locale) }}
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M15.0583 8.59995C14.9 8.59995 14.7416 8.54162 14.6166 8.41662L9.99998 3.79995L5.38331 8.41662C5.14164 8.65829 4.74164 8.65829 4.49998 8.41662C4.25831 8.17495 4.25831 7.77495 4.49998 7.53328L9.55831 2.47495C9.79998 2.23328 10.2 2.23328 10.4416 2.47495L15.5 7.53328C15.7416 7.77495 15.7416 8.17495 15.5 8.41662C15.3833 8.54162 15.2166 8.59995 15.0583 8.59995Z" fill="#FFD715"/>
                               <path d="M10 17.7084C9.65833 17.7084 9.375 17.425 9.375 17.0834V3.05835C9.375 2.71668 9.65833 2.43335 10 2.43335C10.3417 2.43335 10.625 2.71668 10.625 3.05835V17.0834C10.625 17.425 10.3417 17.7084 10 17.7084Z" fill="#FFD715"/>
                             </svg>
                           </button>
-                          <button class="d-flex bg-transparent align-items-center justify-content-center flex-1 h-100 px-2 px-md-4 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border mr-3 sorting-mobile" v-if="ascByPriceTag">
-                            Price
+                          <button class="no-outline-focus d-flex bg-transparent align-items-center justify-content-center flex-1 h-100 px-2 px-md-4 py-2 br-4 text-secondery secondery-text-hover border-1 secondery-border mr-3 sorting-mobile" v-if="ascByPriceTag">
+                            {{ $t('prices', $store.state.locale) }}
                             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                               <path d="M4.94169 11.4C5.10002 11.4 5.25836 11.4584 5.38336 11.5834L10 16.2L14.6167 11.5834C14.8584 11.3417 15.2584 11.3417 15.5 11.5834C15.7417 11.825 15.7417 12.225 15.5 12.4667L10.4417 17.525C10.2 17.7667 9.80002 17.7667 9.55836 17.525L4.50002 12.4667C4.25836 12.225 4.25836 11.825 4.50002 11.5834C4.61669 11.4584 4.78336 11.4 4.94169 11.4Z" fill="#FFD715"/>
                               <path d="M10 2.29165C10.3417 2.29165 10.625 2.57498 10.625 2.91665L10.625 16.9417C10.625 17.2833 10.3417 17.5667 10 17.5667C9.65833 17.5667 9.375 17.2833 9.375 16.9417L9.375 2.91665C9.375 2.57498 9.65833 2.29165 10 2.29165Z" fill="#FFD715"/>
@@ -181,38 +181,38 @@
                          <div v-if="showDrawer" class="shorting-menu px-4 px-md-0 overflow-hidden position-md-absolute left-initial-imp right-md-0-imp w-md-268 z-index-99">
                             <div class="shorting-menu__content w-full w-md-268 bg-shorting br-4 border-1 d-block secondery-border left-initial-imp right-md-0-imp top-full-10px-imp p-0 overflow-hidden" >
                               <div class="d-md-none d-flex align-items-center justify-content-between bg-shorting-tile px-3 py-2">
-                                <p class="mb-0 gil-bold">Shorting</p>
+                                <p class="mb-0 gil-bold text-secondery">Shorting</p>
                                 <p class="mb-0 pointer"  @click.prevent=" showDrawer = false"><i class="fas fa-times"></i></p>
                               </div>
-                            <p class="mb-0 gil-bold text-md-center text-white py-2 bg-md-shorting-tile px-3">Price</p>
+                            <p class="mb-0 gil-bold text-md-center text-white py-2 bg-md-shorting-tile px-3">{{ $t('price', $store.state.locale) }}</p>
                             <div class="d-flex flex-column flex-md-row align-items-end align-items-md-center justify-content-center py-4">
                               <div class="mr-1 position-relative shorting-input high-to-low pr-a-5 mb-2 mb-md-0">
                                   <input type="checkbox" class="position-absolute -z-index-1 opa-0 " id="desc_price_filter" name="sort_price"
                                       @change="descPrice($event)" :checked="descByPriceTag">
-                                  <label class="mb-0" for="desc_price_filter">High To Low</label>
+                                  <label class="mb-0" for="desc_price_filter"> {{ $t('high_to_low', $store.state.locale) }}</label>
                               </div>
                               <div class=" position-relative pl-a-5 shorting-input mr-1 mr-md-0 pr-a-5 pr-md-0">
                                   <input type="checkbox" class="position-absolute -z-index-1 opa-0" id="asc_price_filter" name="sort_price"
                                         @change="ascPrice($event)" :checked="ascByPriceTag">
-                                  <label class="mb-0" for="asc_price_filter">Low To High</label>
+                                  <label class="mb-0" for="asc_price_filter">{{ $t('low_to_high', $store.state.locale) }}</label>
                               </div>
 
                             </div>
-                            <p class="mb-0 gil-bold text-md-center text-white py-2 bg-md-shorting-tile px-3">Date</p>
+                            <p class="mb-0 gil-bold text-md-center text-white py-2 bg-md-shorting-tile px-3">{{ $t('date', $store.state.locale) }}</p>
 
                               <div class="d-flex flex-column flex-md-row align-items-end align-items-md-center justify-content-center py-4">
                                 <div class="mr-1 position-relative shorting-input high-to-low pr-a-5 mb-2 mb-md-0">
                                     <input type="checkbox" class="position-absolute -z-index-1 opa-0 " id="recent_date" name="sort_date" @change="descDate($event)" :checked="descByDateTag">
-                                    <label class="mb-0" for="recent_date">Recent</label>
+                                    <label class="mb-0" for="recent_date">{{ $t('recent', $store.state.locale) }}</label>
                                 </div>
                                 <div class=" position-relative pl-a-5 shorting-input mr-1 mr-md-0 pr-a-5">
                                     <input type="checkbox" class="position-absolute -z-index-1 opa-0" id="older_date" name="sort_date" @change="ascDate($event)" :checked="ascByDateTag">
-                                    <label class="mb-0" for="older_date">Older</label>
+                                    <label class="mb-0" for="older_date">{{ $t('older', $store.state.locale) }}</label>
                                 </div>
                               </div>
                               <div class="text-right p-4">
                                 <a href="#" class="bg-secondery-gradient br-4 d-inline-block gil-bold primary-text py-2 primary-text-hover px-4"
-                                @click.prevent="getSellPosts(); showDrawer = false">Apply</a>
+                                @click.prevent="getSellPosts(); showDrawer = false">{{ $t('apply', $store.state.locale) }}</a>
                               </div>
 
                           </div>
@@ -228,10 +228,10 @@
                       <img :src="item.cover.url" :alt="item.name" class="img-fluid w-100" v-if="item.cover != null">
                       <img src="../assets/img/play.png" :alt="item.name" class="img-fluid w-100" v-else>
 
-                      <span v-if="item.product_type == 1" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">New</span>
-                      <span v-if="item.product_type == 2" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-5">Used</span>
+                      <span v-if="item.product_type == 1" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">New</span>
+                      <span v-if="item.product_type == 2" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">Used</span>
 
-                      <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-5 py-1 px-3 primary-text gil-medium br-b-r-5">৳ {{ item.price }}</span>
+                      <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ {{ item.price }}</span>
                     </div>
 
                     <p class="gil-bold mb-3 mt-a-4 text-white post-name">{{ item.name }}</p>
@@ -247,7 +247,7 @@
               </div>
             </div>
             <div class="not-matching" v-if="noPostFound">
-              <h2>{{ $t('noting_to_show', $store.state.locale) }}</h2>
+              <h2>{{ $t('no_product_found', $store.state.locale) }}</h2>
             </div>
             <div class="mt-5" v-if="totalPages > 1">
               <sliding-pagination
@@ -263,7 +263,7 @@
     <!--Current Popular -->
     <section class="related-game-section current-popular" id="related-game">
           <div class="container">
-               <h3 class="f-s-24 gil-bold text-white mb-a-4">{{ $t('popular_games_at_gamehub', $store.state.locale) }} </h3>
+               <h3 class="f-s-24 gil-bold text-white mb-a-4 max-w-76pr">{{ $t('popular_games_at_gamehub', $store.state.locale) }} </h3>
               <!-- new carousel -->
             <div class="position-relative">
               <carousel

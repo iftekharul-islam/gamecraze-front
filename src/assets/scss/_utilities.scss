@@ -1633,8 +1633,24 @@ p {
     border-bottom-right-radius: 5px;
 }
 // 
+.br-t-l-2 {
+    border-top-left-radius: 2px;
+}
+.br-t-l-3 {
+    border-top-left-radius: 3px;
+}
 .br-t-l-5 {
     border-top-left-radius: 5px;
+}
+
+.br-t-r-2 {
+    border-top-right-radius: 2px;
+}
+.br-t-r-3 {
+    border-top-right-radius: 3px;
+}
+.br-t-r-4 {
+    border-top-right-radius: 4px;
 }
 .br-t-r-5 {
     border-top-right-radius: 5px;
@@ -2088,6 +2104,12 @@ html {
     height: 100%;
 }
 
+.h-mbl-18 {
+    @include for-max-1199 {
+        height: 18px !important;
+    }
+}
+
 .h-25 {
     height: 25px !important;
 }
@@ -2095,11 +2117,7 @@ html {
 .h-30 {
     height: 30px !important;
 }
-.h-mbl-30 {
-    @include for-max-1199 {
-        height: 30px !important;
-    }
-}
+
 
 .h-32 {
     height: 32px !important;
@@ -2309,6 +2327,10 @@ html {
 }
 .max-940 {
     max-width: 940px;
+}
+
+.max-w-76pr {
+    max-width: 76%;
 }
 
 // min width

@@ -529,5 +529,8 @@
   "report_now" : "Report now",
   "cause_of_report" : "Cause of report",
   "please_upload_cover_photo" : "Please add cover image",
-  "please_upload_screenshots" : "Please upload screenshots"
+  "please_upload_screenshots" : "Please upload screenshots",
+  "post" : "Post",
+  "selected_location": "Selected Location",
+  "location": "Location"
 }

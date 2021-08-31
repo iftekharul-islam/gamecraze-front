@@ -529,5 +529,8 @@
   "report_now" : "রিপোর্ট করুন",
   "cause_of_report" : "রিপোর্টের কারণ",
   "please_upload_cover_photo" : "অনুগ্রহপূর্বক কভার ফটো আপলোড করুন",
-  "please_upload_screenshots" : "অনুগ্রহপূর্বক স্ক্রিনশট আপলোড করুন"
+  "please_upload_screenshots" : "অনুগ্রহপূর্বক স্ক্রিনশট আপলোড করুন",
+  "post" : "সেলপোস্ট করুন",
+  "selected_location": "সিলেক্ট লোকেশন",
+  "location": "লোকেশন"
 }

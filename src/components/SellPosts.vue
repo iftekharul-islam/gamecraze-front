@@ -73,6 +73,21 @@
                 </span>
               </div>
                 <div class="p-a-5 overflow-auto">
+                  <!-- location category -->
+                  <div class="location-filter">
+                    <div class="mb-4">
+                      <v-select :options="options_division" label="name" :reduce="option => option.id" v-model="division_id" ></v-select>
+                    </div>
+                    <div class="mb-4">
+                      <v-select :options="options_district" label="name" :reduce="option => option.id" v-model="district_id" ></v-select>
+                    </div>
+                     <div class="mb-4">
+                      <v-select :options="options_thana" label="name" :reduce="option => option.id" v-model="thana_id" ></v-select>
+                    </div>
+                    <div class="mb-4 text-right">
+                      <a href="#" class=" btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative">Search</a>
+                    </div>
+                  </div>
                     <!-- Game Type -->
                     <div class="select-categories">
                       <h6 class=" d-none d-lg-block">{{ $t('select_category', $store.state.locale) }}</h6>
@@ -346,6 +361,32 @@ export default {
   components: {SlidingPagination, carousel, VueSlider},
   data() {
     return {
+      division_id:'',
+      options_division: [ 
+       { "id": 1, "name": "Bangladesh"},
+       { "id": 2, "name": "Nepal"},
+      ],
+
+      district_id:'',
+      options_district: [ 
+       { "id": 1, "name": "Dhaka"},
+       { "id": 2, "name": "Chittagong"},
+       { "id": 3, "name": "Khulna"},
+       { "id": 4, "name": "Rajshahi"},
+       { "id": 5, "name": "Barisal"},
+       { "id": 6, "name": "Rangpur"},
+      ],
+
+      thana_id:'',
+      options_thana: [ 
+       { "id": 1, "name": "Tongibari"},
+       { "id": 2, "name": "Chittagong"},
+       { "id": 3, "name": "Khulna"},
+       { "id": 4, "name": "Rajshahi"},
+       { "id": 5, "name": "Barisal"},
+       { "id": 6, "name": "Rangpur"},
+      ],
+      
       priceRange: [0, 100000],
       searchKey: '',
       products: [],

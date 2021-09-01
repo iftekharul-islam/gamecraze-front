@@ -12801,6 +12801,22 @@ html {
   padding-left: 22px;
 }
 
+.location-filter .vs__dropdown-toggle {
+  border: 1px solid #ffffffbf;
+  padding: 6px 4px;
+}
+
+.location-filter .vs__selected {
+  color: #fff;
+  opacity: .95;
+}
+
+.location-filter .vs__actions .vs__clear,
+.location-filter .vs__actions .vs__open-indicator {
+  fill: #fff;
+  opacity: .95;
+}
+
 .gamebazar-banner {
   background-image: -webkit-gradient(linear, left top, right top, from(rgba(11, 15, 24, 0.85)), color-stop(0%, rgba(11, 15, 24, 0.85)), color-stop(0.01%, rgba(11, 15, 24, 0.85)), to(rgba(11, 15, 24, 0.95))), url(../img/gamebazar-banner.png);
   background-image: linear-gradient(90deg, rgba(11, 15, 24, 0.85) 0%, rgba(11, 15, 24, 0.85) 0%, rgba(11, 15, 24, 0.85) 0.01%, rgba(11, 15, 24, 0.95) 100%), url(../img/gamebazar-banner.png);

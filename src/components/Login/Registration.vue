@@ -27,7 +27,7 @@
                                         <div class="form-group col-md-6">
                                            
                                             <label for="firstName">{{ $t('first_name', $store.state.locale) }}</label>
-                                            <ValidationProvider name="firstName" rules="required" v-slot="{ errors }">
+                                            <ValidationProvider name="firstName" rules="required|max:12" v-slot="{ errors }">
                                                 <input type="text" class="form-control" id="firstName" value="" v-model="form.name">
                                                 <span class="error-message">{{ errors[0] }}</span>
                                             </ValidationProvider>
@@ -36,7 +36,7 @@
                                             <div class="form-group col-md-6">
                                             
                                                 <label for="LastName">{{ $t('last_name', $store.state.locale) }}</label>
-                                                <ValidationProvider name="LastName" rules="required" v-slot="{ errors }">
+                                                <ValidationProvider name="LastName" rules="required|max:12" v-slot="{ errors }">
                                                     <input type="text" class="form-control" id="LastName" value="" v-model="form.lastName">
                                                     <span class="error-message">{{ errors[0] }}</span>
                                                 </ValidationProvider>

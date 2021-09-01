@@ -23,7 +23,7 @@
                                         <div class="form-group col-md-6">
 
                                             <label for="firstName">{{ $t('first_name', $store.state.locale) }}</label>
-                                            <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
+                                            <ValidationProvider name="first name" rules="required|max:12" v-slot="{ errors }">
                                                 <input @keypress="isValidString($event)" type="text" class="form-control" id="firstName" value="" v-model="form.name" placeholder="First Name">
                                                 <span v-if="errors.length" class="error-message first-name-error">{{ errors[0] }}</span>
                                             </ValidationProvider>
@@ -31,7 +31,7 @@
                                         <!-- Last Name -->
                                         <div class="form-group col-md-6">
                                             <label for="LastName">{{ $t('last_name', $store.state.locale) }}</label>
-                                            <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
+                                            <ValidationProvider name="last name" rules="required|max:12" v-slot="{ errors }">
                                                 <input @keypress="isValidString($event)" type="text" class="form-control" id="LastName" value="" v-model="form.lastName" placeholder="Last Name">
                                                 <span v-if="errors.length" class="error-message last-name-error">{{ errors[0] }}</span>
                                             </ValidationProvider>

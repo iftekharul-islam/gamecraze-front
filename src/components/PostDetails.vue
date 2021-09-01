@@ -106,7 +106,6 @@
                   </div>
                 </div>
               </div>
-
               <div class="row pt-a-6" v-if="post.user != null">
                 <div class="col-md-6">
                   <div class="">
@@ -178,7 +177,6 @@
                   </transition>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -348,8 +346,8 @@
                     <p class="mb-2 opa-8 text-white">{{ $t('email', $store.state.locale) }}</p>
                     <a :href="`mailto:${ post.email ? post.email : post.user.data.email}`" class="mb-0 gil-bold text-white f-s-20">{{ post.email ? post.email : post.user.data.email}}</a>
                   </div>
-                   <a :href="`mailto:${ post.email ? post.email : post.user.data.email}`" class="bg-secondery-gradient d-inline-block  py-2 px-5 primary-text primary-text-hover br-4 w-100 text-center" v-if="post.user.data.email != null">{{ $t('email_seller', $store.state.locale) }}</a>
-                   <a :href="`tel:+88${ post.phone_no ? post.phone_no : post.user.data.phone_number }`" class="bg-secondery-gradient d-inline-block  py-2 px-5 primary-text primary-text-hover br-4 w-100 text-center" v-else>{{ $t('phone_seller', $store.state.locale) }}</a>
+                  <a :href="`tel:+88${ post.phone_no ? post.phone_no : post.user.data.phone_number }`" class="bg-secondery-gradient d-inline-block  py-2 px-5 primary-text primary-text-hover br-4 w-100 text-center" v-if="post.user.data.phone_number != null">{{ $t('phone_seller', $store.state.locale) }}</a>
+                   <a :href="`mailto:${ post.email ? post.email : post.user.data.email}`" class="bg-secondery-gradient d-inline-block  py-2 px-5 primary-text primary-text-hover br-4 w-100 text-center" v-else>{{ $t('email_seller', $store.state.locale) }}</a>
                 </div>
               </div>
             </div>

@@ -455,7 +455,7 @@
                                                                                 <p class="text-white mb-2">{{ $t('created_at', $store.state.locale) }}</p>
                                                                                 <p class=" text-secondery mb-0">{{ formattedDate(product.created_at) }} </p>
                                                                             </div>
-                                                                            <label class="toggle-switch mt-0 mt-sm-1 h-60">
+                                                                            <label class="toggle-switch mt-0 mt-sm-1 h-60" v-if="product.status === 1">
                                                                                 <input type="checkbox" @change="sellPostStatusChange($event,product.id)" :checked="product.is_sold == 1"/>
                                                                                 <span>
                                                                                 <span>Sold</span>

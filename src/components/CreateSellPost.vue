@@ -99,7 +99,7 @@
                   </div>
                   <div class="group mb-a-6">
                     <label class="mb-3 w-100">{{ $t('price', $store.state.locale) }}</label>
-                    <ValidationProvider name="product price" rules="required|digit:6" v-slot="{ errors, classes }">
+                    <ValidationProvider name="product price" rules="required|max:6" v-slot="{ errors, classes }">
                       <div class="position-relative overflow-hidden">
                         <input type="number" @keypress="isNumber($event)" name="product price" :class="classes" class="price-valid pr-3 w-100 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" v-model="price"/>
                         <label v-if="tkShow" class="taka" :class="{'tk-sign': errors[0]}">৳</label>

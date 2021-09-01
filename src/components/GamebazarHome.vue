@@ -7,7 +7,9 @@
                         <div class="max-600">
                             <h1 class="f-s-30 f-s-sm-48 text-secondery gil-bold font-weight-bold mb-a-6">{{ $t('game_bazar_title_1', $store.state.locale) }} </h1>
                             <p class="gil-medium op-8">{{ $t('game_bazar_title_2', $store.state.locale) }}</p>
-                            <router-link class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative" to="/create-sell-post">{{ $t('sell_post', $store.state.locale) }}</router-link>
+                            <a href="#" @click.prevent="routeOnSellPost" class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">
+                              {{ $t('sell_post', $store.state.locale) }}
+                            </a>
                         </div>
                     </div>
                     <div class="col-lg-5 mt-3 mt-lg-0">
@@ -399,6 +401,18 @@ export default {
     }
   },
   methods: {
+    routeOnSellPost(){
+      var user = this.$store.state.user;
+      if (user.name && user.phone_number && user.identification_number && user.birth_date) {
+        this.$router.push('/create-sell-post')
+      }
+      else {
+        this.$swal("Incomplete Profile", "Please Update Your Profile with all information ");
+        this.$router.push('/profile').then( () => {
+          this.$root.$emit('profileEdit');
+        });
+      }
+    },
     queryOnCategory(category) {
       this.$router.push({
         name: 'sell-posts',

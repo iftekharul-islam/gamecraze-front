@@ -214,9 +214,84 @@
     padding-top: 50px;
     padding-bottom: 200px;
     &--nav-menu {
-        @include for-max-768 {
+        .card {
+            background: transparent;
+            .tabs {
+                flex-wrap: nowrap;
+                @include for-max-991 {
+                    flex-direction: column;
+                }
+            }
+            .card-body {
+                padding: 0;
+                margin-left: 100px;
+                @include for-max-991 {
+                    margin-left: 0;
+                }
+            }
+        }
+        .col-auto {
             overflow-x: auto;
-            margin-bottom: 20px;
+        }
+        .nav {
+            padding: 0;
+            @include for-max-991 {
+                flex-direction: row !important;
+                flex-wrap: nowrap;
+                width: 800px;
+                justify-content: space-between;
+                margin-bottom: 16px;
+            }
+            @include for-max-768 {
+                width: 650px;
+            }
+        }
+        .nav-item {
+            padding: 10px 0;
+            border-bottom: 1px solid $gray;
+            border-radius: 0;
+            &:last-of-type {
+               @include for-min-992 {
+                border: 0;
+               }
+            }
+            .nav-link {
+                color: $gray;
+                padding-left: 0;
+                padding: 0;
+                @include for-max-991 {
+                    text-align: center;
+                }
+                span {
+                   @include for-max-991 {
+                    display: block;
+                   }
+                }
+                svg {
+                    width : 50px;
+                    margin-right: 16px;
+                    @include for-max-991 {
+                        width: initial;
+                        height: 45px;
+                        margin-right: 0px;
+                        margin-bottom: 16px;
+                    }
+                    @include for-max-768 {
+                        height: 26px;
+                        margin-bottom: 10px;
+                    }
+                }
+                &.active {
+                    background: transparent;
+                    color: $text-light;
+                    font-weight: 600;
+                    svg {
+                        path {
+                            fill: $text-light;
+                        }
+                    }
+                }
+            }
         }
     }
     &--nav {
@@ -302,6 +377,7 @@
         }
         @include for-max-991 {
             margin-left: 0;
+            margin-top: 16px;
         }
     }
 }
@@ -452,6 +528,7 @@
                     }
                     .custom-control-label {
                         cursor: pointer;
+                        color: $text-light;
                         &::before {
                             top: 4px;
                         }
@@ -485,6 +562,7 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+            color: $text-light;
             @include for-max-1300 {
                 font-size: 18px;
             }
@@ -716,11 +794,12 @@
         }
     }
     &--rented {
+        width: 100%;
         @include for-min-1200 {
-            width: 880px;
+            // width: 880px;
         }
         @include for-min-1400 {
-            width: 925px;
+            // width: 925px;
         }
         &--box {
             padding: 10px 20px 20px 20px;
@@ -786,6 +865,9 @@
 .inactive-sellpost-box {
     border-color: $rejected ;
     position: relative;
+    @include for-max-1199 {
+        padding-top: 45px;
+    }
     .inactive {
         display: block;
         &:hover {
@@ -810,10 +892,10 @@
 .dashboard-tab-button,
 .no-post-found-card {
     @include for-min-1200 {
-        width: 880px;
+        width: 100%;
     }
     @include for-min-1400 {
-        width: 925px;
+        // width: 855px;
     }
 }
 
@@ -825,14 +907,13 @@
         border-radius: 0;
         color: $secondery;
         display: flex;
-        align-items: center;
+        align-items: center; 
+        padding: 10px 30px;
         @include for-max-768 {
-            padding: 10px 30px;
-        }
-        @include for-max-575 {
             padding: 8px 10px;
             font-size: 15px;
         }
+        
         img {
             margin-right: 15px;
             @include for-max-575 {
@@ -858,9 +939,6 @@
         }
         &:last-of-type {
             margin-right: 0;
-            @include for-max-575 {
-                margin-right: 10px;
-            }
         }
         &:focus {
             outline: none;
@@ -913,6 +991,7 @@
     }
     label {
         font-size: 20px;
+        color: $text-light;
         @include for-max-1300 {
             font-size: 18px;
         }

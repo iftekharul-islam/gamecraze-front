@@ -8923,11 +8923,124 @@ html {
   padding-bottom: 200px;
 }
 
-@media (max-width: 768px) {
-  .user-profile-details--nav-menu {
-    overflow-x: auto;
-    margin-bottom: 20px;
+.user-profile-details--nav-menu .card {
+  background: transparent;
+}
+
+.user-profile-details--nav-menu .card .tabs {
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+@media (max-width: 991px) {
+  .user-profile-details--nav-menu .card .tabs {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
+}
+
+.user-profile-details--nav-menu .card .card-body {
+  padding: 0;
+  margin-left: 100px;
+}
+
+@media (max-width: 991px) {
+  .user-profile-details--nav-menu .card .card-body {
+    margin-left: 0;
+  }
+}
+
+.user-profile-details--nav-menu .col-auto {
+  overflow-x: auto;
+}
+
+.user-profile-details--nav-menu .nav {
+  padding: 0;
+}
+
+@media (max-width: 991px) {
+  .user-profile-details--nav-menu .nav {
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: normal !important;
+        -ms-flex-direction: row !important;
+            flex-direction: row !important;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    width: 800px;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-profile-details--nav-menu .nav {
+    width: 650px;
+  }
+}
+
+.user-profile-details--nav-menu .nav-item {
+  padding: 10px 0;
+  border-bottom: 1px solid #808080;
+  border-radius: 0;
+}
+
+@media (min-width: 992px) {
+  .user-profile-details--nav-menu .nav-item:last-of-type {
+    border: 0;
+  }
+}
+
+.user-profile-details--nav-menu .nav-item .nav-link {
+  color: #808080;
+  padding-left: 0;
+  padding: 0;
+}
+
+@media (max-width: 991px) {
+  .user-profile-details--nav-menu .nav-item .nav-link {
+    text-align: center;
+  }
+}
+
+@media (max-width: 991px) {
+  .user-profile-details--nav-menu .nav-item .nav-link span {
+    display: block;
+  }
+}
+
+.user-profile-details--nav-menu .nav-item .nav-link svg {
+  width: 50px;
+  margin-right: 16px;
+}
+
+@media (max-width: 991px) {
+  .user-profile-details--nav-menu .nav-item .nav-link svg {
+    width: initial;
+    height: 45px;
+    margin-right: 0px;
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 768px) {
+  .user-profile-details--nav-menu .nav-item .nav-link svg {
+    height: 26px;
+    margin-bottom: 10px;
+  }
+}
+
+.user-profile-details--nav-menu .nav-item .nav-link.active {
+  background: transparent;
+  color: #fff;
+  font-weight: 600;
+}
+
+.user-profile-details--nav-menu .nav-item .nav-link.active svg path {
+  fill: #fff;
 }
 
 .user-profile-details--nav {
@@ -9072,6 +9185,7 @@ html {
 @media (max-width: 991px) {
   .user-profile-details .tab-content {
     margin-left: 0;
+    margin-top: 16px;
   }
 }
 
@@ -9253,6 +9367,7 @@ html {
 
 .post-rent--form-group--input--radio-group .custom-radio .custom-control-label {
   cursor: pointer;
+  color: #fff;
 }
 
 .post-rent--form-group--input--radio-group .custom-radio .custom-control-label::before {
@@ -9291,6 +9406,7 @@ html {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+  color: #fff;
 }
 
 @media (max-width: 1300px) {
@@ -9583,16 +9699,8 @@ html {
   min-width: 145px;
 }
 
-@media (min-width: 1200px) {
-  .dashboard-content--rented {
-    width: 880px;
-  }
-}
-
-@media (min-width: 1400px) {
-  .dashboard-content--rented {
-    width: 925px;
-  }
+.dashboard-content--rented {
+  width: 100%;
 }
 
 .dashboard-content--rented--box {
@@ -9677,6 +9785,12 @@ html {
   position: relative;
 }
 
+@media (max-width: 1199px) {
+  .inactive-sellpost-box {
+    padding-top: 45px;
+  }
+}
+
 .inactive-sellpost-box .inactive {
   display: block;
 }
@@ -9700,15 +9814,7 @@ html {
   .rented-note,
   .dashboard-tab-button,
   .no-post-found-card {
-    width: 880px;
-  }
-}
-
-@media (min-width: 1400px) {
-  .rented-note,
-  .dashboard-tab-button,
-  .no-post-found-card {
-    width: 925px;
+    width: 100%;
   }
 }
 
@@ -9724,15 +9830,10 @@ html {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding: 10px 30px;
 }
 
 @media (max-width: 768px) {
-  .dashboard-tab-button button {
-    padding: 10px 30px;
-  }
-}
-
-@media (max-width: 575px) {
   .dashboard-tab-button button {
     padding: 8px 10px;
     font-size: 15px;
@@ -9773,12 +9874,6 @@ html {
 
 .dashboard-tab-button button:last-of-type {
   margin-right: 0;
-}
-
-@media (max-width: 575px) {
-  .dashboard-tab-button button:last-of-type {
-    margin-right: 10px;
-  }
 }
 
 .dashboard-tab-button button:focus {
@@ -9835,6 +9930,7 @@ html {
 
 .edit-profile label {
   font-size: 20px;
+  color: #fff;
 }
 
 @media (max-width: 1300px) {

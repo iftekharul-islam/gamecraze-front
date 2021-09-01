@@ -42,7 +42,8 @@ export const storage = {
         setupPasswordUser: null,
         otpNotFound: '',
         totalPrice: 0,
-        isOTPEmpty: false
+        isOTPEmpty: false,
+        tabIndex: 0
     },
     getters: {
         user (state) {
@@ -193,9 +194,15 @@ export const storage = {
         },
         setItemsInCart(state, payload) {
             state.itemsInCart = payload
+        },
+        setTabIndex(state, payload) {
+            state.tabIndex = payload
         }
     },
     actions: {
+        setTabIndex(context, payload) {
+            context.commit('setTabIndex', payload)
+        },
         changeLocale(context, payload) {
             i18n.locale = payload;// important!
             context.commit('updateLocale', payload)

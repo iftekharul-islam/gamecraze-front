@@ -534,7 +534,7 @@
   "please_upload_screenshots" : "Please upload screenshots",
   "post" : "Post",
   "selected_location": "Selected Location",
-  "location": "Location"
+  "location": "Location",
   "back" : "Back",
   "enter_product_name" : "Enter product name",
   "high_to_low" : "High to low",
@@ -542,5 +542,6 @@
   "recent" : "Recent",
   "older" : "Older",
   "search_game_accessories" : "Search Game Accessories",
-  "create_post_tutorial" : "Create post tutorial"
+  "create_post_tutorial" : "Create post tutorial",
+  "available" : "Available"
 }

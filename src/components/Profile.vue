@@ -567,7 +567,7 @@
                                                                                 <div class="form-group post-rent--form-group">
                                                                                     <label for="sell-post-price" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('price', $store.state.locale) }}</label>
                                                                                     <div class=" post-rent--form-group--input">
-                                                                                        <ValidationProvider name="price" rules="required" v-slot="{ errors }">
+                                                                                        <ValidationProvider name="price" rules="required|digit:6" v-slot="{ errors }">
                                                                                             <input type="text" @keypress="isNumberOnEditPrice($event)" class="form-control renten-input" id="sell-post-price" placeholder="Enter price" v-model="editPostData.price">
                                                                                             <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
                                                                                         </ValidationProvider>

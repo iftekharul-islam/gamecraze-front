@@ -99,9 +99,9 @@
                   </div>
                   <div class="group mb-a-6">
                     <label class="mb-3 w-100">{{ $t('price', $store.state.locale) }}</label>
-                    <ValidationProvider name="product price" rules="required" v-slot="{ errors, classes }">
+                    <ValidationProvider name="product price" rules="required|digit:6" v-slot="{ errors, classes }">
                       <div class="position-relative overflow-hidden">
-                        <input type="number" name="product price" :class="classes" class="price-valid pr-3 w-100 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" v-model="price"/>
+                        <input type="number" @keypress="isNumber($event)" name="product price" :class="classes" class="price-valid pr-3 w-100 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4" v-model="price"/>
                         <label v-if="tkShow" class="taka" :class="{'tk-sign': errors[0]}">৳</label>
                       </div>
                       <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
@@ -321,6 +321,15 @@
     }
   },
     methods: {
+      isNumber: function(evt) {
+        evt = (evt) ? evt : window.event;
+        var charCode = (evt.which) ? evt.which : evt.keyCode;
+        if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.price.length > 6) {
+          evt.preventDefault();
+        } else {
+          return true;
+        }
+      },
       checkValidation(value) {
         this.errorLocation = false;
         if(value == null){

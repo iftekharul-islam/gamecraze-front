@@ -64,6 +64,7 @@
                   <div class="mb-a-6">
                     <p class="text-white gil-bold mb-2">{{ $t('warranty', $store.state.locale) }}</p>
                     <p class="d-flex align-items-center text-success-ball" v-if="post.warranty_availability == 1">
+                      {{ $t('available', $store.state.locale) }}&nbsp;
                       <span v-if="post.warranty_year != null">
                           {{ post.warranty_year }}&nbsp;
                           {{ $t('year', $store.state.locale) }}&nbsp;

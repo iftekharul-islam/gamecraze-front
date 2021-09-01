@@ -401,10 +401,8 @@
                     }
                     else {
                         this.$swal("Incomplete Profile", "Please Update Your Profile with all information ");
-                        this.$router.push('/profile').then(res => {
-                                this.$root.$emit('profileEdit');
-                            },
-                        ).catch(err => {
+                        this.$router.push('/profile').then(() => {
+                            this.$root.$emit('profileEdit');
                         });
                     }
                 }

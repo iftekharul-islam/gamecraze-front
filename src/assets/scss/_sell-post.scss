@@ -357,3 +357,21 @@ $background_color_2: inherit;
 .price-valid {
     padding-left: 22px;
 }
+// vue select for category
+.location-filter {
+    .vs__dropdown-toggle {
+        border: 1px solid $text-light-75;
+        padding: 6px 4px;
+    }
+    .vs__selected {
+        color: $text-light;
+        opacity: .95;
+    }
+    .vs__actions {
+        .vs__clear,
+        .vs__open-indicator {
+            fill: $text-light;
+            opacity: .95;
+        }
+    }
+}

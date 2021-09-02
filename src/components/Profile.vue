@@ -102,8 +102,8 @@
                           <div class="user-profile-details--nav-menu">
                                  <b-card  no-body>
                                        <b-tabs v-model="tabIndex" pills card vertical>
-                                           <!-- overview -->
-                                             <b-tab @click="changeTabs(0)" class="text-black" title="Tab 1" active>
+                                            <!-- overview -->
+                                            <b-tab @click="changeTabs(0)" class="text-black" title="Tab 1" :active="tabIndex == 0" >
                                                   <!-- tabs icon -->
                                                 <template #title>
                                                     <svg width="40" height="48" viewBox="0 0 40 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -162,7 +162,7 @@
                                                  </b-card-text>
                                              </b-tab>
                                              <!-- dashboard -->
-                                              <b-tab @click="changeTabs(1)" class="text-black" title="Tab 2" >
+                                            <b-tab @click="changeTabs(1)" class="text-black" title="Tab 2" :active="tabIndex == 1"  >
                                                    <!-- tabs icon -->
                                                     <template #title>
                                                         <svg width="46" height="34" viewBox="0 0 46 34" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -737,341 +737,341 @@
                                                         </div>
                                                   </div>
                                               </b-tab>
-                                              <!-- post for rent -->
-                                               <b-tab @click="changeTabs(2)" class="text-black" title="Tab 3">
-                                                     <!-- tabs icon -->
-                                                    <template #title>
-                                                        <svg width="42" height="36" viewBox="0 0 42 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M41.8766 3.20631L35.5391 33.0938C35.061 35.2032 33.8141 35.7282 32.0422 34.7344L22.386 27.6188L17.7266 32.1C17.211 32.6157 16.7797 33.0469 15.786 33.0469L16.4797 23.2126L34.3766 7.04068C35.1547 6.34693 34.2078 5.96255 33.1672 6.6563L11.0422 20.5876L1.51722 17.6063C-0.554656 16.9594 -0.592156 15.5344 1.94847 14.5407L39.2047 0.187556C40.9297 -0.459319 42.4391 0.571931 41.8766 3.20631Z" fill="#808080"/>
-                                                        </svg>
-                                                        <span>{{ $t('post_for_lend', $store.state.locale) }}</span>
-                                                    </template>
-                                                   <div class="post-rent">
-                                                        <ValidationObserver ref="form">
-                                                            <form @submit.prevent="onRentSubmit" method="post" id="sellPostForm">
-                                                                <!-- form-group -->
-                                                                <div class="form-group post-rent--form-group">
-                                                                    <label class=" post-rent--form-group--label"></label>
-                                                                    <div class=" post-rent--form-group--input">
-                                                                        <router-link
-                                                                                class="secondery-border text-secondery d-flex align-items-center justify-content-center h-48 game-rent-bg"
-                                                                                to="/lend-notice" target="_blank">{{$t('learn_about_create_post', $store.state.locale) }}
-                                                                        </router-link>
-                                                                    </div>
-                                                                </div>
+                                            <!-- post for rent -->
+                                            <b-tab @click="changeTabs(2)" class="text-black" title="Tab 3" :active="tabIndex == 2">
+                                                   <!-- tabs icon -->
+                                                  <template #title>
+                                                      <svg width="42" height="36" viewBox="0 0 42 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                          <path d="M41.8766 3.20631L35.5391 33.0938C35.061 35.2032 33.8141 35.7282 32.0422 34.7344L22.386 27.6188L17.7266 32.1C17.211 32.6157 16.7797 33.0469 15.786 33.0469L16.4797 23.2126L34.3766 7.04068C35.1547 6.34693 34.2078 5.96255 33.1672 6.6563L11.0422 20.5876L1.51722 17.6063C-0.554656 16.9594 -0.592156 15.5344 1.94847 14.5407L39.2047 0.187556C40.9297 -0.459319 42.4391 0.571931 41.8766 3.20631Z" fill="#808080"/>
+                                                      </svg>
+                                                      <span>{{ $t('post_for_lend', $store.state.locale) }}</span>
+                                                  </template>
+                                                 <div class="post-rent">
+                                                      <ValidationObserver ref="form">
+                                                          <form @submit.prevent="onRentSubmit" method="post" id="sellPostForm">
+                                                              <!-- form-group -->
+                                                              <div class="form-group post-rent--form-group">
+                                                                  <label class=" post-rent--form-group--label"></label>
+                                                                  <div class=" post-rent--form-group--input">
+                                                                      <router-link
+                                                                              class="secondery-border text-secondery d-flex align-items-center justify-content-center h-48 game-rent-bg"
+                                                                              to="/lend-notice" target="_blank">{{$t('learn_about_create_post', $store.state.locale) }}
+                                                                      </router-link>
+                                                                  </div>
+                                                              </div>
 
-                                                                <div class="form-group post-rent--form-group">
-                                                                    <label class=" post-rent--form-group--label">{{ $t('game_name', $store.state.locale) }} :</label>
-                                                                    <div class=" post-rent--form-group--input">
-                                                                        <ValidationProvider name="game" rules="" v-slot="{ errors }">
-                                                                            <vue-autosuggest
-                                                                                v-model="gameName"
-                                                                                :suggestions="filteredOptions"
-                                                                                @focus="focusMe"
-                                                                                @click="clickHandler"
-                                                                                @input="onInputChange"
-                                                                                @selected="onSelected"
-                                                                                :get-suggestion-value="getSuggestionValue"
-                                                                                :input-props="{id:'autosuggest__input2', placeholder: $t('search_game', $store.state.locale) }">
-                                                                            <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
-                                                                                <div>{{suggestion.item.name}}</div>
-                                                                            </div>
-                                                                            </vue-autosuggest>
-                                                                            <span class="text-danger">{{ errors[0] }}</span>
-                                                                        </ValidationProvider>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- form-group -->
-                                                                <div class="form-group post-rent--form-group">
-                                                                    <label for="rentedWeek" class=" label-padding post-rent--form-group--label">{{ $t('max_rent_week', $store.state.locale) }} :</label>
-                                                                    <div class=" post-rent--form-group--input">
-                                                                        <ValidationProvider name="rented week" rules="required|integer|min_value:1" v-slot="{ errors }">
-                                                                            <input type="number" class="form-control renten-input" id="rentedWeek" min="1" max="10" v-model="rentData.max_week">
-                                                                            <!-- Plus Minus icon -->
-                                                                        <div class="post-rent--form-group--input--plus-minus">
-                                                                            <div @click="adjustRentedWeek('increase')"> <i class="fa fa-angle-up rented-plus icon" ></i></div>
-                                                                                <div @click="adjustRentedWeek('decrease')"><i class="fa fa-angle-down rented-minus icon"></i></div>
-                                                                        </div>
-                                                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                                        </ValidationProvider>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- form-group -->
-                                                                <div class="form-group post-rent--form-group" v-if="gamePlatform">
-                                                                    <label class=" label-padding post-rent--form-group--label mt-0">{{ $t('platform', $store.state.locale) }} :</label>
-                                                                    <div class="post-rent--form-group--input">
-                                                                    <ValidationProvider name="Platform" rules="required" v-slot="{ errors }">
-                                                                        <div class=" post-rent--form-group--input--radio-group ">
-                                                                            <div class="form-check form-check-inline custom-radio" v-for="(platform, index) in rentData.game.platforms.data" :key="index">
-                                                                                <input class="custom-control-input platform" :id="'platform-' + index" name="platform" type="radio" :value="platform" v-model="rentData.platform">
-                                                                                <label class="custom-control-label ml-2" :for="'platform-' + index">{{ platform.name }}</label>
-                                                                            </div>
-                                                                        </div>
-
-
-                                                                        <span v-if="errors.length" class="error-message platform-error">{{ errors[0] }}</span>
-                                                                    </ValidationProvider>
-                                                                    </div>
-                                                                </div>
-                                                                    <!-- Delivery type -->
-                                                                <div class="form-group post-rent--form-group">
-                                                                    <label class="post-rent--form-group--label mt-0">{{ $t('delivery_type', $store.state.locale) }} :</label>
-                                                                    <div class="post-rent--form-group--input">
-                                                                        <div class="post-rent--form-group--input--radio-group delivery-radio-group">
-                                                                            <div class="custom-radio d-flex">
-                                                                                <input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod" class="custom-control-input" checked>
-                                                                                <label for="cod" class="custom-control-label"> {{ $t('cash_on_delivery', $store.state.locale) }} <span class="checkbox-style"></span></label>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- Select Check point -->
-                                                                <!-- form-group -->
-                    <!--                                           <div class="form-group post-rent&#45;&#45;form-group" v-show="x === '1'">-->
-                    <!--                                                    <label class="post-rent&#45;&#45;form-group&#45;&#45;label">{{ $t('select_checkpoint', $store.state.locale) }} :</label>-->
-                    <!--                                                    <div class="post-rent&#45;&#45;form-group&#45;&#45;input">-->
-                    <!--                                                        <select class="form-control" id="checkpoint" v-model="rentData.checkpoint">-->
-                    <!--                                                            <option value="" disabled>Please Select Near Checkpoint</option>-->
-                    <!--                                                            <option v-for="(checkpoint, index) in checkpoints" :key="index" :value="checkpoint">{{ checkpoint.name }}, Area: {{ checkpoint.area.data.name }}</option>-->
-                    <!--                                                        </select>-->
-                    <!--                                                    </div>-->
-                    <!--                                            </div>-->
-                                                                <!-- form-group -->
-                                                                <div class="form-group post-rent--form-group">
-
-                                                                    <label class="post-rent--form-group--label mt-0">{{ $t('disk_type', $store.state.locale) }} :</label>
-                                                                    <div class="post-rent--form-group--input">
-                                                                        <ValidationProvider name="Game type" rules="required" v-slot="{ errors }">
-                                                                        <div class="post-rent--form-group--input--radio-group delivery-radio-group">
-                                                                            <div class="custom-radio d-flex ">
-                                                                                <input type="radio" value="0" id="digital_copy" name="disk_type" v-model="rentData.disk_type" @click="basePriceSelect(1)" class="custom-control-input">
-                                                                                <label for="digital_copy" class="custom-control-label"> {{ $t('digital_copy', $store.state.locale) }} <span></span></label>
-                                                                            </div>
-
-                                                                            <div class="custom-radio d-flex">
-                                                                                <input type="radio" value="1" id="physical_copy" name="disk_type" v-model="rentData.disk_type" @click="basePriceSelect(2)" class="custom-control-input">
-                                                                                <label for="physical_copy" class="custom-control-label"> {{ $t('physical_copy', $store.state.locale) }} <span></span></label>
-                                                                            </div>
-
-                                                                        </div>
-                                                                        <span v-if="errors.length" class="error-message platform-error type-error">{{ errors[0] }}</span>
-                                                                        </ValidationProvider>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- earning amount -->
-                                                                <!-- form-group -->
-                    <!--                                            <div class="form-group post-rent&#45;&#45;form-group" v-if="basePrices">-->
-                                                                <div class="form-group post-rent--form-group" v-if="gameTypePricingState && basePrices">
-                                                                    <label class="post-rent--form-group--label mt-0">{{ $t('earning_amount', $store.state.locale) }} :</label>
-                                                                    <div class="earning-amount post-rent--form-group--input">
-                                                                        <div class="earning-amount--content">
-                                                                            <table class="table table-borderless">
-                                                                                <tbody>
-                                                                                <tr class="">
-                                                                                    <td>{{ $t('estimation_1', $store.state.locale) }}</td>
-                                                                                    <td>BDT {{ Math.ceil((basePrices[1] - ( basePrices[1] * gameTypePricing ) /100)) }}</td>
-                                                                                </tr>
-                                                                                <tr class="">
-                                                                                    <td>{{ $t('estimation_2', $store.state.locale) }}</td>
-                                                                                    <td>BDT {{ Math.ceil(basePrices[1] + basePrices[2]  - ((basePrices[1] + basePrices[2])  * gameTypePricing )/100) }}</td>
-                                                                                </tr>
-                                                                                <tr class="">
-                                                                                    <td>{{ $t('estimation_3', $store.state.locale) }}</td>
-                                                                                    <td>BDT {{ Math.ceil(basePrices[1] + basePrices[2] + basePrices[3] - ((basePrices[1] + basePrices[2] + basePrices[3]) * gameTypePricing)/100) }}</td>
-                                                                                </tr>
-                                                                                </tbody>
-                                                                            </table>
-                                                                            <!-- warning -->
-                                                                            <div class=" mt-2 game-rent-alert">
-                                                                                <div class="alert alert-info alert-dismissible game-rent-alert--box">
-                                                                                    <button type="button" class="close close-modal" data-dismiss="alert" aria-label="Close"></button>
-                                                                                    <p>
-                                                                                        {{ $t('estimation_notice', $store.state.locale) }}
-                                                                                    </p>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-
-                                                                    </div>
-
-                                                                </div>
-                                                                <!-- form-group -->
-                                                                <div class="form-group post-rent--form-group" v-if="isDigital">
-                                                                    <label for="rent-game-user-id" class=" label-padding post-rent--form-group--label">{{ $t('game_user_id', $store.state.locale) }}</label>
-                                                                    <div class=" post-rent--form-group--input">
-                                                                        <input type="text" class="form-control renten-input" id="rent-game-user-id" placeholder="Enter game user id" v-model="rentData.gameUserId">
-                                                                    </div>
-                                                                </div>
-                                                                <!-- form-group -->
-                                                                <div class="form-group post-rent--form-group" v-if="isDigital">
-                                                                    <label for="rent-game-user-pass" class=" label-padding post-rent--form-group--label">{{ $t('game_password', $store.state.locale) }}</label>
-                                                                    <div class=" post-rent--form-group--input">
-                                                                        <input type="text" class="form-control renten-input" id="rent-game-user-pass" placeholder="Enter game user password" v-model="rentData.gamePassword">
-                                                                    </div>
-                                                                </div>
-                                                                <!-- form-group -->
-                                                                <div class="form-group post-rent--form-group" v-if="diskImageRequired">
-                                                                    <label class="post-rent--form-group--label" for="DiskCondition">{{ $t('disk_condition', $store.state.locale) }} :</label>
-                                                                    <div class="post-rent--form-group--input">
-                                                                        <ValidationProvider name="Disk Condition" :rules='{required: diskImageRequired}' v-slot="{ errors }">
-                                                                            <select class="form-control js-example-basic-single" id="DiskCondition" v-model="rentData.disk_condition">
-                                                                                <option disabled value="" >{{ $t('disk_condition_select', $store.state.locale) }}</option>
-                                                                                <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }} ({{ diskCondition.description }})</option>
-                                                                            </select>
-                                                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                                        </ValidationProvider>
-                                                                    </div>
-                                                                </div>
-                                                                <!-- disk image -->
-                                                                <div class="form-group post-rent--form-group post-rent--form-group-img" v-if="diskImageRequired">
-                                                                    <label class="post-rent--form-group--label">{{ $t('disk_image', $store.state.locale) }} :</label>
-                                                                    <div class="post-rent--form-group--input">
-                                                                        <ValidationProvider name="Disk Image" :rules='{required: diskImageRequired}' v-slot="{ validate, errors }">
-                                                                        <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input" id="diskUpload"  accept="image/*" @change="onDiskImageChange($event)|| validate($event)">
-                                                                            <label class="custom-file-label text-light" for="diskUpload">{{ selectedDiskName }}</label>
-                                                                        </div>
-                                                                        <div class="img-prev">
-                                                                            <img v-if="rentData.disk_image" :src="rentData.disk_image" alt="Disk image preview">
-                                                                            <img v-else src="../assets/img/disk.png" alt="Disk image preview">
-                                                                        </div>
-                                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                                        </ValidationProvider>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group post-rent--form-group post-rent--form-group-img" v-if="diskImageRequired">
-                                                                    <label class="post-rent--form-group--label">{{ $t('cover_image', $store.state.locale) }} :</label>
-                                                                    <div class="post-rent--form-group--input">
-                                                                        <ValidationProvider name="Cover Image" :rules='{required: diskImageRequired}' v-slot="{ validate, errors }">
-                                                                        <div class="custom-file">
-                                                                            <input type="file" class="custom-file-input" id="customFile2" accept="image/*" @change="onCoverImageChange($event)|| validate($event)">
-                                                                            <label class="custom-file-label text-light" for="customFile2">{{ selectedCoverName }}</label>
-                                                                        </div>
-                                                                        <div class="img-prev">
-                                                                            <img v-if="rentData.cover_image" :src="rentData.cover_image" alt="Cover image preview">
-                                                                            <img v-else src="../assets/img/cover.png" alt="Cover image preview">
-                                                                        </div>
-                                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                                        </ValidationProvider>
-                                                                    </div>
-                                                                </div>
-
-                                                                <!-- Agree terms and condition -->
-                                                                <div class="form-group post-rent--form-group post-rent--form-group--agree post-rent--form-group--agree-profile mt-a-7">
-                                                                    <div class="checkbox-parents">
-                                                                    <ValidationProvider name="Terms & Conditions" rules="required" v-slot="{ errors }">
-                                                                        <input type="checkbox" id="terms-agree" class="checkbox-parents--input" v-model="agreement" @change="onAgreement($event)">
-                                                                        <label for="terms-agree" class="checkbox-parents--label text-white">{{ $t('i_agree', $store.state.locale) }} <router-link to="/terms" target="_blank" class="text-secondery"><u>{{ $t('terms', $store.state.locale) }}</u></router-link></label>
-                                                                        <span v-if="errors.length" class="error-message d-block ml--28">{{ errors[0] }}</span>
-                                                                    </ValidationProvider>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group post-rent--form-group post-rent-btn">
-                                                                    <button class="btn--secondery-hover br-4 gil-bold font-weight-bold border-0 primary-text d-inline-block position-relative post-rent--form-group--btn" :disabled="isRentLoading">
-                                                                        <div class="mr-2 position-relative">{{ $t('submit', $store.state.locale) }} <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i></div>
-                                                                        <span></span>
-                                                                        <span></span>
-                                                                    </button>
-                                                                </div>
-
-                                                            </form>
-                                                        </ValidationObserver>
-                                                    </div>
-                                               </b-tab>
-                                               <!-- Edit profile -->
-                                               <b-tab @click="changeTabs(3)" class="text-black" title="Tab 4">
-                                                    <!-- tabs icon -->
-                                                    <template #title>
-                                                        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M37.9766 4.02441L43.977 10.025L39.4033 14.5985L33.4029 8.5979L37.9766 4.02441Z" fill="#808080"/>
-                                                            <path d="M16 31.9998H22L36.574 17.4258L30.574 11.4258L16 25.9998V31.9998Z" fill="#808080"/>
-                                                            <path d="M38 38H16.316C16.264 38 16.21 38.02 16.158 38.02C16.092 38.02 16.026 38.002 15.958 38H10V10H23.694L27.694 6H10C7.794 6 6 7.792 6 10V38C6 40.208 7.794 42 10 42H38C40.208 42 42 40.208 42 38V20.664L38 24.664V38Z" fill="#808080"/>
-                                                        </svg>
-                                                        <span>{{ $t('edit_profile', $store.state.locale) }}</span>
-                                                    </template>
-                                                   <div class="edit-profile">
-                                                        <ValidationObserver v-slot="{ handleSubmit }">
-                                                            <form @submit.prevent="handleSubmit(onProfileUpdate)" method="post">
-                                                                <div class="form-group row">
-                                                                    <label for="first_name" class="col-sm-3 col-form-label">{{ $t('first_name', $store.state.locale) }} :</label>
-
-                                                                        <div class="col-sm-9 edit--input">
-                                                                            <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
-                                                                                <input @keypress="isValidNameString($event)" type="text" class="form-control" id="first_name" v-model="form.name">
-                                                                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                                            </ValidationProvider>
-                                                                        </div>
-
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <label for="last_name" class="col-sm-3 col-form-label">{{ $t('last_name', $store.state.locale) }} :</label>
-                                                                    <div class="col-sm-9 edit--input">
-                                                                        <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
-                                                                            <input @keypress="isValidLastNameString($event)" type="text" class="form-control" id="last_name" v-model="form.last_name">
-                                                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                                        </ValidationProvider>
-                                                                    </div>
-                                                                </div>
-
-                                                                <div class="form-group row">
-                                                                    <label class="col-sm-3 col-form-label">{{ $t('gender', $store.state.locale) }} :</label>
-                                                                    <div class="col-sm-9 edit--input">
-                                                                        <ValidationProvider name="gender" rules="required" v-slot="{ errors }">
+                                                              <div class="form-group post-rent--form-group">
+                                                                  <label class=" post-rent--form-group--label">{{ $t('game_name', $store.state.locale) }} :</label>
+                                                                  <div class=" post-rent--form-group--input">
+                                                                      <ValidationProvider name="game" rules="" v-slot="{ errors }">
+                                                                          <vue-autosuggest
+                                                                              v-model="gameName"
+                                                                              :suggestions="filteredOptions"
+                                                                              @focus="focusMe"
+                                                                              @click="clickHandler"
+                                                                              @input="onInputChange"
+                                                                              @selected="onSelected"
+                                                                              :get-suggestion-value="getSuggestionValue"
+                                                                              :input-props="{id:'autosuggest__input2', placeholder: $t('search_game', $store.state.locale) }">
+                                                                          <div slot-scope="{suggestion}" style="display: flex; align-items: center;">
+                                                                              <div>{{suggestion.item.name}}</div>
+                                                                          </div>
+                                                                          </vue-autosuggest>
+                                                                          <span class="text-danger">{{ errors[0] }}</span>
+                                                                      </ValidationProvider>
+                                                                  </div>
+                                                              </div>
+                                                              <!-- form-group -->
+                                                              <div class="form-group post-rent--form-group">
+                                                                  <label for="rentedWeek" class=" label-padding post-rent--form-group--label">{{ $t('max_rent_week', $store.state.locale) }} :</label>
+                                                                  <div class=" post-rent--form-group--input">
+                                                                      <ValidationProvider name="rented week" rules="required|integer|min_value:1" v-slot="{ errors }">
+                                                                          <input type="number" class="form-control renten-input" id="rentedWeek" min="1" max="10" v-model="rentData.max_week">
+                                                                          <!-- Plus Minus icon -->
+                                                                      <div class="post-rent--form-group--input--plus-minus">
+                                                                          <div @click="adjustRentedWeek('increase')"> <i class="fa fa-angle-up rented-plus icon" ></i></div>
+                                                                              <div @click="adjustRentedWeek('decrease')"><i class="fa fa-angle-down rented-minus icon"></i></div>
+                                                                      </div>
+                                                                          <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                      </ValidationProvider>
+                                                                  </div>
+                                                              </div>
+                                                              <!-- form-group -->
+                                                              <div class="form-group post-rent--form-group" v-if="gamePlatform">
+                                                                  <label class=" label-padding post-rent--form-group--label mt-0">{{ $t('platform', $store.state.locale) }} :</label>
+                                                                  <div class="post-rent--form-group--input">
+                                                                  <ValidationProvider name="Platform" rules="required" v-slot="{ errors }">
+                                                                      <div class=" post-rent--form-group--input--radio-group ">
+                                                                          <div class="form-check form-check-inline custom-radio" v-for="(platform, index) in rentData.game.platforms.data" :key="index">
+                                                                              <input class="custom-control-input platform" :id="'platform-' + index" name="platform" type="radio" :value="platform" v-model="rentData.platform">
+                                                                              <label class="custom-control-label ml-2" :for="'platform-' + index">{{ platform.name }}</label>
+                                                                          </div>
+                                                                      </div>
 
 
+                                                                      <span v-if="errors.length" class="error-message platform-error">{{ errors[0] }}</span>
+                                                                  </ValidationProvider>
+                                                                  </div>
+                                                              </div>
+                                                                  <!-- Delivery type -->
+                                                              <div class="form-group post-rent--form-group">
+                                                                  <label class="post-rent--form-group--label mt-0">{{ $t('delivery_type', $store.state.locale) }} :</label>
+                                                                  <div class="post-rent--form-group--input">
+                                                                      <div class="post-rent--form-group--input--radio-group delivery-radio-group">
+                                                                          <div class="custom-radio d-flex">
+                                                                              <input type="radio" v-model="x" value="" v-on:change="onEmpty" name="checkpoint_id" id="cod" class="custom-control-input" checked>
+                                                                              <label for="cod" class="custom-control-label"> {{ $t('cash_on_delivery', $store.state.locale) }} <span class="checkbox-style"></span></label>
+                                                                          </div>
+                                                                      </div>
+                                                                  </div>
+                                                              </div>
+                                                              <!-- Select Check point -->
+                                                              <!-- form-group -->
+                  <!--                                           <div class="form-group post-rent&#45;&#45;form-group" v-show="x === '1'">-->
+                  <!--                                                    <label class="post-rent&#45;&#45;form-group&#45;&#45;label">{{ $t('select_checkpoint', $store.state.locale) }} :</label>-->
+                  <!--                                                    <div class="post-rent&#45;&#45;form-group&#45;&#45;input">-->
+                  <!--                                                        <select class="form-control" id="checkpoint" v-model="rentData.checkpoint">-->
+                  <!--                                                            <option value="" disabled>Please Select Near Checkpoint</option>-->
+                  <!--                                                            <option v-for="(checkpoint, index) in checkpoints" :key="index" :value="checkpoint">{{ checkpoint.name }}, Area: {{ checkpoint.area.data.name }}</option>-->
+                  <!--                                                        </select>-->
+                  <!--                                                    </div>-->
+                  <!--                                            </div>-->
+                                                              <!-- form-group -->
+                                                              <div class="form-group post-rent--form-group">
 
-                                                                        <!-- <v-select :options="itemsData"  label="Standard" v-model="form.gender" class="gamehub-custome-select"></v-select> -->
+                                                                  <label class="post-rent--form-group--label mt-0">{{ $t('disk_type', $store.state.locale) }} :</label>
+                                                                  <div class="post-rent--form-group--input">
+                                                                      <ValidationProvider name="Game type" rules="required" v-slot="{ errors }">
+                                                                      <div class="post-rent--form-group--input--radio-group delivery-radio-group">
+                                                                          <div class="custom-radio d-flex ">
+                                                                              <input type="radio" value="0" id="digital_copy" name="disk_type" v-model="rentData.disk_type" @click="basePriceSelect(1)" class="custom-control-input">
+                                                                              <label for="digital_copy" class="custom-control-label"> {{ $t('digital_copy', $store.state.locale) }} <span></span></label>
+                                                                          </div>
+
+                                                                          <div class="custom-radio d-flex">
+                                                                              <input type="radio" value="1" id="physical_copy" name="disk_type" v-model="rentData.disk_type" @click="basePriceSelect(2)" class="custom-control-input">
+                                                                              <label for="physical_copy" class="custom-control-label"> {{ $t('physical_copy', $store.state.locale) }} <span></span></label>
+                                                                          </div>
+
+                                                                      </div>
+                                                                      <span v-if="errors.length" class="error-message platform-error type-error">{{ errors[0] }}</span>
+                                                                      </ValidationProvider>
+                                                                  </div>
+                                                              </div>
+                                                              <!-- earning amount -->
+                                                              <!-- form-group -->
+                  <!--                                            <div class="form-group post-rent&#45;&#45;form-group" v-if="basePrices">-->
+                                                              <div class="form-group post-rent--form-group" v-if="gameTypePricingState && basePrices">
+                                                                  <label class="post-rent--form-group--label mt-0">{{ $t('earning_amount', $store.state.locale) }} :</label>
+                                                                  <div class="earning-amount post-rent--form-group--input">
+                                                                      <div class="earning-amount--content">
+                                                                          <table class="table table-borderless">
+                                                                              <tbody>
+                                                                              <tr class="">
+                                                                                  <td>{{ $t('estimation_1', $store.state.locale) }}</td>
+                                                                                  <td>BDT {{ Math.ceil((basePrices[1] - ( basePrices[1] * gameTypePricing ) /100)) }}</td>
+                                                                              </tr>
+                                                                              <tr class="">
+                                                                                  <td>{{ $t('estimation_2', $store.state.locale) }}</td>
+                                                                                  <td>BDT {{ Math.ceil(basePrices[1] + basePrices[2]  - ((basePrices[1] + basePrices[2])  * gameTypePricing )/100) }}</td>
+                                                                              </tr>
+                                                                              <tr class="">
+                                                                                  <td>{{ $t('estimation_3', $store.state.locale) }}</td>
+                                                                                  <td>BDT {{ Math.ceil(basePrices[1] + basePrices[2] + basePrices[3] - ((basePrices[1] + basePrices[2] + basePrices[3]) * gameTypePricing)/100) }}</td>
+                                                                              </tr>
+                                                                              </tbody>
+                                                                          </table>
+                                                                          <!-- warning -->
+                                                                          <div class=" mt-2 game-rent-alert">
+                                                                              <div class="alert alert-info alert-dismissible game-rent-alert--box">
+                                                                                  <button type="button" class="close close-modal" data-dismiss="alert" aria-label="Close"></button>
+                                                                                  <p>
+                                                                                      {{ $t('estimation_notice', $store.state.locale) }}
+                                                                                  </p>
+                                                                              </div>
+                                                                          </div>
+                                                                      </div>
+
+                                                                  </div>
+
+                                                              </div>
+                                                              <!-- form-group -->
+                                                              <div class="form-group post-rent--form-group" v-if="isDigital">
+                                                                  <label for="rent-game-user-id" class=" label-padding post-rent--form-group--label">{{ $t('game_user_id', $store.state.locale) }}</label>
+                                                                  <div class=" post-rent--form-group--input">
+                                                                      <input type="text" class="form-control renten-input" id="rent-game-user-id" placeholder="Enter game user id" v-model="rentData.gameUserId">
+                                                                  </div>
+                                                              </div>
+                                                              <!-- form-group -->
+                                                              <div class="form-group post-rent--form-group" v-if="isDigital">
+                                                                  <label for="rent-game-user-pass" class=" label-padding post-rent--form-group--label">{{ $t('game_password', $store.state.locale) }}</label>
+                                                                  <div class=" post-rent--form-group--input">
+                                                                      <input type="text" class="form-control renten-input" id="rent-game-user-pass" placeholder="Enter game user password" v-model="rentData.gamePassword">
+                                                                  </div>
+                                                              </div>
+                                                              <!-- form-group -->
+                                                              <div class="form-group post-rent--form-group" v-if="diskImageRequired">
+                                                                  <label class="post-rent--form-group--label" for="DiskCondition">{{ $t('disk_condition', $store.state.locale) }} :</label>
+                                                                  <div class="post-rent--form-group--input">
+                                                                      <ValidationProvider name="Disk Condition" :rules='{required: diskImageRequired}' v-slot="{ errors }">
+                                                                          <select class="form-control js-example-basic-single" id="DiskCondition" v-model="rentData.disk_condition">
+                                                                              <option disabled value="" >{{ $t('disk_condition_select', $store.state.locale) }}</option>
+                                                                              <option v-for="(diskCondition, index) in diskConditions" :key="index" :value="diskCondition">{{ diskCondition.name_of_type }} ({{ diskCondition.description }})</option>
+                                                                          </select>
+                                                                          <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                      </ValidationProvider>
+                                                                  </div>
+                                                              </div>
+                                                              <!-- disk image -->
+                                                              <div class="form-group post-rent--form-group post-rent--form-group-img" v-if="diskImageRequired">
+                                                                  <label class="post-rent--form-group--label">{{ $t('disk_image', $store.state.locale) }} :</label>
+                                                                  <div class="post-rent--form-group--input">
+                                                                      <ValidationProvider name="Disk Image" :rules='{required: diskImageRequired}' v-slot="{ validate, errors }">
+                                                                      <div class="custom-file">
+                                                                          <input type="file" class="custom-file-input" id="diskUpload"  accept="image/*" @change="onDiskImageChange($event)|| validate($event)">
+                                                                          <label class="custom-file-label text-light" for="diskUpload">{{ selectedDiskName }}</label>
+                                                                      </div>
+                                                                      <div class="img-prev">
+                                                                          <img v-if="rentData.disk_image" :src="rentData.disk_image" alt="Disk image preview">
+                                                                          <img v-else src="../assets/img/disk.png" alt="Disk image preview">
+                                                                      </div>
+                                                                      <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                      </ValidationProvider>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="form-group post-rent--form-group post-rent--form-group-img" v-if="diskImageRequired">
+                                                                  <label class="post-rent--form-group--label">{{ $t('cover_image', $store.state.locale) }} :</label>
+                                                                  <div class="post-rent--form-group--input">
+                                                                      <ValidationProvider name="Cover Image" :rules='{required: diskImageRequired}' v-slot="{ validate, errors }">
+                                                                      <div class="custom-file">
+                                                                          <input type="file" class="custom-file-input" id="customFile2" accept="image/*" @change="onCoverImageChange($event)|| validate($event)">
+                                                                          <label class="custom-file-label text-light" for="customFile2">{{ selectedCoverName }}</label>
+                                                                      </div>
+                                                                      <div class="img-prev">
+                                                                          <img v-if="rentData.cover_image" :src="rentData.cover_image" alt="Cover image preview">
+                                                                          <img v-else src="../assets/img/cover.png" alt="Cover image preview">
+                                                                      </div>
+                                                                      <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                      </ValidationProvider>
+                                                                  </div>
+                                                              </div>
+
+                                                              <!-- Agree terms and condition -->
+                                                              <div class="form-group post-rent--form-group post-rent--form-group--agree post-rent--form-group--agree-profile mt-a-7">
+                                                                  <div class="checkbox-parents">
+                                                                  <ValidationProvider name="Terms & Conditions" rules="required" v-slot="{ errors }">
+                                                                      <input type="checkbox" id="terms-agree" class="checkbox-parents--input" v-model="agreement" @change="onAgreement($event)">
+                                                                      <label for="terms-agree" class="checkbox-parents--label text-white">{{ $t('i_agree', $store.state.locale) }} <router-link to="/terms" target="_blank" class="text-secondery"><u>{{ $t('terms', $store.state.locale) }}</u></router-link></label>
+                                                                      <span v-if="errors.length" class="error-message d-block ml--28">{{ errors[0] }}</span>
+                                                                  </ValidationProvider>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="form-group post-rent--form-group post-rent-btn">
+                                                                  <button class="btn--secondery-hover br-4 gil-bold font-weight-bold border-0 primary-text d-inline-block position-relative post-rent--form-group--btn" :disabled="isRentLoading">
+                                                                      <div class="mr-2 position-relative">{{ $t('submit', $store.state.locale) }} <i v-if="isRentLoading" class="spinner-border spinner-border-sm"></i></div>
+                                                                      <span></span>
+                                                                      <span></span>
+                                                                  </button>
+                                                              </div>
+
+                                                          </form>
+                                                      </ValidationObserver>
+                                                  </div>
+                                             </b-tab>
+                                             <!-- Edit profile -->
+                                            <b-tab @click="changeTabs(3)" class="text-black" title="Tab 4" :active="tabIndex == 3">
+                                                  <!-- tabs icon -->
+                                                  <template #title>
+                                                      <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                          <path d="M37.9766 4.02441L43.977 10.025L39.4033 14.5985L33.4029 8.5979L37.9766 4.02441Z" fill="#808080"/>
+                                                          <path d="M16 31.9998H22L36.574 17.4258L30.574 11.4258L16 25.9998V31.9998Z" fill="#808080"/>
+                                                          <path d="M38 38H16.316C16.264 38 16.21 38.02 16.158 38.02C16.092 38.02 16.026 38.002 15.958 38H10V10H23.694L27.694 6H10C7.794 6 6 7.792 6 10V38C6 40.208 7.794 42 10 42H38C40.208 42 42 40.208 42 38V20.664L38 24.664V38Z" fill="#808080"/>
+                                                      </svg>
+                                                      <span>{{ $t('edit_profile', $store.state.locale) }}</span>
+                                                  </template>
+                                                 <div class="edit-profile">
+                                                      <ValidationObserver v-slot="{ handleSubmit }">
+                                                          <form @submit.prevent="handleSubmit(onProfileUpdate)" method="post">
+                                                              <div class="form-group row">
+                                                                  <label for="first_name" class="col-sm-3 col-form-label">{{ $t('first_name', $store.state.locale) }} :</label>
+
+                                                                      <div class="col-sm-9 edit--input">
+                                                                          <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
+                                                                              <input @keypress="isValidNameString($event)" type="text" class="form-control" id="first_name" v-model="form.name">
+                                                                              <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                          </ValidationProvider>
+                                                                      </div>
+
+                                                              </div>
+                                                              <div class="form-group row">
+                                                                  <label for="last_name" class="col-sm-3 col-form-label">{{ $t('last_name', $store.state.locale) }} :</label>
+                                                                  <div class="col-sm-9 edit--input">
+                                                                      <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
+                                                                          <input @keypress="isValidLastNameString($event)" type="text" class="form-control" id="last_name" v-model="form.last_name">
+                                                                          <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                      </ValidationProvider>
+                                                                  </div>
+                                                              </div>
+
+                                                              <div class="form-group row">
+                                                                  <label class="col-sm-3 col-form-label">{{ $t('gender', $store.state.locale) }} :</label>
+                                                                  <div class="col-sm-9 edit--input">
+                                                                      <ValidationProvider name="gender" rules="required" v-slot="{ errors }">
 
 
 
-                                                                            <select class="custom-select" id="gender" v-model="form.gender">
-                                                                                <option value="">Select Gender</option>
-                                                                                <option value="male" >Male</option>
-                                                                                <option value="female">Female</option>
-                                                                                <option value="others">Others</option>
-                                                                            </select>
-                                                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                                        </ValidationProvider>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <label for="dateofbirth" class="col-sm-3 col-form-label">{{ $t('dob', $store.state.locale) }} :</label>
-                                                                    <div class="col-sm-9 edit--input">
-                                                                        <ValidationProvider name="date of birth" rules="required" v-slot="{ errors }">
-                                                                            <input type="date" class="form-control" id="dateofbirth" :max="todayDate()" v-model="form.birth_date">
-                                                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                                        </ValidationProvider>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <label for="email" class="col-sm-3 col-form-label">{{ $t('email', $store.state.locale) }} :</label>
-                                                                    <div class="col-sm-9 edit--input">
-                                                                        <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
-                                                                            <input type="email" @focus="onEmailFocus" class="form-control" id="email" v-model="form.email">
-                                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                                        <span class="error-message d-block" v-if="isEmailExists">Email already taken</span>
-                                                                        </ValidationProvider>
-                                                                    </div>
-                                                                </div>
-                    <!--                                            <div class="form-group row">-->
-                    <!--                                                <label class="col-sm-3 col-form-label">Mobile No:</label>-->
-                    <!--                                                <div class="col-sm-9 edit&#45;&#45;input">-->
-                    <!--                                                    <ValidationProvider name="phone number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">-->
-                    <!--                                                        <input type="text" @focus="onPhoneFocus" @keypress="isNumber($event)" class="form-control" id="phone_number" v-model="form.phone_number">-->
-                    <!--                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>-->
-                    <!--                                                        <span class="error-message d-block" v-if="isPhoneExists">Phone number already exists</span>-->
-                    <!--                                                    </ValidationProvider>-->
-                    <!--                                                </div>-->
-                    <!--                                            </div>-->
-                                                                <div class="form-group row">
-                                                                    <label for="address" class="col-sm-3 col-form-label">{{ $t('address', $store.state.locale) }} :</label>
-                                                                    <div class="col-sm-9 edit--input">
-                                                                        <ValidationProvider name="address" rules="required" v-slot="{ errors }">
-                                                                            <input type="text" class="form-control" id="address" v-model="form.address">
-                                                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                                        </ValidationProvider>
-                                                                    </div>
-                                                                </div>
+                                                                      <!-- <v-select :options="itemsData"  label="Standard" v-model="form.gender" class="gamehub-custome-select"></v-select> -->
+
+
+
+                                                                          <select class="custom-select" id="gender" v-model="form.gender">
+                                                                              <option value="">Select Gender</option>
+                                                                              <option value="male" >Male</option>
+                                                                              <option value="female">Female</option>
+                                                                              <option value="others">Others</option>
+                                                                          </select>
+                                                                          <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                      </ValidationProvider>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="form-group row">
+                                                                  <label for="dateofbirth" class="col-sm-3 col-form-label">{{ $t('dob', $store.state.locale) }} :</label>
+                                                                  <div class="col-sm-9 edit--input">
+                                                                      <ValidationProvider name="date of birth" rules="required" v-slot="{ errors }">
+                                                                          <input type="date" class="form-control" id="dateofbirth" :max="todayDate()" v-model="form.birth_date">
+                                                                          <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                      </ValidationProvider>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="form-group row">
+                                                                  <label for="email" class="col-sm-3 col-form-label">{{ $t('email', $store.state.locale) }} :</label>
+                                                                  <div class="col-sm-9 edit--input">
+                                                                      <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
+                                                                          <input type="email" @focus="onEmailFocus" class="form-control" id="email" v-model="form.email">
+                                                                      <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                      <span class="error-message d-block" v-if="isEmailExists">Email already taken</span>
+                                                                      </ValidationProvider>
+                                                                  </div>
+                                                              </div>
+                  <!--                                            <div class="form-group row">-->
+                  <!--                                                <label class="col-sm-3 col-form-label">Mobile No:</label>-->
+                  <!--                                                <div class="col-sm-9 edit&#45;&#45;input">-->
+                  <!--                                                    <ValidationProvider name="phone number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">-->
+                  <!--                                                        <input type="text" @focus="onPhoneFocus" @keypress="isNumber($event)" class="form-control" id="phone_number" v-model="form.phone_number">-->
+                  <!--                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>-->
+                  <!--                                                        <span class="error-message d-block" v-if="isPhoneExists">Phone number already exists</span>-->
+                  <!--                                                    </ValidationProvider>-->
+                  <!--                                                </div>-->
+                  <!--                                            </div>-->
+                                                              <div class="form-group row">
+                                                                  <label for="address" class="col-sm-3 col-form-label">{{ $t('address', $store.state.locale) }} :</label>
+                                                                  <div class="col-sm-9 edit--input">
+                                                                      <ValidationProvider name="address" rules="required" v-slot="{ errors }">
+                                                                          <input type="text" class="form-control" id="address" v-model="form.address">
+                                                                          <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                      </ValidationProvider>
+                                                                  </div>
+                                                              </div>
 <!--                                                                <div class="form-group row">-->
 <!--                                                                    <label for="city" class="col-sm-3 col-form-label">{{ $t('city', $store.state.locale) }} :</label>-->
 <!--                                                                    <div class="col-sm-9 edit&#45;&#45;input">-->
@@ -1090,199 +1090,199 @@
 <!--                                                                        </ValidationProvider>-->
 <!--                                                                    </div>-->
 <!--                                                                </div>-->
-                                                                <div class="form-group row" v-if="nid_verification == 0">
-                                                                    <label for="nidno" class="col-sm-3 col-form-label">{{ $t('nid', $store.state.locale) }}:</label>
-                                                                    <div class="col-sm-9 edit--input">
-                                                                        <ValidationProvider name="NID" rules="required" v-slot="{ errors }">
-                                                                        <input type="text" class="form-control" id="nidno" v-model="form.identification_number">
-                                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                                        </ValidationProvider>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row" v-if="nid_verification == 0">
-                                                                    <label class="col-sm-3 col-form-label">{{ $t('nid_image', $store.state.locale) }} :</label>
-                                                                    <div class="col-sm-9 edit--input">
-                                                                    <div class="custom-file">
-                                                                        <ValidationProvider name="NID Image" rules="required" v-slot="{ validate, errors }">
-                                                                            <input @change="onIdChange($event) || validate($event)" accept=".png, .jpg, .jpeg" type="file" class="custom-file-input" id="customFile">
-                                                                            <label class="custom-file-label text-light" for="customFile">{{ selectedFile }}</label>
-                                                                        <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                                        </ValidationProvider>
-                                                                    </div>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                <div class="offset-md-3 col-md-9 col-xl-8 mt-4 post-rent--input">
-                                                                        <button class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative w-100 border-0" :disabled="$store.state.isProfileUpdating">
-                                                                            <div class="mr-2 position-relative">{{ $t('update_profile', $store.state.locale) }}
-                                                                              <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm text-dark"></i>
-                                                                            </div>
-                                                                            <span></span>
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
+                                                              <div class="form-group row" v-if="nid_verification == 0">
+                                                                  <label for="nidno" class="col-sm-3 col-form-label">{{ $t('nid', $store.state.locale) }}:</label>
+                                                                  <div class="col-sm-9 edit--input">
+                                                                      <ValidationProvider name="NID" rules="required" v-slot="{ errors }">
+                                                                      <input type="text" class="form-control" id="nidno" v-model="form.identification_number">
+                                                                      <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                      </ValidationProvider>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="form-group row" v-if="nid_verification == 0">
+                                                                  <label class="col-sm-3 col-form-label">{{ $t('nid_image', $store.state.locale) }} :</label>
+                                                                  <div class="col-sm-9 edit--input">
+                                                                  <div class="custom-file">
+                                                                      <ValidationProvider name="NID Image" rules="required" v-slot="{ validate, errors }">
+                                                                          <input @change="onIdChange($event) || validate($event)" accept=".png, .jpg, .jpeg" type="file" class="custom-file-input" id="customFile">
+                                                                          <label class="custom-file-label text-light" for="customFile">{{ selectedFile }}</label>
+                                                                      <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                                                                      </ValidationProvider>
+                                                                  </div>
+                                                                  </div>
+                                                              </div>
+                                                              <div class="form-group row">
+                                                              <div class="offset-md-3 col-md-9 col-xl-8 mt-4 post-rent--input">
+                                                                      <button class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative w-100 border-0" :disabled="$store.state.isProfileUpdating">
+                                                                          <div class="mr-2 position-relative">{{ $t('update_profile', $store.state.locale) }}
+                                                                            <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm text-dark"></i>
+                                                                          </div>
+                                                                          <span></span>
+                                                                      </button>
+                                                                  </div>
+                                                              </div>
 
-                                                            </form>
-                                                        </ValidationObserver>
-                                                    </div>
-                                               </b-tab>
-                                               <!-- Earning -->
-                                               <b-tab @click="changeTabs(4)" class="text-black" title="Tab 5">
-                                                    <!-- tabs icon -->
-                                                    <template #title>
-                                                    <svg width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path d="M29.0311 0C35.9289 0 40 3.96919 40 10.7636H31.5378V10.8329C27.6104 10.8329 24.4267 13.937 24.4267 17.766C24.4267 21.595 27.6104 24.6991 31.5378 24.6991H40V25.3231C40 32.0308 35.9289 36 29.0311 36H10.9689C4.07111 36 0 32.0308 0 25.3231V10.6769C0 3.96919 4.07111 0 10.9689 0H29.0311ZM38.5067 13.7448C39.3314 13.7448 40 14.3967 40 15.2008V20.2619C39.9904 21.0621 39.3274 21.7085 38.5067 21.7179H31.6978C29.7096 21.7439 27.971 20.4167 27.52 18.5286C27.2942 17.3566 27.6112 16.1471 28.3861 15.2244C29.1611 14.3017 30.3147 13.7601 31.5378 13.7448H38.5067ZM32.4978 16.0847H31.84C31.4362 16.0801 31.0472 16.2333 30.76 16.5101C30.4727 16.7869 30.3111 17.1643 30.3111 17.558C30.3111 18.3841 30.9928 19.0565 31.84 19.066H32.4978C33.3422 19.066 34.0267 18.3986 34.0267 17.5753C34.0267 16.7521 33.3422 16.0847 32.4978 16.0847ZM20.7644 7.78238H9.47556C8.63807 7.78232 7.95641 8.43919 7.94667 9.25566C7.94667 10.0817 8.62831 10.7541 9.47556 10.7636H20.7644C21.6088 10.7636 22.2933 10.0962 22.2933 9.27299C22.2933 8.44975 21.6088 7.78238 20.7644 7.78238Z" fill="#808080"/>
-                                                        </svg>
-                                                        <span>{{ $t('my_earning', $store.state.locale) }}</span>
-                                                    </template>
-                                                    <div class="my-earning">
-                                                        <div class="my-earning--dashboard">
-                                                            <div class="my-earning--dashboard--content">
-                                                                <h4>{{ $t('lifetime_earning', $store.state.locale) }}</h4>
-                                                                <h2>{{ total_earn }} Taka</h2>
-                                                            </div>
-                                                            <div class="my-earning--dashboard--content">
-                                                                <h4>{{ $t('amount_received', $store.state.locale) }}</h4>
-                                                                <h2>{{ payable_amount }} Taka</h2>
-                                                                <a href="javascript:void(0)" @click="requestModalShow = true; withdrawAmount = payable_amount" class="bg-secondery d-block text-center primary-text w-full primary-text-shadow gil-bold primary-text-hover py-2">
-                                                                    <span>{{ $t('withdraw_request', $store.state.locale) }}</span>
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    <!-- Extend modal -->
-                                                    <div v-if="requestModalShow">
-                                                        <transition name="modal">
-                                                        <div class="modal-mask order-details-extend-modal position-fixed top-0 left-0 h-100 w-full d-flex align-items-center justify-content-center z-index-9">
-                                                            <div class="modal-wrapper">
-                                                            <div class="modal-dialog modal-dialog-centered w-328" role="document">
-                                                                <div class="modal-content bg-pattens-blue border-2 border-secondery p-a-4 br-0">
-                                                                <button type="button" class="close position-absolute right-10 top-10 w-fit" data-dismiss="modal" aria-label="Close">
-                                                                    <svg aria-hidden="true" @click="requestModalShow = false" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                                    <path d="M16.2427 6.34315L12.0001 10.5858L7.75744 6.34315L6.34323 7.75736L10.5859 12L6.34323 16.2426L7.75744 17.6569L12.0001 13.4142L16.2427 17.6569L17.6569 16.2426L13.4143 12L17.6569 7.75736L16.2427 6.34315Z" fill="#0B0F18"/>
-                                                                    <rect x="0.5" y="0.5" width="23" height="23" rx="11.5" stroke="#0B0F18"/>
-                                                                    </svg>
-                                                                </button>
-                                                                <div class="modal-body-content">
-                                                                    <div>
-                                                                        <div class="border-0">
-                                                                        <div class="d-flex mb-4">
-                                                                            <p class="primary-text gil-medium mb-0">{{ $t('withdraw_request', $store.state.locale) }}:</p>
-                                                                        </div>
-                                                                        <div class="d-flex align-items-center justify-content-between mt-4">
-                                                                            <p class="text-light-gray gil-medium mb-0">{{ $t('amount', $store.state.locale) }} :</p>
-                                                                        </div>
-                                                                        <div class="d-flex align-items-center justify-content-between mt-4">
-                                                                            <input type="number" min="100" max="5000" class="form-control bg-game-details focus-game-details border-half border-secondery-imp no-default-arrow br-0 shadow-none cursor-pointer text-white gil-medium" v-model="withdrawAmount" />
-                                                                        </div>
-                                                                        </div>
-                                                                    </div>
+                                                          </form>
+                                                      </ValidationObserver>
+                                                  </div>
+                                             </b-tab>
+                                             <!-- Earning -->
+                                            <b-tab @click="changeTabs(4)" class="text-black" title="Tab 5" :active="tabIndex == 4">
+                                                  <!-- tabs icon -->
+                                                  <template #title>
+                                                  <svg width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                          <path d="M29.0311 0C35.9289 0 40 3.96919 40 10.7636H31.5378V10.8329C27.6104 10.8329 24.4267 13.937 24.4267 17.766C24.4267 21.595 27.6104 24.6991 31.5378 24.6991H40V25.3231C40 32.0308 35.9289 36 29.0311 36H10.9689C4.07111 36 0 32.0308 0 25.3231V10.6769C0 3.96919 4.07111 0 10.9689 0H29.0311ZM38.5067 13.7448C39.3314 13.7448 40 14.3967 40 15.2008V20.2619C39.9904 21.0621 39.3274 21.7085 38.5067 21.7179H31.6978C29.7096 21.7439 27.971 20.4167 27.52 18.5286C27.2942 17.3566 27.6112 16.1471 28.3861 15.2244C29.1611 14.3017 30.3147 13.7601 31.5378 13.7448H38.5067ZM32.4978 16.0847H31.84C31.4362 16.0801 31.0472 16.2333 30.76 16.5101C30.4727 16.7869 30.3111 17.1643 30.3111 17.558C30.3111 18.3841 30.9928 19.0565 31.84 19.066H32.4978C33.3422 19.066 34.0267 18.3986 34.0267 17.5753C34.0267 16.7521 33.3422 16.0847 32.4978 16.0847ZM20.7644 7.78238H9.47556C8.63807 7.78232 7.95641 8.43919 7.94667 9.25566C7.94667 10.0817 8.62831 10.7541 9.47556 10.7636H20.7644C21.6088 10.7636 22.2933 10.0962 22.2933 9.27299C22.2933 8.44975 21.6088 7.78238 20.7644 7.78238Z" fill="#808080"/>
+                                                      </svg>
+                                                      <span>{{ $t('my_earning', $store.state.locale) }}</span>
+                                                  </template>
+                                                  <div class="my-earning">
+                                                      <div class="my-earning--dashboard">
+                                                          <div class="my-earning--dashboard--content">
+                                                              <h4>{{ $t('lifetime_earning', $store.state.locale) }}</h4>
+                                                              <h2>{{ total_earn }} Taka</h2>
+                                                          </div>
+                                                          <div class="my-earning--dashboard--content">
+                                                              <h4>{{ $t('amount_received', $store.state.locale) }}</h4>
+                                                              <h2>{{ payable_amount }} Taka</h2>
+                                                              <a href="javascript:void(0)" @click="requestModalShow = true; withdrawAmount = payable_amount" class="bg-secondery d-block text-center primary-text w-full primary-text-shadow gil-bold primary-text-hover py-2">
+                                                                  <span>{{ $t('withdraw_request', $store.state.locale) }}</span>
+                                                              </a>
+                                                          </div>
+                                                      </div>
+                                                  <!-- Extend modal -->
+                                                  <div v-if="requestModalShow">
+                                                      <transition name="modal">
+                                                      <div class="modal-mask order-details-extend-modal position-fixed top-0 left-0 h-100 w-full d-flex align-items-center justify-content-center z-index-9">
+                                                          <div class="modal-wrapper">
+                                                          <div class="modal-dialog modal-dialog-centered w-328" role="document">
+                                                              <div class="modal-content bg-pattens-blue border-2 border-secondery p-a-4 br-0">
+                                                              <button type="button" class="close position-absolute right-10 top-10 w-fit" data-dismiss="modal" aria-label="Close">
+                                                                  <svg aria-hidden="true" @click="requestModalShow = false" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                  <path d="M16.2427 6.34315L12.0001 10.5858L7.75744 6.34315L6.34323 7.75736L10.5859 12L6.34323 16.2426L7.75744 17.6569L12.0001 13.4142L16.2427 17.6569L17.6569 16.2426L13.4143 12L17.6569 7.75736L16.2427 6.34315Z" fill="#0B0F18"/>
+                                                                  <rect x="0.5" y="0.5" width="23" height="23" rx="11.5" stroke="#0B0F18"/>
+                                                                  </svg>
+                                                              </button>
+                                                              <div class="modal-body-content">
+                                                                  <div>
+                                                                      <div class="border-0">
+                                                                      <div class="d-flex mb-4">
+                                                                          <p class="primary-text gil-medium mb-0">{{ $t('withdraw_request', $store.state.locale) }}:</p>
+                                                                      </div>
+                                                                      <div class="d-flex align-items-center justify-content-between mt-4">
+                                                                          <p class="text-light-gray gil-medium mb-0">{{ $t('amount', $store.state.locale) }} :</p>
+                                                                      </div>
+                                                                      <div class="d-flex align-items-center justify-content-between mt-4">
+                                                                          <input type="number" min="100" max="5000" class="form-control bg-game-details focus-game-details border-half border-secondery-imp no-default-arrow br-0 shadow-none cursor-pointer text-white gil-medium" v-model="withdrawAmount" />
+                                                                      </div>
+                                                                      </div>
+                                                                  </div>
 
-                                                                    <div class="d-flex justify-content-center mt-5">
-                                                                        <a href="javascript:void(0)" @click.prevent="submitWithdraw" :disabled="withdrawLoading" class="bg-secondery d-block text-center primary-text w-full primary-text-shadow gil-bold primary-text-hover py-2">
-                                                                        <span> {{ $t('submit', $store.state.locale) }} <i v-if="withdrawLoading" class="spinner-border spinner-border-sm"></i></span>
-                                                                        </a>
-                                                                    </div>
-                                                                </div>
-                                                                </div>
-                                                            </div>
-                                                            </div>
-                                                        </div>
-                                                        </transition>
-                                                    </div>
-                                                        <!-- payment history -->
-                                                        <div class="my-earning--payment-history">
-                                                            <h4 class="my-earning--payment-history--heading">{{ $t('payment_history', $store.state.locale) }}</h4>
-                                                            <div class="table-responsive" v-if="transactions.length">
-                                                                <table class="table my-earning--payment-history--table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                        <th scope="col">{{ $t('transaction_id', $store.state.locale) }}</th>
-                                                                        <th scope="col">{{ $t('date', $store.state.locale) }}</th>
-                                                                        <th scope="col">{{ $t('withdrawal_amount', $store.state.locale) }}</th>
-                                                                        <th scope="col">{{ $t('withdrawal_method', $store.state.locale) }}</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr v-for="(item, index) in transactions" :key="index">
-                                                                            <td>{{ item.transaction_id }}</td>
-                                                                            <td>{{ item.create }}</td>
-                                                                            <td>{{ Math.ceil(item.amount) }} Taka</td>
-                                                                            <td>{{ item.payment_type }}</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                            <span class="text-center d-block mt-a-18" v-else>{{ $t('no_trans_found', $store.state.locale) }}</span>
-                                                        </div>
-                                                    </div>
-                                               </b-tab>
-                                               <!-- Refer friend -->
-                                                <b-tab @click="changeTabs(5)" class="text-black" title="Tab 6">
-                                                    <!-- tabs icon -->
-                                                    <template #title>
-                                                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M15.754 24.912L15.9922 24.9121L16.5201 24.9135C21.004 24.9375 31.508 25.3451 31.508 32.274C31.508 38.6982 22.8812 39.5566 16.1708 39.589L14.9879 39.5885C10.504 39.5645 0 39.1571 0 32.23C0 25.67 8.99 24.912 15.754 24.912ZM15.754 27.912C7.292 27.912 3 29.366 3 32.23C3 35.122 7.292 36.59 15.754 36.59C24.216 36.59 28.508 35.136 28.508 32.274C28.508 29.378 24.216 27.912 15.754 27.912ZM34.4082 11.8374C35.2362 11.8374 35.9082 12.5094 35.9082 13.3374L35.908 15.846L38.5 15.8476C39.328 15.8476 40 16.5196 40 17.3476C40 18.1756 39.328 18.8476 38.5 18.8476L35.908 18.846L35.9082 21.3594C35.9082 22.1874 35.2362 22.8594 34.4082 22.8594C33.5802 22.8594 32.9082 22.1874 32.9082 21.3594L32.908 18.846L30.32 18.8476C29.492 18.8476 28.82 18.1756 28.82 17.3476C28.82 16.5196 29.492 15.8476 30.32 15.8476L32.908 15.846L32.9082 13.3374C32.9082 12.5094 33.5802 11.8374 34.4082 11.8374ZM15.754 0C21.62 0 26.39 4.772 26.39 10.636C26.39 16.5 21.62 21.272 15.754 21.272H15.692C12.854 21.262 10.194 20.148 8.2 18.14C6.204 16.13 5.11 13.462 5.11993 10.63C5.11993 4.772 9.89 0 15.754 0ZM15.754 3C11.546 3 8.11994 6.426 8.11994 10.636C8.112 12.674 8.896 14.584 10.326 16.026C11.758 17.466 13.666 18.264 15.698 18.272L15.754 19.754V18.272C19.964 18.272 23.39 14.846 23.39 10.636C23.39 6.426 19.964 3 15.754 3Z" fill="#808080"/>
-                                                        </svg>
-                                                        <span>{{ $t('refer_friend', $store.state.locale) }}</span>
-                                                    </template>
-                                                    <div class="refer-friend">
-                                                        <div class="refer-friend--link">
-                                                            <p>{{ $t('refer_link', $store.state.locale) }}</p>
-                                                            <div class="refer-friend--link--input-group d-flex">
-                                                                <input type="text" class="refer-friend--link--input-group--input" :value="user.referral_url" v-if="user.referral_url" readonly>
-                                                                <div class="refer-friend--link--input-group--append"
-                                                                    v-clipboard:copy="user.referral_url"
-                                                                    v-clipboard:success="onCopy"
-                                                                    v-clipboard:error="onError">
-                                                                    <span>{{ $t('copy_link', $store.state.locale) }}</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <!-- refer earning -->
-                                                        <div class="my-earning--dashboard">
-                                                            <div class="my-earning--dashboard--content">
-                                                                <h4>{{ $t('Used_referral', $store.state.locale) }}</h4>
-                                                                <h2>{{ walletTotalSpend }} Taka</h2>
-                                                            </div>
-                                                            <div class="my-earning--dashboard--content">
-                                                                <h4>{{ $t('usable_amount', $store.state.locale) }}</h4>
-                                                                <h2>{{ walletUsableAmount }} Taka</h2>
-                                                            </div>
-                                                        </div>
-                                                        <!-- refer amount -->
-                                                        <div class="d-flex flex-column flex-sm-row text-center text-sm-left align-items-center justify-content-between">
-                                                            <h6 class="mr-4 gray-text">{{ $t('want_to_earn', $store.state.locale) }}</h6>
-                                                            <router-link to="/games" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('rent_games', $store.state.locale) }}</div></router-link>
-                                                        </div>
-                                                        <!-- refer history -->
-                                                        <div class="refer-history">
-                                                            <h6 class="mr-4 gray-text">{{ $t('referral_history', $store.state.locale) }}</h6>
-                                                            <div class="table-responsive" v-if="walletHistory.length">
-                                                                <table class="table my-earning--payment-history--table">
-                                                                    <thead>
-                                                                        <tr>
-                                                                        <th scope="col">{{ $t('date', $store.state.locale) }}</th>
-                                                                        <th scope="col">{{ $t('name', $store.state.locale) }}</th>
-                                                                        <th scope="col">{{ $t('email', $store.state.locale) }} {{ $t('address', $store.state.locale) }}</th>
-                                                                        <th scope="col">{{ $t('earned', $store.state.locale) }}</th>
-                                                                        </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <tr v-for="(item, index) in walletHistory" :key="index">
-                                                                            <td>{{ formattedDate(item.created_at) }}</td>
-                                                                            <td>{{ item.referred_user ? item.referred_user.name :'N/A' }}</td>
-                                                                            <td>{{ item.referred_user ? item.referred_user.email :  'N/A' }}</td>
-                                                                            <td>{{ item.amount }}</td>
-                                                                        </tr>
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
-                                                            <span class="text-center d-block mt-a-18" v-else>{{ $t('no_referral_history', $store.state.locale) }}</span>
-                                                        </div>
-                                                    </div>
-                                                </b-tab>
-                                                <!-- Rating -->
-                                                <b-tab @click="changeTabs(6)" class="text-black" title="Tab 7">
+                                                                  <div class="d-flex justify-content-center mt-5">
+                                                                      <a href="javascript:void(0)" @click.prevent="submitWithdraw" :disabled="withdrawLoading" class="bg-secondery d-block text-center primary-text w-full primary-text-shadow gil-bold primary-text-hover py-2">
+                                                                      <span> {{ $t('submit', $store.state.locale) }} <i v-if="withdrawLoading" class="spinner-border spinner-border-sm"></i></span>
+                                                                      </a>
+                                                                  </div>
+                                                              </div>
+                                                              </div>
+                                                          </div>
+                                                          </div>
+                                                      </div>
+                                                      </transition>
+                                                  </div>
+                                                      <!-- payment history -->
+                                                      <div class="my-earning--payment-history">
+                                                          <h4 class="my-earning--payment-history--heading">{{ $t('payment_history', $store.state.locale) }}</h4>
+                                                          <div class="table-responsive" v-if="transactions.length">
+                                                              <table class="table my-earning--payment-history--table">
+                                                                  <thead>
+                                                                      <tr>
+                                                                      <th scope="col">{{ $t('transaction_id', $store.state.locale) }}</th>
+                                                                      <th scope="col">{{ $t('date', $store.state.locale) }}</th>
+                                                                      <th scope="col">{{ $t('withdrawal_amount', $store.state.locale) }}</th>
+                                                                      <th scope="col">{{ $t('withdrawal_method', $store.state.locale) }}</th>
+                                                                      </tr>
+                                                                  </thead>
+                                                                  <tbody>
+                                                                      <tr v-for="(item, index) in transactions" :key="index">
+                                                                          <td>{{ item.transaction_id }}</td>
+                                                                          <td>{{ item.create }}</td>
+                                                                          <td>{{ Math.ceil(item.amount) }} Taka</td>
+                                                                          <td>{{ item.payment_type }}</td>
+                                                                      </tr>
+                                                                  </tbody>
+                                                              </table>
+                                                          </div>
+                                                          <span class="text-center d-block mt-a-18" v-else>{{ $t('no_trans_found', $store.state.locale) }}</span>
+                                                      </div>
+                                                  </div>
+                                             </b-tab>
+                                             <!-- Refer friend -->
+                                            <b-tab @click="changeTabs(5)" class="text-black" title="Tab 6" :active="tabIndex == 5">
+                                                  <!-- tabs icon -->
+                                                  <template #title>
+                                                      <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                          <path fill-rule="evenodd" clip-rule="evenodd" d="M15.754 24.912L15.9922 24.9121L16.5201 24.9135C21.004 24.9375 31.508 25.3451 31.508 32.274C31.508 38.6982 22.8812 39.5566 16.1708 39.589L14.9879 39.5885C10.504 39.5645 0 39.1571 0 32.23C0 25.67 8.99 24.912 15.754 24.912ZM15.754 27.912C7.292 27.912 3 29.366 3 32.23C3 35.122 7.292 36.59 15.754 36.59C24.216 36.59 28.508 35.136 28.508 32.274C28.508 29.378 24.216 27.912 15.754 27.912ZM34.4082 11.8374C35.2362 11.8374 35.9082 12.5094 35.9082 13.3374L35.908 15.846L38.5 15.8476C39.328 15.8476 40 16.5196 40 17.3476C40 18.1756 39.328 18.8476 38.5 18.8476L35.908 18.846L35.9082 21.3594C35.9082 22.1874 35.2362 22.8594 34.4082 22.8594C33.5802 22.8594 32.9082 22.1874 32.9082 21.3594L32.908 18.846L30.32 18.8476C29.492 18.8476 28.82 18.1756 28.82 17.3476C28.82 16.5196 29.492 15.8476 30.32 15.8476L32.908 15.846L32.9082 13.3374C32.9082 12.5094 33.5802 11.8374 34.4082 11.8374ZM15.754 0C21.62 0 26.39 4.772 26.39 10.636C26.39 16.5 21.62 21.272 15.754 21.272H15.692C12.854 21.262 10.194 20.148 8.2 18.14C6.204 16.13 5.11 13.462 5.11993 10.63C5.11993 4.772 9.89 0 15.754 0ZM15.754 3C11.546 3 8.11994 6.426 8.11994 10.636C8.112 12.674 8.896 14.584 10.326 16.026C11.758 17.466 13.666 18.264 15.698 18.272L15.754 19.754V18.272C19.964 18.272 23.39 14.846 23.39 10.636C23.39 6.426 19.964 3 15.754 3Z" fill="#808080"/>
+                                                      </svg>
+                                                      <span>{{ $t('refer_friend', $store.state.locale) }}</span>
+                                                  </template>
+                                                  <div class="refer-friend">
+                                                      <div class="refer-friend--link">
+                                                          <p>{{ $t('refer_link', $store.state.locale) }}</p>
+                                                          <div class="refer-friend--link--input-group d-flex">
+                                                              <input type="text" class="refer-friend--link--input-group--input" :value="user.referral_url" v-if="user.referral_url" readonly>
+                                                              <div class="refer-friend--link--input-group--append"
+                                                                  v-clipboard:copy="user.referral_url"
+                                                                  v-clipboard:success="onCopy"
+                                                                  v-clipboard:error="onError">
+                                                                  <span>{{ $t('copy_link', $store.state.locale) }}</span>
+                                                              </div>
+                                                          </div>
+                                                      </div>
+                                                      <!-- refer earning -->
+                                                      <div class="my-earning--dashboard">
+                                                          <div class="my-earning--dashboard--content">
+                                                              <h4>{{ $t('Used_referral', $store.state.locale) }}</h4>
+                                                              <h2>{{ walletTotalSpend }} Taka</h2>
+                                                          </div>
+                                                          <div class="my-earning--dashboard--content">
+                                                              <h4>{{ $t('usable_amount', $store.state.locale) }}</h4>
+                                                              <h2>{{ walletUsableAmount }} Taka</h2>
+                                                          </div>
+                                                      </div>
+                                                      <!-- refer amount -->
+                                                      <div class="d-flex flex-column flex-sm-row text-center text-sm-left align-items-center justify-content-between">
+                                                          <h6 class="mr-4 gray-text">{{ $t('want_to_earn', $store.state.locale) }}</h6>
+                                                          <router-link to="/games" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('rent_games', $store.state.locale) }}</div></router-link>
+                                                      </div>
+                                                      <!-- refer history -->
+                                                      <div class="refer-history">
+                                                          <h6 class="mr-4 gray-text">{{ $t('referral_history', $store.state.locale) }}</h6>
+                                                          <div class="table-responsive" v-if="walletHistory.length">
+                                                              <table class="table my-earning--payment-history--table">
+                                                                  <thead>
+                                                                      <tr>
+                                                                      <th scope="col">{{ $t('date', $store.state.locale) }}</th>
+                                                                      <th scope="col">{{ $t('name', $store.state.locale) }}</th>
+                                                                      <th scope="col">{{ $t('email', $store.state.locale) }} {{ $t('address', $store.state.locale) }}</th>
+                                                                      <th scope="col">{{ $t('earned', $store.state.locale) }}</th>
+                                                                      </tr>
+                                                                  </thead>
+                                                                  <tbody>
+                                                                      <tr v-for="(item, index) in walletHistory" :key="index">
+                                                                          <td>{{ formattedDate(item.created_at) }}</td>
+                                                                          <td>{{ item.referred_user ? item.referred_user.name :'N/A' }}</td>
+                                                                          <td>{{ item.referred_user ? item.referred_user.email :  'N/A' }}</td>
+                                                                          <td>{{ item.amount }}</td>
+                                                                      </tr>
+                                                                  </tbody>
+                                                              </table>
+                                                          </div>
+                                                          <span class="text-center d-block mt-a-18" v-else>{{ $t('no_referral_history', $store.state.locale) }}</span>
+                                                      </div>
+                                                  </div>
+                                              </b-tab>
+                                              <!-- Rating -->
+                                            <b-tab @click="changeTabs(6)" class="text-black" title="Tab 7" :active="tabIndex == 6">
                                                       <!-- tabs icon -->
                                                     <template #title>
                                                         <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -2110,15 +2110,7 @@
                         this.fromCart = false;
                         this.$router.push('/cart');
                     } else {
-                        setTimeout(function(){
-                            // window.location.reload();
-                            $('#v-pills-edit-profile-tab').removeClass('active');
-                            $('#v-pills-edit-profile').removeClass('active');
-                            $('#v-pills-edit-profile').removeClass('show');
-                            $('#v-pills-overview-tab').addClass('active');
-                            $('#v-pills-overview').addClass('active');
-                            $('#v-pills-overview').addClass('show');
-                        }, 1000);
+                        this.tabIndex = 0;
                     }
 
                 });
@@ -2373,29 +2365,10 @@
                   }
 
                   this.$api.post('rents', uploadInfo, config)
-                      .then(response => {
+                      .then(() => {
                         this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
-                        setTimeout(function () {
-                          // this.rentData.game = '';
-                          // this.rentData.max_week = 1;
-                          // this.rentData.platform = null;
-                          // this.rentData.disk_condition = '';
-                          // this.rentData.disk_image = '';
-                          // this.rentData.cover_image = '';
-                          // this.rentData.checkpoint = {};
-                          // this.rentData.disk_type = '';
-                          // this.rentData.gameUserId = '';
-                          // this.rentData.gamePassword = '';
-                          // this.activeRentOffers();
-
-                          window.location.reload();
-                          // $('#v-pills-post-rent-tab').removeClass('active');
-                          // $('#v-pills-post-rent').removeClass('active');
-                          // $('#v-pills-post-rent').removeClass('show');
-                          // $('#v-pills-dashboard-tab').addClass('active');
-                          // $('#v-pills-dashboard').addClass('active');
-                          // $('#v-pills-dashboard').addClass('show');
-                        }, 2000);
+                        this.rentCheck();
+                        this.tabIndex = 1;
                       });
                 })
               })
@@ -2560,58 +2533,17 @@
                 });
             },
             rentPostTab() {
-                $('#v-pills-overview-tab').removeClass('active');
-                $('#v-pills-overview').removeClass('active');
-                $('#v-pills-overview').removeClass('show');
-                $('#v-pills-post-rent-tab').addClass('active');
-                $('#v-pills-post-rent').addClass('show');
-                $('#v-pills-post-rent').addClass('active');
-                $('#v-pills-edit-profile-tab').removeClass('active');
-                $('#v-pills-edit-profile').removeClass('active');
-                $('#v-pills-edit-profile').removeClass('show');
-                $('#v-pills-dashboard-tab').removeClass('active');
-                $('#v-pills-dashboard').removeClass('active');
-                $('#v-pills-dashboard').removeClass('show');
-                $('#v-pills-my-earning-tab').removeClass('active');
-                $('#v-pills-my-earning').removeClass('active');
-                $('#v-pills-my-earning').removeClass('show');
-                $('#v-pills-refer-tab').removeClass('active');
-                $('#v-pills-refer').removeClass('active');
-                $('#v-pills-refer').removeClass('show');
-                $('#v-pills-rating-tab').removeClass('active');
-                $('#v-pills-rating').removeClass('active');
-                $('#v-pills-rating').removeClass('show');
+              this.tabIndex = 1;
             },
             editProfileTab () {
-                $('#v-pills-edit-profile-tab').addClass('active');
-                $('#v-pills-edit-profile').addClass('active');
-                $('#v-pills-edit-profile').addClass('show');
-                $('#v-pills-overview-tab').removeClass('active');
-                $('#v-pills-overview').removeClass('active');
-                $('#v-pills-overview').removeClass('show');
-                $('#v-pills-post-rent-tab').removeClass('active');
-                $('#v-pills-post-rent').removeClass('show');
-                $('#v-pills-post-rent').removeClass('active');
-                $('#v-pills-dashboard-tab').removeClass('active');
-                $('#v-pills-dashboard').removeClass('active');
-                $('#v-pills-dashboard').removeClass('show');
-                $('#v-pills-my-earning-tab').removeClass('active');
-                $('#v-pills-my-earning').removeClass('show');
-                $('#v-pills-my-earning').removeClass('show');
-                $('#v-pills-refer-tab').removeClass('active');
-                $('#v-pills-refer').removeClass('active');
-                $('#v-pills-refer').removeClass('show');
-                $('#v-pills-rating-tab').removeClass('active');
-                $('#v-pills-rating').removeClass('active');
-                $('#v-pills-rating').removeClass('show');
-              
+              this.tabIndex = 3;
             },
               changeTabs(tabIndex) {
                 this.$store.dispatch('setTabIndex', tabIndex)
             }
         },
         created() {
-            window.scrollTo(0,0);
+          window.scrollTo(0,0);
           this.$store.commit('setIsProfileUpdateing', false);
             let config = {
               headers: {
@@ -2627,12 +2559,15 @@
                 this.ratingCheck();
             });
             this.$root.$on('rentGames', () => {
+              this.tabIndex = 1 //dashboard index number
               this.onRentedGames();
             });
             this.$root.$on('sellPostDashboard', () => {
+              this.tabIndex = 1 //dashboard index number
               this.onSellPost();
             });
             this.$root.$on('rentPost', () => {
+              this.tabIndex = 1 //dashboard index number
               this.rentPostTab();
             });
             this.$root.$on('profileEdit', () => {
@@ -2640,28 +2575,7 @@
                 this.fromCart = true;
               });
             this.$root.$on('userRating', () => {
-                $('#v-pills-rating-tab').addClass('active');
-                $('#v-pills-rating').addClass('active');
-                $('#v-pills-rating').addClass('show');
-                $('#v-pills-edit-profile-tab').removeClass('active');
-                $('#v-pills-edit-profile').removeClass('active');
-                $('#v-pills-edit-profile').removeClass('show');
-                $('#v-pills-overview-tab').removeClass('active');
-                $('#v-pills-overview').removeClass('active');
-                $('#v-pills-overview').removeClass('show');
-                $('#v-pills-post-rent-tab').removeClass('active');
-                $('#v-pills-post-rent').removeClass('show');
-                $('#v-pills-post-rent').removeClass('active');
-                $('#v-pills-dashboard-tab').removeClass('active');
-                $('#v-pills-dashboard').removeClass('active');
-                $('#v-pills-dashboard').removeClass('show');
-                $('#v-pills-my-earning-tab').removeClass('active');
-                $('#v-pills-my-earning').removeClass('show');
-                $('#v-pills-my-earning').removeClass('show');
-                $('#v-pills-refer-tab').removeClass('active');
-                $('#v-pills-refer').removeClass('active');
-                $('#v-pills-refer').removeClass('show');
-
+                this.tabIndex = 6;
             });
             this.$api.get('cover-image').then(response => {
                 this.coverImages = response.data.data;

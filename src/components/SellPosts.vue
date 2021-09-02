@@ -76,16 +76,16 @@
                   <!-- location category -->
                   <div class="location-filter">
                     <div class="mb-4">
-                      <v-select :options="options_division" label="name" :reduce="option => option.id" v-model="division_id" ></v-select>
+                      <v-select :options="divisions" @input="setDistrict" label="name" :reduce="option => option.id" v-model="division_id" ></v-select>
                     </div>
-                    <div class="mb-4">
-                      <v-select :options="options_district" label="name" :reduce="option => option.id" v-model="district_id" ></v-select>
+                    <div class="mb-4" v-if="division_id">
+                      <v-select :options="selectedDistricts" label="name" @input="setThana" :reduce="option => option.id" v-model="district_id" ></v-select>
                     </div>
-                     <div class="mb-4">
-                      <v-select :options="options_thana" label="name" :reduce="option => option.id" v-model="thana_id" ></v-select>
+                     <div class="mb-4" v-if="district_id">
+                      <v-select :options="selectedThanas" label="name" :reduce="option => option.id" v-model="thana_id" ></v-select>
                     </div>
                     <div class="mb-4 text-right">
-                      <a href="#" class=" btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative">Search</a>
+                      <a href="#" @click.prevent="setLocation" class=" btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative">Search</a>
                     </div>
                   </div>
                     <!-- Game Type -->
@@ -361,32 +361,14 @@ export default {
   components: {SlidingPagination, carousel, VueSlider},
   data() {
     return {
-      division_id:'',
-      options_division: [ 
-       { "id": 1, "name": "Bangladesh"},
-       { "id": 2, "name": "Nepal"},
-      ],
-
-      district_id:'',
-      options_district: [ 
-       { "id": 1, "name": "Dhaka"},
-       { "id": 2, "name": "Chittagong"},
-       { "id": 3, "name": "Khulna"},
-       { "id": 4, "name": "Rajshahi"},
-       { "id": 5, "name": "Barisal"},
-       { "id": 6, "name": "Rangpur"},
-      ],
-
-      thana_id:'',
-      options_thana: [ 
-       { "id": 1, "name": "Tongibari"},
-       { "id": 2, "name": "Chittagong"},
-       { "id": 3, "name": "Khulna"},
-       { "id": 4, "name": "Rajshahi"},
-       { "id": 5, "name": "Barisal"},
-       { "id": 6, "name": "Rangpur"},
-      ],
-      
+      thanas: [],
+      selectedDistricts: [],
+      selectedThanas: [],
+      divisions: [],
+      districts: [],
+      division_id: null,
+      district_id: null,
+      thana_id: null,
       priceRange: [0, 100000],
       searchKey: '',
       products: [],
@@ -436,6 +418,22 @@ export default {
     }
   },
   methods: {
+    setLocation(){
+      this.getSellPosts();
+    },
+    setDistrict() {
+      if (this.division_id == null){
+        this.district_id = null;
+        this.thana_id = null;
+        return;
+      }
+      this.selectedDistricts = this.districts.filter(district => district.division_id === this.division_id);
+      console.log(this.district_id)
+      console.log(this.division_id)
+    },
+    setThana() {
+      this.selectedThanas = this.thanas.filter(thana => thana.district_id === this.district_id);
+    },
     getValue() {
       this.getSellPosts();
     },
@@ -573,7 +571,20 @@ export default {
         this.searchKey = '';
         this.query = '';
       }
-      this.$api.get('sell-posts?include=subcategory&page=' + page_no + '&subcategory=' + this.queryCategories + '&ascPrice=' + this.ascByPrice + '&descPrice=' + this.descByPrice + '&ascDate=' + this.ascByDate + '&descDate=' + this.descByDate + '&sortNew=' + this.sortNew + '&sortUsed=' + this.sortUsed + '&priceRange=' + this.priceRange  + '&search=' + this.searchKey).then(response => {
+      this.$api.get('sell-posts?include=subcategory&page=' + page_no +
+          '&subcategory=' + this.queryCategories +
+          '&ascPrice=' + this.ascByPrice +
+          '&descPrice=' + this.descByPrice +
+          '&ascDate=' + this.ascByDate +
+          '&descDate=' + this.descByDate +
+          '&sortNew=' + this.sortNew +
+          '&sortUsed=' + this.sortUsed +
+          '&priceRange=' + this.priceRange  +
+          '&search=' + this.searchKey +
+          '&thana_id=' + this.thana_id +
+          '&district_id=' + this.district_id +
+          '&division_id=' + this.division_id
+      ).then(response => {
         this.posts = response.data.data;
         this.allPosts = this.posts;
         this.pagination = response.data.meta.pagination;
@@ -643,6 +654,15 @@ export default {
       this.getSellPosts();
     })
     this.getUrlParams();
+    this.$api.get('division-list').then (response =>{
+      this.divisions = response.data.data
+    });
+    this.$api.get('district-list').then (response =>{
+      this.districts = response.data.data
+    });
+    this.$api.get('thana-list').then (response =>{
+      this.thanas = response.data.data
+    });
   }
 }
 

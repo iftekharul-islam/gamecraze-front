@@ -422,16 +422,12 @@ export default {
       this.getSellPosts();
     },
     setDistrict() {
-      if (this.division_id == null){
-        this.district_id = null;
-        this.thana_id = null;
-        return;
-      }
+      this.district_id = null;
+      this.thana_id = null;
       this.selectedDistricts = this.districts.filter(district => district.division_id === this.division_id);
-      console.log(this.district_id)
-      console.log(this.division_id)
     },
     setThana() {
+      this.thana_id = null;
       this.selectedThanas = this.thanas.filter(thana => thana.district_id === this.district_id);
     },
     getValue() {

@@ -997,7 +997,7 @@
 
                                                                         <div class="col-sm-9 edit--input">
                                                                             <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
-                                                                                <input @keypress="isValidString($event)" type="text" class="form-control" id="first_name" v-model="form.name">
+                                                                                <input @keypress="isValidNameString($event)" type="text" class="form-control" id="first_name" v-model="form.name">
                                                                                 <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                                             </ValidationProvider>
                                                                         </div>
@@ -1007,7 +1007,7 @@
                                                                     <label for="last_name" class="col-sm-3 col-form-label">{{ $t('last_name', $store.state.locale) }} :</label>
                                                                     <div class="col-sm-9 edit--input">
                                                                         <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
-                                                                            <input @keypress="isValidString($event)" type="text" class="form-control" id="last_name" v-model="form.last_name">
+                                                                            <input @keypress="isValidLastNameString($event)" type="text" class="form-control" id="last_name" v-model="form.last_name">
                                                                             <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                                                         </ValidationProvider>
                                                                     </div>
@@ -2141,13 +2141,20 @@
                 return true;
               }
             },
-            isValidString: function(evt) {
-                evt = (evt) ? evt : window.event;
-                var charCode = (evt.which) ? evt.which : evt.keyCode;
-                if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0)){
-                    event.preventDefault();
-                }
-            },
+          isValidNameString: function(evt) {
+            evt = (evt) ? evt : window.event;
+            let charCode = (evt.which) ? evt.which : evt.keyCode;
+            if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0) || this.form.name.length > 12){
+              evt.preventDefault();
+            }
+          },
+          isValidLastNameString: function(evt) {
+            evt = (evt) ? evt : window.event;
+            let charCode = (evt.which) ? evt.which : evt.keyCode;
+            if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0) || this.form.last_name.length > 12){
+              evt.preventDefault();
+            }
+          },
             onIdChange(event) {
                 let fileReader = new FileReader();
                 if (event.srcElement.files.length > 0) {

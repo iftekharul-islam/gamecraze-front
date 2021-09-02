@@ -27,8 +27,8 @@
                                         <div class="form-group col-md-6">
                                            
                                             <label for="firstName">{{ $t('first_name', $store.state.locale) }}</label>
-                                            <ValidationProvider name="firstName" rules="required|max:12" v-slot="{ errors }">
-                                                <input type="text" class="form-control" id="firstName" value="" v-model="form.name">
+                                            <ValidationProvider name="firstName" rules="required" v-slot="{ errors }">
+                                                <input @keypress="isValidNameString($event)"  type="text" class="form-control" id="firstName" value="" v-model="form.name">
                                                 <span class="error-message">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
@@ -36,8 +36,8 @@
                                             <div class="form-group col-md-6">
                                             
                                                 <label for="LastName">{{ $t('last_name', $store.state.locale) }}</label>
-                                                <ValidationProvider name="LastName" rules="required|max:12" v-slot="{ errors }">
-                                                    <input type="text" class="form-control" id="LastName" value="" v-model="form.lastName">
+                                                <ValidationProvider name="LastName" rules="required" v-slot="{ errors }">
+                                                    <input @keypress="isValidLastNameString($event)"  type="text" class="form-control" id="LastName" value="" v-model="form.lastName">
                                                     <span class="error-message">{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                             </div>
@@ -133,6 +133,20 @@
             }
         },
         methods: {
+          isValidNameString: function(evt) {
+            evt = (evt) ? evt : window.event;
+            let charCode = (evt.which) ? evt.which : evt.keyCode;
+            if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0) || this.form.name.length > 12){
+              evt.preventDefault();
+            }
+          },
+          isValidLastNameString: function(evt) {
+            evt = (evt) ? evt : window.event;
+            let charCode = (evt.which) ? evt.which : evt.keyCode;
+            if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0) || this.form.last_name.length > 12){
+              evt.preventDefault();
+            }
+          },
           isNumber: function(evt) {
             evt = (evt) ? evt : window.event;
             var charCode = (evt.which) ? evt.which : evt.keyCode;

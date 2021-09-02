@@ -23,16 +23,16 @@
                                         <div class="form-group col-md-6">
 
                                             <label for="firstName">{{ $t('first_name', $store.state.locale) }}</label>
-                                            <ValidationProvider name="first name" rules="required|max:12" v-slot="{ errors }">
-                                                <input @keypress="isValidString($event)" type="text" class="form-control" id="firstName" value="" v-model="form.name" placeholder="First Name">
+                                            <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
+                                                <input @keypress="isValidNameString($event)" type="text" class="form-control" id="firstName" value="" v-model="form.name" placeholder="First Name">
                                                 <span v-if="errors.length" class="error-message first-name-error">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
                                         <!-- Last Name -->
                                         <div class="form-group col-md-6">
                                             <label for="LastName">{{ $t('last_name', $store.state.locale) }}</label>
-                                            <ValidationProvider name="last name" rules="required|max:12" v-slot="{ errors }">
-                                                <input @keypress="isValidString($event)" type="text" class="form-control" id="LastName" value="" v-model="form.lastName" placeholder="Last Name">
+                                            <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
+                                                <input @keypress="isValidLastNameString($event)" type="text" class="form-control" id="LastName" value="" v-model="form.lastName" placeholder="Last Name">
                                                 <span v-if="errors.length" class="error-message last-name-error">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
@@ -130,12 +130,19 @@
                     return true;
                 }
             },
-            isValidString: function(evt) {
-                evt = (evt) ? evt : window.event;
-                var charCode = (evt.which) ? evt.which : evt.keyCode;
-                if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0)){
-                    event.preventDefault();
-                }
+            isValidNameString: function(evt) {
+              evt = (evt) ? evt : window.event;
+              let charCode = (evt.which) ? evt.which : evt.keyCode;
+              if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0) || this.form.name.length > 12){
+                evt.preventDefault();
+              }
+            },
+            isValidLastNameString: function(evt) {
+              evt = (evt) ? evt : window.event;
+              let charCode = (evt.which) ? evt.which : evt.keyCode;
+              if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0) || this.form.lastName.length > 12){
+                evt.preventDefault();
+              }
             },
             onSubmit: function () {
                 this.$store.dispatch('emailVerify', this.form)

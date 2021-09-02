@@ -137,7 +137,7 @@
             isValidNameString: function(evt) {
                 evt = (evt) ? evt : window.event;
                 let charCode = (evt.which) ? evt.which : evt.keyCode;
-                if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0) || this.form.name.length > 12 || this.form.last_name.length > 12){
+                if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0) || this.form.name.length > 12){
                   evt.preventDefault();
                 }
             },

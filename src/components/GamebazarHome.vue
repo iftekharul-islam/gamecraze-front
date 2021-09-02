@@ -403,6 +403,10 @@ export default {
   methods: {
     routeOnSellPost(){
       var user = this.$store.state.user;
+      if (!user){
+        this.$router.push('/login')
+        return
+      }
       if (user.name && user.phone_number && user.identification_number && user.birth_date) {
         this.$router.push('/create-sell-post')
       }

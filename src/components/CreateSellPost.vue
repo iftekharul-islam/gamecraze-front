@@ -222,7 +222,7 @@
                       <span class="text-step-error mt-2 d-inline-block" v-if="errorLocation">Please select a location</span>
                     </div>
                     <div class="group mb-a-6">
-                      <label class="mb-3 w-100">Area</label>
+                      <label class="mb-3 w-100">{{ $t('area', $store.state.locale) }}</label>
                       <ValidationProvider name="area" rules="required" v-slot="{ errors, classes }">
                         <input type="text" :class="classes" v-model="area" class="px-3 bg-step-form-input h-40 border-1 border-secondery-opa-25 text-white no-focus br-4">
                         <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
@@ -385,15 +385,14 @@
         this.threeActive = false;
       },
       finalSubmit() {
-        if(this.thana_id == null){
-          this.errorLocation = true;
-          return;
-        }
         this.submitLoading = true;
         this.$refs.sellForm2.validate().then(success => {
           if (success) {
             this.postSubmit()
             return
+          }
+          if(this.thana_id == null){
+            this.errorLocation = true;
           }
           this.submitLoading = false;
           return false;
@@ -527,7 +526,7 @@
                 if (response.status == 200) {
                   this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
                   this.submitLoading = false;
-                  this.$router.push('/profile').then(res => {
+                  this.$router.push('/profile').then(() => {
                     this.$root.$emit('sellPostDashboard');
                   });
                 }

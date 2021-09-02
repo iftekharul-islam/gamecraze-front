@@ -148,14 +148,6 @@
                                                                     <td v-if="user.address">{{ user.address.address }}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                <td scope="row">{{ $t('city', $store.state.locale) }}:</td>
-                                                                    <td v-if="user.address">{{ user.address.city }}</td>
-                                                                </tr>
-                                                                <tr>
-                                                                <td scope="row">{{ $t('post_code', $store.state.locale) }} :</td>
-                                                                    <td v-if="user.address">{{ user.address.post_code }}</td>
-                                                                </tr>
-                                                                <tr>
                                                                 <td scope="row">{{ $t('nid', $store.state.locale) }} :</td>
                                                                     <td>{{ user.identification_number }}</td>
                                                                 </tr>
@@ -1022,7 +1014,7 @@
                                                                 </div>
 
                                                                 <div class="form-group row">
-                                                                    <label for="gender" class="col-sm-3 col-form-label">{{ $t('gender', $store.state.locale) }} :</label>
+                                                                    <label class="col-sm-3 col-form-label">{{ $t('gender', $store.state.locale) }} :</label>
                                                                     <div class="col-sm-9 edit--input">
                                                                         <ValidationProvider name="gender" rules="required" v-slot="{ errors }">
 
@@ -1080,24 +1072,24 @@
                                                                         </ValidationProvider>
                                                                     </div>
                                                                 </div>
-                                                                <div class="form-group row">
-                                                                    <label for="city" class="col-sm-3 col-form-label">{{ $t('city', $store.state.locale) }} :</label>
-                                                                    <div class="col-sm-9 edit--input">
-                                                                        <ValidationProvider name="city" rules="required" v-slot="{ errors }">
-                                                                            <input type="text" class="form-control" id="city" v-model="form.city">
-                                                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                                        </ValidationProvider>
-                                                                    </div>
-                                                                </div>
-                                                                <div class="form-group row">
-                                                                    <label for="postcode" class="col-sm-3 col-form-label">{{ $t('post_code', $store.state.locale) }} :</label>
-                                                                    <div class="col-sm-9 edit--input">
-                                                                        <ValidationProvider name="post code" rules="required" v-slot="{ errors }">
-                                                                            <input type="text" class="form-control" id="postcode" v-model="form.postCode">
-                                                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                                                        </ValidationProvider>
-                                                                    </div>
-                                                                </div>
+<!--                                                                <div class="form-group row">-->
+<!--                                                                    <label for="city" class="col-sm-3 col-form-label">{{ $t('city', $store.state.locale) }} :</label>-->
+<!--                                                                    <div class="col-sm-9 edit&#45;&#45;input">-->
+<!--                                                                        <ValidationProvider name="city" rules="required" v-slot="{ errors }">-->
+<!--                                                                            <input type="text" class="form-control" id="city" v-model="form.city">-->
+<!--                                                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>-->
+<!--                                                                        </ValidationProvider>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
+<!--                                                                <div class="form-group row">-->
+<!--                                                                    <label for="postcode" class="col-sm-3 col-form-label">{{ $t('post_code', $store.state.locale) }} :</label>-->
+<!--                                                                    <div class="col-sm-9 edit&#45;&#45;input">-->
+<!--                                                                        <ValidationProvider name="post code" rules="required" v-slot="{ errors }">-->
+<!--                                                                            <input type="text" class="form-control" id="postcode" v-model="form.postCode">-->
+<!--                                                                            <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>-->
+<!--                                                                        </ValidationProvider>-->
+<!--                                                                    </div>-->
+<!--                                                                </div>-->
                                                                 <div class="form-group row" v-if="nid_verification == 0">
                                                                     <label for="nidno" class="col-sm-3 col-form-label">{{ $t('nid', $store.state.locale) }}:</label>
                                                                     <div class="col-sm-9 edit--input">
@@ -1122,7 +1114,9 @@
                                                                 <div class="form-group row">
                                                                 <div class="offset-md-3 col-md-9 col-xl-8 mt-4 post-rent--input">
                                                                         <button class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative w-100 border-0" :disabled="$store.state.isProfileUpdating">
-                                                                            <div class="mr-2 position-relative">{{ $t('update_profile', $store.state.locale) }} <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm text-dark"></i>  </div>
+                                                                            <div class="mr-2 position-relative">{{ $t('update_profile', $store.state.locale) }}
+                                                                              <i v-if="$store.state.isProfileUpdating" class="spinner-border spinner-border-sm text-dark"></i>
+                                                                            </div>
                                                                             <span></span>
                                                                         </button>
                                                                     </div>
@@ -2111,6 +2105,7 @@
                     }
                     this.$store.dispatch('updateUserDetails', this.form);
                     this.$toaster.success(this.$t('profile_updated', this.$store.state.locale));
+                    this.$store.commit('setIsProfileUpdateing', false);
                     if (this.fromCart) {
                         this.fromCart = false;
                         this.$router.push('/cart');
@@ -2610,6 +2605,7 @@
         },
         created() {
             window.scrollTo(0,0);
+          this.$store.commit('setIsProfileUpdateing', false);
             let config = {
               headers: {
                 'Authorization': 'Bearer ' + this.$store.state.token

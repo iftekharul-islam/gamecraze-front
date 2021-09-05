@@ -4,10 +4,11 @@
     background-size: cover;
     background-position: 50%;
     display: flex;
-    padding-top: 70px;
+    padding-top: 150px;
     height: 820px;
     @include for-max-992 {
         height: 550px;
+        padding-top: 70px;
     }
     @include for-max-768 {
         height: 400px;
@@ -30,12 +31,6 @@
         }
     }
     h6 {
-        margin-bottom: 40px;
-        line-height: 30px;
-        @include for-max-575 {
-            font-weight: 400;
-            font-size: 16px;
-        }
         br {
             @include for-max-575 {
                 display: none;
@@ -69,12 +64,60 @@
 
 .gamehub-heading {
     color: #fff;
-    text-transform: uppercase;
-    font-style: italic;
     font-weight: bold;
     text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
     @include roboto-con;
-    span {
-        color: $secondery;
+    @include for-min-992 {
+        font-size: 48px;
     }
+}
+.bn {
+    .gamehub-heading {
+        line-height: 70px;
+        @include for-min-992 {
+            font-size: 42px;
+        }
+    }
+    .curve-shape {
+        .curve-img {
+            width: 110%;
+            top: -3px;
+            left: -13px;
+            
+        }
+        &.curve-shape-4 {
+            .curve-img {
+                width: 115%;
+                left: -5px;
+            }
+        }
+    }
+}
+.curve-shape {
+    z-index: 2;
+    color: $primary;
+    margin-right: 30px;
+    &.curve-shape-1 {
+        margin-left: 15px;
+    }
+    &.curve-shape-3 {
+        margin-right: 15px;
+    }
+    &.curve-shape-4 {
+        margin-left: 15px;
+    }
+    .curve-img {
+        top: 4px;
+        left: -13px;
+        z-index: -1;
+        height: 55px;
+    }
+}
+.home-banner-text {
+   @include for-min-992 {
+    max-width: 500px;
+    font-size: 20px;
+    line-height: 36px;
+    opacity: .9;
+   }
 }

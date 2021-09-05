@@ -1626,6 +1626,10 @@ p {
   border-radius: 10px;
 }
 
+.br-40 {
+  border-radius: 40px;
+}
+
 .br-50 {
   border-radius: 50%;
 }
@@ -2625,16 +2629,14 @@ table thead tr th {
 }
 
 .section-heading {
-  margin-bottom: 85px;
-  font-size: 32px;
+  margin-bottom: 32px;
+  font-size: 24px;
   font-family: 'Roboto Condensed', sans-serif;
-  font-style: italic;
 }
 
 @media (min-width: 992px) {
   .section-heading {
-    margin-bottom: 85px;
-    font-size: 40px;
+    font-size: 32px;
   }
 }
 
@@ -4883,6 +4885,11 @@ body #hubspot-messages-iframe-container {
   bottom: 68px !important;
 }
 
+.new-badge {
+  top: -8px;
+  left: 60px;
+}
+
 .slider-section {
   background: url(../img/gamehub-bg.png);
   background-repeat: no-repeat;
@@ -4891,13 +4898,14 @@ body #hubspot-messages-iframe-container {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding-top: 70px;
+  padding-top: 150px;
   height: 820px;
 }
 
 @media (max-width: 992px) {
   .slider-section {
     height: 550px;
+    padding-top: 70px;
   }
 }
 
@@ -4936,18 +4944,6 @@ body #hubspot-messages-iframe-container {
   }
 }
 
-.slider-section h6 {
-  margin-bottom: 40px;
-  line-height: 30px;
-}
-
-@media (max-width: 575px) {
-  .slider-section h6 {
-    font-weight: 400;
-    font-size: 16px;
-  }
-}
-
 @media (max-width: 575px) {
   .slider-section h6 br {
     display: none;
@@ -4982,15 +4978,70 @@ body #hubspot-messages-iframe-container {
 
 .gamehub-heading {
   color: #fff;
-  text-transform: uppercase;
-  font-style: italic;
   font-weight: bold;
   text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
   font-family: 'Roboto Condensed', sans-serif;
 }
 
-.gamehub-heading span {
-  color: #FFD715;
+@media (min-width: 992px) {
+  .gamehub-heading {
+    font-size: 48px;
+  }
+}
+
+.bn .gamehub-heading {
+  line-height: 70px;
+}
+
+@media (min-width: 992px) {
+  .bn .gamehub-heading {
+    font-size: 42px;
+  }
+}
+
+.bn .curve-shape .curve-img {
+  width: 110%;
+  top: -3px;
+  left: -13px;
+}
+
+.bn .curve-shape.curve-shape-4 .curve-img {
+  width: 115%;
+  left: -5px;
+}
+
+.curve-shape {
+  z-index: 2;
+  color: #0B0F18;
+  margin-right: 30px;
+}
+
+.curve-shape.curve-shape-1 {
+  margin-left: 15px;
+}
+
+.curve-shape.curve-shape-3 {
+  margin-right: 15px;
+}
+
+.curve-shape.curve-shape-4 {
+  margin-left: 15px;
+}
+
+.curve-shape .curve-img {
+  top: 4px;
+  left: -13px;
+  z-index: -1;
+  height: 55px;
+}
+
+@media (min-width: 992px) {
+  .home-banner-text {
+    max-width: 500px;
+    font-size: 20px;
+    line-height: 36px;
+    opacity: .9;
+  }
 }
 
 .exchange-lend-section {
@@ -5005,98 +5056,49 @@ body #hubspot-messages-iframe-container {
   }
 }
 
-.exchange-lend-section--exchange {
-  background: url(../img/exchange.png);
+.exchange-lend-section__grid {
+  grid-column-gap: 48px;
 }
 
-@media (max-width: 575px) {
-  .exchange-lend-section--exchange {
-    background: url(../img/exchangembl.png);
-  }
+.exchange-lend-section__content {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
 
-.exchange-lend-section--lend {
-  background: url(../img/lend.png);
+.exchange-lend-section__content__img {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
-@media (max-width: 575px) {
-  .exchange-lend-section--lend {
-    background: url(../img/lendmbl.png);
-  }
+.exchange-lend-section__content__img::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(2.78%, #384563), to(rgba(11, 15, 24, 0.7)));
+  background: linear-gradient(180deg, #384563 2.78%, rgba(11, 15, 24, 0.7) 100%);
+  border-radius: 16px;
 }
 
-.exchange-lend-section--exchange, .exchange-lend-section--lend {
-  padding-top: 40px;
-  padding-bottom: 30px;
-  padding-left: 55px;
-  padding-right: 55px;
-  text-align: center;
-  background-repeat: no-repeat;
-  background-size: 100%;
-  min-height: 300px;
+.exchange-lend-section__content__img img {
+  width: 100%;
+  height: 100%;
 }
 
-@media (max-width: 992px) {
-  .exchange-lend-section--exchange, .exchange-lend-section--lend {
-    background-size: 100% 200px;
-  }
-}
-
-@media (max-width: 575px) {
-  .exchange-lend-section--exchange, .exchange-lend-section--lend {
-    background-size: 100% 250px;
-    padding-top: 60px;
-  }
-}
-
-.exchange-lend-section--exchange h3, .exchange-lend-section--lend h3 {
-  font-style: italic;
-  text-transform: uppercase;
-  font-family: 'Roboto Condensed', sans-serif;
-}
-
-.exchange-lend-section--exchange h3 span, .exchange-lend-section--lend h3 span {
-  color: #FFD715;
-}
-
-@media (max-width: 1400px) {
-  .exchange-lend-section--exchange h3, .exchange-lend-section--lend h3 {
-    font-size: 44px;
-  }
-}
-
-@media (max-width: 1199px) {
-  .exchange-lend-section--exchange h3, .exchange-lend-section--lend h3 {
-    font-size: 26px;
-  }
-}
-
-@media (max-width: 992px) {
-  .exchange-lend-section--exchange h3, .exchange-lend-section--lend h3 {
-    font-size: 22px;
-  }
-}
-
-.bn .exchange-lend-section--exchange h3, .bn .exchange-lend-section--lend h3 {
-  font-size: 26px;
-}
-
-@media (min-width: 1200px) {
-  .bn .exchange-lend-section--exchange h3, .bn .exchange-lend-section--lend h3 {
-    font-size: 40px;
-  }
-}
-
-@media (max-width: 992px) {
-  .bn .exchange-lend-section--exchange h3, .bn .exchange-lend-section--lend h3 {
-    font-size: 20px;
-  }
-}
-
-.exchange-lend-section--exchange-btn {
-  margin: auto;
-  margin-top: 30px;
-  text-transform: uppercase;
+.exchange-lend-section__content .btn--collision {
+  margin-top: auto;
 }
 
 .trending-section {
@@ -5119,93 +5121,43 @@ body #hubspot-messages-iframe-container {
 }
 
 .trending-section .item {
-  margin-left: -7px;
-}
-
-@media (max-width: 768px) {
-  .trending-section .item {
-    margin-left: 0;
-  }
+  position: relative;
+  border-radius: 8px;
+  background: #141A27;
+  padding: 6px;
 }
 
 .trending-section .item .trending-image {
   position: relative;
-  -webkit-transform: skew(-21deg, 0deg);
-          transform: skew(-21deg, 0deg);
-  height: 234px;
+  height: 250px;
   overflow: hidden;
   display: block;
-  border-radius: 0;
-}
-
-@media (max-width: 768px) {
-  .trending-section .item .trending-image {
-    -webkit-transform: skew(0deg, 0deg);
-            transform: skew(0deg, 0deg);
-  }
+  border-radius: 8px;
 }
 
 .trending-section .item .trending-image img {
-  position: absolute;
-  left: -75px;
-  width: 450px;
-  height: 234px;
-  -webkit-transform: skew(21deg, 0deg);
-          transform: skew(21deg, 0deg);
+  height: 250px;
   -webkit-transition: all .5s ease-in;
   transition: all .5s ease-in;
-}
-
-@media (max-width: 1800px) {
-  .trending-section .item .trending-image img {
-    left: -46px;
-    width: 597px;
-  }
-}
-
-@media (max-width: 1500px) {
-  .trending-section .item .trending-image img {
-    left: -46px;
-    width: 495px;
-  }
-}
-
-@media (max-width: 1300px) {
-  .trending-section .item .trending-image img {
-    width: 460px;
-  }
-}
-
-@media (max-width: 1199px) {
-  .trending-section .item .trending-image img {
-    width: 547px;
-  }
-}
-
-@media (max-width: 992px) {
-  .trending-section .item .trending-image img {
-    left: -60px;
-    width: 506px;
-  }
-}
-
-@media (max-width: 768px) {
-  .trending-section .item .trending-image img {
-    -webkit-transform: skew(0deg, 0deg);
-            transform: skew(0deg, 0deg);
-  }
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .trending-section .item .trending-image:hover img {
-  -webkit-transform: skew(21deg, 0deg) scale(1.1);
-          transform: skew(21deg, 0deg) scale(1.1);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 @media (max-width: 768px) {
   .trending-section .item .trending-image:hover img {
-    -webkit-transform: skew(0deg, 0deg) scale(1.1);
-            transform: skew(0deg, 0deg) scale(1.1);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
   }
+}
+
+.trending-section .item:hover .trending-game--categories {
+  -webkit-transform: translate(0px, 0px);
+          transform: translate(0px, 0px);
 }
 
 .trending-section .vue-owl-nav {
@@ -5243,8 +5195,6 @@ body #hubspot-messages-iframe-container {
 .trending-section .vue-owl-nav button {
   width: 50px;
   height: 50px;
-  -webkit-transform: skewX(-13deg);
-          transform: skewX(-13deg);
   border: 1px solid #FFD715 !important;
   background: transparent;
   border-radius: 0 !important;
@@ -5256,8 +5206,6 @@ body #hubspot-messages-iframe-container {
   .trending-section .vue-owl-nav button {
     width: 35px;
     height: 35px;
-    -webkit-transform: skewX(0deg);
-            transform: skewX(0deg);
   }
 }
 
@@ -5291,40 +5239,20 @@ body #hubspot-messages-iframe-container {
   }
 }
 
-.trending-game--name-price,
 .trending-game--categories {
-  margin-left: -2rem;
-  margin-right: 8rem;
-}
-
-@media (max-width: 900px) {
-  .trending-game--name-price,
-  .trending-game--categories {
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
-}
-
-.trending-game--name-price {
-  margin-top: 20px;
-}
-
-.trending-game--name-price a {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-
-.trending-game--name-price a,
-.trending-game--name-price span {
-  font-size: 20px;
-}
-
-.trending-game--categories {
-  border-top: 1px solid #fff;
-  opacity: .5;
-  padding-top: 10px;
-  margin-top: 10px;
+  background: #141A27;
+  padding-top: 20px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  position: absolute;
+  height: 50px;
+  width: 95%;
+  bottom: 0;
+  -webkit-transform: translate(0px, 60px);
+          transform: translate(0px, 60px);
+  -webkit-transition: all .5s ease-in;
+  transition: all .5s ease-in;
 }
 
 .trending-game--categories > div a {
@@ -5449,8 +5377,6 @@ body #hubspot-messages-iframe-container {
 .favorite-section .vue-owl-nav button {
   width: 50px;
   height: 50px;
-  -webkit-transform: skewX(-13deg);
-          transform: skewX(-13deg);
   border: 1px solid #FFD715 !important;
   background: transparent;
   border-radius: 0 !important;
@@ -5462,8 +5388,6 @@ body #hubspot-messages-iframe-container {
   .favorite-section .vue-owl-nav button {
     width: 35px;
     height: 35px;
-    -webkit-transform: skewX(0deg);
-            transform: skewX(0deg);
   }
 }
 
@@ -5497,9 +5421,10 @@ body #hubspot-messages-iframe-container {
 
 .favorite-games {
   background: #141A27;
-  padding: 10px;
+  padding: 6px;
   position: relative;
   overflow: hidden;
+  border-radius: 8px;
 }
 
 .favorite-games:hover .favorite-games-categories {
@@ -5514,6 +5439,7 @@ body #hubspot-messages-iframe-container {
 
 .favorite-games--link {
   overflow: hidden;
+  border-radius: 8px;
 }
 
 .favorite-games-categories {
@@ -5523,7 +5449,7 @@ body #hubspot-messages-iframe-container {
   padding-right: 20px;
   position: absolute;
   height: 50px;
-  width: 94%;
+  width: 95%;
   bottom: 0;
   background: #141A27;
   -webkit-transform: translate(0px, 60px);
@@ -5650,8 +5576,6 @@ body #hubspot-messages-iframe-container {
   left: -75px;
   width: 450px;
   height: 238px;
-  -webkit-transform: skew(21deg, 0deg);
-          transform: skew(21deg, 0deg);
   -webkit-transition: all .5s ease-in;
   transition: all .5s ease-in;
 }
@@ -5689,22 +5613,15 @@ body #hubspot-messages-iframe-container {
   }
 }
 
-@media (max-width: 768px) {
-  .upcoming-section .item .upcoming-image img {
-    -webkit-transform: skew(0deg, 0deg);
-            transform: skew(0deg, 0deg);
-  }
-}
-
 .upcoming-section .item .upcoming-image:hover img {
-  -webkit-transform: skew(21deg, 0deg) scale(1.1);
-          transform: skew(21deg, 0deg) scale(1.1);
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
 }
 
 @media (max-width: 768px) {
   .upcoming-section .item .upcoming-image:hover img {
-    -webkit-transform: skew(0deg, 0deg) scale(1.1);
-            transform: skew(0deg, 0deg) scale(1.1);
+    -webkit-transform: scale(1.1);
+            transform: scale(1.1);
   }
 }
 
@@ -5747,8 +5664,6 @@ body #hubspot-messages-iframe-container {
 .upcoming-section .vue-owl-nav button {
   width: 50px;
   height: 50px;
-  -webkit-transform: skewX(-13deg);
-          transform: skewX(-13deg);
   border: 1px solid #FFD715 !important;
   background: transparent;
   border-radius: 0 !important;
@@ -5760,8 +5675,6 @@ body #hubspot-messages-iframe-container {
   .upcoming-section .vue-owl-nav button {
     width: 35px;
     height: 35px;
-    -webkit-transform: skewX(0deg);
-            transform: skewX(0deg);
   }
 }
 

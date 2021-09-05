@@ -1607,7 +1607,9 @@ p {
 .br-10 {
     border-radius: 10px;
 }
-
+.br-40 {
+    border-radius: 40px;
+}
 .br-50 {
     border-radius: 50%;
 }
@@ -2536,13 +2538,11 @@ table {
 
 // section heading 
 .section-heading {
-    margin-bottom: 85px;
-    font-size: 32px;
+    margin-bottom: 32px;
+    font-size: 24px;
     font-family: 'Roboto Condensed', sans-serif;
-    font-style: italic;
     @include for-min-992 {
-        margin-bottom: 85px;
-        font-size: 40px;
+        font-size: 32px;
     }
     @include for-max-575 {
         margin-bottom: 30px;

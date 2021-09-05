@@ -1,19 +1,27 @@
-<head>
-    <meta name="Description" content="Games rent in Dhaka Bangladesh for Playstation games, PS4 Games, PS5 Games, Xbox, and PC games. Game Hub is an online game exchanging, renting & selling platform for all kinds of game discs">
-    <meta name="Keywords" content="Game Hub, Games rent in Bangladesh, Sell Games, Rent Games, PlayStation games rent 2021, Game exchange near me, Games for PS4, PS5, Xbox and PC, Game Exchanging platform,  Game renting platform, Games selling platform">
-</head>
+
 <template>
     <div>
         <!-- slider section -->
         <section class="slider-section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-9">
                         <h1 class="gamehub-heading">
-                            {{ $t('largest', $store.state.locale) }} <span>{{ $t('online', $store.state.locale) }}</span><br> <span>{{ $t('banner_platform', $store.state.locale) }}</span> {{ $t('for_rent_in', $store.state.locale) }}<span>{{ $t('bangladesh_on_banner', $store.state.locale) }}</span>
+                            {{ $t('home_heading_1', $store.state.locale) }} <br>
+                            <span>{{ $t('for', $store.state.locale) }} </span>
+                             <span class="position-relative curve-shape curve-shape-1">{{ $t('heading_rent', $store.state.locale) }}  <img src="../assets/img/tag1.png" class=" position-absolute curve-img" alt="Gamehub Logo logo"></span>
+                              <span class="position-relative curve-shape curve-shape-2">{{ $t('heading_lend', $store.state.locale) }} <img src="../assets/img/tag1.png" class=" position-absolute curve-img" alt="Gamehub Logo logo"></span>
+                               <span class="position-relative curve-shape curve-shape-3">{{ $t('heading_sell', $store.state.locale) }} <img src="../assets/img/tag2.png" class=" position-absolute curve-img" alt="Gamehub Logo logo"></span>
+                              &
+                              <span class="position-relative curve-shape curve-shape-4">{{ $t('heading_buy', $store.state.locale) }} <img src="../assets/img/tag3.png" class=" position-absolute curve-img" alt="Gamehub Logo logo"></span><br>
+                                 {{ $t('home_heading_2', $store.state.locale) }}
                             </h1>
-                        <h6>{{ $t('home_banner_text', $store.state.locale) }}</h6>
-                        <router-link to="/games" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('begin_journey', $store.state.locale) }}</div></router-link>
+                        <h6 class="home-banner-text mb-a-6">{{ $t('home_banner_text', $store.state.locale) }}</h6>
+                        <div>
+                            <router-link to="/games" class="router_link btn--collision br-40 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('rent_game', $store.state.locale) }}</div></router-link>
+                            <router-link to="/profile" class="router_link btn--collision br-40 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('lend_game', $store.state.locale) }}</div></router-link>
+                            <router-link to="/gamebazar" class="router_link btn--collision br-40 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('buy_gaming_product', $store.state.locale) }}</div></router-link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -21,29 +29,47 @@
         <!-- exchange and lend section -->
         <section class="exchange-lend-section">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="exchange-lend-section--exchange">
-                            <h3>{{ $t('do_you_want_to', $store.state.locale) }}
-                                <span>{{ $t('earn', $store.state.locale) }}</span> {{ $t('money', $store.state.locale) }}</h3>
-                                <router-link to="/profile" class="btn--secondery exchange-lend-section--exchange-btn" @click.native="clickProfile()"> <span>{{ $t('lend', $store.state.locale) }}</span> </router-link>
+                <h2 class="section-heading">{{ $t('exchange_heading', $store.state.locale) }}</h2>
+                <div class="d-grid grid-cols-2 grid-md-cols-4 exchange-lend-section__grid">
+                    <div class="pt-a-6 pb-a-6 px-4 exchange-lend-section__content">
+                        <div class="exchange-lend-section__content__img">
+                             <img src="../assets/img/card-img-1.png" class="img-fluid" alt="Gamehub Logo logo">
                         </div>
+                        <h6 class="text-secondery gil-bold f-s-20 mb-3">{{ $t('rent_games', $store.state.locale) }}</h6>
+                        <p class="mb-a-4">{{ $t('card_text_1', $store.state.locale) }}</p>
+                        <router-link to="/games" class="w-full text-center router_link btn--collision br-40 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('rent_game', $store.state.locale) }}</div></router-link>
+                    </div>
+                     <div class="pt-a-6 pb-a-6 px-4 exchange-lend-section__content">
+                        <div class="exchange-lend-section__content__img">
+                             <img src="../assets/img/card-img-1.png" class="img-fluid" alt="Gamehub Logo logo">
+                        </div>
+                        <h6 class="text-secondery gil-bold f-s-20 mb-3">{{ $t('rent_games', $store.state.locale) }}</h6>
+                        <p class="mb-a-4">{{ $t('card_text_2', $store.state.locale) }}</p>
+                        <router-link to="/games" class="w-full text-center router_link btn--collision br-40 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('rent_game', $store.state.locale) }}</div></router-link>
+                    </div>
+                     <div class="pt-a-6 pb-a-6 px-4 exchange-lend-section__content">
+                        <div class="exchange-lend-section__content__img">
+                             <img src="../assets/img/card-img-1.png" class="img-fluid" alt="Gamehub Logo logo">
+                        </div>
+                        <h6 class="text-secondery gil-bold f-s-20 mb-3">{{ $t('rent_games', $store.state.locale) }}</h6>
+                        <p class="mb-a-4">{{ $t('card_text_3', $store.state.locale) }}</p>
+                        <router-link to="/games" class="w-full text-center router_link btn--collision br-40 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('rent_game', $store.state.locale) }}</div></router-link>
+                    </div>
+                     <div class="pt-a-6 pb-a-6 px-4 exchange-lend-section__content">
+                        <div class="exchange-lend-section__content__img">
+                             <img src="../assets/img/card-img-1.png" class="img-fluid" alt="Gamehub Logo logo">
+                        </div>
+                        <h6 class="text-secondery gil-bold f-s-20 mb-3">{{ $t('rent_games', $store.state.locale) }}</h6>
+                        <p class="mb-a-4">{{ $t('card_text_4', $store.state.locale) }}</p>
+                        <router-link to="/games" class="w-full text-center router_link btn--collision br-40 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('rent_game', $store.state.locale) }}</div></router-link>
                     </div>
 
-                    <div class="col-md-6">
-                        <div class="exchange-lend-section--lend">
-                            <h3>{{ $t('do_you_want_to', $store.state.locale) }}
-                                <span>{{ $t('save', $store.state.locale) }}</span> {{ $t('money_on_rent', $store.state.locale) }}</h3>
-<!--                            <a href="#" class="btn&#45;&#45;secondery exchange-lend-section&#45;&#45;exchange-btn">lend</a>-->
-                                <router-link to="/games" class="btn--secondery exchange-lend-section--exchange-btn"><span>{{ $t('rent_button', $store.state.locale) }}</span></router-link>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
         <!-- TRENDING GAMES -->
         <section class="trending-section">
-            <div class="text-center">
+            <div class="container">
                 <h2 class="section-heading">{{ $t('trending_games', $store.state.locale) }}</h2>
             </div>
             <div class="position-relative">
@@ -52,16 +78,16 @@
                     :loop ="true"
                     :center ="false"
                     :nav ="false"
-                    :margin ="5"
+                    :margin ="20"
                     :items ="3"
                     :stagePadding ="150"
-                    :responsive="{ 0:{items:1, stagePadding:0, dots:true},
-                                590:{items:2, dots:false, nav:false, stagePadding:0,},
-                                768:{items:3, stagePadding:0, dots:false,},
-                                900:{items:3, stagePadding:0, dots:false,},
-                                1200:{items:3, stagePadding:100, dots:false,},
-                                1500:{items:3, dots:false,},
-                                1800:{items:5, dots:false,}}">
+                    :responsive="{ 0:{items:3, stagePadding:0, nav:false, dots:true, center:true,},
+                                    600:{items:3, stagePadding:0, center:false, dots:false,},
+                                    800:{items:3, stagePadding:50, dots:false,},
+                                    1026:{items:3, stagePadding:100, dots:false,},
+                                    1200:{items:5, stagePadding:100, dots:false,},
+                                    1300:{items:5, stagePadding:100, dots:false,},
+                                    1800:{items:7, stagePadding:100, dots:false,}}">
                     <template slot="prev"><div class="vue-owl-nav vue-owl-nav-prev"><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
 
                     <template slot="next"><div class="vue-owl-nav vue-owl-nav-next"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
@@ -70,14 +96,14 @@
                         <router-link :to="{ path: '/game-details/' + trending.game.data.slug}" class="trending-image">
                             <img :src="trending.game.data.trending_url" alt="trending.game.data.name">
                         </router-link>
-                        <div class="trending-game--name-price d-flex justify-content-between">
+                        <!-- <div class="trending-game--name-price d-flex justify-content-between">
                             <router-link :to="{ path: '/game-details/' + trending.game.data.slug}" class="">{{ trending.game.data.name }}</router-link>
-                        </div>
-                        <div class="trending-game--categories d-flex justify-content-between" v-if="trending">
-                            <div class="home-categories">
+                        </div> -->
+                        <div class="trending-game--categories py-3" v-if="trending">
+                            <!-- <div class="home-categories">
                                 <a :href="'/games?categories=' + genre.slug" v-for="(genre) in trending.game.data.genres.data" :key="genre.id">{{ genre.name }}</a>
-                            </div>
-                            <div class="d-flex home-platform">
+                            </div> -->
+                            <div class="d-flex home-platform justify-content-center px-3">
                                 <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in trending.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>
                             </div>
                         </div>
@@ -87,7 +113,7 @@
         </section>
         <!-- favorite-section -->
         <section class="favorite-section">
-            <div class="text-center">
+            <div class="container">
                  <h2 class="section-heading">{{ $t('rent_favorite_games', $store.state.locale) }}</h2>
             </div>
               <div class="position-relative">
@@ -136,7 +162,7 @@
             </div>
             <div class="position-relative">
                 <carousel v-if ="loadedUpcoming"
-                        :autoplay ="true"
+                        :autoplay ="false"
                         :loop ="false"
                         :center ="false"
                         :nav ="false"

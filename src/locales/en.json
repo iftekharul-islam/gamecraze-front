@@ -28,8 +28,8 @@
   "save" : "Save",
   "rent" : "Rent",
   "rent_button" : "Rent",
-  "trending_games" : "TRENDING GAMES",
-  "rent_favorite_games" : "RENT YOUR FAVORITE GAMES",
+  "trending_games" : "Trending games for rent",
+  "rent_favorite_games" : "Games you could buy",
   "upcoming_games" : "UPCOMING GAMES",
   "news_&_notice" : "NEWS & NOTICE BOARD",
   "view_all" : "View All",
@@ -42,6 +42,9 @@
   "about_gamehub" : "About Gamehub",
   "rent_games" : "Rent Games",
   "lend_games" : "Lend Games",
+  "rent_game" : "Rent game",
+  "lend_game" : "Lend game",
+  "buy_gaming_product": "Buy gaming product",
   "terms_&_condition" : "Terms & condition",
   "ask_for_sponsorship" : "Ask for sponsorship",
   "news_&_blog" : "News & blogs",
@@ -544,5 +547,21 @@
   "search_game_accessories" : "Search Game Accessories",
   "create_post_tutorial" : "Create post tutorial",
   "available" : "Available",
-  "area" : "Area"
+  "area" : "Area",
+  "home_heading_1" : "One of best platform",
+  "for" : "for",
+  "sell" : "sell",
+  "buy" : "Buy",
+  "heading_rent" : "rent",
+  "heading_lend" : "lend",
+  "heading_sell" : "sell",
+  "heading_buy" : "buy",
+  "home_heading_2" : "gaming product",
+  "card_text_1" : "You can rent your favorite game for a reasonable price and time frame rather than purchasing it outright. What's the deal with your tardiness?",
+  "card_text_2" : " You can lend your unuseful game in a suitabel price. Lets deal with renters.",
+  "card_text_3" : " Our new gamebazar platform allows you to buy gaming products with a positive experience. Let's give it a shot.",
+  "card_text_4" : " You could easily sell your useless gaming product. Simply upload it to our gamebazar. We will publicize it.",
+  "exchange_heading" : "What you could do here"
+
+
 }

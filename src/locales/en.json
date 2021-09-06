@@ -2,6 +2,7 @@
   "home" : "Home",
   "games" : "Games",
   "post_for_lend": "Post for Lend",
+  "post_for_sell": "Post for sell",
   "more" : "More",
   "about_us" : "About us",
   "terms": "Terms & conditions",
@@ -468,6 +469,7 @@
   "report_to_post" : "Report this post",
   "related_post": "Related Post",
   "all_post" : "All Posts",
+  "all_product" : "All product",
   "details" : "Details",
   "seller_name" : "Seller name",
   "email_seller" : "Email seller",
@@ -561,7 +563,12 @@
   "card_text_2" : " You can lend your unuseful game in a suitabel price. Lets deal with renters.",
   "card_text_3" : " Our new gamebazar platform allows you to buy gaming products with a positive experience. Let's give it a shot.",
   "card_text_4" : " You could easily sell your useless gaming product. Simply upload it to our gamebazar. We will publicize it.",
-  "exchange_heading" : "What you could do here"
+  "exchange_heading" : "What you could do here",
+  "all_games_for_rent" : "All games for rent",
+  "all_games_for_buy" : "All games for buy",
+  "subscribe_our_newsletter" : "Subscribe our newsletter",
+  "subscribe" : "Subscribe"
+
 
 
 }

@@ -3674,7 +3674,7 @@ select option {
 
 .gamehub-menu {
   background: #0B0F18;
-  padding: 8px 0;
+  padding: 16px 0;
 }
 
 .gamehub-menu.gamehub-menu-active {
@@ -4886,8 +4886,15 @@ body #hubspot-messages-iframe-container {
 }
 
 .new-badge {
-  top: -8px;
+  top: -12px;
   left: 60px;
+}
+
+@media (max-width: 1199px) {
+  .new-badge {
+    right: 8px;
+    left: initial;
+  }
 }
 
 .slider-section {
@@ -4940,7 +4947,7 @@ body #hubspot-messages-iframe-container {
 
 @media (max-width: 575px) {
   .slider-section h1 {
-    width: 90%;
+    width: 100%;
   }
 }
 
@@ -4981,6 +4988,7 @@ body #hubspot-messages-iframe-container {
   font-weight: bold;
   text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
   font-family: 'Roboto Condensed', sans-serif;
+  font-size: 32px;
 }
 
 @media (min-width: 992px) {
@@ -4989,13 +4997,34 @@ body #hubspot-messages-iframe-container {
   }
 }
 
+@media (max-width: 575px) {
+  .gamehub-heading {
+    line-height: 43px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 575px) {
+  .gamehub-heading br:nth-of-type(2) {
+    display: none;
+  }
+}
+
 .bn .gamehub-heading {
-  line-height: 70px;
+  line-height: 44px;
 }
 
 @media (min-width: 992px) {
   .bn .gamehub-heading {
     font-size: 42px;
+    line-height: 70px;
+  }
+}
+
+@media (max-width: 575px) {
+  .bn .gamehub-heading {
+    font-size: 28px;
+    margin-top: 50px;
   }
 }
 
@@ -5005,9 +5034,33 @@ body #hubspot-messages-iframe-container {
   left: -13px;
 }
 
+.bn .curve-shape.curve-shape-3 img {
+  height: 59px;
+  top: -9px;
+}
+
+@media (max-width: 991px) {
+  .bn .curve-shape.curve-shape-3 img {
+    height: 47px;
+    top: -7px;
+  }
+}
+
+@media (max-width: 575px) {
+  .bn .curve-shape.curve-shape-3 img {
+    left: -9px;
+  }
+}
+
 .bn .curve-shape.curve-shape-4 .curve-img {
   width: 115%;
   left: -5px;
+}
+
+@media (max-width: 575px) {
+  .bn .curve-shape.curve-shape-2 .curve-img {
+    left: -4px;
+  }
 }
 
 .curve-shape {
@@ -5028,11 +5081,24 @@ body #hubspot-messages-iframe-container {
   margin-left: 15px;
 }
 
+@media (max-width: 575px) {
+  .curve-shape.curve-shape-4 {
+    margin-right: 10px;
+  }
+}
+
 .curve-shape .curve-img {
-  top: 4px;
+  top: 0px;
   left: -13px;
   z-index: -1;
-  height: 55px;
+  height: 39px;
+}
+
+@media (min-width: 992px) {
+  .curve-shape .curve-img {
+    height: 55px;
+    top: 4px;
+  }
 }
 
 @media (min-width: 992px) {
@@ -5044,6 +5110,24 @@ body #hubspot-messages-iframe-container {
   }
 }
 
+@media (max-width: 575px) {
+  .heading-btn .btn--collision {
+    padding: 5px 0px !important;
+    font-size: 14px;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    text-align: center;
+    font-weight: normal !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .heading-btn .btn--collision:not(:last-child) {
+    margin-right: 8px !important;
+  }
+}
+
 .exchange-lend-section {
   padding-top: 150px;
   padding-bottom: 150px;
@@ -5052,12 +5136,24 @@ body #hubspot-messages-iframe-container {
 @media (max-width: 992px) {
   .exchange-lend-section {
     padding-top: 70px;
-    padding-bottom: 0px;
+    padding-bottom: 50px;
   }
 }
 
 .exchange-lend-section__grid {
   grid-column-gap: 48px;
+}
+
+@media (max-width: 1199px) {
+  .exchange-lend-section__grid {
+    grid-gap: 24px;
+  }
+}
+
+@media (max-width: 575px) {
+  .exchange-lend-section__grid {
+    grid-gap: 16px;
+  }
 }
 
 .exchange-lend-section__content {
@@ -5071,6 +5167,12 @@ body #hubspot-messages-iframe-container {
           flex-direction: column;
 }
 
+@media (max-width: 575px) {
+  .exchange-lend-section__content .btn--collision {
+    padding: 8px;
+  }
+}
+
 .exchange-lend-section__content__img {
   position: absolute;
   left: 0;
@@ -5078,6 +5180,8 @@ body #hubspot-messages-iframe-container {
   width: 100%;
   height: 100%;
   z-index: -1;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .exchange-lend-section__content__img::after {
@@ -5115,8 +5219,8 @@ body #hubspot-messages-iframe-container {
 
 @media (max-width: 575px) {
   .trending-section {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 
@@ -5127,6 +5231,13 @@ body #hubspot-messages-iframe-container {
   padding: 6px;
 }
 
+@media (max-width: 575px) {
+  .trending-section .item {
+    padding: 4px;
+    border-radius: 4px;
+  }
+}
+
 .trending-section .item .trending-image {
   position: relative;
   height: 250px;
@@ -5135,12 +5246,25 @@ body #hubspot-messages-iframe-container {
   border-radius: 8px;
 }
 
+@media (max-width: 575px) {
+  .trending-section .item .trending-image {
+    height: 150px;
+    border-radius: 4px;
+  }
+}
+
 .trending-section .item .trending-image img {
   height: 250px;
   -webkit-transition: all .5s ease-in;
   transition: all .5s ease-in;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+@media (max-width: 575px) {
+  .trending-section .item .trending-image img {
+    height: 150px;
+  }
 }
 
 .trending-section .item .trending-image:hover img {
@@ -5168,7 +5292,7 @@ body #hubspot-messages-iframe-container {
 
 @media (max-width: 575px) {
   .trending-section .vue-owl-nav {
-    top: 120px;
+    display: none;
   }
 }
 
@@ -5193,34 +5317,26 @@ body #hubspot-messages-iframe-container {
 }
 
 .trending-section .vue-owl-nav button {
-  width: 50px;
-  height: 50px;
-  border: 1px solid #FFD715 !important;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 215, 21, 0.5) !important;
   background: transparent;
-  border-radius: 0 !important;
+  border-radius: 4px !important;
   -webkit-transition: all .3s ease-in !important;
   transition: all .3s ease-in !important;
 }
 
-@media (max-width: 590px) {
-  .trending-section .vue-owl-nav button {
-    width: 35px;
-    height: 35px;
-  }
+.trending-section .vue-owl-nav button svg path {
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
 }
 
 .trending-section .vue-owl-nav button:hover {
   background: #FFD715 !important;
 }
 
-.trending-section .vue-owl-nav button:hover .arrow {
-  color: #000;
-}
-
-.trending-section .vue-owl-nav button .arrow {
-  -webkit-transition: all .3s ease-in;
-  transition: all .3s ease-in;
-  color: #fff;
+.trending-section .vue-owl-nav button:hover svg path {
+  fill: #000;
 }
 
 .trending-section .vue-owl-nav button:focus {
@@ -5239,6 +5355,18 @@ body #hubspot-messages-iframe-container {
   }
 }
 
+@media (max-width: 575px) {
+  .trending-section .owl-item {
+    opacity: .5 !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .trending-section .owl-item.center {
+    opacity: 1 !important;
+  }
+}
+
 .trending-game--categories {
   background: #141A27;
   padding-top: 20px;
@@ -5253,6 +5381,12 @@ body #hubspot-messages-iframe-container {
           transform: translate(0px, 60px);
   -webkit-transition: all .5s ease-in;
   transition: all .5s ease-in;
+}
+
+@media (max-width: 575px) {
+  .trending-game--categories {
+    width: 99%;
+  }
 }
 
 .trending-game--categories > div a {
@@ -5290,33 +5424,8 @@ body #hubspot-messages-iframe-container {
 
 @media (max-width: 575px) {
   .favorite-section {
-    padding-left: 15px;
-    padding-right: 15px;
-  }
-}
-
-@media (max-width: 575px) {
-  .favorite-section .owl-item.center {
-    height: 200px;
-  }
-}
-
-@media (max-width: 575px) {
-  .favorite-section .owl-item.center .item {
-    height: 100%;
-    margin-top: 0;
-  }
-}
-
-@media (max-width: 575px) {
-  .favorite-section .owl-item.center .item .favorite-games {
-    height: 100%;
-  }
-}
-
-@media (max-width: 575px) {
-  .favorite-section .owl-item.center .item .favorite-games img {
-    height: 180px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 }
 
@@ -5350,7 +5459,7 @@ body #hubspot-messages-iframe-container {
 
 @media (max-width: 575px) {
   .favorite-section .vue-owl-nav {
-    top: 85px;
+    display: none;
   }
 }
 
@@ -5375,34 +5484,26 @@ body #hubspot-messages-iframe-container {
 }
 
 .favorite-section .vue-owl-nav button {
-  width: 50px;
-  height: 50px;
-  border: 1px solid #FFD715 !important;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 215, 21, 0.5) !important;
   background: transparent;
-  border-radius: 0 !important;
+  border-radius: 4px !important;
   -webkit-transition: all .3s ease-in !important;
   transition: all .3s ease-in !important;
 }
 
-@media (max-width: 590px) {
-  .favorite-section .vue-owl-nav button {
-    width: 35px;
-    height: 35px;
-  }
+.favorite-section .vue-owl-nav button svg path {
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
 }
 
 .favorite-section .vue-owl-nav button:hover {
   background: #FFD715 !important;
 }
 
-.favorite-section .vue-owl-nav button:hover .arrow {
-  color: #000;
-}
-
-.favorite-section .vue-owl-nav button .arrow {
-  -webkit-transition: all .3s ease-in;
-  transition: all .3s ease-in;
-  color: #fff;
+.favorite-section .vue-owl-nav button:hover svg path {
+  fill: #000;
 }
 
 .favorite-section .vue-owl-nav button:focus {
@@ -5425,6 +5526,13 @@ body #hubspot-messages-iframe-container {
   position: relative;
   overflow: hidden;
   border-radius: 8px;
+}
+
+@media (max-width: 575px) {
+  .favorite-games {
+    border-radius: 4px;
+    padding: 4px;
+  }
 }
 
 .favorite-games:hover .favorite-games-categories {
@@ -5460,7 +5568,7 @@ body #hubspot-messages-iframe-container {
 
 @media (max-width: 575px) {
   .favorite-games-categories {
-    display: none !important;
+    width: 99%;
   }
 }
 
@@ -5543,13 +5651,9 @@ body #hubspot-messages-iframe-container {
 
 @media (max-width: 575px) {
   .upcoming-section {
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-left: 0px;
+    padding-right: 0px;
   }
-}
-
-.upcoming-section .item {
-  margin-left: -7px;
 }
 
 @media (max-width: 768px) {
@@ -5571,45 +5675,21 @@ body #hubspot-messages-iframe-container {
   border-radius: 0;
 }
 
+@media (max-width: 575px) {
+  .upcoming-section .item .upcoming-image {
+    height: 150px;
+  }
+}
+
 .upcoming-section .item .upcoming-image img {
-  position: absolute;
-  left: -75px;
-  width: 450px;
   height: 238px;
   -webkit-transition: all .5s ease-in;
   transition: all .5s ease-in;
 }
 
-@media (max-width: 1800px) {
+@media (max-width: 575px) {
   .upcoming-section .item .upcoming-image img {
-    left: -46px;
-    width: 597px;
-  }
-}
-
-@media (max-width: 1500px) {
-  .upcoming-section .item .upcoming-image img {
-    left: -46px;
-    width: 495px;
-  }
-}
-
-@media (max-width: 1300px) {
-  .upcoming-section .item .upcoming-image img {
-    width: 460px;
-  }
-}
-
-@media (max-width: 1199px) {
-  .upcoming-section .item .upcoming-image img {
-    width: 547px;
-  }
-}
-
-@media (max-width: 992px) {
-  .upcoming-section .item .upcoming-image img {
-    left: -60px;
-    width: 506px;
+    height: 150px;
   }
 }
 
@@ -5637,7 +5717,7 @@ body #hubspot-messages-iframe-container {
 
 @media (max-width: 575px) {
   .upcoming-section .vue-owl-nav {
-    top: 120px;
+    top: 70px;
   }
 }
 
@@ -5647,7 +5727,7 @@ body #hubspot-messages-iframe-container {
 
 @media (max-width: 575px) {
   .upcoming-section .vue-owl-nav.vue-owl-nav-prev {
-    left: 0px;
+    left: 20px;
   }
 }
 
@@ -5657,39 +5737,31 @@ body #hubspot-messages-iframe-container {
 
 @media (max-width: 575px) {
   .upcoming-section .vue-owl-nav.vue-owl-nav-next {
-    right: 0px;
+    right: 20px;
   }
 }
 
 .upcoming-section .vue-owl-nav button {
-  width: 50px;
-  height: 50px;
-  border: 1px solid #FFD715 !important;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 215, 21, 0.5) !important;
   background: transparent;
-  border-radius: 0 !important;
+  border-radius: 4px !important;
   -webkit-transition: all .3s ease-in !important;
   transition: all .3s ease-in !important;
 }
 
-@media (max-width: 590px) {
-  .upcoming-section .vue-owl-nav button {
-    width: 35px;
-    height: 35px;
-  }
+.upcoming-section .vue-owl-nav button svg path {
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
 }
 
 .upcoming-section .vue-owl-nav button:hover {
   background: #FFD715 !important;
 }
 
-.upcoming-section .vue-owl-nav button:hover .arrow {
-  color: #000;
-}
-
-.upcoming-section .vue-owl-nav button .arrow {
-  -webkit-transition: all .3s ease-in;
-  transition: all .3s ease-in;
-  color: #fff;
+.upcoming-section .vue-owl-nav button:hover svg path {
+  fill: #000;
 }
 
 .upcoming-section .vue-owl-nav button:focus {
@@ -5716,10 +5788,22 @@ body #hubspot-messages-iframe-container {
   opacity: 1;
 }
 
+@media (max-width: 575px) {
+  .owl-item {
+    opacity: .3 !important;
+  }
+}
+
+@media (max-width: 575px) {
+  .owl-item.center {
+    opacity: 1 !important;
+  }
+}
+
 .upcoming-game--name-price,
 .upcoming-game--categories {
-  margin-left: -2rem;
-  margin-right: 8rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 
 @media (max-width: 900px) {
@@ -5758,15 +5842,6 @@ body #hubspot-messages-iframe-container {
 
 .owl-upcoming--item {
   position: relative;
-  -webkit-transform: skew(-21deg);
-          transform: skew(-21deg);
-}
-
-@media (max-width: 768px) {
-  .owl-upcoming--item {
-    -webkit-transform: skew(0deg);
-            transform: skew(0deg);
-  }
 }
 
 .upcoming-order {
@@ -5822,16 +5897,7 @@ body #hubspot-messages-iframe-container {
 }
 
 .upcoming-order a span {
-  -webkit-transform: skew(21deg);
-          transform: skew(21deg);
   display: block;
-}
-
-@media (max-width: 768px) {
-  .upcoming-order a span {
-    -webkit-transform: skew(0deg);
-            transform: skew(0deg);
-  }
 }
 
 .set-reminder {
@@ -5841,18 +5907,6 @@ body #hubspot-messages-iframe-container {
   border: 1px solid #FFD715;
   background: #141A27;
   color: #fff;
-}
-
-.set-reminder i {
-  -webkit-transform: skew(21deg);
-          transform: skew(21deg);
-}
-
-@media (max-width: 768px) {
-  .set-reminder i {
-    -webkit-transform: skew(0deg);
-            transform: skew(0deg);
-  }
 }
 
 .set-reminder:focus {
@@ -6107,6 +6161,7 @@ body #hubspot-messages-iframe-container {
   padding: 10px;
   width: 100%;
   height: 300px;
+  border-radius: 16px;
 }
 
 @media (max-width: 992px) {
@@ -6122,6 +6177,7 @@ body #hubspot-messages-iframe-container {
 .featured-section .item .featured-videos iframe {
   width: 100%;
   height: 100%;
+  border-radius: 16px;
 }
 
 .featured-section .owl-item {
@@ -6179,12 +6235,10 @@ body #hubspot-messages-iframe-container {
 .featured-section .vue-owl-nav button {
   position: absolute;
   top: -226px;
-  width: 50px;
-  height: 50px;
-  -webkit-transform: skewX(-13deg);
-          transform: skewX(-13deg);
-  border: 1px solid #FFD715 !important;
-  border-radius: 0 !important;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(255, 215, 21, 0.5) !important;
+  border-radius: 4px !important;
   -webkit-transition: all .3s ease-in !important;
   transition: all .3s ease-in !important;
   background: transparent;
@@ -6205,25 +6259,20 @@ body #hubspot-messages-iframe-container {
 @media (max-width: 590px) {
   .featured-section .vue-owl-nav button {
     top: 20px;
-    width: 35px;
-    height: 35px;
-    -webkit-transform: skewX(0deg);
-            transform: skewX(0deg);
   }
+}
+
+.featured-section .vue-owl-nav button svg path {
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
 }
 
 .featured-section .vue-owl-nav button:hover {
   background: #FFD715 !important;
 }
 
-.featured-section .vue-owl-nav button:hover .arrow {
-  color: #000;
-}
-
-.featured-section .vue-owl-nav button .arrow {
-  -webkit-transition: all .3s ease-in;
-  transition: all .3s ease-in;
-  color: #fff;
+.featured-section .vue-owl-nav button:hover svg path {
+  fill: #000;
 }
 
 .featured-section .vue-owl-nav button:focus {
@@ -13761,6 +13810,23 @@ html {
   text-align: left !important;
 }
 
+.product-section {
+  padding-bottom: 150px;
+}
+
+.product-mobile {
+  padding-bottom: 50px;
+  padding-left: 20px;
+}
+
+.product-mobile .owl-item {
+  opacity: 1 !important;
+}
+
+.product-mobile .vue-owl-nav {
+  display: none;
+}
+
 .page_404 {
   padding: 100px 0 180px 0;
   background: #fff;
@@ -14405,6 +14471,35 @@ html {
   font-weight: 400;
 }
 
+@media (min-width: 992px) {
+  .footer-menu-content.footer-menu-content-middle {
+    margin-left: 70px;
+  }
+}
+
+.footer-menu-content.footer-menu-content-middle ul:nth-child(2) {
+  padding-left: 70px;
+}
+
+@media (min-width: 992px) {
+  .footer-menu-content.footer-menu-content-last {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: end;
+        -ms-flex-pack: end;
+            justify-content: flex-end;
+  }
+}
+
+@media (min-width: 992px) {
+  .footer-menu-content.footer-menu-content-last ul {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
+}
+
 .footer-bottom {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -14413,6 +14508,9 @@ html {
       -ms-flex-pack: justify;
           justify-content: space-between;
   padding: 25px 0;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 @media (max-width: 768px) {
@@ -14430,7 +14528,6 @@ html {
 }
 
 .footer-bottom--social {
-  margin-right: 6rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -14484,6 +14581,33 @@ html {
     text-align: center;
     font-size: 15px;
   }
+}
+
+.newsletter {
+  margin-top: 100px;
+}
+
+.newsletter__btn {
+  background: -webkit-gradient(linear, right top, left top, from(#FFD715), to(#FFB81F));
+  background: linear-gradient(270deg, #FFD715 0%, #FFB81F 100%);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 1px solid #FFD715;
+  font-family: gilroy-bold;
+  font-weight: bold;
+}
+
+.newsletter input {
+  background: #384563;
+  border: 1px solid rgba(255, 215, 21, 0.25);
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  color: #fff;
+  padding-left: 10px;
+}
+
+.newsletter input:focus {
+  outline: none;
 }
 
 @font-face {

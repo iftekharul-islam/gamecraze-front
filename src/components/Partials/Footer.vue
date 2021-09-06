@@ -19,11 +19,11 @@
             <div class="footer-middle" v-if="largeFooter">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-11 ml-auto">
+                        <div class="col-md-12">
                             <div class="row">
                                 <div class="col-sm-6 col-md-3">
                                     <div class="footer-menu-content mb-5 mb-sm-0">
-                                        <div class="footer-top mb-3 mb-sm-5">
+                                        <div class="footer-top mb-3 mb-sm-4">
                                             <a href="/" class="footer-logo"><img src="../../assets/img/logo/gamehublogo.svg" alt="logo"></a>
                                             <div class="footer-top--right">
                                             </div>
@@ -31,56 +31,79 @@
                                         <p class="footer-menu-content--about-gamehub">
                                             {{ $t('gamehub_title', $store.state.locale) }}
                                         </p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6 col-md-3">
-                                    <div class="footer-menu-content mb-5 mb-sm-0">
-                                        <div class="footer-menu-content--address">
+                                        <!-- <div class="footer-menu-content--address">
                                             <p class="footer-menu-content--address--text">{{ $t('email_us', $store.state.locale) }}</p>
                                             <p class="footer-menu-content--address--text"><a href="mailto:contact@augnitive.com">contact@augnitive.com</a></p>
-                                        </div>
+                                        </div> -->
                                         <div class="footer-menu-content--address">
-                                            <p class="footer-menu-content--address--text">{{ $t('cell_number', $store.state.locale) }}</p>
-                                            <p class="footer-menu-content--address--text"><a href="tel:+8801886-614533">01886-614533</a></p>
-                                        </div>
-                                        <div class="footer-menu-content--address">
-                                            <p class="footer-menu-content--address--text">{{ $t('office', $store.state.locale) }}</p>
+                                            <p class="footer-menu-content--address--text text-secondery">{{ $t('office', $store.state.locale) }}</p>
                                             <p class="footer-menu-content--address--text">House: 941, Road: 14, Avenue: 2,
                                                 Mirpur DOHS, Dhaka 1216</p>
                                         </div>
+                                         <div class="footer-menu-content--address">
+                                            <p class="footer-menu-content--address--text text-secondery">{{ $t('cell_number', $store.state.locale) }}</p>
+                                            <p class="footer-menu-content--address--text"><a href="tel:+8801886-614533">01886-614533</a></p>
+                                        </div>
                                     </div>
                                 </div>
-                        <div class="col-6 col-md-3">
-                            <div class="footer-menu-content">
-                                <ul>
-                                    <li><router-link to="/about-us">{{ $t('about_gamehub', $store.state.locale) }}</router-link></li>
-                                    <li><router-link to="/profile">{{ $t('rent_games', $store.state.locale) }}</router-link></li>
-                                    <li><router-link to="/games">{{ $t('lend_games', $store.state.locale) }}</router-link></li>
-                                    <li><router-link to="/terms">{{ $t('terms_&_condition', $store.state.locale) }}</router-link></li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <div class="footer-menu-content">
-                                <ul>
-                                    <li>
-                                        <router-link to="/sponsors">{{ $t('ask_for_sponsorship', $store.state.locale) }}</router-link>
-                                    </li>
-                                    <li>
-                                        <router-link to="/contacts">{{ $t('contact_us', $store.state.locale) }}</router-link>
-                                    </li>
-                                    <li>
-                                        <router-link to="/frequently-asked-questions">{{ $t('faq', $store.state.locale) }}</router-link>
-                                    </li>
-                                    <li>
-                                        <router-link to="/news">{{ $t('news_&_blog', $store.state.locale) }}</router-link>
-                                    </li>
-                                    <li>
-                                        <router-link to="/privacy">{{ $t('privacy_policy', $store.state.locale) }}</router-link>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+                                <div class="col-sm-6 col-md-5">
+                                    <div class="footer-menu-content footer-menu-content-middle mb-5 mb-sm-0">
+                                        <div class="d-flex justify-content-between">
+                                            <ul>
+                                                <li class="text-white mb-3 gil-bold">Gamehub</li>
+                                                <li><router-link to="/">{{ $t('home', $store.state.locale) }}</router-link></li>
+                                                <li><router-link to="/profile">{{ $t('rent_games', $store.state.locale) }}</router-link></li>
+                                                <li><router-link to="/about-us">{{ $t('about_gamehub', $store.state.locale) }}</router-link></li>
+                                                <li><router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link></li>
+                                                <li><router-link to="/games">{{ $t('lend_games', $store.state.locale) }}</router-link></li>
+                                            </ul>
+                                            <ul>
+                                                <li class="text-white mb-3 gil-bold">Game Bazar</li>
+                                                <li><router-link to="/gamebazar">{{ $t('all_product', $store.state.locale) }}</router-link></li>
+                                                <li><router-link to="/gamebazar">{{ $t('post_for_sell', $store.state.locale) }}</router-link></li>
+                                                <li><router-link to="/gamebazar">Buy PS5</router-link></li>
+                                                <li><router-link to="/gamebazar">Buy PS4</router-link></li>
+                                                <li><router-link to="/gamebazar">Buy controller</router-link></li>
+                                            </ul>
+                                        </div>
+                                        <form action="#" class="newsletter">
+                                            <p>{{ $t('subscribe_our_newsletter', $store.state.locale) }}</p>
+                                            <div class="d-flex ">
+                                                <input type="text">
+                                                <button class="px-4 newsletter__btn"> {{ $t('subscribe', $store.state.locale) }}</button>
+                                            </div>
+                                        </form>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-4">
+                                    <div class="footer-menu-content footer-menu-content-last">
+                                        <ul>
+                                            
+                                             <li>
+                                                 <router-link to="/about-us">{{ $t('about_us', $store.state.locale) }}</router-link>
+                                            </li>
+                                              <li>
+                                                <router-link to="/contacts">{{ $t('contact_us', $store.state.locale) }}</router-link>
+                                            </li>
+                                             <li>
+                                                <router-link to="/frequently-asked-questions">{{ $t('faq', $store.state.locale) }}</router-link>
+                                            </li>
+                                             <li>
+                                                <router-link to="/terms">{{ $t('terms_&_condition', $store.state.locale) }}</router-link>
+                                            </li>
+                                            <li>
+                                                <router-link to="/news">{{ $t('news_&_blog', $store.state.locale) }}</router-link>
+                                            </li>
+                                            <li>
+                                                <router-link to="/privacy">{{ $t('privacy_policy', $store.state.locale) }}</router-link>
+                                            </li>
+                                             <li>
+                                                <router-link to="/sponsors">{{ $t('ask_for_sponsorship', $store.state.locale) }}</router-link>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -89,7 +112,7 @@
             <div class="footer-section--content">
                 <div class="container">
                      <div class="row">
-                         <div class="col-md-11 ml-auto">
+                         <div class="col-12">
                              <div class="footer-bottom">
                                 <p>©2021 Game Hub</p>
                                    <p>Powered By: <a href="https://augnitive.com/?utm_source=GameHub&utm_medium=GH%20Footer&utm_campaign=GH%20Traffic" target="_blank">Augnitive</a></p>

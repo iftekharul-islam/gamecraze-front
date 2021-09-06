@@ -341,7 +341,7 @@
               </carousel>
             </div>
             <div class="text-center mt-5">
-                  <a href="#" class="btn--collision br-40 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_games', $store.state.locale) }}</a>
+                  <a href="#" class="btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_games', $store.state.locale) }}</a>
             </div>
           </div>
       </section>

@@ -247,7 +247,7 @@
                   </carousel>
              </div>
               <div class="text-center mt-5">
-                  <router-link to='/sell-posts' class="btn--collision br-40 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_post', $store.state.locale) }}</router-link>
+                  <router-link to='/sell-posts' class="btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_post', $store.state.locale) }}</router-link>
               </div>
           </div>
       </div>

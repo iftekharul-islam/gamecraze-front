@@ -8,7 +8,7 @@
 
 .gamehub-menu {
     background: $primary;
-    padding: 8px 0;
+    padding: 16px 0;
     &.gamehub-menu-active {
         background: $trans-nav-bg;
     }
@@ -973,6 +973,10 @@ body {
     }
 }
 .new-badge {
-    top: -8px;
+    top: -12px;
     left: 60px;
+    @include for-max-1199 {
+        right: 8px;
+        left: initial;
+    }
 }

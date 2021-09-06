@@ -6,26 +6,35 @@
         padding-bottom: 70px;
     }
     @include for-max-575 {
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left: 0px;
+        padding-right: 0px;
     }
     .item {
         position: relative;
         border-radius: 8px;
         background: $game-details;
         padding: 6px;
+        @include for-max-575 {
+            padding: 4px;
+            border-radius: 4px;
+        }
         .trending-image {
             position: relative;
             height: 250px;
             overflow: hidden;
             display: block;
             border-radius: 8px;
-            @include for-max-768 {
+            @include for-max-575 {
+                height: 150px;
+                border-radius: 4px;
             }
             img {
                 height: 250px;
                 transition: all .5s ease-in;
                 object-fit: cover;
+                @include for-max-575 {
+                    height: 150px;
+                }
             }
             &:hover {
                 img {
@@ -41,13 +50,14 @@
                 transform: translate(0px, 0px);
             }
         }
+        
     }
     .vue-owl-nav {
         position: absolute;
         top: 100px;
         z-index: 99;
         @include for-max-575 {
-            top: 120px;
+            display: none;
         }
         &.vue-owl-nav-prev {
             left: 20px;
@@ -62,25 +72,24 @@
             }
         }
         button {
-            width: 50px;
-            height: 50px;
-            border: 1px solid $secondery !important;
+            width: 32px;
+            height: 32px;
+            border: 1px solid $secondery-opa-5 !important;
             background: transparent;
-            border-radius: 0 !important;
+            border-radius: 4px !important;
             transition: all .3s ease-in !important;
-            @include for-max-590 {
-                width: 35px;
-                height: 35px;
+            svg {
+                path {
+                    transition: all .3s ease-in;
+                }
             }
             &:hover {
                 background: $secondery !important;
-                .arrow {
-                    color: $text-dark;
+                svg {
+                    path {
+                        fill: $text-dark;
+                    }
                 }
-            }
-            .arrow {
-                transition: all .3s ease-in;
-                color: $text-light;
             }
             &:focus {
                 outline: none !important;
@@ -97,6 +106,15 @@
         @include for-max-1199 {
             opacity: 1;
         }
+        @include for-max-575 {
+            opacity: .5 !important;
+        }
+        &.center {
+            @include for-max-575 {
+                opacity: 1 !important;
+            }
+        }
+        
     }
 }
 
@@ -114,6 +132,9 @@
     bottom: 0;
     transform: translate(0px, 60px);
     transition: all .5s ease-in;
+    @include for-max-575 {
+        width: 99%;
+    }
     >div {
         a {
             margin-left: 5px;

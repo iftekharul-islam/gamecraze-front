@@ -1,8 +1,6 @@
 // import './assets/scss/owl/owl.carousel.min.css'
 import '@/assets/scss/owl/owl.carousel.min.css'
 import '@/assets/scss/owl/owl.theme.default.min.css'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import './assets/scss/style.css'
 // import './assets/admin/dist/css/adminlte.css'
 import "vue-select/dist/vue-select.css";
 import 'v-toaster/dist/v-toaster.css'
@@ -10,10 +8,18 @@ import '@fortawesome/fontawesome-free/css/all.css'
 import '@fortawesome/fontawesome-free/js/all.js'
 
 import {BootstrapVue, IconsPlugin} from 'bootstrap-vue'
+
+// Import Bootstrap an BootstrapVue CSS files (order is important)
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+
 // Make BootstrapVue available throughout your project
 Vue.use(BootstrapVue);
 //Optionally install the BootstrapVue icon components plugin
 Vue.use(IconsPlugin);
+
+import 'bootstrap/dist/css/bootstrap.min.css'
+import './assets/scss/style.css'
 
 import Lingallery from 'lingallery';
 
@@ -100,7 +106,7 @@ import {ValidationProvider} from 'vee-validate';
 import {ValidationObserver} from "vee-validate";
 import * as VeeValidate from "vee-validate";
 
-Vue.use(VeeValidate, {inject: false});
+Vue.use(VeeValidate, { events: 'change', setInteractionMode: 'Eager'});
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.component("ValidationObserver", ValidationObserver);
 

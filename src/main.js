@@ -106,7 +106,7 @@ import {ValidationProvider} from 'vee-validate';
 import {ValidationObserver} from "vee-validate";
 import * as VeeValidate from "vee-validate";
 
-Vue.use(VeeValidate, { events: 'change', setInteractionMode: 'lazy'});
+Vue.use(VeeValidate, { events: 'change', setInteractionMode: 'Eager'});
 Vue.component('ValidationProvider', ValidationProvider);
 Vue.component("ValidationObserver", ValidationObserver);
 

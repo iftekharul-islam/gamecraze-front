@@ -1,19 +1,28 @@
-<head>
-    <meta name="Description" content="Games rent in Dhaka Bangladesh for Playstation games, PS4 Games, PS5 Games, Xbox, and PC games. Game Hub is an online game exchanging, renting & selling platform for all kinds of game discs">
-    <meta name="Keywords" content="Game Hub, Games rent in Bangladesh, Sell Games, Rent Games, PlayStation games rent 2021, Game exchange near me, Games for PS4, PS5, Xbox and PC, Game Exchanging platform,  Game renting platform, Games selling platform">
-</head>
+
 <template>
     <div>
         <!-- slider section -->
         <section class="slider-section">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-7">
+                    <div class="col-md-9">
                         <h1 class="gamehub-heading">
-                            {{ $t('largest', $store.state.locale) }} <span>{{ $t('online', $store.state.locale) }}</span><br> <span>{{ $t('banner_platform', $store.state.locale) }}</span> {{ $t('for_rent_in', $store.state.locale) }}<span>{{ $t('bangladesh_on_banner', $store.state.locale) }}</span>
+                            {{ $t('home_heading_1', $store.state.locale) }} <br>
+                            <span>{{ $t('for', $store.state.locale) }} </span>
+                             <span class="position-relative curve-shape curve-shape-1">{{ $t('heading_rent', $store.state.locale) }}  <img src="../assets/img/tag1.png" class=" position-absolute curve-img" alt="Gamehub Logo logo"></span>
+                              <span class="position-relative curve-shape curve-shape-2">{{ $t('heading_lend', $store.state.locale) }} <img src="../assets/img/tag1.png" class=" position-absolute curve-img" alt="Gamehub Logo logo"></span>
+                               <span class="position-relative curve-shape curve-shape-3">{{ $t('heading_sell', $store.state.locale) }} <img src="../assets/img/tag2.png" class=" position-absolute curve-img" alt="Gamehub Logo logo"></span>
+                              &
+                              <span class="position-relative curve-shape curve-shape-4">{{ $t('heading_buy', $store.state.locale) }} <img src="../assets/img/tag3.png" class=" position-absolute curve-img" alt="Gamehub Logo logo"></span><br>
+                                 {{ $t('home_heading_2', $store.state.locale) }}
                             </h1>
-                        <h6>{{ $t('home_banner_text', $store.state.locale) }}</h6>
-                        <router-link to="/games" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('begin_journey', $store.state.locale) }}</div></router-link>
+                        <h6 class="home-banner-text mb-a-6">{{ $t('home_banner_text', $store.state.locale) }}</h6>
+                        <div class="heading-btn d-flex align-items-center">
+                            <router-link to="/games" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('rent_game', $store.state.locale) }}</div></router-link>
+                            <router-link to="/profile" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('lend_game', $store.state.locale) }}</div></router-link>
+                            <router-link to="/gamebazar" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-none d-sm-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('buy_gaming_product', $store.state.locale) }}</div></router-link>
+                            <router-link to="/gamebazar" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold d-sm-none d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('product', $store.state.locale) }}</div></router-link>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -21,29 +30,47 @@
         <!-- exchange and lend section -->
         <section class="exchange-lend-section">
             <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="exchange-lend-section--exchange">
-                            <h3>{{ $t('do_you_want_to', $store.state.locale) }}
-                                <span>{{ $t('earn', $store.state.locale) }}</span> {{ $t('money', $store.state.locale) }}</h3>
-                                <router-link to="/profile" class="btn--secondery exchange-lend-section--exchange-btn" @click.native="clickProfile()"> <span>{{ $t('lend', $store.state.locale) }}</span> </router-link>
+                <h2 class="section-heading">{{ $t('exchange_heading', $store.state.locale) }}</h2>
+                <div class="d-grid grid-cols-2 grid-md-cols-3 grid-lg-cols-4 exchange-lend-section__grid">
+                    <div class="pt-a-6 pb-a-6 px-2 px-sm-4 exchange-lend-section__content">
+                        <div class="exchange-lend-section__content__img">
+                             <img src="../assets/img/card-img-1.png" class="img-fluid" alt="Gamehub Logo logo">
                         </div>
+                        <h6 class="text-secondery gil-bold f-s-20 mb-3">{{ $t('rent_games', $store.state.locale) }}</h6>
+                        <p class="mb-a-4">{{ $t('card_text_1', $store.state.locale) }}</p>
+                        <router-link to="/games" class="w-full text-center router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('rent_game', $store.state.locale) }}</div></router-link>
+                    </div>
+                     <div class="pt-a-6 pb-a-6 px-2 px-sm-4 exchange-lend-section__content">
+                        <div class="exchange-lend-section__content__img">
+                             <img src="../assets/img/card-img-1.png" class="img-fluid" alt="Gamehub Logo logo">
+                        </div>
+                        <h6 class="text-secondery gil-bold f-s-20 mb-3">{{ $t('rent_games', $store.state.locale) }}</h6>
+                        <p class="mb-a-4">{{ $t('card_text_2', $store.state.locale) }}</p>
+                        <router-link to="/games" class="w-full text-center router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('rent_game', $store.state.locale) }}</div></router-link>
+                    </div>
+                     <div class="pt-a-6 pb-a-6 px-2 px-sm-4 exchange-lend-section__content">
+                        <div class="exchange-lend-section__content__img">
+                             <img src="../assets/img/card-img-1.png" class="img-fluid" alt="Gamehub Logo logo">
+                        </div>
+                        <h6 class="text-secondery gil-bold f-s-20 mb-3">{{ $t('rent_games', $store.state.locale) }}</h6>
+                        <p class="mb-a-4">{{ $t('card_text_3', $store.state.locale) }}</p>
+                        <router-link to="/games" class="w-full text-center router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('rent_game', $store.state.locale) }}</div></router-link>
+                    </div>
+                     <div class="pt-a-6 pb-a-6 px-2 px-sm-4 exchange-lend-section__content">
+                        <div class="exchange-lend-section__content__img">
+                             <img src="../assets/img/card-img-1.png" class="img-fluid" alt="Gamehub Logo logo">
+                        </div>
+                        <h6 class="text-secondery gil-bold f-s-20 mb-3">{{ $t('rent_games', $store.state.locale) }}</h6>
+                        <p class="mb-a-4">{{ $t('card_text_4', $store.state.locale) }}</p>
+                        <router-link to="/games" class="w-full text-center router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('rent_game', $store.state.locale) }}</div></router-link>
                     </div>
 
-                    <div class="col-md-6">
-                        <div class="exchange-lend-section--lend">
-                            <h3>{{ $t('do_you_want_to', $store.state.locale) }}
-                                <span>{{ $t('save', $store.state.locale) }}</span> {{ $t('money_on_rent', $store.state.locale) }}</h3>
-<!--                            <a href="#" class="btn&#45;&#45;secondery exchange-lend-section&#45;&#45;exchange-btn">lend</a>-->
-                                <router-link to="/games" class="btn--secondery exchange-lend-section--exchange-btn"><span>{{ $t('rent_button', $store.state.locale) }}</span></router-link>
-                        </div>
-                    </div>
                 </div>
             </div>
         </section>
         <!-- TRENDING GAMES -->
         <section class="trending-section">
-            <div class="text-center">
+            <div class="container">
                 <h2 class="section-heading">{{ $t('trending_games', $store.state.locale) }}</h2>
             </div>
             <div class="position-relative">
@@ -52,42 +79,64 @@
                     :loop ="true"
                     :center ="false"
                     :nav ="false"
-                    :margin ="5"
+                    :margin ="20"
                     :items ="3"
                     :stagePadding ="150"
-                    :responsive="{ 0:{items:1, stagePadding:0, dots:true},
-                                590:{items:2, dots:false, nav:false, stagePadding:0,},
-                                768:{items:3, stagePadding:0, dots:false,},
-                                900:{items:3, stagePadding:0, dots:false,},
-                                1200:{items:3, stagePadding:100, dots:false,},
-                                1500:{items:3, dots:false,},
-                                1800:{items:5, dots:false,}}">
-                    <template slot="prev"><div class="vue-owl-nav vue-owl-nav-prev"><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
-
-                    <template slot="next"><div class="vue-owl-nav vue-owl-nav-next"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
+                    :responsive="{ 0:{items: 1.5, stagePadding:0, nav:false, dots:true, center:true,},
+                                    600:{items:3, stagePadding:0, center:false, dots:false,},
+                                    800:{items:3, stagePadding:50, dots:false,},
+                                    1026:{items:3, stagePadding:100, dots:false,},
+                                    1200:{items:5, stagePadding:100, dots:false,},
+                                    1300:{items:5, stagePadding:100, dots:false,},
+                                    1800:{items:7, stagePadding:100, dots:false,}}">
+                        <template slot="prev">
+                                <div class="vue-owl-nav vue-owl-nav-prev">
+                                    <button class="owl-prev z-index-9">
+                                        <span class="prev">
+                                        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8.12576 0.30213C7.91776 0.414342 7.78809 0.627714 7.78809 0.859789L7.78809 4.47352L0.652707 4.47352C0.292413 4.47352 4.5817e-07 4.75915 4.27402e-07 5.11109C3.96635e-07 5.46302 0.292413 5.74865 0.652707 5.74865L7.78809 5.74865L7.78809 9.36239C7.78809 9.59531 7.91776 9.80868 8.12575 9.92005C8.33375 10.0331 8.58787 10.0255 8.7889 9.90219L15.6954 5.6509C15.8851 5.53358 16 5.33041 16 5.11109C16 4.89177 15.8851 4.68859 15.6954 4.57128L8.7889 0.319982C8.68273 0.255375 8.56176 0.222222 8.44079 0.222222C8.33288 0.222222 8.2241 0.249424 8.12576 0.30213Z" fill="#FFD715"/>
+                                            </svg>
+                                        </span> 
+                                    </button> 
+                                </div>
+                            </template>
+                            <template slot="next">
+                                <div class="vue-owl-nav vue-owl-nav-next">
+                                    <button class="owl-next z-index-9">
+                                        <span class="next">
+                                            <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M8.12576 0.30213C7.91776 0.414342 7.78809 0.627714 7.78809 0.859789L7.78809 4.47352L0.652707 4.47352C0.292413 4.47352 4.5817e-07 4.75915 4.27402e-07 5.11109C3.96635e-07 5.46302 0.292413 5.74865 0.652707 5.74865L7.78809 5.74865L7.78809 9.36239C7.78809 9.59531 7.91776 9.80868 8.12575 9.92005C8.33375 10.0331 8.58787 10.0255 8.7889 9.90219L15.6954 5.6509C15.8851 5.53358 16 5.33041 16 5.11109C16 4.89177 15.8851 4.68859 15.6954 4.57128L8.7889 0.319982C8.68273 0.255375 8.56176 0.222222 8.44079 0.222222C8.33288 0.222222 8.2241 0.249424 8.12576 0.30213Z" fill="#FFD715"/>
+                                            </svg>
+                                        </span>
+                                    </button>
+                                </div>
+                            </template>
 
                     <div class="item" v-for="(trending, index) in trendingGames" :key="index">
                         <router-link :to="{ path: '/game-details/' + trending.game.data.slug}" class="trending-image">
                             <img :src="trending.game.data.trending_url" alt="trending.game.data.name">
                         </router-link>
-                        <div class="trending-game--name-price d-flex justify-content-between">
+                        <!-- <div class="trending-game--name-price d-flex justify-content-between">
                             <router-link :to="{ path: '/game-details/' + trending.game.data.slug}" class="">{{ trending.game.data.name }}</router-link>
-                        </div>
-                        <div class="trending-game--categories d-flex justify-content-between" v-if="trending">
-                            <div class="home-categories">
+                        </div> -->
+                        <div class="trending-game--categories py-3" v-if="trending">
+                            <!-- <div class="home-categories">
                                 <a :href="'/games?categories=' + genre.slug" v-for="(genre) in trending.game.data.genres.data" :key="genre.id">{{ genre.name }}</a>
-                            </div>
-                            <div class="d-flex home-platform">
+                            </div> -->
+                            <div class="d-flex home-platform justify-content-center px-3">
                                 <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in trending.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>
                             </div>
                         </div>
                     </div>
             </carousel>
            </div>
+           <div class="text-center mt-a-6">
+               <router-link to="/gamebazar" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('all_games_for_rent', $store.state.locale) }}</div></router-link>
+           </div>
         </section>
         <!-- favorite-section -->
         <section class="favorite-section">
-            <div class="text-center">
+            <div class="container">
                  <h2 class="section-heading">{{ $t('rent_favorite_games', $store.state.locale) }}</h2>
             </div>
               <div class="position-relative">
@@ -96,9 +145,9 @@
                         :loop ="true"
                         :center ="false"
                         :nav ="false"
-                        :margin ="10"
+                        :margin ="20"
                         :stagePadding = "0"
-                        :responsive="{ 0:{items:3, stagePadding:0, nav:false, dots:true, center:true,},
+                        :responsive="{ 0:{items:1.5, stagePadding:0, nav:false, dots:true, center:true, autoplay: false,},
                                     600:{items:3, stagePadding:0, center:false, dots:false,},
                                     800:{items:3, stagePadding:50, dots:false,},
                                     1026:{items:3, stagePadding:100, dots:false,},
@@ -106,9 +155,28 @@
                                     1300:{items:5, stagePadding:100, dots:false,},
                                     1800:{items:7, stagePadding:100, dots:false,}}"
                         >
-                        <template slot="prev"><div class="vue-owl-nav vue-owl-nav-prev"><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
-
-                        <template slot="next"><div class="vue-owl-nav vue-owl-nav-next"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
+                       <template slot="prev">
+                            <div class="vue-owl-nav vue-owl-nav-prev">
+                                <button class="owl-prev z-index-9">
+                                    <span class="prev">
+                                       <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8.12576 0.30213C7.91776 0.414342 7.78809 0.627714 7.78809 0.859789L7.78809 4.47352L0.652707 4.47352C0.292413 4.47352 4.5817e-07 4.75915 4.27402e-07 5.11109C3.96635e-07 5.46302 0.292413 5.74865 0.652707 5.74865L7.78809 5.74865L7.78809 9.36239C7.78809 9.59531 7.91776 9.80868 8.12575 9.92005C8.33375 10.0331 8.58787 10.0255 8.7889 9.90219L15.6954 5.6509C15.8851 5.53358 16 5.33041 16 5.11109C16 4.89177 15.8851 4.68859 15.6954 4.57128L8.7889 0.319982C8.68273 0.255375 8.56176 0.222222 8.44079 0.222222C8.33288 0.222222 8.2241 0.249424 8.12576 0.30213Z" fill="#FFD715"/>
+                                        </svg>
+                                    </span> 
+                                </button> 
+                            </div>
+                        </template>
+                        <template slot="next">
+                            <div class="vue-owl-nav vue-owl-nav-next">
+                                <button class="owl-next z-index-9">
+                                    <span class="next">
+                                        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8.12576 0.30213C7.91776 0.414342 7.78809 0.627714 7.78809 0.859789L7.78809 4.47352L0.652707 4.47352C0.292413 4.47352 4.5817e-07 4.75915 4.27402e-07 5.11109C3.96635e-07 5.46302 0.292413 5.74865 0.652707 5.74865L7.78809 5.74865L7.78809 9.36239C7.78809 9.59531 7.91776 9.80868 8.12575 9.92005C8.33375 10.0331 8.58787 10.0255 8.7889 9.90219L15.6954 5.6509C15.8851 5.53358 16 5.33041 16 5.11109C16 4.89177 15.8851 4.68859 15.6954 4.57128L8.7889 0.319982C8.68273 0.255375 8.56176 0.222222 8.44079 0.222222C8.33288 0.222222 8.2241 0.249424 8.12576 0.30213Z" fill="#FFD715"/>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </template>
 
                         <div class="item" v-for="(popular, index) in populars" :key="index">
                             <div class="favorite-games">
@@ -128,32 +196,54 @@
                         </div>
                 </carousel>
              </div>
+             <div class="text-center mt-a-6">
+               <router-link to="/gamebazar" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('all_games_for_buy', $store.state.locale) }}</div></router-link>
+           </div>
         </section>
 
        <section class="upcoming-section">
-            <div class="text-center">
+            <div class="container">
                 <h2 class="section-heading">{{ $t('upcoming_games', $store.state.locale) }}</h2>
             </div>
             <div class="position-relative">
                 <carousel v-if ="loadedUpcoming"
-                        :autoplay ="true"
-                        :loop ="false"
+                        :autoplay ="false"
+                        :loop ="true"
                         :center ="false"
                         :nav ="false"
-                        :margin ="5"
+                        :margin ="0"
                         :items ="3"
                         :stagePadding ="150"
-                        :responsive="{ 0:{items:1, stagePadding:0},
-                                    590:{items:2, dots:false, nav:false, stagePadding:0,},
+                        :responsive="{ 0:{items:1.5, stagePadding:0, center: true,},
+                                    590:{items:2, dots:false, nav:false, stagePadding:0, center: false,},
                                     768:{items:3, stagePadding:0, dots:false,},
                                     900:{items:3, stagePadding:0, dots:false,},
-                                    1200:{items:3, stagePadding:100, dots:false,},
+                                    1200:{items:3, stagePadding:50, dots:false,},
                                     1500:{items:3, dots:false,},
-                                    1800:{items:5, dots:false,}}"
+                                    1800:{items:4, dots:false,}}"
                         >
-                        <template slot="prev"><div class="vue-owl-nav vue-owl-nav-prev"><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
-
-                        <template slot="next"><div class="vue-owl-nav vue-owl-nav-next"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
+                        <template slot="prev">
+                            <div class="vue-owl-nav vue-owl-nav-prev">
+                                <button class="owl-prev z-index-9">
+                                    <span class="prev">
+                                       <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8.12576 0.30213C7.91776 0.414342 7.78809 0.627714 7.78809 0.859789L7.78809 4.47352L0.652707 4.47352C0.292413 4.47352 4.5817e-07 4.75915 4.27402e-07 5.11109C3.96635e-07 5.46302 0.292413 5.74865 0.652707 5.74865L7.78809 5.74865L7.78809 9.36239C7.78809 9.59531 7.91776 9.80868 8.12575 9.92005C8.33375 10.0331 8.58787 10.0255 8.7889 9.90219L15.6954 5.6509C15.8851 5.53358 16 5.33041 16 5.11109C16 4.89177 15.8851 4.68859 15.6954 4.57128L8.7889 0.319982C8.68273 0.255375 8.56176 0.222222 8.44079 0.222222C8.33288 0.222222 8.2241 0.249424 8.12576 0.30213Z" fill="#FFD715"/>
+                                        </svg>
+                                    </span> 
+                                </button> 
+                            </div>
+                        </template>
+                        <template slot="next">
+                            <div class="vue-owl-nav vue-owl-nav-next">
+                                <button class="owl-next z-index-9">
+                                    <span class="next">
+                                        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8.12576 0.30213C7.91776 0.414342 7.78809 0.627714 7.78809 0.859789L7.78809 4.47352L0.652707 4.47352C0.292413 4.47352 4.5817e-07 4.75915 4.27402e-07 5.11109C3.96635e-07 5.46302 0.292413 5.74865 0.652707 5.74865L7.78809 5.74865L7.78809 9.36239C7.78809 9.59531 7.91776 9.80868 8.12575 9.92005C8.33375 10.0331 8.58787 10.0255 8.7889 9.90219L15.6954 5.6509C15.8851 5.53358 16 5.33041 16 5.11109C16 4.89177 15.8851 4.68859 15.6954 4.57128L8.7889 0.319982C8.68273 0.255375 8.56176 0.222222 8.44079 0.222222C8.33288 0.222222 8.2241 0.249424 8.12576 0.30213Z" fill="#FFD715"/>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </template>
 
                         <div class="item" v-for="(game, index) in upcomingGames" :key="index">
                         
@@ -187,9 +277,12 @@
                         </div>
                 </carousel>
            </div>
+           <div class="text-center mt-a-6">
+               <router-link to="/gamebazar" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('all_games', $store.state.locale) }}</div></router-link>
+           </div>
        </section>
         <!-- notice board -->
-        <section class="noticed-board-section">
+        <!-- <section class="noticed-board-section">
             <div class="text-center">
                 <h2 class="section-heading">{{ $t('news_&_notice', $store.state.locale) }}</h2>
             </div>
@@ -219,9 +312,9 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- Noticed bord section mobile -->
-        <section class="noticed-board-section-mobile d-block d-sm-none">
+        <!-- <section class="noticed-board-section-mobile d-block d-sm-none">
             <div class="container">
                 <div class="col-12 p-0">
                     <div class="position-relative">
@@ -250,10 +343,265 @@
                     </div>
                 </div>
             </div>
+        </section> -->
+        
+        <!-- product section -->
+        <section class="product-section d-none d-sm-block">
+            <div class="container">
+                 <h2 class="section-heading">{{ $t('upcoming_games', $store.state.locale) }}</h2>
+                 <div class="d-grid grid-cols-2 grid-md-cols-3 grid-lg-cols-5 grid-gap-16 grid-gap-md-30 gamebazar-post">
+                      <router-link to="/"
+                               class="">
+                            <div class="product-img position-relative br-4 overflow-hidden">
+                            <!-- <img :src="item.cover.url" :alt="item.name" class="img-fluid w-100" v-if="item.cover != null"> -->
+                            <img src="../assets/img/play.png" alt="gaming product" class="img-fluid w-100" >
+
+                            <!-- <span v-if="item.product_type == 1" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">New</span> -->
+                            <span  class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">Used</span>
+
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ 590</span>
+                            </div>
+
+                            <p class="gil-bold mb-3 mt-a-4 text-white post-name">Item name name name</p>
+                                <div class="d-flex align-items-center text-secondery">
+                                    <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
+                                    <div class="gamebazar-post__arrow">
+                                        <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                        </router-link>
+                        <router-link to="/"
+                               class="">
+                            <div class="product-img position-relative br-4 overflow-hidden">
+                            <!-- <img :src="item.cover.url" :alt="item.name" class="img-fluid w-100" v-if="item.cover != null"> -->
+                            <img src="../assets/img/play.png" alt="gaming product" class="img-fluid w-100" >
+
+                            <!-- <span v-if="item.product_type == 1" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">New</span> -->
+                            <span  class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">Used</span>
+
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ 590</span>
+                            </div>
+
+                            <p class="gil-bold mb-3 mt-a-4 text-white post-name">Item name name name</p>
+                                <div class="d-flex align-items-center text-secondery">
+                                    <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
+                                    <div class="gamebazar-post__arrow">
+                                        <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                        </router-link>
+                        <router-link to="/"
+                               class="">
+                            <div class="product-img position-relative br-4 overflow-hidden">
+                            <!-- <img :src="item.cover.url" :alt="item.name" class="img-fluid w-100" v-if="item.cover != null"> -->
+                            <img src="../assets/img/play.png" alt="gaming product" class="img-fluid w-100" >
+
+                            <!-- <span v-if="item.product_type == 1" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">New</span> -->
+                            <span  class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">Used</span>
+
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ 590</span>
+                            </div>
+
+                            <p class="gil-bold mb-3 mt-a-4 text-white post-name">Item name name name</p>
+                                <div class="d-flex align-items-center text-secondery">
+                                    <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
+                                    <div class="gamebazar-post__arrow">
+                                        <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                        </router-link>
+                        <router-link to="/"
+                               class="">
+                            <div class="product-img position-relative br-4 overflow-hidden">
+                            <!-- <img :src="item.cover.url" :alt="item.name" class="img-fluid w-100" v-if="item.cover != null"> -->
+                            <img src="../assets/img/play.png" alt="gaming product" class="img-fluid w-100" >
+
+                            <!-- <span v-if="item.product_type == 1" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">New</span> -->
+                            <span  class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">Used</span>
+
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ 590</span>
+                            </div>
+
+                            <p class="gil-bold mb-3 mt-a-4 text-white post-name">Item name name name</p>
+                                <div class="d-flex align-items-center text-secondery">
+                                    <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
+                                    <div class="gamebazar-post__arrow">
+                                        <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                        </router-link>
+                        <router-link to="/"
+                               class="">
+                            <div class="product-img position-relative br-4 overflow-hidden">
+                            <!-- <img :src="item.cover.url" :alt="item.name" class="img-fluid w-100" v-if="item.cover != null"> -->
+                            <img src="../assets/img/play.png" alt="gaming product" class="img-fluid w-100" >
+
+                            <!-- <span v-if="item.product_type == 1" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">New</span> -->
+                            <span  class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">Used</span>
+
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ 590</span>
+                            </div>
+
+                            <p class="gil-bold mb-3 mt-a-4 text-white post-name">Item name name name</p>
+                                <div class="d-flex align-items-center text-secondery">
+                                    <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
+                                    <div class="gamebazar-post__arrow">
+                                        <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                        </router-link>
+                        <router-link to="/"
+                               class="">
+                            <div class="product-img position-relative br-4 overflow-hidden">
+                            <!-- <img :src="item.cover.url" :alt="item.name" class="img-fluid w-100" v-if="item.cover != null"> -->
+                            <img src="../assets/img/play.png" alt="gaming product" class="img-fluid w-100" >
+
+                            <!-- <span v-if="item.product_type == 1" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">New</span> -->
+                            <span  class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">Used</span>
+
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ 590</span>
+                            </div>
+
+                            <p class="gil-bold mb-3 mt-a-4 text-white post-name">Item name name name</p>
+                                <div class="d-flex align-items-center text-secondery">
+                                    <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
+                                    <div class="gamebazar-post__arrow">
+                                        <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                        </router-link>
+                        <router-link to="/"
+                               class="">
+                            <div class="product-img position-relative br-4 overflow-hidden">
+                            <!-- <img :src="item.cover.url" :alt="item.name" class="img-fluid w-100" v-if="item.cover != null"> -->
+                            <img src="../assets/img/play.png" alt="gaming product" class="img-fluid w-100" >
+
+                            <!-- <span v-if="item.product_type == 1" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">New</span> -->
+                            <span  class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">Used</span>
+
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ 590</span>
+                            </div>
+
+                            <p class="gil-bold mb-3 mt-a-4 text-white post-name">Item name name name</p>
+                                <div class="d-flex align-items-center text-secondery">
+                                    <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
+                                    <div class="gamebazar-post__arrow">
+                                        <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                        </router-link>
+                        <router-link to="/"
+                               class="">
+                            <div class="product-img position-relative br-4 overflow-hidden">
+                            <!-- <img :src="item.cover.url" :alt="item.name" class="img-fluid w-100" v-if="item.cover != null"> -->
+                            <img src="../assets/img/play.png" alt="gaming product" class="img-fluid w-100" >
+
+                            <!-- <span v-if="item.product_type == 1" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">New</span> -->
+                            <span  class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">Used</span>
+
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ 590</span>
+                            </div>
+
+                            <p class="gil-bold mb-3 mt-a-4 text-white post-name">Item name name name</p>
+                                <div class="d-flex align-items-center text-secondery">
+                                    <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
+                                    <div class="gamebazar-post__arrow">
+                                        <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                        </router-link>
+                 </div>
+                 <div class="text-center mt-a-6">
+                    <router-link to="/gamebazar" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('all_post', $store.state.locale) }}</div></router-link>
+                </div>
+            </div>
         </section>
+        <!-- product section for mobile -->
+        <section class="d-sm-none product-mobile">
+            <div class="position-relative">
+                <carousel v-if ="loadedUpcoming"
+                        :autoplay ="true"
+                        :loop ="true"
+                        :center ="false"
+                        :nav ="false"
+                        :margin ="20"
+                        :items ="3"
+                        :stagePadding ="150"
+                        :responsive="{ 0:{items:1.5, stagePadding:0, center: false, nav: false, dots: false},}"
+                        >
+                        <template slot="prev">
+                            <div class="vue-owl-nav vue-owl-nav-prev">
+                                <button class="owl-prev z-index-9">
+                                    <span class="prev">
+                                       <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8.12576 0.30213C7.91776 0.414342 7.78809 0.627714 7.78809 0.859789L7.78809 4.47352L0.652707 4.47352C0.292413 4.47352 4.5817e-07 4.75915 4.27402e-07 5.11109C3.96635e-07 5.46302 0.292413 5.74865 0.652707 5.74865L7.78809 5.74865L7.78809 9.36239C7.78809 9.59531 7.91776 9.80868 8.12575 9.92005C8.33375 10.0331 8.58787 10.0255 8.7889 9.90219L15.6954 5.6509C15.8851 5.53358 16 5.33041 16 5.11109C16 4.89177 15.8851 4.68859 15.6954 4.57128L8.7889 0.319982C8.68273 0.255375 8.56176 0.222222 8.44079 0.222222C8.33288 0.222222 8.2241 0.249424 8.12576 0.30213Z" fill="#FFD715"/>
+                                        </svg>
+                                    </span> 
+                                </button> 
+                            </div>
+                        </template>
+                        <template slot="next">
+                            <div class="vue-owl-nav vue-owl-nav-next">
+                                <button class="owl-next z-index-9">
+                                    <span class="next">
+                                        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8.12576 0.30213C7.91776 0.414342 7.78809 0.627714 7.78809 0.859789L7.78809 4.47352L0.652707 4.47352C0.292413 4.47352 4.5817e-07 4.75915 4.27402e-07 5.11109C3.96635e-07 5.46302 0.292413 5.74865 0.652707 5.74865L7.78809 5.74865L7.78809 9.36239C7.78809 9.59531 7.91776 9.80868 8.12575 9.92005C8.33375 10.0331 8.58787 10.0255 8.7889 9.90219L15.6954 5.6509C15.8851 5.53358 16 5.33041 16 5.11109C16 4.89177 15.8851 4.68859 15.6954 4.57128L8.7889 0.319982C8.68273 0.255375 8.56176 0.222222 8.44079 0.222222C8.33288 0.222222 8.2241 0.249424 8.12576 0.30213Z" fill="#FFD715"/>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </template>
+
+                        <div class="item" v-for="(game, index) in upcomingGames" :key="index">
+                        
+                            <div class="owl-upcoming--item">
+                                 <router-link to="/"
+                               class="">
+                            <div class="product-img position-relative br-4 overflow-hidden">
+                            <!-- <img :src="item.cover.url" :alt="item.name" class="img-fluid w-100" v-if="item.cover != null"> -->
+                            <img src="../assets/img/play.png" alt="gaming product" class="img-fluid w-100" >
+
+                            <!-- <span v-if="item.product_type == 1" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">New</span> -->
+                            <span  class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">Used</span>
+
+                            <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ 590</span>
+                            </div>
+
+                            <p class="gil-bold mb-3 mt-a-4 text-white post-name">Item name name name</p>
+                                <div class="d-flex align-items-center text-secondery">
+                                    <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
+                                    <div class="gamebazar-post__arrow">
+                                        <svg class="" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFD715"/>
+                                        </svg>
+                                    </div>
+                                </div>
+                        </router-link>
+                            </div>
+                        </div>
+                </carousel>
+           </div>
+        </section>
+        
         <!-- featured section -->
         <section class="featured-section">
-            <div class="text-center">
+            <div class="container">
                 <h2 class="section-heading">{{ $t('featured_videos', $store.state.locale) }}</h2>
             </div>
             <div class="container">
@@ -268,9 +616,28 @@
                         :stagePadding ="150"
                         :responsive="{ 0:{items:1, stagePadding:0},
                                     768:{items:2, stagePadding:0, dots:false,}}">
-                  <template slot="prev"><div class="vue-owl-nav "><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
-
-                  <template slot="next"><div class="vue-owl-nav"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
+                        <template slot="prev">
+                                    <div class="vue-owl-nav vue-owl-nav-prev">
+                                        <button class="owl-prev z-index-9">
+                                            <span class="prev">
+                                            <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M8.12576 0.30213C7.91776 0.414342 7.78809 0.627714 7.78809 0.859789L7.78809 4.47352L0.652707 4.47352C0.292413 4.47352 4.5817e-07 4.75915 4.27402e-07 5.11109C3.96635e-07 5.46302 0.292413 5.74865 0.652707 5.74865L7.78809 5.74865L7.78809 9.36239C7.78809 9.59531 7.91776 9.80868 8.12575 9.92005C8.33375 10.0331 8.58787 10.0255 8.7889 9.90219L15.6954 5.6509C15.8851 5.53358 16 5.33041 16 5.11109C16 4.89177 15.8851 4.68859 15.6954 4.57128L8.7889 0.319982C8.68273 0.255375 8.56176 0.222222 8.44079 0.222222C8.33288 0.222222 8.2241 0.249424 8.12576 0.30213Z" fill="#FFD715"/>
+                                                </svg>
+                                            </span> 
+                                        </button> 
+                                    </div>
+                                </template>
+                                <template slot="next">
+                                    <div class="vue-owl-nav vue-owl-nav-next">
+                                        <button class="owl-next z-index-9">
+                                            <span class="next">
+                                                <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path d="M8.12576 0.30213C7.91776 0.414342 7.78809 0.627714 7.78809 0.859789L7.78809 4.47352L0.652707 4.47352C0.292413 4.47352 4.5817e-07 4.75915 4.27402e-07 5.11109C3.96635e-07 5.46302 0.292413 5.74865 0.652707 5.74865L7.78809 5.74865L7.78809 9.36239C7.78809 9.59531 7.91776 9.80868 8.12575 9.92005C8.33375 10.0331 8.58787 10.0255 8.7889 9.90219L15.6954 5.6509C15.8851 5.53358 16 5.33041 16 5.11109C16 4.89177 15.8851 4.68859 15.6954 4.57128L8.7889 0.319982C8.68273 0.255375 8.56176 0.222222 8.44079 0.222222C8.33288 0.222222 8.2241 0.249424 8.12576 0.30213Z" fill="#FFD715"/>
+                                                </svg>
+                                            </span>
+                                        </button>
+                                    </div>
+                            </template>
 
                         <div class="item" v-for="(video, index) in videos" :key="index">
                             <div class="featured-videos">

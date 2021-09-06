@@ -6,11 +6,10 @@
         padding-bottom: 70px;
     }
     @include for-max-575 {
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left: 0px;
+        padding-right: 0px;
     }
     .item {
-        margin-left: -7px;
         @include for-max-768 {
             margin-left: 0;
         }
@@ -26,40 +25,21 @@
             overflow: hidden;
             display: block;
             border-radius: 0;
+            @include for-max-575 {
+                height: 150px;
+            }
             img {
-                position: absolute;
-                left: -75px;
-                width: 450px;
                 height: 238px;
-                transform: skew(21deg, 0deg);
                 transition: all .5s ease-in;
-                @include for-max-1800 {
-                    left: -46px;
-                    width: 597px;
-                }
-                @include for-max-1500 {
-                    left: -46px;
-                    width: 495px;
-                }
-                @include for-max-1300 {
-                    width: 460px;
-                }
-                @include for-max-1199 {
-                    width: 547px;
-                }
-                @include for-max-992 {
-                    left: -60px;
-                    width: 506px;
-                }
-                @include for-max-768 {
-                    transform: skew(0deg, 0deg);
+                @include for-max-575 {
+                    height: 150px;
                 }
             }
             &:hover {
                 img {
-                    transform: skew(21deg, 0deg) scale(1.1);
+                    transform: scale(1.1);
                     @include for-max-768 {
-                        transform: skew(0deg, 0deg) scale(1.1);
+                        transform:  scale(1.1);
                     }
                 }
             }
@@ -73,42 +53,39 @@
         top: 100px;
         z-index: 99;
         @include for-max-575 {
-            top: 120px;
+            top: 70px;
         }
         &.vue-owl-nav-prev {
             left: 20px;
             @include for-max-575 {
-                left: 0px;
+                left: 20px;
             }
         }
         &.vue-owl-nav-next {
             right: 20px;
             @include for-max-575 {
-                right: 0px;
+                right: 20px;
             }
         }
         button {
-            width: 50px;
-            height: 50px;
-            transform: skewX(-13deg);
-            border: 1px solid $secondery !important;
+            width: 32px;
+            height: 32px;
+            border: 1px solid $secondery-opa-5 !important;
             background: transparent;
-            border-radius: 0 !important;
+            border-radius: 4px !important;
             transition: all .3s ease-in !important;
-            @include for-max-590 {
-                width: 35px;
-                height: 35px;
-                transform: skewX(0deg);
+            svg {
+                path {
+                    transition: all .3s ease-in;
+                }
             }
             &:hover {
                 background: $secondery !important;
-                .arrow {
-                    color: $text-dark;
+                svg {
+                    path {
+                        fill: $text-dark;
+                    }
                 }
-            }
-            .arrow {
-                transition: all .3s ease-in;
-                color: $text-light;
             }
             &:focus {
                 outline: none !important;
@@ -133,12 +110,20 @@
     &.active {
         opacity: 1;
     }
+    @include for-max-575 {
+        opacity: .3 !important;
+    }
+    &.center {
+        @include for-max-575 {
+            opacity: 1 !important;
+        }
+    }
 }
 
 .upcoming-game--name-price,
 .upcoming-game--categories {
-    margin-left: -2rem;
-    margin-right: 8rem;
+    margin-left: 2rem;
+    margin-right: 2rem;
     @include for-max-900 {
         margin-left: 1rem;
         margin-right: 1rem;
@@ -172,10 +157,6 @@
 
 .owl-upcoming--item {
     position: relative;
-    transform: skew(-21deg);
-    @include for-max-768 {
-        transform: skew(0deg);
-    }
 }
 
 .upcoming-order {
@@ -212,11 +193,7 @@
             }
         }
         span {
-            transform: skew(21deg);
             display: block;
-            @include for-max-768 {
-                transform: skew(0deg);
-            }
         }
     }
 }
@@ -228,12 +205,6 @@
     border: 1px solid $secondery;
     background: $game-details;
     color: $text-light;
-    i {
-        transform: skew(21deg);
-        @include for-max-768 {
-            transform: skew(0deg);
-        }
-    }
     &:focus {
         outline: none;
     }

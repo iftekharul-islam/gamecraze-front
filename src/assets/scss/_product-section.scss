@@ -1,0 +1,13 @@
+.product-section {
+    padding-bottom: 150px;
+}
+.product-mobile {
+    padding-bottom: 50px;
+    padding-left: 20px;
+    .owl-item {
+        opacity: 1 !important;
+    }
+    .vue-owl-nav {
+        display: none;
+    }
+}

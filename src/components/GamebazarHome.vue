@@ -7,7 +7,7 @@
                         <div class="max-600">
                             <h1 class="f-s-30 f-s-sm-48 text-secondery gil-bold font-weight-bold mb-a-6">{{ $t('game_bazar_title_1', $store.state.locale) }} </h1>
                             <p class="gil-medium op-8">{{ $t('game_bazar_title_2', $store.state.locale) }}</p>
-                            <a href="#" @click.prevent="routeOnSellPost" class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">
+                            <a href="#" @click.prevent="routeOnSellPost" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">
                               {{ $t('sell_post', $store.state.locale) }}
                             </a>
                         </div>
@@ -175,7 +175,7 @@
                   <h2>{{ $t('noting_to_show', $store.state.locale) }}</h2>
                 </div>
                 <div class="text-center mt-5">
-                    <router-link to="/sell-posts" class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_post', $store.state.locale) }}</router-link>
+                    <router-link to="/sell-posts" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_post', $store.state.locale) }}</router-link>
                 </div>
             </div>
         </section>
@@ -245,7 +245,7 @@
                 </carousel>
               </div>
               <div class="text-center mt-5">
-                <a href="#" @click.prevent="queryOnCategory(category.name)" class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_post', $store.state.locale) }}</a>
+                <a href="#" @click.prevent="queryOnCategory(category.name)" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_post', $store.state.locale) }}</a>
               </div>
             </div>
           </section>
@@ -372,7 +372,7 @@
                 </carousel>
               </div>
               <div class="text-center mt-5">
-                     <router-link to="/games" class="router_link btn--collision br-4 border-1 secondery-border gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_games', $store.state.locale) }}</router-link>
+                     <router-link to="/games" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_games', $store.state.locale) }}</router-link>
               </div>
             </div>
         </section>

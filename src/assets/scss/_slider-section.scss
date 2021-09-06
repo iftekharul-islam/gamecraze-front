@@ -4,10 +4,11 @@
     background-size: cover;
     background-position: 50%;
     display: flex;
-    padding-top: 70px;
+    padding-top: 150px;
     height: 820px;
     @include for-max-992 {
         height: 550px;
+        padding-top: 70px;
     }
     @include for-max-768 {
         height: 400px;
@@ -26,16 +27,10 @@
             width: 370px;
         }
         @include for-max-575 {
-            width: 90%;
+            width: 100%;
         }
     }
     h6 {
-        margin-bottom: 40px;
-        line-height: 30px;
-        @include for-max-575 {
-            font-weight: 400;
-            font-size: 16px;
-        }
         br {
             @include for-max-575 {
                 display: none;
@@ -69,12 +64,123 @@
 
 .gamehub-heading {
     color: #fff;
-    text-transform: uppercase;
-    font-style: italic;
     font-weight: bold;
     text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
     @include roboto-con;
-    span {
-        color: $secondery;
+    font-size: 32px;
+    @include for-min-992 {
+        font-size: 48px;
+    }
+    @include for-max-575 {
+        line-height: 43px;
+        width: 100%;
+    }
+    br {
+        &:nth-of-type(2) {
+            @include for-max-575 {
+                display: none;
+            }
+        }
+    }
+   
+}
+.bn {
+    .gamehub-heading {
+        line-height: 44px;
+        @include for-min-992 {
+            font-size: 42px;
+            line-height: 70px;
+        }
+        @include for-max-575 {
+            font-size: 28px;
+            margin-top: 50px;
+        }
+    }
+    .curve-shape {
+        .curve-img {
+            width: 110%;
+            top: -3px;
+            left: -13px;
+            
+        }
+        &.curve-shape-3 {
+            img {
+                height: 59px;
+                top: -9px;
+                @include for-max-991 {
+                    height: 47px;
+                    top: -7px;
+                }
+                @include for-max-575 {
+                    left: -9px;
+                }
+            }
+        }
+        &.curve-shape-4 {
+            .curve-img {
+                width: 115%;
+                left: -5px;
+               
+            }
+        }
+        &.curve-shape-2 {
+            .curve-img {
+               @include for-max-575 {
+                left: -4px;
+               }
+            }
+        }
+    }
+}
+.curve-shape {
+    z-index: 2;
+    color: $primary;
+    margin-right: 30px;
+    &.curve-shape-1 {
+        margin-left: 15px;
+    }
+    &.curve-shape-3 {
+        margin-right: 15px;
+    }
+    &.curve-shape-4 {
+        margin-left: 15px;
+        @include for-max-575 {
+            margin-right: 10px;
+        }
+       
+    }
+    .curve-img {
+        top: 0px;
+        left: -13px;
+        z-index: -1;
+        height: 39px;
+        @include for-min-992 {
+            height: 55px;
+            top: 4px;
+        }
+    }
+}
+.home-banner-text {
+   @include for-min-992 {
+    max-width: 500px;
+    font-size: 20px;
+    line-height: 36px;
+    opacity: .9;
+   }
+}
+.heading-btn {
+    .btn--collision {
+        @include for-max-575 {
+            padding: 5px 0px !important;
+            font-size: 14px;
+            flex: 1;
+            text-align: center;
+            font-weight: normal !important;
+        }
+        &:not(:last-child) {
+            @include for-max-575 {
+                margin-right: 8px !important;
+            }
+        }
     }
 }

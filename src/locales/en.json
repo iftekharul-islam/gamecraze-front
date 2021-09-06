@@ -20,7 +20,7 @@
   "platform" : "Platform",
   "for_games_rent_in" : "For Games rent in",
   "bangladesh" : "Bangladesh",
-  "home_banner_text" : "Rent-Lend-Sell-buy PlayStation, Xbox, PC games online and join the largest gaming platform in Bangladesh.",
+  "home_banner_text" : "Rent a game or lend by few clicks. We thrive on excellent customer support. Try Gamehub today & ezperience something new",
   "begin_journey" : "BEGIN JOURNEY",
   "do_you_want_to" : "Do you want to",
   "earn" : "Earn",
@@ -535,7 +535,7 @@
   "your_email" : "Your email",
   "report_now" : "Report now",
   "cause_of_report" : "Cause of report",
-  "please_upload_cover_photo" : "Please add cover image",
+  "please_upload_cover_photo" : "Please crop the cover image",
   "please_upload_screenshots" : "Please upload screenshots",
   "post" : "Post",
   "selected_location": "Selected Location",
@@ -568,5 +568,8 @@
   "all_games_for_buy" : "All games for buy",
   "subscribe_our_newsletter" : "Subscribe our newsletter",
   "subscribe" : "Subscribe",
-  "please_fill_the_required_field" : "Please fill the required field first !!!"
+  "please_fill_the_required_field" : "Please fill the required field first !!!",
+  "buy_now" : "Buy now",
+  "sell_gaming_product" : "Sell gaming product",
+  "products_for_sell" : "Products for sell"
 }

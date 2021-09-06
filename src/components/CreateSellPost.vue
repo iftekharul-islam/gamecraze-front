@@ -36,12 +36,12 @@
                 <form id="sellForm1">
                   <div class="group mb-a-6">
                     <label class="mb-3 w-100">{{ $t('select_product_category', $store.state.locale) }}</label>
-                    <ValidationProvider name="Category" rules="required" v-slot="{ errors, classes }">
+                    <ValidationProvider name="Category" rules="required" v-slot="{ errors, classes}">
                       <select name="Category" :class="classes" class="w-100 bg-step-form-input triangle-select-arrow no-default-arrow h-40 border-1 border-secondery-opa-25 text-white no-focus br-4 px-3" id="product-category" v-model="sub_category_id" required>
                         <option value="">Select category</option>
                         <option :value="category.id" v-for="(category, index) in subCategories" :key="index">{{ category.name }}</option>
                       </select>
-                      <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
+                      <span class="text-step-error mt-2 d-inline-block" id="input-error" v-if="errors[0]">{{ errors[0] }}</span>
                     </ValidationProvider>
                   </div>
                   <div class="group mb-a-6">
@@ -159,7 +159,7 @@
                     <a class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer" @click="$refs.FileInputNew.click()"> <span></span> <div class="position-relative">Upload image</div></a>
                     <input ref="FileInputNew" type="file" style="display: none;" @change="onFileSelect" />
                   </div>
-                  <span class="text-step-error mt-2 d-inline-block" v-if="coverError">{{ $t('please_upload_cover_photo', $store.state.locale) }}</span>
+                  <span class="text-step-error mt-2 d-inline-block" v-if="validType">{{ $t('image_validation', $store.state.locale) }}</span>
                 </div>
                 <div class="group mb-a-6" v-if="dialog">
                   <label class="mb-3 w-100">{{ $t('image_preview', $store.state.locale) }}</label>
@@ -179,12 +179,13 @@
                   </div>
                   <div class="my-3 d-grid grid-cols-2 grid-gap-16">
                     <a class="btn--secondery-hover br-4 text-center gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="saveImage(), (dialog = true)"> <span></span> <div class="position-relative">Crop</div></a>
-                    <a class="btn--secondery-hover br-4 text-center gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="dialog = false, (cover_image = '')"> <span></span> <div class="position-relative">Cancel</div></a>
+<!--                    <a class="btn&#45;&#45;secondery-hover br-4 text-center gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="dialog = false, (cover_image = '')"> <span></span> <div class="position-relative">Cancel</div></a>-->
                   </div>
                   <div class="img-prev" v-if="cover_image">
                     <img :src="cover_image" alt="Cover image preview">
                   </div>
                 </div>
+                <span class="text-step-error mt-2 d-inline-block" v-if="coverError">{{ $t('please_upload_cover_photo', $store.state.locale) }}</span>
                 <div class="group mb-a-6">
                   <label class="mb-3 w-100">{{ $t('upload_screenshots', $store.state.locale) }}</label>
                   <div class="post-rent--form-group--input wizard__body__step">
@@ -259,6 +260,7 @@
     components: {UploadImages, VueCropper},
     data(){
       return {
+        validType: false,
         errorLocation: false,
         thanas: [],
         districts: [],
@@ -336,7 +338,25 @@
           this.errorLocation = true;
         }
       },
+      scrollToError(errorElement) {
+        const offset = 150;
+        const bodyRect = document.body.getBoundingClientRect().top;
+        const elementRect = errorElement.getBoundingClientRect().top;
+        const elementPosition = elementRect - bodyRect;
+        const offsetPosition = elementPosition - offset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      },
       confirmFirstStep() {
+        const errorElement = this.$el.querySelector('.text-step-error');
+        if (errorElement) {
+          this.scrollToError(errorElement);
+          return
+        }
+
         this.$refs.sellForm1.validate().then(success => {
           if (success) {
             window.scrollTo(0,20);
@@ -346,6 +366,8 @@
             this.twoActive = true;
             this.threeActive = false;
           }
+        }).catch(err => {
+          console.log(err)
         });
       },
       backToFirstStep() {
@@ -385,6 +407,11 @@
         this.threeActive = false;
       },
       finalSubmit() {
+        const errorElement = this.$el.querySelector('.text-step-error');
+        if (errorElement) {
+          this.scrollToError(errorElement);
+          return
+        }
         this.submitLoading = true;
         this.$refs.sellForm2.validate().then(success => {
           if (success) {
@@ -412,9 +439,15 @@
       },
       onFileSelect(e) {
         this.coverError = false;
+        this.validType = false;
         const file = e.target.files[0]
         if (file != undefined) {
           this.mime_type = file.type
+          let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+          if (allowedTypes.indexOf(this.mime_type) == -1) {
+            this.validType = true;
+            return;
+          }
           if (typeof FileReader === 'function') {
             this.dialog = true
             const reader = new FileReader()

@@ -540,108 +540,108 @@
                                                                                             </button>
                                                                                             <h4 class="text-secondery mb-a-12 f-s-28 text-center">{{ $t('sell_post', $store.state.locale) }}</h4>
                                                                                             <!-- form-group -->
-                                                                                            <ValidationObserver v-slot="{ invalid }">
-                                                                                                <form @submit.prevent="sellPostUpdate" method="post">
-                                                                                                    <div class="form-group post-rent--form-group">
-                                                                                                        <label for="sell-post-name" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('name', $store.state.locale) }}</label>
-                                                                                                        <div class=" post-rent--form-group--input">
-                                                                                                            <ValidationProvider name="Sell post name" rules="required" v-slot="{ errors }">
-                                                                                                                <input type="text" class="form-control renten-input" id="sell-post-name" placeholder="Enter sell post name" v-model="editPostData.name">
-                                                                                                                <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
-                                                                                                            </ValidationProvider>
-                                                                                                        </div>
+                                                                                          <ValidationObserver ref="sellForm1">
+                                                                                            <form id="sellForm1">
+                                                                                                <div class="form-group post-rent--form-group">
+                                                                                                    <label for="sell-post-name" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('name', $store.state.locale) }}</label>
+                                                                                                    <div class=" post-rent--form-group--input">
+                                                                                                        <ValidationProvider name="Sell post name" rules="required" v-slot="{ errors }">
+                                                                                                            <input type="text" class="form-control renten-input" id="sell-post-name" placeholder="Enter sell post name" v-model="editPostData.name">
+                                                                                                            <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                                                                                                        </ValidationProvider>
+                                                                                                    </div>
 
+                                                                                                </div>
+                                                                                                <!-- form-group -->
+                                                                                                <div class="form-group post-rent--form-group">
+                                                                                                    <label class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('description', $store.state.locale) }}</label>
+                                                                                                    <div class=" post-rent--form-group--input">
+                                                                                                        <ValidationProvider name="description" rules="required" v-slot="{ errors }">
+                                                                                                            <ckeditor v-model="editPostData.description" :config="editorConfig"></ckeditor>
+                                                                                                            <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                                                                                                        </ValidationProvider>
                                                                                                     </div>
-                                                                                                    <!-- form-group -->
-                                                                                                    <div class="form-group post-rent--form-group">
-                                                                                                        <label class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('description', $store.state.locale) }}</label>
-                                                                                                        <div class=" post-rent--form-group--input">
-                                                                                                            <ValidationProvider name="description" rules="required" v-slot="{ errors }">
-                                                                                                                <ckeditor v-model="editPostData.description" :config="editorConfig"></ckeditor>
-                                                                                                                <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
-                                                                                                            </ValidationProvider>
-                                                                                                        </div>
+                                                                                                </div>
+                                                                                                <div class="form-group post-rent--form-group">
+                                                                                                    <label for="sell-post-price" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('price', $store.state.locale) }}</label>
+                                                                                                    <div class=" post-rent--form-group--input">
+                                                                                                        <ValidationProvider name="price" rules="required" v-slot="{ errors }">
+                                                                                                            <input type="text" @keypress="isNumberOnEditPrice($event)" class="form-control renten-input" id="sell-post-price" placeholder="Enter price" v-model="editPostData.price">
+                                                                                                            <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                                                                                                        </ValidationProvider>
                                                                                                     </div>
-                                                                                                    <div class="form-group post-rent--form-group">
-                                                                                                        <label for="sell-post-price" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('price', $store.state.locale) }}</label>
-                                                                                                        <div class=" post-rent--form-group--input">
-                                                                                                            <ValidationProvider name="price" rules="required" v-slot="{ errors }">
-                                                                                                                <input type="text" @keypress="isNumberOnEditPrice($event)" class="form-control renten-input" id="sell-post-price" placeholder="Enter price" v-model="editPostData.price">
-                                                                                                                <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
-                                                                                                            </ValidationProvider>
-                                                                                                        </div>
-                                                                                                    </div>
-                                                                                                    <div class="form-group post-rent--form-group" >
-                                                                                                        <label class="label-padding post-rent--form-group--label text-light text-left">{{ $t('is_negotiable', $store.state.locale) }} </label>
-                                                                                                        <div class="post-rent--form-group--input">
-                                                                                                            <div class=" post-rent--form-group--input--radio-group ">
-                                                                                                                <div class="form-check form-check-inline custom-radio">
-                                                                                                                    <input class="custom-control-input platform" id="sell-post-nego" name="is_negotiable" type="checkbox" value="" v-model="editPostData.is_negotiable" :checked="editPostData.is_negotiable == 1">
-                                                                                                                    <label class="custom-control-label ml-2" for="sell-post-nego">{{ $t('is_negotiable', $store.state.locale) }}</label>
-                                                                                                                </div>
+                                                                                                </div>
+                                                                                                <div class="form-group post-rent--form-group" >
+                                                                                                    <label class="label-padding post-rent--form-group--label text-light text-left">{{ $t('is_negotiable', $store.state.locale) }} </label>
+                                                                                                    <div class="post-rent--form-group--input">
+                                                                                                        <div class=" post-rent--form-group--input--radio-group ">
+                                                                                                            <div class="form-check form-check-inline custom-radio">
+                                                                                                                <input class="custom-control-input platform" id="sell-post-nego" name="is_negotiable" type="checkbox" value="" v-model="editPostData.is_negotiable" :checked="editPostData.is_negotiable == 1">
+                                                                                                                <label class="custom-control-label ml-2" for="sell-post-nego">{{ $t('is_negotiable', $store.state.locale) }}</label>
                                                                                                             </div>
                                                                                                         </div>
                                                                                                     </div>
-                                                                                                    <div class="form-group post-rent--form-group">
-                                                                                                        <label class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('sub_category', $store.state.locale) }}</label>
-                                                                                                        <div class=" post-rent--form-group--input">
-                                                                                                            <ValidationProvider name="Sub category" rules="required" v-slot="{ errors }">
-                                                                                                                <b-form-select
-                                                                                                                        v-model="selected"
-                                                                                                                        :options="subCategories"
-                                                                                                                        class="custom-select"
-                                                                                                                        value-field="id"
-                                                                                                                        text-field="name"
-                                                                                                                        disabled-field="notEnabled"
-                                                                                                                ></b-form-select>
-                                                                                                                <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
-                                                                                                            </ValidationProvider>
-                                                                                                        </div>
+                                                                                                </div>
+                                                                                                <div class="form-group post-rent--form-group">
+                                                                                                    <label class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('sub_category', $store.state.locale) }}</label>
+                                                                                                    <div class=" post-rent--form-group--input">
+                                                                                                        <ValidationProvider name="Sub category" rules="required" v-slot="{ errors }">
+                                                                                                            <b-form-select
+                                                                                                                    v-model="selected"
+                                                                                                                    :options="subCategories"
+                                                                                                                    class="custom-select"
+                                                                                                                    value-field="id"
+                                                                                                                    text-field="name"
+                                                                                                                    disabled-field="notEnabled"
+                                                                                                            ></b-form-select>
+                                                                                                            <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                                                                                                        </ValidationProvider>
                                                                                                     </div>
-                                                                                                    <div class="form-group post-rent--form-group">
-                                                                                                        <label for="sell-post-phone" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('phone_number', $store.state.locale) }}</label>
-                                                                                                        <div class=" post-rent--form-group--input">
-                                                                                                            <ValidationProvider name="Phone no" rules="required|min:11|max:11" v-slot="{ errors }">
-                                                                                                                <input type="number" @keypress="isNumber($event)" class="form-control renten-input" id="sell-post-phone" v-model="editPostData.phone_no">
-                                                                                                                <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
-                                                                                                            </ValidationProvider>
-                                                                                                        </div>
+                                                                                                </div>
+                                                                                                <div class="form-group post-rent--form-group">
+                                                                                                    <label for="sell-post-phone" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('phone_number', $store.state.locale) }}</label>
+                                                                                                    <div class=" post-rent--form-group--input">
+                                                                                                        <ValidationProvider name="Phone no" rules="required|min:11|max:11" v-slot="{ errors }">
+                                                                                                            <input type="number" @keypress="isNumber($event)" class="form-control renten-input" id="sell-post-phone" v-model="editPostData.phone_no">
+                                                                                                            <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                                                                                                        </ValidationProvider>
+                                                                                                    </div>
 
-                                                                                                    </div>
-                                                                                                    <div class="form-group post-rent--form-group">
-                                                                                                    <label for="sell-post-email" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('email', $store.state.locale) }}</label>
+                                                                                                </div>
+                                                                                                <div class="form-group post-rent--form-group">
+                                                                                                <label for="sell-post-email" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('email', $store.state.locale) }}</label>
+                                                                                                <div class=" post-rent--form-group--input">
+                                                                                                    <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
+                                                                                                    <input type="text" class="form-control renten-input" id="sell-post-email" v-model="editPostData.email">
+                                                                                                    <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                                                                                                    </ValidationProvider>
+                                                                                                </div>
+                                                                                                </div>
+                                                                                                <div class="form-group post-rent--form-group">
+                                                                                                <label class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('location', $store.state.locale) }}</label>
+                                                                                                <div class=" post-rent--form-group--input">
+                                                                                                    <v-select :options="thanas" label="item_data" @input="cleanUpValidation" v-model="editPostData.thana_id" :reduce="thana => thana.id"></v-select>
+                                                                                                    <span class="error-message d-block text-left mt-2" v-if="errorLocation">Please select location</span>
+                                                                                                </div>
+                                                                                                </div>
+                                                                                                <div class="form-group post-rent--form-group">
+                                                                                                <label for="sell-post-area" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('area', $store.state.locale) }}</label>
+                                                                                                <div class=" post-rent--form-group--input">
+                                                                                                    <ValidationProvider name="Area" rules="required" v-slot="{ errors }">
+                                                                                                    <input type="text" class="form-control renten-input" id="sell-post-area" placeholder="Enter sell post area" v-model="editPostData.area">
+                                                                                                    <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                                                                                                    </ValidationProvider>
+                                                                                                </div>
+                                                                                                </div>
+                                                                                                <div class="form-group post-rent--form-group">
+                                                                                                    <label for="sell-post-address" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('address', $store.state.locale) }}</label>
                                                                                                     <div class=" post-rent--form-group--input">
-                                                                                                        <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
-                                                                                                        <input type="text" class="form-control renten-input" id="sell-post-email" v-model="editPostData.email">
-                                                                                                        <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
+                                                                                                        <ValidationProvider name="Address" rules="required" v-slot="{ errors }">
+                                                                                                            <input type="text" class="form-control renten-input" id="sell-post-address" placeholder="Enter sell post address" v-model="editPostData.address">
+                                                                                                            <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
                                                                                                         </ValidationProvider>
                                                                                                     </div>
-                                                                                                    </div>
-                                                                                                    <div class="form-group post-rent--form-group">
-                                                                                                    <label class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('location', $store.state.locale) }}</label>
-                                                                                                    <div class=" post-rent--form-group--input">
-                                                                                                        <v-select :options="thanas" label="item_data" @input="cleanUpValidation" v-model="editPostData.thana_id" :reduce="thana => thana.id"></v-select>
-                                                                                                        <span class="error-message d-block text-left mt-2" v-if="errorLocation">Please select location</span>
-                                                                                                    </div>
-                                                                                                    </div>
-                                                                                                    <div class="form-group post-rent--form-group">
-                                                                                                    <label for="sell-post-area" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('area', $store.state.locale) }}</label>
-                                                                                                    <div class=" post-rent--form-group--input">
-                                                                                                        <ValidationProvider name="Area" rules="required" v-slot="{ errors }">
-                                                                                                        <input type="text" class="form-control renten-input" id="sell-post-area" placeholder="Enter sell post area" v-model="editPostData.area">
-                                                                                                        <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
-                                                                                                        </ValidationProvider>
-                                                                                                    </div>
-                                                                                                    </div>
-                                                                                                    <div class="form-group post-rent--form-group">
-                                                                                                        <label for="sell-post-address" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('address', $store.state.locale) }}</label>
-                                                                                                        <div class=" post-rent--form-group--input">
-                                                                                                            <ValidationProvider name="Address" rules="required" v-slot="{ errors }">
-                                                                                                                <input type="text" class="form-control renten-input" id="sell-post-address" placeholder="Enter sell post address" v-model="editPostData.address">
-                                                                                                                <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
-                                                                                                            </ValidationProvider>
-                                                                                                        </div>
-                                                                                                    </div>
+                                                                                                </div>
                                                                                                 <div class="form-group post-rent--form-group" v-if="editPostData.cover != null">
                                                                                                     <label  class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('cover_image', $store.state.locale) }}</label>
                                                                                                     <div class="post-rent--form-group--input d-grid grid-cols-2 grid-sm-cols-3 grid-gap-10 grid-rows-100 grid-auto-rows-100">
@@ -657,10 +657,11 @@
                                                                                                 <div class="form-group post-rent--form-group">
                                                                                                     <label class="label-padding post-rent--form-group--label mt-0">{{ $t('upload_cover', $store.state.locale) }} </label>
                                                                                                     <div class=" post-rent--form-group--input">
-                                                                                                    <div class="custom-file">
-                                                                                                        <a class=" btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer" @click="$refs.FileInput.click()"><span></span> <div class="text-center position-relative">Upload image</div></a>
-                                                                                                        <input ref="FileInput" type="file" style="display: none;" @change="onEditFileSelect" />
-                                                                                                    </div>
+                                                                                                      <div class="custom-file">
+                                                                                                          <a class=" btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer" @click="$refs.FileInput.click()"><span></span> <div class="text-center position-relative">Upload image</div></a>
+                                                                                                          <input ref="FileInput" type="file" style="display: none;" @change="onEditFileSelect" />
+                                                                                                      </div>
+                                                                                                      <span class="text-step-error mt-2 d-inline-block" v-if="validType">{{ $t('image_validation', $store.state.locale) }}</span>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 <div class="form-group post-rent--form-group" v-if="editPostData.dialog">
@@ -681,7 +682,7 @@
                                                                                                     </div>
                                                                                                     <div class="my-2 d-grid grid-cols-2 grid-gap-16">
                                                                                                         <a class=" btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer" @click="saveEditImage(), (editPostData.dialog = true)"><span></span> <div class="position-relative text-center">Crop</div></a>
-                                                                                                        <a class=" btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer" @click="editPostData.dialog = false, (editPostData.cover_image = '')"><span></span> <div class="position-relative text-center">Cancel</div></a>
+<!--                                                                                                        <a class=" btn&#45;&#45;secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer" @click="editPostData.dialog = false, (editPostData.cover_image = '')"><span></span> <div class="position-relative text-center">Cancel</div></a>-->
                                                                                                     </div>
                                                                                                     <div class="img-prev" v-if="editPostData.cover_image">
                                                                                                         <img :src="editPostData.cover_image" alt="Cover image preview">
@@ -703,7 +704,7 @@
                                                                                                 <div class="form-group post-rent--form-group gamebazar-step-form " v-if="editPostData.secreenShotsLimit">
                                                                                                     <label for="sell-post-address" class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('upload_screenshots', $store.state.locale) }}</label>
                                                                                                     <div class=" post-rent--form-group--input wizard__body__step">
-                                                                                                    <UploadImages class="image-boxs w-100 p-0 bg-transparent border-0" 
+                                                                                                    <UploadImages class="image-boxs w-100 p-0 bg-transparent border-0"
                                                                                                     :maxError="'Max image upload remaining is ' + editPostData.secreenShotsLimit" :max="editPostData.secreenShotsLimit" @change="handleEditScreenshots"/>
                                                                                                     </div>
                                                                                                 </div>
@@ -711,13 +712,13 @@
                                                                                                 <div class="form-group post-rent--form-group offer-edit-btn">
                                                                                                     <label class=" label-padding post-rent--form-group--label text-light"></label>
                                                                                                     <div class=" post-rent--form-group--input">
-                                                                                                        <button type="submit" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer user-id-edit-btn" :disabled="invalid">
+                                                                                                        <a href="#" @click.prevent="sellPostUpdate" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer user-id-edit-btn" :class="{ 'pe-none' :  isEditLoading}">
                                                                                                             <span></span>
                                                                                                             <div class="w-100 position-relative">
                                                                                                             <div v-if="isEditLoading" class="spinner-border spinner-border-sm skew-none"></div>
                                                                                                             {{ $t('submit', $store.state.locale) }}
                                                                                                             </div>
-                                                                                                        </button>
+                                                                                                        </a>
                                                                                                     </div>
                                                                                                 </div>
                                                                                                 </form>
@@ -1439,6 +1440,7 @@
         components: {StarRating, VueFeedbackReaction, UploadImages, VueCropper},
         data() {
             return {
+                validType: false,
                 errorLocation: false,
                 thanas: [],
                 editorConfig:{
@@ -1694,8 +1696,14 @@
               }
             },
             onEditFileSelect(e) {
+              this.validType = false;
               const file = e.target.files[0]
               this.editPostData.mime_type = file.type
+              let allowedTypes = ['image/jpg', 'image/jpeg', 'image/png'];
+              if (allowedTypes.indexOf(this.editPostData.mime_type) == -1) {
+                this.validType = true;
+                return;
+              }
               if (typeof FileReader === 'function') {
                 this.editPostData.dialog = true
                 const reader = new FileReader()
@@ -2253,72 +2261,79 @@
                 this.form.checkpoint = '';
             },
             sellPostUpdate(){
-              if(this.editPostData.thana_id == null){
-                this.errorLocation = true;
-                return;
-              }
-              this.isEditLoading = true;
-              this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
-                if (typeof response.data == 'string') {
-                  this.onLogout();
-                  return;
-                }
-                this.user = response.data.data;
-                if (this.user.status == 0) {
-                  this.onLogout();
-                  return;
-                }
-                if (this.removeCover != '' && this.editPostData.cover_image === '') {
-                  this.$toaster.error(this.$t('upload_cover_notification', this.$store.state.locale));
-                  this.isEditLoading = false;
-                  return;
-                }
-                if (this.editPostData.images.length === this.removeScreenshots.length && this.editPostData.postImages.length === 0) {
-                  this.$toaster.error(this.$t('upload_screenshots_notification', this.$store.state.locale));
-                  this.isEditLoading = false;
-                  return;
-                }
-                let config = {
-                  headers: {
-                    'Authorization': 'Bearer ' + this.$store.state.token
-                  }
-                };
-                let data = {
-                  id: this.editPostData.id,
-                  name: this.editPostData.name,
-                  description: this.editPostData.description,
-                  price: this.editPostData.price,
-                  sub_category_id: this.selected,
-                  is_negotiable: this.editPostData.is_negotiable,
-                  phone_no: this.editPostData.phone_no,
-                  email: this.editPostData.email,
-                  address: this.editPostData.address,
-                  images: this.editPostData.postImages,
-                  cover_image: this.editPostData.cover_image,
-                  removeCover: this.removeCover,
-                  removeScreenshots: this.removeScreenshots,
-                  thana_id: this.editPostData.thana_id,
-                  area: this.editPostData.area
+              this.$refs.sellForm1.validate().then(success => {
+                    if (success) {
+                        if(this.editPostData.thana_id == null){
+                          this.errorLocation = true;
+                          return;
+                        }
+                        this.isEditLoading = true;
+                        this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
+                          if (typeof response.data == 'string') {
+                            this.onLogout();
+                            return;
+                          }
+                          this.user = response.data.data;
+                          if (this.user.status == 0) {
+                            this.onLogout();
+                            return;
+                          }
+                          if (this.removeCover != '' && this.editPostData.cover_image === '') {
+                            this.$toaster.error(this.$t('upload_cover_notification', this.$store.state.locale));
+                            this.isEditLoading = false;
+                            return;
+                          }
+                          if (this.editPostData.images.length === this.removeScreenshots.length && this.editPostData.postImages.length === 0) {
+                            this.$toaster.error(this.$t('upload_screenshots_notification', this.$store.state.locale));
+                            this.isEditLoading = false;
+                            return;
+                          }
+                          let config = {
+                            headers: {
+                              'Authorization': 'Bearer ' + this.$store.state.token
+                            }
+                          };
+                          let data = {
+                            id: this.editPostData.id,
+                            name: this.editPostData.name,
+                            description: this.editPostData.description,
+                            price: this.editPostData.price,
+                            sub_category_id: this.selected,
+                            is_negotiable: this.editPostData.is_negotiable,
+                            phone_no: this.editPostData.phone_no,
+                            email: this.editPostData.email,
+                            address: this.editPostData.address,
+                            images: this.editPostData.postImages,
+                            cover_image: this.editPostData.cover_image,
+                            removeCover: this.removeCover,
+                            removeScreenshots: this.removeScreenshots,
+                            thana_id: this.editPostData.thana_id,
+                            area: this.editPostData.area
 
-                };
+                          };
 
-                this.$api.post('sell-post-update', data, config).then(response => {
-                  if (response.data.error == false) {
-                    this.isEditLoading = false;
-                    this.sellPostEditModalShow = false;
-                    this.editPostData.postImages = [];
-                    this.editPostData.cover_image = '';
-                    this.editPostData.dialog = false;
-                    this.editPostData.images = [];
-                    this.removeCover = '';
-                    this.$toaster.success(this.$t('info_update_notification', this.$store.state.locale));
-                    this.sellPostCheck()
-                    this.onSellPost()
-                  } else {
-                    this.$toaster.fail(response.data.message);
-                  }
-                })
-              })
+                          this.$api.post('sell-post-update', data, config).then(response => {
+                            if (response.data.error == false) {
+                              this.isEditLoading = false;
+                              this.sellPostEditModalShow = false;
+                              this.editPostData.postImages = [];
+                              this.editPostData.cover_image = '';
+                              this.editPostData.dialog = false;
+                              this.editPostData.images = [];
+                              this.removeCover = '';
+                              this.$toaster.success(this.$t('info_update_notification', this.$store.state.locale));
+                              this.sellPostCheck()
+                              this.onSellPost()
+                            } else {
+                              this.$toaster.fail(response.data.message);
+                            }
+                          })
+                        })
+                      return
+                      }
+                      this.$toaster.warning(this.$t('please_fill_the_required_field', this.$store.state.locale));
+                      this.isEditLoading = false;
+                    });
             },
             onRentSubmit () {
               this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {

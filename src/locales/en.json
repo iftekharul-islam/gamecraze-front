@@ -173,7 +173,7 @@
   "contact_details" : "Phone no: 017773278387",
   "thank_you" : "Thank you",
   "profile_updated" : "Profile Updated !",
-  "image_validation" : "Only jpg,jpeg or png file allowed",
+  "image_validation" : "Only jpg, jpeg or png file allowed",
   "image_size_validation" : "Maximum allowed file size 5MB",
   "complete_required_field" : "Complete the required fields !",
   "games_required_field" : "Please Select a Game !",
@@ -544,5 +544,6 @@
   "search_game_accessories" : "Search Game Accessories",
   "create_post_tutorial" : "Create post tutorial",
   "available" : "Available",
-  "area" : "Area"
+  "area" : "Area",
+  "please_fill_the_required_field" : "Please fill the required field first !!!"
 }

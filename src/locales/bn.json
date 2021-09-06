@@ -172,7 +172,7 @@
   "contact_details" : "মোবাইল নং: 017773278387",
   "thank_you" : "ধন্যবাদ",
   "profile_updated" : "প্রফাইল আপডেট হয়েছে",
-  "image_validation" : "শুধুমাত্র JPG, JPEG or PNG ফাইল আপলোড দিতে পারবেন",
+  "image_validation" : "শুধুমাত্র JPG, JPEG or PNG ফাইল আপলোড করুন",
   "image_size_validation" : "সর্বোচ্চ ফাইল সাইজ 5MB",
   "complete_required_field" : "প্রয়োজনীয় ফরম পুরন করুন",
   "games_required_field" : "একটি গেম সিলেক্ট করুন",
@@ -544,5 +544,6 @@
   "search_game_accessories" : "গেম এক্সেসরিজ অনুসন্ধান করুন",
   "create_post_tutorial" : "পোষ্ট তৈরির টিউটোরিয়াল",
   "available" : "এভেইল্যাবল",
-  "area" : "এলাকা"
+  "area" : "এলাকা",
+  "please_fill_the_required_field" : "অনুগ্রহ করে প্রয়োজনীয় শূন্যস্থান পূরণ করুন !!!"
 }

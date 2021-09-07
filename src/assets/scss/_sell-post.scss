@@ -339,7 +339,10 @@ $background_color_2: inherit;
     }
 }
 .cropper-crop-box {
-    transform: translateX(17px) translateY(5px) !important;
+    transform: translateX(0px) translateY(0px) !important;
+    width: 95% !important;
+    height: 95% !important;
+    margin: auto !important;
 }
 .cropper-container {
     height: 280px !important;
@@ -363,9 +366,51 @@ $background_color_2: inherit;
         border: 1px solid $text-light-75;
         padding: 6px 4px;
     }
+    .vs__search {
+        // visibility: hidden;
+    }
     .vs__selected {
         color: $text-light;
         opacity: .95;
+        &-options {
+            .vs__search {
+                color: $text-light !important;
+            }
+            
+        }
+    }
+    .vs__dropdown-menu {
+        border: 1px solid $secondery;
+        background: $step-form-input;
+        li {
+            color: $text-light;
+            border-radius: 0;
+            padding: 8px 0px;
+            margin: 0 10px;
+            position: relative;
+            border-bottom: 1px solid $secondery-opa-5;
+            &::before {
+                content: '';
+                background: transparent;
+                position: absolute;
+                top: 0;
+                left: -10px;
+                height: 100%;
+                width: calc(100% + 20px);
+            }
+            &:last-of-type {
+                border: none;
+            }
+            &:hover {
+                color: $primary;
+                font-weight: bold;
+                border: none;
+                &::before {
+                    background: $secondery;
+                    z-index: -1;
+                }
+            }
+        }
     }
     .vs__actions {
         .vs__clear,
@@ -373,5 +418,18 @@ $background_color_2: inherit;
             fill: $text-light;
             opacity: .95;
         }
+    }
+    .vs__dropdown-option--highlight {
+        background: transparent;
+    }
+}
+.profile-v-select {
+    .vs__search {
+      border: none;
+    }
+    .vs__dropdown-toggle {
+        padding: 0;
+        border-radius: 0;
+        border-color: $secondery;
     }
 }

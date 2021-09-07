@@ -619,8 +619,8 @@
                                                                                                 </div>
                                                                                                 <div class="form-group post-rent--form-group">
                                                                                                 <label class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('location', $store.state.locale) }}</label>
-                                                                                                <div class=" post-rent--form-group--input">
-                                                                                                    <v-select :options="thanas" label="item_data" @input="cleanUpValidation" v-model="editPostData.thana_id" :reduce="thana => thana.id"></v-select>
+                                                                                                <div class=" post-rent--form-group--input location-filter profile-v-select">
+                                                                                                    <v-select :options="thanas" label="item_data" @input="cleanUpValidation" v-model="editPostData.thana_id" :reduce="thana => thana.id" placeholder="Please select location"></v-select>
                                                                                                     <span class="error-message d-block text-left mt-2" v-if="errorLocation">Please select location</span>
                                                                                                 </div>
                                                                                                 </div>

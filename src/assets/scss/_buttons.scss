@@ -158,7 +158,7 @@
           }
     }
     &--secondery-hover {
-        border-radius: 5px;
+        border-radius: 45px;
         padding: 10px 25px;
         font-weight: 500;
         cursor: pointer;
@@ -169,6 +169,7 @@
         background: $secondery-gradient;
         border: 1px solid $secondery !important;
         z-index: 1;
+        overflow: hidden;
         &::after {
             position: absolute;
             content: "";
@@ -177,7 +178,7 @@
             top: 0;
             left: 0;
             z-index: -1;
-            border-radius: 5px;
+            border-radius: 45px;
             background-color: #eaf818;
             background-image: linear-gradient(315deg, $primary 0%, $primary 74%);
             transition: all 0.3s ease;

@@ -827,6 +827,16 @@
                 height: 65px;
                 margin-bottom: 24px;
             }
+            .start-date {
+                @include for-min-1200 {
+                    width: 150px;
+                }
+            }
+            .payment {
+                @include for-min-1200 {
+                    width: 150px;
+                }
+            }
         }
         &--sell-post {
             &--button {

@@ -60,7 +60,6 @@
     }
 }
 
-
 .current-popular {
         .vue-owl-nav {
             top: 50%;
@@ -110,29 +109,24 @@
             }
             .owl-dots {
                 @include for-max-575 {
-                    display: block !important;
+                    display: none !important;
                 }
             }
-            
-        }
-        .accessories-sell-post {
-            padding-bottom: 200px;
-            @include for-max-1500 {
-                padding-bottom: 150px;
-            }
-
-            @include for-max-1199 {
-                padding-bottom: 50px;
-            }
-            &__row {
-                @include for-max-1199 {
-                    flex-direction: column-reverse;
+            .owl-item {
+                &.active {
+                    opacity: 1 !important;
                 }
             }
-        }
+}
 
 .accessories-sellpost {
     max-width: 650px;
+    padding-bottom: 200px;
+    &__row {
+        @include for-max-1199 {
+            flex-direction: column-reverse;
+        }
+    }
     @include for-min-1500 {
         max-width: 650px;
         width: 100%;
@@ -150,11 +144,15 @@
         max-width: 850px;
     }
 
+    @include for-max-1500 {
+        padding-bottom: 150px;
+    }
     @include for-max-1400 {
         max-width: 550px;
     }
     @include for-max-1199 {
         max-width: 100%;
+        padding-bottom: 50px;
     }
 }
 
@@ -268,9 +266,9 @@
     }
 }
 
-    .owl-dots {
-        display: none !important;
-    }
+.owl-dots {
+    display: none !important;
+}
 
 .gamebazar {
     &__search {
@@ -367,11 +365,22 @@
             font-size: 14px;
             @include for-min-575 {
                 font-size: 16px;
+               
+            }
+            @include for-max-575 {
+                margin-left: 65px;
             }
         }
         &.sellpost_search {
             @include for-min-768 {
                 width: 65%;
+            }
+        }
+        .search-content {
+            .ml-3 {
+                @include for-max-575 {
+                    margin-left: -47px !important;
+                }
             }
         }
     }
@@ -392,4 +401,14 @@
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     height: 48px;
+}
+// new post
+.new-post {
+    .owl-item {
+        &.active {
+            @include for-max-575 {
+                opacity: 1 !important;
+            }
+        }
+    }
 }

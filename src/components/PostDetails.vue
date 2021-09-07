@@ -233,7 +233,7 @@
                               <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3" v-if="related.product_type === 2">Used</span>
                               <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ {{ related.price }}</span>
                           </div>
-                          <p class="gil-bold mb-4 mt-a-4 text-white">{{ related.name }}</p>
+                          <p class="gil-bold mb-4 mt-a-4 text-white post-name">{{ related.name }}</p>
                           <div class="d-flex align-items-center text-secondery">
                               <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
                               <div class="gamebazar-post__arrow">
@@ -302,7 +302,7 @@
                   <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3" v-if="post.product_type === 2">Used</span>
                   <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ {{ post.price }}</span>
                 </div>
-                <p class="gil-bold mb-4 mt-a-4 text-white">{{ post.name }}</p>
+                <p class="gil-bold mb-4 mt-a-4 text-white post-name">{{ post.name }}</p>
                 <div class="d-flex align-items-center text-secondery">
                   <p class="mb-0">{{ $t('details', $store.state.locale) }}</p>
                   <div class="gamebazar-post__arrow">

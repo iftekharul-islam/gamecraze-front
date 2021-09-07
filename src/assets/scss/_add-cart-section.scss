@@ -169,7 +169,6 @@
     h2 {
         font-size: 40px;
         color: $secondery;
-        font-style: italic;
         @include for-max-575 {
             font-size: 24px;
         }
@@ -191,7 +190,6 @@
     h2 {
         font-size: 40px;
         color: $secondery;
-        font-style: italic;
         @include for-max-575 {
             font-size: 24px;
         }

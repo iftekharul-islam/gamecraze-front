@@ -51,6 +51,12 @@
         }
         .btn--collision {
             margin-top: auto;
+            @include for-max-1199 {
+                padding: 10px 15px !important;
+            }
+            @include for-max-575 {
+                padding: 8px 10px !important;
+            }
         }
     }
 }

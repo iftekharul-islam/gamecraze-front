@@ -155,7 +155,7 @@
                           <img :src="post.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="post.cover != null">
                           <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image" v-else>
                           <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3" v-if="post.product_type === 1">{{ $t('new', $store.state.locale) }}</span>
-                          <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3" v-else>{{ $t('used', $store.state.locale) }}</span>
+                          <span class="position-absolute top-0 left-0 bg-purple br-b-r-5 py-1 px-3 text-white br-t-l-3" v-else>{{ $t('used', $store.state.locale) }}</span>
                           <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5"> ৳ {{ post.price }}</span>
                         </div>
                         <p class="gil-bold mb-3 mt-a-4 text-white post-name">{{ post.name }}</p>
@@ -228,7 +228,7 @@
                         <img :src="post.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="post.cover != null">
                         <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image" v-else>
                         <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3" v-if="post.product_type === 1">{{ $t('new', $store.state.locale) }}</span>
-                        <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3" v-else>{{ $t('used', $store.state.locale) }}</span>
+                        <span class="position-absolute top-0 left-0 bg-purple br-b-r-5 py-1 px-3 text-white br-t-l-3" v-else>{{ $t('used', $store.state.locale) }}</span>
                         <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5"> ৳ {{ post.price }}</span>
                       </div>
                       <p class="gil-bold mb-3 mt-a-4 text-white post-name">{{ post.name }}</p>

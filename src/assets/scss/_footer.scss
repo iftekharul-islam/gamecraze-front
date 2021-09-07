@@ -128,7 +128,13 @@
         }
         ul {
             &:nth-child(2) {
-                padding-left: 70px;
+                padding-left: 110px;
+                @include for-max-1100 {
+                    padding-left: 50px;
+                }
+                @include for-max-768 {
+                    padding-left: 0;
+                }
             }
         }
     }

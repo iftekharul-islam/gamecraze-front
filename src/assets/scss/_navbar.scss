@@ -395,34 +395,9 @@
 
 // normal sign in
 .sign-in {
-    color: $secondery;
-    font-weight: 700;
-    text-align: center;
-    border: 1px solid $secondery;
-    width: 116px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: skew(-21deg);
     margin: 0 20px;
-    @include for-max-1199 {
-        width: 100px;
-    }
-    @include for-max-1199 {
-        transform: skew(0deg);
-    }
     @include for-max-575 {
-        width: 80px;
-        height: 35px;
         margin: 0 10px;
-    }
-    span {
-        display: inline-block;
-        transform: skew(21deg);
-        @include for-max-1199 {
-            transform: skew(0deg);
-        }
     }
 }
 
@@ -592,9 +567,8 @@
         box-shadow: none;
     }
     .gamehub-search-btn--icon {
-        color: $text-light;
+        color: $secondery;
         font-size: 18px;
-        opacity: .5;
     }
 }
 .gamehub-search-btn {
@@ -969,7 +943,7 @@ body {
     top: -12px;
     left: 60px;
     @include for-max-1199 {
-        right: 8px;
+        right: -12px;
         left: initial;
     }
 }

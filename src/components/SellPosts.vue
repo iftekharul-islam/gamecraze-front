@@ -244,7 +244,7 @@
                       <img src="../assets/img/play.png" :alt="item.name" class="img-fluid w-100" v-else>
 
                       <span v-if="item.product_type == 1" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">New</span>
-                      <span v-if="item.product_type == 2" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">Used</span>
+                      <span v-if="item.product_type == 2" class="position-absolute top-0 left-0 bg-purple br-b-r-5 py-1 px-3 text-white br-t-l-3">Used</span>
 
                       <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ {{ item.price }}</span>
                     </div>

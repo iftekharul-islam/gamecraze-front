@@ -2548,12 +2548,13 @@
                 });
             },
             rentPostTab() {
-              this.tabIndex = 1;
+              this.tabIndex = 2;
+              // this.changeTabs(this.tabIndex);
             },
             editProfileTab () {
               this.tabIndex = 3;
             },
-              changeTabs(tabIndex) {
+            changeTabs(tabIndex) {
                 this.$store.dispatch('setTabIndex', tabIndex)
             }
         },

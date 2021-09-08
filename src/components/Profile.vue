@@ -1766,7 +1766,15 @@
                 }
               this.editPostData.postImages = [];
               let screenshots = [];
-              files.forEach( function (file) {
+              let fileCount = files.length;
+              for(let i = 0; i < fileCount; i++) {
+                let file = files[i];
+                let fileType = file.type.split('/');
+                if (fileType[0] != 'image'){
+                  console.log('i m in')
+                  this.$toaster.warning("Please upload only image file !!!")
+                  break
+                }
                 let reader = new FileReader()
                 reader.readAsDataURL(file)
                 reader.onload = () => {
@@ -1780,7 +1788,7 @@
                 reader.onerror = function (error) {
                   console.log('Error: ', error)
                 }
-              })
+              }
               this.editPostData.postImages = screenshots;
             },
             extendModal(lend) {

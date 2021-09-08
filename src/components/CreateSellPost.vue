@@ -471,7 +471,6 @@
         }, this.mime_type)
       },
       uploadScreenshots(files) {
-        console.log(files)
         this.screenshotsError = false;
         if (files.length === 0) {
           this.postImages = [];
@@ -492,7 +491,14 @@
         }
         this.postImages = [];
         let screenshots = [];
-        files.forEach( function (file) {
+        let fileCount = files.length
+        for(let i = 0; i < fileCount; i++) {
+          let file = files[i];
+          let fileType = file.type.split('/');
+          if (fileType[0] != 'image'){
+            this.$toaster.warning("Please upload only image file !!!")
+            break
+          }
           let reader = new FileReader()
           reader.readAsDataURL(file)
           reader.onload = () => {
@@ -506,8 +512,10 @@
           reader.onerror = function (error) {
             console.log('Error: ', error)
           }
-        })
+        }
+        console.log('in final state')
         this.postImages = screenshots;
+        console.log(this.postImages)
       },
       warrantyCheck() {
         this.warrantyModal = false;

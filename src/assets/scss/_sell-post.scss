@@ -379,9 +379,16 @@ $background_color_2: inherit;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
         height: 24px;
+        z-index: 9;
+        padding-top: 5px;
         &-options {
             .vs__search {
                 color: $text-light !important;
+                position: absolute;
+                top: -4px;
+                width: 100%;
+                z-index: 0;
+                height: 100%;
             }
             
         }
@@ -428,6 +435,9 @@ $background_color_2: inherit;
     }
     .vs__dropdown-option--highlight {
         background: transparent;
+    }
+    #vs1__listbox {
+        overflow-x: hidden;
     }
 }
 .profile-v-select {

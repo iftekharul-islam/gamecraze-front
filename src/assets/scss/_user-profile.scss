@@ -859,6 +859,9 @@
                     flex: none;
                     width: 100%;
                 }
+                @include for-min-1200 {
+                    margin-right: 30px;
+                }
             }
         }
     }

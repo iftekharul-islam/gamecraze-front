@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="gamebazar-step-form pt-5 pb-a-25">
+    <div class="gamebazar-step-form pb-a-25">
      
         <div class="container">
            <div class="mb-4">
@@ -148,7 +148,7 @@
               </ValidationObserver>
             </div>
             <div class="max-400 mx-auto" v-show="two">
-                <div class="group mb-a-6">
+                <div class="group">
                   <label class="mb-3 w-100">{{ $t('cover_image', $store.state.locale) }}</label>
                   <div>
                     <a class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer" @click="$refs.FileInputNew.click()"> <span></span> <div class="position-relative">Upload image</div></a>
@@ -156,7 +156,7 @@
                   </div>
                   <span class="text-step-error mt-2 d-inline-block" v-if="validType">{{ $t('image_validation', $store.state.locale) }}</span>
                 </div>
-                <div class="group mb-a-6" v-if="dialog">
+                <div class="group" v-if="dialog">
                   <label class="mb-3 w-100">{{ $t('image_preview', $store.state.locale) }}</label>
                   <div class="img-prev">
                     <VueCropper v-show="postCoverImage"
@@ -180,8 +180,8 @@
                     <img :src="cover_image" alt="Cover image preview">
                   </div>
                 </div>
-                <span class="text-step-error mt-2 d-inline-block" v-if="coverError">{{ $t('please_upload_cover_photo', $store.state.locale) }}</span>
-                <div class="group mb-a-6">
+                <span class="text-step-error mt-1 d-inline-block" v-if="coverError">{{ $t('please_upload_cover_photo', $store.state.locale) }}</span>
+                <div class="group mb-a-6 mt-a-6">
                   <label class="mb-3 w-100">{{ $t('upload_screenshots', $store.state.locale) }}</label>
                   <div class="post-rent--form-group--input wizard__body__step">
                      <UploadImages class="w-100 p-0 bg-transparent border-0" :max="4" maxError="Max image upload limit is 4" @change="uploadScreenshots"/>
@@ -212,7 +212,7 @@
                         <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
                       </ValidationProvider>
                     </div>
-                    <div class="group mb-a-6 location-filter">
+                    <div class="group mb-a-6 location-filter create-sellpost-select">
                       <label class="mb-3 w-100">{{ $t('selected_location', $store.state.locale) }}</label>
                       <v-select :options="thanas" label="item_data" @input="checkLocationValidation" :reduce="thana => thana.id" v-model="thana_id" ></v-select>
                       <span class="text-step-error mt-2 d-inline-block" v-if="errorLocation">Please select a location</span>

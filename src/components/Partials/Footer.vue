@@ -21,7 +21,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="row">
-                                <div class="col-sm-6 col-md-3">
+                                <div class="col-sm-6 col-lg-3">
                                     <div class="footer-menu-content mb-5 mb-sm-0">
                                         <div class="footer-top mb-3 mb-sm-4">
                                             <a href="/" class="footer-logo"><img src="../../assets/img/logo/gamehublogo.svg" alt="logo"></a>
@@ -31,10 +31,6 @@
                                         <p class="footer-menu-content--about-gamehub">
                                             {{ $t('gamehub_title', $store.state.locale) }}
                                         </p>
-                                        <!-- <div class="footer-menu-content--address">
-                                            <p class="footer-menu-content--address--text">{{ $t('email_us', $store.state.locale) }}</p>
-                                            <p class="footer-menu-content--address--text"><a href="mailto:contact@augnitive.com">contact@augnitive.com</a></p>
-                                        </div> -->
                                         <div class="footer-menu-content--address">
                                             <p class="footer-menu-content--address--text text-secondery">{{ $t('office', $store.state.locale) }}</p>
                                             <p class="footer-menu-content--address--text">House: 941, Road: 14, Avenue: 2,
@@ -44,9 +40,13 @@
                                             <p class="footer-menu-content--address--text text-secondery">{{ $t('cell_number', $store.state.locale) }}</p>
                                             <p class="footer-menu-content--address--text"><a href="tel:+8801886-614533">01886-614533</a></p>
                                         </div>
+                                         <div class="footer-menu-content--address">
+                                            <p class="footer-menu-content--address--text text-secondery">{{ $t('email_us', $store.state.locale) }}</p>
+                                            <p class="footer-menu-content--address--text"><a href="mailto:contact@augnitive.com">contact@augnitive.com</a></p>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-md-5">
+                                <div class="col-sm-6 col-lg-6 order">
                                     <div class="footer-menu-content footer-menu-content-middle mb-5 mb-sm-0">
                                         <div class="d-flex justify-content-between">
                                             <ul>
@@ -76,7 +76,7 @@
                                         
                                     </div>
                                 </div>
-                                <div class="col-6 col-md-4">
+                                <div class="col-6 col-lg-3">
                                     <div class="footer-menu-content footer-menu-content-last">
                                         <ul>
                                             

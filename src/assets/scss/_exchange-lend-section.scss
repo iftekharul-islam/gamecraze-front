@@ -1,5 +1,5 @@
 .exchange-lend-section {
-    padding-top: 150px;
+    padding-top: 100px;
     padding-bottom: 150px;
     @include for-max-992 {
         padding-top: 70px;
@@ -51,6 +51,12 @@
         }
         .btn--collision {
             margin-top: auto;
+            @include for-max-1199 {
+                padding: 10px 15px !important;
+            }
+            @include for-max-575 {
+                padding: 8px 10px !important;
+            }
         }
     }
 }

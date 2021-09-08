@@ -3,7 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+.bn {
+    body {
+        font-family: 'Hind Siliguri', sans-serif;
+    }
+}
 body {
     font-size: 16px;
     background: $primary;
@@ -39,7 +43,6 @@ h1 {
 
 h2 {
     font-size: 28px;
-    font-style: italic;
     @include for-min-992 {
         font-size: 40px;
     }
@@ -60,6 +63,11 @@ h6 {
 }
 p {
     opacity: .95;
+}
+
+// font family
+.font-siliguri {
+    font-family: 'Hind Siliguri', sans-serif;
 }
 
 // margin top
@@ -1763,6 +1771,9 @@ p {
 .text-light-gray {
     color: $light-gray;
 }
+.light-white {
+    color: $light-white;
+}
 .gamehub-success {
     color: $game-rating;
 }
@@ -1805,6 +1816,9 @@ p {
 }
 .bg-shorting {
     background: $shorting-bg;
+}
+.bg-purple {
+    background: $purple;
 }
 .bg-shorting-tile {
     background: $shorting-title;
@@ -2131,7 +2145,9 @@ html {
 .h-42 {
     height: 42px !important;
 }
-
+.h-46 {
+    height: 46px !important;
+}
 .h-48-32 {
     height: 48px;
     @include for-max-575 {
@@ -2539,10 +2555,11 @@ table {
 // section heading 
 .section-heading {
     margin-bottom: 32px;
-    font-size: 24px;
-    font-family: 'Roboto Condensed', sans-serif;
+    font-size: 20px;
+    @include gil-bold;
+    font-weight: bold;
     @include for-min-992 {
-        font-size: 32px;
+        font-size: 24px;
     }
     @include for-max-575 {
         margin-bottom: 30px;
@@ -3412,4 +3429,8 @@ select {
 // image
 .object-cover {
     object-fit: cover;
+}
+
+.word-break {
+    word-break: break-all;
 }

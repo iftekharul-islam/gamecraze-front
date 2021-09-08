@@ -4,19 +4,18 @@
     background-size: cover;
     background-position: 50%;
     display: flex;
-    padding-top: 150px;
-    height: 820px;
+    align-items: center;
+    height: 700px;
     @include for-max-992 {
         height: 550px;
         padding-top: 70px;
     }
     @include for-max-768 {
-        height: 400px;
+        height: 600px;
     }
     @include for-max-575 {
         background-position: center;
         margin-top: -56px;
-        height: 600px;
         position: relative;
         align-items: center;
         padding-top: 0;
@@ -65,11 +64,14 @@
 .gamehub-heading {
     color: #fff;
     font-weight: bold;
+    @include gil-bold;
     text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
-    @include roboto-con;
     font-size: 32px;
     @include for-min-992 {
         font-size: 48px;
+    }
+    @include for-max-991 {
+        line-height: 45px;
     }
     @include for-max-575 {
         line-height: 43px;
@@ -77,16 +79,19 @@
     }
     br {
         &:nth-of-type(2) {
-            @include for-max-575 {
+            @include for-max-1199 {
                 display: none;
             }
         }
+    }
+    span {
+        text-transform: capitalize;
     }
    
 }
 .bn {
     .gamehub-heading {
-        line-height: 44px;
+        line-height: 48px;
         @include for-min-992 {
             font-size: 42px;
             line-height: 70px;
@@ -97,6 +102,7 @@
         }
     }
     .curve-shape {
+        margin-right: 30px;
         .curve-img {
             width: 110%;
             top: -3px;
@@ -104,12 +110,18 @@
             
         }
         &.curve-shape-3 {
+            @include for-max-768 {
+                    margin-left: 9px;
+            }
             img {
                 height: 59px;
                 top: -9px;
                 @include for-max-991 {
                     height: 47px;
                     top: -7px;
+                }
+                @include for-max-768 {
+                    left: -9px;
                 }
                 @include for-max-575 {
                     left: -9px;
@@ -135,15 +147,15 @@
 .curve-shape {
     z-index: 2;
     color: $primary;
-    margin-right: 30px;
+    margin-right: 15px;
     &.curve-shape-1 {
         margin-left: 15px;
     }
     &.curve-shape-3 {
-        margin-right: 15px;
+        margin-right: 5px;
     }
     &.curve-shape-4 {
-        margin-left: 15px;
+        margin-left: 5px;
         @include for-max-575 {
             margin-right: 10px;
         }
@@ -151,16 +163,18 @@
     }
     .curve-img {
         top: 0px;
-        left: -13px;
+        left: -2px;
         z-index: -1;
         height: 39px;
         @include for-min-992 {
             height: 55px;
-            top: 4px;
+            top: 6px;
         }
     }
 }
 .home-banner-text {
+    font-size: 16px;
+    line-height: 30px;
    @include for-min-992 {
     max-width: 500px;
     font-size: 20px;
@@ -170,12 +184,15 @@
 }
 .heading-btn {
     .btn--collision {
-        @include for-max-575 {
-            padding: 5px 0px !important;
+        @include for-max-991 {
+            padding: 10px 0px !important;
             font-size: 14px;
             flex: 1;
             text-align: center;
             font-weight: normal !important;
+        }
+        @include for-max-575 {
+            padding: 5px 0px !important;
         }
         &:not(:last-child) {
             @include for-max-575 {
@@ -183,4 +200,11 @@
             }
         }
     }
+}
+.do-scroll {
+    left: 0;
+    right: 0;
+    bottom: 20px;
+    text-align: center;
+    opacity: .8;
 }

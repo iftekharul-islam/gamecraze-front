@@ -44,10 +44,18 @@
                     width: 425px;
                     margin-top: 16px;
                 }
+                @include for-max-768 {
+                    height: 320px;
+                    width: 100%;
+                    margin-top: 16px;
+                    margin-left: 0;
+                }
                 @include for-max-575 {
                     height: 300px;
-                    width: 100%;
-                    margin-left: 0;
+                   
+                }
+                @include for-max-400 {
+                    height: 250px;
                 }
                 iframe {
                     width: 100%;
@@ -58,6 +66,19 @@
     }
     .vue-owl-nav {
         position: relative;
+        @include for-max-768 {
+            top: 30px;
+        }
+        @include for-max-575 {
+            position: absolute;
+            top: 45%;
+        }
+        &.vue-owl-nav-next {
+
+            @include for-max-590 {
+                right: 56px;
+            }
+        }
         button {
             position: absolute;
             top: -226px;
@@ -74,7 +95,7 @@
                 top: -205px;
             }
             @include for-max-590 {
-                top: 20px;
+                top: initial;
             }
             svg {
                 path {
@@ -102,8 +123,7 @@
                 top: 131px;
             }
             @include for-max-590 {
-                left: 35%;
-                top: 336px;
+                top: initial;
             }
         }
         .owl-next {
@@ -112,7 +132,7 @@
                 right: 10px;
             }
             @include for-max-590 {
-                right: 35%;
+                right: initial;
             }
         }
     }
@@ -121,4 +141,7 @@
             display: block !important;
         }
     }
+}
+.ytp-impression-link {
+    display: none !important;
 }

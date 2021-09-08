@@ -6,8 +6,8 @@
                     <div class="col-lg-7">
                         <div class="max-600">
                             <h1 class="f-s-30 f-s-sm-48 text-secondery gil-bold font-weight-bold mb-a-6">{{ $t('game_bazar_title_1', $store.state.locale) }} </h1>
-                            <p class="gil-medium op-8">{{ $t('game_bazar_title_2', $store.state.locale) }}</p>
-                            <a href="#" @click.prevent="routeOnSellPost" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">
+                            <p class="gil-medium op-8 mb-a-6">{{ $t('game_bazar_title_2', $store.state.locale) }}</p>
+                            <a href="#" @click.prevent="routeOnSellPost" class="router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative">
                               {{ $t('sell_post', $store.state.locale) }}
                             </a>
                         </div>
@@ -69,7 +69,7 @@
                               <div  slot-scope="{ suggestion }" class="w-100">
                                 <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between">
 
-                                  <div class="d-flex align-items-md-center">
+                                  <div class="d-flex align-items-md-center search-content">
                                     <div class="gamebazar__search__img overflow-hidden br-4">
                                       <img :src="suggestion.item.cover.url" class="img-fluid  h-100 w-100" alt="Gamehub Logo logo" v-if="suggestion.item.cover != null">
                                       <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2020/11/PS5-PS4-Game-Forced-Install-Problem.jpg" class="img-fluid  h-100 w-100" alt="Gamehub Logo logo" v-else>
@@ -155,7 +155,7 @@
                           <img :src="post.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="post.cover != null">
                           <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image" v-else>
                           <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3" v-if="post.product_type === 1">{{ $t('new', $store.state.locale) }}</span>
-                          <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3" v-else>{{ $t('used', $store.state.locale) }}</span>
+                          <span class="position-absolute top-0 left-0 bg-purple br-b-r-5 py-1 px-3 text-white br-t-l-3" v-else>{{ $t('used', $store.state.locale) }}</span>
                           <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5"> ৳ {{ post.price }}</span>
                         </div>
                         <p class="gil-bold mb-3 mt-a-4 text-white post-name">{{ post.name }}</p>
@@ -228,7 +228,7 @@
                         <img :src="post.cover.url" class="img-fluid w-100 " alt="Gamebazar image" v-if="post.cover != null">
                         <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image" v-else>
                         <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3" v-if="post.product_type === 1">{{ $t('new', $store.state.locale) }}</span>
-                        <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3" v-else>{{ $t('used', $store.state.locale) }}</span>
+                        <span class="position-absolute top-0 left-0 bg-purple br-b-r-5 py-1 px-3 text-white br-t-l-3" v-else>{{ $t('used', $store.state.locale) }}</span>
                         <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5"> ৳ {{ post.price }}</span>
                       </div>
                       <p class="gil-bold mb-3 mt-a-4 text-white post-name">{{ post.name }}</p>
@@ -319,7 +319,7 @@
                     :nav ="false"
                     :dots ="false"
                     :margin ="32"
-                    :responsive="{ 0:{items:1, stagePadding:0, center:false,dots:true,},
+                    :responsive="{ 0:{items:1.5, stagePadding:0, center:false,dots:true,},
                                 600:{items:2, stagePadding:0, center:false, dots:false,},
                                 1000:{items:3, stagePadding:0, center:false,},
                                 1200:{items:4, stagePadding:0, center:false,},
@@ -356,7 +356,7 @@
                           <img src="../assets/img/category/fifa20.jpg" class="img-fluid w-100" alt="Gamebazar image" v-else>
                         </a>
                         <div class="game-card--details">
-                          <a href="javascript:void(0)"> <h6>{{related.game.data.name}}</h6></a>
+                          <a href="javascript:void(0)"> <h6 class="h-48">{{related.game.data.name}}</h6></a>
                           <div class="d-flex">
                             <span v-for="(genre, index) in related.game.data.genres.data" :key="'B' +index" >{{ genre.name }}<span class="mr-1" v-if="index < related.game.data.genres.data.length-1">, </span></span>
                           </div>

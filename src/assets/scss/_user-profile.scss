@@ -179,7 +179,6 @@
     margin-left: 20px;
     h3 {
         font-size: 32px;
-        font-style: italic;
     }
     h6 {
         font-size: 20px;
@@ -827,6 +826,16 @@
                 height: 65px;
                 margin-bottom: 24px;
             }
+            .start-date {
+                @include for-min-1200 {
+                    width: 150px;
+                }
+            }
+            .payment {
+                @include for-min-1200 {
+                    width: 150px;
+                }
+            }
         }
         &--sell-post {
             &--button {
@@ -1031,7 +1040,6 @@
     justify-content: center;
     h5 {
         font-size: 24px;
-        font-style: italic;
         font-weight: 700;
         text-transform: uppercase;
         color: $secondery;

@@ -46,7 +46,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-lg-6">
+                                <div class="col-sm-6 col-lg-6 order">
                                     <div class="footer-menu-content footer-menu-content-middle mb-5 mb-sm-0">
                                         <div class="d-flex justify-content-between">
                                             <ul>

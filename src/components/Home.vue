@@ -205,7 +205,7 @@
 
        <section class="upcoming-section">
             <div class="container">
-                <h2 class="section-heading">{{ $t('upcoming_games', $store.state.locale) }}</h2>
+                <h2 class="section-heading">{{ $t('upcoming_games_for_rent', $store.state.locale) }}</h2>
             </div>
             <div class="position-relative">
                 <carousel v-if ="loadedUpcoming"

@@ -2,6 +2,11 @@
     @include for-max-575 {
         padding-bottom: 0px;
     }
+    .order {
+        @include for-max-575 {
+            order: 4;
+        }
+    }
 }
 
 .footer-top {
@@ -166,10 +171,13 @@
     &--social {
         display: flex;
         @include for-max-575 {
-            margin-right: 0;
             position: absolute;
             top: -65px;
-            margin-left: 10px;
+            display: flex;
+            justify-content: center;
+            left: 0;
+            right: 0;
+            margin: auto;
         }
         a {
             margin-left: 25px;
@@ -202,6 +210,9 @@
 }
 .newsletter {
     margin-top: 100px;
+    @include for-max-575 {
+        margin-top: 50px;
+    }
     &__btn {
         background: $secondery-gradient;
         border-top-right-radius: 20px;

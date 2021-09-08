@@ -46,8 +46,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-6 col-lg-6 order">
-                                    <div class="footer-menu-content footer-menu-content-middle mb-5 mb-sm-0">
+                                <div class="col-sm-6 col-lg-3">
+                                    <div class="footer-menu-content footer-menu-content-middle mb-4 mb-sm-0">
                                         <div class="d-flex justify-content-between">
                                             <ul>
                                                 <li class="text-white mb-3 gil-bold">Gamehub</li>
@@ -57,6 +57,13 @@
                                                 <li><router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link></li>
                                                 <li><router-link to="/games">{{ $t('lend_games', $store.state.locale) }}</router-link></li>
                                             </ul>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-lg-3">
+                                     <div class="footer-menu-content footer-menu-content-middle mb-4 mb-sm-0">
+                                        <div class="d-flex justify-content-between">
                                             <ul>
                                                 <li class="text-white mb-3 gil-bold">Game Bazar</li>
                                                 <li><router-link to="/sell-posts">{{ $t('all_product', $store.state.locale) }}</router-link></li>
@@ -66,17 +73,9 @@
                                                 <li><router-link to="/sell-posts">{{ $t('buy_controller', $store.state.locale) }}</router-link></li>
                                             </ul>
                                         </div>
-<!--                                        <form action="#" class="newsletter">-->
-<!--                                            <p>{{ $t('subscribe_our_newsletter', $store.state.locale) }}</p>-->
-<!--                                            <div class="d-flex ">-->
-<!--                                                <input type="text">-->
-<!--                                                <button class="px-4 newsletter__btn"> {{ $t('subscribe', $store.state.locale) }}</button>-->
-<!--                                            </div>-->
-<!--                                        </form>-->
-                                        
                                     </div>
                                 </div>
-                                <div class="col-6 col-lg-3">
+                                <div class="col-sm-6 col-lg-3">
                                     <div class="footer-menu-content footer-menu-content-last">
                                         <ul>
                                             
@@ -105,6 +104,15 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-sm-6 offset-md-3">
+                           <form action="#" class="newsletter">
+                                <p>{{ $t('subscribe_our_newsletter', $store.state.locale) }}</p>
+                                <div class="d-flex ">
+                                    <input type="text">
+                                    <button class="px-4 newsletter__btn"> {{ $t('subscribe', $store.state.locale) }}</button>
+                                </div>
+                            </form> 
                         </div>
                     </div>
                 </div>

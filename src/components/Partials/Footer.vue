@@ -52,10 +52,9 @@
                                             <ul>
                                                 <li class="text-white mb-3 gil-bold">Gamehub</li>
                                                 <li><a href="#" @click.prevent="scrollToTop">{{ $t('home', $store.state.locale) }}</a></li>
-                                                <li><router-link to="/profile">{{ $t('rent_games', $store.state.locale) }}</router-link></li>
+                                                <li><router-link to="/games">{{ $t('rent_games', $store.state.locale) }}</router-link></li>
                                                 <li><router-link to="/about-us">{{ $t('about_gamehub', $store.state.locale) }}</router-link></li>
-                                                <li><router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link></li>
-                                                <li><router-link to="/games">{{ $t('lend_games', $store.state.locale) }}</router-link></li>
+                                                <li><router-link  class="router_link" to="/profile" @click.native="clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link></li>
                                             </ul>
                                         </div>
                                         
@@ -148,6 +147,14 @@
       methods: {
         scrollToTop() {
           window.scrollTo(0,0)
+        },
+        clickProfile() {
+          var auth = this.$store.getters.ifAuthenticated;
+          if (!auth) {
+            this.$router.push('/lend-notice');
+            return
+          }
+          this.$root.$emit('rentPost');
         },
         routeOnSellPost(){
           var user = this.$store.state.user;

@@ -180,7 +180,8 @@
                     <img :src="cover_image" alt="Cover image preview">
                   </div>
                 </div>
-                <span class="text-step-error mt-1 d-inline-block" v-if="coverError">{{ $t('please_upload_cover_photo', $store.state.locale) }}</span>
+                <span class="text-step-error mt-1 d-inline-block" v-if="postCoverImageError">{{ $t('please_upload_cover_photo', $store.state.locale) }}</span>
+                <span class="text-step-error mt-1 d-inline-block" v-if="coverError">{{ $t('please_crop_cover_photo', $store.state.locale) }}</span>
                 <div class="group mb-a-6 mt-a-6">
                   <label class="mb-3 w-100">{{ $t('upload_screenshots', $store.state.locale) }}</label>
                   <div class="post-rent--form-group--input wizard__body__step">
@@ -255,6 +256,7 @@
     components: {UploadImages, VueCropper},
     data(){
       return {
+        postCoverImageError: false,
         errorCategory: false,
         validType: false,
         errorLocation: false,
@@ -262,8 +264,8 @@
         districts: [],
         thana_id: null,
         area: '',
-        one: true,
-        two: false,
+        one: false,
+        two: true,
         three: false,
         oneActive: true,
         twoActive: false,
@@ -382,8 +384,16 @@
       },
       confirmSecondStep() {
         if (this.cover_image == '' && this.postImages.length === 0) {
-          this.coverError = true;
+          if (this.postCoverImage == ''){
+              this.postCoverImageError = true;
+          } else {
+            this.coverError = true;
+          }
           this.screenshotsError = true;
+          return false;
+        }
+        if (this.postCoverImage == '') {
+          this.postCoverImageError = true;
           return false;
         }
         if (this.cover_image == '') {
@@ -442,6 +452,7 @@
       onFileSelect(e) {
         this.coverError = false;
         this.validType = false;
+        this.postCoverImageError = false;
         const file = e.target.files[0]
         if (file != undefined) {
           this.mime_type = file.type
@@ -464,6 +475,8 @@
         }
       },
       saveImage() {
+        this.coverError = false;
+        this.postCoverImageError = false;
         this.cover_image = this.$refs.cropper.getCroppedCanvas().toDataURL()
         this.$refs.cropper.getCroppedCanvas().toBlob((blob) => {
           const formData = new FormData()

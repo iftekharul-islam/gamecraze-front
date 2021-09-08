@@ -7,18 +7,6 @@
                 <a class="navbar-brand" href="/">
                     <img src="../../assets/img/logo/gamehublogo.svg" class="img-fluid gamehub--logo" alt="Gamehub Logo logo">
                 </a>
-
-                <!-- Toggle button for small device -->
-                <!-- <div class="toggler-position">
-                    <button v-bind:class="{ open: isNavOpen }" @click="isNavOpen = !isNavOpen" ref="btnMenuToggle" id="removeClass" class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-                </div>
-                <div class="collapse navbar-collapse " id="navbarSupportedContent" @click="modal = false">
-                </div> -->
                 <!-- navbar middle content -->
                 <div class="d-flex custom-collapse gamehub-menu-collapse mr-xl-auto">
                     <ul class="d-flex justify-content-between justify-content-xl-start pl-xl-4 gamehub-menu-collapse-list">

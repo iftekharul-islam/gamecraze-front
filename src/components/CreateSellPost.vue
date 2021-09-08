@@ -264,8 +264,8 @@
         districts: [],
         thana_id: null,
         area: '',
-        one: false,
-        two: true,
+        one: true,
+        two: false,
         three: false,
         oneActive: true,
         twoActive: false,
@@ -355,6 +355,9 @@
         });
       },
       confirmFirstStep() {
+        if (this.sub_category_id == ''){
+          this.errorCategory = true;
+        }
         const errorElement = this.$el.querySelector('.text-step-error');
         if (errorElement) {
           this.scrollToError(errorElement);
@@ -419,6 +422,9 @@
         this.threeActive = false;
       },
       finalSubmit() {
+        if (this.thana_id == ''){
+          this.errorLocation = true
+        }
         const errorElement = this.$el.querySelector('.text-step-error');
         if (errorElement) {
           this.scrollToError(errorElement);

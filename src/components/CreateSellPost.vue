@@ -516,7 +516,7 @@
           let fileType = file.type.split('/');
           if (fileType[0] != 'image'){
             this.$toaster.warning("Please upload only image file !!!")
-            break
+            continue
           }
           let reader = new FileReader()
           reader.readAsDataURL(file)

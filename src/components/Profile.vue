@@ -1773,7 +1773,7 @@
                 if (fileType[0] != 'image'){
                   console.log('i m in')
                   this.$toaster.warning("Please upload only image file !!!")
-                  break
+                  continue
                 }
                 let reader = new FileReader()
                 reader.readAsDataURL(file)

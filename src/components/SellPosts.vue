@@ -85,7 +85,7 @@
                       <v-select :options="selectedThanas" label="name" :reduce="option => option.id" v-model="thana_id" placeholder="Choose Thana"></v-select>
                     </div>
                     <div class="mb-4 text-right">
-                      <a href="#" @click.prevent="setLocation , filterShow = false" class=" btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative">Search</a>
+                      <a href="#" @click.prevent="setLocation" class=" btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative">Search</a>
                     </div>
                   </div>
                     <!-- Game Type -->
@@ -419,6 +419,7 @@ export default {
   },
   methods: {
     setLocation(){
+      this.filterShow = false
       this.getSellPosts();
     },
     setDistrict() {

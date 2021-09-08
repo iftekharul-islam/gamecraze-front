@@ -2,7 +2,7 @@
 <template>
     <div>
         <!-- slider section -->
-        <section class="slider-section">
+        <section class="slider-section position-relative">
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
@@ -26,9 +26,10 @@
                     </div>
                 </div>
             </div>
+            <a href="#exchange" class="position-absolute do-scroll mx-auto">{{ $t('scroll', $store.state.locale) }}</a>
         </section>
         <!-- exchange and lend section -->
-        <section class="exchange-lend-section">
+        <section class="exchange-lend-section" id="exchange">
             <div class="container">
                 <h2 class="section-heading">{{ $t('exchange_heading', $store.state.locale) }}</h2>
                 <div class="d-grid grid-cols-2 grid-md-cols-3 grid-lg-cols-4 exchange-lend-section__grid">
@@ -37,31 +38,31 @@
                              <img src="../assets/img/card-img-1.png" class="img-fluid" alt="Gamehub Logo logo">
                         </div>
                         <h6 class="text-secondery gil-bold f-s-20 mb-3">{{ $t('rent_games', $store.state.locale) }}</h6>
-                        <p class="mb-a-4">{{ $t('card_text_1', $store.state.locale) }}</p>
-                        <router-link to="/games" class="w-full text-center router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('rent_game', $store.state.locale) }}</div></router-link>
+                        <p class="mb-a-4 light-white">{{ $t('card_text_1', $store.state.locale) }}</p>
+                        <router-link to="/games" class="w-full text-center router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('rents', $store.state.locale) }}</div></router-link>
                     </div>
                      <div class="pt-a-6 pb-a-6 px-2 px-sm-4 exchange-lend-section__content">
                         <div class="exchange-lend-section__content__img">
-                             <img src="../assets/img/card-img-1.png" class="img-fluid" alt="Gamehub Logo logo">
+                             <img src="../assets/img/card-img-2.png" class="img-fluid" alt="Gamehub Logo logo">
                         </div>
                         <h6 class="text-secondery gil-bold f-s-20 mb-3">{{ $t('lend_games', $store.state.locale) }}</h6>
-                        <p class="mb-a-4">{{ $t('card_text_2', $store.state.locale) }}</p>
-                        <router-link to="/profile" @click.native="clickProfile" class="w-full text-center router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('lend_games', $store.state.locale) }}</div></router-link>
+                        <p class="mb-a-4 light-white">{{ $t('card_text_2', $store.state.locale) }}</p>
+                        <router-link to="/profile" @click.native="clickProfile" class="w-full text-center router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('lend', $store.state.locale) }}</div></router-link>
                     </div>
                      <div class="pt-a-6 pb-a-6 px-2 px-sm-4 exchange-lend-section__content">
                         <div class="exchange-lend-section__content__img">
-                             <img src="../assets/img/card-img-1.png" class="img-fluid" alt="Gamehub Logo logo">
+                             <img src="../assets/img/card-img-3.png" class="img-fluid" alt="Gamehub Logo logo">
                         </div>
                         <h6 class="text-secondery gil-bold f-s-20 mb-3">{{ $t('buy_gaming_product', $store.state.locale) }}</h6>
-                        <p class="mb-a-4">{{ $t('card_text_3', $store.state.locale) }}</p>
+                        <p class="mb-a-4 light-white">{{ $t('card_text_3', $store.state.locale) }}</p>
                         <router-link to="/gamebazar" class="w-full text-center router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('buy_now', $store.state.locale) }}</div></router-link>
                     </div>
                      <div class="pt-a-6 pb-a-6 px-2 px-sm-4 exchange-lend-section__content">
                         <div class="exchange-lend-section__content__img">
-                             <img src="../assets/img/card-img-1.png" class="img-fluid" alt="Gamehub Logo logo">
+                             <img src="../assets/img/card-img-4.png" class="img-fluid" alt="Gamehub Logo logo">
                         </div>
                         <h6 class="text-secondery gil-bold f-s-20 mb-3">{{ $t('sell_gaming_product', $store.state.locale) }}</h6>
-                        <p class="mb-a-4">{{ $t('card_text_4', $store.state.locale) }}</p>
+                        <p class="mb-a-4 light-white">{{ $t('card_text_4', $store.state.locale) }}</p>
                         <a href="#" @click.prevent="routeOnSellPost" class="w-full text-center router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('sell_post', $store.state.locale) }}</div></a>
                     </div>
 
@@ -146,8 +147,9 @@
                         :center ="false"
                         :nav ="false"
                         :margin ="20"
-                        :stagePadding = "0"
-                        :responsive="{ 0:{items:1.5, stagePadding:0, nav:false, dots:true, center:true, autoplay: false,},
+                        :items ="3"
+                        :stagePadding ="150"
+                        :responsive="{ 0:{items:1.5, stagePadding:0, nav:false, dots:true, center:true,},
                                     600:{items:3, stagePadding:0, center:false, dots:false,},
                                     800:{items:3, stagePadding:50, dots:false,},
                                     1026:{items:3, stagePadding:100, dots:false,},
@@ -203,7 +205,7 @@
 
        <section class="upcoming-section">
             <div class="container">
-                <h2 class="section-heading">{{ $t('upcoming_games', $store.state.locale) }}</h2>
+                <h2 class="section-heading">{{ $t('upcoming_games_for_rent', $store.state.locale) }}</h2>
             </div>
             <div class="position-relative">
                 <carousel v-if ="loadedUpcoming"
@@ -356,7 +358,7 @@
                               <img src="../assets/img/play.png" alt="gaming product" class="img-fluid w-100" v-else>
 
                               <span v-if="item.product_type == 1" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">New</span>
-                              <span v-if="item.product_type == 2" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">Used</span>
+                              <span v-if="item.product_type == 2" class="position-absolute top-0 left-0 bg-purple br-b-r-5 py-1 px-3 text-white br-t-l-3">Used</span>
 
                               <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ {{ item.price }}</span>
                             </div>
@@ -421,7 +423,7 @@
                                   <img src="../assets/img/play.png" alt="gaming product" class="img-fluid w-100" v-else>
 
                                   <span v-if="item.product_type == 1" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">New</span>
-                                  <span v-if="item.product_type == 2" class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3">Used</span>
+                                  <span v-if="item.product_type == 2" class="position-absolute top-0 left-0 bg-purple br-b-r-5 py-1 px-3 text-white br-t-l-3">Used</span>
 
                                   <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ {{ item.price }}</span>
                                 </div>

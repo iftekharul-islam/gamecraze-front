@@ -365,6 +365,7 @@ $background_color_2: inherit;
     .vs__dropdown-toggle {
         border: 1px solid $text-light-75;
         padding: 6px 4px;
+        height: 42px;
     }
     .vs__search {
         // visibility: hidden;
@@ -372,6 +373,12 @@ $background_color_2: inherit;
     .vs__selected {
         color: $text-light;
         opacity: .95;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        height: 24px;
         &-options {
             .vs__search {
                 color: $text-light !important;

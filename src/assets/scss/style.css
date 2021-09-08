@@ -2,11 +2,16 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;0,700;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;700&display=swap");
 * {
   margin: 0;
   padding: 0;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
+}
+
+.bn body {
+  font-family: 'Hind Siliguri', sans-serif;
 }
 
 body {
@@ -83,6 +88,10 @@ h6 {
 
 p {
   opacity: .95;
+}
+
+.font-siliguri {
+  font-family: 'Hind Siliguri', sans-serif;
 }
 
 .mt-a-1 {

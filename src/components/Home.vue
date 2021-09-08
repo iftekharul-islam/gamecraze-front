@@ -54,8 +54,8 @@
                              <img src="../assets/img/card-img-3.png" class="img-fluid" alt="Gamehub Logo logo">
                         </div>
                         <h6 class="text-secondery gil-bold f-s-20 mb-3">{{ $t('buy_gaming_product', $store.state.locale) }}</h6>
-                        <p class="mb-a-4 light-white">{{ $t('card_text_3', $store.state.locale) }}</p>
-                        <router-link to="/gamebazar" class="w-full text-center router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('buy_now', $store.state.locale) }}</div></router-link>
+                        <p class="mb-a-4">{{ $t('card_text_3', $store.state.locale) }}</p>
+                        <router-link to="/sell-posts" class="w-full text-center router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('buy_now', $store.state.locale) }}</div></router-link>
                     </div>
                      <div class="pt-a-6 pb-a-6 px-2 px-sm-4 exchange-lend-section__content">
                         <div class="exchange-lend-section__content__img">
@@ -117,13 +117,7 @@
                         <router-link :to="{ path: '/game-details/' + trending.game.data.slug}" class="trending-image">
                             <img :src="trending.game.data.trending_url" alt="trending.game.data.name">
                         </router-link>
-                        <!-- <div class="trending-game--name-price d-flex justify-content-between">
-                            <router-link :to="{ path: '/game-details/' + trending.game.data.slug}" class="">{{ trending.game.data.name }}</router-link>
-                        </div> -->
                         <div class="trending-game--categories py-3" v-if="trending">
-                            <!-- <div class="home-categories">
-                                <a :href="'/games?categories=' + genre.slug" v-for="(genre) in trending.game.data.genres.data" :key="genre.id">{{ genre.name }}</a>
-                            </div> -->
                             <div class="d-flex home-platform justify-content-center px-3">
                                 <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in trending.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>
                             </div>
@@ -132,7 +126,7 @@
             </carousel>
            </div>
            <div class="text-center mt-a-6">
-               <router-link to="/gamebazar" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('all_games_for_rent', $store.state.locale) }}</div></router-link>
+               <router-link to="/games" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('all_games', $store.state.locale) }}</div></router-link>
            </div>
         </section>
         <!-- favorite-section -->
@@ -199,11 +193,11 @@
                 </carousel>
              </div>
              <div class="text-center mt-a-6">
-               <router-link to="/gamebazar" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('all_games_for_buy', $store.state.locale) }}</div></router-link>
+               <router-link to="/games" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('all_games', $store.state.locale) }}</div></router-link>
            </div>
         </section>
 
-       <section class="upcoming-section">
+        <section class="upcoming-section">
             <div class="container">
                 <h2 class="section-heading">{{ $t('upcoming_games_for_rent', $store.state.locale) }}</h2>
             </div>
@@ -280,72 +274,9 @@
                 </carousel>
            </div>
            <div class="text-center mt-a-6">
-               <router-link to="/gamebazar" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('all_games', $store.state.locale) }}</div></router-link>
+               <router-link to="/sell-posts" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('all_games', $store.state.locale) }}</div></router-link>
            </div>
        </section>
-        <!-- notice board -->
-        <!-- <section class="noticed-board-section">
-            <div class="text-center">
-                <h2 class="section-heading">{{ $t('news_&_notice', $store.state.locale) }}</h2>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12 mx-auto d-none d-sm-block">
-                        <div class="noticed-grid" v-if="articles">
-                            <div class="notice-box" v-if="featuredArticle">
-                                <img :src=featuredArticle.thumbnail :alt="featuredArticle.title" class="w-100">
-                                <div class="noticed-details">
-                                    <h6>{{ featuredArticle.title.substring(0, 20) }}</h6>
-                                    <p> {{ featuredArticle.description.substring(0, 80) | strippedContent }}</p>
-                                    <router-link :to="{ name: 'NewsStory', params: { slug: featuredArticle.slug }}"><span>{{ $t('read_more', $store.state.locale) }} <i class="fas fa-arrow-right ml-2"></i></span></router-link>
-                                </div>
-                            </div>
-
-                            <div class="notice-box" v-for="(article, index) in articles" :key="index">
-                                <img :src=article.thumbnail :alt="article.title" class="w-100">
-                                <div class="noticed-details">
-                                  <router-link :to="{ name: 'NewsStory', params: { slug: article.slug }}" class="small-readmore"><span>{{ $t('read_more', $store.state.locale) }} <i class="fas fa-arrow-right ml-2"></i></span></router-link>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="text-center mt-5">
-                            <router-link to="/news" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative m-auto "><span></span> <div class="position-relative">{{ $t('view_all', $store.state.locale) }}</div></router-link>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-        <!-- Noticed bord section mobile -->
-        <!-- <section class="noticed-board-section-mobile d-block d-sm-none">
-            <div class="container">
-                <div class="col-12 p-0">
-                    <div class="position-relative">
-                        <carousel v-if ="Loadedarticles"
-                            :autoplay ="false"
-                            :loop ="true"
-                            :center ="true"
-                            :nav ="false"
-                            :dots ="true"
-                            :items ="1"
-                            :margin ="10"
-                            :stagePadding ="0">
-                            <template slot="prev"><div class="vue-owl-nav vue-owl-nav-left"><button class="owl-prev z-index-9"><span class="prev"><i class="fas fa-arrow-left arrow"></i></span> </button> </div></template>
-
-                            <template slot="next"><div class="vue-owl-nav vue-owl-nav-right"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
-
-                            <div class="item"  v-for="(article, index) in articles" :key="index">
-                                <div class="notice-box">
-                                    <img :src=article.thumbnail :alt="article.title" class="w-100">
-                                    <div class="noticed-details">
-                                        <router-link :to="{ name: 'NewsStory', params: { slug: article.slug }}" class="small-readmore"><span>{{ $t('read_more', $store.state.locale) }} <i class="fas fa-arrow-right ml-2"></i></span></router-link>
-                                    </div>
-                                </div>
-                            </div>
-                        </carousel>
-                    </div>
-                </div>
-            </div>
-        </section> -->
         
         <!-- product section -->
         <section class="product-section d-none d-sm-block">

@@ -79,10 +79,10 @@
                       <v-select :options="divisions" @input="setDistrict" label="name" :reduce="option => option.id" v-model="division_id" placeholder="All Bangladesh" ></v-select>
                     </div>
                     <div class="mb-4" v-if="division_id">
-                      <v-select :options="selectedDistricts" label="name" @input="setThana" :reduce="option => option.id" v-model="district_id" placeholder="Chose district"></v-select>
+                      <v-select :options="selectedDistricts" label="name" @input="setThana" :reduce="option => option.id" v-model="district_id" placeholder="Choose District"></v-select>
                     </div>
                      <div class="mb-4" v-if="district_id">
-                      <v-select :options="selectedThanas" label="name" :reduce="option => option.id" v-model="thana_id" placeholder="Chose thana"></v-select>
+                      <v-select :options="selectedThanas" label="name" :reduce="option => option.id" v-model="thana_id" placeholder="Choose Thana"></v-select>
                     </div>
                     <div class="mb-4 text-right">
                       <a href="#" @click.prevent="setLocation , filterShow = false" class=" btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative">Search</a>

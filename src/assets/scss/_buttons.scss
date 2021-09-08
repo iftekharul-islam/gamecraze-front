@@ -170,6 +170,10 @@
         border: 1px solid $secondery !important;
         z-index: 1;
         overflow: hidden;
+        @include for-min-575 {
+            min-width: 140px;
+            text-align: center;
+        }
         &::after {
             position: absolute;
             content: "";

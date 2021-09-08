@@ -16,7 +16,7 @@
                         <div class="gamebazar-banner__content d-grid grid-gap-16 justify-content-lg-end">
                             <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4 user-select-none pointer-initial ">
                               <div class=" h-100 br-4 overflow-fidden">
-                                   <img src="../assets/img/gamebazar1.png" class="img-fluid h-100" alt="Gamebazar image">
+                                   <img src="../assets/img/gamebazar-1.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
                               <div class="gamebazar-tag position-absolute">
                                   <span class="gil-bold f-s-14 f-s-sm-20 text-white underline">Controller</span>
@@ -24,7 +24,7 @@
                             </a>
                             <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4 user-select-none pointer-initial ">
                               <div class=" h-100 br-4 overflow-fidden">
-                                   <img src="../assets/img/gamebazar2.png" class="img-fluid h-100" alt="Gamebazar image">
+                                   <img src="../assets/img/gamebazar-2.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
                               <div class="gamebazar-tag position-absolute">
                                   <span class="gil-bold f-s-14 f-s-sm-20 text-white underline mt-auto">Controller</span>
@@ -32,7 +32,7 @@
                             </a>
                             <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4 user-select-none pointer-initial ">
                               <div class=" h-100 br-4 overflow-fidden">
-                                   <img src="../assets/img/gamebazar2.png" class="img-fluid h-100" alt="Gamebazar image">
+                                   <img src="../assets/img/gamebazar-3.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
                               <div class="gamebazar-tag position-absolute">
                                   <span class="gil-bold f-s-14 f-s-sm-20 text-white underline mt-auto">Controller</span>
@@ -40,7 +40,7 @@
                             </a>
                             <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4 user-select-none pointer-initial ">
                               <div class=" h-100 br-4 overflow-fidden">
-                                   <img src="../assets/img/gamebazar3.png" class="img-fluid h-100" alt="Gamebazar image">
+                                   <img src="../assets/img/gamebazar-4.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
                               <div class="gamebazar-tag position-absolute">
                                   <span class="gil-bold f-s-14 f-s-sm-20 text-white underline mt-auto">Controller</span>
@@ -259,8 +259,6 @@
                             <h1 class="f-s-28 f-s-md-48 max-xl-600 mb-a-5">
                               {{ $t('game_bazar_title_4', $store.state.locale) }}
                                 <span class="text-secondery">{{ $t('game_bazar_title_5', $store.state.locale) }}</span>
-                            <span class="text-secondery">  {{ $t('game_bazar_title_6', $store.state.locale) }}</span>
-                              <!-- {{ $t('game_bazar_title_6', $store.state.locale) }} -->
                             </h1>
                             <p class="max-500 opa-8 text-white">{{ $t('game_bazar_title_3', $store.state.locale) }}</p>
                                 <router-link to="/create-sell-post"
@@ -292,7 +290,6 @@
                             <h1 class="f-s-28 f-s-md-48 max-xl-600 mb-a-5">
                               {{ $t('game_bazar_title_8', $store.state.locale) }}
                               <span class="text-secondery">{{ $t('game_bazar_title_9', $store.state.locale) }}</span>
-                              {{ $t('game_bazar_title_10', $store.state.locale) }}
                             </h1>
                             <p class="max-500 opa-8 text-white"> {{ $t('game_bazar_title_11', $store.state.locale) }}</p>
 

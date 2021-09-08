@@ -129,28 +129,10 @@
     }
     &.footer-menu-content-middle {
         @include for-min-992 {
-            margin-left: 70px;
+            // margin-left: 70px;
         }
         ul {
             &:nth-child(2) {
-                padding-left: 110px;
-                @include for-max-1100 {
-                    padding-left: 50px;
-                }
-                @include for-max-768 {
-                    padding-left: 0;
-                }
-            }
-        }
-    }
-    &.footer-menu-content-last {
-        @include for-min-992 {
-            display: flex;
-            justify-content: flex-end;
-        }
-        ul {
-            @include for-min-992 {
-                width: fit-content;
             }
         }
     }
@@ -209,9 +191,9 @@
     }
 }
 .newsletter {
-    margin-top: 100px;
+    margin-top: 32px;
     @include for-max-575 {
-        margin-top: 50px;
+        margin-top: 16px;
     }
     &__btn {
         background: $secondery-gradient;

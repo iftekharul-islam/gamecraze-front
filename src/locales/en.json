@@ -571,5 +571,9 @@
   "please_fill_the_required_field" : "Please fill the required field first !!!",
   "buy_now" : "Buy now",
   "sell_gaming_product" : "Sell gaming product",
-  "products_for_sell" : "Products for sell"
+  "products_for_sell" : "Products for sell",
+  "create_sell_post" : "Create Sell Post",
+  "buy_ps5" : "Buy ps5",
+  "buy_ps4" : "Buy ps4",
+  "buy_controller" : "Buy controller"
 }

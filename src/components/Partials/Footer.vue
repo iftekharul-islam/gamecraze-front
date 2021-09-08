@@ -51,7 +51,7 @@
                                         <div class="d-flex justify-content-between">
                                             <ul>
                                                 <li class="text-white mb-3 gil-bold">Gamehub</li>
-                                                <li><router-link to="/">{{ $t('home', $store.state.locale) }}</router-link></li>
+                                                <li><a href="#" @click.prevent="scrollToTop">{{ $t('home', $store.state.locale) }}</a></li>
                                                 <li><router-link to="/profile">{{ $t('rent_games', $store.state.locale) }}</router-link></li>
                                                 <li><router-link to="/about-us">{{ $t('about_gamehub', $store.state.locale) }}</router-link></li>
                                                 <li><router-link  class="router_link" to="/profile" @click.native="onMenuItemClick(); clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link></li>
@@ -59,20 +59,20 @@
                                             </ul>
                                             <ul>
                                                 <li class="text-white mb-3 gil-bold">Game Bazar</li>
-                                                <li><router-link to="/gamebazar">{{ $t('all_product', $store.state.locale) }}</router-link></li>
-                                                <li><router-link to="/gamebazar">{{ $t('post_for_sell', $store.state.locale) }}</router-link></li>
-                                                <li><router-link to="/gamebazar">Buy PS5</router-link></li>
-                                                <li><router-link to="/gamebazar">Buy PS4</router-link></li>
-                                                <li><router-link to="/gamebazar">Buy controller</router-link></li>
+                                                <li><router-link to="/sell-posts">{{ $t('all_product', $store.state.locale) }}</router-link></li>
+                                                <li><a href="#" @click.prevent="routeOnSellPost">{{ $t('create_sell_post', $store.state.locale) }}</a></li>
+                                                <li><router-link to="/sell-posts">{{ $t('buy_ps4', $store.state.locale) }}</router-link></li>
+                                                <li><router-link to="/sell-posts">{{ $t('buy_ps5', $store.state.locale) }}4</router-link></li>
+                                                <li><router-link to="/sell-posts">{{ $t('buy_controller', $store.state.locale) }}</router-link></li>
                                             </ul>
                                         </div>
-                                        <form action="#" class="newsletter">
-                                            <p>{{ $t('subscribe_our_newsletter', $store.state.locale) }}</p>
-                                            <div class="d-flex ">
-                                                <input type="text">
-                                                <button class="px-4 newsletter__btn"> {{ $t('subscribe', $store.state.locale) }}</button>
-                                            </div>
-                                        </form>
+<!--                                        <form action="#" class="newsletter">-->
+<!--                                            <p>{{ $t('subscribe_our_newsletter', $store.state.locale) }}</p>-->
+<!--                                            <div class="d-flex ">-->
+<!--                                                <input type="text">-->
+<!--                                                <button class="px-4 newsletter__btn"> {{ $t('subscribe', $store.state.locale) }}</button>-->
+<!--                                            </div>-->
+<!--                                        </form>-->
                                         
                                     </div>
                                 </div>
@@ -128,26 +128,6 @@
                 </div>
             </div>
         </footer>
-        <!-- footer -->
-        <!-- <section class="copyright-section">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-10 mx-auto">
-                        <div class="footer-bottom">
-                    <p>©2021 Game Hub</p>
-                     <p>Powered By: <a href="https://augnitive.com/?utm_source=GameHub&utm_medium=GH%20Footer&utm_campaign=GH%20Traffic" target="_blank"> Augnitive</a></p>
-                    <div class="footer-bottom--social">
-                        <a href="https://www.facebook.com/gamehub.bangladesh" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://twitter.com/BdGamehub" target="_blank"><i class="fab fa-twitter"></i></a>
-                        <a href="https://www.instagram.com/gamehub.bd" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.youtube.com/channel/UCEtVjE3POZd-DKXpjpjJ53g" target="_blank"><i class="fab fa-youtube"></i></a>
-                    </div>
-                </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-
     </div>
 </template>
 <script>
@@ -156,6 +136,27 @@
         return {
           largeFooter: false
         }
+      },
+      methods: {
+        scrollToTop() {
+          window.scrollTo(0,0)
+        },
+        routeOnSellPost(){
+          var user = this.$store.state.user;
+          if (!user){
+            this.$router.push('/login')
+            return
+          }
+          if (user.name && user.phone_number && user.identification_number && user.birth_date) {
+            this.$router.push('/create-sell-post')
+          }
+          else {
+            this.$swal("Incomplete Profile", "Please Update Your Profile with all information ");
+            this.$router.push('/profile').then( () => {
+              this.$root.$emit('profileEdit');
+            });
+          }
+        },
       },
       watch: {
         "$route": {

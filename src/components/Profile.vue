@@ -715,8 +715,8 @@
                                                                                                         <a href="#" @click.prevent="sellPostUpdate" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative pointer user-id-edit-btn" :class="{ 'pe-none' :  isEditLoading}">
                                                                                                             <span></span>
                                                                                                             <div class="w-100 position-relative">
-                                                                                                            <div v-if="isEditLoading" class="spinner-border spinner-border-sm skew-none"></div>
-                                                                                                            {{ $t('submit', $store.state.locale) }}
+                                                                                                              {{ $t('submit', $store.state.locale) }}
+                                                                                                              <div v-if="isEditLoading" class="spinner-border spinner-border-sm skew-none"></div>
                                                                                                             </div>
                                                                                                         </a>
                                                                                                     </div>

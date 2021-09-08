@@ -3,7 +3,11 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+.bn {
+    body {
+        font-family: 'Hind Siliguri', sans-serif;
+    }
+}
 body {
     font-size: 16px;
     background: $primary;
@@ -59,6 +63,11 @@ h6 {
 }
 p {
     opacity: .95;
+}
+
+// font family
+.font-siliguri {
+    font-family: 'Hind Siliguri', sans-serif;
 }
 
 // margin top

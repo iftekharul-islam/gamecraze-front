@@ -217,9 +217,9 @@
                         <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
                       </ValidationProvider>
                     </div>
-                    <div class="group mb-a-6 location-filter">
+                    <div class="group mb-a-6 location-filter create-sellpost-select">
                       <label class="mb-3 w-100">{{ $t('selected_location', $store.state.locale) }}</label>
-                      <v-select :options="thanas" label="item_data" @input="checkValidation" :reduce="thana => thana.id" v-model="thana_id" ></v-select>
+                      <v-select :options="thanas" label="item_data" @input="checkValidation" :reduce="thana => thana.id" v-model="thana_id" placeholder="Select location"></v-select>
                       <span class="text-step-error mt-2 d-inline-block" v-if="errorLocation">Please select a location</span>
                     </div>
                     <div class="group mb-a-6">

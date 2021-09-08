@@ -440,3 +440,11 @@ $background_color_2: inherit;
         border-color: $secondery;
     }
 }
+.create-sellpost-select {
+    .vs__dropdown-toggle {
+        border: 1px solid $secondery-opa-5;
+    }
+    #vs1__listbox {
+        overflow-x: hidden;
+    }
+}

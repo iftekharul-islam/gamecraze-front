@@ -2,7 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;300;400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,400;0,700;1,700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;700&display=swap");
+@import url("https://cdn.rawgit.com/sh4hids/bangla-web-fonts/solaimanlipi/stylesheet.css");
 * {
   margin: 0;
   padding: 0;
@@ -10,8 +10,17 @@
           box-sizing: border-box;
 }
 
-.bn body {
-  font-family: 'Hind Siliguri', sans-serif;
+.bn p,
+.bn h1,
+.bn h2,
+.bn h3,
+.bn h4,
+.bn h5,
+.bn h6,
+.bn div,
+.bn span,
+.bn a {
+  font-family: 'SolaimanLipi';
 }
 
 body {
@@ -3811,12 +3820,6 @@ select option {
   margin-right: 0;
 }
 
-@media (min-width: 1200px) {
-  .gamehub-menu-collapse > ul li:last-child {
-    margin-left: 30px;
-  }
-}
-
 @media (max-width: 1199px) {
   .gamehub-menu-collapse > ul li:last-child {
     margin-bottom: 0px;
@@ -4201,6 +4204,7 @@ select option {
 @media (max-width: 575px) {
   .sign-in {
     margin: 0 10px;
+    padding: 5px 20px !important;
   }
 }
 
@@ -4953,148 +4957,27 @@ body #hubspot-messages-iframe-container {
   }
 }
 
-.gamehub-heading {
-  color: #fff;
-  font-weight: bold;
-  font-family: gilroy-bold;
-  text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
-  font-size: 32px;
+.gamehub-heading .bangla-svg {
+  display: none;
 }
 
-@media (min-width: 992px) {
-  .gamehub-heading {
-    font-size: 48px;
-  }
+.bn .gamehub-heading .bangla-svg {
+  display: block;
 }
 
-@media (max-width: 991px) {
-  .gamehub-heading {
-    line-height: 45px;
-  }
-}
-
-@media (max-width: 575px) {
-  .gamehub-heading {
-    line-height: 43px;
-    width: 100%;
-  }
-}
-
-@media (max-width: 1199px) {
-  .gamehub-heading br:nth-of-type(2) {
-    display: none;
-  }
-}
-
-.gamehub-heading span {
-  text-transform: capitalize;
-}
-
-.bn .gamehub-heading {
-  line-height: 48px;
-}
-
-@media (min-width: 992px) {
-  .bn .gamehub-heading {
-    font-size: 42px;
-    line-height: 70px;
-  }
-}
-
-@media (max-width: 575px) {
-  .bn .gamehub-heading {
-    font-size: 28px;
-    margin-top: 50px;
-  }
-}
-
-.bn .curve-shape {
-  margin-right: 30px;
-}
-
-.bn .curve-shape .curve-img {
-  width: 110%;
-  top: -3px;
-  left: -13px;
-}
-
-@media (max-width: 768px) {
-  .bn .curve-shape.curve-shape-3 {
-    margin-left: 9px;
-  }
-}
-
-.bn .curve-shape.curve-shape-3 img {
-  height: 59px;
-  top: -9px;
-}
-
-@media (max-width: 991px) {
-  .bn .curve-shape.curve-shape-3 img {
-    height: 47px;
-    top: -7px;
-  }
-}
-
-@media (max-width: 768px) {
-  .bn .curve-shape.curve-shape-3 img {
-    left: -9px;
-  }
-}
-
-@media (max-width: 575px) {
-  .bn .curve-shape.curve-shape-3 img {
-    left: -9px;
-  }
-}
-
-.bn .curve-shape.curve-shape-4 .curve-img {
-  width: 115%;
-  left: -5px;
-}
-
-@media (max-width: 575px) {
-  .bn .curve-shape.curve-shape-2 .curve-img {
-    left: -4px;
-  }
+.bn .gamehub-heading .english-svg {
+  display: none;
 }
 
 .curve-shape {
   z-index: 2;
   color: #0B0F18;
-  margin-right: 15px;
 }
 
-.curve-shape.curve-shape-1 {
-  margin-left: 15px;
-}
-
-.curve-shape.curve-shape-3 {
-  margin-right: 5px;
-}
-
-.curve-shape.curve-shape-4 {
-  margin-left: 5px;
-}
-
-@media (max-width: 575px) {
-  .curve-shape.curve-shape-4 {
-    margin-right: 10px;
-  }
-}
-
-.curve-shape .curve-img {
-  top: 0px;
-  left: -2px;
-  z-index: -1;
-  height: 39px;
-}
-
-@media (min-width: 992px) {
-  .curve-shape .curve-img {
-    height: 55px;
-    top: 6px;
-  }
+.curve-shape svg text {
+  font-size: 36px;
+  -webkit-transform: translate(-16px, 10px);
+          transform: translate(-16px, 10px);
 }
 
 .home-banner-text {
@@ -6270,7 +6153,7 @@ body #hubspot-messages-iframe-container {
   }
 }
 
-@media (max-width: 575px) {
+@media (max-width: 590px) {
   .featured-section .vue-owl-nav {
     position: absolute;
     top: 45%;
@@ -12835,7 +12718,7 @@ html {
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  height: 24px;
+  height: 34px;
   z-index: 9;
   padding-top: 5px;
 }
@@ -12902,6 +12785,10 @@ html {
   overflow-x: hidden;
 }
 
+.location-filter.category-select .vs__selected {
+  margin-top: -2px;
+}
+
 .profile-v-select .vs__search {
   border: none;
 }
@@ -12918,6 +12805,20 @@ html {
 
 .create-sellpost-select #vs1__listbox {
   overflow-x: hidden;
+}
+
+.step-select .vs__dropdown-toggle {
+  border: 1px solid rgba(255, 215, 21, 0.5);
+  border-radius: 4px;
+  background: #2A3141;
+}
+
+.step-select .vs__dropdown-toggle input {
+  opacity: .75;
+}
+
+.cropper-canvas img {
+  display: none;
 }
 
 .gamebazar-banner {
@@ -14981,6 +14882,12 @@ body .button:last-child {
 
 .newsletter input:focus {
   outline: none;
+}
+
+@media (min-width: 1200px) {
+  .footer-content-margin {
+    margin-left: 80px;
+  }
 }
 
 @font-face {

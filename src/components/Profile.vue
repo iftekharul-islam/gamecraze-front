@@ -432,7 +432,7 @@
                                                             <div class="dashboard-content--rented new-rented">
                                                                 <!-- new rented design -->
                                                                 <div class="d-flex flex-wrap" v-if="sellPosts">
-                                                                    <div class="dashboard-content--rented--box dashboard-content--rented--sell-post flex-wrap d-flex justify-content-between w-100 mr-0  bg-game-details border-2 warning-border" v-for="(product, index) in sellPosts" :class="{ 'inactive-sellpost-box' : sellPostWarning(product) }" :key="index">
+                                                                    <div class="dashboard-content--rented--box dashboard-content--rented--sell-post flex-wrap d-flex justify-content-between w-100 mr-0  bg-game-details border-2 warning-border" v-for="(product, index) in sellPosts" :class="{'inactive-sellpost-box' : sellPostInactiveWarning(product) ,'rejected-box':  sellPostRejectWarning(product)}" :key="index">
                                                                         <!-- order id -->
                                                                         <div class="order-id flex-none flex-sm-initial w-full w-sm-initial">
                                                                             <p class="f-s-20 gil-bold text-secondery" v-if="product">{{ product.product_no }}</p>
@@ -516,7 +516,10 @@
                                                                                     Inactive
                                                                                 </span>
                                                                                 <div class="inactive-msg">
-                                                                                    <p class="text-white">Someone has reported your post. And we found inappropriate stuff in your post. </p>
+                                                                                    <p class="text-white">{{ inactiveWarningText }}</p>
+                                                                                </div>
+                                                                                <div class="rejected-msg">
+                                                                                  <p class="text-white">{{ rejectWarningText }}</p>
                                                                                 </div>
                                                                             </div>
                                                                             <router-link :to="'/sell-post/' + product.id + '/' + product.url_name " class="d-flex border-1 border-secondery pl-a-7 pr-a-7 py-1 mb-3 bg-secondery text-black game-details-hover mt-2"><span class="">Details</span></router-link>
@@ -557,7 +560,7 @@
                                                                                                     <label class=" label-padding post-rent--form-group--label text-light text-left">{{ $t('description', $store.state.locale) }}</label>
                                                                                                     <div class=" post-rent--form-group--input">
                                                                                                         <ValidationProvider name="description" rules="required" v-slot="{ errors }">
-                                                                                                            <ckeditor v-model="editPostData.description" :config="editorConfig"></ckeditor>
+                                                                                                            <textarea type="text" v-model="editPostData.description" rows="5" class="w-full px-3 bg-step-form-input border-1 border-secondery text-white no-focus"></textarea>
                                                                                                             <span v-if="errors.length" class="error-message d-block text-left mt-2">{{ errors[0] }}</span>
                                                                                                         </ValidationProvider>
                                                                                                     </div>
@@ -1446,7 +1449,8 @@
                 editorConfig:{
 
                 },
-                warningText: '',
+                inactiveWarningText: '',
+                rejectWarningText: '',
                 withdrawAmount: 0,
                 withdrawLoading: false,
                 requestModalShow: false,
@@ -1612,11 +1616,18 @@
                 this.errorLocation = true;
               }
             },
-            sellPostWarning(post){
+            sellPostInactiveWarning(post){
               let subcategory = post.subcategory.data.status
               let category = post.subcategory.data.category.data.status
               if (subcategory === 0 || category === 0){
-                this.warningText = 'Its category is inactive';
+                this.inactiveWarningText = 'This product is on inactive status. Please wait for the activation';
+                return true;
+              }
+              return false;
+            },
+            sellPostRejectWarning(post){
+              if(post.status == 2){
+                this.rejectWarningText = 'This post was reported saying- ' + post.reason;
                 return true;
               }
               return false;
@@ -2392,6 +2403,7 @@
                         this.$toaster.success(this.$t('post_submitted', this.$store.state.locale));
                         this.rentCheck();
                         this.tabIndex = 1;
+                        this.isRentLoading = false;
                       });
                 })
               })

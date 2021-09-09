@@ -19,7 +19,7 @@
                                    <img src="../assets/img/gamebazar-1.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
                               <div class="gamebazar-tag position-absolute">
-                                  <span class="gil-bold f-s-14 f-s-sm-20 text-white underline">Controller</span>
+                                  <span class="gil-bold f-s-14 f-s-sm-20 text-white underline">VR</span>
                               </div>
                             </a>
                             <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4 user-select-none pointer-initial ">
@@ -27,7 +27,7 @@
                                    <img src="../assets/img/gamebazar-2.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
                               <div class="gamebazar-tag position-absolute">
-                                  <span class="gil-bold f-s-14 f-s-sm-20 text-white underline mt-auto">Controller</span>
+                                  <span class="gil-bold f-s-14 f-s-sm-20 text-white underline mt-auto">DS4 Controller</span>
                               </div>
                             </a>
                             <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4 user-select-none pointer-initial ">
@@ -35,7 +35,7 @@
                                    <img src="../assets/img/gamebazar-3.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
                               <div class="gamebazar-tag position-absolute">
-                                  <span class="gil-bold f-s-14 f-s-sm-20 text-white underline mt-auto">Controller</span>
+                                  <span class="gil-bold f-s-14 f-s-sm-20 text-white underline mt-auto">Headphone</span>
                               </div>
                             </a>
                             <a href="#" class="d-block position-relative overflow-hidden gamebazar-banner__content__item br-4 user-select-none pointer-initial ">
@@ -43,7 +43,7 @@
                                    <img src="../assets/img/gamebazar-4.png" class="img-fluid h-100" alt="Gamebazar image">
                               </div>
                               <div class="gamebazar-tag position-absolute">
-                                  <span class="gil-bold f-s-14 f-s-sm-20 text-white underline mt-auto">Controller</span>
+                                  <span class="gil-bold f-s-14 f-s-sm-20 text-white underline mt-auto">PS 5</span>
                               </div>
                             </a>
                         </div>

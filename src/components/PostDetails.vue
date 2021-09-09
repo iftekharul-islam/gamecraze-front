@@ -3,7 +3,7 @@
     <!-- Product details -->
     <div class="gamebazar-product-details pb-a-20" v-if="post">
       <div class="container">
-        //play full button
+<!--        play full button-->
 <!--        <button class="button alternative" @mouseenter="onHover">Playful hover!</button>-->
         <a href="#" @click.prevent="routeBack" class="d-flex align-items-center mt-a-6 mb-a-6 svg-secondery-hover">
 

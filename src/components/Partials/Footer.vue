@@ -47,7 +47,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-3">
-                                    <div class="footer-menu-content footer-menu-content-middle mb-4 mb-sm-0">
+                                    <div class="footer-content-margin footer-menu-content footer-menu-content-middle mb-4 mb-sm-0">
                                         <div class="d-flex justify-content-between">
                                             <ul>
                                                 <li class="text-white mb-3 gil-bold">Gamehub</li>
@@ -61,7 +61,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-3">
-                                     <div class="footer-menu-content footer-menu-content-middle mb-4 mb-sm-0">
+                                     <div class="footer-content-margin footer-menu-content footer-menu-content-middle mb-4 mb-sm-0">
                                         <div class="d-flex justify-content-between">
                                             <ul>
                                                 <li class="text-white mb-3 gil-bold">Game Bazar</li>
@@ -75,7 +75,7 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-6 col-lg-3">
-                                    <div class="footer-menu-content footer-menu-content-last">
+                                    <div class="footer-content-margin footer-menu-content footer-menu-content-last">
                                         <ul>
                                             
                                              <li>

@@ -62,113 +62,28 @@
 }
 
 .gamehub-heading {
-    color: #fff;
-    font-weight: bold;
-    @include gil-bold;
-    text-shadow: 0px 5px 5px rgba(0, 0, 0, 0.5);
-    font-size: 32px;
-    @include for-min-992 {
-        font-size: 48px;
-    }
-    @include for-max-991 {
-        line-height: 45px;
-    }
-    @include for-max-575 {
-        line-height: 43px;
-        width: 100%;
-    }
-    br {
-        &:nth-of-type(2) {
-            @include for-max-1199 {
-                display: none;
-            }
-        }
-    }
-    span {
-        text-transform: capitalize;
-    }
+   .bangla-svg {
+       display: none;
+   }
    
 }
 .bn {
     .gamehub-heading {
-        line-height: 48px;
-        @include for-min-992 {
-            font-size: 42px;
-            line-height: 70px;
+        .bangla-svg {
+            display: block;
         }
-        @include for-max-575 {
-            font-size: 28px;
-            margin-top: 50px;
-        }
-    }
-    .curve-shape {
-        margin-right: 30px;
-        .curve-img {
-            width: 110%;
-            top: -3px;
-            left: -13px;
-            
-        }
-        &.curve-shape-3 {
-            @include for-max-768 {
-                    margin-left: 9px;
-            }
-            img {
-                height: 59px;
-                top: -9px;
-                @include for-max-991 {
-                    height: 47px;
-                    top: -7px;
-                }
-                @include for-max-768 {
-                    left: -9px;
-                }
-                @include for-max-575 {
-                    left: -9px;
-                }
-            }
-        }
-        &.curve-shape-4 {
-            .curve-img {
-                width: 115%;
-                left: -5px;
-               
-            }
-        }
-        &.curve-shape-2 {
-            .curve-img {
-               @include for-max-575 {
-                left: -4px;
-               }
-            }
+        .english-svg {
+            display: none;
         }
     }
 }
 .curve-shape {
     z-index: 2;
     color: $primary;
-    margin-right: 15px;
-    &.curve-shape-1 {
-        margin-left: 15px;
-    }
-    &.curve-shape-3 {
-        margin-right: 5px;
-    }
-    &.curve-shape-4 {
-        margin-left: 5px;
-        @include for-max-575 {
-            margin-right: 10px;
-        }
-       
-    }
-    .curve-img {
-        top: 0px;
-        left: -2px;
-        z-index: -1;
-        height: 39px;
-        @include for-min-992 {
-            height: 55px;
-            top: 6px;
+    svg {
+        text {
+            font-size: 36px;
+            transform: translate(-16px, 10px);
         }
     }
 }

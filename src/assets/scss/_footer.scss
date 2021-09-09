@@ -215,3 +215,8 @@
         }
     }
 }
+.footer-content-margin {
+    @include for-min-1200 {
+        margin-left: 80px;
+    }
+}

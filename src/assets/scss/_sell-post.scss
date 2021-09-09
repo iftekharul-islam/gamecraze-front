@@ -378,7 +378,7 @@ $background_color_2: inherit;
         display: -webkit-box;
         -webkit-line-clamp: 1;
         -webkit-box-orient: vertical;
-        height: 24px;
+        height: 34px;
         z-index: 9;
         padding-top: 5px;
         &-options {
@@ -439,6 +439,11 @@ $background_color_2: inherit;
     #vs1__listbox {
         overflow-x: hidden;
     }
+    &.category-select {
+        .vs__selected {
+            margin-top: -2px;
+        }
+    }
 }
 .profile-v-select {
     .vs__search {
@@ -456,5 +461,21 @@ $background_color_2: inherit;
     }
     #vs1__listbox {
         overflow-x: hidden;
+    }
+}
+.step-select {
+    .vs__dropdown-toggle {
+        border: 1px solid $secondery-opa-5;
+        border-radius: 4px;
+        background: $step-form-input ;
+        input {
+            opacity: .75;
+        }
+    }
+}
+
+.cropper-canvas {
+    img {
+        display: none;
     }
 }

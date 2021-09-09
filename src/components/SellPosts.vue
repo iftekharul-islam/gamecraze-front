@@ -74,7 +74,7 @@
               </div>
                 <div class="p-a-5 overflow-auto">
                   <!-- location category -->
-                  <div class="location-filter">
+                  <div class="location-filter category-select">
                     <div class="mb-4">
                       <v-select :options="divisions" @input="setDistrict" label="name" :reduce="option => option.id" v-model="division_id" placeholder="All Bangladesh" ></v-select>
                     </div>
@@ -129,9 +129,9 @@
                     </div>
                     <!-- button show in mobile -->
                     <div class=" mt-4">
-                      <a href="javascript:void(0)" class="d-block py-2 border-1 border-white-50 br-4 text-white mb-3 text-center gil-bold" @click="clearFilter"> {{ $t('clear_filters', $store.state.locale) }}</a>
+                      <a href="javascript:void(0)" class="w-full text-center router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative" @click="clearFilter"> {{ $t('clear_filters', $store.state.locale) }}</a>
                       <a @click.prevent="filterShow = false"
-                         href="#" class="d-block d-md-none py-2 bg-secondery-gradient br-4 text-black text-center gil-bold primary-text-hover">{{ $t('apply', $store.state.locale) }}</a>
+                         href="#" class="d-block d-md-none btn--secondery-hover br-4 gil-bold border-0 font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative w-100 gil-bold">{{ $t('apply', $store.state.locale) }}</a>
                     </div>
                 </div>
             </div>

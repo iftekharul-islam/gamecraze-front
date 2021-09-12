@@ -233,7 +233,7 @@
                       </ValidationProvider>
                     </div>
                   <div class="d-flex flex-column align-items-center flex-sm-row  mt-5">
-                      <a href="#" @click.prevent="backToSecondStep" class="flex-1 mr-3 w-full btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative text-center"><span>{{ $t('previous', $store.state.locale) }}</span></a>
+                      <a href="#" @click.prevent="backToSecondStep" class="flex-1 mr-sm-3 mb-3 mb-sm-0 w-full btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative text-center"><span>{{ $t('previous', $store.state.locale) }}</span></a>
                       <a href="#" @click.prevent="finalSubmit" class="flex-1 w-full btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative text-center" :class="{'pe-none' :  submitLoading}">
                         <span>{{ $t('post', $store.state.locale) }}</span>
                         <div v-if="submitLoading" class="spinner-border spinner-border-sm skew-none ml-3"></div>

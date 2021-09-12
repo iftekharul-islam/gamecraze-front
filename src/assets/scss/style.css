@@ -3721,7 +3721,7 @@ select option {
 
 @media (max-width: 1199px) {
   .gamehub-menu {
-    padding: 20px 13px;
+    padding: 10px 13px;
   }
 }
 
@@ -12850,6 +12850,12 @@ html {
   background-position: center;
   margin-top: 24px;
   padding: 62px 0;
+}
+
+@media (max-width: 1199px) {
+  .gamebazar-banner {
+    margin-top: 5px;
+  }
 }
 
 .gamebazar-banner__content {

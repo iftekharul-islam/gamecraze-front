@@ -5,6 +5,9 @@
     background-position: center;
     margin-top: 24px;
     padding: 62px 0;
+    @include for-max-1199 {
+        margin-top: 5px;
+    }
     
     &__content {
         grid-template-rows: 120px;

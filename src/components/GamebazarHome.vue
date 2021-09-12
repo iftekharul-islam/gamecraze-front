@@ -261,15 +261,15 @@
                                 <span class="text-secondery">{{ $t('game_bazar_title_5', $store.state.locale) }}</span>
                             </h1>
                             <p class="max-500 opa-8 text-white">{{ $t('game_bazar_title_3', $store.state.locale) }}</p>
-
-
-                                <router-link to="/create-sell-post"  class=" router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative" @mouseenter="onHover"> 
+                            <div class="">
+                              <router-link to="/create-sell-post"  class=" router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative" @mouseenter="onHover"> 
                                   <div class="position-relative">{{ $t('create_ads', $store.state.locale) }}</div>
                                </router-link>
+                            </div>
                         </div>
                     </div>
                     <div class="col-md-12 col-xl-5 position-initial  pr-md-0">
-                        <div class="accessories-sellpost right-0 top-0">
+                        <div class="accessories-sellpost right-0 top-0 d-none d-sm-block">
                                 <img src="../assets/img/gamehome1.png" class="img-fluid w-100" alt="Gamebazar image">
                         </div>
                     </div>

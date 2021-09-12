@@ -25,7 +25,7 @@
             display: block;
             border-radius: 8px;
             @include for-max-575 {
-                height: 150px;
+                height: 250px;
                 border-radius: 4px;
             }
             img {
@@ -33,7 +33,7 @@
                 transition: all .5s ease-in;
                 object-fit: cover;
                 @include for-max-575 {
-                    height: 150px;
+                    height: 250px;
                 }
             }
             &:hover {

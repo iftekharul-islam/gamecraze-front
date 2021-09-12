@@ -888,16 +888,42 @@
             }
         }
     }
-    .inactive-msg {
-        width: 292px;
-        padding: 20px;
-        background: $gamebazar-search-input;
-        border: 1px solid $rejected;
-        right: 0;
-        top: 13px;
-        position: absolute;
-        visibility: hidden;
+    .rejected-msg,
+    .pending-msg {
+        display: none;
     }
+    
+}
+.rejected-box {
+    .information {
+        &:hover {
+            .rejected-msg {
+                visibility: visible;
+            }
+        }
+    }
+}
+.pending-box {
+    .information {
+        &:hover {
+            .pending-msg {
+                visibility: visible;
+            }
+        }
+    }
+}
+
+.inactive-msg,
+.rejected-msg,
+.pending-msg {
+    width: 292px;
+    padding: 20px;
+    background: $gamebazar-search-input;
+    border: 1px solid $rejected;
+    right: 0;
+    top: 13px;
+    position: absolute;
+    visibility: hidden;
 }
 
 .rented-note,

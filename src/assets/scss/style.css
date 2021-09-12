@@ -1831,6 +1831,10 @@ p {
   color: #707070;
 }
 
+.rejected-text {
+  color: #FF3030;
+}
+
 .light-white {
   color: #B9CCF5;
 }
@@ -5158,7 +5162,7 @@ body #hubspot-messages-iframe-container {
 
 @media (max-width: 575px) {
   .trending-section .item .trending-image {
-    height: 150px;
+    height: 250px;
     border-radius: 4px;
   }
 }
@@ -5173,7 +5177,7 @@ body #hubspot-messages-iframe-container {
 
 @media (max-width: 575px) {
   .trending-section .item .trending-image img {
-    height: 150px;
+    height: 250px;
   }
 }
 
@@ -5517,7 +5521,9 @@ body #hubspot-messages-iframe-container {
 
 @media (max-width: 575px) {
   .favorite-games img {
-    height: 150px;
+    height: 250px;
+    -o-object-fit: initial;
+       object-fit: initial;
   }
 }
 
@@ -9707,7 +9713,22 @@ html {
   visibility: visible;
 }
 
-.inactive-sellpost-box .inactive-msg {
+.inactive-sellpost-box .rejected-msg,
+.inactive-sellpost-box .pending-msg {
+  display: none;
+}
+
+.rejected-box .information:hover .rejected-msg {
+  visibility: visible;
+}
+
+.pending-box .information:hover .pending-msg {
+  visibility: visible;
+}
+
+.inactive-msg,
+.rejected-msg,
+.pending-msg {
   width: 292px;
   padding: 20px;
   background: #484B52;

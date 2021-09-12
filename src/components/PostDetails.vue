@@ -4,7 +4,7 @@
     <div class="gamebazar-product-details pb-a-20" v-if="post">
       <div class="container">
 <!--        play full button-->
-<!--        <button class="button alternative" @mouseenter="onHover">Playful hover!</button>-->
+       <button class="button alternative" @mouseenter="onHover">Playful hover!</button>
         <a href="#" @click.prevent="routeBack" class="d-flex align-items-center mt-a-6 mb-a-6 svg-secondery-hover">
 
           <svg class="rotate-180" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">

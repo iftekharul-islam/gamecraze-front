@@ -13016,7 +13016,6 @@ html {
 
 .accessories-sellpost {
   max-width: 650px;
-  padding-bottom: 200px;
 }
 
 @media (max-width: 1199px) {
@@ -13028,10 +13027,26 @@ html {
   }
 }
 
+@media (min-width: 992px) {
+  .accessories-sellpost {
+    max-width: 50%;
+    position: absolute;
+  }
+}
+
+@media (min-width: 1200px) {
+  .accessories-sellpost {
+    max-height: 400px;
+    height: 100%;
+    max-width: initial;
+  }
+}
+
 @media (min-width: 1500px) {
   .accessories-sellpost {
     max-width: 650px;
     width: 100%;
+    max-height: 500px;
   }
 }
 
@@ -13044,6 +13059,7 @@ html {
 @media (min-width: 1700px) {
   .accessories-sellpost {
     max-width: 750px;
+    max-height: 600px;
   }
 }
 
@@ -13059,23 +13075,14 @@ html {
   }
 }
 
-@media (max-width: 1500px) {
-  .accessories-sellpost {
-    padding-bottom: 150px;
-  }
-}
-
 @media (max-width: 1400px) {
   .accessories-sellpost {
     max-width: 550px;
   }
 }
 
-@media (max-width: 1199px) {
-  .accessories-sellpost {
-    max-width: 100%;
-    padding-bottom: 50px;
-  }
+.accessories-sellpost img {
+  height: 100%;
 }
 
 .gamebazar-post > a {
@@ -13376,8 +13383,65 @@ html {
   }
 }
 
-.accessories-sell-post {
-  padding-bottom: 160px;
+@media (min-width: 992px) {
+  .accessories-sell-post {
+    min-height: 450px;
+    margin-bottom: 32px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .accessories-sell-post {
+    min-height: 500px;
+  }
+}
+
+@media (min-width: 1500px) {
+  .accessories-sell-post {
+    min-height: 600px;
+  }
+}
+
+@media (min-width: 1700px) {
+  .accessories-sell-post {
+    min-height: 700px;
+  }
+}
+
+@media (max-width: 991px) {
+  .accessories-sell-post.accessories-sell-post-top {
+    margin-bottom: 32px;
+  }
+}
+
+@media (min-width: 992px) {
+  .accessories-sell-post.accessories-sell-post-top .accessories-sell-post-top-col {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 50%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .accessories-sell-post.accessories-sell-post-top .accessories-sell-post-top-col {
+    position: initial;
+  }
+}
+
+@media (min-width: 992px) {
+  .accessories-sell-post.accessories-sell-post-bottom .accessories-sell-post-bottom-col {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .accessories-sell-post.accessories-sell-post-bottom .accessories-sell-post-bottom-col {
+    position: initial;
+  }
 }
 
 .before-ball::before,

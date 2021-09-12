@@ -156,7 +156,8 @@
             background-color: hsl(220, 20%, 90%);
         }
         @include for-max-575 {
-            height: 150px;
+            height: 250px;
+            object-fit: initial;
         }
     }
 }

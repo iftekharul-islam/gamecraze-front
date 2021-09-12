@@ -152,3 +152,5 @@ new Vue({
         }
     }
 }).$mount('#app')
+
+import '@/globalComponents'

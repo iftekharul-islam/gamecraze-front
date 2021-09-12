@@ -29,20 +29,11 @@ export default {
     this.$store.dispatch('setSetupPasswordUserFromStorage');
     
   },
-//   watch: {
-// language() {
-//   localStorage.language = JSON.stringify(this.language);
-//   this.$i18n.locale = this.language.code;
-//   this.$root.$i18n.locale = this.language.code;
-//   document.documentElement.lang = JSON.parse(localStorage.language).code; //Added this bit
-//   this.$root.$emit('on-change-language', { language_code: this.language.code });
-// }}
-watch: {
+  watch: {
   '$store.state.locale': function() {
-    console.log(this.$store.state.locale)
     this.lang = this.$store.state.locale ?? this.$i18n.locale;
+    }
   }
-}
 }
 </script>
 

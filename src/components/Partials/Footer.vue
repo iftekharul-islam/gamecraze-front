@@ -65,11 +65,12 @@
                                         <div class="d-flex justify-content-between">
                                             <ul>
                                                 <li class="text-white mb-3 gil-bold">Game Bazar</li>
+                                                <li><router-link to="/gamebazar">{{ $t('home', $store.state.locale) }}</router-link></li>
                                                 <li><router-link to="/sell-posts">{{ $t('all_product', $store.state.locale) }}</router-link></li>
                                                 <li><a href="#" @click.prevent="routeOnSellPost">{{ $t('create_sell_post', $store.state.locale) }}</a></li>
-                                                <li><router-link to="/sell-posts">{{ $t('buy_ps4', $store.state.locale) }}</router-link></li>
-                                                <li><router-link to="/sell-posts">{{ $t('buy_ps5', $store.state.locale) }}4</router-link></li>
-                                                <li><router-link to="/sell-posts">{{ $t('buy_controller', $store.state.locale) }}</router-link></li>
+<!--                                                <li><router-link to="/sell-posts">{{ $t('buy_ps4', $store.state.locale) }}</router-link></li>-->
+<!--                                                <li><router-link to="/sell-posts">{{ $t('buy_ps5', $store.state.locale) }}4</router-link></li>-->
+<!--                                                <li><router-link to="/sell-posts">{{ $t('buy_controller', $store.state.locale) }}</router-link></li>-->
                                             </ul>
                                         </div>
                                     </div>
@@ -104,15 +105,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 offset-md-3">
-                           <form action="#" class="newsletter">
-                                <p>{{ $t('subscribe_our_newsletter', $store.state.locale) }}</p>
-                                <div class="d-flex ">
-                                    <input type="text">
-                                    <button class="px-4 newsletter__btn"> {{ $t('subscribe', $store.state.locale) }}</button>
-                                </div>
-                            </form> 
-                        </div>
+<!--                        <div class="col-sm-6 offset-md-3">-->
+<!--                           <form action="#" class="newsletter">-->
+<!--                                <p>{{ $t('subscribe_our_newsletter', $store.state.locale) }}</p>-->
+<!--                                <div class="d-flex ">-->
+<!--                                    <input type="text">-->
+<!--                                    <button class="px-4 newsletter__btn"> {{ $t('subscribe', $store.state.locale) }}</button>-->
+<!--                                </div>-->
+<!--                            </form> -->
+<!--                        </div>-->
                     </div>
                 </div>
             </div>

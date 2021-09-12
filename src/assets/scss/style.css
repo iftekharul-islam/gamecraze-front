@@ -14275,9 +14275,9 @@ html {
 
 .button.alternative {
   --color-hover: #2B3044;
-  --background: #362A89;
-  --hover-back: #6D58FF;
-  --hover-front: #F6F8FF;
+  --background: #FFD715;
+  --hover-back: #fff;
+  --hover-front: black;
 }
 
 .button.simple {
@@ -14286,19 +14286,17 @@ html {
 }
 
 .button {
-  --color: #fff;
-  --color-hover: var(--color);
+  --color: #000;
+  --color-hover: #fff;
   --background: #2B3044;
   --background-hover: var(--background);
   --hover-back: #6D58FF;
   --hover-front: #5C86FF;
   padding: 8px 28px;
   border-radius: 20px;
-  line-height: 24px;
-  font-size: 14px;
   font-weight: 600;
   letter-spacing: .02em;
-  border: none;
+  border: 1px solid #FFD715;
   outline: none;
   position: relative;
   overflow: hidden;
@@ -14310,6 +14308,9 @@ html {
   background: var(--b, var(--background));
   -webkit-transition: color 0.2s linear var(--c-d, 0.2s), background 0.3s linear var(--b-d, 0.2s);
   transition: color 0.2s linear var(--c-d, 0.2s), background 0.3s linear var(--b-d, 0.2s);
+  display: inline-block;
+  min-width: 140px;
+  text-align: center;
 }
 
 .button:not(.simple):before, .button:not(.simple):after {
@@ -14340,6 +14341,9 @@ html {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .button div span {
@@ -14469,7 +14473,6 @@ html {
 }
 
 body .button {
-  display: block;
   margin: 0 8px;
 }
 

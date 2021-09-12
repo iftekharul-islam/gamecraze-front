@@ -7,7 +7,7 @@
                         <div class="max-600">
                             <h1 class="f-s-30 f-s-sm-48 text-secondery gil-bold font-weight-bold mb-a-6">{{ $t('game_bazar_title_1', $store.state.locale) }} </h1>
                             <p class="gil-medium op-8 mb-a-6">{{ $t('game_bazar_title_2', $store.state.locale) }}</p>
-                            <a href="#" @click.prevent="routeOnSellPost" class="router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative">
+                            <a href="#" @click.prevent="routeOnSellPost" class="router_link button alternative"  @mouseenter="onHover">
                               {{ $t('sell_post', $store.state.locale) }}
                             </a>
                         </div>
@@ -261,16 +261,16 @@
                                 <span class="text-secondery">{{ $t('game_bazar_title_5', $store.state.locale) }}</span>
                             </h1>
                             <p class="max-500 opa-8 text-white">{{ $t('game_bazar_title_3', $store.state.locale) }}</p>
-                                <router-link to="/create-sell-post"
-                                  class=" btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative"> 
-                                  <span></span>
+
+
+                                <router-link to="/create-sell-post"  class=" router_link button alternative" @mouseenter="onHover"> 
                                   <div class="position-relative">{{ $t('create_ads', $store.state.locale) }}</div>
                                </router-link>
                         </div>
                     </div>
                     <div class="col-md-12 col-xl-5 position-initial  pr-md-0">
                         <div class="accessories-sellpost position-xl-absolute right-0 top-0">
-                                <img src="../assets/img/gamehome.png" class="img-fluid w-100" alt="Gamebazar image">
+                                <img src="../assets/img/gamehome1.png" class="img-fluid w-100" alt="Gamebazar image">
                         </div>
                     </div>
               </div>
@@ -282,7 +282,7 @@
                <div class="row accessories-sell-post__row">
                     <div class="col-md-12 col-xl-6 position-initial pl-md-0">
                         <div class="accessories-sellpost position-xl-absolute left-0 top-0 ">
-                            <img src="../assets/img/gamehome.png" class="img-fluid w-100" alt="Gamebazar image">
+                            <img src="../assets/img/gamehome2.png" class="img-fluid w-100" alt="Gamebazar image">
                         </div>
                     </div>
                     <div class="col-md-12 col-xl-7 ml-xl-auto mb-3 mb-xl-0">
@@ -448,6 +448,47 @@ export default {
         return
       }
       this.$root.$emit('rentPost');
+    },
+    onHover(){
+      document.querySelectorAll(".button").forEach((button) => {
+        let div = document.createElement("div"),
+            letters = button.textContent.trim().split("");
+
+        function elements(letter, index, array) {
+          let element = document.createElement("span"),
+              part = index >= array.length / 2 ? -1 : 1,
+              position =
+                  index >= array.length / 2
+                      ? array.length / 2 - index + (array.length / 2 - 1)
+                      : index,
+              move = position / (array.length / 2),
+              rotate = 1 - move;
+
+          element.innerHTML = !letter.trim() ? "&nbsp;" : letter;
+          element.style.setProperty("--move", move);
+          element.style.setProperty("--rotate", rotate);
+          element.style.setProperty("--part", part);
+
+          div.appendChild(element);
+        }
+
+        letters.forEach(elements);
+
+        button.innerHTML = div.outerHTML;
+
+        button.addEventListener("mouseenter", (e) => {
+          if (!button.classList.contains("out")) {
+            button.classList.add("in");
+          }
+        });
+
+        button.addEventListener("mouseleave", (e) => {
+          if (button.classList.contains("in")) {
+            button.classList.add("out");
+            setTimeout(() => button.classList.remove("in", "out"));
+          }
+        });
+      });
     },
   },
   computed: {

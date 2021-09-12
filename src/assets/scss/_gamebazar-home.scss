@@ -121,21 +121,35 @@
 
 .accessories-sellpost {
     max-width: 650px;
-    padding-bottom: 200px;
     &__row {
         @include for-max-1199 {
             flex-direction: column-reverse;
         }
     }
+    @include for-min-575 {
+        
+    }
+    @include for-min-992 {
+        max-width: 50%;
+        position: absolute;
+    }
+    @include for-min-1200 {
+        max-height: 400px;
+        height: 100%;
+        max-width: initial;
+        
+    }
     @include for-min-1500 {
         max-width: 650px;
         width: 100%;
+        max-height: 500px;
     }
     @include for-min-1600 {
         max-width: 700px;
     }
     @include for-min-1700 {
         max-width: 750px;
+        max-height: 600px;
     }
     @include for-min-1800 {
         max-width: 800px;
@@ -144,16 +158,14 @@
         max-width: 850px;
     }
 
-    @include for-max-1500 {
-        padding-bottom: 150px;
-    }
     @include for-max-1400 {
         max-width: 550px;
     }
-    @include for-max-1199 {
-        max-width: 100%;
-        padding-bottom: 50px;
+
+    img {
+        height: 100%;
     }
+   
 }
 
 .gamebazar-post {
@@ -413,5 +425,48 @@
     }
 }
 .accessories-sell-post {
-    padding-bottom: 160px;
+    @include for-min-992 {
+        min-height: 450px;
+        margin-bottom: 32px;
+    }
+    @include for-min-1200 {
+        min-height: 500px;
+    }
+    @include for-min-1500 {
+        min-height: 600px;
+    }
+   @include for-min-1700 {
+       min-height: 700px;
+   }
+   &.accessories-sell-post-top {
+       @include for-max-991 {
+           margin-bottom: 32px;
+       }
+   
+    .accessories-sell-post-top-col {
+        @include for-min-992 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50%;
+        }
+        @include for-min-1200 {
+            position: initial;
+        }
+    }
+   }
+   &.accessories-sell-post-bottom {
+      
+    .accessories-sell-post-bottom-col {
+        @include for-min-992 {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50%;
+        }
+        @include for-min-1200 {
+            position: initial;
+        }
+    }
+   }
 }

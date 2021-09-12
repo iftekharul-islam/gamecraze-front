@@ -7,9 +7,9 @@
                         <div class="max-600">
                             <h1 class="f-s-30 f-s-sm-48 text-secondery gil-bold font-weight-bold mb-a-6">{{ $t('game_bazar_title_1', $store.state.locale) }} </h1>
                             <p class="gil-medium op-8 mb-a-6">{{ $t('game_bazar_title_2', $store.state.locale) }}</p>
-                            <a href="#" @click.prevent="routeOnSellPost" class="router_link button alternative"  @mouseenter="onHover">
+                            <router-link to="/create-sell-post" @click.prevent="routeOnSellPost" class="router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative"  @mouseenter="onHover">
                               {{ $t('sell_post', $store.state.locale) }}
-                            </a>
+                            </router-link>
                         </div>
                     </div>
                     <div class="col-lg-5 mt-3 mt-lg-0">
@@ -251,10 +251,10 @@
           </section>
         </div>
         <!-- sell post -->
-        <section class="accessories-sell-post position-relative">
+        <section class="accessories-sell-post accessories-sell-post-top position-relative">
             <div class="container">
               <div class="row">
-                    <div class="col-md-12 col-xl-7">
+                    <div class="col-md-12 col-xl-7 accessories-sell-post-top-col">
                         <div class="mr-a-xl-10 mb-3 mb-xl-0">
                             <h1 class="f-s-28 f-s-md-48 max-xl-600 mb-a-5">
                               {{ $t('game_bazar_title_4', $store.state.locale) }}
@@ -263,13 +263,13 @@
                             <p class="max-500 opa-8 text-white">{{ $t('game_bazar_title_3', $store.state.locale) }}</p>
 
 
-                                <router-link to="/create-sell-post"  class=" router_link button alternative" @mouseenter="onHover"> 
+                                <router-link to="/create-sell-post"  class=" router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative" @mouseenter="onHover"> 
                                   <div class="position-relative">{{ $t('create_ads', $store.state.locale) }}</div>
                                </router-link>
                         </div>
                     </div>
                     <div class="col-md-12 col-xl-5 position-initial  pr-md-0">
-                        <div class="accessories-sellpost position-xl-absolute right-0 top-0">
+                        <div class="accessories-sellpost right-0 top-0">
                                 <img src="../assets/img/gamehome1.png" class="img-fluid w-100" alt="Gamebazar image">
                         </div>
                     </div>
@@ -277,15 +277,15 @@
             </div>
         </section>
           <!-- sell post -->
-        <section class="accessories-sell-post position-relative">
+        <section class="accessories-sell-post accessories-sell-post-bottom position-relative">
             <div class="container">
-               <div class="row accessories-sell-post__row">
-                    <div class="col-md-12 col-xl-6 position-initial pl-md-0">
-                        <div class="accessories-sellpost position-xl-absolute left-0 top-0 ">
+               <div class="row accessories-sell-post__row ">
+                    <div class="col-md-12 col-xl-6 position-initial pl-md-0 ">
+                        <div class="accessories-sellpost left-0 top-0 ">
                             <img src="../assets/img/gamehome2.png" class="img-fluid w-100" alt="Gamebazar image">
                         </div>
                     </div>
-                    <div class="col-md-12 col-xl-7 ml-xl-auto mb-3 mb-xl-0">
+                    <div class="col-md-12 col-xl-7 ml-xl-auto mb-3 mb-xl-0 accessories-sell-post-bottom-col">
                         <div class="ml-a-xl-10 mb-3 mb-xl-0">
                             <h1 class="f-s-28 f-s-md-48 max-xl-600 mb-a-5">
                               {{ $t('game_bazar_title_8', $store.state.locale) }}

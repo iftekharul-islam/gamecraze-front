@@ -3,8 +3,7 @@
     <!-- Product details -->
     <div class="gamebazar-product-details pb-a-20" v-if="post">
       <div class="container">
-<!--        play full button-->
-<!--        <button class="button alternative" @mouseenter="onHover">Playful hover!</button>-->
+<!--        <PlayfulButton></PlayfulButton>-->
         <a href="#" @click.prevent="routeBack" class="d-flex align-items-center mt-a-6 mb-a-6 svg-secondery-hover">
 
           <svg class="rotate-180" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -360,11 +359,9 @@
   </div>
 </template>
 <script>
-    import UploadImages from "vue-upload-drop-images";
-    import StarRating from 'vue-star-rating';
     import carousel from 'vue-owl-carousel';
     export default {
-        components: {StarRating, carousel, UploadImages},
+        components: {carousel},
         name: 'post-details',
         props: ['id', 'slug'],
         data() {

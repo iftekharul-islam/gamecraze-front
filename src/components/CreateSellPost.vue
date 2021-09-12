@@ -34,7 +34,7 @@
             <div class="max-400 mx-auto" v-show="one">
               <ValidationObserver ref="sellForm1">
                 <form id="sellForm1">
-                  <div class="group mb-a-6 location-filter profile-v-select step-select">
+                  <div class="group mb-a-6 location-filter create-sellpost-select profile-v-select step-select">
                     <label class="mb-3 w-100">{{ $t('select_product_category', $store.state.locale) }}</label>
                       <v-select :options="subCategories" @input="checkCategoryValidation" label="name" :reduce="option => option.id" v-model="sub_category_id" placeholder="Select category"></v-select>
                       <span class="text-step-error mt-2 d-inline-block" v-if="errorCategory">Please select a Category</span>
@@ -213,7 +213,7 @@
                         <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
                       </ValidationProvider>
                     </div>
-                    <div class="group mb-a-6 location-filter  create-sellpost-select">
+                    <div class="group mb-a-6 location-filter profile-v-select step-select create-sellpost-select">
                       <label class="mb-3 w-100">{{ $t('selected_location', $store.state.locale) }}</label>
                       <v-select :options="thanas" label="item_data" @input="checkLocationValidation" :reduce="thana => thana.id" v-model="thana_id" ></v-select>
                       <span class="text-step-error mt-2 d-inline-block" v-if="errorLocation">Please select a location</span>
@@ -264,9 +264,9 @@
         districts: [],
         thana_id: null,
         area: '',
-        one: true,
+        one: false,
         two: false,
-        three: false,
+        three: true,
         oneActive: true,
         twoActive: false,
         threeActive: false,

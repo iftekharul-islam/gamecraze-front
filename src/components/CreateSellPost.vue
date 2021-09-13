@@ -163,7 +163,7 @@
                                 ref="cropper"
                                 :src="postCoverImage"
                                 :scalable="false"
-                                dragMode="move"
+                                dragMode="none"
                                 :viewMode="2"
                                 :cropBoxMovable="false"
                                 :cropBoxResizable="false"

@@ -313,7 +313,7 @@
                  this.$store.dispatch('setEmailLoader', false);
             },
             submitOnEnterPressed(evt, option) {
-                if (option == 'passsword') {
+                if (option == 'password') {
                     if (this.form.password == '' || this.form.password.length < 8) {
                         return;
                     }
@@ -335,6 +335,7 @@
             }
         },
         created() {
+            this.$store.commit('setSubmitLoading', false)
             this.referral = this.$route.query.referred_code ?? '';
             if(this.$store.getters.ifAuthenticated) {
                 this.$router.push('/profile');

@@ -162,14 +162,15 @@
                     <VueCropper v-show="postCoverImage"
                                 ref="cropper"
                                 :src="postCoverImage"
-                                :scalable="false"
+                                :scalable="true"
                                 dragMode="none"
                                 :viewMode="2"
                                 :cropBoxMovable="false"
                                 :cropBoxResizable="false"
                                 :ready="cropBoxSet"
+                                :containerStyle="{ height: '300px'}"
+                                :center="false"
                                 alt="Disk image preview">
-
                     </VueCropper>
                   </div>
                   <div class="my-3 d-grid grid-cols-2 grid-gap-16">
@@ -264,8 +265,8 @@
         districts: [],
         thana_id: null,
         area: '',
-        one: false,
-        two: true,
+        one: true,
+        two: false,
         three: false,
         oneActive: true,
         twoActive: false,
@@ -450,6 +451,8 @@
       },
       cropBoxSet(){
         let data = {
+          top: 15,
+          left: 15,
           width: 363,
           height: 270
         }

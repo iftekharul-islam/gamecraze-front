@@ -12729,18 +12729,6 @@ html {
   }
 }
 
-.cropper-crop-box {
-  -webkit-transform: translateX(0px) translateY(0px) !important;
-          transform: translateX(0px) translateY(0px) !important;
-  width: 95% !important;
-  height: 95% !important;
-  margin: auto !important;
-}
-
-.cropper-container {
-  height: 280px !important;
-}
-
 .tk-sign {
   visibility: hidden;
 }

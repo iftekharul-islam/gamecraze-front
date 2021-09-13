@@ -2264,14 +2264,9 @@
                                                 "
                                               >
                                                 <div class="img-prev">
-                                                  <VueCropper
-                                                      v-show="
-                                                      editPostData.postCoverImage
-                                                    "
+                                                  <VueCropper v-show="editPostData.postCoverImage"
                                                       ref="cropper"
-                                                      :src="
-                                                      editPostData.postCoverImage
-                                                    "
+                                                      :src="editPostData.postCoverImage"
                                                       :scalable="false"
                                                       dragMode="move"
                                                       :cropBoxMovable="false"

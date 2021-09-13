@@ -162,7 +162,6 @@
                     <VueCropper v-show="postCoverImage"
                                 ref="cropper"
                                 :src="postCoverImage"
-                                :autoCropArea="0"
                                 :scalable="false"
                                 dragMode="move"
                                 :cropBoxMovable="false"
@@ -264,8 +263,8 @@
         districts: [],
         thana_id: null,
         area: '',
-        one: true,
-        two: false,
+        one: false,
+        two: true,
         three: false,
         oneActive: true,
         twoActive: false,

@@ -164,16 +164,10 @@
                                 :src="postCoverImage"
                                 :scalable="false"
                                 dragMode="move"
-                                :zoomable="false"
+                                :viewMode="2"
                                 :cropBoxMovable="false"
                                 :cropBoxResizable="false"
                                 :ready="cropBoxSet"
-                                :viewMode="1"
-                                :autoCrop="true"
-                                :autoCropArea="1.0"
-                                :aspectRatio="1"
-                                :rotatable="false"
-                                :guides="true"
                                 alt="Disk image preview">
 
                     </VueCropper>

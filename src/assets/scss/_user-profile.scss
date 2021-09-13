@@ -600,7 +600,8 @@
         }
         // Input and Select
         input,
-        select {
+        select,
+        textarea {
             border: 1px solid $secondery;
             background: $game-details;
             color: $text-light;
@@ -882,17 +883,18 @@
     }
     .inactive {
         display: block;
+    }
+    .rejected-msg,
+    .pending-msg {
+        display: none;
+    }
+    .bg-rejected {
         &:hover {
             .inactive-msg {
                 visibility: visible;
             }
         }
     }
-    .rejected-msg,
-    .pending-msg {
-        display: none;
-    }
-    
 }
 .rejected-box {
     .information {
@@ -912,6 +914,11 @@
         }
     }
 }
+.information {
+    @include for-max-1199 {
+        width: fit-content;
+    }
+}
 
 .inactive-msg,
 .rejected-msg,
@@ -924,6 +931,12 @@
     top: 13px;
     position: absolute;
     visibility: hidden;
+    @include for-max-1199 {
+        right: initial;
+    }
+}
+.inactive-msg {
+    right: 0;
 }
 
 .rented-note,

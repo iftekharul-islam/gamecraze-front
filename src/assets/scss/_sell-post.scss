@@ -454,6 +454,13 @@ $background_color_2: inherit;
         border-radius: 0;
         border-color: $secondery;
     }
+    &.profile-edit-select {
+        .vs__dropdown-toggle {
+            @include for-max-575 {
+                overflow: hidden;
+            }
+        }
+    }
 }
 .create-sellpost-select {
     .vs__dropdown-toggle {

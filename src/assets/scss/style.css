@@ -2303,6 +2303,14 @@ html {
   max-height: 100%;
 }
 
+.min-h-100 {
+  min-height: 100px;
+}
+
+.min-h-150 {
+  min-height: 150px;
+}
+
 .min-h-250 {
   min-height: 250px;
 }
@@ -9355,7 +9363,8 @@ html {
 }
 
 .post-rent--form-group input,
-.post-rent--form-group select {
+.post-rent--form-group select,
+.post-rent--form-group textarea {
   border: 1px solid #FFD715;
   background: #141A27;
   color: #fff;
@@ -9366,7 +9375,8 @@ html {
 
 @media (max-width: 575px) {
   .post-rent--form-group input,
-  .post-rent--form-group select {
+  .post-rent--form-group select,
+  .post-rent--form-group textarea {
     margin-top: 12px;
   }
 }
@@ -9709,13 +9719,13 @@ html {
   display: block;
 }
 
-.inactive-sellpost-box .inactive:hover .inactive-msg {
-  visibility: visible;
-}
-
 .inactive-sellpost-box .rejected-msg,
 .inactive-sellpost-box .pending-msg {
   display: none;
+}
+
+.inactive-sellpost-box .bg-rejected:hover .inactive-msg {
+  visibility: visible;
 }
 
 .rejected-box .information:hover .rejected-msg {
@@ -9724,6 +9734,14 @@ html {
 
 .pending-box .information:hover .pending-msg {
   visibility: visible;
+}
+
+@media (max-width: 1199px) {
+  .information {
+    width: -webkit-fit-content;
+    width: -moz-fit-content;
+    width: fit-content;
+  }
 }
 
 .inactive-msg,
@@ -9737,6 +9755,18 @@ html {
   top: 13px;
   position: absolute;
   visibility: hidden;
+}
+
+@media (max-width: 1199px) {
+  .inactive-msg,
+  .rejected-msg,
+  .pending-msg {
+    right: initial;
+  }
+}
+
+.inactive-msg {
+  right: 0;
 }
 
 @media (min-width: 1200px) {
@@ -12820,6 +12850,12 @@ html {
   border-color: #FFD715;
 }
 
+@media (max-width: 575px) {
+  .profile-v-select.profile-edit-select .vs__dropdown-toggle {
+    overflow: hidden;
+  }
+}
+
 .create-sellpost-select .vs__dropdown-toggle {
   border: 1px solid rgba(255, 215, 21, 0.5);
 }
@@ -13953,8 +13989,10 @@ html {
   }
 }
 
-.user-profile-details .wizard__body__step {
-  margin-left: 20px;
+@media (min-width: 575px) {
+  .user-profile-details .wizard__body__step {
+    margin-left: 20px;
+  }
 }
 
 .user-profile-details .error {

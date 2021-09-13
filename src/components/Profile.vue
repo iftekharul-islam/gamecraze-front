@@ -1426,17 +1426,7 @@
                                 "
                               >
                                 <div class="pt-5 inactive">
-                                  <span
-                                      class="
-                                      bg-rejected
-                                      text-white text-center
-                                      py-2
-                                      position-absolute
-                                      top-0
-                                      right-0
-                                      w-152
-                                    "
-                                  >
+                                  <span class=" bg-rejected text-white text-center py-2 position-absolute top-0 right-0 w-152 " >
                                     <svg
                                         width="18"
                                         height="18"
@@ -1450,12 +1440,13 @@
                                       />
                                     </svg>
                                     Inactive
+                                      <div class="inactive-msg">
+                                        <p class="text-white">
+                                          {{ inactiveWarningText }}
+                                        </p>
+                                    </div>
                                   </span>
-                                  <div class="inactive-msg">
-                                    <p class="text-white">
-                                      {{ inactiveWarningText }}
-                                    </p>
-                                  </div>
+                                  
 
                                 </div>
                                 <router-link
@@ -1629,10 +1620,7 @@
                                                 >
                                                   <input
                                                       type="text"
-                                                      class="
-                                                      form-control
-                                                      renten-input
-                                                    "
+                                                      class="form-control renten-input "
                                                       id="sell-post-name"
                                                       placeholder="Enter sell post name"
                                                       v-model="editPostData.name"
@@ -1651,60 +1639,15 @@
                                               </div>
                                             </div>
                                             <!-- form-group -->
-                                            <div
-                                                class="
-                                                form-group
-                                                post-rent--form-group
-                                              "
-                                            >
-                                              <label
-                                                  class="
-                                                  label-padding
-                                                  post-rent--form-group--label
-                                                  text-light text-left
-                                                "
-                                              >{{
-                                                  $t(
-                                                      "description",
-                                                      $store.state.locale
-                                                  )
-                                                }}</label
-                                              >
-                                              <div
-                                                  class="
-                                                  post-rent--form-group--input
-                                                "
-                                              >
-                                                <ValidationProvider
-                                                    name="description"
-                                                    rules="required"
-                                                    v-slot="{ errors }"
-                                                >
-                                                  <textarea
-                                                      type="text"
-                                                      v-model="
-                                                      editPostData.description
-                                                    "
-                                                      rows="5"
-                                                      class="
-                                                      w-full
-                                                      px-3
-                                                      bg-step-form-input
-                                                      border-1 border-secondery
-                                                      text-white
-                                                      no-focus
-                                                    "
-                                                  ></textarea>
-                                                  <span
-                                                      v-if="errors.length"
-                                                      class="
-                                                      error-message
-                                                      d-block
-                                                      text-left
-                                                      mt-2
-                                                    "
-                                                  >{{ errors[0] }}</span
-                                                  >
+                                            <div class="form-group post-rent--form-group " >
+                                              <label class="label-padding post-rent--form-group--label text-light text-left" >
+                                                {{$t("description",$store.state.locale)}}</label>
+                                              <div class="post-rent--form-group--input" >
+                                                <ValidationProvider name="description" rules="required" v-slot="{ errors }" >
+                                                  <textarea type="text" v-model=" editPostData.description" rows="5"
+                                                      class="w-full form-control renten-input min-h-100" ></textarea>
+                                                  <span v-if="errors.length"
+                                                      class=" error-message d-block text-left mt-2" >{{ errors[0] }}</span>
                                                 </ValidationProvider>
                                               </div>
                                             </div>
@@ -2012,13 +1955,7 @@
                                                   )
                                                 }}</label
                                               >
-                                              <div
-                                                  class="
-                                                  post-rent--form-group--input
-                                                  location-filter
-                                                  profile-v-select
-                                                "
-                                              >
+                                              <div class="post-rent--form-group--input location-filter profile-v-select profile-edit-select" >
                                                 <v-select
                                                     :options="thanas"
                                                     label="item_data"

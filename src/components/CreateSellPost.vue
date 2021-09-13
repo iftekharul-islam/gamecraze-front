@@ -88,7 +88,7 @@
                   <div class="group mb-a-6">
                     <label class="mb-3 w-100">{{ $t('description', $store.state.locale) }}</label>
                     <ValidationProvider name="Description" rules="required" v-slot="{ errors, classes }">
-                      <textarea type="text" :class="classes" v-model="description" rows="5" class="w-full px-3 bg-step-form-input border-1 border-secondery-opa-25 text-white no-focus br-4"></textarea>
+                      <textarea type="text" :class="classes" v-model="description" rows="5" class="w-full px-3 py-2 bg-step-form-input border-1 border-secondery-opa-25 text-white no-focus br-4"></textarea>
                       <span class="text-step-error mt-2 d-inline-block" v-if="errors[0]">{{ errors[0] }}</span>
                     </ValidationProvider>
                   </div>

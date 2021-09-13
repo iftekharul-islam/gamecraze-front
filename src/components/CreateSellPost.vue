@@ -164,6 +164,7 @@
                                 :src="postCoverImage"
                                 :scalable="false"
                                 dragMode="move"
+                                :zoomOnTouch="false"
                                 :cropBoxMovable="false"
                                 :cropBoxResizable="false"
                                 :ready="cropBoxSet"

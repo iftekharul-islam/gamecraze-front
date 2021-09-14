@@ -1,5 +1,5 @@
 <template>
-    <div>
+  <div>
 
     <!-- user profile details -->
         <section class="user-profile-details pt-5">
@@ -207,167 +207,219 @@
                         <h2>No data available</h2>
                       </div>
                     </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </section>
-    </div>
+            <div class="max-940 mx-auto" v-if="orderDetails">
+              <p class="text-secondery gil-medium">{{ $t('order_summary', $store.state.locale) }}</p>
+              <div class="table-responsive">
+                <table class="w-full">
+                  <thead>
+                  <tr>
+                    <td class="text-white gil-medium py-3">{{ $t('order_no', $store.state.locale) }}</td>
+                    <td class="text-white gil-medium py-3 px-2">{{ $t('game_name', $store.state.locale) }}</td>
+                    <td class="text-white gil-medium py-3 px-2 text-right pr-4">{{ $t('amount', $store.state.locale) }}</td>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td rowspan="99999" class="bg-secondery-opa-25 w-100px w-sm-150 max-100 max-sm-150 align-top px-2 py-3">{{ order.order_no }}</td>
+                  </tr>
+                  <tr v-for="invoice in order.lenders.data">
+                    <td class="px-2 py-3 border-white-50 border-b-1 border-t-1">{{ invoice.rent.data.game.data.name }}</td>
+                    <td class="px-2 py-3 gray-text  border-white-50 border-b-1 border-t-1 text-right pr-4">৳ {{ invoice.lend_cost + parseInt(invoice.commission) }}</td>
+                  </tr>
+                  </tbody>
+                </table>
+                <table class="subtotal-table w-full">
+                  <tr>
+                    <td class="px-2 py-3"><p class="mb-0 gray-text gil-medium text-right">{{ $t('subtotal', $store.state.locale) }}</p></td>
+                    <td class="px-2 py-3 w-20-prs pr-4"><p class="mb-0 gil-bold text-white text-right">৳ {{ order.amount - order.delivery_charge + order.discount_amount }}</p></td>
+                  </tr>
+                  <tr>
+                    <td class="px-2 py-3"><p class="mb-0 gray-text gil-medium text-right">{{ $t('delivery_charge', $store.state.locale) }}</p></td>
+                    <td class="px-2 py-3 w-20-prs pr-4"> <p class="mb-0 gil-bold text-white text-right">৳ {{ order.delivery_charge }}</p></td>
+                  </tr>
+                  <tr v-if="order.discount_amount">
+                    <td class="px-2 py-3"><p class="mb-0 gray-text gil-medium text-right">{{ $t('discount', $store.state.locale) }}</p></td>
+                    <td class="px-2 py-3 w-20-prs pr-4"><p class="mb-0 gil-bold text-white text-right">৳ -{{ order.discount_amount }}</p></td>
+                  </tr>
+                  <tr v-if="order.wallet_amount">
+                    <td class="px-2 py-3"><p class="mb-0 gray-text gil-medium text-right">{{ $t('wallet_amount', $store.state.locale) }}</p></td>
+                    <td class="px-2 py-3 w-20-prs pr-4"><p class="mb-0 gil-bold text-white text-right">৳ {{ order.wallet_amount }}</p></td>
+                  </tr>
+                  <tr>
+                    <td class="px-2 py-3 border-white-50 border-t-1"><p class="mb-0 text-secondery gil-medium text-right">{{ $t('grand_total', $store.state.locale) }}</p></td>
+                    <td class="px-2 py-3 w-20-prs pr-4 border-white-50 border-t-1"><p class="mb-0 gil-bold text-secondery text-right">৳ {{ order.amount }}</p></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="not-matching" v-else>
+              <h2>No data available</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </template>
 
 <script>
-    import FlipCountdown from 'vue2-flip-countdown';
-    export default {
-        components: { FlipCountdown },
-        name: 'order-details',
-        props: ['id'],
-        data() {
-            return {
-                orderDetails: false,
-                extend: {
-                    week: '',
-                    price: 0,
-                    game: '',
-                    lend_id: null,
-                    orderNo: '',
-                    commission: 0,
-                    game_id: '',
-                    disk_type: ''
-                },
-                order: [],
-                extendModalShow: false
-            }
-        },
-        methods: {
-            extendModal(lend) {
-                this.extend.week = '';
-                this.extend.price = 0;
-                this.extend.commission = 0;
-
-                this.extendModalShow = true;
-                this.extend.game = lend.rent.data.game.data.name;
-                this.extend.game_id = lend.rent.data.game.data.id;
-                this.extend.disk_type = lend.rent.data.disk_type;
-                this.extend.orderNo = lend.order.data.order_no;
-                this.extend.lend_id = lend.id;
-            },
-            extendSubmit(){
-                this.extendModalShow = false;
-                var config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + this.$store.state.token
-                    }
-                };
-
-                let data = {
-                    id: this.extend.lend_id,
-                    week: this.extend.week,
-                    amount: this.extend.price,
-                    commission: this.extend.commission,
-                };
-
-                this.$api.post('extend-lend', data, config).then(response => {
-                    if (response.data.error == false) {
-                        this.$toaster.success("Extend request sent successfully!!");
-                    }
-
-                });
-            },
-            rentCost(week, disk_type, game_id) {
-                this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
-                    console.log(response);
-                    this.extend.price = response.data.price.regular_price;
-                    this.extend.commission =  response.data.price.regular_commission;
-                })
-            },
-            formattedDateForTimer(date) {
-                let formattedDate = new Date(date)
-                return formattedDate.getMonth()+1 + "/" + formattedDate.getDate() + "/" + formattedDate.getFullYear()
-            },
-            formattedDate(date) {
-                const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                let formattedDate = new Date(date)
-                return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
-            },
-            formattedReturnDate(date) {
-                const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                let formattedDate = new Date(date)
-                return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
-            },
-            endDate(diskType, datetime, week) {
-                let date = new Date(datetime);
-
-                date.setDate(date.getDate() + 1 + week * 7);
-
-                return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear()
-            },
-            returnDate(diskType, datetime, week) {
-                let date = new Date(datetime);
-
-                date.setDate(date.getDate() + 1 + week * 7);
-
-                const months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-                return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
-            },
-            rentCheck: function() {
-
-                let config = {
-                    headers: {
-                        'Authorization': 'Bearer ' + this.$store.state.token
-                    }
-                };
-
-                this.$api.get('order/'+ this.id + '?include=lenders.rent.game,lenders.order', config).then( response => {
-                  console.log(response.data);
-                  this.order = response.data.data;
-                    if (!this.order){
-                      return
-                    }
-                    if (this.order.lenders.data.length) {
-                        this.orderDetails = true;
-                    }
-                    console.log(this.order);
-                });
-            },
-        },
-        created() {
-            window.scrollTo(0,0);
-            this.rentCheck();
-        },
+import FlipCountdown from 'vue2-flip-countdown';
+export default {
+  components: { FlipCountdown },
+  name: 'order-details',
+  props: ['id'],
+  data() {
+    return {
+      orderDetails: false,
+      extend: {
+        week: '',
+        price: 0,
+        game: '',
+        lend_id: null,
+        orderNo: '',
+        commission: 0,
+        game_id: '',
+        disk_type: ''
+      },
+      order: [],
+      extendModalShow: false
     }
+  },
+  methods: {
+    extendModal(lend) {
+      this.extend.week = '';
+      this.extend.price = 0;
+      this.extend.commission = 0;
+
+      this.extendModalShow = true;
+      this.extend.game = lend.rent.data.game.data.name;
+      this.extend.game_id = lend.rent.data.game.data.id;
+      this.extend.disk_type = lend.rent.data.disk_type;
+      this.extend.orderNo = lend.order.data.order_no;
+      this.extend.lend_id = lend.id;
+    },
+    extendSubmit(){
+      this.extendModalShow = false;
+      var config = {
+        headers: {
+          'Authorization': 'Bearer ' + this.$store.state.token
+        }
+      };
+
+      let data = {
+        id: this.extend.lend_id,
+        week: this.extend.week,
+        amount: this.extend.price,
+        commission: this.extend.commission,
+      };
+
+      this.$api.post('extend-lend', data, config).then(response => {
+        if (response.data.error == false) {
+          this.$toaster.success("Extend request sent successfully!!");
+        }
+
+      });
+    },
+    rentCost(week, disk_type, game_id) {
+      this.$api.get('base-price/game-calculation/' + game_id + '/' + week + '/' + disk_type).then(response => {
+        console.log(response);
+        this.extend.price = response.data.price.regular_price;
+        this.extend.commission =  response.data.price.regular_commission;
+      })
+    },
+    formattedDateForTimer(date) {
+      let formattedDate = new Date(date)
+      return formattedDate.getMonth()+1 + "/" + formattedDate.getDate() + "/" + formattedDate.getFullYear()
+    },
+    formattedDate(date) {
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      let formattedDate = new Date(date)
+      return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
+    },
+    formattedReturnDate(date) {
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      let formattedDate = new Date(date)
+      return formattedDate.getDate() + " " + months[formattedDate.getMonth()] + " " + formattedDate.getFullYear()
+    },
+    endDate(diskType, datetime, week) {
+      let date = new Date(datetime);
+
+      date.setDate(date.getDate() + 1 + week * 7);
+
+      return date.getMonth()+1 + "/" + date.getDate() + "/" + date.getFullYear()
+    },
+    returnDate(diskType, datetime, week) {
+      let date = new Date(datetime);
+
+      date.setDate(date.getDate() + 1 + week * 7);
+
+      const months = ["Jan", "Feb", "Mar","Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      return date.getDate() + " " + months[date.getMonth()] + " " + date.getFullYear()
+    },
+    rentCheck: function() {
+
+      let config = {
+        headers: {
+          'Authorization': 'Bearer ' + this.$store.state.token
+        }
+      };
+          this.$api.get('order/'+ this.id + '?include=lenders.rent.game,lenders.order', config).then( response => {
+            console.log(response.data);
+            this.order = response.data.data;
+              if (!this.order){
+                return
+              }
+              if (this.order.lenders.data.length) {
+                  this.orderDetails = true;
+              }
+              console.log(this.order);
+          });
+        },
+    },
+    created() {
+        window.scrollTo(0,0);
+        this.rentCheck();
+    },
+  }
 </script>
 <style>
-    .demo {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    }
+.demo {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
 
-    input {
-        width: 100%;
-        padding: 0.5rem;
-    }
+input {
+  width: 100%;
+  padding: 0.5rem;
+}
 
-    ul {
-        width: 100%;
-        color: rgba(30, 39, 46,1.0);
-        list-style: none;
-        margin: 0;
-        padding: 0.5rem 0 .5rem 0;
-    }
-    li {
-        margin: 0 0 0 0;
-        border-radius: 5px;
-        padding: 0.75rem 0 0.75rem 0.75rem;
-        display: flex;
-        align-items: center;
-    }
-    li:hover {
-        cursor: pointer;
-    }
+ul {
+  width: 100%;
+  color: rgba(30, 39, 46,1.0);
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 0 .5rem 0;
+}
+li {
+  margin: 0 0 0 0;
+  border-radius: 5px;
+  padding: 0.75rem 0 0.75rem 0.75rem;
+  display: flex;
+  align-items: center;
+}
+li:hover {
+  cursor: pointer;
+}
 
-    .autosuggest-container {
-        display: flex;
-        justify-content: center;
-        width: 280px;
-    }
+.autosuggest-container {
+  display: flex;
+  justify-content: center;
+  width: 280px;
+}
 
-    #autosuggest { width: 100%; display: block;}
+#autosuggest { width: 100%; display: block;}
 
 </style>

@@ -1,4 +1,4 @@
-# gamingapp-ui
+# gamehub-front
 
 ## Project setup
 ```

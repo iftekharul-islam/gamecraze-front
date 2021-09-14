@@ -17,7 +17,7 @@
 <!--                            <th scope="col">Checkpoint</th>-->
                             <th scope="col">{{ $t('disk_type', $store.state.locale) }}</th>
                             <th scope="col">{{ $t('platform', $store.state.locale) }}</th>
-                            <th scope="col">{{ $t('available_from', $store.state.locale) }}</th>
+                            <th scope="col">{{ $t('create_post', $store.state.locale) }}</th>
                             <th scope="col">{{ $t('available_for', $store.state.locale) }}</th>
                             <th scope="col">{{ $t('price_for_1st_week', $store.state.locale) }}</th>
                         </tr>
@@ -79,7 +79,7 @@
 
                                                                     </tr>
                                                                     <tr>
-                                                                        <td>{{ $t('available_from', $store.state.locale) }} :</td>
+                                                                        <td>{{ $t('create_post', $store.state.locale) }} :</td>
                                                                         <td v-if="modalData">{{ formattedDate(modalData.availability_from_date) }}</td>
                                                                     </tr>
                                                                     <tr>
@@ -98,7 +98,7 @@
                                                             <div class="text-center">
                                                                 <h2>{{ $t('necessary_info', $store.state.locale) }}</h2>
                                                             </div>
-                                                            <table class="w-full share-post-modal--bottom-table">
+                                                            <table class="w-100 share-post-modal--bottom-table">
                                                                 <tbody class="text-left">
                                                                 <tr>
                                                                     <td class="align-middle p-0 pb-3 pb-sm-0">{{ $t('select_week', $store.state.locale) }} :</td>
@@ -153,8 +153,9 @@
                                                         </div>
                                                     </div>
                                                     <div class="d-flex justify-content-center mt-5" v-if="!isExistsInCart">
-                                                        <a href="javascript:void(0)" class="btn--secondery" @click.prevent="handleSubmit(onAddToCart)">
-                                                            <span><i class="fas fa-shopping-cart mr-2"></i> {{ $t('add_to_cart', $store.state.locale) }}</span>
+                                                        <a href="javascript:void(0)" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative" @click.prevent="handleSubmit(onAddToCart)">
+                                                            <div class="position-relative"><i class="fas fa-shopping-cart mr-2"></i> {{ $t('add_to_cart', $store.state.locale) }}</div>
+                                                            <span></span>
                                                         </a>
                                                     </div>
                                                 </ValidationObserver>
@@ -181,7 +182,7 @@
                                                     <a href="/elite" class="text-secondery">ELITE.</a>
                                                     {{ $t('rookie_sms_part_3', $store.state.locale) }}
                                                 </p>
-                                                <div class="d-flex justify-content-center mt-5">
+                                                <div class="d-flex flex-column align-items-center flex-sm-row justify-content-center mt-5">
                                                     <div class="modal-content--description--form--call">
                                                         <p>{{ $t('please_call_contact', $store.state.locale) }}</p>
                                                         <p>01886-614533</p>
@@ -386,7 +387,7 @@
                 }
             });
 
-            this.$api.get('user/details', config).then(response => {
+          this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
                 this.achievedDiscount = false;
                 this.user_type = response.data.data.is_verified;
                 this.achievedDiscount = response.data.data.achieve_discount;

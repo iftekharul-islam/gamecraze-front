@@ -6,35 +6,17 @@
         padding-bottom: 70px;
     }
     @include for-max-575 {
-        padding-left: 15px;
-        padding-right: 15px;
+        padding-left: 0px;
+        padding-right: 0px;
     }
     .owl-item {
         &.center {
             @include for-max-575 {
-                height: 200px;
-            }
-            .item {
-                @include for-max-575 {
-                    height: 100%;
-                    margin-top: 0;
-                }
-                .favorite-games {
-                    @include for-max-575 {
-                        height: 100%;
-                    }
-                    img {
-                        @include for-max-575 {
-                            height: 180px;
-                        }
-                    }
-                }
             }
         }
     }
     .active {
         .item {
-            margin: 0 5px;
             @include for-max-575 {
                 margin: 0;
                 margin-top: 16px;
@@ -42,7 +24,6 @@
         }
     }
     .item {
-        margin: 0 25px;
         @include for-max-575 {
             margin: 0;
             margin-top: 16px;
@@ -53,7 +34,7 @@
         top: 110px;
         z-index: 99;
         @include for-max-575 {
-            top: 85px;
+            display: none;
         }
         &.vue-owl-nav-prev {
             left: 20px;
@@ -68,27 +49,24 @@
             }
         }
         button {
-            width: 50px;
-            height: 50px;
-            transform: skewX(-13deg);
-            border: 1px solid $secondery !important;
+            width: 32px;
+            height: 32px;
+            border: 1px solid $secondery-opa-5 !important;
             background: transparent;
-            border-radius: 0 !important;
+            border-radius: 4px !important;
             transition: all .3s ease-in !important;
-            @include for-max-590 {
-                width: 35px;
-                height: 35px;
-                transform: skewX(0deg);
+            svg {
+                path {
+                    transition: all .3s ease-in;
+                }
             }
             &:hover {
                 background: $secondery !important;
-                .arrow {
-                    color: $text-dark;
+                svg {
+                    path {
+                        fill: $text-dark;
+                    }
                 }
-            }
-            .arrow {
-                transition: all .3s ease-in;
-                color: $text-light;
             }
             &:focus {
                 outline: none !important;
@@ -108,9 +86,14 @@
 
 .favorite-games {
     background: $game-details;
-    padding: 10px;
+    padding: 6px;
     position: relative;
     overflow: hidden;
+    border-radius: 8px;
+    @include for-max-575 {
+        border-radius: 4px;
+        padding: 4px;
+    }
     &:hover {
         .favorite-games-categories {
             transform: translate(0px, 0px);
@@ -123,6 +106,7 @@
     }
     &--link {
         overflow: hidden;
+        border-radius: 8px;
     }
     &-categories {
         padding-top: 20px;
@@ -131,13 +115,13 @@
         padding-right: 20px;
         position: absolute;
         height: 50px;
-        width: 94%;
+        width: 95%;
         bottom: 0;
         background: $game-details;
         transform: translate(0px, 60px);
         transition: all .5s ease-in;
         @include for-max-575 {
-            display: none !important;
+            width: 99%;
         }
         a {
             margin-right: 20px;
@@ -172,7 +156,8 @@
             background-color: hsl(220, 20%, 90%);
         }
         @include for-max-575 {
-            height: 150px;
+            height: 250px;
+            object-fit: initial;
         }
     }
 }

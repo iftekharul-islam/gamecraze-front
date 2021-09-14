@@ -179,7 +179,6 @@
     margin-left: 20px;
     h3 {
         font-size: 32px;
-        font-style: italic;
     }
     h6 {
         font-size: 20px;
@@ -203,11 +202,8 @@
         &--nav {
             a {
                 font-size: 18px;
-                @include for-max-991 {
-                    font-size: 12px;
-                }
-                @include for-max-575 {
-                    font-size: 7px;
+                @include for-max-768 {
+                    font-size: 16px;
                 }
             }
         }
@@ -216,6 +212,87 @@
 .user-profile-details {
     padding-top: 50px;
     padding-bottom: 200px;
+    &--nav-menu {
+        .card {
+            background: transparent;
+            .tabs {
+                flex-wrap: nowrap;
+                @include for-max-991 {
+                    flex-direction: column;
+                }
+            }
+            .card-body {
+                padding: 0;
+                margin-left: 100px;
+                @include for-max-991 {
+                    margin-left: 0;
+                }
+            }
+        }
+        .col-auto {
+            overflow-x: auto;
+        }
+        .nav {
+            padding: 0;
+            @include for-max-991 {
+                flex-direction: row !important;
+                flex-wrap: nowrap;
+                width: 800px;
+                justify-content: space-between;
+                margin-bottom: 16px;
+            }
+            @include for-max-768 {
+                width: 650px;
+            }
+        }
+        .nav-item {
+            padding: 10px 0;
+            border-bottom: 1px solid $gray;
+            border-radius: 0;
+            &:last-of-type {
+               @include for-min-992 {
+                border: 0;
+               }
+            }
+            .nav-link {
+                color: $gray;
+                padding-left: 0;
+                padding: 0;
+                @include for-max-991 {
+                    text-align: center;
+                }
+                span {
+                   @include for-max-991 {
+                    display: block;
+                   }
+                }
+                svg {
+                    width : 50px;
+                    margin-right: 16px;
+                    @include for-max-991 {
+                        width: initial;
+                        height: 45px;
+                        margin-right: 0px;
+                        margin-bottom: 16px;
+                    }
+                    @include for-max-768 {
+                        height: 26px;
+                        margin-bottom: 10px;
+                    }
+                }
+                &.active {
+                    background: transparent;
+                    color: $text-light;
+                    font-weight: 600;
+                    svg {
+                        path {
+                            fill: $text-light;
+                        }
+                    }
+                }
+            }
+        }
+    }
     &--nav {
         flex-direction: column;
         @include for-min-1200 {
@@ -226,6 +303,9 @@
             flex-wrap: nowrap;
             justify-content: space-between;
             margin-bottom: 40px;
+            @include for-max-768 {
+                width: 800px;
+            }
             @include for-max-575 {
                 margin-bottom: 20px;
             }
@@ -249,9 +329,6 @@
                 flex-direction: column;
                 align-items: center;
                 padding: 0;
-            }
-            @include for-max-575 {
-                font-size: 10px;
             }
             @include for-min-992 {
                 &:last-of-type {
@@ -299,6 +376,7 @@
         }
         @include for-max-991 {
             margin-left: 0;
+            margin-top: 16px;
         }
     }
 }
@@ -449,6 +527,7 @@
                     }
                     .custom-control-label {
                         cursor: pointer;
+                        color: $text-light;
                         &::before {
                             top: 4px;
                         }
@@ -459,6 +538,15 @@
                 }
                 &.delivery-radio-group {
                     padding-left: 27px;
+                }
+            }
+            .image-box {
+                margin-left: 0 !important;
+                width: 100% !important;
+                .imgsPreview {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    grid-gap: 16px;
                 }
             }
         }
@@ -473,6 +561,7 @@
             -moz-user-select: none;
             -ms-user-select: none;
             user-select: none;
+            color: $text-light;
             @include for-max-1300 {
                 font-size: 18px;
             }
@@ -511,7 +600,8 @@
         }
         // Input and Select
         input,
-        select {
+        select,
+        textarea {
             border: 1px solid $secondery;
             background: $game-details;
             color: $text-light;
@@ -566,6 +656,10 @@
             @include for-max-768 {
                 margin-left: 33px;
             }
+        }
+        .image-box {
+            flex-basis: 456px;
+            margin-left: 20px;
         }
     }
     // end form group
@@ -700,11 +794,12 @@
         }
     }
     &--rented {
+        width: 100%;
         @include for-min-1200 {
-            width: 880px;
+            // width: 880px;
         }
         @include for-min-1400 {
-            width: 925px;
+            // width: 925px;
         }
         &--box {
             padding: 10px 20px 20px 20px;
@@ -732,6 +827,43 @@
                 height: 65px;
                 margin-bottom: 24px;
             }
+            .start-date {
+                @include for-min-1200 {
+                    width: 150px;
+                }
+            }
+            .payment {
+                @include for-min-1200 {
+                    width: 150px;
+                }
+            }
+        }
+        &--sell-post {
+            &--button {
+                @include for-max-1199 {
+                    flex: none;
+                    width: 100%;
+                    a {
+                        width: 110px;
+                        padding: 0;
+                        span {
+                            text-align: center;
+                            display: block;
+                            width: 100%;
+                        }
+                    }
+                }
+            }
+            &--status {
+                @include for-max-1199 {
+                    margin-bottom: 32px;
+                    flex: none;
+                    width: 100%;
+                }
+                @include for-min-1200 {
+                    margin-right: 30px;
+                }
+            }
         }
     }
     .timer {
@@ -739,15 +871,82 @@
     }
     
 }
+// in active sellpost
+.inactive {
+    display: none;
+}
+.inactive-sellpost-box {
+    border-color: $rejected ;
+    position: relative;
+    @include for-max-1199 {
+        padding-top: 45px;
+    }
+    .inactive {
+        display: block;
+    }
+    .rejected-msg,
+    .pending-msg {
+        display: none;
+    }
+    .bg-rejected {
+        &:hover {
+            .inactive-msg {
+                visibility: visible;
+            }
+        }
+    }
+}
+.rejected-box {
+    .information {
+        &:hover {
+            .rejected-msg {
+                visibility: visible;
+            }
+        }
+    }
+}
+.pending-box {
+    .information {
+        &:hover {
+            .pending-msg {
+                visibility: visible;
+            }
+        }
+    }
+}
+.information {
+    @include for-max-1199 {
+        width: fit-content;
+    }
+}
+
+.inactive-msg,
+.rejected-msg,
+.pending-msg {
+    width: 292px;
+    padding: 20px;
+    background: $gamebazar-search-input;
+    border: 1px solid $rejected;
+    right: 0;
+    top: 13px;
+    position: absolute;
+    visibility: hidden;
+    @include for-max-1199 {
+        right: initial;
+    }
+}
+.inactive-msg {
+    right: 0;
+}
 
 .rented-note,
 .dashboard-tab-button,
 .no-post-found-card {
     @include for-min-1200 {
-        width: 880px;
+        width: 100%;
     }
     @include for-min-1400 {
-        width: 855px;
+        // width: 855px;
     }
 }
 
@@ -759,14 +958,13 @@
         border-radius: 0;
         color: $secondery;
         display: flex;
-        align-items: center;
+        align-items: center; 
+        padding: 10px 30px;
         @include for-max-768 {
-            padding: 10px 30px;
-        }
-        @include for-max-575 {
             padding: 8px 10px;
             font-size: 15px;
         }
+        
         img {
             margin-right: 15px;
             @include for-max-575 {
@@ -790,11 +988,8 @@
                 display: none;
             }
         }
-        &:first-of-type {
-            margin-right: 20px;
-            @include for-max-575 {
-                margin-right: 10px;
-            }
+        &:last-of-type {
+            margin-right: 0;
         }
         &:focus {
             outline: none;
@@ -847,6 +1042,7 @@
     }
     label {
         font-size: 20px;
+        color: $text-light;
         @include for-max-1300 {
             font-size: 18px;
         }
@@ -886,7 +1082,6 @@
     justify-content: center;
     h5 {
         font-size: 24px;
-        font-style: italic;
         font-weight: 700;
         text-transform: uppercase;
         color: $secondery;
@@ -976,6 +1171,9 @@
                 padding: 70px;
                 padding-left: 30px;
                 padding-right: 30px;
+            }
+            @include for-max-575 {
+                max-height: 80%;
             }
             .modal-body-content {
                 height: 100%;
@@ -1082,3 +1280,32 @@
         align-items: center;
     }
 }
+.subtotal-table {
+    tr {
+        td {
+            &:last-of-type {
+                @include for-max-575 {
+                    max-width: 94px;
+                    width: 94px;
+                }
+            }
+        }
+    }
+}
+.vue-feedback-reaction {
+    span {
+        @include for-max-380 {
+            font-size: 13px;
+        }
+    }
+}
+
+.sell-post-modal {
+    .modal-dialog {
+        @include for-min-768 {
+            width: 700px;
+            max-width: 700px;
+        }
+    }
+}
+

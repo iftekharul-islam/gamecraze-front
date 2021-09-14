@@ -8,6 +8,7 @@
         padding: 10px;
         width: 100%;
         height: 300px;
+        border-radius: 16px;
         @include for-max-992 {
             height: 250px;
         }
@@ -16,6 +17,7 @@
             iframe {
                 width: 100%;
                 height: 100%;
+                border-radius: 16px;
             }
         }
     }
@@ -42,10 +44,18 @@
                     width: 425px;
                     margin-top: 16px;
                 }
+                @include for-max-768 {
+                    height: 320px;
+                    width: 100%;
+                    margin-top: 16px;
+                    margin-left: 0;
+                }
                 @include for-max-575 {
                     height: 300px;
-                    width: 100%;
-                    margin-left: 0;
+                   
+                }
+                @include for-max-400 {
+                    height: 250px;
                 }
                 iframe {
                     width: 100%;
@@ -56,14 +66,26 @@
     }
     .vue-owl-nav {
         position: relative;
+        @include for-max-768 {
+            top: 30px;
+        }
+        @include for-max-590 {
+            position: absolute;
+            top: 45%;
+        }
+        &.vue-owl-nav-next {
+
+            @include for-max-590 {
+                right: 56px;
+            }
+        }
         button {
             position: absolute;
             top: -226px;
-            width: 50px;
-            height: 50px;
-            transform: skewX(-13deg);
-            border: 1px solid $secondery !important;
-            border-radius: 0 !important;
+            width: 32px;
+            height: 32px;
+            border: 1px solid $secondery-opa-5 !important;
+            border-radius: 4px !important;
             transition: all .3s ease-in !important;
             background: transparent;
             @include for-max-1199 {
@@ -73,20 +95,20 @@
                 top: -205px;
             }
             @include for-max-590 {
-                top: 20px;
-                width: 35px;
-                height: 35px;
-                transform: skewX(0deg);
+                top: initial;
+            }
+            svg {
+                path {
+                    transition: all .3s ease-in;
+                }
             }
             &:hover {
                 background: $secondery !important;
-                .arrow {
-                    color: $text-dark;
+                svg {
+                    path {
+                        fill: $text-dark;
+                    }
                 }
-            }
-            .arrow {
-                transition: all .3s ease-in;
-                color: $text-light;
             }
             &:focus {
                 outline: none !important;
@@ -101,8 +123,7 @@
                 top: 131px;
             }
             @include for-max-590 {
-                left: 35%;
-                top: 336px;
+                top: initial;
             }
         }
         .owl-next {
@@ -111,7 +132,7 @@
                 right: 10px;
             }
             @include for-max-590 {
-                right: 35%;
+                right: initial;
             }
         }
     }
@@ -120,4 +141,7 @@
             display: block !important;
         }
     }
+}
+.ytp-impression-link {
+    display: none !important;
 }

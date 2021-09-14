@@ -84,8 +84,8 @@
                   </div>
                    <div class="cart-section--item-price-box--payment-method secondery-border mt-a-6">
                             <p class="mb-0">{{ $t('payment_method', $store.state.locale) }}</p>
-                            <div class="d-flex flex-wrap align-items-center justify-content-between content">
-                                <div class="checkbox-parents">
+                            <div class="cart-section--item-price-box--payment-method--content d-flex flex-wrap align-items-center justify-content-between content">
+                                <div class="checkbox-parents" v-if="digitalIsExist">
                                     <input type="radio" id="cod" name="payment" value="cod" class="checkbox-parents--input" v-model="paymentMethod">
                                     <label for="cod" class="checkbox-parents--label">Cash on Delivery</label>
                                 </div>
@@ -102,14 +102,12 @@
                   <!-- Enter Adsress -->
                     <ValidationObserver v-slot="{ handleSubmit }">
                       <form class="" @submit.prevent="handleSubmit(onCheckout)" method="post">
-                          <div class="">
-                            <div class="cart-delivery-address">
-                                <label for="address">{{ $t('enter_address', $store.state.locale) }}</label>
-                                <ValidationProvider name="address" rules="required" v-slot="{ errors }">
-                                  <textarea id="address" type="text" v-model="address" class="promo-code-field"></textarea>
-                                <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
-                                </ValidationProvider>
-                            </div>
+                          <div class="cart-delivery-address" v-if="digitalIsExist">
+                              <label for="address">{{ $t('enter_address', $store.state.locale) }}</label>
+                              <ValidationProvider name="address" :rules="{required: digitalIsExist}" v-slot="{ errors }">
+                                <textarea id="address" type="text" v-model="address" class="promo-code-field"></textarea>
+                              <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
+                              </ValidationProvider>
                           </div>
                         <!-- Agree terms condition -->
                         <div class="post-rent--form-group--agree pl-a-6 mt-a-3">
@@ -123,18 +121,18 @@
                         </div>
                            <!-- Place Order button -->
                             <div class="checkout-btn">
-                                <button class="btn--cart-btn w-100 gil-bold" :disabled="isLoading">
+                                <button class="btn--secondery-hover br-4 gil-bold border-0 font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative w-100 gil-bold" :disabled="isLoading">
                                     {{ $t('place_order', $store.state.locale) }}
-                                    <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
+                                    <i v-if="isLoading" class="spinner-border spinner-border-sm"></i>
+                                    <span></span>
+                                    <span></span>
                                 </button>
                             </div>
                         <!-- PLace Order button -->
                       </form>
               </ValidationObserver>
-              <!-- End Enter Adsress -->
+              <!-- End Enter Address -->
               </div>
-               
-               
                 <div v-if="showModal">
                     <transition name="modal">
                         <div class="modal-mask seller-information-modal upgrade-modal cart-warning-modal multiple-user-warning-modal z-index-99">
@@ -214,11 +212,10 @@
                             <button type="button" class="close m-0 close-modal" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true"></span>
                             </button>
-                            <p>Opps !!! The game <span v-for="(item, index) in cart" v-if="item.rent.id == id">{{ item.rent.game.data.name }}</span> you wanted to rent is not available at this moment.</p>
+                            <p>Opps !!! The game <span v-for="(item, index) in cart" :key="index"> <strong v-if="item.rent.id == id">{{ item.rent.game.data.name }}</strong></span> you wanted to rent is not available at this moment.</p>
                         </div>
                     </div>
                 </div>
-                
             </div>
           </div>
         </section>
@@ -229,6 +226,7 @@
   export default {
       data() {
           return {
+              digitalIsExist: false,
               isLoadingCode: false,
               discountAmount: false,
               promoCode: '',
@@ -240,7 +238,7 @@
               checkedGame: '',
               lendWeek: '',
               cart: [],
-              paymentMethod: 'cod',
+              paymentMethod: 'bkashpay',
               isLoading: false,
               price: [],
               newCartItems: [],
@@ -275,13 +273,11 @@
         autoPromoApply() {
             let code = this.$store.state.promo ?? false;
             if (code) {
-                console.log('i m in autoApplyCode');
                 this.promoCode = code;
                 this.applyCode();
             }
         },
         applyCode() {
-            console.log('i m in applyCode');
             this.isLoadingCode = true;
             this.promoError = false;
             this.discountAmount = 0;
@@ -326,31 +322,36 @@
         },
         authData () {
             var auth = this.$store.getters.ifAuthenticated;
+            this.digitalIsExist = false;
             if (auth){
                 var config = {
                     headers: {
                         'Authorization': 'Bearer ' + this.$store.state.token
                     }
                 };
-                this.$api.get('user/details', config).then(response => {
+                this.$api.get('user/details/' + this.$store.state.user.id ).then(response => {
                     this.user = response.data.data;
                     if (this.user.wallet != 0) {
-                        this.availableWallet = true;
+                        this.availableWallet = false;
                     }
                 })
                     .catch( err => {
                     console.log(err);
                 });
                 this.$api.get('cart-items', config).then(response => {
-                    console.log(response);
                     this.newCartItems = response.data.data.cartItems;
                     this.totalPrice = response.data.data.totalRegularPrice;
                     this.mainAmount = this.totalPrice;
                     this.deliveryCharge = response.data.data.deliveryCharge;
                     this.autoPromoApply();
+                    console.log('newCartItems')
+                    console.log(this.newCartItems)
                     if (this.newCartItems) {
                         for (let i = 0; i < this.newCartItems.length; i++) {
                             this.rentIds.push(this.newCartItems[i].rent_id);
+                            if (this.newCartItems[i].disk_type == 1){
+                              this.digitalIsExist = true;
+                            }
                         }
                     }
                     if (!this.newCartItems.length) {
@@ -400,10 +401,8 @@
                     }
                     else {
                         this.$swal("Incomplete Profile", "Please Update Your Profile with all information ");
-                        this.$router.push('/profile').then(res => {
-                                this.$root.$emit('profileEdit');
-                            },
-                        ).catch(err => {
+                        this.$router.push('/profile').then(() => {
+                            this.$root.$emit('profileEdit');
                         });
                     }
                 }
@@ -509,7 +508,6 @@
             this.newCartItems = JSON.parse(this.newCartItems);
               if (this.newCartItems) {
                   for (let i = 0; i < this.newCartItems.length; i++) {
-                      console.log(this.newCartItems[i])
                       this.gameIds.push(this.newCartItems[i]);
                   }
               }
@@ -517,8 +515,6 @@
         }
     },
     created() {
-        console.log('the promo code');
-        console.log(this.$store.state.promo);
         window.scrollTo(0,0);
         this.authData();
         this.$api.get('delivery-charge').then(response => {

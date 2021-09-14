@@ -25,16 +25,16 @@
                                     <!-- First Name -->
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
-                                            <label for="firstName">{{ $t('first_name', $store.state.locale) }}</label>
+                                            <label>{{ $t('first_name', $store.state.locale) }}</label>
                                             <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
-                                                <input @keypress="isValidString($event)" type="text" class="form-control" id="firstName" value="" v-model="form.name">
+                                                <input @keypress="isValidNameString($event)" type="text" class="form-control" v-model="form.name">
                                                 <span v-if="errors.length" class="error-message first-name-error">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="LastName">{{ $t('last_name', $store.state.locale) }}</label>
                                             <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
-                                                <input @keypress="isValidString($event)" type="text" class="form-control" id="LastName" value="" v-model="form.last_name">
+                                                <input @keypress="isValidLastNameString($event)" type="text" class="form-control" id="LastName" v-model="form.last_name">
                                                 <span v-if="errors.length" class="error-message last-name-error">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
@@ -134,12 +134,19 @@
                     this.$swal("Warning", response.message, 'warning');
                 });
             },
-            isValidString: function(evt) {
+            isValidNameString: function(evt) {
                 evt = (evt) ? evt : window.event;
-                var charCode = (evt.which) ? evt.which : evt.keyCode;
-                if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0)){
-                    event.preventDefault();
+                let charCode = (evt.which) ? evt.which : evt.keyCode;
+                if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0) || this.form.name.length > 12){
+                  evt.preventDefault();
                 }
+            },
+            isValidLastNameString: function(evt) {
+              evt = (evt) ? evt : window.event;
+              let charCode = (evt.which) ? evt.which : evt.keyCode;
+              if(!(charCode >= 65 && charCode <= 121) && (charCode != 32 && charCode != 0) || this.form.last_name.length > 12){
+                evt.preventDefault();
+              }
             },
             onEmailChange: function() {
                 this.isEmailExists = false;

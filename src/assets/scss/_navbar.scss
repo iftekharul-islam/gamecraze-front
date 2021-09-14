@@ -8,12 +8,17 @@
 
 .gamehub-menu {
     background: $primary;
-    padding: 8px 0;
+    padding: 16px 0;
     &.gamehub-menu-active {
         background: $trans-nav-bg;
     }
     @include for-max-1199 {
-        padding: 20px 0;
+        padding: 10px 13px;
+    }
+    .container {
+        @include for-max-575 {
+            flex-wrap: nowrap;
+        }
     }
 }
 
@@ -24,7 +29,7 @@
         padding-top: 0;
     }
     @include for-max-575 {
-        padding-left: 60px;
+        padding-left: 0px;
     }
     img {
         width: 120px;
@@ -39,10 +44,12 @@
 
 .gamehub-menu-collapse {
     @include for-max-1199 {
-        padding-top: 60px;
-        margin-top: 20px;
-        position: relative;
-        background: $trans-nav-bg;
+        // padding-top: 60px;
+        position: fixed;
+        width: 100%;
+        bottom: 0;
+        left: 0;
+        background: $game-details;
     }
     >ul {
         margin: auto;
@@ -51,12 +58,17 @@
         @include for-max-1199 {
             display: block;
             margin-left: 0px;
-            padding-bottom: 0;
+            padding: 10px 0 8px 0;
         }
         li {
             padding-left: 0;
+            position: relative;
+            @include for-max-1199 {
+                position: initial;
+                padding: 0;
+                margin-bottom: 0;
+            }
             @include for-max-992 {
-                margin-bottom: 10px;
                 width: fit-content;
             }
             @include for-max-575 {
@@ -64,6 +76,12 @@
             }
             &:last-child {
                 margin-right: 0;
+                @include for-max-1199 {
+                    margin-bottom: 0px;
+                }
+                @include for-max-992 {
+                    margin-bottom: 0px;
+                }
             }
             a {
                 padding: 0 20px;
@@ -76,6 +94,7 @@
                 &.router-link-exact-active {
                     position: relative;
                     @include gil-bold;
+                    color: $secondery;
                     &::after {
                         content: "";
                         width: 83px;
@@ -89,10 +108,21 @@
                         transform: skew(-50deg);
                         @include for-max-1199 {
                             width: 50px;
+                            display: none;
                         }
                         @include for-max-992 {
                             top: 28px;
                         }
+                    }
+                    svg {
+                        path {
+                            fill: $secondery;
+                        }
+                    }
+                }
+                svg {
+                    path {
+                        transition: all .3s ease-in;
                     }
                 }
             }
@@ -117,9 +147,28 @@
             &:hover {
                 a {
                     color: $secondery;
+                    svg {
+                        path {
+                            fill: $secondery;
+                        }
+                    }
                 }
             }
         }
+    }
+    &-list {
+        @include  for-min-575 {
+            max-width: 540px;
+            margin: auto !important;
+            padding: 0 90px;
+        }
+        @include  for-min-768 {
+            max-width: 720px;
+        }
+        @include  for-min-992 {
+            max-width: 960px;
+        }
+        
     }
 }
 
@@ -202,19 +251,20 @@
 
 .signin-cart-group {
     @include for-max-1199 {
-        position: absolute;
-        top: 17px;
-        right: 50px;
+        // position: absolute;
+        // top: 17px;
+        // right: 50px;
     }
     @include for-max-575 {
-        right: 20px;
+        // right: 20px;
     }
 }
 
 .gamehub-input-group-searchbar {
     @include for-max-1199 {
-        position: absolute;
-        top: 20px;
+        // position: absolute;
+        // top: 20px;
+        margin-left: auto;
     }
 }
 
@@ -224,6 +274,9 @@
     align-items: center;
     @include for-max-1199 {
         flex-wrap: wrap;
+    }
+    @include for-max-575 {
+        flex-wrap: nowrap;
     }
     &--content {
         margin-right: 0;
@@ -274,6 +327,9 @@
         }
         .dropdown-menu {
             left: initial;
+            @include for-max-575 {
+                right: 0;
+            }
         }
     }
     // end content
@@ -286,6 +342,9 @@
     margin: 0 20px;
     display: flex;
     align-items: center;
+    @include for-max-575 {
+        margin: 0 10px 0 0;
+    }
     &::after {
         display: none !important;
     }
@@ -333,33 +392,10 @@
 
 // normal sign in
 .sign-in {
-    color: $secondery;
-    font-weight: 700;
-    text-align: center;
-    border: 1px solid $secondery;
-    width: 116px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: skew(-21deg);
     margin: 0 20px;
-    @include for-max-1199 {
-        width: 100px;
-    }
-    @include for-max-1199 {
-        transform: skew(0deg);
-    }
     @include for-max-575 {
-        width: 80px;
-        height: 35px;
-    }
-    span {
-        display: inline-block;
-        transform: skew(21deg);
-        @include for-max-1199 {
-            transform: skew(0deg);
-        }
+        margin: 0 10px;
+        padding: 5px 20px !important;
     }
 }
 
@@ -377,9 +413,9 @@
         margin-left: 20px;
     }
     input {
-        height: 36px;
+        height: 100%;
         border: none;
-        width: 135px;
+        width: 100%;
         margin: auto;
         position: relative;
         left: 3px;
@@ -388,7 +424,7 @@
         color: #fff;
         padding-left: 15px;
         padding-right: 8px;
-        transform: skew(21deg);
+        // transform: skew(21deg);
         &:focus {
             outline: none;
             border: none;
@@ -401,47 +437,145 @@
             width: 100%;
         }
     }
+    &.searchbar-input {
+        width: 0;
+    }
+    .autosuggest__results-container {
+        width: calc(100% + 40px) !important;
+        ul {
+            height: 300px !important;
+        }
+    }
+        .price {
+            top: -44px;
+            right: 30px;
+        }
+        #autosuggest {
+            > div {
+                &:first-of-type {
+                    display: none;
+                }
+            }
+        }
+}
+
+.animateNavebar {
+    top: 0;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    z-index: 9;
+    display: flex;
+    justify-content: flex-end;
+    @include for-max-575 {
+        justify-content: flex-start;
+        position: fixed;
+    }
+    
+    .searchbar-input {
+        max-width: 400px;
+        width: 100%;
+        top: 2px;
+        @include for-max-575 {
+            width: 70%;
+        }
+    }
+    .gamehub-search-btn {
+        display: block;
+        z-index: 10;
+    }
     #autosuggest {
         >div {
             &:first-of-type {
-                @include for-max-1199 {
-                    transform: skew(0deg);
-                }
-                input {
-                    @include for-max-1199 {
-                        transform: skew(0deg);
-                    }
-                }
+                border: 1px solid $gamebazar-search-input;
+                height: 45px;
+                background: $gamebazar-search-input;
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
+            }
+        }
+    }
+    .animate-nav {
+        @include for-min-992 {
+            width: 400px;
+        }
+        @include for-max-575 {
+            width: 100%;
+        }
+    }
+    .animate-nav-btn {
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
+    }
+    .animate-navbar-icon {
+        display: flex;
+        // position: absolute;
+        right: 15%;
+        margin-left: 10px;
+        cursor: pointer;
+        align-items: center;
+        font-size: 25px;
+        @include for-max-575 {
+            right: 15px;
+        }
+    }
+    #autosuggest {
+        > div {
+            &:first-of-type {
+                display: block;
             }
         }
     }
 }
+.animate-navbar-icon {
+    display: none;
+}
 
+.block {
+    display: block;
+}
 .gamehub-search-btn {
     width: 45px;
-    height: 40px;
+    height: 45px;
     background: $secondery;
-    transform: skew(-21deg);
     border-radius: 0;
     position: relative;
     left: -3px;
-    @include for-max-1199 {
-        transform: skew(0deg);
-    }
+    top: 2px;
     &:focus {
         outline: none;
         border: none;
         box-shadow: none;
     }
     &--icon {
-        transform: skew(21deg);
         color: $text-dark;
         font-size: 18px;
-        @include for-max-1199 {
-            transform: skew(0deg);
-        }
     }
 }
+.gamehub-search-btn-2 {
+    width: 45px;
+    height: 45px;
+    border-radius: 0;
+    position: relative;
+    left: -3px;
+    top: 2px;
+    &:focus {
+        outline: none;
+        border: none;
+        box-shadow: none;
+    }
+    .gamehub-search-btn--icon {
+        color: $secondery;
+        font-size: 18px;
+    }
+}
+.gamehub-search-btn {
+    display: none;
+}
+.dnone {
+    display: none;
+}
+
 
 .gamehub-dropdown-menu {
     border-radius: 5px;
@@ -449,7 +583,7 @@
     border: 1px solid $secondery;
     top: 59px;
     @include for-max-575 {
-        right: -20px;
+        // right: -20px;
         left: initial;
     }
     &--top {
@@ -564,15 +698,7 @@
     }
 }
 
-#autosuggest {
-    >div {
-        &:first-of-type {
-            transform: skew(-21deg);
-            border: 2px solid $secondery;
-            height: 40px;
-        }
-    }
-}
+
 
 // delete moadl
 .swal-modal {
@@ -666,7 +792,7 @@
 
 .dropdown {
     @include for-max-1199 {
-        width: 100% !important;
+        // width: 100% !important;
     }
     &--sub-menu {
         position: absolute;
@@ -679,12 +805,17 @@
         justify-content: flex-start;
         display: none;
         right: 0;
-        border-radius: 0;
+        border-radius: 8px;
+        border: 1px solid $secondery;
         @include for-max-1199 {
-            width: 100%;
+            width: calc(100% - 40px);
+            top: -215px;
+            border: 1px solid $secondery;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 20px !important;
         }
         @include for-max-575 {
-            left: -15px;
         }
         a {
             padding: 10px 20px !important;
@@ -712,17 +843,14 @@
             }
         }
         &--item {
-            border-left: 1px solid $secondery;
-            border-right: 1px solid $secondery;
+            
             transition: all .3s ease-in;
-            &:last-of-type {
-                border-bottom: 1px solid $secondery;
-            }
-            &:first-of-type {
-                border-top: 1px solid $secondery;
-            }
             &:hover {
                 background: $secondery;
+            }
+            @include for-max-1199 {
+                background-color: $game-details;
+                border: none !important;
             }
         }
     }
@@ -732,7 +860,7 @@
                 display: block;
             }
             @include for-max-1199 {
-                height: 260px;
+                // height: 260px;
             }
         }
         &::after {
@@ -747,34 +875,46 @@
         border-bottom: 5px solid $gray-border;
         content: '';
         transition: all .3s ease-in;
+        @include for-max-1199 {
+            display: none;
+        }
     }
 }
 // language
 .gamehub-language {
-    margin-right: 32px;
+    margin-right: 16px;
     display: flex;
     align-items: center;
     @include for-max-1199 {
         padding-left: 15px;
-        padding-bottom: 20px;
+        // padding-bottom: 20px;
     }
     .active {
-        background: $secondery;
-        color: $primary;
+        // background: $secondery;
+        color: $secondery;
         font-weight: 700;
+        opacity: 1;
     }
     span {
-        margin-right: 8px;
         height: 27px;
-        padding: 0px 15px;
+        padding: 0px 10px;
         display: flex;
         align-items: center;
         justify-content: center;
-        color: $secondery;
+        color: $text-light;
+        opacity: .75;
         cursor: pointer;
+    }
+    >div {
+        &:first-of-type {
+            border-right: 3px solid $secondery;
+        }
     }
 }
 .rating-notification {
+    @include for-max-380 {
+        right: -5px;
+    }
     &--list {
         padding: 16px;
         &:hover {
@@ -792,3 +932,16 @@
     }
 }
 
+body {
+    #hubspot-messages-iframe-container {
+        bottom: 68px !important;
+    }
+}
+.new-badge {
+    top: -12px;
+    left: 60px;
+    @include for-max-1199 {
+        right: -12px;
+        left: initial;
+    }
+}

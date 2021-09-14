@@ -45,7 +45,7 @@
                                         <br v-if="errors[0]">
                                     </ValidationProvider>
                                     <span class="error-message"
-                                        v-if="$store.state.notFoundEmail && !$store.state.inactiveUser">{{ $t('password', $store.state.locale) }}<br></span>
+                                        v-if="$store.state.notFoundEmail && !$store.state.inactiveUser">{{ $t('incorrect_password', $store.state.locale) }}<br></span>
                                         <span class="error-message" v-if="$store.state.inactiveUser">{{ $t('inactive_user', $store.state.locale) }}</span>
                                 </div>
                                 <div class="d-flex justify-content-between" v-if="!$store.state.notSetPassword">
@@ -313,7 +313,7 @@
                  this.$store.dispatch('setEmailLoader', false);
             },
             submitOnEnterPressed(evt, option) {
-                if (option == 'passsword') {
+                if (option == 'password') {
                     if (this.form.password == '' || this.form.password.length < 8) {
                         return;
                     }
@@ -335,6 +335,7 @@
             }
         },
         created() {
+            this.$store.commit('setSubmitLoading', false)
             this.referral = this.$route.query.referred_code ?? '';
             if(this.$store.getters.ifAuthenticated) {
                 this.$router.push('/profile');

@@ -102,7 +102,7 @@
                          <!--  -->
                          <div class="support-bottom">
                             <p class="mb-0 mr-a-6">{{ $t('question_query', $store.state.locale) }}</p>
-                            <a href="/contacts" class="btn--secondery"><span style="text-transform: uppercase">{{ $t('contact_us', $store.state.locale) }}</span></a>
+                            <a href="/contacts" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('contact_us', $store.state.locale) }}</div></a>
                         </div>
                     </div>
                 </div>

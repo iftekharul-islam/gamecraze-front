@@ -13,7 +13,7 @@
                       </div>
                         <div v-if="isHidden" class="games-categories-section--categories" id="games-categories-list">
                             <!-- Game Type -->
-                            <div class="select-categories">
+                            <div class="select-categories mb-a-6">
                                 <h6>{{ $t('game_type', $store.state.locale) }}</h6>
                                 <div class="form-group form-check">
                                     <input type="checkbox" class="custom-control-input" id="digital_copy" :checked="checkedDiskType.includes('digital_copy')" @change="changeCheckedDiskType('digital_copy')">
@@ -23,17 +23,15 @@
                                     <input type="checkbox" class="custom-control-input" id="physical_copy" :checked="checkedDiskType.includes('physical_copy')" @change="changeCheckedDiskType('physical_copy')">
                                     <label class="custom-control-label" for="physical_copy">{{ $t('physical_copy', $store.state.locale) }}</label>
                                 </div>
-
                             </div>
 
                             <!-- select categories -->
-                            <div class="select-categories">
+                            <div class="select-categories mb-a-6">
                                 <h6>{{ $t('select_category', $store.state.locale) }}</h6>
                                 <div class="form-group form-check" v-for="(category, index) in categories" :key="'category' + index">
                                     <input type="checkbox" class="custom-control-input" :id="category.name + '-game'" :checked="checkedCategories.includes(category.slug)" @change="changeCheckedCategories(category.slug)">
                                     <label class="custom-control-label" :for="category.name + '-game'">{{category.name}}</label>
                                 </div>
-
                             </div>
                             <!-- platform -->
                             <div class="select-platforms">
@@ -44,8 +42,8 @@
                                 </div>
                             </div>
                             <div class="clear">
-                                <a href="javascript:void(0)" class="clear-filters btn--secondery" id="clear-filters" @click="clearFilter()"><span>{{ $t('clear_filters', $store.state.locale) }}</span></a>
-                                <a href="#" class="clear-filters btn--secondery d-flex d-sm-none" id="filter-apply" v-on:click="toggleMenu()"><span>{{ $t('apply', $store.state.locale) }}</span></a>
+                                <a href="javascript:void(0)" class="clear-filters btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative" id="clear-filters" @click="clearFilter()"><span></span> <div class="position-relative">{{ $t('clear_filters', $store.state.locale) }}</div></a>
+                                <a href="javascript:void(0)" class="clear-filters d-sm-none btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative" id="filter-apply" v-on:click="toggleMenu()"><span></span><div class="position-relative">{{ $t('apply', $store.state.locale) }}</div></a>
                             </div>
                         </div>
                     </div>
@@ -59,7 +57,6 @@
                         <div class="games-categories-section--games">
                             <div class="row">
                                 <div v-for="(rent, index) in filteredGames" :key="index" class="col-md-6 col-lg-4 mb-4">
-<!--                                    <p>{{rent }}</p>-->
                                   <router-link :to="{ path: '/game-details/' + rent.game.data.slug}" class="games-categories-section--games--game-card-box game-card-hover-outer">
                                     <div class="game-card game-card-hover-inner">
                                         <div class="display-image" href="#">
@@ -99,7 +96,6 @@
 </template>
 
 <script>
-    import StarRating from 'vue-star-rating'
     export default {
         data() {
             return {
@@ -120,9 +116,6 @@
                 isHidden: false,
                 noGameFound: false
             }
-        },
-        components: {
-            StarRating
         },
       methods: {
         removeSearchKey() {
@@ -296,9 +289,6 @@
               this.fetchFilteredGames();
           }
       },
-        computed: {
-
-        },
         created() {
             window.scrollTo(0,0);
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {
@@ -311,7 +301,7 @@
                 this.$api.get('rent-games/?ids=' + uniqueArr + '&include=assets,genres,platforms').then(resp => {
                   this.games = resp.data.data;
                 })
-                
+
             });
             this.$api.get('genres').then(response => {
                 this.categories = response.data.data;

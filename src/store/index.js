@@ -42,7 +42,8 @@ export const storage = {
         setupPasswordUser: null,
         otpNotFound: '',
         totalPrice: 0,
-        isOTPEmpty: false
+        isOTPEmpty: false,
+        tabIndex: 0
     },
     getters: {
         user (state) {
@@ -193,9 +194,15 @@ export const storage = {
         },
         setItemsInCart(state, payload) {
             state.itemsInCart = payload
+        },
+        setTabIndex(state, payload) {
+            state.tabIndex = payload
         }
     },
     actions: {
+        setTabIndex(context, payload) {
+            context.commit('setTabIndex', payload)
+        },
         changeLocale(context, payload) {
             i18n.locale = payload;// important!
             context.commit('updateLocale', payload)
@@ -319,8 +326,7 @@ export const storage = {
             localStorage.removeItem('postId')
             localStorage.removeItem('setupPasswordUser')
 
-            router.push('/login').then(err => {
-            });
+            router.push('/login')
         },
         verifyOtp({commit}, payload) {
             commit('setSubmitLoading', true)
@@ -432,14 +438,14 @@ export const storage = {
                     // localStorage.setItem('userId', JSON.stringify(response.data.id))
                     // localStorage.setItem('user', JSON.stringify(response.data));
 
-                    if (payload.name || payload.lastName || payload.gender || payload.birth_date || payload.email || payload.phone_number || payload.identification_number || payload.id_image || payload.address || payload.city || payload.postCode || payload.image) {
+                    if (payload.name || payload.lastName || payload.gender || payload.birth_date || payload.email || payload.phone_number || payload.identification_number || payload.id_image || payload.address || payload.image) {
                         // swal("Profile Updated!", "Profile Update Successful!", "success");
                         // this.$root.$emit('profileUpdate');
                         // router.push('/profile').catch(err => {});
 
                     }
                     else {
-                        router.push('/').catch(err => {});
+                        router.push('/').catch(() => {});
                     }
                 }
             });

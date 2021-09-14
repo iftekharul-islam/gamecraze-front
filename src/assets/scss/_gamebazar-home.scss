@@ -1,0 +1,475 @@
+.gamebazar-banner {
+    background-image: linear-gradient(90deg, rgba(11, 15, 24, 0.85) 0%, rgba(11, 15, 24, 0.85) 0%, rgba(11, 15, 24, 0.85) 0.01%, rgba(11, 15, 24, 0.95) 100%), url(../img/gamebazar-banner.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin-top: 24px;
+    padding: 62px 0;
+    @include for-max-1199 {
+        margin-top: 5px;
+    }
+    
+    &__content {
+        grid-template-rows: 120px;
+        grid-auto-rows: 120px;
+        grid-template-columns: repeat(3, minmax(0, 162px));
+        @include for-max-575 {
+            grid-template-rows: 88px;
+            grid-auto-rows: 88px;
+        }
+        &__item {
+            &:first-of-type {
+                grid-row: 1/3;
+            }
+            
+            &:last-of-type {
+                grid-row: 1/3;
+                grid-column: 3/4;
+                @include for-max-992 {
+                    grid-column: 3/4;
+                }
+            }
+            &:hover {
+                .gamebazar-tag {
+                    visibility: visible;
+                    opacity: 1;
+                    span {
+                        transform: translateY(0);
+                    }
+                }
+            }
+        }
+    }
+}
+.gamebazar-tag {
+    bottom: 0px;
+    left: 0px;
+    padding-left: 16px;
+    padding-bottom: 20px;
+    width: 100%;
+    height: 100%;
+    visibility: hidden;
+    opacity: 0;
+    transition: all .3s ease-in;
+    background: linear-gradient(180deg, rgba(11, 15, 24, 0) 42.18%, #0B0F18 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    span {
+        transform: translateY(100%);
+        transition: all .4s ease-in;
+        margin-top: 8px;
+    }
+}
+
+.current-popular {
+        .vue-owl-nav {
+            top: 50%;
+            button {
+                transform: skew(0);
+                border: 1px solid $secondery-opa-5 !important;
+                svg {
+                    color: $secondery !important;
+                }
+                &:hover {
+                    svg {
+                        color: $primary !important;
+                    }
+                }
+            }
+            &.vue-owl-nav-right {
+                right: -70px; 
+                @include for-max-575 {
+                    right: 4px;
+                }
+                    button {
+                        right: 0;
+                    }
+                }
+                &.vue-owl-nav-left {
+                    left: -70px;
+                    @include for-max-575 {
+                        left: 4px;
+                    }
+                    button {
+                        left: 0;
+                    }
+                }
+            }
+            .vue-owl-nav-right {
+                right: -50px !important;
+                @include for-max-1300 {
+                    right: 10px !important;
+                }
+            }
+            .vue-owl-nav-left {
+                left: -50px !important;
+                @include for-max-1300 {
+                    right: 60px !important;
+                    left: initial !important;
+                }
+            }
+            .owl-dots {
+                @include for-max-575 {
+                    display: none !important;
+                }
+            }
+            .owl-item {
+                &.active {
+                    opacity: 1 !important;
+                }
+            }
+}
+
+.accessories-sellpost {
+    max-width: 650px;
+    &__row {
+        @include for-max-1199 {
+            flex-direction: column-reverse;
+        }
+    }
+    @include for-min-575 {
+        
+    }
+    @include for-min-992 {
+        max-width: 50%;
+        position: absolute;
+    }
+    @include for-min-1200 {
+        max-height: 400px;
+        height: 100%;
+        max-width: initial;
+        
+    }
+    @include for-min-1500 {
+        max-width: 650px;
+        width: 100%;
+        max-height: 500px;
+    }
+    @include for-min-1600 {
+        max-width: 700px;
+    }
+    @include for-min-1700 {
+        max-width: 750px;
+        max-height: 600px;
+    }
+    @include for-min-1800 {
+        max-width: 800px;
+    }
+    @include for-min-1850 {
+        max-width: 850px;
+    }
+
+    @include for-max-1400 {
+        max-width: 550px;
+    }
+
+    img {
+        height: 100%;
+    }
+   
+}
+
+.gamebazar-post {
+
+    >a {
+        overflow: hidden;
+        .product-img {
+            img {
+                transition: all .3s ease-in;
+            }
+        }
+        &:hover {
+            .gamebazar-post__arrow {
+                // transform: translateX(calc(100% - 25px));
+                transform: translateX(calc(16px));
+            }
+            .product-img {
+                img {
+                    transform: scale(1.1);
+                }
+            }
+        }
+    }
+    &__arrow {
+        transition: all .3s ease-in;
+        width: 100%;
+        margin-left: 20px;
+    }
+}
+.product-img {
+    max-height: 210px;
+    @include for-min-575 {
+        height: 140px;
+    }
+    @include for-min-1400 {
+        height: 160px;
+    }
+    @include for-max-575 {
+        height: 150px;
+    }
+    img {
+        height: 100%;
+    }
+}
+.gamebazar-search {
+    .dropdown-toggle {
+        padding-top: 7px;
+        padding-bottom: 7px;
+        &::after {
+            margin-left: 20px;
+        }
+    }
+}
+// carousel nav
+.carousel-nav {
+    .wl-carousel {
+        position: relative;
+    }
+    >div {
+        >span {
+            &[style] {
+                display: block !important;
+            }
+        }
+        .vue-owl-nav {
+            @include for-max-575 {
+                display: none !important;
+            }
+            position: absolute;
+            top: 38%;
+            @include for-max-1300 {
+                top: -48px;
+            }
+            button {
+                background: transparent;
+                box-shadow: none;
+                border: none;
+                transition: all .3s ease-in;
+                &:focus {
+                    outline: none;
+                }
+                &:hover {
+                    background: $secondery;
+                    svg {
+                        path {
+                            fill : $primary;
+                        }
+                    }
+                }
+                svg {
+                    fill {
+                        transition: all .3s ease-in;
+                    }
+                }
+            }
+            &.vue-owl-nav-right {
+                right: -50px;
+                @include for-max-1300 {
+                    right: 10px;
+                }
+            }
+            &.vue-owl-nav-left {
+                left: -50px;
+                @include for-max-1300 {
+                    right: 50px;
+                    left: initial;
+                }
+            }
+        }
+    }
+}
+
+.owl-dots {
+    display: none !important;
+}
+
+.gamebazar {
+    &__search {
+        width: 100%;
+        @include for-min-768 {
+            width: 50%;
+        }
+        .autosuggest__results-container {
+            position: absolute;
+            z-index: 19;
+            width: calc(100% + 48px);
+            ul {
+                width: 100%;
+                margin-left: 0;
+                border-color: $gamebazar-search-input;
+                background: $gamebazar-search-input;
+                border-radius: 4px;
+                height: 445px;
+                @include for-max-768 {
+                    height: 350px;
+                }
+                 @include for-max-575 {
+                    height: 300px;
+                }
+                li {
+                    border: 0;
+                    &:hover {
+                        span {
+                            color: $text-dark !important;
+                        }
+                    }
+                    .bg-vie-all-gamebazar {
+                        border-bottom-left-radius: 4px;
+                        border-bottom-right-radius: 4px;
+                    }
+                    &:not(:first-child) {
+                        .bg-vie-all-gamebazar {
+                            display: none;
+                        }
+                    }
+                }
+                &::-webkit-scrollbar-track {
+                    // -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                    background-color: $gamebazar-search-scroll-bar !important;
+                    border-radius: 4px;
+                    border-top-left-radius: 0;
+                    border-bottom-left-radius: 0;
+                }
+                &::-webkit-scrollbar {
+                    width: 10px;
+                    background: $gamebazar-search-input;
+                }
+                &::-webkit-scrollbar-thumb {
+                    border-left: 1px solid $gamebazar-search-scroll-bar;
+                    border-right: 1px solid $gamebazar-search-scroll-bar !important;
+                    border-right: 0;
+                    background: $gamebazar-search-input;
+                    border-radius: 30px;
+                }
+            }
+        }
+        #autosuggest {
+            > div {
+                &:first-of-type {
+                    transform: initial;
+                    border-top-left-radius: 4px;
+                    border-bottom-left-radius: 4px;
+                    border: 1px solid $gamebazar-search-input;
+                }
+            }
+            input {
+                padding: 0;
+                height: 40px;
+                border: 0;
+                background: $gamebazar-search-input;
+                color: $text-light;
+                padding-left: 16px;
+                &:focus {
+                    outline: none !important;
+                }
+            }
+        }
+        &__img {
+            min-width: 100px;
+            width: 100px;
+            height: 75px;
+            @include for-max-575 {
+                min-width: 50px;
+                width: 50px;
+                height: 40px;
+            }
+        }
+        .name {
+            font-size: 14px;
+            @include for-min-575 {
+                font-size: 16px;
+               
+            }
+            @include for-max-575 {
+                margin-left: 65px;
+            }
+        }
+        &.sellpost_search {
+            @include for-min-768 {
+                width: 65%;
+            }
+        }
+        .search-content {
+            .ml-3 {
+                @include for-max-575 {
+                    margin-left: -47px !important;
+                }
+            }
+        }
+    }
+    
+    
+}
+.search-icon {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+}
+.sellpost-help {
+    padding-bottom: 180px;
+}
+.post-name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    height: 48px;
+}
+// new post
+.new-post {
+    .owl-item {
+        &.active {
+            @include for-max-575 {
+                opacity: 1 !important;
+            }
+        }
+    }
+}
+.accessories-sell-post {
+    @include for-min-992 {
+        min-height: 450px;
+        margin-bottom: 32px;
+    }
+    @include for-min-1200 {
+        min-height: 500px;
+    }
+    @include for-min-1500 {
+        min-height: 600px;
+    }
+   @include for-min-1700 {
+       min-height: 700px;
+   }
+   &.accessories-sell-post-top {
+       @include for-max-991 {
+           margin-bottom: 32px;
+       }
+   
+    .accessories-sell-post-top-col {
+        @include for-min-992 {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50%;
+        }
+        @include for-min-1200 {
+            position: initial;
+        }
+    }
+   }
+   &.accessories-sell-post-bottom {
+      
+    .accessories-sell-post-bottom-col {
+        @include for-min-992 {
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50%;
+        }
+        @include for-min-1200 {
+            position: initial;
+        }
+    }
+   }
+}

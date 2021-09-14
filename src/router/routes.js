@@ -32,7 +32,7 @@ import Payment from "../components/Payment";
 import Success from "../components/payment/Success";
 import Fail from "../components/payment/Fail";
 import RentDetails from "../components/RentDetails";
-import RentPostedUser from "@/components/RentPostedUser";
+import RentPostedUser from "../components/RentPostedUser";
 import Support from "../components/Support";
 import Faq from "../components/Faq";
 import About from '../components/About';
@@ -54,6 +54,11 @@ import RatingList from '../components/RatingList';
 import RenterRatingList from '../components/RenterRatingList';
 import RentPostDetails from '../components/RentPostDetails';
 import OrderDetails from '../components/OrderDetails';
+import SellPosts from '../components/SellPosts';
+import PostDetails from '../components/PostDetails';
+import SellPost from '../components/SellPostHelp'
+import GamebazarHome from '../components/GamebazarHome';
+import CreateSellPost from '../components/CreateSellPost';
 
 let router = new Router({
     mode: 'history',
@@ -68,7 +73,7 @@ let router = new Router({
         },
         {
             path: '/home',
-            name: 'Home',
+            name: 'home',
             component: Home,
             meta: {
                 requiresAuth: false
@@ -122,7 +127,7 @@ let router = new Router({
         },
         {
             path: '/profile',
-            name: 'Profile',
+            name: 'profile',
             component: Profile,
             props: true,
             meta: {
@@ -423,7 +428,7 @@ let router = new Router({
         },
         {
             path: '/lender-rating-list',
-            name: 'ratingList',
+            name: 'lender-rating-list',
             component: RatingList,
             meta: {
                 requiresAuth: true
@@ -452,6 +457,48 @@ let router = new Router({
             component: RentPostDetails,
             meta: {
                 requiresAuth: false
+            }
+        },
+        {
+            path: '/sell-posts',
+            name: 'sell-posts',
+            component: SellPosts,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/sell-post/:id/:slug',
+            name: 'post-details',
+            component: PostDetails,
+            props: true,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/about-sell-post',
+            name: 'sell-post-help',
+            component: SellPost,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/gamebazar',
+            name: 'gamebazar',
+            component: GamebazarHome,
+            props: true,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/create-sell-post',
+            name: 'CreateSellPost',
+            component: CreateSellPost,
+            meta: {
+                requiresAuth: true
             }
         },
         {

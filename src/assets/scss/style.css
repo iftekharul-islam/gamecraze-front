@@ -7694,8 +7694,6 @@ html {
 .screenshot-video .vue-owl-nav button {
   width: 50px;
   height: 50px;
-  -webkit-transform: skewX(-13deg);
-          transform: skewX(-13deg);
   border: 1px solid #FFD715 !important;
   border-radius: 0 !important;
   -webkit-transition: all .3s ease-in !important;
@@ -7707,8 +7705,6 @@ html {
   .screenshot-video .vue-owl-nav button {
     width: 40px;
     height: 40px;
-    -webkit-transform: skewX(0deg);
-            transform: skewX(0deg);
   }
 }
 
@@ -7764,8 +7760,6 @@ html {
   border-radius: 0 !important;
   background: transparent !important;
   border: 1px solid #FFD715 !important;
-  -webkit-transform: skewX(-13deg);
-          transform: skewX(-13deg);
 }
 
 .screenshot-video .owl-dots button.active span {
@@ -7926,12 +7920,7 @@ html {
 .related-game-section .vue-owl-nav {
   position: absolute;
   right: 0;
-}
-
-@media (max-width: 1300px) {
-  .related-game-section .vue-owl-nav {
-    top: -45px !important;
-  }
+  top: -65px !important;
 }
 
 @media (max-width: 575px) {
@@ -7947,8 +7936,6 @@ html {
 .related-game-section .vue-owl-nav button {
   width: 50px;
   height: 50px;
-  -webkit-transform: skewX(-13deg);
-  transform: skewX(-13deg);
   border: 1px solid #FFD715 !important;
   border-radius: 0 !important;
   -webkit-transition: all .3s ease-in !important;
@@ -7987,8 +7974,6 @@ html {
 
 @media (max-width: 575px) {
   .related-game-section .vue-owl-nav button {
-    -webkit-transform: skewX(0deg);
-            transform: skewX(0deg);
     width: 40px;
     height: 40px;
   }

@@ -15221,7 +15221,7 @@ body .button:last-child {
   min-height: 100vh;
 }
 
-#app > div:nth-last-child() {
+#app > div:last-of-type {
   margin-top: auto;
 }
 

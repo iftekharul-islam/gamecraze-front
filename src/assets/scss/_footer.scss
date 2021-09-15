@@ -227,7 +227,7 @@
     flex-direction: column;
     min-height: 100vh;
     > div {
-        &:nth-last-child() {
+        &:last-of-type {
             margin-top: auto;
         }
     }

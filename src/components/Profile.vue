@@ -2460,9 +2460,8 @@
                                                     :max="
                                                     editPostData.secreenShotsLimit
                                                   "
-                                                    @changed="
-                                                    handleEditScreenshots
-                                                  "
+                                                    @changed="handleEditScreenshots"
+                                                    @change="handleEditScreenshots"
                                                 />
                                               </div>
                                             </div>
@@ -4412,40 +4411,24 @@
                                           </p>
                                           <p class="gil-bold opa-8">
                                             {{
-                                              $t("Lender", $store.state.locale)
-                                            }}
+                                              $t("Lender", $store.state.locale)}}
                                           </p>
                                         </div>
                                         <div class="text-center" v-else>
                                           <p class="f-s-20 mb-1 gil-bold">
-                                            {{
-                                              ratingData.value.renter.data.name
-                                            }}
-                                            {{
-                                              ratingData.value.renter.data
-                                                  .last_name
-                                            }}
+                                            {{ ratingData.value.renter.data.name }}
+                                            {{ ratingData.value.renter.data.last_name }}
                                           </p>
                                           <p class="gil-bold opa-8">
-                                            {{
-                                              $t("Renter", $store.state.locale)
-                                            }}
+                                            {{ $t("Renter", $store.state.locale) }}
                                           </p>
                                         </div>
                                         <div class="text-center">
                                           <p class="f-s-20 mb-1 gil-bold">
-                                            {{
-                                              ratingData.value.lend.data.rent
-                                                  .data.game.data.name
-                                            }}
+                                            {{ ratingData.value.lend.data.rent.data.game.data.name }}
                                           </p>
                                           <p class="gil-bold opa-8">
-                                            {{
-                                              $t(
-                                                  "game_name",
-                                                  $store.state.locale
-                                              )
-                                            }}
+                                            {{ $t("game_name", $store.state.locale) }}
                                           </p>
                                         </div>
                                         <div

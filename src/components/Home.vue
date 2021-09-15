@@ -129,72 +129,72 @@
            </div>
         </section>
         <!-- favorite-section -->
-<!--        <section class="favorite-section">-->
-<!--            <div class="container">-->
-<!--                 <h2 class="section-heading">{{ $t('rent_favorite_games', $store.state.locale) }}</h2>-->
-<!--            </div>-->
-<!--              <div class="position-relative">-->
-<!--                    <carousel v-if ="loadedPopular"-->
-<!--                        :autoplay ="true"-->
-<!--                        :loop ="true"-->
-<!--                        :center ="false"-->
-<!--                        :nav ="false"-->
-<!--                        :margin ="20"-->
-<!--                        :items ="3"-->
-<!--                        :stagePadding ="150"-->
-<!--                        :responsive="{ 0:{items:1.5, stagePadding:0, nav:false, dots:true, center:true,},-->
-<!--                                    600:{items:3, stagePadding:0, center:false, dots:false,},-->
-<!--                                    800:{items:3, stagePadding:50, dots:false,},-->
-<!--                                    1026:{items:3, stagePadding:100, dots:false,},-->
-<!--                                    1200:{items:5, stagePadding:100, dots:false,},-->
-<!--                                    1300:{items:5, stagePadding:100, dots:false,},-->
-<!--                                    1800:{items:7, stagePadding:100, dots:false,}}"-->
-<!--                        >-->
-<!--                       <template slot="prev">-->
-<!--                            <div class="vue-owl-nav vue-owl-nav-prev">-->
-<!--                                <button class="owl-prev z-index-9">-->
-<!--                                    <span class="prev">-->
-<!--                                       <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--                                            <path d="M7.87425 9.69787C8.08224 9.58566 8.21191 9.37228 8.21191 9.14021L8.21191 5.52648L15.3473 5.52648C15.7076 5.52648 16 5.24085 16 4.88891C16 4.53697 15.7076 4.25134 15.3473 4.25134L8.21191 4.25134V0.637613C8.21191 0.404688 8.08224 0.191316 7.87425 0.0799538C7.66625 -0.0331081 7.41213 -0.0254573 7.2111 0.0978057L0.304596 4.3491C0.114876 4.46642 0 4.66959 0 4.88891C0 5.10823 0.114876 5.31141 0.304596 5.42872L7.2111 9.68002C7.31727 9.74462 7.43824 9.77778 7.55921 9.77778C7.66712 9.77778 7.7759 9.75058 7.87425 9.69787Z" fill="#FFD715"/>-->
-<!--                                        </svg>-->
-<!--                                    </span> -->
-<!--                                </button> -->
-<!--                            </div>-->
-<!--                        </template>-->
-<!--                        <template slot="next">-->
-<!--                            <div class="vue-owl-nav vue-owl-nav-next">-->
-<!--                                <button class="owl-next z-index-9">-->
-<!--                                    <span class="next">-->
-<!--                                        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">-->
-<!--                                            <path d="M8.12576 0.30213C7.91776 0.414342 7.78809 0.627714 7.78809 0.859789L7.78809 4.47352L0.652707 4.47352C0.292413 4.47352 4.5817e-07 4.75915 4.27402e-07 5.11109C3.96635e-07 5.46302 0.292413 5.74865 0.652707 5.74865L7.78809 5.74865L7.78809 9.36239C7.78809 9.59531 7.91776 9.80868 8.12575 9.92005C8.33375 10.0331 8.58787 10.0255 8.7889 9.90219L15.6954 5.6509C15.8851 5.53358 16 5.33041 16 5.11109C16 4.89177 15.8851 4.68859 15.6954 4.57128L8.7889 0.319982C8.68273 0.255375 8.56176 0.222222 8.44079 0.222222C8.33288 0.222222 8.2241 0.249424 8.12576 0.30213Z" fill="#FFD715"/>-->
-<!--                                        </svg>-->
-<!--                                    </span>-->
-<!--                                </button>-->
-<!--                            </div>-->
-<!--                        </template>-->
+        <section class="favorite-section">
+            <div class="container">
+                 <h2 class="section-heading">{{ $t('rent_favorite_games', $store.state.locale) }}</h2>
+            </div>
+              <div class="position-relative">
+                    <carousel v-if ="loadedPopular"
+                        :autoplay ="true"
+                        :loop ="true"
+                        :center ="false"
+                        :nav ="false"
+                        :margin ="20"
+                        :items ="3"
+                        :stagePadding ="150"
+                        :responsive="{ 0:{items:1.5, stagePadding:0, nav:false, dots:true, center:true,},
+                                    600:{items:3, stagePadding:0, center:false, dots:false,},
+                                    800:{items:3, stagePadding:50, dots:false,},
+                                    1026:{items:3, stagePadding:100, dots:false,},
+                                    1200:{items:5, stagePadding:100, dots:false,},
+                                    1300:{items:5, stagePadding:100, dots:false,},
+                                    1800:{items:7, stagePadding:100, dots:false,}}"
+                        >
+                       <template slot="prev">
+                            <div class="vue-owl-nav vue-owl-nav-prev">
+                                <button class="owl-prev z-index-9">
+                                    <span class="prev">
+                                       <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M7.87425 9.69787C8.08224 9.58566 8.21191 9.37228 8.21191 9.14021L8.21191 5.52648L15.3473 5.52648C15.7076 5.52648 16 5.24085 16 4.88891C16 4.53697 15.7076 4.25134 15.3473 4.25134L8.21191 4.25134V0.637613C8.21191 0.404688 8.08224 0.191316 7.87425 0.0799538C7.66625 -0.0331081 7.41213 -0.0254573 7.2111 0.0978057L0.304596 4.3491C0.114876 4.46642 0 4.66959 0 4.88891C0 5.10823 0.114876 5.31141 0.304596 5.42872L7.2111 9.68002C7.31727 9.74462 7.43824 9.77778 7.55921 9.77778C7.66712 9.77778 7.7759 9.75058 7.87425 9.69787Z" fill="#FFD715"/>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </template>
+                        <template slot="next">
+                            <div class="vue-owl-nav vue-owl-nav-next">
+                                <button class="owl-next z-index-9">
+                                    <span class="next">
+                                        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M8.12576 0.30213C7.91776 0.414342 7.78809 0.627714 7.78809 0.859789L7.78809 4.47352L0.652707 4.47352C0.292413 4.47352 4.5817e-07 4.75915 4.27402e-07 5.11109C3.96635e-07 5.46302 0.292413 5.74865 0.652707 5.74865L7.78809 5.74865L7.78809 9.36239C7.78809 9.59531 7.91776 9.80868 8.12575 9.92005C8.33375 10.0331 8.58787 10.0255 8.7889 9.90219L15.6954 5.6509C15.8851 5.53358 16 5.33041 16 5.11109C16 4.89177 15.8851 4.68859 15.6954 4.57128L8.7889 0.319982C8.68273 0.255375 8.56176 0.222222 8.44079 0.222222C8.33288 0.222222 8.2241 0.249424 8.12576 0.30213Z" fill="#FFD715"/>
+                                        </svg>
+                                    </span>
+                                </button>
+                            </div>
+                        </template>
 
-<!--                        <div class="item" v-for="(popular, index) in populars" :key="index">-->
-<!--                            <div class="favorite-games">-->
-<!--                                <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-if="popular.game.data.trending_url" class="d-block favorite-games&#45;&#45;link">-->
-<!--                                    <img :src="popular.game.data.poster_url" :alt="popular.game.data.name">-->
-<!--                                </router-link>-->
-<!--                                <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-else>-->
-<!--                                    <picture class="picture">-->
-<!--                                        <source srcset="../assets/img/webp-image/dummy-image.webp" type="image/webp" class="picture__img">-->
-<!--                                        <img src="../assets/img/webp-image/dummy-image.webp" alt="no-image" class="picture__img">-->
-<!--                                    </picture>-->
-<!--                                </router-link>-->
-<!--                                <div class="favorite-games-categories d-flex justify-content-center align-items-center">-->
-<!--                                    <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in popular.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>-->
-<!--                                </div>-->
-<!--                            </div>-->
-<!--                        </div>-->
-<!--                </carousel>-->
-<!--             </div>-->
-<!--             <div class="text-center mt-a-6">-->
-<!--               <router-link to="/games" class="router_link btn&#45;&#45;collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('all_games', $store.state.locale) }}</div></router-link>-->
-<!--           </div>-->
-<!--        </section>-->
+                        <div class="item" v-for="(popular, index) in populars" :key="index">
+                            <div class="favorite-games">
+                                <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-if="popular.game.data.trending_url" class="d-block favorite-games--link">
+                                    <img :src="popular.game.data.poster_url" :alt="popular.game.data.name">
+                                </router-link>
+                                <router-link :to="{ path: '/game-details/' + popular.game.data.slug}" v-else>
+                                    <picture class="picture">
+                                        <source srcset="../assets/img/webp-image/dummy-image.webp" type="image/webp" class="picture__img">
+                                        <img src="../assets/img/webp-image/dummy-image.webp" alt="no-image" class="picture__img">
+                                    </picture>
+                                </router-link>
+                                <div class="favorite-games-categories d-flex justify-content-center align-items-center">
+                                    <a :href="'/games?platforms=' + platform.slug" v-for="(platform) in popular.game.data.platforms.data" :key="platform.id"><img :src=platform.url :alt="platform.name"></a>
+                                </div>
+                            </div>
+                        </div>
+                </carousel>
+             </div>
+             <div class="text-center mt-a-6">
+               <router-link to="/games" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('all_games', $store.state.locale) }}</div></router-link>
+           </div>
+        </section>
 
         <section class="upcoming-section">
             <div class="container">

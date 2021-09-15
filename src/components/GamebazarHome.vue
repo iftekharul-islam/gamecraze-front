@@ -181,10 +181,10 @@
         </section>
         <div v-if="categories.length">
           <section class="new-post pb-a-11" v-for="(category, index) in categories" :key="index">
-            <div class="container">
+            <div class="container" >
               <h3 class="f-s-24 gil-bold text-white mb-a-4 text-uppercase">{{ category.name }}</h3>
               <!-- carousel -->
-              <div class="position-relative carousel-nav">
+              <div class="position-relative carousel-nav" v-if="category.products.data.length">
                 <carousel v-if ="loadCategories"
                           :autoplay ="false"
                           :loop ="true"
@@ -243,6 +243,9 @@
                     </router-link>
                   </div>
                 </carousel>
+              </div>
+              <div class="text-center" v-else>
+                <h2>{{ $t('noting_to_show', $store.state.locale) }}</h2>
               </div>
               <div class="text-center mt-5">
                 <a href="#" @click.prevent="queryOnCategory(category.name)" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_post', $store.state.locale) }}</a>
@@ -518,6 +521,7 @@ export default {
     });
     this.$api.get('category-list?include=products').then(response => {
       this.categories = response.data.data;
+      console.log(this.categories)
       if (this.categories.length) {
         this.loadCategories = true
       }

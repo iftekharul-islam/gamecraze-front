@@ -2460,7 +2460,7 @@
                                                     :max="
                                                     editPostData.secreenShotsLimit
                                                   "
-                                                    @change="
+                                                    @changed="
                                                     handleEditScreenshots
                                                   "
                                                 />

@@ -278,7 +278,7 @@
        </section>
         
         <!-- product section -->
-        <section class="product-section d-none d-sm-block">
+        <section class="product-section d-none d-sm-block" v-if ="loadLatestSellPosts">
             <div class="container">
                  <h2 class="section-heading">{{ $t('products_for_sell', $store.state.locale) }}</h2>
                  <div class="d-grid grid-cols-2 grid-md-cols-3 grid-lg-cols-5 grid-gap-16 grid-gap-md-30 gamebazar-post">
@@ -310,10 +310,10 @@
             </div>
         </section>
         <!-- product section for mobile -->
-        <section class="d-sm-none product-mobile">
+        <section class="d-sm-none product-mobile" v-if ="loadLatestSellPosts">
             <h2 class="section-heading">{{ $t('products_for_sell', $store.state.locale) }}</h2>
             <div class="position-relative">
-                <carousel v-if ="loadLatestSellPosts"
+                <carousel
                         :autoplay ="true"
                         :loop ="true"
                         :center ="false"

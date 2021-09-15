@@ -95,6 +95,7 @@
                     transform: scale(1.1);
                 }
             }
+            
         }
     }
     >div {
@@ -137,6 +138,13 @@
             position: absolute;
             top: 0;
             left: 0;
+        }
+    }
+    .owl-item {
+        &.active {
+            @include for-max-768 {
+                opacity: 1 !important;
+            }
         }
     }
 }

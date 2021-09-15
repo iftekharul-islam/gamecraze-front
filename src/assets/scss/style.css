@@ -4918,6 +4918,7 @@ body #hubspot-messages-iframe-container {
         -ms-flex-align: center;
             align-items: center;
     padding-top: 0;
+    height: 450px;
   }
 }
 
@@ -5509,8 +5510,6 @@ body #hubspot-messages-iframe-container {
   position: relative;
   display: block;
   background-color: #e0e4eb;
-  -webkit-animation: loading 0.8s infinite alternate;
-          animation: loading 0.8s infinite alternate;
   -webkit-transition: all 0.5s ease-in;
   transition: all 0.5s ease-in;
 }
@@ -6069,6 +6068,12 @@ body #hubspot-messages-iframe-container {
 @media (max-width: 992px) {
   .featured-section {
     padding-bottom: 70px;
+  }
+}
+
+@media (max-width: 575px) {
+  .featured-section {
+    padding-bottom: 30px;
   }
 }
 
@@ -7138,6 +7143,9 @@ html {
 @media (max-width: 768px) {
   .game-card .display-image {
     text-align: center;
+    width: 60%;
+    margin: auto;
+    padding: 20px;
   }
 }
 
@@ -8026,6 +8034,12 @@ html {
   left: 0;
 }
 
+@media (max-width: 768px) {
+  .screenshot-video .owl-item.active {
+    opacity: 1 !important;
+  }
+}
+
 .overview {
   padding-top: 70px;
   padding-bottom: 60px;
@@ -8163,6 +8177,12 @@ html {
 
 .related-game-section > div span[style] {
   display: block !important;
+}
+
+@media (max-width: 768px) {
+  .related-game-section .owl-item.active {
+    opacity: 1 !important;
+  }
 }
 
 @media (max-width: 1199px) {
@@ -13134,6 +13154,12 @@ html {
   margin-top: 8px;
 }
 
+@media (max-width: 991px) {
+  .current-popular {
+    padding-bottom: 50px;
+  }
+}
+
 .current-popular .vue-owl-nav {
   top: 50%;
 }
@@ -13209,6 +13235,12 @@ html {
 
 .current-popular .owl-item.active {
   opacity: 1 !important;
+}
+
+@media (max-width: 768px) {
+  .current-popular .display-image {
+    width: 100%;
+  }
 }
 
 .accessories-sellpost {
@@ -14994,6 +15026,7 @@ body .button:last-child {
   .footer-middle {
     padding-bottom: 100px;
     padding-top: 46px;
+    margin-top: 10px;
   }
 }
 

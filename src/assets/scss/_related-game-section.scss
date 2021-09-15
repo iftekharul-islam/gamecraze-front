@@ -57,4 +57,11 @@
             display: block !important;
         }
     }
+    .owl-item {
+        &.active {
+            @include for-max-768 {
+                opacity: 1 !important;
+            }
+        }
+    }
 }

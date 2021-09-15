@@ -142,7 +142,6 @@
         position: relative;
         display: block;
         background-color: hsl(220, 20%, 90%);
-        animation: loading 0.8s infinite alternate;
         transition: all.5s ease-in;
         &::after {
             content: "\1f517" " Broken Image of " attr(alt);

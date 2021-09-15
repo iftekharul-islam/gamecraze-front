@@ -25,7 +25,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#exchange" class="position-absolute do-scroll mx-auto">{{ $t('scroll', $store.state.locale) }}</a>
+            <!-- <a href="#exchange" class="position-absolute do-scroll mx-auto">{{ $t('scroll', $store.state.locale) }}</a> -->
         </section>
         <!-- exchange and lend section -->
         <section class="exchange-lend-section" id="exchange">
@@ -129,7 +129,7 @@
            </div>
         </section>
         <!-- favorite-section -->
-        <section class="favorite-section">
+        <section class="favorite-section d-none">
             <div class="container">
                  <h2 class="section-heading">{{ $t('rent_favorite_games', $store.state.locale) }}</h2>
             </div>

@@ -64,6 +64,9 @@
 }
 
 .current-popular {
+    @include for-max-991 {
+        padding-bottom: 50px;
+    }
         .vue-owl-nav {
             top: 50%;
             button {
@@ -118,6 +121,11 @@
             .owl-item {
                 &.active {
                     opacity: 1 !important;
+                }
+            }
+            .display-image {
+                @include for-max-768 {
+                    width: 100%;
                 }
             }
 }

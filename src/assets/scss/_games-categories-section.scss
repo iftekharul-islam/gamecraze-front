@@ -177,6 +177,9 @@
         display: block;
         @include for-max-768 {
             text-align: center;
+            width: 60%;
+            margin: auto;
+            padding: 20px;
         }
         img {
             width: 100%;

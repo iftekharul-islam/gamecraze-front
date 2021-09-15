@@ -3,6 +3,9 @@
     @include for-max-992 {
         padding-bottom: 70px;
     }
+    @include for-max-575 {
+        padding-bottom: 30px;
+    }
     .item {
         background: $game-details;
         padding: 10px;

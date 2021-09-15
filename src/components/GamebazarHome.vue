@@ -55,7 +55,7 @@
         <section class="new-post pb-a-11 pt-a-9">
                <!-- search bar -->
             <div class="container">
-                <div class="col-md-8 mx-auto py-sm-5 mb-4 mb-sm-0">
+                <div class="col-md-8 mx-auto py-sm-5 mb-5 mb-sm-0">
                     <div class="gamebazar-search">
                         <div class="d-flex justify-content-center">
                           <div class="gamebazar__search position-relative">
@@ -111,7 +111,7 @@
                 </div>
             </div>
             <div class="container pr-a-0-max-575">
-                <h3 class="f-s-24 gil-bold text-white mb-a-4 text-uppercase">New Posts</h3>
+                <h3 class="f-s-24 gil-bold text-white mb-a-4 text-uppercase ">New Posts</h3>
                 <div class="position-relative carousel-nav" v-if ="loadLatestPosts">
                   <carousel :autoplay ="false"
                             :loop ="true"
@@ -288,7 +288,7 @@
                             <img src="../assets/img/gamehome2.png" class="img-fluid w-100" alt="Gamebazar image">
                         </div>
                     </div>
-                    <div class="col-md-12 col-xl-7 ml-xl-auto mb-3 mb-xl-0 accessories-sell-post-bottom-col">
+                    <div class="col-md-12 col-xl-7 ml-xl-auto mb-5 mb-xl-0 accessories-sell-post-bottom-col">
                         <div class="ml-a-xl-10 mb-3 mb-xl-0">
                             <h1 class="f-s-28 f-s-md-48 max-xl-600 mb-a-5">
                               {{ $t('game_bazar_title_8', $store.state.locale) }}
@@ -356,12 +356,12 @@
                           <img src="../assets/img/category/fifa20.jpg" class="img-fluid w-100" alt="Gamebazar image" v-else>
                         </a>
                         <div class="game-card--details">
-                          <a href="javascript:void(0)"> <h6 class="h-48">{{related.game.data.name}}</h6></a>
-                          <div class="d-flex">
+                          <a href="javascript:void(0)"> <h6 class="post-name">{{related.game.data.name}}</h6></a>
+                          <div class="d-flex flex-wrap">
                             <span v-for="(genre, index) in related.game.data.genres.data" :key="'B' +index" >{{ genre.name }}<span class="mr-1" v-if="index < related.game.data.genres.data.length-1">, </span></span>
                           </div>
                           <div class="game-card-platform d-flex justify-content-between align-items-center mt-3">
-                            <div class="game-card--details--platforms"> <a href="javascript:void(0)" v-for="(platform, index) in related.game.data.platforms.data" :key="index"><img :src="platform.url" alt="ps4"></a> </div>
+                            <div class="game-card--details--platforms"> <a href="javascript:void(0)" class="mb-2" v-for="(platform, index) in related.game.data.platforms.data" :key="index"><img :src="platform.url" alt="ps4"></a> </div>
                             <span class="game-rating">{{ related.game.data.rating }}</span>
                           </div>
                         </div>

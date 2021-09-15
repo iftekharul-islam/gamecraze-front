@@ -258,8 +258,16 @@
 
 // preloader
 .preLoadActive {
-    .load {
+    .preloader {
         display: block;
+
+    }
+}
+.preloader {
+    display: none;
+    min-height: 100%;
+    @include for-max-991 {
+        min-height: 100vh;
     }
 }
 .load{
@@ -269,7 +277,7 @@
     left:50%;
     transform-origin: center center;
     transform:translate(-50%, -50%) rotate(135deg);
-    display: none;
+  
     width:50px;
     height:50px;
     

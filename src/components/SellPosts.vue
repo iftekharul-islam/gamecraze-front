@@ -272,9 +272,11 @@
               </sliding-pagination>
             </div>
             <!-- preloader animation -->
-                 <div class="load">
-                    <hr/><hr/><hr/><hr/>
-                </div>
+                 <div class="preloader">
+                    <div class="load">
+                      <hr/><hr/><hr/><hr/>
+                  </div>
+                 </div>
               <!-- end preloader animation -->
           </div>
         </div>

@@ -28,6 +28,9 @@
     }
 }
 .gamebazar-product-details {
+    @include for-max-768 {
+        padding-bottom: 50px;
+    }
     .vue-star-rating-rating-text {
         font-size: 16px;
         color: $text-light;
@@ -81,6 +84,7 @@
             top: 1px;
         }
     }
+    
 }
 .gamebazar-product-details__content__des {
     ul {
@@ -103,3 +107,12 @@
     }
 }
 
+.gamebazar-product-similar {
+    .owl-item {
+        &.active {
+            @include for-max-575 {
+                opacity: 1 !important;
+            }
+        }
+    }
+}

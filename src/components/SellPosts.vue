@@ -272,15 +272,9 @@
               </sliding-pagination>
             </div>
             <!-- preloader animation -->
-                <div class="preloader flex-center">
-                    <div class="loader">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <div class="loading-text" data-loading-text="Loading..."></div>
-                  </div>
+                 <div class="load">
+                    <hr/><hr/><hr/><hr/>
+                </div>
               <!-- end preloader animation -->
           </div>
         </div>

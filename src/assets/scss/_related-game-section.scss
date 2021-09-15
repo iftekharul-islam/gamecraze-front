@@ -6,9 +6,7 @@
     .vue-owl-nav {
         position: absolute;
         right: 0;
-        @include for-max-1300 {
-            top: -45px !important;
-        }
+        top: -65px !important;
         @include for-max-575 {
             top: -50px !important;
         }
@@ -18,8 +16,6 @@
         button {
             width: 50px;
             height: 50px;
-            -webkit-transform: skewX(-13deg);
-            transform: skewX(-13deg);
             border: 1px solid #FFD715 !important;
             border-radius: 0 !important;
             -webkit-transition: all .3s ease-in !important;
@@ -51,7 +47,6 @@
                 transition: all .3s ease-in;
             }
             @include for-max-575 {
-                transform: skewX(0deg);
                 width: 40px;
                 height: 40px;
             }

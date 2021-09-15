@@ -68,7 +68,7 @@
                 </div>
             </div>
         </section>
-        <!-- TRENDING GAMES -->
+        <!-- trending games -->
         <section class="trending-section">
             <div class="container">
                 <h2 class="section-heading">{{ $t('trending_games', $store.state.locale) }}</h2>
@@ -157,8 +157,8 @@
                                        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M7.87425 9.69787C8.08224 9.58566 8.21191 9.37228 8.21191 9.14021L8.21191 5.52648L15.3473 5.52648C15.7076 5.52648 16 5.24085 16 4.88891C16 4.53697 15.7076 4.25134 15.3473 4.25134L8.21191 4.25134V0.637613C8.21191 0.404688 8.08224 0.191316 7.87425 0.0799538C7.66625 -0.0331081 7.41213 -0.0254573 7.2111 0.0978057L0.304596 4.3491C0.114876 4.46642 0 4.66959 0 4.88891C0 5.10823 0.114876 5.31141 0.304596 5.42872L7.2111 9.68002C7.31727 9.74462 7.43824 9.77778 7.55921 9.77778C7.66712 9.77778 7.7759 9.75058 7.87425 9.69787Z" fill="#FFD715"/>
                                         </svg>
-                                    </span> 
-                                </button> 
+                                    </span>
+                                </button>
                             </div>
                         </template>
                         <template slot="next">
@@ -378,7 +378,7 @@
             </div>
         </section>
         
-        <!-- featured section -->
+        <!-- featured video section -->
         <section class="featured-section">
             <div class="container">
                 <h2 class="section-heading">{{ $t('featured_videos', $store.state.locale) }}</h2>

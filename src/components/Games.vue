@@ -47,7 +47,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-8 col-lg-9 mb-3">
+                    <div class="col-md-8 col-lg-9 mb-3" :class="{'preLoadActive': responseDelay}">
                       <div class="games-categories-section--tag">
                         <span v-for="(categoryItem, categoryIndex) in checkedCategories" :key="categoryItem + categoryIndex">{{categoryItem}} <div @click="removeCategoryFilter(categoryItem)" class="remove-icon"><i class="fas fa-times"></i></div></span>
                         <span v-for="(platformItem, platformIndex) in checkedPlatforms" :key="platformItem + platformIndex">{{ platformItem}} <div @click="removePlatformFilter(platformItem)" class="remove-icon"><i class="fas fa-times"></i></div></span>
@@ -87,6 +87,17 @@
                               </div>
                             </div>
                         </div>
+                        <!-- preloader animation -->
+                          <div class="preloader flex-center">
+                              <div class="loader">
+                                  <span></span>
+                                  <span></span>
+                                  <span></span>
+                                  <span></span>
+                              </div>
+                              <div class="loading-text" data-loading-text="Loading..."></div>
+                            </div>
+                        <!-- end preloader animation -->
                     </div>
                 </div>
             </div>
@@ -99,6 +110,7 @@
     export default {
         data() {
             return {
+                responseDelay: true,
                 games: [],
                 rents: [],
                 checkedGame: '',
@@ -180,6 +192,7 @@
               }
           },
         fetchFilteredGames() {
+            this.responseDelay = true;
             this.noGameFound = false;
             if (this.$route.query.search) {
               this.searchKey = this.$route.query.search
@@ -208,6 +221,7 @@
             }
             const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
             this.$api.get('filter-games/?ids=' + uniqueArr + '&include=game.assets,game.genres,game.platforms&categories=' + this.queryCategories + '&platforms=' + this.queryPlatforms + '&diskType=' + this.queryDiskType + '&search=' + this.searchKey).then(resp => {
+              this.responseDelay = false;
               this.filteredGames = resp.data.data;
               if (!this.filteredGames.length) {
                 this.noGameFound = true;

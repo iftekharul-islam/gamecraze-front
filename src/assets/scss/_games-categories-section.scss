@@ -252,3 +252,129 @@
         }
     }
 }
+
+// preloader
+.preLoadActive {
+    .preloader {
+        display: block;
+    }
+}
+.preloader {
+    width: 100%;
+    height: 100%;
+    background: $game-details;
+    display: none;
+    @include for-max-991 {
+        min-height: 100vh;
+    }
+    @keyframes loader {
+        0%, 10%, 100% {
+            width: 80px;
+            height: 80px;
+        }
+        65% {
+            width: 150px;
+            height: 150px;
+        }
+    }
+    @keyframes loaderBlock {
+        0%, 30% { 
+            transform: rotate(0);
+        }
+        55% {
+            background-color: #F37272;
+        }
+        100% {
+            transform: rotate(90deg);
+    
+        }
+    }
+    @keyframes loaderBlockInverse {
+        0%, 20% { 
+            transform: rotate(0);
+        }
+        55% {
+            background-color: #F37272;
+        }
+        100% {
+            transform: rotate(-90deg);
+        }
+    }
+    .loader {
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        width: 80px;
+        height: 80px;
+        transform: translate(-50%, -50%) rotate(45deg) translate3d(0,0,0);
+        animation: loader 1.2s infinite ease-in-out;
+    
+        span {
+            position: absolute;
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-color: #EE4040;
+            animation: loaderBlock 1.2s infinite ease-in-out both;
+    
+            &:nth-child(1) {
+                top: 0;
+                left: 0;
+            }
+            &:nth-child(2) {
+                top: 0;
+                right: 0;
+                animation: loaderBlockInverse 1.2s infinite ease-in-out both;
+            }
+            &:nth-child(3) {
+                bottom: 0;
+                left: 0;
+                animation: loaderBlockInverse 1.2s infinite ease-in-out both;
+            }
+            &:nth-child(4) {
+                bottom: 0;
+                right: 0;
+            }
+        }
+    }
+    .loading-text {
+        left: 50%;
+        top: 60%;
+        font-size: 36px;
+        font-family: serif;
+        font-weight: bold;
+        letter-spacing: 4.4px;
+        text-transform: capitalize;
+        position: absolute;
+        overflow: hidden;
+        transform: translate(-50%, -60%);
+        
+        &:before {
+            color: $game-details;
+            content: attr(data-loading-text);
+        }
+        
+        &:after {
+            top: 0;
+            left: 0;
+            width: 0;
+            opacity: 1;
+            color: $secondery;
+            overflow: hidden;
+            position: absolute;
+            content: attr(data-loading-text);
+            animation: loading 5s infinite;
+        }
+        
+        @keyframes loading {
+          0% { 
+            width: 0; 
+          }
+          100% {
+            width: 100%; 
+          }
+        }
+    }
+  }
+  
+  

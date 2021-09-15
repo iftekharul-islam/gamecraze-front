@@ -136,7 +136,7 @@
                 </div>
             </div>
           </div>
-          <div class="col-md-8 col-lg-9 mb-3">
+          <div class="col-md-8 col-lg-9 mb-3" :class="{'preLoadActive': responseDelay}">
             <div class="games-categories-section--tag mb-a-4 flex-column-reverse flex-md-row px-a-1">
               <div class="d-flex align-items-center flex-wrap mt-3 mt-md-0">
                 <span class="tag-span" v-for="(categoryItem, categoryIndex) in checkedCategories"
@@ -271,6 +271,17 @@
                 @page-change="pageChangeHandler">
               </sliding-pagination>
             </div>
+            <!-- preloader animation -->
+                <div class="preloader flex-center">
+                    <div class="loader">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="loading-text" data-loading-text="Loading..."></div>
+                  </div>
+              <!-- end preloader animation -->
           </div>
         </div>
       </div>
@@ -361,6 +372,7 @@ export default {
   components: {SlidingPagination, carousel, VueSlider},
   data() {
     return {
+      responseDelay: true,
       thanas: [],
       selectedDistricts: [],
       selectedThanas: [],
@@ -554,6 +566,7 @@ export default {
       }
     },
     fetchFilteredPosts() {
+       this.responseDelay = true;
       if (this.$route.query.categories) {
         this.queryCategories = this.$route.query.categories
       } else {
@@ -582,6 +595,7 @@ export default {
           '&district_id=' + this.district_id +
           '&division_id=' + this.division_id
       ).then(response => {
+        this.responseDelay = false;
         this.posts = response.data.data;
         this.allPosts = this.posts;
         this.pagination = response.data.meta.pagination;

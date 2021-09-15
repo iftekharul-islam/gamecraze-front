@@ -220,3 +220,14 @@
         margin-left: 80px;
     }
 }
+
+#app {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    > div {
+        &:nth-last-child() {
+            margin-top: auto;
+        }
+    }
+}

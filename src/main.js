@@ -81,7 +81,7 @@ Vue.prototype.$baseApi = process.env.VUE_APP_BASE_API
 Vue.prototype.$gamehubApi = process.env.VUE_APP_GAMEHUB_BASE_API
 
 //vue swal
-import VueSwal, {swal} from 'vue-swal'
+import VueSwal from 'vue-swal'
 
 Vue.use(VueSwal);
 
@@ -152,5 +152,3 @@ new Vue({
         }
     }
 }).$mount('#app')
-
-import '@/globalComponents'

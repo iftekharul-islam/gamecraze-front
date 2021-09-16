@@ -420,7 +420,7 @@
 
                         <div class="item" v-for="(video, index) in videos" :key="index">
                             <div class="featured-videos">
-                                <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
+                                <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
                             </div>
                        </div>
            </carousel>
@@ -432,7 +432,6 @@
 </template>
 
 <script>
-    import Vue from 'vue';
     import carousel from 'vue-owl-carousel';
 
     export default {
@@ -455,13 +454,13 @@
                 videos: [],
                 platforms: [],
                 email: '',
-                reg: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
+                reg: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
                 isSubscring: false
             }
         },
         methods: {
             routeOnSellPost(){
-              var user = this.$store.state.user;
+              let user = this.$store.state.user;
               if (!user){
                 this.$router.push('/login')
                 return
@@ -477,7 +476,7 @@
               }
             },
             clickProfile() {
-              var auth = this.$store.getters.ifAuthenticated;
+              let auth = this.$store.getters.ifAuthenticated;
               if (!auth) {
                 this.$router.push('/lend-notice');
                 return
@@ -487,15 +486,14 @@
             getTrendingGames: function () {
                 this.loadedTrending = false;
                 this.$api.get('games/trending?include=game,game.assets,game.genres,game.platforms').then(response => {
-                    var vm = this;
-                    vm.trendingGames = response.data.data;
-                    vm.loadedTrending = true
+                  this.trendingGames = response.data.data;
+                  this.loadedTrending = true
                 });
             },
             getRentGames: function () {
                 this.loadedPopular = false;
                 this.$api.get('games/popular-games?include=game.assets,game.platforms').then(response => {
-                    var vm = this;
+                    let vm = this;
                     vm.populars = response.data.data;
                     vm.loadedPopular = true;
                 });
@@ -559,8 +557,8 @@
                 })
             },
             getVideoIdByURL: function(url) {
-                var regExp = /^https?\:\/\/(?:www\.youtube(?:\-nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*\&)?vi?=|\&vi?=|\?(?:.*\&)?vi?=)([^#\&\?\n\/<>"']*)/i;
-                var match = url.match(regExp);
+                let regExp = /^https?\/\/(?:www\.youtube(?:nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*)?vi?=|vi?=|\?(?:.*)?vi?=)([^#\n<>"']*)/i;
+                let match = url.match(regExp);
                 return (match && match[1].length==11)? match[1] : false;
             },
             subscribe: function() {

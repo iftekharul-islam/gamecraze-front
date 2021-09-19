@@ -1,4 +1,3 @@
-// import './assets/scss/owl/owl.carousel.min.css'
 import '@/assets/scss/owl/owl.carousel.min.css'
 import '@/assets/scss/owl/owl.theme.default.min.css'
 // import './assets/admin/dist/css/adminlte.css'
@@ -24,10 +23,6 @@ import './assets/scss/style.css'
 import Lingallery from 'lingallery';
 
 Vue.component('lingallery', Lingallery);
-
-import CKEditor from 'ckeditor4-vue';
-
-Vue.use(CKEditor);
 
 import VueGoodWizard from 'vue-good-wizard';
 

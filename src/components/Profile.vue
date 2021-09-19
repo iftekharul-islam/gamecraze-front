@@ -3047,14 +3047,9 @@
                               class="form-group post-rent--form-group"
                               v-if="diskImageRequired"
                           >
-                            <label
-                                class="post-rent--form-group--label"
-                                for="DiskCondition"
-                            >{{
-                                $t("disk_condition", $store.state.locale)
-                              }}
-                              :</label
-                            >
+                            <label class="post-rent--form-group--label">
+                              {{$t("disk_condition", $store.state.locale) }} :
+                            </label>
                             <div class="post-rent--form-group--input">
                               <ValidationProvider
                                   name="Disk Condition"
@@ -3067,23 +3062,14 @@
                                     v-model="rentData.disk_condition"
                                 >
                                   <option disabled value="">
-                                    {{
-                                      $t(
-                                          "disk_condition_select",
-                                          $store.state.locale
-                                      )
-                                    }}
+                                    {{$t("disk_condition_select",$store.state.locale)}}
                                   </option>
-                                  <option
-                                      v-for="(
-                                      diskCondition, index
-                                    ) in diskConditions"
-                                      :key="index"
+                                  <option v-for="(diskCondition, index) in diskConditions":key="index"
                                       :value="diskCondition"
                                   >
-                                    {{ diskCondition.name_of_type }} ({{
-                                      diskCondition.description
-                                    }})
+                                      {{ diskCondition.name_of_type }} ({{
+                                        diskCondition.description
+                                      }})
                                   </option>
                                 </select>
                                 <span

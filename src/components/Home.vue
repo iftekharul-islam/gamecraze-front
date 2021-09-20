@@ -420,7 +420,7 @@
 
                         <div class="item" v-for="(video, index) in videos" :key="index">
                             <div class="featured-videos">
-                                <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                                <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
                             </div>
                        </div>
            </carousel>

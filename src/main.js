@@ -122,9 +122,11 @@ import i18n from './i18n'
 
 Vue.use({
     install(Vue) {
-        // console.log(process.env.VUE_APP_GAMEHUB_BASE_API, "env", process.env);
         Vue.prototype.$api = axios.create({
-            baseURL: process.env.VUE_APP_GAMEHUB_BASE_API
+            baseURL: process.env.VUE_APP_GAMEHUB_BASE_API,
+            headers: {
+                'Access-Control-Allow-Origin':'*'
+            }
         })
     }
 });

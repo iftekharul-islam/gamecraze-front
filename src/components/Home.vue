@@ -420,7 +420,7 @@
 
                         <div class="item" v-for="(video, index) in videos" :key="index">
                             <div class="featured-videos">
-                                <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen"></iframe>
+                                <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
                             </div>
                        </div>
            </carousel>
@@ -557,8 +557,8 @@
                 })
             },
             getVideoIdByURL: function(url) {
-                let regExp = /^https?\/\/(?:www\.youtube(?:nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*)?vi?=|vi?=|\?(?:.*)?vi?=)([^#\n<>"']*)/i;
-                let match = url.match(regExp);
+                var regExp = /^https?\:\/\/(?:www\.youtube(?:\-nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*\&)?vi?=|\&vi?=|\?(?:.*\&)?vi?=)([^#\&\?\n\/<>"']*)/i;
+                var match = url.match(regExp);
                 return (match && match[1].length==11)? match[1] : false;
             },
             subscribe: function() {

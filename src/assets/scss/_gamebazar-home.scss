@@ -128,6 +128,19 @@
                     width: 100%;
                 }
             }
+            &.sellpost-popular {
+                .vue-owl-nav {
+                    top: -38px !important;
+
+                   @include for-min-1300 {
+                    top: 50% !important;
+                   }
+
+                   @include for-max-991 {
+                    top: -45px !important;
+                   }
+                }
+            }
 }
 
 .accessories-sellpost {

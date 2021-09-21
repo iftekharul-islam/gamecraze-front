@@ -260,6 +260,13 @@
 .preLoadActive {
     .preloader {
         display: block;
+        position: fixed;
+        background: #110e0eb8;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: 999;
 
     }
 }
@@ -270,38 +277,63 @@
         min-height: 100vh;
     }
 }
-.load{
-    padding: 5px;
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform-origin: center center;
-    transform:translate(-50%, -50%) rotate(135deg);
-  
-    width:50px;
-    height:50px;
+.loading {
+    font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
+    text-transform:uppercase;
     
-  }
-  .load hr{
-    border:0;
-    margin:0;
-    width:40%;
-    height:40%;
+    width:150px;
+    text-align:center;
+    line-height:50px;
+    
     position:absolute;
-    border-radius:50%;
-    animation:spin 2s ease infinite;
+    left:0;right:0;top:50%;
+    margin:auto;
+    transform:translateY(-50%);
   }
   
-  .load :first-child{background:$secondery;animation-delay:-1.5s}
-  .load :nth-child(2){background:$text-light;animation-delay:-1s}
-  .load :nth-child(3){background:$secondery-gradient;animation-delay:-0.5s}
-  .load :last-child{background:$text-light}
+  .loading span {
+    position:relative;
+    z-index:999;
+    color:$text-dark;
+  }
+  .loading:before {
+    content:'';
+    background:$secondery;
+    width:128px;
+    height:36px;
+    display:block;
+    position:absolute;
+    top:0;left:0;right:0;bottom:0;
+    margin:auto;
+    
+    animation:2s loadingBefore infinite ease-in-out;
+  }
   
-  @keyframes spin{
-    0%,100%{transform:translateX(200%)}
-    25%{transform:translateY(200%)}
-    50%{transform:translateX(0)}
-    75%{transform:translateY(0)}
+  @keyframes loadingBefore {
+    0%   {transform:translateX(-14px);}
+    50%  {transform:translateX(14px);}
+    100% {transform:translateX(-14px);}
+  }
+  
+  
+  .loading:after {
+    content:'';
+    background:$text-light;
+    width:14px;
+    height:60px;
+    display:block;
+    position:absolute;
+    top:0;left:0;right:0;bottom:0;
+    margin:auto;
+    opacity:.7;
+    
+    animation:2s loadingAfter infinite ease-in-out;
+  }
+  
+  @keyframes loadingAfter {
+    0%   {transform:translateX(-50px);}
+    50%  {transform:translateX(50px);}
+    100% {transform:translateX(-50px);}
   }
   
   

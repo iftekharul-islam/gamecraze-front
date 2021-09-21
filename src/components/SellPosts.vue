@@ -273,9 +273,11 @@
             </div>
             <!-- preloader animation -->
                  <div class="preloader">
-                    <div class="load">
-                      <hr/><hr/><hr/><hr/>
-                  </div>
+                    <div class="preloader">
+                        <div class="loading">
+                          <span>Loading</span>
+                        </div>
+                    </div>
                  </div>
               <!-- end preloader animation -->
           </div>

@@ -324,11 +324,11 @@
         <div class="modal-mask order-details-extend-modal position-fixed top-0 left-0 h-100 w-full d-flex align-items-center justify-content-center z-index-99">
           <div class="modal-wrapper">
             <div class="modal-dialog modal-dialog-centered w-328" role="document">
-              <div class="modal-content bg-game-details border-1 border-secondery-opa-50 p-a-4 br-0">
-                <button type="button" class="close no-focus text-right" data-dismiss="modal" aria-label="Close">
+              <div class="modal-content bg-game-details border-1 border-secondery-opa-50 p-a-4 br-8">
+                <button type="button" class="close cancel-btn no-focus text-right z-10" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true" @click="showSeller = false" class="close-modal">
-                     <svg class="secondery-border rounded-circle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14.2427 4.34315L10.0001 8.58579L5.75744 4.34315L4.34323 5.75736L8.58587 10L4.34323 14.2426L5.75744 15.6569L10.0001 11.4142L14.2427 15.6569L15.6569 14.2426L11.4143 10L15.6569 5.75736L14.2427 4.34315Z" fill="#FFD715"/>
+                     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M5.74641 2.44748L6.00986 2.66845L10.2338 6.77333L14.4583 2.66845C15.3756 1.77718 16.8628 1.77718 17.7802 2.66845C18.6141 3.4787 18.6899 4.7466 18.0076 5.64005L17.7802 5.89602L13.5541 10.0006L17.7795 14.104C18.6968 14.9952 18.6968 16.4403 17.7795 17.3315C16.9456 18.1418 15.6407 18.2155 14.7211 17.5525L14.4576 17.3315L10.2338 13.2279L6.01049 17.3315C5.09318 18.2228 3.60592 18.2228 2.68861 17.3315C1.85469 16.5213 1.77888 15.2534 2.46118 14.3599L2.68861 14.104L6.91027 10.0006L2.68798 5.89602C1.77067 5.00475 1.77067 3.55972 2.68798 2.66845C3.5219 1.85821 4.82685 1.78455 5.74641 2.44748Z" fill="white" stroke="#141A27" stroke-width="3"/>
                     </svg>
                   </span>
                 </button>
@@ -345,8 +345,8 @@
                     <p class="mb-2 opa-8 text-white">{{ $t('email', $store.state.locale) }}</p>
                     <a :href="`mailto:${ post.email ? post.email : post.user.data.email}`" class="mb-0 gil-bold text-white f-s-20 word-break">{{ post.email ? post.email : post.user.data.email}}</a>
                   </div>
-                  <a :href="`tel:+88${ post.phone_no ? post.phone_no : post.user.data.phone_number }`" class="bg-secondery-gradient d-inline-block  py-2 px-5 primary-text primary-text-hover br-4 w-100 text-center" v-if="post.user.data.phone_number != null">{{ $t('phone_seller', $store.state.locale) }}</a>
-                   <a :href="`mailto:${ post.email ? post.email : post.user.data.email}`" class="bg-secondery-gradient d-inline-block  py-2 px-5 primary-text primary-text-hover br-4 w-100 text-center" v-else>{{ $t('email_seller', $store.state.locale) }}</a>
+                  <a :href="`tel:+88${ post.phone_no ? post.phone_no : post.user.data.phone_number }`" class=" btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative w-full pointer" v-if="post.user.data.phone_number != null">{{ $t('phone_seller', $store.state.locale) }}</a>
+                   <a :href="`mailto:${ post.email ? post.email : post.user.data.email}`" class=" btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer w-full" v-else>{{ $t('email_seller', $store.state.locale) }}</a>
                 </div>
               </div>
             </div>

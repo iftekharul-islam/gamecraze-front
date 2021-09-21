@@ -285,7 +285,7 @@
       </div>
     </section>
     <!--Current Popular -->
-    <section class="related-game-section current-popular" id="related-game">
+    <section class="related-game-section current-popular sellpost-popular mb-5 mb-sm-0" id="related-game">
           <div class="container">
                <h3 class="f-s-24 gil-bold text-white mb-a-4 max-w-76pr">{{ $t('popular_games_at_gamehub', $store.state.locale) }} </h3>
               <!-- new carousel -->

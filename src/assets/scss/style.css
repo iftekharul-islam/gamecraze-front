@@ -13197,6 +13197,22 @@ html {
   }
 }
 
+.current-popular.sellpost-popular .vue-owl-nav {
+  top: -38px !important;
+}
+
+@media (min-width: 1300px) {
+  .current-popular.sellpost-popular .vue-owl-nav {
+    top: 50% !important;
+  }
+}
+
+@media (max-width: 991px) {
+  .current-popular.sellpost-popular .vue-owl-nav {
+    top: -45px !important;
+  }
+}
+
 .accessories-sellpost {
   max-width: 650px;
 }

@@ -89,9 +89,9 @@
                         </div>
                         <!-- preloader animation -->
                               <div class="preloader">
-                                <div class="load">
-                                  <hr/><hr/><hr/><hr/>
-                              </div>
+                                <div class="loading">
+                                  <span>Loading</span>
+                                </div>
                             </div>
                         <!-- end preloader animation -->
                     </div>

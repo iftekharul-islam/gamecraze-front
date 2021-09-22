@@ -222,7 +222,7 @@
 .filter-show-mobile {
     @include for-max-768 {
         position: fixed;
-        width: calc(100% - 40px);
+        width: 100%;
         z-index: 99999;
         left: 0;
         right: 0;
@@ -230,7 +230,31 @@
         transform: translateX(-120%);
         transition: all .3s ease-in;
         border-radius: 5px;
-        background: $shorting-bg;
+        height: 100%;
+        background: $primary;
+        padding: 0 20px 30px 20px !important;
+        
+    }
+    .location-arrow {
+        .vs__selected-options {
+            padding-left: 30px;
+            &::after {
+                content: '';
+                display: block;
+                width: 30px;
+                height: 30px;
+                background: url(../img/location.png) no-repeat;
+                position: absolute;
+                left: 8px;
+                top: 5px;
+            }
+        }
+    }
+    .sorting-body {
+        @include for-max-768 {
+            background: $shorting-bg;
+        }
+        
     }
     .custom-control-input {
         &:checked {
@@ -281,6 +305,9 @@
         bottom: 30px;
         overflow: auto;
         max-height: 100%;
+        @include for-max-768 {
+            top: 145px;
+        }
     }
 }
 .sorting-mobile {

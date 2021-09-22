@@ -403,10 +403,12 @@
                 font-size: 16px;
                
             }
+        }
+        .search-price {
             @include for-max-575 {
                 margin-left: 65px;
+                }
             }
-        }
         &.sellpost_search {
             @include for-min-768 {
                 width: 65%;

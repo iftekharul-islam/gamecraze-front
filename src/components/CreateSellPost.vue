@@ -24,11 +24,17 @@
               <h3 class="text-white gil-bold f-s-28 mb-5">{{$t('step_form_top_title', $store.state.locale) }}</h3>
             </div>
             <!-- step bar -->
-            <div class="max-400 mx-auto mb-4">
+            <div class="max-400 mx-auto mb-5">
               <ul class="d-flex step-form">
-                <li class="step-form__line p-0 active"> <a href="#" @click.prevent="backToFirstStep">1</a></li>
-                <li class="step-form__line p-0" :class="{ 'active' : twoActive }"> <a href="#" class="mx-auto" :class="{ 'user-select-none' : twoActive }" @click.prevent="confirmFirstStep">2</a></li>
-                <li class="step-form__line p-0" :class="{ 'active' : threeActive }"> <a href="#" class="ml-auto" :class="{ 'user-select-none' : accessThreeStep }" @click.prevent="goToFinal">3</a></li>
+                <li class="step-form__line p-0 active"> <a href="#" @click.prevent="backToFirstStep">1</a>
+                  <span>{{$t('product_details', $store.state.locale) }}</span>
+                </li>
+                <li class="step-form__line p-0" :class="{ 'active' : twoActive }"> <a href="#" class="mx-auto" :class="{ 'user-select-none' : twoActive }" @click.prevent="confirmFirstStep">2</a>
+                   <span>{{$t('product_photo', $store.state.locale) }}</span>
+                </li>
+                <li class="step-form__line p-0" :class="{ 'active' : threeActive }"> <a href="#" class="ml-auto" :class="{ 'user-select-none' : accessThreeStep }" @click.prevent="goToFinal">3</a>
+                   <span>{{$t('seller_details', $store.state.locale) }}</span>
+                </li>
               </ul>
             </div>
             <div class="max-400 mx-auto" v-show="one">

@@ -67,7 +67,7 @@
                                 :get-suggestion-value="getSuggestionValue"
                                 :input-props="{id:'autosuggest__input',class:'auto-suggest-menu',placeholder: $t('search_game_accessories', $store.state.locale) }">
                               <div  slot-scope="{ suggestion }" class="w-100">
-                                <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between">
+                                <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between position-relative">
 
                                   <div class="d-flex align-items-md-center search-content">
                                     <div class="gamebazar__search__img overflow-hidden br-4">
@@ -96,7 +96,7 @@
                                         </span>
                                     </div>
                                   </div>
-                                  <span class="text-secondery gil-bold font-weight-bold name">৳ {{ suggestion.item.price }}</span>
+                                  <span class="text-secondery gil-bold font-weight-bold name search-price">৳ {{ suggestion.item.price }}</span>
                                 </div>
                               </div>
                             </vue-autosuggest>

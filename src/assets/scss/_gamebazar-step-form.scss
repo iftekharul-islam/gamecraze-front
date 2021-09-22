@@ -300,6 +300,24 @@
                 color: $primary;
             }
         }
+        span {
+            position: absolute;
+            color: $secondery;
+            top: 35px;
+        }
+        &:nth-child(2) {
+            span {
+                left: 0;
+                right: 0;
+                margin: auto;
+                text-align: center;
+            }
+        }
+        &:last-of-type {
+            span {
+                right: 0;
+            }
+        }
     }
 }
 

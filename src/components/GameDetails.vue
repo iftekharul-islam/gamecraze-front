@@ -57,25 +57,16 @@
         <section class="screenshot-video" id="screenshot-video">
             <div class="container">
                 <h6>{{ $t('screenshots_&_videos', $store.state.locale) }}</h6>
-                <!-- <div id="owl-screenshot-video" class="owl-carousel owl-theme" v-if="game">
-                    <div class="item" v-for="(screenshot, index) in game.screenshots.data" :key="index">
-                        <a href="#"><img :src="screenshot.url" alt="screenshot"></a>
-                    </div>
-                  <div class="item" v-for="(video, index) in game.videoUrls.data" :key="'A' + index">
-                    <iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe>
-                       <a href="#">< :src="video.url" alt="screenshot"></a>
-                    </div>
-                </div> -->
                  <div class="position-relative">
                   <carousel
-                          v-if="loadedScreenshots"
-                  :autoplay ="false"
-                  :loop ="false"
-                  :nav ="false"
-                  :dots ="true"
-                  :center ="false"
-                  :margin ="32"
-                  :responsive="{ 0:{items:1, stagePadding:0, center:false,},
+                    v-if="loadedScreenshots"
+                    :autoplay ="false"
+                    :loop ="false"
+                    :nav ="false"
+                    :dots ="true"
+                    :center ="false"
+                    :margin ="32"
+                    :responsive="{ 0:{items:1, stagePadding:0, center:false,},
                                 600:{items:2, stagePadding:0, center:false,},
                                 1000:{items:3, stagePadding:0,},
                                 1400:{items:4, stagePadding:0, center:false,}}">
@@ -83,16 +74,19 @@
 
                     <template slot="next"><div class="vue-owl-nav vue-owl-nav-right"><button class="owl-next z-index-9"><span class="next"><i class="fas fa-arrow-right arrow"></i></span></button></div></template>
 
-                      <div class="item" v-for="(screenshot, index) in game.screenshots.data" :key="index">
+                    <div class="item" v-for="(screenshot, index) in game.screenshots.data" :key="index">
                             <span @click="setModalData(screenshot.url, 'image')">
-                                <img :src="screenshot.url" alt="screenshot" >
+                                <img :src="screenshot.url" alt="screenshot">
                             </span>
-                        </div>
-                      <div class="item" v-for="(video, index) in game.videoUrls.data" :key="'A' + index">
-                        <span class="d-block screenshot-video--video" @click="setModalData(video.url, 'video')"><iframe :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0" allowfullscreen="allowfullscreen" ng-show="showvideo" ></iframe></span>
-                          <!-- <a href="#">< :src="video.url" alt="screenshot"></a> -->
                     </div>
-                  
+                    <div v-if="game.videoUrls.data.length > 0">
+                      <div class="item" v-for="(video, index) in game.videoUrls.data" :key="'A' + index">
+                      <span class="d-block screenshot-video--video" @click="setModalData(video.url, 'video')"><iframe
+                          :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0"
+                          allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe></span>
+                      </div>
+                    </div>
+
                   </carousel>
                      <div v-if="showImageModal">
                          <transition name="modal">
@@ -161,9 +155,7 @@
             <div class="container">
                 <h6>{{ $t('description', $store.state.locale) }}</h6>
                 <div class="description-content" v-if="game">
-                    <div class="row" v-html="game.description">
-
-                    </div>
+                    <div class="row" v-html="game.description"></div>
                 </div>
             </div>
         </section>
@@ -229,7 +221,7 @@
                 loadedScreenshots: false,
                 loadedRelated: false,
                 rentButton: false,
-                game: [],
+                game: '',
                 relatedGames: [],
                 rentLimit: '',
                 myLends: '',
@@ -239,15 +231,15 @@
                 isVideo: false,
             }
         },
-        watch: {
-            "$route.params.slug": {
-                handler: function(value) {
-                    this.fetchGame();
-                },
-                deep: true,
-                immediate: true,
-            },
-        },
+        // watch: {
+        //     "$route.params.slug": {
+        //         handler: function() {
+        //             this.fetchGame();
+        //         },
+        //         deep: true,
+        //         immediate: true,
+        //     },
+        // },
         methods: {
             setModalData(screenShot, type) {
                 this.isVideo = false;
@@ -294,11 +286,13 @@
           },
           fetchGame() {
               this.loadedScreenshots = false;
-                  this.loadedRelated = false;
-            this.$api.get('games/slug/' + this.slug + '?include=assets,genres,platforms,screenshots,videoUrls').then(response => {
-              var vm = this;
-              vm.game = response.data.data;
-              vm.loadedScreenshots = true;
+              this.loadedRelated = false;
+              this.$api.get('games/slug/' + this.slug + '?include=assets,genres,platforms,screenshots,videoUrls').then(response => {
+              this.game = response.data.data;
+              console.log(this.game)
+              if (this.game.screenshots.data.length){
+                this.loadedScreenshots = true;
+              }
 
             this.$api.get('game-exist-in-rent/' + this.slug).then(response => {
                 if (response.data.data != 0){
@@ -315,7 +309,7 @@
             })
             this.$api.get('games/related/' + genres.join() + '?include=game.assets,game.genres,game.platforms').then(response => {
                 if (response.data.data.length) {
-                    var vm = this;
+                    let vm = this;
                     vm.relatedGames = response.data.data;
                     vm.loadedRelated = true;
                 }

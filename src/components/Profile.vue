@@ -428,7 +428,7 @@
                           class="dashboard-content--offer"
                           v-if="rents.length && offerShow"
                       >
-                        <!-- new offter design -->
+                        <!-- new offer design -->
                         <div class="d-flex flex-wrap" v-if="rents">
                           <div
                               class="
@@ -2881,7 +2881,6 @@
                           </div>
                           <!-- earning amount -->
                           <!-- form-group -->
-                          <!--                                            <div class="form-group post-rent&#45;&#45;form-group" v-if="basePrices">-->
                           <div
                               class="form-group post-rent--form-group"
                               v-if="gameTypePricingState && basePrices"
@@ -2973,26 +2972,14 @@
                                 </table>
                                 <!-- warning -->
                                 <div class="mt-2 game-rent-alert">
-                                  <div
-                                      class="
-                                      alert alert-info alert-dismissible
-                                      game-rent-alert--box
-                                    "
-                                  >
+                                  <div class="alert alert-info alert-dismissible game-rent-alert--box">
                                     <button
                                         type="button"
                                         class="close close-modal"
                                         data-dismiss="alert"
-                                        aria-label="Close"
-                                    ></button>
-                                    <p>
-                                      {{
-                                        $t(
-                                            "estimation_notice",
-                                            $store.state.locale
-                                        )
-                                      }}
-                                    </p>
+                                        aria-label="Close">
+                                    </button>
+                                    <p>{{ $t("estimation_notice", $store.state.locale) }}</p>
                                   </div>
                                 </div>
                               </div>
@@ -4584,7 +4571,7 @@ export default {
       subCategories: [],
       postImages: [],
       editPostData: {
-        secreenShotsLimit: 4,
+        secreenShotsLimit: 8,
         dialog: false,
         id: "",
         name: "",
@@ -4887,7 +4874,7 @@ export default {
       this.selected = product.sub_category_id;
       this.removeCover = "";
       this.removeScreenshots = [];
-      this.editPostData.secreenShotsLimit = 4;
+      this.editPostData.secreenShotsLimit = 8;
       if (this.editPostData.images.length) {
         this.editPostData.secreenShotsLimit =
             this.editPostData.secreenShotsLimit - this.editPostData.images.length;

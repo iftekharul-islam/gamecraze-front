@@ -192,7 +192,7 @@
                 <div class="group mb-a-6 mt-a-6">
                   <label class="mb-3 w-100">{{ $t('upload_screenshots', $store.state.locale) }}</label>
                   <div class="post-rent--form-group--input wizard__body__step">
-                     <UploadImages class="w-100 p-0 bg-transparent border-0" :max="4" maxError="Max image upload limit is 4" @change="uploadScreenshots" @changed="uploadScreenshots"/>
+                     <UploadImages class="w-100 p-0 bg-transparent border-0" :max="8" maxError="Max image upload limit is 8" @change="uploadScreenshots" @changed="uploadScreenshots"/>
                   </div>
                  
                     <span class="text-step-error mt-2 d-inline-block" v-if="screenshotsError"> {{ $t('please_upload_screenshots', $store.state.locale) }}</span>

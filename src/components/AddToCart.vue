@@ -29,9 +29,6 @@
                             <td scope="col">{{ item.rent_week }}</td>
                             <td scope="col">
                                 <div class="d-flex align-items-center justify-content-between">
-<!--                                    <del><span>৳ </span>-->
-<!--                                        {{ item.regular_price + item.regular_commission }}-->
-<!--                                    </del>-->
                                     <div class="new-price"><span>৳ </span>
                                         {{ item.regular_price + item.regular_commission }}
                                     </div>
@@ -78,7 +75,7 @@
                           </div>
                       <div class="total d-flex align-items-center justify-content-between">
                           <p>{{ $t('total', $store.state.locale) }}</p>
-                          <span class="total-price">৳ {{ totalPrice + deliveryCharge }}</span>
+                          <span class="total-price">৳ {{ grandTotal }}</span>
                       </div>
                       </form>
                   </div>
@@ -103,9 +100,9 @@
                     <ValidationObserver v-slot="{ handleSubmit }">
                       <form class="" @submit.prevent="handleSubmit(onCheckout)" method="post">
                           <div class="cart-delivery-address" v-if="digitalIsExist">
-                              <label for="address">{{ $t('enter_address', $store.state.locale) }}</label>
+                              <label>{{ $t('enter_address', $store.state.locale) }}</label>
                               <ValidationProvider name="address" :rules="{required: digitalIsExist}" v-slot="{ errors }">
-                                <textarea id="address" type="text" v-model="address" class="promo-code-field"></textarea>
+                                <textarea type="text" v-model="address" class="promo-code-field"></textarea>
                               <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                               </ValidationProvider>
                           </div>
@@ -268,6 +265,9 @@
           }
       },
       computed: {
+        grandTotal() {
+          return this.mainAmount + this.deliveryCharge;
+        }
       },
     methods: {
         autoPromoApply() {
@@ -342,7 +342,11 @@
                     this.newCartItems = response.data.data.cartItems;
                     this.totalPrice = response.data.data.totalRegularPrice;
                     this.mainAmount = this.totalPrice;
+                    console.log(typeof this.mainAmount)
+                    console.log(this.mainAmount)
                     this.deliveryCharge = response.data.data.deliveryCharge;
+                    console.log(typeof this.deliveryCharge)
+                    console.log(this.deliveryCharge)
                     this.autoPromoApply();
                     console.log('newCartItems')
                     console.log(this.newCartItems)
@@ -408,7 +412,7 @@
                 }
                 else {
                     this.$swal("Login First", "Please Login to Lend Games");
-                    this.$router.push('/login').catch(err => {});
+                    this.$router.push('/login').catch( ()=> {});
                 }
 
             });
@@ -454,7 +458,7 @@
                     localStorage.setItem('cartItems', '');
                     localStorage.setItem('deliveryCharge', 0);
                     this.$store.dispatch('setPromo', null);
-                    this.$router.push('/profile').then(err => {
+                    this.$router.push('/profile').then( () => {
                         this.$root.$emit('rentGames')
                     });
                 }

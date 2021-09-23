@@ -170,6 +170,9 @@
         border: 1px solid $secondery !important;
         z-index: 1;
         overflow: hidden;
+        &:focus {
+            outline: none;
+        }
         @include for-min-575 {
             min-width: 140px;
             text-align: center;
@@ -203,6 +206,20 @@
         }
         .position-relative {
             transition: all .3s ease;
+        }
+    }
+    &__filter {
+        &:hover {
+            svg {
+                path {
+                    fill: $secondery;
+                }
+            }
+        }
+        svg {
+            path {
+                transition: all .3s ease-in;
+            }
         }
     }
 }

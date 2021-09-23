@@ -345,7 +345,7 @@
                     <p class="mb-2 opa-8 text-white">{{ $t('email', $store.state.locale) }}</p>
                     <a :href="`mailto:${ post.email ? post.email : post.user.data.email}`" class="mb-0 gil-bold text-white f-s-20 word-break">{{ post.email ? post.email : post.user.data.email}}</a>
                   </div>
-                  <a :href="`tel:+88${ post.phone_no ? post.phone_no : post.user.data.phone_number }`" class=" btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative w-full pointer" v-if="post.user.data.phone_number != null">{{ $t('phone_seller', $store.state.locale) }}</a>
+                  <a :href="`tel:+88${ post.phone_no ? post.phone_no : post.user.data.phone_number }`" class=" btn--secondery-hover br-4 gil-bold font-weight-bold text-center primary-text pl-a-6 pr-a-6 d-inline-block position-relative w-full pointer" v-if="post.user.data.phone_number != null">{{ $t('phone_seller', $store.state.locale) }}</a>
                    <a :href="`mailto:${ post.email ? post.email : post.user.data.email}`" class=" btn--secondery-hover br-4 gil-bold font-weight-bold primary-text pl-a-6 pr-a-6 d-inline-block position-relative pointer w-full" v-else>{{ $t('email_seller', $store.state.locale) }}</a>
                 </div>
               </div>

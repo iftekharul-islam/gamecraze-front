@@ -14492,6 +14492,10 @@ html {
   overflow: hidden;
 }
 
+.btn--secondery-hover:focus {
+  outline: none;
+}
+
 @media (min-width: 575px) {
   .btn--secondery-hover {
     min-width: 140px;
@@ -14535,6 +14539,15 @@ html {
 .btn--secondery-hover .position-relative {
   -webkit-transition: all .3s ease;
   transition: all .3s ease;
+}
+
+.btn__filter:hover svg path {
+  fill: #FFD715;
+}
+
+.btn__filter svg path {
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
 }
 
 @media (max-width: 991px) {

@@ -200,7 +200,7 @@
                                 <p class="mb-0 pointer"  @click.prevent=" showDrawer = false"><i class="fas fa-times"></i></p>
                               </div>
                             <p class="mb-0 gil-bold text-md-center text-white py-2 bg-md-shorting-tile px-3">{{ $t('price', $store.state.locale) }}</p>
-                            <div class="d-flex flex-column flex-md-row align-items-end align-items-md-center justify-content-center py-4">
+                            <div class="d-flex flex-column flex-md-row align-items-end align-items-md-center justify-content-center py-4 pr-3 pr-md-0">
                               <div class="mr-1 position-relative shorting-input high-to-low pr-a-5 mb-2 mb-md-0">
                                   <input type="checkbox" class="position-absolute -z-index-1 opa-0 " id="desc_price_filter" name="sort_price"
                                       @change="descPrice($event)" :checked="descByPriceTag">
@@ -215,7 +215,7 @@
                             </div>
                             <p class="mb-0 gil-bold text-md-center text-white py-2 bg-md-shorting-tile px-3">{{ $t('date', $store.state.locale) }}</p>
 
-                              <div class="d-flex flex-column flex-md-row align-items-end align-items-md-center justify-content-center py-4">
+                              <div class="d-flex flex-column flex-md-row align-items-end align-items-md-center justify-content-center py-4 pr-3 pr-md-0">
                                 <div class="mr-1 position-relative shorting-input high-to-low pr-a-5 mb-2 mb-md-0">
                                     <input type="checkbox" class="position-absolute -z-index-1 opa-0 " id="recent_date" name="sort_date" @change="descDate($event)" :checked="descByDateTag">
                                     <label class="mb-0" for="recent_date">{{ $t('recent', $store.state.locale) }}</label>
@@ -226,7 +226,7 @@
                                 </div>
                               </div>
                               <div class="text-right p-4">
-                                <a href="#" class="bg-secondery-gradient br-4 d-inline-block gil-bold primary-text py-2 primary-text-hover px-4 w-full text-center"
+                                <a href="#" class="router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative w-full text-center"
                                 @click.prevent="getSellPosts(); showDrawer = false">{{ $t('apply', $store.state.locale) }}</a>
                               </div>
 

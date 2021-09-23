@@ -189,7 +189,7 @@
                                                     </div>
                                                     <span class="modal-or">{{ $t('or', $store.state.locale) }}</span>
                                                     <div class="modal-content--description--form--call">
-                                                        <router-link to="/contacts" class="btn--secondery secondery-border"><span>{{ $t('form_fillup', $store.state.locale) }}</span></router-link>
+                                                        <router-link to="/contacts" class="router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative text-center"><span>{{ $t('form_fillup', $store.state.locale) }}</span></router-link>
                                                     </div>
                                                 </div>
                                             </div>

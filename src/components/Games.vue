@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-md-4 col-lg-3 mb-3">
                       <div class="text-right">
-                            <button id="btn--filter" class="router_link btn__filter btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative w-full text-center"  v-on:click="toggleMenu()">
+                            <button id="btn--filter" class="router_link btn__filter btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative w-full text-center d-md-none mb-4"  v-on:click="toggleMenu()">
                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2"><path d="M5.82408 11.0593L9.70774 11.0712C9.9499 11.072 10.1459 11.2748 10.1459 11.5234V13.7083C10.1459 13.9577 10.0043 14.1834 9.78352 14.2878L6.25816 15.9432C6.17579 15.9813 6.08848 16 6.00117 16C5.88504 16 5.7689 15.9661 5.66758 15.899C5.49049 15.7819 5.38341 15.58 5.38341 15.3636V11.5116C5.38341 11.2613 5.5811 11.0585 5.82408 11.0593ZM14.2975 0C15.2381 0 16 0.784842 16 1.7538V2.97901C16 3.44906 15.8163 3.90045 15.4901 4.22966L10.2861 9.49362C10.1963 9.58525 10.0744 9.63616 9.94842 9.63532L5.59115 9.62174C5.45853 9.62174 5.33251 9.56489 5.2419 9.46562L0.459614 4.2059C0.163912 3.88094 0 3.45161 0 3.00616V1.75465C0 0.78569 0.761905 0 1.70255 0H14.2975Z" fill="#0B0F18"></path></svg><span>{{ $t('filter', $store.state.locale) }}</span>
                             </button>
                       </div>

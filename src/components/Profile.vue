@@ -16,7 +16,7 @@
       <div class="cover-edit" @click="coverModal = true">
         <label
         ><i class="fas fa-camera camera-icon"></i>
-          <span>{{ $t("edit_cover_photo", $store.state.locale) }}</span></label
+          <span class="ml-2">{{ $t("edit_cover_photo", $store.state.locale) }}</span></label
         >
         <i
             v-if="isCoverImgUpdating"

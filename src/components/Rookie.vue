@@ -48,8 +48,8 @@
                                     The elite members will be allowed to rent both physical and digital games
                                 </p>
                             </div>
-                            <div class="pricing-plan--card--btn">
-                                 <router-link to="/contacts" class="btn--secondery text-uppercase mx-auto"><span>GET THIS</span></router-link>
+                            <div class="pricing-plan--card--btn text-center">
+                                 <router-link to="/contacts" class="router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative"><span>GET THIS</span></router-link>
                             </div>
                          </div>
                      </div>

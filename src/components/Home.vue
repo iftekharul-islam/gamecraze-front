@@ -629,7 +629,7 @@
             this.getArticles();
             this.getFeaturedVideo(5);
             this.featuredPlatforms(4);
-            this.latestSellPosts(15);
+            this.latestSellPosts(10);
 
             if (this.$store.getters.ifAuthenticated) {
                 this.isLoggedIn = true;

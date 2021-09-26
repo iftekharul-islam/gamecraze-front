@@ -266,7 +266,7 @@
       },
       computed: {
         grandTotal() {
-          return this.mainAmount + this.deliveryCharge;
+          return parseInt(this.mainAmount) + parseInt(this.deliveryCharge);
         }
       },
     methods: {
@@ -342,14 +342,8 @@
                     this.newCartItems = response.data.data.cartItems;
                     this.totalPrice = response.data.data.totalRegularPrice;
                     this.mainAmount = this.totalPrice;
-                    console.log(typeof this.mainAmount)
-                    console.log(this.mainAmount)
                     this.deliveryCharge = response.data.data.deliveryCharge;
-                    console.log(typeof this.deliveryCharge)
-                    console.log(this.deliveryCharge)
                     this.autoPromoApply();
-                    console.log('newCartItems')
-                    console.log(this.newCartItems)
                     if (this.newCartItems) {
                         for (let i = 0; i < this.newCartItems.length; i++) {
                             this.rentIds.push(this.newCartItems[i].rent_id);
@@ -380,7 +374,7 @@
             this.totalItem = this.newCartItems.length;
             this.itemRemovable = this.user.rent_limit;
 
-            var config = {
+            let config = {
                 headers: {
                     'Authorization': 'Bearer ' + this.$store.state.token
                 }

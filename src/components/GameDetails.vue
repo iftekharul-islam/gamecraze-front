@@ -223,7 +223,7 @@
                 rentButton: false,
                 game: '',
                 relatedGames: [],
-                rentLimit: '',
+                rentLimit: this.$store.state.user.rent_limit,
                 myLends: '',
                 rentExist: false,
                 modalScreenShot: null,
@@ -253,9 +253,9 @@
                 this.showImageModal = true;
             },
             authData () {
-                var auth = this.$store.getters.ifAuthenticated;
+                let auth = this.$store.getters.ifAuthenticated;
                 if (auth){
-                    var config = {
+                    let config = {
                         headers: {
                             'Authorization': 'Bearer ' + this.$store.state.token
                         }
@@ -272,8 +272,8 @@
                 }
             },
           getVideoIdByURL: function(url) {
-            var regExp = /^https?\:\/\/(?:www\.youtube(?:\-nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*\&)?vi?=|\&vi?=|\?(?:.*\&)?vi?=)([^#\&\?\n\/<>"']*)/i;
-            var match = url.match(regExp);
+            let regExp = /^https?\:\/\/(?:www\.youtube(?:\-nocookie)?\.com\/|m\.youtube\.com\/|youtube\.com\/)?(?:ytscreeningroom\?vi?=|youtu\.be\/|vi?\/|user\/.+\/u\/\w{1,2}\/|embed\/|watch\?(?:.*\&)?vi?=|\&vi?=|\?(?:.*\&)?vi?=)([^#\&\?\n\/<>"']*)/i;
+            let match = url.match(regExp);
             return (match && match[1].length==11)? match[1] : false;
           },
             scrollToTop() {
@@ -289,7 +289,6 @@
               this.loadedRelated = false;
               this.$api.get('games/slug/' + this.slug + '?include=assets,genres,platforms,screenshots,videoUrls').then(response => {
               this.game = response.data.data;
-              console.log(this.game)
               if (this.game.screenshots.data.length){
                 this.loadedScreenshots = true;
               }

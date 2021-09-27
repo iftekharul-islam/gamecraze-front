@@ -25,29 +25,17 @@
       </div>
       <div v-if="coverModal">
         <transition name="modal">
-          <div
-              class="
-              modal-mask
-              seller-information-modal
-              upgrade-modal
-              multiple-user-warning-modal
-              bg-image-gallery-modal
-            "
-          >
+          <div class=" modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal bg-image-gallery-modal " >
             <div class="modal-wrapper">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                  <button
-                      type="button"
-                      class="close"
-                      data-dismiss="modal"
-                      aria-label="Close"
-                  >
-                    <span
-                        aria-hidden="true"
-                        @click="coverModal = false"
-                        class="close-modal"
-                    ></span>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                    <span aria-hidden="true" @click="coverModal = false" >
+                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path opacity="0.4" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="white"/>
+                        <path d="M13.0601 12L15.3601 9.69998C15.6501 9.40998 15.6501 8.92999 15.3601 8.63999C15.0701 8.34999 14.5901 8.34999 14.3001 8.63999L12.0001 10.94L9.70011 8.63999C9.41011 8.34999 8.93011 8.34999 8.64011 8.63999C8.35011 8.92999 8.35011 9.40998 8.64011 9.69998L10.9401 12L8.64011 14.3C8.35011 14.59 8.35011 15.07 8.64011 15.36C8.79011 15.51 8.98011 15.58 9.17011 15.58C9.36011 15.58 9.55011 15.51 9.70011 15.36L12.0001 13.06L14.3001 15.36C14.4501 15.51 14.6401 15.58 14.8301 15.58C15.0201 15.58 15.2101 15.51 15.3601 15.36C15.6501 15.07 15.6501 14.59 15.3601 14.3L13.0601 12Z" fill="white"/>
+                      </svg>
+                    </span>
                   </button>
                   <div class="modal-body-content">
                     <!-- Background Image Gallery -->
@@ -132,13 +120,13 @@
       >
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
-            <button
-                type="button"
-                class="close m-0 close-modal"
-                data-dismiss="modal"
-                aria-label="Close"
-            >
-              <span aria-hidden="true"></span>
+            <button type="button" class="close m-0 close-modal"  data-dismiss="modal" aria-label="Close" >
+              <span aria-hidden="true"  @click="rentModal = false">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path opacity="0.4" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="white"/>
+                  <path d="M13.0601 12L15.3601 9.69998C15.6501 9.40998 15.6501 8.92999 15.3601 8.63999C15.0701 8.34999 14.5901 8.34999 14.3001 8.63999L12.0001 10.94L9.70011 8.63999C9.41011 8.34999 8.93011 8.34999 8.64011 8.63999C8.35011 8.92999 8.35011 9.40998 8.64011 9.69998L10.9401 12L8.64011 14.3C8.35011 14.59 8.35011 15.07 8.64011 15.36C8.79011 15.51 8.98011 15.58 9.17011 15.58C9.36011 15.58 9.55011 15.51 9.70011 15.36L12.0001 13.06L14.3001 15.36C14.4501 15.51 14.6401 15.58 14.8301 15.58C15.0201 15.58 15.2101 15.51 15.3601 15.36C15.6501 15.07 15.6501 14.59 15.3601 14.3L13.0601 12Z" fill="white"/>
+                </svg>
+              </span>
             </button>
             <p>
               {{ $t("rookie_sms_part_1", $store.state.locale) }}
@@ -643,61 +631,25 @@
                             <div v-if="credentialModalShow">
                               <transition name="modal">
                                 <div
-                                    class="
-                                    modal-mask
-                                    seller-information-modal
-                                    upgrade-modal
-                                    multiple-user-warning-modal
-                                  "
-                                >
+                                    class="modal-mask seller-information-modal upgrade-modal multiple-user-warning-modal " >
                                   <div class="modal-wrapper">
-                                    <div
-                                        class="modal-dialog modal-dialog-centered"
-                                        role="document"
-                                    >
+                                    <div class="modal-dialog modal-dialog-centered" role="document" >
                                       <div class="modal-content">
-                                        <button
-                                            type="button"
-                                            class="close"
-                                            data-dismiss="modal"
-                                            aria-label="Close"
-                                        >
-                                          <span
-                                              aria-hidden="true"
-                                              @click="credentialModalShow = false"
-                                              class="close-modal"
-                                          ></span>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" >
+                                          <span aria-hidden="true" @click="credentialModalShow = false" class="close-modal" >
+                                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                              <path opacity="0.4" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="white"/>
+                                              <path d="M13.0601 12L15.3601 9.69998C15.6501 9.40998 15.6501 8.92999 15.3601 8.63999C15.0701 8.34999 14.5901 8.34999 14.3001 8.63999L12.0001 10.94L9.70011 8.63999C9.41011 8.34999 8.93011 8.34999 8.64011 8.63999C8.35011 8.92999 8.35011 9.40998 8.64011 9.69998L10.9401 12L8.64011 14.3C8.35011 14.59 8.35011 15.07 8.64011 15.36C8.79011 15.51 8.98011 15.58 9.17011 15.58C9.36011 15.58 9.55011 15.51 9.70011 15.36L12.0001 13.06L14.3001 15.36C14.4501 15.51 14.6401 15.58 14.8301 15.58C15.0201 15.58 15.2101 15.51 15.3601 15.36C15.6501 15.07 15.6501 14.59 15.3601 14.3L13.0601 12Z" fill="white"/>
+                                            </svg>
+                                          </span>
                                         </button>
-                                        <h4
-                                            class="text-secondery mb-a-12 f-s-28"
-                                        >
-                                          {{
-                                            $t(
-                                                "enter_game_credential",
-                                                $store.state.locale
-                                            )
-                                          }}
+                                        <h4 class="text-secondery mb-a-12 f-s-28" >
+                                          {{ $t( "enter_game_credential", $store.state.locale ) }}
                                         </h4>
                                         <!-- form-group -->
-                                        <ValidationObserver
-                                            v-slot="{ invalid }"
-                                        >
-                                          <form
-                                              @submit.prevent="
-                                              gameCredentialUpdate(
-                                                userRentId,
-                                                userGameId,
-                                                userPassword
-                                              )
-                                            "
-                                              method="post"
-                                          >
-                                            <div
-                                                class="
-                                                form-group
-                                                post-rent--form-group
-                                              "
-                                            >
+                                        <ValidationObserver v-slot="{ invalid }" >
+                                          <form @submit.prevent="gameCredentialUpdate( userRentId, userGameId, userPassword )" method="post">
+                                            <div class=" form-group post-rent--form-group " >
                                               <label
                                                   for="game-user-id"
                                                   class="
@@ -817,23 +769,9 @@
                                               ></label>
                                               <div
                                                   class="
-                                                  post-rent--form-group--input
-                                                "
-                                              >
-                                                <button
-                                                    type="submit"
-                                                    class="
-                                                    btn--secondery
-                                                    user-id-edit-btn
-                                                  "
-                                                    :disabled="invalid"
-                                                >
-                                                  <span class="w-100">{{
-                                                      $t(
-                                                          "submit",
-                                                          $store.state.locale
-                                                      )
-                                                    }}</span>
+                                                  post-rent--form-group--input ">
+                                                <button type="submit" class="w-full btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative " :disabled="invalid" >
+                                                  <span class="w-100">{{ $t( "submit", $store.state.locale )}}</span>
                                                 </button>
                                               </div>
                                             </div>
@@ -3681,53 +3619,15 @@
                             "
                           >
                             <div class="modal-wrapper">
-                              <div
-                                  class="modal-dialog modal-dialog-centered w-328"
-                                  role="document"
-                              >
-                                <div
-                                    class="
-                                    modal-content
-                                    bg-pattens-blue
-                                    border-2 border-secondery
-                                    p-a-4
-                                    br-0
-                                  "
-                                >
-                                  <button
-                                      type="button"
-                                      class="
-                                      close
-                                      position-absolute
-                                      right-10
-                                      top-10
-                                      w-fit
-                                    "
-                                      data-dismiss="modal"
-                                      aria-label="Close"
-                                  >
-                                    <svg
-                                        aria-hidden="true"
-                                        @click="requestModalShow = false"
-                                        width="24"
-                                        height="24"
-                                        viewBox="0 0 24 24"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path
-                                          d="M16.2427 6.34315L12.0001 10.5858L7.75744 6.34315L6.34323 7.75736L10.5859 12L6.34323 16.2426L7.75744 17.6569L12.0001 13.4142L16.2427 17.6569L17.6569 16.2426L13.4143 12L17.6569 7.75736L16.2427 6.34315Z"
-                                          fill="#0B0F18"
-                                      />
-                                      <rect
-                                          x="0.5"
-                                          y="0.5"
-                                          width="23"
-                                          height="23"
-                                          rx="11.5"
-                                          stroke="#0B0F18"
-                                      />
-                                    </svg>
+                              <div class="modal-dialog modal-dialog-centered w-328" role="document"  >
+                                <div class=" modal-content bg-pattens-blue border-2 border-secondery p-a-4 br-0  " >
+                                  <button type="button" class=" close top-8 right-8 position-absolute" data-dismiss="modal" aria-label="Close" >
+                                    <span  aria-hidden="true" @click="requestModalShow = false">
+                                      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path opacity="0.4" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#919399"/>
+                                          <path d="M13.0601 12L15.3601 9.69998C15.6501 9.40998 15.6501 8.92999 15.3601 8.63999C15.0701 8.34999 14.5901 8.34999 14.3001 8.63999L12.0001 10.94L9.70011 8.63999C9.41011 8.34999 8.93011 8.34999 8.64011 8.63999C8.35011 8.92999 8.35011 9.40998 8.64011 9.69998L10.9401 12L8.64011 14.3C8.35011 14.59 8.35011 15.07 8.64011 15.36C8.79011 15.51 8.98011 15.58 9.17011 15.58C9.36011 15.58 9.55011 15.51 9.70011 15.36L12.0001 13.06L14.3001 15.36C14.4501 15.51 14.6401 15.58 14.8301 15.58C15.0201 15.58 15.2101 15.51 15.3601 15.36C15.6501 15.07 15.6501 14.59 15.3601 14.3L13.0601 12Z" fill="#141A27"/>
+                                      </svg>
+                                    </span>
                                   </button>
                                   <div class="modal-body-content">
                                     <div>

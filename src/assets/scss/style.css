@@ -2299,6 +2299,18 @@ html {
   max-height: 450px;
 }
 
+.max-h-680 {
+  max-height: 680px;
+}
+
+.max-h-700 {
+  max-height: 700px;
+}
+
+.max-h-740 {
+  max-height: 740px;
+}
+
 .max-h-80pr {
   max-height: 80%;
 }
@@ -2644,26 +2656,6 @@ table thead tr th {
   margin-top: 11px;
   display: block;
   margin-right: 20px;
-}
-
-.x-icon::after, .x-icon::before {
-  content: "";
-  width: 12px;
-  height: 2px;
-  background: #0B0F18;
-  display: block;
-  position: absolute;
-  left: 3px;
-}
-
-.x-icon::after {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-}
-
-.x-icon::before {
-  -webkit-transform: rotate(135deg);
-          transform: rotate(135deg);
 }
 
 .content-heading {
@@ -4556,7 +4548,7 @@ select option {
 
 .autosuggest__results-container ul::-webkit-scrollbar-track {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: #FFD715;
+  background-color: rgba(255, 215, 21, 0.7);
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -4567,7 +4559,7 @@ select option {
 }
 
 .autosuggest__results-container ul::-webkit-scrollbar-thumb {
-  border-left: 1px solid #FFD715;
+  border-left: 1px solid rgba(255, 215, 21, 0.7);
   border-right: 0;
   background: #000;
 }
@@ -4884,6 +4876,10 @@ body #hubspot-messages-iframe-container {
     right: -12px;
     left: initial;
   }
+}
+
+.bn .user-name {
+  font-family: gilroy-regular;
 }
 
 .slider-section {
@@ -6940,6 +6936,7 @@ html {
   font-size: 20px;
   margin-bottom: 17px;
   text-transform: capitalize;
+  font-family: gilroy-regular;
 }
 
 .games-categories-section--categories input,
@@ -6950,6 +6947,7 @@ html {
 .games-categories-section--categories label {
   padding-left: 10px;
   opacity: .9;
+  font-family: gilroy-regular;
 }
 
 .games-categories-section--categories label::before {
@@ -7029,6 +7027,7 @@ html {
   text-transform: capitalize;
   position: relative;
   border: 1px solid rgba(255, 215, 21, 0.5);
+  font-family: gilroy-regular;
 }
 
 @media (max-width: 768px) {
@@ -7183,6 +7182,10 @@ html {
 
 .game-card--details--platforms a {
   margin-right: 20px;
+}
+
+.game-card--details .d-flex span {
+  font-family: gilroy-regular;
 }
 
 .game-card:hover .display-image img {
@@ -7621,11 +7624,13 @@ html {
   padding: 0;
   width: 20px;
   height: 20px;
-  border: 1px solid #FFD715;
   border-radius: 50%;
   position: absolute;
   right: 32px;
   top: 32px;
+  outline: none;
+  border: none;
+  opacity: 1;
 }
 
 @media (max-width: 575px) {
@@ -7643,24 +7648,6 @@ html {
   position: relative;
   display: block;
   margin-top: -7px;
-}
-
-.upgrade-modal .modal-dialog .modal-content .close span::after, .upgrade-modal .modal-dialog .modal-content .close span::before {
-  position: absolute;
-  content: ' ';
-  height: 14px;
-  width: 1px;
-  background-color: #FFD715;
-}
-
-.upgrade-modal .modal-dialog .modal-content .close span::after {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-}
-
-.upgrade-modal .modal-dialog .modal-content .close span::before {
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
 }
 
 .upgrade-modal .modal-dialog .modal-content .offer-edit-btn .btn--secondery {
@@ -8069,6 +8056,7 @@ html {
 
 .related-game-section h6 {
   margin-bottom: 10px;
+  font-family: gilroy-regular;
 }
 
 .related-game-section .vue-owl-nav {
@@ -8238,11 +8226,13 @@ html {
   padding: 0;
   width: 20px;
   height: 20px;
-  border: 1px solid #FFD715;
   border-radius: 50%;
   position: absolute;
   right: 32px;
   top: 32px;
+  outline: none;
+  border: none;
+  opacity: 1;
 }
 
 @media (max-width: 575px) {
@@ -8260,24 +8250,6 @@ html {
   position: relative;
   display: block;
   margin-top: -7px;
-}
-
-.game-available-section .modal-content .close span::after, .game-available-section .modal-content .close span::before {
-  position: absolute;
-  content: ' ';
-  height: 14px;
-  width: 1px;
-  background-color: #FFD715;
-}
-
-.game-available-section .modal-content .close span::after {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
-}
-
-.game-available-section .modal-content .close span::before {
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
 }
 
 .game-available-section .modal-content table tr td,
@@ -8767,7 +8739,7 @@ html {
   right: 106px;
 }
 
-@media (max-width: 575px) {
+@media (max-width: 991px) {
   .user-profile-heading--account-verified {
     right: 18px;
     bottom: -20px;
@@ -12923,6 +12895,10 @@ html {
   height: 42px;
 }
 
+.location-filter .vs__search {
+  font-family: gilroy-regular;
+}
+
 .location-filter .vs__selected {
   color: #fff;
   opacity: .95;
@@ -12943,6 +12919,7 @@ html {
   width: 100%;
   z-index: 0;
   height: 100%;
+  font-family: gilroy-regular;
 }
 
 .location-filter .vs__dropdown-menu {
@@ -13609,6 +13586,10 @@ html {
   height: 48px;
 }
 
+.bn .post-name {
+  font-family: gilroy-bold;
+}
+
 @media (max-width: 575px) {
   .new-post .owl-item.active {
     opacity: 1 !important;
@@ -13802,6 +13783,7 @@ html {
   top: 12px;
   right: 12px;
   z-index: 9;
+  opacity: 1;
 }
 
 .gamebazar-step-form {
@@ -13831,7 +13813,7 @@ html {
 
 .gamebazar-step-form .wizard__body__step {
   padding: 0 !important;
-  min-height: 200px;
+  min-height: 300px;
   margin-left: 0;
 }
 

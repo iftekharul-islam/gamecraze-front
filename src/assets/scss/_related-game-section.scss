@@ -2,6 +2,7 @@
     padding-bottom: 150px;
     h6 {
         margin-bottom: 10px;
+        @include gil-regular;
     }
     .vue-owl-nav {
         position: absolute;

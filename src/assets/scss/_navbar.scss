@@ -666,7 +666,7 @@
         }
         &::-webkit-scrollbar-track {
             -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-            background-color: $secondery;
+            background-color: $secondery-opa;
             border-top-left-radius: 0;
             border-bottom-left-radius: 0;
         }
@@ -675,7 +675,7 @@
             background: $secondery;
         }
         &::-webkit-scrollbar-thumb {
-            border-left: 1px solid $secondery;
+            border-left: 1px solid $secondery-opa;
             border-right: 0;
             background: $text-dark;
         }
@@ -943,5 +943,11 @@ body {
     @include for-max-1199 {
         right: -12px;
         left: initial;
+    }
+}
+
+.bn {
+    .user-name {
+        @include gil-regular;
     }
 }

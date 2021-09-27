@@ -6,7 +6,7 @@
               <h2>{{ $t('your_cart', $store.state.locale) }}</h2>
             </div>
             <div class="cart-heading-empty" v-if="emptyCart">
-              <h2>{{ $t('your_cart_empty', $store.state.locale) }}</h2>
+              <h2>{{ $t('my_cart_empty', $store.state.locale) }}</h2>
             </div>
             <div v-if="newCartItems.length" class="row">
               <div class="mb-4 mb-lg-0 col-md-12 col-lg-7">
@@ -173,7 +173,12 @@
                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                     <div class="modal-content">
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true" @click="showRentCountModal = false" class="close-modal"></span>
+                                            <span aria-hidden="true" @click="showRentCountModal = false">
+                                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path opacity="0.4" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="white"/>
+                                                    <path d="M13.0601 12L15.3601 9.69998C15.6501 9.40998 15.6501 8.92999 15.3601 8.63999C15.0701 8.34999 14.5901 8.34999 14.3001 8.63999L12.0001 10.94L9.70011 8.63999C9.41011 8.34999 8.93011 8.34999 8.64011 8.63999C8.35011 8.92999 8.35011 9.40998 8.64011 9.69998L10.9401 12L8.64011 14.3C8.35011 14.59 8.35011 15.07 8.64011 15.36C8.79011 15.51 8.98011 15.58 9.17011 15.58C9.36011 15.58 9.55011 15.51 9.70011 15.36L12.0001 13.06L14.3001 15.36C14.4501 15.51 14.6401 15.58 14.8301 15.58C15.0201 15.58 15.2101 15.51 15.3601 15.36C15.6501 15.07 15.6501 14.59 15.3601 14.3L13.0601 12Z" fill="white"/>
+                                                </svg>
+                                            </span>
                                         </button>
                                         <div class="modal-body-content">
                                             <p>You can not rent more than {{ $store.state.user.rent_limit }} games at a time please remove any {{ itemRemovable }} games to procced to order.</p>

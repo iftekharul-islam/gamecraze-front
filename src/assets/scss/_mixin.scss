@@ -42,11 +42,13 @@
         padding: 0;
         width: 20px;
         height: 20px;
-        border: 1px solid $secondery;
         border-radius: 50%;
         position: absolute;
         right: 32px;
         top: 32px;
+        outline: none;
+        border: none;
+        opacity: 1;
         @include for-max-575 {
             right: 16px;
             top: 16px;
@@ -58,20 +60,6 @@
             position: relative;
             display: block;
             margin-top: -7px;
-            &::after,
-            &::before {
-                position: absolute;
-                content: ' ';
-                height: 14px;
-                width: 1px;
-                background-color: $secondery;
-            }
-            &::after {
-                transform: rotate(45deg);
-            }
-            &::before {
-                transform: rotate(-45deg);
-            }
         }
     }
 }

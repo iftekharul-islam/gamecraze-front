@@ -396,6 +396,7 @@ $background_color_2: inherit;
     }
     .vs__search {
         // visibility: hidden;
+        @include gil-regular;
     }
     .vs__selected {
         color: $text-light;
@@ -416,6 +417,7 @@ $background_color_2: inherit;
                 width: 100%;
                 z-index: 0;
                 height: 100%;
+                @include gil-regular;
             }
             
         }

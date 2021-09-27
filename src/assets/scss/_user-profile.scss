@@ -42,7 +42,7 @@
         position: absolute;
         bottom: 90px;
         right: 106px;
-        @include for-max-575 {
+        @include for-max-991 {
             right: 18px;
             bottom: -20px;
         }

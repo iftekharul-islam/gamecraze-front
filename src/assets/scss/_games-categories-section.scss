@@ -17,6 +17,7 @@
             font-size: 20px;
             margin-bottom: 17px;
             text-transform: capitalize;
+            @include gil-regular;
         }
         input,
         label {
@@ -25,6 +26,7 @@
         label {
             padding-left: 10px;
             opacity: .9;
+            @include gil-regular;
             &::before {
                 background: transparent;
                 left: -1.1rem;
@@ -92,6 +94,7 @@
             text-transform: capitalize;
             position: relative;
             border: 1px solid $secondery-opa-5;
+            @include gil-regular;
             @include for-max-768 {
                 padding: 3px 35px 3px 10px;
                 font-size: 12px;
@@ -201,6 +204,11 @@
             flex-wrap: wrap;
             a {
                 margin-right: 20px;
+            }
+        }
+        .d-flex {
+            span {
+                @include gil-regular;
             }
         }
     }

@@ -61,10 +61,11 @@
                                             <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                     </div>
-                                    <button class="btn--secondery submit-btn">
-                                        <span>{{ $t('submit', $store.state.locale) }} <i v-if="isLoading" class="spinner-border spinner-border-sm"></i></span>
-                                        
-                                    </button>
+                                    <div class="text-left mt-3 mt-md-4">
+                                        <button class="router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative">
+                                            <span>{{ $t('submit', $store.state.locale) }} <i v-if="isLoading" class="spinner-border spinner-border-sm"></i></span>
+                                        </button>
+                                    </div>
                                 </form>
                             </ValidationObserver>
                         </div>

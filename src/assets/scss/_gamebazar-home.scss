@@ -440,6 +440,11 @@
     -webkit-box-orient: vertical;
     height: 48px;
 }
+.bn {
+    .post-name {
+        @include gil-bold;
+    }
+}
 // new post
 .new-post {
     .owl-item {

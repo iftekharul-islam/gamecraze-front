@@ -197,56 +197,55 @@
         <div v-if="ratingNavModal">
             <transition name="modal">
                 <div class="modal-mask rating-box-modal position-fixed top-0 left-0 w-100 h-100 m-auto z-index-9999">
-                    <div class="modal-wrapper bg-black-opa overflow-auto h-100">
-                        <div class="modal-dialog modal-dialog-centered h-100 mt-a-16" role="document">
-                            <div class="modal-content max-500 bg-game-details border-2 border-secondery br-0">
-                                <button type="button" class="close position-absolute right-20 top-20" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true" @click="ratingNavModal = false" class="close-modal">
-                                        <svg class="secondery-border rounded-circle" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path d="M14.2427 4.34315L10.0001 8.58579L5.75744 4.34315L4.34323 5.75736L8.58587 10L4.34323 14.2426L5.75744 15.6569L10.0001 11.4142L14.2427 15.6569L15.6569 14.2426L11.4143 10L15.6569 5.75736L14.2427 4.34315Z" fill="#FFD715"/>
+                    <div class="modal-wrapper bg-black-opa h-100 d-flex align-items-center justify-content-center py-4">
+                        <div class="modal-content max-500 max-h-740 h-100 bg-game-details border-2 border-secondery br-0 overflow-auto p-4">
+                            <button type="button" class="close position-absolute right-20 top-20" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" @click="ratingNavModal = false" class="close-modal">
+                                   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path opacity="0.4" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="white"/>
+                                        <path d="M13.0601 12L15.3601 9.69998C15.6501 9.40998 15.6501 8.92999 15.3601 8.63999C15.0701 8.34999 14.5901 8.34999 14.3001 8.63999L12.0001 10.94L9.70011 8.63999C9.41011 8.34999 8.93011 8.34999 8.64011 8.63999C8.35011 8.92999 8.35011 9.40998 8.64011 9.69998L10.9401 12L8.64011 14.3C8.35011 14.59 8.35011 15.07 8.64011 15.36C8.79011 15.51 8.98011 15.58 9.17011 15.58C9.36011 15.58 9.55011 15.51 9.70011 15.36L12.0001 13.06L14.3001 15.36C14.4501 15.51 14.6401 15.58 14.8301 15.58C15.0201 15.58 15.2101 15.51 15.3601 15.36C15.6501 15.07 15.6501 14.59 15.3601 14.3L13.0601 12Z" fill="white"/>
                                     </svg>
-                                    </span>
-                                </button>
-                                <div class="modal-body-content">
-                                    <h5 class="modal-title text-secondery text-center f-s-32 mb-4" id="exampleModalLabel">{{ $t('rate_please', $store.state.locale) }}</h5>
-                                    <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-if="ratingData.value.lender_id != $store.state.user.id">
-                                        <img :src="ratingData.value.lender.data.image" alt="img" class="img-fluid" v-if="ratingData.value.lender.data.image">
-                                        <img src="../../assets/img/avatar.png" class="img-fluid gamehub--logo" alt="Gamehub Logo logo" v-else>
-                                    </div>
-                                    <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-else>
-                                        <img :src="ratingData.value.renter.data.image" alt="img" class="img-fluid" v-if="ratingData.value.renter.data.image">
-                                         <img src="../../assets/img/avatar.png" class="img-fluid gamehub--logo" alt="Gamehub Logo logo" v-else>
-                                    </div>
-                                    <div class="text-center" v-if="ratingData.value.lender_id != $store.state.user.id">
-                                        <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.lender.data.name}} {{ ratingData.value.lender.data.last_name}}</p>
-                                        <p class="gil-bold opa-8">{{ $t('Lender', $store.state.locale) }}</p>
-                                    </div>
-                                    <div class="text-center" v-else>
-                                        <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.renter.data.name}} {{ ratingData.value.renter.data.last_name}}</p>
-                                        <p class="gil-bold opa-8">{{ $t('Renter', $store.state.locale) }}</p>
-                                    </div>
-                                    <div class="text-center">
-                                        <p class="f-s-20 mb-1 gil-bold">{{ ratingData.value.lend.data.rent.data.game.data.name }}</p>
-                                        <p class="gil-bold opa-8">{{ $t('game_name', $store.state.locale) }}</p>
-                                    </div>
-                                    <div class="d-flex vue-react justify-content-center align-items-center mb-5">
-                                        <vue-feedback-reaction v-model="ratingData.feedback" :labels="['Very Poor','Poor','Average','Good','Excellent']"/>
-                                    </div>
-                                    <form class="" @submit.prevent="ratingSubmit" method="post">
-                                        <div class="comment-box">
-                                            <div class="form-group">
-                                                <label for="comment-box" class="d-block gil-bold">{{ $t('comment_box', $store.state.locale) }}</label>
-                                                <textarea type="text" id="comment-box" rows="3" class="w-100 border-1 border-secondery primary-bg text-white p-2 focus-primary" v-model="ratingData.comment"></textarea>
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <span class="text-center d-block text-danger" v-if="invalidRating">{{ $t('please_rating', $store.state.locale) }}</span>
-                                        </div>
-                                        <div>
-                                            <button type="submit" class="bg-secondery primary-text text-center py-2 w-100 d-block gil-medium primary-text-hover">{{ $t('submit', $store.state.locale) }}</button>
-                                        </div>
-                                    </form>
+                                </span>
+                            </button>
+                            <div class="modal-body-content">
+                                <h5 class="modal-title text-secondery text-center f-s-32 mb-a-4" id="exampleModalLabel">{{ $t('rate_please', $store.state.locale) }}</h5>
+                                <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-a-4" v-if="ratingData.value.lender_id != $store.state.user.id">
+                                    <img :src="ratingData.value.lender.data.image" alt="img" class="img-fluid" v-if="ratingData.value.lender.data.image">
+                                    <img src="../../assets/img/avatar.png" class="img-fluid gamehub--logo" alt="Gamehub Logo logo" v-else>
                                 </div>
+                                <div class="text-center w-100px h-100px mx-auto overflow-hidden rounded-circle mb-4" v-else>
+                                    <img :src="ratingData.value.renter.data.image" alt="img" class="img-fluid" v-if="ratingData.value.renter.data.image">
+                                        <img src="../../assets/img/avatar.png" class="img-fluid gamehub--logo" alt="Gamehub Logo logo" v-else>
+                                </div>
+                                <div class="text-center mb-a-6" v-if="ratingData.value.lender_id != $store.state.user.id">
+                                    <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.lender.data.name}} {{ ratingData.value.lender.data.last_name}}</p>
+                                    <p class="gil-bold opa-8 mb-0">{{ $t('Lender', $store.state.locale) }}</p>
+                                </div>
+                                <div class="text-center mb-a-6" v-else>
+                                    <p class="f-s-20 mb-1 gil-bold" >{{ ratingData.value.renter.data.name}} {{ ratingData.value.renter.data.last_name}}</p>
+                                    <p class="gil-bold opa-8 mb-0">{{ $t('Renter', $store.state.locale) }}</p>
+                                </div>
+                                <div class="text-center">
+                                    <p class="f-s-20 mb-1 gil-bold">{{ ratingData.value.lend.data.rent.data.game.data.name }}</p>
+                                    <p class="gil-bold opa-8">{{ $t('game_name', $store.state.locale) }}</p>
+                                </div>
+                                <div class="d-flex vue-react justify-content-center align-items-center mb-a-6">
+                                    <vue-feedback-reaction v-model="ratingData.feedback" :labels="['Very Poor','Poor','Average','Good','Excellent']"/>
+                                </div>
+                                <form class="" @submit.prevent="ratingSubmit" method="post">
+                                    <div class="comment-box">
+                                        <div class="form-group">
+                                            <label for="comment-box" class="d-block gil-bold">{{ $t('comment_box', $store.state.locale) }}</label>
+                                            <textarea type="text" id="comment-box" rows="3" class="w-100 border-1 border-secondery primary-bg text-white p-2 focus-primary" v-model="ratingData.comment"></textarea>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span class="text-center d-block text-danger" v-if="invalidRating">{{ $t('please_rating', $store.state.locale) }}</span>
+                                    </div>
+                                    <div>
+                                        <button type="submit" class="router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative w-full">{{ $t('submit', $store.state.locale) }}</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>

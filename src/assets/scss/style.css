@@ -4294,18 +4294,42 @@ select option {
   display: none;
 }
 
+.bn .switch-btn {
+  font-family: gilroy-regular;
+}
+
+.switch-btn {
+  display: none;
+  background: #505E7D;
+  color: #fff;
+  width: 112px;
+  border: none;
+  outline: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+}
+
+.switch-btn:focus {
+  outline: none;
+}
+
 .animateNavebar {
   top: 0;
+  position: fixed;
   width: 100%;
-  height: 100%;
+  height: 80px;
   left: 0;
   z-index: 9;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: end;
-      -ms-flex-pack: end;
-          justify-content: flex-end;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background: #0b0f1880;
 }
 
 @media (max-width: 575px) {
@@ -4317,10 +4341,13 @@ select option {
   }
 }
 
+.animateNavebar .switch-btn {
+  display: block;
+}
+
 .animateNavebar .searchbar-input {
   max-width: 400px;
   width: 100%;
-  top: 2px;
 }
 
 @media (max-width: 575px) {
@@ -4335,17 +4362,15 @@ select option {
 }
 
 .animateNavebar #autosuggest > div:first-of-type {
-  border: 1px solid #484B52;
+  border: 1px solid #384563;
   height: 45px;
-  background: #484B52;
-  border-top-left-radius: 4px;
-  border-bottom-left-radius: 4px;
+  background: #384563;
+  border-top-left-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
 }
 
-@media (min-width: 992px) {
-  .animateNavebar .animate-nav {
-    width: 400px;
-  }
+.animateNavebar #autosuggest > div input {
+  background: #384563;
 }
 
 @media (max-width: 575px) {
@@ -4355,8 +4380,8 @@ select option {
 }
 
 .animateNavebar .animate-nav-btn {
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
 }
 
 .animateNavebar .animate-navbar-icon {
@@ -4382,6 +4407,12 @@ select option {
   display: block;
 }
 
+@media (max-width: 575px) {
+  .animateNavebar .search-input-design {
+    margin-left: 0;
+  }
+}
+
 .animate-navbar-icon {
   display: none;
 }
@@ -4397,7 +4428,6 @@ select option {
   border-radius: 0;
   position: relative;
   left: -3px;
-  top: 2px;
 }
 
 .gamehub-search-btn:focus {

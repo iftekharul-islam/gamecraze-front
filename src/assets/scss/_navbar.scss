@@ -458,24 +458,46 @@
             }
         }
 }
-
+.bn {
+    .switch-btn {
+        @include gil-regular;
+    }
+}
+.switch-btn {
+    display: none;
+    background: $price-switch;
+    color: $text-light;
+    width: 112px;
+    border: none;
+    outline: none;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+    &:focus {
+        outline: none;
+    }
+}
 .animateNavebar {
     top: 0;
+    position: fixed;
     width: 100%;
-    height: 100%;
+    height: 80px;
     left: 0;
     z-index: 9;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
+    align-items: center;
+    background: $primary-op-5;
     @include for-max-575 {
         justify-content: flex-start;
         position: fixed;
     }
-    
+    .switch-btn {
+        display: block;
+       
+    }
     .searchbar-input {
         max-width: 400px;
         width: 100%;
-        top: 2px;
         @include for-max-575 {
             width: 70%;
         }
@@ -487,25 +509,25 @@
     #autosuggest {
         >div {
             &:first-of-type {
-                border: 1px solid $gamebazar-search-input;
+                border: 1px solid $newslatter-input ;
                 height: 45px;
-                background: $gamebazar-search-input;
-                border-top-left-radius: 4px;
-                border-bottom-left-radius: 4px;
+                background: $newslatter-input;
+                border-top-left-radius: 0px !important;
+                border-bottom-left-radius: 0px !important;
+            }
+            input {
+                background: $newslatter-input;
             }
         }
     }
     .animate-nav {
-        @include for-min-992 {
-            width: 400px;
-        }
         @include for-max-575 {
             width: 100%;
         }
     }
     .animate-nav-btn {
-        border-top-right-radius: 4px;
-        border-bottom-right-radius: 4px;
+        border-top-right-radius: 30px;
+        border-bottom-right-radius: 30px;
     }
     .animate-navbar-icon {
         display: flex;
@@ -526,6 +548,11 @@
             }
         }
     }
+    .search-input-design {
+        @include for-max-575 {
+            margin-left: 0;
+        }
+    }
 }
 .animate-navbar-icon {
     display: none;
@@ -541,7 +568,6 @@
     border-radius: 0;
     position: relative;
     left: -3px;
-    top: 2px;
     &:focus {
         outline: none;
         border: none;

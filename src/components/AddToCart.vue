@@ -520,12 +520,12 @@
     created() {
         window.scrollTo(0,0);
         this.authData();
-        this.$api.get('delivery-charge').then(response => {
-            if (response.data.data) {
-                this.deliveryCharge = response.data.data.charge;
-                localStorage.setItem('deliveryCharge', response.data.data.charge);
-            }
-        });
+        // this.$api.get('delivery-charge').then(response => {
+        //     if (response.data.data) {
+        //         this.deliveryCharge = response.data.data.charge;
+        //         localStorage.setItem('deliveryCharge', response.data.data.charge);
+        //     }
+        // });
 
         this.$api.get('commission').then(response => {
             if (response.data.data) {

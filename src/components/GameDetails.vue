@@ -17,10 +17,9 @@
                             <p>{{game.description.substring(0, 300) | strippedContent}} . . .</p>
                             <a href="#description" class="read-more">{{ $t('read_more', $store.state.locale) }}</a>
                             <div class="rent-now">
-                                <router-link :to="{ path: '/rent-price/' + game.slug}" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative border-0" v-if="!auth" > <span></span> <div class="position-relative">{{ $t('rent_now', $store.state.locale) }}</div></router-link>
-                                <router-link to="/login" class="border-0" v-if="!rentExist"><span></span></router-link>
-                                <button class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative border-0"  data-toggle="modal" data-target="#warning" v-else-if="rentLimit <= myLends"> <span></span> <div class="position-relative">{{ $t('rent_now', $store.state.locale) }}</div></button>
-                                <router-link :to="{ path: '/rent-posted-users/' + game.slug}" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative border-0" v-else> <span></span> <div class="position-relative">{{ $t('rent_now', $store.state.locale) }}</div></router-link>
+                                <router-link :to="{ path: '/rent-price/' + game.slug}" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative border-0" v-if="!auth && rentExist" > <span></span> <div class="position-relative">{{ $t('rent_now', $store.state.locale) }}</div></router-link>
+                                <button class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative border-0"  data-toggle="modal" data-target="#warning" v-else-if="auth && rentLimit <= myLends"> <span></span> <div class="position-relative">{{ $t('rent_now', $store.state.locale) }}</div></button>
+                                <router-link :to="{ path: '/rent-posted-users/' + game.slug}" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative border-0" v-else-if="auth && rentExist"> <span></span> <div class="position-relative">{{ $t('rent_now', $store.state.locale) }}</div></router-link>
                             </div>
                             <div class="d-flex games-header-section--platforms">
                                 <p style="text-transform: uppercase">{{ $t('platform', $store.state.locale) }}:</p>
@@ -227,8 +226,8 @@
                 loadedRelated: false,
                 game: '',
                 relatedGames: [],
-                rentLimit: this.$store.state.user.rent_limit,
-                myLends: '',
+                rentLimit: 0,
+                myLends: 0,
                 rentExist: false,
                 modalScreenShot: null,
                 isImage: false,
@@ -259,6 +258,7 @@
             authData () {
                 let auth = this.$store.getters.ifAuthenticated;
                 if (auth){
+                    this.rentLimit = this.$store.state.user.rent_limit;
                     let config = {
                         headers: {
                             'Authorization': 'Bearer ' + this.$store.state.token

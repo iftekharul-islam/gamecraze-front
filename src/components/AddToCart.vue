@@ -301,7 +301,6 @@
                 };
                 this.$api.post('apply-promo', data, config).then(response => {
                     if (response.data.error == false){
-                      console.log(response.data)
                         this.promoAmount = response.data.amount;
                         this.couponId = response.data.coupon_id;
                         this.discountAmount = this.mainAmount - this.promoAmount;

@@ -65,17 +65,17 @@
                         </div>
                         <p class="text-danger" v-if="promoError">Invalid Promo Code</p>
                       </div>
-                      <div class="total d-flex align-items-center justify-content-between" v-if="discountAmount != 0">
-                          <p>Main amount</p>
-                          <span class="total-price">৳ {{ mainAmount + deliveryCharge }}</span>
-                      </div>
-                          <div class="total d-flex align-items-center justify-content-between" v-if="discountAmount != 0">
-                              <p>Discount amount</p>
-                              <span class="total-price">৳ {{ discountAmount }}</span>
-                          </div>
                       <div class="total d-flex align-items-center justify-content-between">
                           <p>{{ $t('total', $store.state.locale) }}</p>
                           <span class="total-price">৳ {{ grandTotal }}</span>
+                      </div>
+                      <div class="total d-flex align-items-center justify-content-between" v-if="discountAmount != 0">
+                          <p>Discount amount</p>
+                          <span class="total-price">৳ {{ discountAmount }}</span>
+                      </div>
+                      <div class="total d-flex align-items-center justify-content-between" v-if="discountAmount != 0">
+                          <p>Final amount</p>
+                          <span class="total-price">৳ {{ totalPrice }}</span>
                       </div>
                       </form>
                   </div>
@@ -271,7 +271,7 @@
       },
       computed: {
         grandTotal() {
-          return parseInt(this.mainAmount) + parseInt(this.deliveryCharge);
+          return parseInt(this.mainAmount) + parseInt(this.deliveryCharge) - parseInt(this.deliveryCharge);
         }
       },
     methods: {
@@ -520,29 +520,12 @@
     created() {
         window.scrollTo(0,0);
         this.authData();
-        this.$api.get('delivery-charge').then(response => {
-            if (response.data.data) {
-                this.deliveryCharge = response.data.data.charge;
-                localStorage.setItem('deliveryCharge', response.data.data.charge);
-            }
-        });
 
         this.$api.get('commission').then(response => {
             if (response.data.data) {
                 this.commissionAmount = response.data.data.amount;
             }
         });
-
-        // this.getCartItems();
-
-        this.$store.watch((state) => {
-                return this.$store.state.cart
-            },
-            (newValue, oldValue) => {
-                this.cart = newValue;
-            },
-            {deep: true}
-        );
     },
   }
 </script>

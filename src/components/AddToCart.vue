@@ -271,7 +271,7 @@
       },
       computed: {
         grandTotal() {
-          return parseInt(this.mainAmount) + parseInt(this.deliveryCharge) - parseInt(this.deliveryCharge);
+          return parseInt(this.mainAmount) + parseInt(this.deliveryCharge);
         }
       },
     methods: {

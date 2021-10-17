@@ -250,7 +250,7 @@
               </div>
           </div>
       </div>
-    <div class="gamebazar-product-similar pb-a-20" v-else>
+    <div class="gamebazar-product-similar pb-a-20" v-if="loadLatestPosts">
       <div class="container">
         <h3 class="text-white f-s-24 gil-bold mb-4">{{ $t('might_also_like', $store.state.locale) }}</h3>
         <!-- carousel -->

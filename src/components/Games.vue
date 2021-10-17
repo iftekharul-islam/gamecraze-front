@@ -51,7 +51,7 @@
                         <span v-for="(categoryItem, categoryIndex) in checkedCategories" :key="categoryItem + categoryIndex">{{categoryItem}} <div @click="removeCategoryFilter(categoryItem)" class="remove-icon"><i class="fas fa-times"></i></div></span>
                         <span v-for="(platformItem, platformIndex) in checkedPlatforms" :key="platformItem + platformIndex">{{ platformItem}} <div @click="removePlatformFilter(platformItem)" class="remove-icon"><i class="fas fa-times"></i></div></span>
                         <span v-for="(diskTypeItem, diskTypeIndex) in checkedDiskType" :key="diskTypeItem + diskTypeIndex">{{ diskTypeItem == 'digital_copy' ? 'Digital Copy': 'Physical Copy'}} <div @click="removeDiskTypeFilter(diskTypeItem)" class="remove-icon"><i class="fas fa-times"></i></div></span>
-                        <span v-if="$route.query.search">{{$route.query.search}} <div @click="removeSearchKey()" class="remove-icon"><i class="fas fa-times"></i></div></span>
+                        <span v-if="searchKey">{{ searchKey }} <div @click="removeSearchKey()" class="remove-icon"><i class="fas fa-times"></i></div></span>
                       </div>
                         <div class="games-categories-section--games">
                             <div class="row">
@@ -177,23 +177,26 @@
             this.checkedPlatforms.push(value);
           }
         },
-          changeCheckedDiskType(value) {
-              const index = this.checkedDiskType.indexOf(value);
-              if ( index> -1) {
-                  this.checkedDiskType.splice(index, 1);
-              }
-              else {
-                  this.checkedDiskType.push(value);
-              }
-          },
+        changeCheckedDiskType(value) {
+            const index = this.checkedDiskType.indexOf(value);
+            if ( index> -1) {
+                this.checkedDiskType.splice(index, 1);
+            }
+            else {
+                this.checkedDiskType.push(value);
+            }
+        },
         fetchFilteredGames() {
             this.responseDelay = true;
             this.noGameFound = false;
             if (this.$route.query.search) {
               this.searchKey = this.$route.query.search
+              if (this.$route.query.search.trim() === ''){
+                this.searchKey = '';
+              }
             }
             else {
-              this.searchKey = ''
+              this.searchKey = '';
             }
 
             if (this.$route.query.categories) {
@@ -231,7 +234,7 @@
         }
       },
       watch: {
-          checkedCategories: function (val) {
+          checkedCategories: function () {
               if (this.checkedCategories.length) {
                   this.$router.push({
                       query: Object.assign({}, this.$route.query, {
@@ -253,7 +256,7 @@
               }
               this.fetchFilteredGames();
           },
-          checkedPlatforms: function (val) {
+          checkedPlatforms: function () {
               if (this.checkedPlatforms.length) {
                   this.$router.push({
                       query: Object.assign({}, this.$route.query, {
@@ -299,13 +302,11 @@
           }
       },
         created() {
+            console.log('hello')
             window.scrollTo(0,0);
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {
                 this.rents = response.data.data;
                 this.fetchFilteredGames();
-                // this.checkedCategories = typeof this.queryCategories == 'string'? this.queryCategories.split(',') : [];
-                // this.checkedPlatforms = typeof this.queryPlatforms == 'string' ? this.queryPlatforms.split(',') : [];
-                // this.checkedDiskType = typeof this.queryDiskType == 'string' ? this.queryDiskType.split(',') : [];
                 const uniqueArr = [... new Set(this.rents.map(data => data.game_id))]
                 this.$api.get('rent-games/?ids=' + uniqueArr + '&include=assets,genres,platforms').then(resp => {
                   this.games = resp.data.data;

@@ -152,7 +152,7 @@
             }
         },
         created () {
-            this.$toaster.success('Welcome to Game Hub');
+            this.$toaster.success(this.$t('gamehub_welcome', this.$store.state.locale));
         },
 
     }

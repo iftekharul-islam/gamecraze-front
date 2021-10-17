@@ -51,7 +51,7 @@
                                         <div class="d-flex justify-content-between">
                                             <ul>
                                                 <li class="text-white mb-3 gil-bold">Gamehub</li>
-                                                <li><a href="#" @click.prevent="scrollToTop">{{ $t('home', $store.state.locale) }}</a></li>
+                                                <li @click="scrollToTop"><router-link to="/">{{ $t('home', $store.state.locale) }}</router-link></li>
                                                 <li><router-link to="/games">{{ $t('rent_games', $store.state.locale) }}</router-link></li>
                                                 <li><router-link to="/about-us">{{ $t('about_gamehub', $store.state.locale) }}</router-link></li>
                                                 <li><router-link  class="router_link" to="/profile" @click.native="clickProfile()">{{ $t('post_for_lend', $store.state.locale) }}</router-link></li>
@@ -65,7 +65,7 @@
                                         <div class="d-flex justify-content-between">
                                             <ul>
                                                 <li class="text-white mb-3 gil-bold">Game Bazar</li>
-                                                <li><router-link to="/gamebazar">{{ $t('home', $store.state.locale) }}</router-link></li>
+                                                <li @click="scrollToTop"><router-link to="/gamebazar">{{ $t('home', $store.state.locale) }}</router-link></li>
                                                 <li><router-link to="/sell-posts">{{ $t('all_product', $store.state.locale) }}</router-link></li>
                                                 <li><a href="#" @click.prevent="routeOnSellPost">{{ $t('create_sell_post', $store.state.locale) }}</a></li>
 <!--                                                <li><router-link to="/sell-posts">{{ $t('buy_ps4', $store.state.locale) }}</router-link></li>-->

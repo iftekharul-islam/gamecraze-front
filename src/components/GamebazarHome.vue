@@ -521,7 +521,6 @@ export default {
     });
     this.$api.get('category-list?include=products').then(response => {
       this.categories = response.data.data;
-      console.log(this.categories)
       if (this.categories.length) {
         this.loadCategories = true
       }

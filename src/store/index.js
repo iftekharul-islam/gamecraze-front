@@ -381,7 +381,7 @@ export const storage = {
                     commit('setInactiveUser', false)
                     localStorage.removeItem('email');
                     localStorage.removeItem('referral');
-                    router.push('/').catch(err => {});
+                    router.push('/')
                 } else {
                     commit('setNumberExist', true)
                     commit('setSubmitLoading', false)

@@ -118,7 +118,7 @@
                         this.$store.commit('setUserId', response.data.data.id);
                         localStorage.setItem('userId', JSON.stringify(response.data.data.id))
                         localStorage.setItem('user', JSON.stringify(response.data.data));
-                        this.$router.push('/profile');
+                        this.$router.push('/');
                         return
                     }
                     if (response.data.error === true) {

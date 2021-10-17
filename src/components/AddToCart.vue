@@ -289,7 +289,7 @@
             this.totalPrice = this.mainAmount;
             this.couponId = null;
             if (this.promoCode != null){
-                var config = {
+                let config = {
                     headers: {
                         'Authorization': 'Bearer ' + this.$store.state.token
                     }
@@ -304,7 +304,7 @@
                         this.promoAmount = response.data.amount;
                         this.couponId = response.data.coupon_id;
                         this.discountAmount = this.mainAmount - this.promoAmount;
-                        this.totalPrice = this.promoAmount;
+                        this.totalPrice = parseInt(this.promoAmount) + parseInt(this.deliveryCharge);
                     } else {
                         this.promoError = true;
                     }

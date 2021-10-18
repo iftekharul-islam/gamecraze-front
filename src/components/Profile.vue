@@ -3934,7 +3934,7 @@
                             </tbody>
                           </table>
                         </div>
-                        <span class="text-center d-block mt-a-18" v-else>{{
+                        <span class="text-center d-block mt-a-18 text0white opa-8" v-else>{{
                             $t("no_referral_history", $store.state.locale)
                           }}</span>
                       </div>
@@ -4404,7 +4404,7 @@
                             </transition>
                           </div>
                         </div>
-                        <span class="text-center d-block mt-a-18" v-else>{{
+                        <span class="text-center d-block mt-a-18 text-white opa-8" v-else>{{
                             $t("no_pending_rating", $store.state.locale)
                           }}</span>
                         <!--                                        <nav aria-label="Page navigation example" class="my-earning&#45;&#45;payment-history&#45;&#45;pagination">-->

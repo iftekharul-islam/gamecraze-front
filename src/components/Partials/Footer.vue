@@ -122,8 +122,8 @@
                      <div class="row">
                          <div class="col-12">
                              <div class="footer-bottom">
-                                <p>©2021 Game Hub</p>
-                                   <p>Powered By: <a href="https://augnitive.com/?utm_source=GameHub&utm_medium=GH%20Footer&utm_campaign=GH%20Traffic" target="_blank">Augnitive</a></p>
+                                <p class="gil-regular-imp">©2021 Game Hub</p>
+                                   <p class="gil-regular-imp">Powered By: <a href="https://augnitive.com/?utm_source=GameHub&utm_medium=GH%20Footer&utm_campaign=GH%20Traffic" target="_blank">Augnitive</a></p>
                                 <div class="footer-bottom--social">
                                     <a href="https://www.facebook.com/gamehub.bangladesh" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                     <a href="https://twitter.com/BdGamehub" target="_blank"><i class="fab fa-twitter"></i></a>

@@ -388,6 +388,15 @@
                 prevRoute: null,
             }
         },
+        watch: {
+          "$route.params.slug": {
+            handler: function() {
+              this.gameDetails(this.id);
+            },
+            deep: true,
+            immediate: true,
+          },
+        },
         beforeRouteEnter(to, from, next) {
           next(vm => {
             vm.prevRoute = from

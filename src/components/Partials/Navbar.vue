@@ -80,9 +80,19 @@
                      <!-- search bar -->
                    <div class="gamehub-input-group gamehub-input-group-searchbar">
                         <div class="gamehub-input-group--content">
-
+                           
                             <div :class="{ animateNavebar: navbarAnimate }"  >
-                                <div class="d-flex position-absolute animate-nav">
+                                <div class="d-flex position-absolute animate-nav justify-content-center w-100">
+                                     <!-- lend rent switch button -->
+                                    <button class="switch-btn">
+                                        For rent
+                                        <svg class="ml-2" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M5.96684 3.47998L3.48682 1L1.00684 3.47998" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M3.4873 13V1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M8.0332 10.52L10.5132 13L12.9932 10.52" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                            <path d="M10.5137 1V13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </button>
                                     <span class="animate-navbar-icon order-3" 
                                 @click="navbarAnimate = !navbarAnimate"
                                 :class="{ block: navbarAnimate }">
@@ -109,7 +119,7 @@
                                         </div>
                                     </vue-autosuggest>
                                 </div>
-                                <button class="btn gamehub-search-btn animate-nav-btn" @click="onMenuItemClick(), navbarAnimate = !navbarAnimate" type="search" @click.prevent="searchGame">
+                                <button class="btn gamehub-search-btn animate-nav-btn w-60" @click="onMenuItemClick(), navbarAnimate = !navbarAnimate" type="search" @click.prevent="searchGame">
                                     <i class="fa fa-search gamehub-search-btn--icon"></i>
                                 </button>
                                 </div>

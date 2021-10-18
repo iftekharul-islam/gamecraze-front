@@ -25,6 +25,10 @@
                                     <span class="box eligible"></span>
                                     <span>Can rent 2 Games at a time </span>
                                 </div>
+                                 <div class="pricing-plan--card--list--item">
+                                    <span class="box eligible"></span>
+                                    <span>User can rent physical disk </span>
+                                </div>
                                 <div class="pricing-plan--card--list--item">
                                     <span class="box eligible"></span>
                                     <span>Free delivery after 3rd rent </span>

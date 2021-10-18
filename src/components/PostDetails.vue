@@ -7,7 +7,7 @@
           <svg class="rotate-180" width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.1886 0.453195C11.8766 0.621512 11.6821 0.941571 11.6821 1.28968L11.6821 6.71028L0.97906 6.71028C0.438618 6.71028 6.87254e-07 7.13872 6.41103e-07 7.66663C5.94952e-07 8.19454 0.438618 8.62298 0.97906 8.62298L11.6821 8.62298L11.6821 14.0436C11.6821 14.393 11.8766 14.713 12.1886 14.8801C12.5006 15.0497 12.8818 15.0382 13.1834 14.8533L23.5431 8.47634C23.8277 8.30037 24 7.99562 24 7.66663C24 7.33765 23.8277 7.03289 23.5431 6.85692L13.1834 0.479973C13.0241 0.383062 12.8426 0.333332 12.6612 0.333332C12.4993 0.333332 12.3361 0.374136 12.1886 0.453195Z" fill="#FFFBE7"/>
           </svg>
-          <span class="ml-2 opa-7">Back</span>
+          <span class="ml-2 opa-7 gil-regular-imp">Back</span>
         </a>
         <div class="row">
           <div class="col-md-6 pr-a-md-5" v-if="sliderSection">
@@ -17,21 +17,21 @@
           </div>
           <div class="col-md-6 pl-a-md-5">
             <div class="gamebazar-product-details__content">
-              <h1 class="f-s-48 gil-bold text-secondery mb-a-6">{{ post.name }}</h1>
+              <h1 class="f-s-48 gil-bold-imp text-secondery mb-a-6">{{ post.name }}</h1>
               <div class="gamebazar-product-details__content__des">
                 <p class="text-white gil-bold mb-4">{{ $t('product_details', $store.state.locale) }}:</p>
-                <p v-html="post.description"></p>
+                <p v-html="post.description" class="gil-regular-imp"></p>
 
               </div>
-              <p><span class="f-s-34 gil-bold text-secondery mb-a-6">{{ post.price }} tk </span><small v-if="post.is_negotiable ==1">Negotiable</small></p>
+              <p><span class="f-s-34 gil-bold-imp text-secondery mb-a-6">{{ post.price }} tk </span><small v-if="post.is_negotiable ==1">Negotiable</small></p>
               <div class=" mt-5">
-                <a class=" btn--secondery-hover br-4 gil-bold font-weight-bold primary-text-imp pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="showSeller = true"> <span></span> <div class="position-relative">Contact the seller</div></a>
+                <a class=" btn--secondery-hover br-4 gil-bold-imp font-weight-bold primary-text-imp pl-a-6 pr-a-6 d-inline-block position-relative pointer" @click="showSeller = true"> <span></span> <div class="position-relative gil-bold-imp">Contact the seller</div></a>
               </div>
               <div class="row border-b-1 border-white-25 pt-a-6">
                 <div class="col-md-6">
                   <div class="mb-a-6">
                     <p class="text-white gil-bold mb-2">{{ $t('create_post', $store.state.locale) }}</p>
-                    <p class="text-white gil-regular">{{ formattedDate(post.created_at) }}</p>
+                    <p class="text-white gil-regular-imp">{{ formattedDate(post.created_at) }}</p>
                   </div>
                   <div class="mb-a-6">
                     <p class="text-white gil-bold mb-2">{{ $t('product_type', $store.state.locale) }}</p>
@@ -57,8 +57,8 @@
                 </div>
                 <div class="col-md-6">
                   <div class="mb-a-6">
-                    <p class="text-white gil-bold mb-2">{{ $t('product_id', $store.state.locale) }}</p>
-                    <p class="text-white gil-regular">{{ post.product_no }}</p>
+                    <p class="text-white gil-bold mb-2 ">{{ $t('product_id', $store.state.locale) }}</p>
+                    <p class="text-white gil-regular gil-regular-imp">{{ post.product_no }}</p>
                   </div>
                   <div class="mb-a-6">
                     <p class="text-white gil-bold mb-2">{{ $t('warranty', $store.state.locale) }}</p>
@@ -95,13 +95,13 @@
                 <div class="col-md-6">
                   <div class="mb-a-6">
                     <p class="text-white gil-bold mb-2">{{ $t('location', $store.state.locale) }}</p>
-                    <p class="text-white gil-regular">{{ post.area }}, {{ post.thana.data.name }}, {{ post.thana.data.district.data.name }}, {{ post.thana.data.district.data.division.data.name }}</p>
+                    <p class="text-white gil-regular-imp ">{{ post.area }}, {{ post.thana.data.name }}, {{ post.thana.data.district.data.name }}, {{ post.thana.data.district.data.division.data.name }}</p>
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="mb-a-6">
                     <p class="text-white gil-bold mb-2">{{ $t('address', $store.state.locale) }}</p>
-                    <p class="text-white gil-regular">{{ post.address }}</p>
+                    <p class="text-white gil-regular-imp">{{ post.address }}</p>
                   </div>
                 </div>
               </div>
@@ -113,7 +113,7 @@
                       <img :src="post.user.data.image" class="img-fluid w-100" alt="Gamebazar image" v-if="post.user.data.image != ''">
                       <img src="../assets/img/avatar.png" class="img-fluid w-100" alt="Gamebazar image" v-else>
                     </div>
-                    <p class="text-white gil-bold mb-4" v-if="post.user.data.name">{{ post.user.data.name }}</p>
+                    <p class="text-white gil-bold mb-4 gil-regular-imp" v-if="post.user.data.name">{{ post.user.data.name }}</p>
                   </div>
                 </div>
                 <div class="col-md-6">
@@ -127,7 +127,7 @@
                     class="report-post-modal primary-bg-5 position-fixed top-0 left-0 w-100 h-100 align-items-center justify-content-center z-index-99999 p-3">
                       <div class="report-post-modal__content max-460 w-full border-1 border-secondery-opa-50 p-4 bg-game-details br-4 max-h-100pr overflow-auto position-relative">
                         <span class="position-absolute top-10 right-10 pointer f-s-18 opa-8" @click=" reportModalShow = !reportModalShow">
-                          X
+                          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.4" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="white"></path><path d="M13.0601 12L15.3601 9.69998C15.6501 9.40998 15.6501 8.92999 15.3601 8.63999C15.0701 8.34999 14.5901 8.34999 14.3001 8.63999L12.0001 10.94L9.70011 8.63999C9.41011 8.34999 8.93011 8.34999 8.64011 8.63999C8.35011 8.92999 8.35011 9.40998 8.64011 9.69998L10.9401 12L8.64011 14.3C8.35011 14.59 8.35011 15.07 8.64011 15.36C8.79011 15.51 8.98011 15.58 9.17011 15.58C9.36011 15.58 9.55011 15.51 9.70011 15.36L12.0001 13.06L14.3001 15.36C14.4501 15.51 14.6401 15.58 14.8301 15.58C15.0201 15.58 15.2101 15.51 15.3601 15.36C15.6501 15.07 15.6501 14.59 15.3601 14.3L13.0601 12Z" fill="white"></path></svg>
                         </span>
                         <ValidationObserver v-slot="{ handleSubmit }">
                             <p class="mb-3">{{ $t('product_name', $store.state.locale) }}</p>
@@ -230,7 +230,7 @@
                             <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image" v-else>
                               <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3" v-if="related.product_type === 1">New</span>
                               <span class="position-absolute top-0 left-0 bg-purple br-b-r-5 py-1 px-3 text-white br-t-l-3" v-if="related.product_type === 2">Used</span>
-                              <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ {{ related.price }}</span>
+                              <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium-imp br-b-r-5">৳ {{ related.price }}</span>
                           </div>
                           <p class="gil-bold mb-4 mt-a-4 text-white post-name">{{ related.name }}</p>
                           <div class="d-flex align-items-center text-secondery">
@@ -299,7 +299,7 @@
                   <img src="../assets/img/play.png" class="img-fluid w-100 " alt="Gamebazar image" v-else>
                   <span class="position-absolute top-0 left-0 bg-gamebazar-badge br-b-r-5 py-1 px-3 text-white br-t-l-3" v-if="post.product_type === 1">New</span>
                   <span class="position-absolute top-0 left-0 bg-purple br-b-r-5 py-1 px-3 text-white br-t-l-3" v-if="post.product_type === 2">Used</span>
-                  <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium br-b-r-5">৳ {{ post.price }}</span>
+                  <span class="position-absolute bottom-0 right-0 bg-secondery br-t-l-3 py-1 px-3 primary-text gil-medium-imp br-b-r-5">৳ {{ post.price }}</span>
                 </div>
                 <p class="gil-bold mb-4 mt-a-4 text-white post-name">{{ post.name }}</p>
                 <div class="d-flex align-items-center text-secondery">
@@ -315,7 +315,7 @@
           </carousel>
         </div>
         <div class="text-center mt-5">
-          <router-link to='/sell-posts' class="border-1 border-secondery-opa-25 text-secondery py-2 pl-a-6 pr-a-6 d-inline-block br-4">{{ $t('all_post', $store.state.locale) }}</router-link>
+          <router-link to='/sell-posts' class="btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative">{{ $t('all_post', $store.state.locale) }}</router-link>
         </div>
       </div>
     </div>

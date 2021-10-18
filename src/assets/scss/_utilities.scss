@@ -2089,15 +2089,21 @@ html {
 .gil-bold {
     @include gil-bold;
 }
-
+.gil-bold-imp {
+    font-family: gilroy-bold !important;
+}
 .gil-medium {
     @include gil-medium;
 }
-
+.gil-medium-imp {
+    font-family: gilroy-medium !important;
+}
 .gil-regular {
     @include gil-regular;
 }
-
+.gil-regular-imp {
+    font-family: gilroy-regular !important;
+}
 // pointer events
 .pe-none {
     pointer-events: none;
@@ -2630,63 +2636,8 @@ select {
 .game-card-hover-outer {
     position: relative;
     display: block;
-    // after
-    // before
-    &::after,
-    &::before {
-        content: "";
-        width: 0;
-        height: 4px;
-        position: absolute;
-        transition: all 0.5s ease-in;
-        background: $secondery;
-        @include for-max-575 {
-            transition: all 0.3s ease-in;
-        }
-    }
-    &::before {
-        right: 0;
-        top: 0;
-    }
-    &::after {
-        left: 0;
-        bottom: 0;
-    }
-    // .game-card
-    .game-card-hover-inner {
-        &::after,
-        &::before {
-            content: "";
-            width: 4px;
-            height: 0;
-            position: absolute;
-            transition: all 0.5s ease-in;
-            background: $secondery;
-            @include for-max-575 {
-                transition: all 0.3s ease-in;
-            }
-        }
-        &::before {
-            left: 0;
-            bottom: 0;
-        }
-        &::after {
-            right: 0;
-            top: 0;
-        }
-    }
     &:hover {
         color: inherit;
-        &::after,
-        &::before {
-            width: 100%;
-        }
-        .game-card-hover-inner {
-            &::after,
-            &::before {
-                height: 100%;
-            }
-        }
     }
 }
 

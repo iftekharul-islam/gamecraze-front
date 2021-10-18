@@ -6,7 +6,7 @@
               </div>
               <div class="container position-relative h-100">
                   <div class="profile-header--btn position-absolute right-0 bottom-50">
-                      <router-link  class="btn--secondery" to="/profile" @click.native="clickProfile()"><span>{{ $t('post_for_lend', $store.state.locale) }}</span></router-link>
+                      <router-link class=" router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative" to="/profile" @click.native="clickProfile()"><span>{{ $t('post_for_lend', $store.state.locale) }}</span></router-link>
 <!--                      <a href="https://www.gamehub.com.bd/profile" class="btn&#45;&#45;secondery"></a>-->
                   </div>
               </div>
@@ -52,7 +52,7 @@
                       </div>
                       <div class="col-md-5 mx-auto">
                          <div class="lend-notice-content-btn">
-                              <a href="https://www.gamehub.com.bd/profile" class="btn--secondery w-100"><span>{{ $t('post_for_lend', $store.state.locale) }}</span></a>
+                              <a href="https://www.gamehub.com.bd/profile" class=" router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative w-100"><span>{{ $t('post_for_lend', $store.state.locale) }}</span></a>
                          </div>
                       </div>
                   </div>

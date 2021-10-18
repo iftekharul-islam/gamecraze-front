@@ -28,7 +28,7 @@
         position: relative;
         overflow: auto;
         table {
-            @include for-max-992 {
+            @include for-max-1199 {
                 width: 1040px;
             }
         }
@@ -42,7 +42,7 @@
             z-index: -1;
             background: $secondery;
             border: 1px solid $secondery;
-            @include for-max-992 {
+            @include for-max-1199 {
                 width: 1080px;
                 height: 61px;
             }

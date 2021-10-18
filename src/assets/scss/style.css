@@ -2175,12 +2175,24 @@ html {
   font-family: gilroy-bold;
 }
 
+.gil-bold-imp {
+  font-family: gilroy-bold !important;
+}
+
 .gil-medium {
   font-family: gilroy-medium;
 }
 
+.gil-medium-imp {
+  font-family: gilroy-medium !important;
+}
+
 .gil-regular {
   font-family: gilroy-regular;
+}
+
+.gil-regular-imp {
+  font-family: gilroy-regular !important;
 }
 
 .pe-none {
@@ -2751,70 +2763,8 @@ select option {
   display: block;
 }
 
-.game-card-hover-outer::after, .game-card-hover-outer::before {
-  content: "";
-  width: 0;
-  height: 4px;
-  position: absolute;
-  -webkit-transition: all 0.5s ease-in;
-  transition: all 0.5s ease-in;
-  background: #FFD715;
-}
-
-@media (max-width: 575px) {
-  .game-card-hover-outer::after, .game-card-hover-outer::before {
-    -webkit-transition: all 0.3s ease-in;
-    transition: all 0.3s ease-in;
-  }
-}
-
-.game-card-hover-outer::before {
-  right: 0;
-  top: 0;
-}
-
-.game-card-hover-outer::after {
-  left: 0;
-  bottom: 0;
-}
-
-.game-card-hover-outer .game-card-hover-inner::after, .game-card-hover-outer .game-card-hover-inner::before {
-  content: "";
-  width: 4px;
-  height: 0;
-  position: absolute;
-  -webkit-transition: all 0.5s ease-in;
-  transition: all 0.5s ease-in;
-  background: #FFD715;
-}
-
-@media (max-width: 575px) {
-  .game-card-hover-outer .game-card-hover-inner::after, .game-card-hover-outer .game-card-hover-inner::before {
-    -webkit-transition: all 0.3s ease-in;
-    transition: all 0.3s ease-in;
-  }
-}
-
-.game-card-hover-outer .game-card-hover-inner::before {
-  left: 0;
-  bottom: 0;
-}
-
-.game-card-hover-outer .game-card-hover-inner::after {
-  right: 0;
-  top: 0;
-}
-
 .game-card-hover-outer:hover {
   color: inherit;
-}
-
-.game-card-hover-outer:hover::after, .game-card-hover-outer:hover::before {
-  width: 100%;
-}
-
-.game-card-hover-outer:hover .game-card-hover-inner::after, .game-card-hover-outer:hover .game-card-hover-inner::before {
-  height: 100%;
 }
 
 .secondery-hover {
@@ -4846,6 +4796,7 @@ select option {
   color: #FFD715;
   font-weight: 700;
   opacity: 1;
+  pointer-events: none;
 }
 
 .gamehub-language span {
@@ -7153,6 +7104,8 @@ html {
   cursor: pointer;
   -webkit-transition: all .5s ease-in;
   transition: all .5s ease-in;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 .game-card h6 {
@@ -7216,6 +7169,10 @@ html {
 
 .game-card--details .d-flex span {
   font-family: gilroy-regular;
+}
+
+.game-card:hover {
+  border-color: #FFD715;
 }
 
 .game-card:hover .display-image img {
@@ -8191,7 +8148,7 @@ html {
   overflow: auto;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1199px) {
   .game-available-section--table table {
     width: 1040px;
   }
@@ -8209,7 +8166,7 @@ html {
   border: 1px solid #FFD715;
 }
 
-@media (max-width: 992px) {
+@media (max-width: 1199px) {
   .game-available-section--table::after {
     width: 1080px;
     height: 61px;

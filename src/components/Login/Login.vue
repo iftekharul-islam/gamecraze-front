@@ -16,7 +16,7 @@
                             <div class="password-setup-popup--content">
                                 <p>{{ $t('mail_password', $store.state.locale) }}</p>
                                 <!-- <router-link to="/registration">ok</router-link> -->
-                                <button @click="hidePopUp" class="password-setup-popup--content--btn"><p>{{ $t('submit', $store.state.locale) }}</p></button>
+                                <button @click="hidePopUp" class="password-setup-popup--content--btn text-white gil-medium">{{ $t('submit', $store.state.locale) }}</button>
                             </div>
                         </div>
 

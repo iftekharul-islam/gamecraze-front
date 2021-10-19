@@ -75,7 +75,7 @@
                     >
                       <a
                           type="submit"
-                          class="btn--secondery user-id-edit-btn"
+                          class="router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative"
                           disabled
                           @click.prevent="coverImageSelect(user.id)"
                       ><span class="w-100">{{
@@ -3814,7 +3814,7 @@
                     </template>
                     <div class="refer-friend">
                       <div class="refer-friend--link">
-                        <p>{{ $t("refer_link", $store.state.locale) }}</p>
+                        <p class="text-white">{{ $t("refer_link", $store.state.locale) }}</p>
                         <div class="refer-friend--link--input-group d-flex">
                           <input
                               type="text"

@@ -123,7 +123,7 @@
                     </div>
                     <div class="select-platforms mt-a-6">
                       <h6 class="mb-5">Price range</h6>
-                      <vue-slider v-model="priceRange" :min-range="100" :max="100000" @change="getValue" :process="process" :dot-options="dotOptions"></vue-slider>
+                      <vue-slider v-model="priceRange" :min-range="100" :max="100000" @drag-end="getValue" :process="process" :dot-options="dotOptions"></vue-slider>
                     </div>
                     <div class="select-platforms d-grid grid-cols-2 col-gap-16 mt-3">
                     </div>
@@ -144,7 +144,7 @@
                   @click="removeCategoryFilter(categoryItem)" class="remove-icon"><i
                   class="fas fa-times"></i></div>
                 </span>
-                <span v-if="$route.query.search">{{$route.query.search}} <div @click="removeSearchKey()" class="remove-icon"><i class="fas fa-times"></i></div></span>
+                <span v-if="searchKey">{{ searchKey }} <div @click="removeSearchKey()" class="remove-icon"><i class="fas fa-times"></i></div></span>
               </div>
                  <div class="position-relative ml-md-auto w-full w-md-initial">
                     <div class="d-flex flex-row-reverse flex-md-row align-items-center justify-content-md-end">
@@ -575,6 +575,9 @@ export default {
     getSellPosts(page_no = '') {
       if (this.$route.query.search) {
         this.searchKey = this.$route.query.search
+        if (this.$route.query.search.trim() === ''){
+          this.searchKey = '';
+        }
       } else {
         this.searchKey = '';
         this.query = '';

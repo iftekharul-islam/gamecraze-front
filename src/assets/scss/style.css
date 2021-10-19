@@ -4270,11 +4270,16 @@ select option {
   outline: none;
 }
 
+.nav-transform {
+  -webkit-transform: translate(0, -50px);
+          transform: translate(0, -50px);
+}
+
 .animateNavebar {
-  top: 0;
+  top: 68px;
   position: fixed;
   width: 100%;
-  height: 80px;
+  height: 62px;
   left: 0;
   z-index: 9;
   display: -webkit-box;
@@ -4286,7 +4291,10 @@ select option {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: #0b0f18e8;
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+  -webkit-transition: all .3s ease-in;
+  transition: all .3s ease-in;
 }
 
 @media (max-width: 575px) {
@@ -6906,7 +6914,7 @@ html {
 }
 
 .games-categories-section {
-  padding-top: 60px;
+  padding-top: 92px;
   padding-bottom: 180px;
 }
 

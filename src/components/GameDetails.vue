@@ -239,15 +239,15 @@
                 isVideo: false,
             }
         },
-        // watch: {
-        //     "$route.params.slug": {
-        //         handler: function() {
-        //             this.fetchGame();
-        //         },
-        //         deep: true,
-        //         immediate: true,
-        //     },
-        // },
+        watch: {
+            "$route.params.slug": {
+                handler: function(e) {
+                    this.fetchGame();
+                },
+                deep: true,
+                immediate: true,
+            },
+        },
         methods: {
             setModalData(screenShot, type) {
                 this.isVideo = false;
@@ -303,7 +303,7 @@
                 }
             });
               this.fetchRelatedGame();
-            });
+            }).catch(()=>{});
           },
           fetchRelatedGame() {
             let genres = [];

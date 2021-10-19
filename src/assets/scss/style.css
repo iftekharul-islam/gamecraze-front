@@ -27,7 +27,7 @@ body {
   font-size: 16px;
   background: #0B0F18;
   color: #fff;
-  padding-top: 80px;
+  padding-top: 65px;
   font-family: gilroy-regular;
 }
 
@@ -3666,7 +3666,7 @@ select option {
 
 .gamehub-menu {
   background: #0B0F18;
-  padding: 16px 0;
+  padding: 10px 0;
 }
 
 .gamehub-menu.gamehub-menu-active {
@@ -3815,7 +3815,7 @@ select option {
   height: 4px;
   position: absolute;
   background: #FFD715;
-  top: 48px;
+  top: 42px;
   left: 0;
   right: 0;
   margin: auto;
@@ -4228,7 +4228,14 @@ select option {
 }
 
 .search-input-design .autosuggest__results-container {
-  width: calc(100% + 40px) !important;
+  width: calc(100% - 55px) !important;
+}
+
+@media (max-width: 575px) {
+  .search-input-design .autosuggest__results-container {
+    width: 340px !important;
+    left: -100px;
+  }
 }
 
 .search-input-design .autosuggest__results-container ul {
@@ -4279,7 +4286,7 @@ select option {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: #0b0f1880;
+  background: #0b0f18e8;
 }
 
 @media (max-width: 575px) {
@@ -4293,10 +4300,11 @@ select option {
 
 .animateNavebar .switch-btn {
   display: block;
+  height: 45px;
 }
 
 .animateNavebar .searchbar-input {
-  max-width: 400px;
+  max-width: 480px;
   width: 100%;
 }
 
@@ -4848,7 +4856,7 @@ body #hubspot-messages-iframe-container {
 }
 
 .new-badge {
-  top: -12px;
+  top: -9px;
   left: 60px;
 }
 
@@ -13010,7 +13018,6 @@ html {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  margin-top: 24px;
   padding: 62px 0;
 }
 
@@ -13431,7 +13438,7 @@ html {
 .gamebazar__search .autosuggest__results-container {
   position: absolute;
   z-index: 19;
-  width: calc(100% + 48px);
+  width: calc(100%);
 }
 
 .gamebazar__search .autosuggest__results-container ul {

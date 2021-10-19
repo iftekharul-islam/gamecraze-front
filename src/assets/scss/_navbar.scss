@@ -8,7 +8,7 @@
 
 .gamehub-menu {
     background: $primary;
-    padding: 16px 0;
+    padding: 10px 0;
     &.gamehub-menu-active {
         background: $trans-nav-bg;
     }
@@ -101,7 +101,7 @@
                         height: 4px;
                         position: absolute;
                         background: $secondery;
-                        top: 48px;
+                        top: 42px;
                         left: 0;
                         right: 0;
                         margin: auto;
@@ -441,7 +441,11 @@
         width: 0;
     }
     .autosuggest__results-container {
-        width: calc(100% + 40px) !important;
+        width: calc(100% - 55px) !important;
+        @include for-max-575 {
+            width: 340px !important;
+            left: -100px;
+        }
         ul {
             height: 300px !important;
         }
@@ -486,17 +490,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: $primary-op-5;
+    background: $animate-nav-bg;
     @include for-max-575 {
         justify-content: flex-start;
         position: fixed;
     }
     .switch-btn {
         display: block;
+        height: 45px;
        
     }
     .searchbar-input {
-        max-width: 400px;
+        max-width: 480px;
         width: 100%;
         @include for-max-575 {
             width: 70%;
@@ -965,7 +970,7 @@ body {
     }
 }
 .new-badge {
-    top: -12px;
+    top: -9px;
     left: 60px;
     @include for-max-1199 {
         right: -12px;

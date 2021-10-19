@@ -3,7 +3,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    margin-top: 24px;
     padding: 62px 0;
     @include for-max-1199 {
         margin-top: 5px;
@@ -315,7 +314,7 @@
         .autosuggest__results-container {
             position: absolute;
             z-index: 19;
-            width: calc(100% + 48px);
+            width: calc(100%);
             ul {
                 width: 100%;
                 margin-left: 0;

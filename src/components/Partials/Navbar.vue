@@ -84,44 +84,100 @@
                             <div :class="{ animateNavebar: navbarAnimate }"  >
                                 <div class="d-flex position-absolute animate-nav justify-content-center w-100">
                                      <!-- lend rent switch button -->
-                                    <button class="switch-btn">
-                                        For rent
-                                        <svg class="ml-2" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path d="M5.96684 3.47998L3.48682 1L1.00684 3.47998" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M3.4873 13V1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M8.0332 10.52L10.5132 13L12.9932 10.52" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <path d="M10.5137 1V13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-                                        </svg>
-                                    </button>
-                                    <span class="animate-navbar-icon order-3" 
-                                @click="navbarAnimate = !navbarAnimate"
-                                :class="{ block: navbarAnimate }">
-                                    <i class="fas fa-times"></i>
-                                </span>
-                                <div class="search-input-design searchbar-input gamebazar__search position-relative" >
+                                  <button class="switch-btn rent-switch" v-if="isRent" @click="isRent = !isRent">
+                                      For Rent
+                                      <svg class="ml-2" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                          <path d="M5.96684 3.47998L3.48682 1L1.00684 3.47998" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                          <path d="M3.4873 13V1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                          <path d="M8.0332 10.52L10.5132 13L12.9932 10.52" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                          <path d="M10.5137 1V13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                      </svg>
+                                  </button>
+                                  <button class="switch-btn sell-switch" v-if="!isRent" @click="isRent = !isRent">
+                                    For Sell
+                                    <svg class="ml-2" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M5.96684 3.47998L3.48682 1L1.00684 3.47998" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                      <path d="M3.4873 13V1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                      <path d="M8.0332 10.52L10.5132 13L12.9932 10.52" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                      <path d="M10.5137 1V13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                  </button>
+                                  <span class="animate-navbar-icon order-3" @click="searchClear()" :class="{ block: navbarAnimate }">
+                                    <i class="fas fa-times"></i> 
+                                  </span>
+
+                                  <div class="search-input-design searchbar-input gamebazar__search position-relative d-flex" v-if="isRent">
+                                      <vue-autosuggest
+                                          v-model="query"
+                                          :suggestions="filteredOptions"
+                                          @keyup.enter="searchGame"
+                                          @selected="onSelected"
+                                          :get-suggestion-value="getSuggestionValue"
+                                          :input-props="{id:'autosuggest__input',class:'auto-suggest-menu' ,placeholder: $t('search_game', $store.state.locale) }">
+                                          <div  slot-scope="{suggestion}">
+                                              <div class="d-flex align-items-center">
+                                                  <div class="gamebazar__search__img overflow-hidden br-4">
+                                                      <img :src="suggestion.item.game.data.poster_url" class="img-fluid  h-100 w-100 object-cover" :alt="suggestion.item.game.data.name" v-if="suggestion.item.game.data.poster_url">
+                                                      <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2020/11/PS5-PS4-Game-Forced-Install-Problem.jpg" class="img-fluid object-cover h-100 w-100" alt="Gamehub Logo logo" v-else>
+                                                  </div>
+                                                  <div class="ml-3">
+                                                     <span class="gil-bold">{{suggestion.item.game.data.name}}</span>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </vue-autosuggest>
+                                       <button class="btn gamehub-search-btn animate-nav-btn w-60" @click.prevent="searchGame">
+                                          <i class="fa fa-search gamehub-search-btn--icon"></i>
+                                      </button>
+                                  </div>
+                                 
+
+                                  <div class="search-input-design searchbar-input gamebazar__search position-relative d-flex" v-if="!isRent">
                                     <vue-autosuggest
-                                        v-model="query"
-                                        :suggestions="filteredOptions"
-                                        @keyup.enter="searchGame"
-                                        @selected="onSelected"
-                                        :get-suggestion-value="getSuggestionValue"
-                                        :input-props="{id:'autosuggest__input',class:'auto-suggest-menu' ,placeholder: $t('search_game', $store.state.locale) }">
-                                        <div  slot-scope="{suggestion}">
-                                            <div class="d-flex align-items-center">
-                                                <div class="gamebazar__search__img overflow-hidden br-4">
-                                                    <img :src="suggestion.item.game.data.poster_url" class="img-fluid  h-100 w-100 object-cover" :alt="suggestion.item.game.data.name" v-if="suggestion.item.game.data.poster_url">
-                                                    <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2020/11/PS5-PS4-Game-Forced-Install-Problem.jpg" class="img-fluid object-cover h-100 w-100" alt="Gamehub Logo logo" v-else>
-                                                </div>
-                                                <div class="ml-3">
-                                                   <span class="gil-bold">{{suggestion.item.game.data.name}}</span>
-                                                </div>
+                                        v-model="productQuery"
+                                        :suggestions="productFilteredOptions"
+                                        @keyup.enter="searchProduct"
+                                        @selected="onSelectedProduct"
+                                        :get-suggestion-value="getProductSuggestionValue"
+                                        :input-props="{id:'autosuggest_prouduct_input',class:'auto-suggest-menu',placeholder: $t('search_game_accessories', $store.state.locale) }">
+                                      <div  slot-scope="{ suggestion }" class="w-100">
+                                        <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between position-relative">
+
+                                          <div class="d-flex align-items-md-center search-content">
+                                            <div class="gamebazar__search__img overflow-hidden br-4">
+                                              <img :src="suggestion.item.cover.url" class="img-fluid  h-100 w-100" alt="Gamehub Logo logo" v-if="suggestion.item.cover != null">
+                                              <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2020/11/PS5-PS4-Game-Forced-Install-Problem.jpg" class="img-fluid  h-100 w-100" alt="Gamehub Logo logo" v-else>
                                             </div>
+                                            <div class="ml-3">
+                                              <span class="d-block gil-bold mb-2 name">{{ suggestion.item.name }}</span>
+                                              <span class="name" v-if="suggestion.item.product_type === 1">
+                                          {{ $t('new', $store.state.locale) }}
+                                        </span>
+                                              <span class="name d-block w-152" v-if="suggestion.item.product_type === 2">
+                                          {{ $t('used', $store.state.locale) }}&nbsp;
+                                            <span v-if="suggestion.item.used_year != null">
+                                                  {{ suggestion.item.used_year }}&nbsp;
+                                                  {{ $t('year', $store.state.locale) }}&nbsp;
+                                            </span>
+                                            <span v-if="suggestion.item.used_month != null">
+                                                  {{ suggestion.item.used_month }}&nbsp;
+                                                  {{ $t('month', $store.state.locale) }}&nbsp;
+                                            </span>
+                                            <span v-if="suggestion.item.used_day != null">
+                                                  {{ suggestion.item.used_day }}&nbsp;
+                                                  {{ $t('day', $store.state.locale) }}
+                                            </span>
+                                        </span>
+                                            </div>
+                                          </div>
+                                          <span class="text-secondery gil-bold font-weight-bold name search-price">৳ {{ suggestion.item.price }}</span>
                                         </div>
+                                      </div>
                                     </vue-autosuggest>
-                                </div>
-                                <button class="btn gamehub-search-btn animate-nav-btn w-60" @click="onMenuItemClick(), navbarAnimate = !navbarAnimate" type="search" @click.prevent="searchGame">
-                                    <i class="fa fa-search gamehub-search-btn--icon"></i>
-                                </button>
+                                    <button class="btn gamehub-search-btn animate-nav-btn w-60" @click.prevent="searchProduct">
+                                      <i class="fa fa-search gamehub-search-btn--icon"></i>
+                                    </button>
+                                  </div>
                                 </div>
                             </div>
                             <button :class="{ dnone: navbarAnimate }" class="btn gamehub-search-btn-2" @click="navbarAnimate = !navbarAnimate" type="search">
@@ -272,6 +328,9 @@
         components: {VueFeedbackReaction},
         data() {
             return {
+                productQuery: "",
+                posts: [],
+                isRent: true,
                 navbarAnimate: false,
                 invalidRating: false,
                 ratingNavModal: false,
@@ -301,6 +360,24 @@
             }
         },
         methods: {
+            searchClear() {
+              this.navbarAnimate = false;
+              this.query = '';
+              this.productQuery = '';
+            },
+            searchProduct() {
+              if (this.query !== '') {
+                this.$router.push({
+                  name: 'sell-posts',
+                  query: {categories: this.$route.query.categories, search: this.productQuery}
+                })
+                this.$root.$emit('searchProductEvent')
+              } else {
+                this.$router.push({
+                  name: 'sell-posts'
+                })
+              }
+            },
             ratingSubmit () {
                 this.invalidRating = false;
                 if (this.ratingData.rating === 0 && this.ratingData.comment === ''){
@@ -400,7 +477,7 @@
                 })
             },
           clickProfile() {
-              var auth = this.$store.getters.ifAuthenticated;
+              let auth = this.$store.getters.ifAuthenticated;
               if (!auth) {
                   this.$router.push('/lend-notice');
                   return
@@ -412,6 +489,7 @@
               this.ratingData.value = data;
           },
           searchGame() {
+              this.onMenuItemClick();
               this.navbarAnimate = false;
               if(this.query !== '') {
                 this.$router.push({name: 'games', query: {categories: this.$route.query.categories, platforms: this.$route.query.platforms, search: this.query}})
@@ -429,14 +507,21 @@
             this.navbarAnimate = false;
             this.selected = item.item.game.data;
             this.query = this.selected.name;
-            this.$router.push('/game-details/' + this.selected.slug);
+            this.$router.push('/game-details/' + this.selected.slug).catch(()=>{});;
+          },
+          onSelectedProduct(item) {
+            this.selected = item.item;
+            this.productQuery = this.selected.name;
+            this.$router.push('/sell-post/' + this.selected.id + '/' + this.selected.url_name).catch(()=>{});
           },
           /**
            * This is what the <input/> value is set to when you are selecting a suggestion.
            */
           getSuggestionValue(suggestion) {
-            console.log(suggestion.item)
             return suggestion.item.game.data.name;
+          },
+          getProductSuggestionValue(suggestion) {
+            return suggestion.item.name;
           },
           onMenuItemClick() {
             if( window.innerWidth < 992 ) {
@@ -477,7 +562,16 @@
                 })
               }
             ];
-          }
+          },
+          productFilteredOptions() {
+            return [
+              {
+                data: this.posts.filter(option => {
+                  return option.name.toLowerCase().indexOf(this.productQuery.toLowerCase()) > -1;
+                })
+              }
+            ];
+          },
         },
         created() {
             this.$root.$refs.Navbar = this;
@@ -494,7 +588,9 @@
             this.$api.get('all-rent-games?include=game.platforms').then(response =>{
               this.games = response.data.data;
             });
-
+            this.$api.get('all-sell-post').then(response => {
+              this.posts = response.data.data;
+            });
             this.$root.$on('clearSearchKey', () => {
               this.query = '';
             });

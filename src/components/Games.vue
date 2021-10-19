@@ -302,7 +302,6 @@
           }
       },
         created() {
-            console.log('hello')
             window.scrollTo(0,0);
             this.$api.get('rent-posts?include=platform,game.assets,game.genres').then(response => {
                 this.rents = response.data.data;

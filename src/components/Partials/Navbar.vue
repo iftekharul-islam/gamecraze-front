@@ -81,7 +81,7 @@
                    <div class="gamehub-input-group gamehub-input-group-searchbar">
                         <div class="gamehub-input-group--content">
                            
-                            <div :class="{ animateNavebar: navbarAnimate }"  >
+                            <div class="nav-transform" :class="{ animateNavebar: navbarAnimate }"  >
                                 <div class="d-flex position-absolute animate-nav justify-content-center w-100">
                                      <!-- lend rent switch button -->
                                   <button class="switch-btn rent-switch" v-if="isRent" @click="isRent = !isRent">
@@ -102,9 +102,6 @@
                                       <path d="M10.5137 1V13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                     </svg>
                                   </button>
-                                  <span class="animate-navbar-icon order-3" @click="searchClear()" :class="{ block: navbarAnimate }">
-                                    <i class="fas fa-times"></i> 
-                                  </span>
 
                                   <div class="search-input-design searchbar-input gamebazar__search position-relative d-flex" v-if="isRent">
                                       <vue-autosuggest
@@ -180,7 +177,7 @@
                                   </div>
                                 </div>
                             </div>
-                            <button :class="{ dnone: navbarAnimate }" class="btn gamehub-search-btn-2" @click="navbarAnimate = !navbarAnimate" type="search">
+                            <button :class="{ activeBtn: navbarAnimate }" class="btn gamehub-search-btn-2" @click="navbarAnimate = !navbarAnimate" type="search">
                                 <i class="fa fa-search gamehub-search-btn--icon"></i>
                             </button>
                         </div>

@@ -79,15 +79,15 @@
                    </div>
                 </div>
                 <div class="col-12 mt-5">
-                    <a href="#" class="btn--secondery w-100"
+                    <a href="#" class="router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative w-100"
                        v-clipboard:copy="copyUrl + post.id + '/' + post.game.data.slug "
                        v-clipboard:success="onCopy"
                        v-clipboard:error="onError"
                        v-if="renter == true && post.status == 1"><span style="text-transform: uppercase">{{ $t('share_now', $store.state.locale) }}</span>
                     </a>
                     <a href="javascript:void(0)" v-else-if="post.rented_user_id != null"></a>
-                    <a href="javascript:void(0)" class="btn--secondery w-100" v-else-if="$store.getters.ifAuthenticated && post.status == 1" @click="rentModal = true"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></a>
-                    <router-link to="/login" class="btn--secondery w-100"
+                    <a href="javascript:void(0)" class="router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative w-100" v-else-if="$store.getters.ifAuthenticated && post.status == 1" @click="rentModal = true"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></a>
+                    <router-link to="/login" class="router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative w-100"
                        v-else-if="post.status == 1"><span style="text-transform: uppercase">{{ $t('rent_now', $store.state.locale) }}</span></router-link>
                 </div>
 

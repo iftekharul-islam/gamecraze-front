@@ -4992,10 +4992,8 @@ export default {
               this.onLogout();
               return;
             }
-            if (this.coverUrl == "") {
-              return;
-            }
-            if(this.coverUrl === ''){
+            if (this.coverUrl == ''){
+              this.$toaster.warning(this.$t("select_image_notification", this.$store.state.locale));
               return;
             }
             this.activeCoverImage = this.coverUrl;

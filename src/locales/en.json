@@ -582,5 +582,6 @@
   "buy_controller" : "Buy controller",
   "scroll" : "Scroll down",
   "product" : "Product",
-  "gamehub_welcome" : "Welcome to Gamehub"
+  "gamehub_welcome" : "Welcome to Gamehub",
+  "select_image_notification" : "Please select an image first !!!"
 }

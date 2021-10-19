@@ -583,5 +583,7 @@
   "scroll" : "Scroll down",
   "product" : "Product",
   "gamehub_welcome" : "Welcome to Gamehub",
-  "select_image_notification" : "Please select an image first !!!"
+  "select_image_notification" : "Please select an image first !!!",
+  "for_rent" : "For Rent",
+  "for_sell" : "For Sell"
 }

@@ -4994,6 +4994,7 @@ export default {
             }
             if (this.coverUrl == ''){
               this.$toaster.warning(this.$t("select_image_notification", this.$store.state.locale));
+              this.dummyCover = true;
               return;
             }
             this.activeCoverImage = this.coverUrl;
@@ -5818,9 +5819,6 @@ export default {
     this.$api.get("disk-conditions").then((response) => {
       this.diskConditions = response.data.data;
     });
-    // this.$api.get('checkpoints?include=area').then (response =>{
-    //     this.checkpoints = response.data.data
-    // });
     this.$api.get("sub-categories").then((response) => {
       this.subCategories = response.data.data;
     });

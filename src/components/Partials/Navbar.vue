@@ -85,7 +85,7 @@
                                 <div class="d-flex position-absolute animate-nav justify-content-center w-100">
                                      <!-- lend rent switch button -->
                                   <button class="switch-btn rent-switch" v-if="isRent" @click="isRent = !isRent">
-                                      For Rent
+                                    {{ $t('for_rent', $store.state.locale) }}
                                       <svg class="ml-2" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                           <path d="M5.96684 3.47998L3.48682 1L1.00684 3.47998" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                           <path d="M3.4873 13V1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -94,7 +94,7 @@
                                       </svg>
                                   </button>
                                   <button class="switch-btn sell-switch" v-if="!isRent" @click="isRent = !isRent">
-                                    For Sell
+                                    {{ $t('for_sell', $store.state.locale) }}
                                     <svg class="ml-2" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                       <path d="M5.96684 3.47998L3.48682 1L1.00684 3.47998" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                       <path d="M3.4873 13V1" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -139,7 +139,7 @@
                                         @keyup.enter="searchProduct"
                                         @selected="onSelectedProduct"
                                         :get-suggestion-value="getProductSuggestionValue"
-                                        :input-props="{id:'autosuggest_prouduct_input',class:'auto-suggest-menu',placeholder: $t('search_game_accessories', $store.state.locale) }">
+                                        :input-props="{id:'autosuggest__input',class:'auto-suggest-menu',placeholder: $t('search_game_accessories', $store.state.locale) }">
                                       <div  slot-scope="{ suggestion }" class="w-100">
                                         <div class="d-flex flex-column flex-md-row align-items-md-center justify-content-between position-relative">
 
@@ -365,12 +365,27 @@
               this.query = '';
               this.productQuery = '';
             },
+            searchGame() {
+              this.onMenuItemClick();
+              this.navbarAnimate = false;
+              if(this.query !== '') {
+                this.$router.push({
+                  name: 'games',
+                  query: { categories: this.$route.query.categories, platforms: this.$route.query.platforms, search: this.query }
+                }).catch(()=>{});
+                this.$root.$emit('searchEvent')
+              }
+              else {
+                this.$router.push({name: 'games', query: {categories: this.$route.query.categories, platforms: this.$route.query.platforms}})
+                this.$root.$emit('searchEvent')
+              }
+            },
             searchProduct() {
-              if (this.query !== '') {
+              if (this.productQuery !== '') {
                 this.$router.push({
                   name: 'sell-posts',
-                  query: {categories: this.$route.query.categories, search: this.productQuery}
-                })
+                  query: { categories: this.$route.query.categories, search: this.productQuery }
+                }).catch(()=>{})
                 this.$root.$emit('searchProductEvent')
               } else {
                 this.$router.push({
@@ -487,18 +502,6 @@
           clickOnRating(data) {
               this.ratingNavModal = true;
               this.ratingData.value = data;
-          },
-          searchGame() {
-              this.onMenuItemClick();
-              this.navbarAnimate = false;
-              if(this.query !== '') {
-                this.$router.push({name: 'games', query: {categories: this.$route.query.categories, platforms: this.$route.query.platforms, search: this.query}})
-                this.$root.$emit('searchEvent')
-              }
-              else {
-                this.$router.push({name: 'games', query: {categories: this.$route.query.categories, platforms: this.$route.query.platforms}})
-                this.$root.$emit('searchEvent')
-              }
           },
           onLogout() {
               this.$store.dispatch('logout');

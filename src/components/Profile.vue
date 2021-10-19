@@ -61,7 +61,7 @@
                       </p>
                     </div>
                     <div class="modal-footer justify-content-center border-0" v-if="coverImages.length">
-                      <a type="submit" class="btn--secondery user-id-edit-btn" disabled @click.prevent="coverImageSelect(user.id)" >
+                      <a type="submit" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative" disabled @click.prevent="coverImageSelect(user.id)" >
                         <span class="w-100">{{ $t("submit", $store.state.locale) }}</span>
                       </a>
                     </div>
@@ -3916,7 +3916,7 @@
                             </tbody>
                           </table>
                         </div>
-                        <span class="text-center d-block mt-a-18 text0white opa-8" v-else>{{
+                        <span class="text-center d-block mt-a-18 text-white opa-8" v-else>{{
                             $t("no_referral_history", $store.state.locale)
                           }}</span>
                       </div>

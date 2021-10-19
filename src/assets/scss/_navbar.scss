@@ -498,6 +498,7 @@
     @include for-max-575 {
         justify-content: flex-start;
         position: fixed;
+        top: 54px;
     }
     .switch-btn {
         display: block;

@@ -3796,7 +3796,7 @@
                     </template>
                     <div class="refer-friend">
                       <div class="refer-friend--link">
-                        <p>{{ $t("refer_link", $store.state.locale) }}</p>
+                        <p class="text-white">{{ $t("refer_link", $store.state.locale) }}</p>
                         <div class="refer-friend--link--input-group d-flex">
                           <input
                               type="text"

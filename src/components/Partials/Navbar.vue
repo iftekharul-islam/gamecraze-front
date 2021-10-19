@@ -84,7 +84,7 @@
                             <div :class="{ animateNavebar: navbarAnimate }"  >
                                 <div class="d-flex position-absolute animate-nav justify-content-center w-100">
                                      <!-- lend rent switch button -->
-                                  <button class="switch-btn" v-if="isRent" @click="isRent = !isRent">
+                                  <button class="switch-btn rent-switch" v-if="isRent" @click="isRent = !isRent">
                                       For Rent
                                       <svg class="ml-2" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                           <path d="M5.96684 3.47998L3.48682 1L1.00684 3.47998" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -93,7 +93,7 @@
                                           <path d="M10.5137 1V13" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                                       </svg>
                                   </button>
-                                  <button class="switch-btn" v-if="!isRent" @click="isRent = !isRent">
+                                  <button class="switch-btn sell-switch" v-if="!isRent" @click="isRent = !isRent">
                                     For Sell
                                     <svg class="ml-2" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                       <path d="M5.96684 3.47998L3.48682 1L1.00684 3.47998" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -103,9 +103,10 @@
                                     </svg>
                                   </button>
                                   <span class="animate-navbar-icon order-3" @click="searchClear()" :class="{ block: navbarAnimate }">
-                                    <i class="fas fa-times"></i>
+                                    <i class="fas fa-times"></i> 
                                   </span>
-                                  <div class="search-input-design searchbar-input gamebazar__search position-relative" v-if="isRent">
+
+                                  <div class="search-input-design searchbar-input gamebazar__search position-relative d-flex" v-if="isRent">
                                       <vue-autosuggest
                                           v-model="query"
                                           :suggestions="filteredOptions"
@@ -125,10 +126,12 @@
                                               </div>
                                           </div>
                                       </vue-autosuggest>
+                                       <button class="btn gamehub-search-btn animate-nav-btn w-60" @click.prevent="searchGame">
+                                          <i class="fa fa-search gamehub-search-btn--icon"></i>
+                                      </button>
                                   </div>
-                                  <button class="btn gamehub-search-btn animate-nav-btn w-60" @click.prevent="searchGame" v-if="isRent">
-                                      <i class="fa fa-search gamehub-search-btn--icon"></i>
-                                  </button>
+                                 
+
                                   <div class="search-input-design searchbar-input gamebazar__search position-relative d-flex" v-if="!isRent">
                                     <vue-autosuggest
                                         v-model="productQuery"

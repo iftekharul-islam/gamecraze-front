@@ -21,7 +21,7 @@ body {
     font-size: 16px;
     background: $primary;
     color: $text-light;
-    padding-top: 80px;
+    padding-top: 65px;
     @include gil-regular;
     @include for-max-1199 {
         padding-bottom: 80px;

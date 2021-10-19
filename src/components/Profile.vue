@@ -40,26 +40,17 @@
                   <div class="modal-body-content">
                     <!-- Background Image Gallery -->
                     <div class="bg-image-gallery" v-if="coverImages.length">
-                      <div
-                          class="bg-image-gallery--item position-relative"
-                          v-for="(item, index) in coverImages"
-                          :key="index"
-                      >
+                      <div class="bg-image-gallery--item position-relative" v-for="(item, index) in coverImages" :key="index">
                         <input
                             type="radio"
                             :value="item.url"
                             name="image-checkbox"
                             :id="item.id"
                             v-model="coverUrl"
-                            @click="submitAcitve == true"
                             class="w-100 h-100"
                         />
                         <label :for="item.id">
-                          <img
-                              :src="item.url"
-                              class="img-fluid"
-                              :alt="item.url"
-                          />
+                          <img :src="item.url" class="img-fluid" :alt="item.url"/>
                         </label>
                       </div>
                     </div>
@@ -69,19 +60,10 @@
                         {{ $t("no_image_available", $store.state.locale) }}
                       </p>
                     </div>
-                    <div
-                        class="modal-footer justify-content-center border-0"
-                        v-if="coverImages.length"
-                    >
-                      <a
-                          type="submit"
-                          class="btn--secondery user-id-edit-btn"
-                          disabled
-                          @click.prevent="coverImageSelect(user.id)"
-                      ><span class="w-100">{{
-                          $t("submit", $store.state.locale)
-                        }}</span></a
-                      >
+                    <div class="modal-footer justify-content-center border-0" v-if="coverImages.length">
+                      <a type="submit" class="btn--secondery user-id-edit-btn" disabled @click.prevent="coverImageSelect(user.id)" >
+                        <span class="w-100">{{ $t("submit", $store.state.locale) }}</span>
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -5011,6 +4993,9 @@ export default {
               return;
             }
             if (this.coverUrl == "") {
+              return;
+            }
+            if(this.coverUrl === ''){
               return;
             }
             this.activeCoverImage = this.coverUrl;

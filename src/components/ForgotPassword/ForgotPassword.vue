@@ -53,13 +53,13 @@
                                             </div>
                                             <span v-if="errors.length" class="error-message">{{ errors[0] }}</span>
                                         </ValidationProvider>
-                                        <div class="otpbtn forget-otp mt-3" v-if="codeSent">
-                                            <button class="btn--secondery mb-2" type="button" :disabled="isResendLoading" @click.prevent="onResendOtp">
+                                        <div class="d-flex mt-3" v-if="codeSent">
+                                            <button class="router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative mb-2 mr-3 w-100" type="button" :disabled="isResendLoading" @click.prevent="onResendOtp">
                                                 <span>{{ $t('try_resent_code', $store.state.locale) }} <i v-if="isResendLoading" class="spinner-border spinner-border-sm"></i></span>
                                                 
                                             </button>
-                                            <button class="btn--secondery mb-2" type="button" :disabled="$store.state.isSubmitLoading" @click.prevent="handleSubmit(onVerifyPasswordResetCode)">
-                                                <span>{{ $t('sent_reset_code', $store.state.locale) }} <i v-if="$store.state.isSubmitLoading" class="spinner-border spinner-border-sm"></i></span>
+                                            <button class="router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative mb-2 w-100" type="button" :disabled="$store.state.isSubmitLoading" @click.prevent="handleSubmit(onVerifyPasswordResetCode)">
+                                                <span>{{ $t('submit', $store.state.locale) }} <i v-if="$store.state.isSubmitLoading" class="spinner-border spinner-border-sm"></i></span>
                                                 
                                             </button>
                                         </div>
@@ -67,7 +67,7 @@
 
                                     <!-- sign in button -->
                                     <div class="text-center sign-btn pt-2" v-if="!codeSent">
-                                        <button class="btn--secondery mb-2 m-auto border-0" type="submit" :disabled="isLoading">
+                                        <button class="router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative mb-2 m-auto" type="submit" :disabled="isLoading">
                                             <span>{{ $t('submit', $store.state.locale) }} <i v-if="isLoading" class="spinner-border spinner-border-sm loader-skew"></i></span>
                                             
                                         </button>

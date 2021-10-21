@@ -28,7 +28,7 @@
 
                                     <!-- sign in button -->
                                     <div class="text-center sign-btn">
-                                        <button class="btn btn--secondery mb-2 br-0 m-auto" type="submit" :disabled=false>
+                                        <button class="router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative m-auto" type="submit" :disabled=false>
                                             <span>{{ $t('reset_password', $store.state.locale) }}</span>
                                             <span v-if=false class="spinner-border spinner-border-sm"></span>
                                         </button>

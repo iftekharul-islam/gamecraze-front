@@ -107,6 +107,7 @@
                                       <vue-autosuggest
                                           v-model="query"
                                           :suggestions="filteredOptions"
+                                          @keypress="gamesSearchStringLimit($event)"
                                           @keyup.enter="searchGame"
                                           @selected="onSelected"
                                           :get-suggestion-value="getSuggestionValue"
@@ -133,6 +134,7 @@
                                     <vue-autosuggest
                                         v-model="productQuery"
                                         :suggestions="productFilteredOptions"
+                                        @keypress="productSearchStringLimit($event)"
                                         @keyup.enter="searchProduct"
                                         @selected="onSelectedProduct"
                                         :get-suggestion-value="getProductSuggestionValue"
@@ -357,13 +359,27 @@
             }
         },
         methods: {
+            gamesSearchStringLimit(evt) {
+              console.log('hello');
+              console.log(this.query)
+              console.log(this.query.length)
+              evt = (evt) ? evt : window.event;
+              if(this.query.length > 20){
+                evt.preventDefault();
+              }
+            },
+            productSearchStringLimit(evt) {
+              evt = (evt) ? evt : window.event;
+              if(this.productQuery.length > 20){
+                evt.preventDefault();
+              }
+            },
             searchClear() {
               this.navbarAnimate = false;
               this.query = '';
               this.productQuery = '';
             },
             searchGame() {
-              this.onMenuItemClick();
               this.navbarAnimate = false;
               if(this.query !== '') {
                 this.$router.push({
@@ -378,6 +394,7 @@
               }
             },
             searchProduct() {
+              this.navbarAnimate = false;
               if (this.productQuery !== '') {
                 this.$router.push({
                   name: 'sell-posts',

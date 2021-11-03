@@ -4994,7 +4994,7 @@ export default {
             }
             if (this.coverUrl == ''){
               this.$toaster.warning(this.$t("select_image_notification", this.$store.state.locale));
-              this.dummyCover = true;
+              // this.dummyCover = true;
               return;
             }
             this.activeCoverImage = this.coverUrl;

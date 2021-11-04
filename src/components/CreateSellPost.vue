@@ -4,7 +4,7 @@
      
         <div class="container">
            <div class="mb-4">
-              <router-link to="/gamebazar" class="d-flex align-items-center mt-a-6 mb-a-6 svg-secondery-hover">
+              <router-link to="/gamebazar" class="d-flex align-items-center mt-a-6 mb-a-6 svg-secondery-hover back-btn">
               <svg width="24" height="15" viewBox="0 0 24 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="mr-2">
                 <path d="M11.8114 14.5468C12.1234 14.3785 12.3179 14.0584 12.3179 13.7103V8.28972H23.0209C23.5614 8.28972 24 7.86127 24 7.33337C24 6.80546 23.5614 6.37702 23.0209 6.37702H12.3179V0.956419C12.3179 0.607032 12.1234 0.286973 11.8114 0.119931C11.4994 -0.0496622 11.1182 -0.038186 10.8166 0.146709L0.456894 6.52366C0.172314 6.69963 0 7.00438 0 7.33337C0 7.66235 0.172314 7.96711 0.456894 8.14308L10.8166 14.52C10.9759 14.6169 11.1574 14.6667 11.3388 14.6667C11.5007 14.6667 11.6639 14.6259 11.8114 14.5468Z" fill="white"/>
               </svg>

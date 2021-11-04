@@ -360,7 +360,6 @@
         },
         methods: {
           clickAway() {
-            console.log('hello');
             this.navbarAnimate = false;
           },
             gamesSearchStringLimit(evt) {

@@ -15238,6 +15238,12 @@ body .button:last-child {
   z-index: 2;
 }
 
+@media (max-width: 575px) {
+  .footer-bottom--social a::after {
+    top: 0;
+  }
+}
+
 .footer-bottom--social a:hover {
   background: #FFD715;
   color: #000;
@@ -15247,6 +15253,13 @@ body .button:last-child {
   color: #fff;
   -webkit-transform: rotateY(360deg);
           transform: rotateY(360deg);
+}
+
+@media (max-width: 575px) {
+  .footer-bottom--social a:hover .icon {
+    -webkit-transform: initial;
+            transform: initial;
+  }
 }
 
 .footer-bottom--social a:hover::after {
@@ -15265,6 +15278,12 @@ body .button:last-child {
   -webkit-transition: .5s;
   transition: .5s;
   z-index: 3;
+}
+
+@media (max-width: 575px) {
+  .footer-bottom--social a .icon {
+    color: #fff;
+  }
 }
 
 .footer-bottom p {

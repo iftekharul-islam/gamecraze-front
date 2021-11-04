@@ -204,6 +204,9 @@
                 background: $secondery;
                 transition: .5s;
                 z-index: 2;
+                @include for-max-575 {
+                    top: 0;
+                }
             }
             &:hover {
                 background: $secondery;
@@ -211,6 +214,9 @@
                 .icon {
                     color: #fff;
                     transform: rotateY(360deg);
+                    @include for-max-575 {
+                        transform: initial;
+                    }
                 }
                 &::after {
                     top: 0;
@@ -226,6 +232,9 @@
                 position: relative;
                 transition: .5s;
                 z-index: 3;
+                @include for-max-575 {
+                    color: #fff;
+                }
             }
         }
     }

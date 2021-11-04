@@ -419,6 +419,11 @@
                     margin-left: -47px !important;
                 }
             }
+            .for-buy-game-name {
+                @include for-max-575 {
+                    margin-left: 1rem !important;
+                }
+            }
         }
     }
     

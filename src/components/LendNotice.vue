@@ -52,7 +52,7 @@
                       </div>
                       <div class="col-md-5 mx-auto">
                          <div class="lend-notice-content-btn">
-                              <a href="https://www.gamehub.com.bd/profile" class=" router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative w-100"><span>{{ $t('post_for_lend', $store.state.locale) }}</span></a>
+                              <a href="https://www.gamehub.com.bd/profile" class=" router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative w-100 text-center"><span>{{ $t('post_for_lend', $store.state.locale) }}</span></a>
                          </div>
                       </div>
                   </div>

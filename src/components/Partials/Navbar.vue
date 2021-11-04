@@ -78,7 +78,7 @@
                     </ul>
                 </div>
                      <!-- search bar -->
-                   <div class="gamehub-input-group gamehub-input-group-searchbar">
+                   <div class="gamehub-input-group gamehub-input-group-searchbar" v-click-outside="clickAway">
                         <div class="gamehub-input-group--content">
                            
                             <div class="nav-transform" :class="{ animateNavebar: navbarAnimate }"  >
@@ -107,6 +107,7 @@
                                       <vue-autosuggest
                                           v-model="query"
                                           :suggestions="filteredOptions"
+                                          @keypress="gamesSearchStringLimit($event)"
                                           @keyup.enter="searchGame"
                                           @selected="onSelected"
                                           :get-suggestion-value="getSuggestionValue"
@@ -133,6 +134,7 @@
                                     <vue-autosuggest
                                         v-model="productQuery"
                                         :suggestions="productFilteredOptions"
+                                        @keypress="productSearchStringLimit($event)"
                                         @keyup.enter="searchProduct"
                                         @selected="onSelectedProduct"
                                         :get-suggestion-value="getProductSuggestionValue"
@@ -145,8 +147,8 @@
                                               <img :src="suggestion.item.cover.url" class="img-fluid  h-100 w-100" alt="Gamehub Logo logo" v-if="suggestion.item.cover != null">
                                               <img src="https://static3.srcdn.com/wordpress/wp-content/uploads/2020/11/PS5-PS4-Game-Forced-Install-Problem.jpg" class="img-fluid  h-100 w-100" alt="Gamehub Logo logo" v-else>
                                             </div>
-                                            <div class="ml-3">
-                                              <span class="d-block gil-bold mb-2 name">{{ suggestion.item.name }}</span>
+                                            <div class="ml-3 for-buy-game-name">
+                                              <span class="d-block gil-bold mb-0 name">{{ suggestion.item.name }}</span>
                                               <span class="name" v-if="suggestion.item.product_type === 1">
                                           {{ $t('new', $store.state.locale) }}
                                         </span>
@@ -357,13 +359,31 @@
             }
         },
         methods: {
+          clickAway() {
+            console.log('hello');
+            this.navbarAnimate = false;
+          },
+            gamesSearchStringLimit(evt) {
+              console.log('hello');
+              console.log(this.query)
+              console.log(this.query.length)
+              evt = (evt) ? evt : window.event;
+              if(this.query.length > 20){
+                evt.preventDefault();
+              }
+            },
+            productSearchStringLimit(evt) {
+              evt = (evt) ? evt : window.event;
+              if(this.productQuery.length > 20){
+                evt.preventDefault();
+              }
+            },
             searchClear() {
               this.navbarAnimate = false;
               this.query = '';
               this.productQuery = '';
             },
             searchGame() {
-              this.onMenuItemClick();
               this.navbarAnimate = false;
               if(this.query !== '') {
                 this.$router.push({
@@ -378,6 +398,7 @@
               }
             },
             searchProduct() {
+              this.navbarAnimate = false;
               if (this.productQuery !== '') {
                 this.$router.push({
                   name: 'sell-posts',

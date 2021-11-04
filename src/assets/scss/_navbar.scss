@@ -487,8 +487,11 @@
     top: 68px;
     position: fixed;
     width: 100%;
+    max-width: 600px;
     height: 62px;
     left: 0;
+    right: 0;
+    margin: auto;
     z-index: 9;
     display: flex;
     justify-content: center;
@@ -595,6 +598,9 @@
     position: relative;
     left: -3px;
     top: 2px;
+    outline: none;
+    border: none;
+    box-shadow: none;
     &:focus {
         outline: none;
         border: none;

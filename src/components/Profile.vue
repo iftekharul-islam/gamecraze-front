@@ -8,7 +8,7 @@
           class="img-fluid user-profile-bg"
       />
       <img
-          v-if="dummyCover"
+          v-else-if="dummyCover"
           src="../assets/img/profile-bg.png"
           alt="profile bg"
           class="img-fluid user-profile-bg"
@@ -61,7 +61,7 @@
                       </p>
                     </div>
                     <div class="modal-footer justify-content-center border-0" v-if="coverImages.length">
-                      <a type="submit" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative" disabled @click.prevent="coverImageSelect(user.id)" >
+                      <a type="submit" class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative" @click.prevent="coverImageSelect(user.id)" >
                         <span class="w-100">{{ $t("submit", $store.state.locale) }}</span>
                       </a>
                     </div>
@@ -3763,7 +3763,7 @@
                             </tbody>
                           </table>
                         </div>
-                        <span class="text-center d-block mt-a-18" v-else>{{
+                        <span class="text-center d-block mt-a-18 text-white opa-8" v-else>{{
                             $t("no_trans_found", $store.state.locale)
                           }}</span>
                       </div>
@@ -4979,7 +4979,7 @@ export default {
       this.imageModalShow = true;
     },
     coverImageSelect(userId) {
-      this.dummyCover = false;
+      // this.dummyCover = false;
       this.$api
           .get("user/details/" + this.$store.state.user.id)
           .then((response) => {
@@ -4994,7 +4994,7 @@ export default {
             }
             if (this.coverUrl == ''){
               this.$toaster.warning(this.$t("select_image_notification", this.$store.state.locale));
-              this.dummyCover = true;
+              // this.dummyCover = true;
               return;
             }
             this.activeCoverImage = this.coverUrl;
@@ -5832,6 +5832,7 @@ export default {
     this.$api
         .get("user/details/" + this.$store.state.user.id)
         .then((response) => {
+          console.log('response', response)
           this.user = response.data.data;
           this.nid_verification = this.user.id_verified;
           this.activeCoverImage = this.user.cover;

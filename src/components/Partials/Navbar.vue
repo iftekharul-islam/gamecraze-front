@@ -78,7 +78,7 @@
                     </ul>
                 </div>
                      <!-- search bar -->
-                   <div class="gamehub-input-group gamehub-input-group-searchbar">
+                   <div class="gamehub-input-group gamehub-input-group-searchbar" v-click-outside="clickAway">
                         <div class="gamehub-input-group--content">
                            
                             <div class="nav-transform" :class="{ animateNavebar: navbarAnimate }"  >
@@ -359,6 +359,10 @@
             }
         },
         methods: {
+          clickAway() {
+            console.log('hello');
+            this.navbarAnimate = false;
+          },
             gamesSearchStringLimit(evt) {
               console.log('hello');
               console.log(this.query)

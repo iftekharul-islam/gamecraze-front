@@ -3763,7 +3763,7 @@
                             </tbody>
                           </table>
                         </div>
-                        <span class="text-center d-block mt-a-18" v-else>{{
+                        <span class="text-center d-block mt-a-18 text-white opa-8" v-else>{{
                             $t("no_trans_found", $store.state.locale)
                           }}</span>
                       </div>

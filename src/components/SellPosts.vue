@@ -4,17 +4,16 @@
     <section class="games-categories-section">
       <div class="container">
         <div class="row">
-          <div class="col-md-4 col-lg-3 mb-3">
+          <div class="col-md-5 col-lg-4 col-xl-3 mb-3">
             <div class="text-right">
             </div>
             <div class="games-categories-section--categories filter-show-mobile p-0" id="games-categories-list" :class="{ filterShow : filterShow }">
               <div class="bg-shorting-tile p-3 d-flex align-items-center justify-content-between 3 br-t-l-3 d-md-none">
                 <span class="f-s-20 text-secondery gil-bold opa-9-5">{{ $t('filter', $store.state.locale) }}</span>
                 <span @click="filterShow = false" class="pointer">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M3.66671 1.06789L3.66666 1.06794L3.67262 1.07396L7.5496 4.9897L7.9049 5.34856L8.26021 4.9897L12.1372 1.07396L12.1372 1.07401L12.1431 1.06789C12.8678 0.310704 14.0645 0.310705 14.7892 1.06789L14.7891 1.06794L14.7951 1.07396C15.5238 1.8099 15.5238 3.00455 14.7951 3.74049L10.9181 7.65623L10.5698 8.00802L10.9181 8.35981L14.7951 12.2756C15.5238 13.0115 15.5238 14.2062 14.7951 14.9421C14.4168 15.3242 13.9429 15.5 13.4661 15.5C12.9894 15.5 12.5155 15.3242 12.1372 14.9421L8.26021 11.0263L7.9049 10.6675L7.5496 11.0263L3.67262 14.9421L3.66656 14.9482L3.66071 14.9545C3.32515 15.3177 2.83124 15.5 2.34367 15.5C1.86357 15.5 1.39846 15.3225 1.0584 14.9545L1.05255 14.9482L1.04649 14.9421C0.317836 14.2062 0.317836 13.0115 1.04649 12.2756L4.92347 8.35981L5.27178 8.00802L4.92347 7.65623L1.04649 3.74049C0.317837 3.00455 0.317836 1.8099 1.04649 1.07396L1.04654 1.07401L1.0524 1.06789C1.7771 0.310705 2.94201 0.310705 3.66671 1.06789ZM7.5531 4.28259L4.02793 0.722167H0.691183C-0.230394 1.65296 -0.230394 3.16149 0.691183 4.09228L4.56816 8.00802L0.691183 11.9238C-0.230394 12.8546 -0.230394 14.3631 0.691183 15.2939C1.13608 15.7753 1.73987 16 2.34367 16C2.94746 16 3.58303 15.7753 4.02793 15.2939L7.5531 11.7335L7.5496 11.7299L7.9049 11.3781L8.26021 11.7299L8.25671 11.7335L11.7819 15.2939C12.2586 15.7753 12.8624 16 13.4661 16C14.0699 16 14.6737 15.7753 15.1504 15.2939C16.072 14.3631 16.072 12.8546 15.1504 11.9238L11.2734 8.00802L15.1504 4.09228C16.072 3.16149 16.072 1.65296 15.1504 0.722167C14.2288 -0.240722 12.7035 -0.240722 11.7819 0.722167L8.25671 4.28259L8.26021 4.28612L7.9049 4.63791L7.5496 4.28612L7.5531 4.28259Z" fill="white" stroke="#ffffff"/>
-                    </svg>
+                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.4" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="white"></path><path d="M13.0601 12L15.3601 9.69998C15.6501 9.40998 15.6501 8.92999 15.3601 8.63999C15.0701 8.34999 14.5901 8.34999 14.3001 8.63999L12.0001 10.94L9.70011 8.63999C9.41011 8.34999 8.93011 8.34999 8.64011 8.63999C8.35011 8.92999 8.35011 9.40998 8.64011 9.69998L10.9401 12L8.64011 14.3C8.35011 14.59 8.35011 15.07 8.64011 15.36C8.79011 15.51 8.98011 15.58 9.17011 15.58C9.36011 15.58 9.55011 15.51 9.70011 15.36L12.0001 13.06L14.3001 15.36C14.4501 15.51 14.6401 15.58 14.8301 15.58C15.0201 15.58 15.2101 15.51 15.3601 15.36C15.6501 15.07 15.6501 14.59 15.3601 14.3L13.0601 12Z" fill="white"></path></svg>
                 </span>
+               
               </div>
                 <div class="p-a-5 overflow-auto sorting-body">
                   <!-- location category -->
@@ -80,7 +79,7 @@
                 </div>
             </div>
           </div>
-          <div class="col-md-8 col-lg-9 mb-3" :class="{'preLoadActive': responseDelay}">
+          <div class="col-md-7 col-lg-8 col-xl-9 mb-3" :class="{'preLoadActive': responseDelay}">
             <div class="games-categories-section--tag mb-a-4 flex-column-reverse flex-md-row px-a-1">
               <div class="d-flex align-items-center flex-wrap mt-3 mt-md-0">
                 <span class="tag-span" v-for="(categoryItem, categoryIndex) in checkedCategories"
@@ -141,7 +140,9 @@
                             <div class="shorting-menu__content w-full w-md-268 bg-shorting br-4 border-1 d-block secondery-border left-initial-imp right-md-0-imp top-full-10px-imp p-0 overflow-hidden" >
                               <div class="d-md-none d-flex align-items-center justify-content-between bg-shorting-tile px-3 py-2">
                                 <p class="mb-0 gil-bold text-secondery">Sorting</p>
-                                <p class="mb-0 pointer"  @click.prevent=" showDrawer = false"><i class="fas fa-times"></i></p>
+                                <p class="mb-0 pointer"  @click.prevent=" showDrawer = false">
+                                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path opacity="0.4" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="white"></path><path d="M13.0601 12L15.3601 9.69998C15.6501 9.40998 15.6501 8.92999 15.3601 8.63999C15.0701 8.34999 14.5901 8.34999 14.3001 8.63999L12.0001 10.94L9.70011 8.63999C9.41011 8.34999 8.93011 8.34999 8.64011 8.63999C8.35011 8.92999 8.35011 9.40998 8.64011 9.69998L10.9401 12L8.64011 14.3C8.35011 14.59 8.35011 15.07 8.64011 15.36C8.79011 15.51 8.98011 15.58 9.17011 15.58C9.36011 15.58 9.55011 15.51 9.70011 15.36L12.0001 13.06L14.3001 15.36C14.4501 15.51 14.6401 15.58 14.8301 15.58C15.0201 15.58 15.2101 15.51 15.3601 15.36C15.6501 15.07 15.6501 14.59 15.3601 14.3L13.0601 12Z" fill="white"></path></svg>
+                                </p>
                               </div>
                             <p class="mb-0 gil-bold text-md-center text-white py-2 bg-md-shorting-tile px-3">{{ $t('price', $store.state.locale) }}</p>
                             <div class="d-flex flex-column flex-md-row align-items-end align-items-md-center justify-content-center py-4 pr-3 pr-md-0">
@@ -180,7 +181,7 @@
                  </div>
             </div>
             <div class="games-categories-section--games" v-if="posts.length">
-              <div class="d-grid grid-cols-2 grid-md-cols-3 grid-lg-cols-4 grid-gap-16 grid-gap-md-30 gamebazar-post">
+              <div class="d-grid grid-cols-2 grid-lg-cols-3 grid-xl-cols-4 grid-gap-16 grid-gap-md-30 gamebazar-post">
                   <router-link v-for="(item, index) in posts" :key="index" :to="{ path: '/sell-post/' + item.id + '/' + item.url_name }"
                                class="">
                     <div class="product-img position-relative br-4 overflow-hidden">

@@ -4279,8 +4279,11 @@ select option {
   top: 68px;
   position: fixed;
   width: 100%;
+  max-width: 600px;
   height: 62px;
   left: 0;
+  right: 0;
+  margin: auto;
   z-index: 9;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4416,6 +4419,10 @@ select option {
   position: relative;
   left: -3px;
   top: 2px;
+  outline: none;
+  border: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .gamehub-search-btn-2:focus {
@@ -15195,9 +15202,40 @@ body .button:last-child {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: transparent;
+  background: #FFD715;
   -webkit-transition: all .3s ease-in;
   transition: all .3s ease-in;
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-bottom--social a:nth-child(1)::after {
+  background: #3b5999;
+}
+
+.footer-bottom--social a:nth-child(2)::after {
+  background: #55acee;
+}
+
+.footer-bottom--social a:nth-child(3)::after {
+  background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+}
+
+.footer-bottom--social a:nth-child(4)::after {
+  background: #bb0000;
+}
+
+.footer-bottom--social a::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #FFD715;
+  -webkit-transition: .5s;
+  transition: .5s;
+  z-index: 2;
 }
 
 .footer-bottom--social a:hover {
@@ -15205,10 +15243,28 @@ body .button:last-child {
   color: #000;
 }
 
+.footer-bottom--social a:hover .icon {
+  color: #fff;
+  -webkit-transform: rotateY(360deg);
+          transform: rotateY(360deg);
+}
+
+.footer-bottom--social a:hover::after {
+  top: 0;
+}
+
 @media (max-width: 768px) {
   .footer-bottom--social a:first-of-type {
     margin-left: 0;
   }
+}
+
+.footer-bottom--social a .icon {
+  color: #0B0F18;
+  position: relative;
+  -webkit-transition: .5s;
+  transition: .5s;
+  z-index: 3;
 }
 
 .footer-bottom p {

@@ -66,8 +66,6 @@
                                         </ValidationProvider>
                                     </div>
 
-                                  //
-
                                   <div class="form-group">
                                     <label>{{ $t('confirm_password', $store.state.locale) }}</label>
                                     <ValidationProvider name="confirm" rules="required|min:8|confirmed:password" v-slot="{ errors }">

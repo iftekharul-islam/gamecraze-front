@@ -273,7 +273,7 @@
                 </carousel>
            </div>
            <div class="text-center mt-a-6">
-               <router-link to="/sell-posts" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('all_games', $store.state.locale) }}</div></router-link>
+               <router-link to="/games" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('all_games', $store.state.locale) }}</div></router-link>
            </div>
        </section>
         

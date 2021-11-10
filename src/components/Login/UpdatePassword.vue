@@ -19,44 +19,44 @@
                                 </div>
 
                                 <form id="regForm" @submit.prevent="handleSubmit(onNext)" method="post" v-if="isTokenValid && show">
-                                   <div class="form-group">
-                                        <label >{{ $t('email', $store.state.locale) }}</label>
-                                        <ValidationProvider name="name" rules="required" v-slot="{ errors }">
-                                            <input type="email" class="form-control"  v-model="form.email" readonly>
-                                            <span style="color: red;">{{ errors[0] }}</span>
-                                        </ValidationProvider>
-                                    </div>
+<!--                                   <div class="form-group">-->
+<!--                                        <label >{{ $t('email', $store.state.locale) }}</label>-->
+<!--                                        <ValidationProvider name="name" rules="required" v-slot="{ errors }">-->
+<!--                                            <input type="email" class="form-control"  v-model="form.email" readonly>-->
+<!--                                            <span style="color: red;">{{ errors[0] }}</span>-->
+<!--                                        </ValidationProvider>-->
+<!--                                    </div>-->
 
                                           <!-- First Name -->
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
+<!--                                    <div class="form-row">-->
+<!--                                        <div class="form-group col-md-6">-->
 
-                                            <label for="firstName">{{ $t('first_name', $store.state.locale) }}</label>
-                                            <ValidationProvider name="firstName" rules="required" v-slot="{ errors }">
-                                                <input type="text" class="form-control" id="firstName" value="" v-model="form.name">
-                                                <span v-if="errors.length" class="error-message top-6">{{ errors[0] }}</span>
-                                            </ValidationProvider>
-                                        </div>
-                                               <!-- Last Name -->
-                                            <div class="form-group col-md-6">
+<!--                                            <label for="firstName">{{ $t('first_name', $store.state.locale) }}</label>-->
+<!--                                            <ValidationProvider name="firstName" rules="required" v-slot="{ errors }">-->
+<!--                                                <input type="text" class="form-control" id="firstName" value="" v-model="form.name">-->
+<!--                                                <span v-if="errors.length" class="error-message top-6">{{ errors[0] }}</span>-->
+<!--                                            </ValidationProvider>-->
+<!--                                        </div>-->
+<!--                                               &lt;!&ndash; Last Name &ndash;&gt;-->
+<!--                                            <div class="form-group col-md-6">-->
 
-                                                <label for="LastName">{{ $t('last_name', $store.state.locale) }}</label>
-                                                <ValidationProvider name="LastName" rules="required" v-slot="{ errors }">
-                                                    <input type="text" class="form-control" id="LastName" value="" v-model="form.lastName">
-                                                    <span v-if="errors.length" class="error-message top-6">{{ errors[0] }}</span>
-                                                </ValidationProvider>
-                                            </div>
-                                    </div>
+<!--                                                <label for="LastName">{{ $t('last_name', $store.state.locale) }}</label>-->
+<!--                                                <ValidationProvider name="LastName" rules="required" v-slot="{ errors }">-->
+<!--                                                    <input type="text" class="form-control" id="LastName" value="" v-model="form.lastName">-->
+<!--                                                    <span v-if="errors.length" class="error-message top-6">{{ errors[0] }}</span>-->
+<!--                                                </ValidationProvider>-->
+<!--                                            </div>-->
+<!--                                    </div>-->
 
-                                    <div class="form-group">
-                                        <label for="user-number">{{ $t('phone_number', $store.state.locale) }}</label>
-                                        <ValidationProvider name="phone number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
-                                            <input @keypress="isNumber($event)" type="tel" class="form-control" id="user-number" v-model="form.phone_number">
-                                            <span style="color: red;">{{ errors[0] }}</span>
-                                            <span v-if="isNumberExists" style="color:red">Number already taken</span>
-                                        </ValidationProvider>
+<!--                                    <div class="form-group">-->
+<!--                                        <label for="user-number">{{ $t('phone_number', $store.state.locale) }}</label>-->
+<!--                                        <ValidationProvider name="phone number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">-->
+<!--                                            <input @keypress="isNumber($event)" type="tel" class="form-control" id="user-number" v-model="form.phone_number">-->
+<!--                                            <span style="color: red;">{{ errors[0] }}</span>-->
+<!--                                            <span v-if="isNumberExists" style="color:red">Number already taken</span>-->
+<!--                                        </ValidationProvider>-->
 
-                                    </div>
+<!--                                    </div>-->
 
                                    <div class="form-group">
                                         <label>{{ $t('set_password', $store.state.locale) }}</label>
@@ -65,6 +65,14 @@
                                             <span style="color: red;">{{ errors[0] }}</span>
                                         </ValidationProvider>
                                     </div>
+
+                                  <div class="form-group">
+                                    <label>{{ $t('confirm_password', $store.state.locale) }}</label>
+                                    <ValidationProvider name="confirm" rules="required|min:8|confirmed:password" v-slot="{ errors }">
+                                      <input type="password" class="form-control" v-model="form.password_confirmation">
+                                      <span style="color: red;">{{ errors[0] }}</span>
+                                    </ValidationProvider>
+                                  </div>
                                     <div class="regbtn mt-4">
                                         <button type="submit" class="btn w-100 btn--login">{{ $t('proceed', $store.state.locale) }} <i v-if="isLoading" class="spinner-border spinner-border-sm"></i></button>
                                     </div>
@@ -82,17 +90,18 @@
     export default {
         data() {
             return {
-                isTokenValid: false,
-                show:false,
+                isTokenValid: true,
+                show:true,
                 errMsg: 'Invalid Token',
                 isNumberExists: false,
                 isLoading: false,
                 form: {
-                    email: this.$store.state.setupPasswordUser.email,
-                    name: this.$store.state.setupPasswordUser.name,
-                    lastName: this.$store.state.setupPasswordUser.last_name,
-                    phone_number: this.$store.state.setupPasswordUser.phone_number,
+                    // email: this.$store.state.setupPasswordUser.email,
+                    // name: this.$store.state.setupPasswordUser.name,
+                    // lastName: this.$store.state.setupPasswordUser.last_name,
+                    // phone_number: this.$store.state.setupPasswordUser.phone_number,
                     password: "",
+                    password_confirmation: "",
                     token: ''
                 },
                 // user: this.$store.state.setupPasswordUser

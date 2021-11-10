@@ -11,7 +11,7 @@
                             <ValidationObserver v-slot="{ handleSubmit }">
                                 <form @submit.prevent="handleSubmit(onSendResetPasswordCode)" method="post">
                                     <div class="form-group">
-                                        <!-- user anme -->
+                                        <!-- user name -->
                                         <label for="username1" class="sr-only">{{ $t('email', $store.state.locale) }}</label>
                                         <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                                             <input type="text" class="form-control mb-2" id="username1" value="" :placeholder="$t('enter_email', $store.state.locale)" v-model="form.email">

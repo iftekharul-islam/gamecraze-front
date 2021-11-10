@@ -83,13 +83,13 @@
                                 <img :src="screenshot.url" alt="screenshot">
                             </span>
                     </div>
-                    <div v-if="game.videoUrls.data.length > 0">
+<!--                    <div v-if="game.videoUrls.data.length > 0">-->
                       <div class="item" v-for="(video, index) in game.videoUrls.data" :key="'A' + index">
                       <span class="d-block screenshot-video--video" @click="setModalData(video.url, 'video')"><iframe
                           :src="'https://www.youtube.com/embed/' + getVideoIdByURL(video.url)" frameborder="0"
                           allowfullscreen="allowfullscreen" ng-show="showvideo"></iframe></span>
                       </div>
-                    </div>
+<!--                    </div>-->
 
                   </carousel>
                      <div v-if="showImageModal">

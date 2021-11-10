@@ -80,7 +80,7 @@
                                         <ul>
                                             
                                              <li>
-                                                 <a href="https://www.augnitive.com" target="_blank">{{ $t('about_us', $store.state.locale) }}</a>
+                                                 <a href="https://augnitive.com" target="_blank">{{ $t('about_us', $store.state.locale) }}</a>
                                             </li>
                                               <li>
                                                 <router-link to="/contacts">{{ $t('contact_us', $store.state.locale) }}</router-link>

@@ -356,6 +356,7 @@
                 isActive : this.$store.state.locale ?? this.$i18n.locale,
                 pendingRating: [],
                 searchClick: 0,
+                localUpdateValue: '',
             }
         },
         methods: {
@@ -471,7 +472,8 @@
                 }
                 this.isActive = this.user.locale;
                 this.$store.dispatch('changeLocale', this.user.locale)
-                var auth = this.$store.getters.ifAuthenticated;
+
+                let auth = this.$store.getters.ifAuthenticated;
                 if (auth) {
                   let config = {
                     headers: {
@@ -487,16 +489,20 @@
               });
             },
             localeSet(value){
-                var auth = this.$store.getters.ifAuthenticated;
+                let auth = this.$store.getters.ifAuthenticated;
                 if (!auth) {
                     return
+                }
+                if(this.localUpdateValue == value){
+                  return;
                 }
                 let config = {
                     headers: {
                         'Authorization': 'Bearer ' + this.$store.state.token
                     }
                 };
-                var data = {
+                this.localUpdateValue = value;
+                let data = {
                     value: value
                 };
                 this.$api.post('locale-update', data, config).then(res => {

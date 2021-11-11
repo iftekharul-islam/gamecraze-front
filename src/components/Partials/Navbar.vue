@@ -501,12 +501,12 @@
                         'Authorization': 'Bearer ' + this.$store.state.token
                     }
                 };
-                var data = {
+                this.localUpdateValue = value;
+                let data = {
                     value: value
                 };
                 this.$api.post('locale-update', data, config).then(res => {
                     if (res.data.error == false) {
-                        this.localUpdateValue = value;
                         this.$toaster.success( this.$t('Language_update', this.$store.state.locale) );
                     } else {
                         this.$toaster.warning( this.$t('Language_update_failed', this.$store.state.locale) );

@@ -1,0 +1,293 @@
+.dashboard-right {
+    padding-top: 48px;
+    padding-left: 40px;
+    padding-right: 80px;
+    @include for-max-768 {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+    @include for-max-575 {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+}
+.total-sellpost {
+    &__left {
+        flex-grow: 1;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-gap: 40px;
+        margin-right: 32px;
+        @include for-min-1200 {
+            grid-template-columns: repeat(3, minmax(0, 232px));
+        }
+        @include for-min-1500 {
+            grid-template-columns: repeat(4, minmax(0, 232px));
+            grid-template-rows: 132px;
+        }
+        @include for-min-1700 {
+            grid-template-columns: repeat(5, minmax(0, 232px));
+            grid-template-rows: 132px;
+        }
+        @include for-max-768 {
+            grid-gap: 24px
+        }
+    }
+    &__content {
+        border: 1px solid $white-25;
+        border-radius: 8px;
+        padding: 20px 32px;
+        background: $game-details;
+        @include for-max-768 {
+            padding: 12px;
+           
+        }
+    }
+}
+.new-sellpost {
+    background: $secondery-gradient;
+    width: 132px;
+    height: 132px;
+    border-radius: 8px
+}
+.sellpost-count {
+    font-size: 60px;
+    line-height: 70px;
+    word-break: break-all;
+    @include for-max-768 {
+        font-size: 26px;
+        line-height: 30px;
+        margin-bottom: 8px !important;
+    }
+}
+
+body {
+    .crisp-client .cc-kv6t[data-full-view=true] .cc-1xry .cc-unoo {
+       @include for-max-991 {
+        display: none !important;
+       }
+    }
+}
+
+// tags
+.sellpost-tags {
+    display: flex;
+    &__content {
+        border: 1px solid $white-25;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 40px;
+        width: 120px;
+        padding-left: 12px;
+        padding-right: 12px;
+        cursor: pointer;
+        &.active {
+            background: $gray-gradient;
+            justify-content: flex-start;
+            font-family: gilroy-bold;
+            color: $primary;
+            cursor: initial;
+        }
+        
+    }
+    .tag {
+        position: relative;
+        width: 120px;
+        
+    }
+}
+.tag {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 48px;
+    &__left {
+        display: flex;
+        flex-wrap: wrap;
+        .sellpost-tags,
+        .games-categories-section--tag {
+            margin-bottom: 16px;
+        }
+    }
+    .tags {
+        margin-right: 20px;
+        position: relative;
+        .icon {
+            position: absolute;
+            top: 8px;
+            right: 6px;
+            cursor: pointer;
+        }
+    }
+}
+.dNone {
+    display: none;
+}
+
+.filter-btn {
+    width: 40px;
+    height: 40px;
+    background: $transparent;
+    border-radius: 8px;
+    border: 1px solid $white-25;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+//  table
+.sellpost-table__header,
+.sellpost-table__content {
+    display: flex;
+    align-items: center;
+    // justify-content: space-between;
+}
+.sellpost-type {
+    width: 100%;
+}
+.sellpost-table {
+    &__content {
+        flex-wrap: wrap;
+        padding: 22px 0;
+        border-bottom: 1px solid $game-details;
+        border-radius: 4px;
+        p {
+            margin-bottom: 0;
+            &:nth-child(7) {
+                margin-left: auto;
+                padding-left: 0;
+            }
+            &:nth-child(2) {
+                @include gil-bold;
+            }
+        }
+    }
+    
+    &__header {
+        height: 48px;
+        background: $game-details;
+        margin-bottom: 12px;
+        border-radius: 4px;
+        p {
+            color: $secondery;
+            @include gil-bold;
+            margin-bottom: 0;
+            &:nth-child(2) {
+                @include gil-bold;
+            }
+            &:nth-child(7) {
+                margin-left: auto;
+                padding-left: 0;
+            }
+            &:last-child {
+                margin-right: 20px;
+                text-align: right;
+            }
+        }
+    }
+    &-details {
+        width: 100%;
+        flex: none;
+        background: $game-details;
+        &__content {
+            display: flex;
+            flex-wrap: wrap;
+            padding-bottom: 20px;
+            .content__left {
+                p {
+                    &:nth-child(2) {
+                        @include gil-medium;
+                    }
+                }
+            }
+            .content__right {
+                p {
+                    &:nth-child(2) {
+                        @include gil-regular;
+                    }
+                }
+            }
+        }
+    }
+}
+.collapseActive {
+    background: $game-details;
+    .collaps-btn {
+        &::before {
+            top: 3px;
+            transform: rotate(135deg);
+        }
+    }
+}
+
+.table-collapse-top {
+    padding-top: 20px;
+    margin-top: 20px;
+    position: relative;
+    &::after,
+    &::before {
+        content: '';
+        width: calc(100% - 40px);
+        height: 1px;
+        background: $white-25;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin: auto;
+    }
+    &::after {
+        top: 0;
+    }
+    &::before {
+        bottom: 0;
+    }
+}
+.table-collapse-bottom {
+    margin-top: 20px;
+    padding-left: 20px;
+}
+.details-group {
+    margin-bottom: 20px;
+}
+.collaps-btn {
+    color: $secondery;
+    position: relative;
+    margin-right: 20px;
+    &::before {
+        border-style: solid;
+        border-width: 1px 1px 0 0;
+        content: '';
+        display: inline-block;
+        height: 10px;
+        right: 16px;
+        position: absolute;
+        top: 10px;
+        transform: rotate(-45deg);
+        vertical-align: top;
+        width: 10px;
+        transition: all .3s ease-in;
+    }
+}
+// error
+.error-text {
+    display: none;
+}
+.selpostError {
+   > p {
+        color: $gamebazar-badge;
+    }
+     .collaps-btn {
+         color: $secondery;
+     }
+    .error-text {
+        display: block;
+        background: #f53a5033;
+        height: 100%;
+        margin-left: auto;
+        margin-right: 20px;
+        p {
+            color: $gamebazar-badge;
+        }
+    }
+}
+

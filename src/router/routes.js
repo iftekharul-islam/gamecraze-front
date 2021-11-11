@@ -59,6 +59,15 @@ import PostDetails from '../components/PostDetails';
 import SellPost from '../components/SellPostHelp'
 import GamebazarHome from '../components/GamebazarHome';
 import CreateSellPost from '../components/CreateSellPost';
+import Icons from '../components/Icons';
+import SellPostContent from '../components/SellPostContent';
+import LendPostContent from '../components/LendPostContent';
+import RentedGamesContent from '../components/RentedGamesContent';
+import MyEarningsContent from '../components/MyEarningsContent';
+import ReferFriendContent from '../components/ReferFriendContent';
+import MyProfileContent from '../components/MyProfileContent';
+import SettingsContent from '../components/SettingsContent';
+import InboxContent from '../components/InboxContent';
 
 let router = new Router({
     mode: 'history',
@@ -318,7 +327,49 @@ let router = new Router({
             component: Dashboard,
             meta: {
                 requiresAuth: false
-            }
+            },
+            children: [
+                {
+                    path: '/sellpost',
+                    name: 'SellPostContent',
+                    component: SellPostContent,
+                },
+                {
+                    path: '/lendpost',
+                    name: 'LendPostContent',
+                    component: LendPostContent,
+                },
+                {
+                    path: '/rented-games',
+                    name: 'RentedGamesContent',
+                    component: RentedGamesContent,
+                },
+                {
+                    path: '/my-earning',
+                    name: 'MyEarningsContent',
+                    component: MyEarningsContent,
+                },
+                {
+                    path: '/refer-friend',
+                    name: 'ReferFriendContent',
+                    component: ReferFriendContent,
+                },
+                {
+                    path: '/my-profile',
+                    name: 'MyProfileContent',
+                    component: MyProfileContent,
+                },
+                {
+                    path: '/settings',
+                    name: 'SettingsContent',
+                    component: SettingsContent,
+                },
+                {
+                    path: '/inbox',
+                    name: 'InboxContent',
+                    component: InboxContent,
+                },
+            ]
         },
         {
             path: '/reset-password',
@@ -499,6 +550,14 @@ let router = new Router({
             component: CreateSellPost,
             meta: {
                 requiresAuth: true
+            }
+        },
+        {
+            path: '/icons',
+            name: 'Icons',
+            component: Icons,
+            meta: {
+                requiresAuth: false
             }
         },
         {

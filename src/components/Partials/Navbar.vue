@@ -356,6 +356,7 @@
                 isActive : this.$store.state.locale ?? this.$i18n.locale,
                 pendingRating: [],
                 searchClick: 0,
+                localUpdateValue: '',
             }
         },
         methods: {
@@ -471,7 +472,8 @@
                 }
                 this.isActive = this.user.locale;
                 this.$store.dispatch('changeLocale', this.user.locale)
-                var auth = this.$store.getters.ifAuthenticated;
+
+                let auth = this.$store.getters.ifAuthenticated;
                 if (auth) {
                   let config = {
                     headers: {
@@ -487,9 +489,12 @@
               });
             },
             localeSet(value){
-                var auth = this.$store.getters.ifAuthenticated;
+                let auth = this.$store.getters.ifAuthenticated;
                 if (!auth) {
                     return
+                }
+                if(this.localUpdateValue == value){
+                  return;
                 }
                 let config = {
                     headers: {
@@ -501,6 +506,7 @@
                 };
                 this.$api.post('locale-update', data, config).then(res => {
                     if (res.data.error == false) {
+                        this.localUpdateValue = value;
                         this.$toaster.success( this.$t('Language_update', this.$store.state.locale) );
                     } else {
                         this.$toaster.warning( this.$t('Language_update_failed', this.$store.state.locale) );

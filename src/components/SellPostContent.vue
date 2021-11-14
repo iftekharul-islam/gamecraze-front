@@ -5,7 +5,7 @@
            <div class="sellpost">
                <div class="total-sellpost d-flex justify-content-between">
                    <div class="total-sellpost__left">
-                       <div class="total-sellpost__content wow slideInLeft"  >
+                       <div class="total-sellpost__content"  >
                            <h1 class="text-secondery sellpost-count mb-0 ">63563</h1>
                            <p class="text-secondery opa-8 mb-0 gil-medium">Total sell post</p>
                        </div>
@@ -43,7 +43,7 @@
                <!-- tags and filtering -->
                <div class="tag ">
                    <div class="tag__left">
-                       <div class="sellpost-tags">
+                       <div class="sellpost-tags flex-wrap">
                            <div class="tags">
                               <div class="sellpost-tags__content" :class="{ active: sellPostTags }" @click="sellPostTags = true">
                                    Inactive
@@ -186,8 +186,8 @@
                         <p class="col-3">Gaming PC for sell</p>
                         <p class="col-1">New</p>
                         <p class="col-1">Controller</p>
-                        <p class="col-1">Open</p>
-                        <p class="col-1">Available</p>
+                        <p class="col-1"><span class="rejected d-inline-block">Inactive</span></p>
+                        <p class="col-1"><span class="sold">Sold</span></p>
                         <p class="col-1">25.08.2021</p>
                         <p class="col-1">Tk. 432</p>
                         <buton @click="detailsCollapse = !detailsCollapse" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="collaps-btn col-1 pointer"><p v-if="detailsCollapse">Collapse</p> <p v-else>Details</p></buton>
@@ -239,7 +239,7 @@
                         <p class="col-1">New</p>
                         <p class="col-1">Controller</p>
                         <p class="col-1">Open</p>
-                        <p class="col-1">Available</p>
+                        <p class="col-1 "><span class="rejected">Rejected</span></p>
                         <p class="col-1">25.08.2021</p>
                         <p class="col-1">Tk. 432</p>
                         <buton @click="detailsCollapse2 = !detailsCollapse2" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="collaps-btn col-1 pointer"><p v-if="detailsCollapse2">Collapse</p> <p v-else>Details</p></buton>

@@ -1620,7 +1620,12 @@ p {
 .br-5 {
     border-radius: 5px;
 }
-
+.br-8 {
+    border-radius: 8px;
+}
+.br-8-imp {
+    border-radius: 8px !important;
+}
 .br-10 {
     border-radius: 10px;
 }
@@ -2333,6 +2338,9 @@ html {
      max-width: 200px;
     }
  }
+ .max-236 {
+    max-width: 236px;
+}
 .max-328 {
     max-width: 328px;
 }
@@ -2793,6 +2801,28 @@ select {
     }
 }
 
+.flex-basis-20 {
+    flex-basis: 20%;
+}
+.flex-basis-30 {
+    flex-basis: 30%;
+}
+.flex-basis-40 {
+    flex-basis: 40%;
+}
+.flex-basis-50 {
+    flex-basis: 50%;
+}
+.flex-basis-60 {
+    flex-basis: 60%;
+}
+.flex-basis-70 {
+    flex-basis: 70%;
+}
+.flex-basis-80 {
+    flex-basis: 80%;
+}
+
 .grow-1 {
     flex-grow: 1;
 }
@@ -2989,10 +3019,14 @@ select {
 }
 
 .rejected {
-    color: $rejected;
+    color: $gamebazar-badge;
+    background: $rejected-opacity;
+    padding: 2px 4px;
+    border-radius: 4px;
+    @include gil-medium;
     &::after {
-        background: $rejected;
-        color: $text-light;
+        background: $rejected-opacity;
+        color: $gamebazar-badge;
     }
 }
 
@@ -3025,6 +3059,13 @@ select {
         position: absolute;
         right: -35px;
     }
+}
+.sold {
+    background: $game-rating-opacity;
+    color: $game-rating;
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
 }
 // background
 .primary-bg {
@@ -3367,4 +3408,7 @@ select {
 
 .word-break {
     word-break: break-all;
+}
+.infinite {
+    animation-iteration-count: infinite
 }

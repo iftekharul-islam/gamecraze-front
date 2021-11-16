@@ -12,6 +12,7 @@ $step-form-input : #2A3141;
 $price-switch: #505E7D;
 $game-details:#141A27;
 $game-rating: #66CC33;
+$game-rating-opacity: #66cc334d;
 $success-ball: #40C057; 
 $text-light: #fff;
 $text-dark: #000;
@@ -56,6 +57,7 @@ $success-border: #28a745;
 $danger-border: #dc3545;
 $social-bg: #F9383D;
 $rejected: #FF3030;
+$rejected-opacity: #f53a5066;
 $step-error-text: #f16a46;
 $gamebazar-badge: #F53A50;
 $screenshot-modal-bg: #000000bf;
@@ -78,8 +80,10 @@ $text-black : #000000;
 $black-opacity : #00000080;
 $slogan-bg : linear-gradient(90.05deg, rgba(11, 15, 24, 0.1) 0.78%, #0B0F18 48.87%, rgba(11, 15, 24, 0.1) 102.99%);
 $secondery-gradient: linear-gradient(270deg, #FFD715 0%, #FFB81F 100%);
+$gray-gradient: linear-gradient(90deg, #B9CCF5 0%, #97A6C7 100%);
 // preloader
 $dot-size: 1em;
 $duration: 3000ms;
 $container-size: $dot-size * 10;
 $dot-map: ( a:0, b:1, c:2, d:3, e:4, f:5, g:6, h:7);
+

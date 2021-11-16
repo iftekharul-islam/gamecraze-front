@@ -5,6 +5,10 @@
 // bangla font
 @import url('https://cdn.rawgit.com/sh4hids/bangla-web-fonts/solaimanlipi/stylesheet.css');
 
+// icon
+@import url(../icons/icon.css);
+@import url(../icons/demo-files/demo.css);
+
 // bootstrap import
 // @import "../node_modules/bootstrap/scss/bootstrap.scss";
 // @import "../node_modules/bootstrap/scss/bootstrap-grid.scss";
@@ -111,6 +115,13 @@
 @import "../scss/gamebazar-step-form";
 // Product section
 @import "../scss/product-section";
+// Dashboard sidebar
+@import "../scss/dashboard-sidebar";
+// dashboard sellpost content
+@import "../scss/dashboard-sellpost-content";
+// dashboard my profile content
+@import "../scss/my-profile";
+
 // 404
 @import "../scss/404page";
 // button
@@ -147,3 +158,11 @@
     src: url(../fonts/gilroy-bold.ttf);
 }
 
+@font-face {
+    font-family: "icomoon" !important;
+    src: local("Icomoon"),
+    url(../icons/fonts/icomoon.eot)format("embedded-opentype"),
+    url(../icons/fonts/icomoon.ttf)format("truetype"),
+    url(../icons/fonts/icomoon.woff) format("woff"), 
+    url(../icons/fonts/icomoon.svg)format("svg");
+  }

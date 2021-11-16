@@ -6,7 +6,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-9">
-                        <h1 class="gamehub-heading">
+                        <h1 class="gamehub-heading wow fadeInUpBig" data-wow-duration=".9s">
                             <div class="english-svg">
                                  <img src="../assets/img/english_header.svg" class="img-fluid" alt="Gamehub Logo logo">
                             </div>
@@ -15,8 +15,8 @@
                             </div>
 
                             </h1>
-                        <h6 class="home-banner-text mb-a-6">{{ $t('home_banner_text', $store.state.locale) }}</h6>
-                        <div class="heading-btn d-flex align-items-center">
+                        <h6 class="home-banner-text mb-a-6 wow fadeInUpBig" data-wow-duration=".9s" data-wow-delay=".3s">{{ $t('home_banner_text', $store.state.locale) }}</h6>
+                        <div class="heading-btn d-flex align-items-center wow fadeInUpBig"  data-wow-duration=".9s" data-wow-delay=".5s">
                             <router-link to="/games" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('rent_game', $store.state.locale) }}</div></router-link>
                             <router-link to="/profile" @click.native="clickProfile" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-inline-block position-relative mr-3"><span></span> <div class="position-relative">{{ $t('lend_game', $store.state.locale) }}</div></router-link>
                             <router-link to="/sell-posts" class="router_link btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-6 pr-a-6 d-none d-sm-inline-block position-relative"><span></span> <div class="position-relative">{{ $t('buy_gaming_product', $store.state.locale) }}</div></router-link>
@@ -30,8 +30,8 @@
         <!-- exchange and lend section -->
         <section class="exchange-lend-section" id="exchange">
             <div class="container">
-                <h2 class="section-heading">{{ $t('exchange_heading', $store.state.locale) }}</h2>
-                <div class="d-grid grid-cols-2 grid-md-cols-3 grid-lg-cols-4 exchange-lend-section__grid">
+                <h2 class="section-heading wow fadeInUpBig">{{ $t('exchange_heading', $store.state.locale) }}</h2>
+                <div class="d-grid grid-cols-2 grid-md-cols-3 grid-lg-cols-4 exchange-lend-section__grid wow fadeInUpBig">
                     <div class="pt-a-6 pb-a-6 px-2 px-sm-4 exchange-lend-section__content">
                         <div class="exchange-lend-section__content__img">
                              <img src="../assets/img/card-img-1.png" class="img-fluid" alt="Gamehub Logo logo">
@@ -69,7 +69,7 @@
             </div>
         </section>
         <!-- trending games -->
-        <section class="trending-section">
+        <section class="trending-section wow fadeInUpBig">
             <div class="container">
                 <h2 class="section-heading">{{ $t('trending_games', $store.state.locale) }}</h2>
             </div>
@@ -196,7 +196,7 @@
            </div>
         </section>
 
-        <section class="upcoming-section">
+        <section class="upcoming-section wow fadeInUpBig">
             <div class="container">
                 <h2 class="section-heading">{{ $t('upcoming_games_for_rent', $store.state.locale) }}</h2>
             </div>
@@ -280,9 +280,9 @@
         <!-- product section -->
         <section class="product-section d-none d-sm-block" v-if ="loadLatestSellPosts">
             <div class="container">
-                 <h2 class="section-heading">{{ $t('products_for_sell', $store.state.locale) }}</h2>
+                 <h2 class="section-heading wow fadeInUpBig">{{ $t('products_for_sell', $store.state.locale) }}</h2>
                  <div class="d-grid grid-cols-2 grid-md-cols-3 grid-lg-cols-5 grid-gap-16 grid-gap-md-30 gamebazar-post">
-                      <router-link v-for="(item, index) in sellPosts" :key="index" :to="{ path: '/sell-post/' + item.id + '/' + item.url_name }">
+                      <router-link class="wow fadeInUpBig" v-for="(item, index) in sellPosts" :key="index" :to="{ path: '/sell-post/' + item.id + '/' + item.url_name }">
                             <div class="product-img position-relative br-4 overflow-hidden">
                               <img :src="item.cover.url" :alt="item.name" class="img-fluid w-100" v-if="item.cover != null">
                               <img src="../assets/img/play.png" alt="gaming product" class="img-fluid w-100" v-else>
@@ -311,7 +311,7 @@
         </section>
         <!-- product section for mobile -->
         <section class="d-sm-none product-mobile" v-if ="loadLatestSellPosts">
-            <h2 class="section-heading">{{ $t('products_for_sell', $store.state.locale) }}</h2>
+            <h2 class="section-heading wow fadeInUpBig">{{ $t('products_for_sell', $store.state.locale) }}</h2>
             <div class="position-relative">
                 <carousel
                         :autoplay ="true"
@@ -379,7 +379,7 @@
         </section>
         
         <!-- featured video section -->
-        <section class="featured-section">
+        <section class="featured-section wow fadeInUpBig">
             <div class="container">
                 <h2 class="section-heading">{{ $t('featured_videos', $store.state.locale) }}</h2>
             </div>

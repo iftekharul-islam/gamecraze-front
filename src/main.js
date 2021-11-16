@@ -19,6 +19,7 @@ Vue.use(IconsPlugin);
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './assets/scss/style.css'
+import 'wow.js/css/libs/animate.css'
 
 import Lingallery from 'lingallery';
 
@@ -27,6 +28,9 @@ Vue.component('lingallery', Lingallery);
 import VueGoodWizard from 'vue-good-wizard';
 
 Vue.use(VueGoodWizard);
+import WOW from 'wow.js'
+
+new WOW().init();
 
 global.jQuery = require('jquery/dist/jquery.min');
 let $ = global.jQuery;
@@ -119,6 +123,7 @@ const store = new Vuex.Store(storage)
 import axios from 'axios'
 
 import i18n from './i18n'
+
 
 Vue.directive('click-outside', {
     bind: function (el, binding, vnode) {

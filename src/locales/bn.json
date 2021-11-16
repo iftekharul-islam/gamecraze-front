@@ -112,6 +112,7 @@
   "refer_friend" : "বন্ধুকে রেফার করুন",
   "name" : "নাম",
   "email" : "ইমেল",
+  "enter_your_email_address" : "আপনার ইমেইল ​​ঠিকানা লিখুন",
   "gender" : "লিঙ্গ",
   "dob" : "জন্ম তারিখ",
   "mobile_no" : "মোবাইল নাম্বার",
@@ -208,6 +209,7 @@
   "contact_title_part_1" : "অতিসত্বর আমাদের সাথে যোগাযোগ করুন",
   "contact_title_part_2" : "আপনার কোন সাহায্য ও তথ্যের প্রয়োজন হয় অথবা মেম্বারশিপ আপগ্রেড করতে নিচের ফর্মটি পূরণ করুন",
   "phone_number" : "ফোন নাম্বার",
+  "phone_number_enter" : "আপনার ফোন নম্বর লিখুন",
   "message" : "মেসেজ",
   "sms_error" : "আপনার মেসেজটি সেন্ট হয়নি, আবার চেষ্টা করুন",
   "empty_inbox" : "ইনবক্স খালি",
@@ -371,6 +373,8 @@
   "proceed" : "এগিয়ে যান",
   "through_this": "দিয়ে সাইন ইন করুন",
   "continue_with" : "",
+  "sign_in_by" : "",
+  "phone_no" : "Phone no",
   "mail_password" : "আপনার মেইল চেক করুন এবং আপনার পাসওয়ার্ড সেট করুন",
   "password" : "পাসওয়ার্ড",
   "reset_password" : "পাসওয়ার্ড পুনরুদ্ধার করুন",
@@ -585,6 +589,9 @@
   "gamehub_welcome" : "গেমহাব-এ স্বাগতম",
   "select_image_notification" : "প্রথমে একটি ছবি নির্বাচন করুন !!!",
   "for_rent" : "ভাড়া নিন",
-  "for_sell" : "ক্রয় করুন"
+  "for_sell" : "ক্রয় করুন",
+  "gamehube" : "",
+  "welcome_back_to" : "ফিরে আসার জন্য স্বাগতম",
+  "gamehubbd" : "গেমহাবে"
 }
 

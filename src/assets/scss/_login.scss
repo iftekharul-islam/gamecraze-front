@@ -5,7 +5,12 @@ html {
 .login-section,
 .registration-section {
     padding-top: 40px;
-    padding-bottom: 150px;
+    padding-bottom: 40px;
+    background: linear-gradient(90deg, rgba(11, 15, 24, 0.85) 0%, rgba(11, 15, 24, 0) 243.28%), url(../img/login-bg.webp);
+    min-height: calc(100vh - 68px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     @include for-max-575 {
         padding-bottom: 150px;
     }
@@ -22,38 +27,22 @@ html {
             margin-top: 100px;
         }
     }
-    .form-group {
-        input {
-            border-radius: 0;
-            border: none;
-            font-size: 20px;
-        }
-    }
 }
-
+.sign-text {
+    margin-bottom: 32px;
+}
 .login-form {
-    margin-top: 50px;
+    max-width: 420px;
+    width: 100%;
+    h2 {
+        margin-bottom: 32px;
+    }
     @include for-max-575 {
         margin-top: 0;
-    }
-    ul {
-        margin-bottom: 30px;
-        li {
-            font-family: 'Roboto Condensed', sans-serif;
-            padding: 0;
-            color: $secondery;
-            background: none;
-            font-size: 24px;
-            cursor: text;
-        }
     }
     .form-group {
         margin-bottom: 0;
         input {
-            border-radius: 0;
-            border: none;
-            height: 50px;
-            color: $primary;
             &::placeholder {
                 color: $gray;
                 @include for-max-991 {
@@ -64,13 +53,9 @@ html {
             &:-webkit-autofill:hover,
             &:-webkit-autofill:focus,
             &:-webkit-autofill:active {
-                -webkit-box-shadow: 0 0 0 30px $text-light inset !important;
-                -webkit-text-fill-color: $text-dark !important;
+                -webkit-box-shadow: 0 0 0 30px initial inset !important;
+                border-color: $secondery;
             }
-        }
-        label {
-            font-size: 20px;
-            font-weight: normal;
         }
     }
     .error-message {
@@ -115,13 +100,6 @@ html {
         align-items: center;
         justify-content: center;
     }
-    input {
-        padding-left: 55px;
-    }
-}
-
-.success-message {
-    font-size: 20px;
 }
 
 .error-message {
@@ -160,14 +138,6 @@ html {
     font-size: 14px;
 }
 
-.form-group {
-    input {
-        font-size: 20px;
-        @include for-max-575 {
-            font-size: 18px;
-        }
-    }
-}
 
 // otp button
 .otpbtn {
@@ -196,15 +166,23 @@ html {
         justify-content: space-between;
     }
     input {
-        width: 60px;
-        height: 60px !important;
+        width: 52px;
+        height: 48px !important;
         text-align: center;
-        color: $text-dark;
+        color: $text-light;
         font-size: 40px;
+        border-radius: 8px;
+        border: 1px solid $secondery-opa-5;
+        background: $login-input-bg;
         @include for-max-575 {
             width: 50px;
             height: 50px !important;
             font-size: 34px;
+        }
+        &:focus,
+        &:focus-visible {
+            border-color: $secondery;
+            outline: none;
         }
     }
 }
@@ -295,20 +273,29 @@ html {
         top: 0;
         left: 0;
     }
-    input {
-        padding-left: 60px;
-    }
 }
 
-// floating label
-// .floating-label {
-//     &--input {
-//         &:focus {
-//             .floating-label--label {
-//                 top: -10px;
-//                 color: red;
-//                 font-size: 30px;
-//             }
-//         }
-//     }
-// }
+.login-input {
+    height: 48px;
+    border-radius: 8px;
+    border: 1px solid $secondery-opa-5;
+    background: $login-input-bg;
+    color: $white-50;
+    padding-left: 20px;
+    font-size: 14px;
+    @include gil-medium;
+    color: $text-light;
+    &:focus {
+        border-color: $secondery;
+        outline: none;
+    }
+    &:focus-visible {
+        border-color: $secondery !important;
+    }
+}
+.bg-login-input {
+    background: $login-input-bg;
+}
+.all-btn {
+    margin-top: 40px;
+}

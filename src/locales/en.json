@@ -112,6 +112,7 @@
   "refer_friend" : "Refer friend",
   "name" : "Name",
   "email" : "Email",
+  "enter_your_email_address" : "Enter your email address",
   "gender" : "Gender",
   "dob" : "Date of Birth",
   "mobile_no" : "Mobile No",
@@ -208,6 +209,8 @@
   "contact_title_part_1" : "Don't Be Shy, Let's Get In Touch !",
   "contact_title_part_2" : "If you need any assistance, require any information, or want to upgrade your membership please contact us via the below form.",
   "phone_number" : "Phone number",
+  "phone_no" : "Phone no",
+  "phone_number_enter" : "Enter your phone no",
   "message" : "Message",
   "sms_error" : "Cound not send your message.Try later.",
   "notice_empty_inbox" : "Notice board is empty",
@@ -368,9 +371,10 @@
   "sign_in" : "Sign in",
   "enter_phone_number" : "Please enter your phone number",
   "enter_email" : "Please enter your email address",
-  "proceed" : "PROCEED",
+  "proceed" : "Proceed",
   "through_this": "",
   "continue_with" : "Continue with",
+  "sign_in_by" : "Sign in by",
   "mail_password" : "Please check your mail and set your password",
   "password": "Password",
   "invalid_password" : "Password is not valid",
@@ -585,5 +589,8 @@
   "gamehub_welcome" : "Welcome to Gamehub",
   "select_image_notification" : "Please select an image first !!!",
   "for_rent" : "For Rent",
-  "for_sell" : "For Buy"
+  "for_sell" : "For Buy",
+  "gamehube" : "Gamehub",
+  "welcome_back_to" : "Welcome back to",
+  "gamehubbd" : ""
 }

@@ -1,8 +1,8 @@
 <template>
     <div>
         <!-- Registration  -->
-        <section class="registration">
-            <div class="container-fluid registration-width">
+        <section class="registration-section">
+            <!-- <div class="container-fluid registration-width">
                 <div class="row">
                     <div class="col-md-6 col-xl-4 mx-auto">
                         <div class="registration-form">
@@ -22,7 +22,6 @@
                                         </ValidationProvider>
                                     </div>
 
-                                          <!-- First Name -->
                                     <div class="form-row">
                                         <div class="form-group col-md-6">
                                            
@@ -32,7 +31,6 @@
                                                 <span class="error-message">{{ errors[0] }}</span>
                                             </ValidationProvider>
                                         </div>
-                                               <!-- Last Name -->
                                             <div class="form-group col-md-6">
                                             
                                                 <label for="LastName">{{ $t('last_name', $store.state.locale) }}</label>
@@ -51,7 +49,6 @@
                                         </ValidationProvider>
 
                                     </div>
-                                    <!-- password -->
                                     <div class="form-group">
                                         <label>{{ $t('set_password', $store.state.locale) }}</label>
                                         <ValidationProvider name="password" rules="required" v-slot="{ errors }">
@@ -67,53 +64,30 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
-
-         <!-- <section class="registration-section">
-            <div class="container">
-                <div class="col-md-6 mx-auto">
-                    <div class="registration-form">
-                        <div class="text-center registration-logo">
-                            <img src="../../assets/img/logo/gamehublogo.svg" alt="gamehublogo" class="text-center">
-                        </div>
-                        <ul class="mb-3 d-flex justify-content-center align-items-center">
-                            <li>CREATE YOUR ACCOUNT</li>
-                        </ul>
-
-                            registration
-                                <form action="#">
-                                     <div class="form-group">
-                                        <label for="regisName">Name</label>
-                                        <input type="text" class="form-control" id="regisName" aria-describedby="emailHelp" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="regismail">Phone/Email Address</label>
-                                        <input type="text" class="form-control" id="regismail" aria-describedby="emailHelp" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="regispass">Password</label>
-                                        <input type="text" class="form-control" id="regispass" aria-describedby="emailHelp" required>
-                                    </div>
-                                    <div class="form-group form-check ">
-                                        <div class="remember-me">
-                                            <input type="checkbox" class="form-check-input" id="regischeck">
-                                            <label class="form-check-label" for="regischeck">
-                                                Creating an account means you’re okay with our Terms of Service, Privacy Policy, and our default Notification Settings.
-                                            </label>
-                                        </div>
-                                        
-                                    </div>
-                                    <button type="submit" class="btn btn-primary w-100 btn--registration mt-4">CREATE ACCOUNT</button>
-
-
-                                </form>
-
+            </div> -->
+            <div class="login-form">
+                <h2 class="gil-regular f-s-32 f-s-md-48 opa-85 sign-text"> 
+                    <span class="text-secondery">{{ $t('gamehubbd', $store.state.locale) }}</span>
+                     {{ $t('welcome_to', $store.state.locale) }} <span class="text-secondery">{{ $t('gamehube', $store.state.locale) }}</span></h2>
+                <h4 class="f-s-28 gil-medium mb-a-5">Create new account</h4>
+                <!-- tabs -->
+                <div>
+                    <p class="gil-medium opa-85">Select a user type</p>
+                    <div class="d-grid grid-cols-2 grid-gap-20">
+                        <router-link to="/user-registration" class="registration-tabs-box bg-login-input pointer">
+                            <p class="text-secondery gil-medium f-s-20 mb-2">User</p>
+                             <p class="gil-medium f-s-14 mb-0 opa-75">For personal use only.</p>
+                        </router-link>
+                        <router-link to="/vendor-registration" class="registration-tabs-box bg-login-input pointer">
+                            <p class="text-secondery gil-medium f-s-20 mb-2">Vendor</p>
+                             <p class="gil-medium f-s-14 mb-0 opa-75">For personal use only.</p>
+                        </router-link>
                     </div>
+                    <router-view></router-view>
                 </div>
             </div>
-        </section> -->
-
+        
+        </section>
 
     </div>
 </template>

@@ -350,11 +350,11 @@ export const storage = {
                             router.push('/').catch(err => {});
                         }
                         else {
-                            router.push('/password-setup').catch(err => {});
+                            router.push('/registration').catch(err => {});
                         }
                     }
                     else {
-                        router.push('/password-setup').catch(err => {});
+                        router.push('/registration').catch(err => {});
                     }
                 }
                 commit('setEmptyOTP', false)
@@ -471,7 +471,7 @@ export const storage = {
                 }
                 else {
                     console.log("Email is not registered")
-                    router.push('/email-registration')
+                    router.push('/registration')
                 }
 
             })

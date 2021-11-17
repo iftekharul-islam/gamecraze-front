@@ -1801,6 +1801,9 @@ p {
         margin-right: 4px;
     }
 }
+.text-error {
+    color: $gamebazar-badge;
+}
 
 .text-black {
     color: $text-dark;
@@ -1863,6 +1866,9 @@ p {
 }
 .bg-white-25 {
     background: $white-25;
+}
+.bg-login-input {
+    background: $login-input-bg;
 }
 .bg-black-opa {
     background: $black-opacity;

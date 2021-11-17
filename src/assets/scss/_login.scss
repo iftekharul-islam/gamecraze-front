@@ -7,6 +7,7 @@ html {
     padding-top: 40px;
     padding-bottom: 40px;
     background: linear-gradient(90deg, rgba(11, 15, 24, 0.85) 0%, rgba(11, 15, 24, 0) 243.28%), url(../img/login-bg.webp);
+    background-repeat: no-repeat;
     min-height: calc(100vh - 68px);
     display: flex;
     align-items: center;
@@ -41,7 +42,6 @@ html {
         margin-top: 0;
     }
     .form-group {
-        margin-bottom: 0;
         input {
             &::placeholder {
                 color: $gray;
@@ -102,23 +102,6 @@ html {
     }
 }
 
-.error-message {
-    color: $gamehub-danger;
-    position: relative;
-    padding-left: 30px;
-    &::after {
-        content: '';
-        background: url(../img/error.png);
-        background-repeat: no-repeat;
-        display: block;
-        width: 22px;
-        height: 22px;
-        background-size: 20px;
-        position: absolute;
-        left: 0;
-        top: -2px;
-    }
-}
 
 .custom-checkbox {
     input,
@@ -298,4 +281,48 @@ html {
 }
 .all-btn {
     margin-top: 40px;
+}
+// error msg
+
+.error-message {
+    color: $gamehub-danger;
+    position: relative;
+    padding-left: 30px;
+    &::after {
+        content: '';
+        background: url(../img/error.png);
+        background-repeat: no-repeat;
+        display: block;
+        width: 22px;
+        height: 22px;
+        background-size: 20px;
+        position: absolute;
+        left: 0;
+        top: -2px;
+    }
+}
+.error-input-group {
+    position: relative;
+    .error-txt {
+        // position: absolute;
+        margin-left: auto;
+        background: $gamebazar-badge;
+        padding: 0 12px;
+        min-height: 32px;
+        border-radius: 0px 0px 4px 4px;
+        display: flex;
+        align-items: center;
+        max-width: 90%;
+        width: fit-content;
+    }
+    input {
+        border-color: $gamebazar-badge !important;
+        border-bottom-right-radius: 0;
+        &:focus {
+            border-color: $gamebazar-badge !important;
+        }
+        &:focus-visible {
+            border-color: $gamebazar-badge !important;
+        }
+    }
 }

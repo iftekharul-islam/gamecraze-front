@@ -8,7 +8,9 @@ import RentPost from '../components/RentPost';
 import Dashboard from '../components/Dashboard';
 import Game from '../components/Games';
 import Login from "../components/Login/Login";
-import Registration from "../components/Login/Registration";
+import RegistrationTabs from "../components/Login/RegistrationTabs";
+import UserRegistration from "../components/Login/UserRegistration";
+import VendorRegistration from "../components/Login/VendorRegistration";
 import EmailRegistration from "../components/Login/EmailRegistration";
 import GameDetails from '../components/GameDetails';
 import Search from "../components/Search";
@@ -107,10 +109,22 @@ let router = new Router({
         },
         {
             path: '/registration',
-            component: Registration,
+            component: RegistrationTabs,
             meta: {
                 requiresAuth: false
-            }
+            },
+            children: [
+                {
+                    path: '/user-registration',
+                    name: 'UserRegistration',
+                    component: UserRegistration,
+                },
+                {
+                    path: '/vendor-registration',
+                    name: 'VendorRegistration',
+                    component: VendorRegistration,
+                },
+            ]
         },
         {
             path: '/email-registration',

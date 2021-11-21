@@ -133,7 +133,7 @@
             },
             isValidNameString: function(evt) {
               evt = (evt) ? evt : window.event;
-              if(this.form.name.length > 10){
+              if(this.form.name.length > 30){
                 evt.preventDefault();
               }
             },

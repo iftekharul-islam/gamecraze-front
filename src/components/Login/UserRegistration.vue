@@ -8,7 +8,7 @@
                   
                     <!-- First Name -->
                     <div class="form-row margin-b-32">
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <label for="firstName" class="opa-85">{{ $t('first_name', $store.state.locale) }}</label>
                             <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
                              <div class="floating-label-group" :class="{'error-input-group': errors[0]}">
@@ -18,22 +18,22 @@
                             </ValidationProvider>
                         </div>
                         <!-- Last Name -->
-                        <div class="col-md-6">
-                            <label for="LastName" class="opa-85">{{ $t('last_name', $store.state.locale) }}</label>
-                            <ValidationProvider name="last name" rules="required" v-slot="{ errors }">
-                              <div class="floating-label-group" :class="{'error-input-group': errors[0]}">
-                                <input @keypress="isValidLastNameString($event)" type="text" class="login-input" id="LastName" value="" v-model="form.lastName" placeholder="Last Name">
-                                <span v-if="errors.length" class="error-txt">{{ errors[0] }}</span>
-                              </div>
-                            </ValidationProvider>
-                        </div>
+<!--                        <div class="col-md-6">-->
+<!--                            <label for="LastName" class="opa-85">{{ $t('last_name', $store.state.locale) }}</label>-->
+<!--                            <ValidationProvider name="last name" rules="required" v-slot="{ errors }">-->
+<!--                              <div class="floating-label-group" :class="{'error-input-group': errors[0]}">-->
+<!--                                <input @keypress="isValidLastNameString($event)" type="text" class="login-input" id="LastName" value="" v-model="form.lastName" placeholder="Last Name">-->
+<!--                                <span v-if="errors.length" class="error-txt">{{ errors[0] }}</span>-->
+<!--                              </div>-->
+<!--                            </ValidationProvider>-->
+<!--                        </div>-->
                     </div>
                     <!-- Mobile No. -->
                     <div class="form-group margin-b-32">
                         <label for="Phone" class="opa-85">{{ $t('phone_number', $store.state.locale) }}</label>
                         <ValidationProvider name="Phone Number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
                           <div class="floating-label-group" :class="{'error-input-group': errors[0] || $store.state.numberExists}">
-                            <input @focus="changePhoneValidation" @keypress="isNumber($event)" type="text" class="login-input" id="Phone" v-model="form.phone_number" :readonly="form.phone_number">
+                            <input @focus="changePhoneValidation" @keypress="isNumber($event)" type="text" class="login-input" id="Phone" v-model="form.phone_number" :readonly="phone_number">
                             <!-- <input type="text" class="login-input gray cursor-none" id="Phone" value="" v-model="form.phone_number" readonly> -->
                             <span v-if="errors.length" class="error-txt">{{ errors[0] }}</span>
                             <span class="error-txt d-block" v-if="$store.state.numberExists">{{ $t('phone_number_exits', $store.state.locale) }}</span>
@@ -45,7 +45,7 @@
                         <label for="email" class="opa-85">{{ $t('email', $store.state.locale) }} {{ $t('address', $store.state.locale) }}</label>
                         <ValidationProvider name="email" rules="email" v-slot="{ errors }">
                             <div class="floating-label-group" :class="{'error-input-group': errors[0]}">
-                                <input type="email" class="login-input cursor-none gray" id="email" value="" v-bind="form.email" :readonly="form.email">
+                                <input type="email" class="login-input gray" id="email" v-model="form.email" :readonly="exist_email">
                                 <!-- <input @focus="onEmailChange" type="email" class="login-input" id="email" value="" v-model="form.email"> -->
                                 <span v-if="errors.length" class="error-txt">{{ errors[0] }}</span>
                             </div>
@@ -102,6 +102,8 @@
         data () {
             return {
                 agreement: '',
+                exist_email: localStorage.getItem('email'),
+                phone_number: this.$store.state.signup.phoneNumber,
                 form: {
                     name: '',
                     lastName: '',
@@ -149,6 +151,7 @@
             }
         },
         created () {
+          console.log(localStorage.getItem('email'))
             // this.$toaster.success(this.$t('gamehub_welcome', this.$store.state.locale));
             console.log(this.$store.state.signup.phoneNumber, 'phone')
         },

@@ -235,7 +235,6 @@
                 this.isLoading = true;
                 this.isLoggingIn = true;
                 if (this.loginOption === 'email') {
-                    console.log(this.phone_number, 'ppphooo')
                     this.$store.dispatch('setPhoneNumber', this.phone_number);
                     this.clearErrorMessages();
                     this.$api.post('send-otp', {phone_number: this.phone_number}).then(response => {

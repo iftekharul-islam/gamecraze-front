@@ -325,6 +325,7 @@ export const storage = {
             localStorage.removeItem('user')
             localStorage.removeItem('postId')
             localStorage.removeItem('setupPasswordUser')
+            localStorage.removeItem('email')
 
             router.push('/login')
         },

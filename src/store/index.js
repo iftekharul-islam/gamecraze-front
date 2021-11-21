@@ -115,6 +115,9 @@ export const storage = {
         setPhoneNumber (state, payload) {
             state.signup.phoneNumber = payload
         },
+        removeSignupPhoneNumber (state){
+            state.signup.phoneNumber = '';
+        },
         setEmail (state, payload) {
             state.email = payload
         },

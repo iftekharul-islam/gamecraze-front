@@ -33,7 +33,7 @@
                         <label for="Phone" class="opa-85">{{ $t('phone_number', $store.state.locale) }}</label>
                         <ValidationProvider name="Phone Number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
                           <div class="floating-label-group" :class="{'error-input-group': errors[0] || $store.state.numberExists}">
-                            <input @focus="changePhoneValidation" @keypress="isNumber($event)" type="text" class="login-input" id="Phone" v-model="form.phone_number" :readonly="phone_number">
+                            <input @focus="changePhoneValidation" @keypress="isNumber($event)" type="text" class="login-input" id="Phone" v-model="form.phone_number" :readonly="phone_number !== ''">
                             <!-- <input type="text" class="login-input gray cursor-none" id="Phone" value="" v-model="form.phone_number" readonly> -->
                             <span v-if="errors.length" class="error-txt">{{ errors[0] }}</span>
                             <span class="error-txt d-block" v-if="$store.state.numberExists">{{ $t('phone_number_exits', $store.state.locale) }}</span>
@@ -151,9 +151,11 @@
             }
         },
         created () {
-          console.log(localStorage.getItem('email'))
-            // this.$toaster.success(this.$t('gamehub_welcome', this.$store.state.locale));
-            console.log(this.$store.state.signup.phoneNumber, 'phone')
+          console.log('email', localStorage.getItem('email'))
+          console.log('phone', this.$store.state.signup.phoneNumber)
+          if (this.$store.state.signup.phoneNumber){
+            console.log('hello from inner')
+          }
         },
 
     }

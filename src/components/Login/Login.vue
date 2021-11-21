@@ -333,6 +333,9 @@
             }
         },
         created() {
+            this.$store.commit('removeSignupPhoneNumber');
+            localStorage.removeItem('email')
+            localStorage.removeItem('setupPasswordUser')
             this.$store.commit('setSubmitLoading', false)
             this.referral = this.$route.query.referred_code ?? '';
             if(this.$store.getters.ifAuthenticated) {

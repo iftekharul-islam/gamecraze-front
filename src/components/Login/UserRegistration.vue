@@ -36,7 +36,7 @@
                             <input @focus="changePhoneValidation" @keypress="isNumber($event)" type="text" class="login-input" id="Phone" v-model="form.phone_number" :readonly="phone_number !== ''">
                             <!-- <input type="text" class="login-input gray cursor-none" id="Phone" value="" v-model="form.phone_number" readonly> -->
                             <span v-if="errors.length" class="error-txt">{{ errors[0] }}</span>
-                            <span class="error-txt d-block" v-if="$store.state.numberExists">{{ $t('phone_number_exits', $store.state.locale) }}</span>
+                            <span class="error-txt d-block" v-if="$store.state.numberExists || isPhoneExists">{{ $t('phone_number_exits', $store.state.locale) }}</span>
                           </div>
                         </ValidationProvider>
                     </div>
@@ -48,6 +48,7 @@
                                 <input type="email" class="login-input gray" id="email" v-model="form.email" :readonly="exist_email">
                                 <!-- <input @focus="onEmailChange" type="email" class="login-input" id="email" value="" v-model="form.email"> -->
                                 <span v-if="errors.length" class="error-txt">{{ errors[0] }}</span>
+                                <span class="error-txt d-block" v-if="isEmailExists">{{ $t('email_exits', $store.state.locale) }}</span>
                             </div>
                         </ValidationProvider>
                     </div>
@@ -84,8 +85,8 @@
                     <!-- sign in button -->
                     <div class="text-center sign-btn">
                         <button class="router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative w-100" type="button" @click.prevent="handleSubmit(onSubmit)" :disabled="isLoading">
-                            {{ $t('sign_up', $store.state.locale) }}
-                            <span v-if="$store.state.isSubmitLoading" class="spinner-border spinner-border-sm"></span>
+                            {{ $t('submit', $store.state.locale) }}
+                            <span v-if="$store.state.isSubmitLoading || isLoading" class="spinner-border spinner-border-sm"></span>
                         </button>
                         <!-- <button type="button" class="btn btn-primary mb-2" @click.prevent="handleSubmit(onSubmit)">Submit</button>-->
                     </div>
@@ -113,6 +114,8 @@
                     password: ""
 ,                },
                 isLoading: false,
+                isPhoneExists: false,
+                isEmailExists: false
             }
         },
         methods: {
@@ -144,8 +147,42 @@
               }
             },
             onSubmit: function () {
-                this.$store.dispatch('emailVerify', this.form)
+                if(this.phone_number){
+                  this.onPhoneSubmit();
+                } else {
+                  this.$store.dispatch('emailVerify', this.form)
+                }
+
             },
+            onPhoneSubmit: function () {
+            this.isLoading = true;
+            let config = {
+              headers: {
+                'Authorization': 'Bearer ' + this.$store.state.token
+              }
+            }
+            this.$api.put('update-users-by-phone', this.form, config).then(response => {
+              if (response.data.error === false) {
+                this.$store.commit('setUser', response.data.data);
+                this.$store.commit('setUserId', response.data.data.id);
+                localStorage.setItem('userId', JSON.stringify(response.data.data.id))
+                localStorage.setItem('user', JSON.stringify(response.data.data));
+                this.$router.push('/');
+                return
+              }
+              if (response.data.error === true) {
+                if (response.data.data.isEmailExists) {
+                  this.isEmailExists = true;
+                }
+                if (response.data.data.isPhoneExists) {
+                  this.isPhoneExists = true;
+                }
+                return;
+              }
+
+              this.$swal("Warning", response.message, 'warning');
+            });
+          },
             changePhoneValidation: function() {
                 this.$store.dispatch('setNumberExist', false);
             }

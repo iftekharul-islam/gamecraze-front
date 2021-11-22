@@ -417,6 +417,7 @@
   "image_update_failed" : "ছবি আপডেট ব্যর্থ হয়েছে",
   "related_articles" : "সম্পরকিত আর্টিকলেস",
   "phone_number_exits" : "ফোন নম্বর ইতিমধ্যে বিদ্যমান",
+  "email_exits" : "ইমেইল ইতিমধ্যে বিদ্যমান",
   "disk_condition_select" : "ডিস্ক শর্ত নির্বাচন করুন",
   "lenders_name" : "ভাড়া প্রদানকারীর নাম",
   "share_now" : "শেয়ারে করুন",

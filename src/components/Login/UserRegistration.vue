@@ -57,7 +57,7 @@
                         <label for="gamepassword1" class="opa-85">{{ $t('password', $store.state.locale) }}</label>
                         <ValidationProvider name="password" rules="required|min:8" v-slot="{ errors }">
                             <div class="floating-label-group" :class="{'error-input-group': errors[0]}">
-                                <input type="password" class="login-input" id="gamepassword1" placeholder="Password" v-model="form.password">
+                                <input @keypress="lengthLimit($event)" type="password" class="login-input" id="gamepassword1" placeholder="Password" v-model="form.password">
                                 <span v-if="errors.length" class="error-txt">{{ errors[0] }}</span>
                             </div>
                         </ValidationProvider>
@@ -140,9 +140,9 @@
                 evt.preventDefault();
               }
             },
-            isValidLastNameString: function(evt) {
+           lengthLimit: function(evt) {
               evt = (evt) ? evt : window.event;
-              if(this.form.lastName.length > 10){
+              if(this.form.password.length > 14){
                 evt.preventDefault();
               }
             },

@@ -66,14 +66,14 @@
 
                                     <!--                                            </ValidationProvider>-->
                                 </div>
-                                <div class="otpbtn">
-                                    <button class="btn btn-link mb-2 resend-code" type="button"
+                                <div class="otpbtn d-flex justify-content-between align-items-center">
+                                    <button class="btn btn-link text-white gil-medium" type="button"
                                             @click.prevent="onResendOtp" :disabled="isResendLoading">
-                                        {{ $t('not_get_code', $store.state.locale) }}<u>{{ $t('try_resent_code', $store.state.locale) }}</u>
+                                        {{ $t('try_resent_code', $store.state.locale) }}
                                         <span v-if="isResendLoading"
                                                 class="spinner-border spinner-border-sm"></span>
                                     </button>
-                                    <button class="btn btn--otp mb-2 w-100" type="button"
+                                    <button class="router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative" type="button"
                                             @click.prevent="handleSubmit(onOtpVerification)"
                                             :disabled="$store.state.isSubmitLoading">
                                         {{ $t('sign_in', $store.state.locale) }}
@@ -87,7 +87,7 @@
                         <div v-else>
                             <div class="form-group"  v-if="$store.state.notSetPassword">
                                 <!-- user name -->
-                                <label for="username1" class="">{{ $t('enter_your_email_address', $store.state.locale) }}</label>
+                                <label for="username1" class="opa-85 gil-medium">{{ $t('enter_your_email_address', $store.state.locale) }}</label>
                                 <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                                     <div class="floating-email" :class="{'error-input-group': errors[0]}">
                                         <input @click="changeErrorMessage" type="text" class="login-input"
@@ -117,7 +117,7 @@
                                
                             </div>
                             <!-- forget password -->
-                            <div class="forget d-flex mt-5" v-if="!$store.state.notSetPassword">
+                            <div class="forget d-flex mt-4" v-if="!$store.state.notSetPassword">
                                 <p class="mb-0 mr-1">Forgottern password? </p><router-link to="forgot-password" class="text-error gil-medium"><u>{{ $t('forget_password', $store.state.locale) }}</u></router-link>
                             </div>
                             
@@ -330,7 +330,16 @@
                     console.log('op: ', option);
                 }
                 
-            }
+            },
+            toggleBodyClass(addRemoveClass, className) {
+            const el = document.body;
+
+                if (addRemoveClass === 'addClass') {
+                el.classList.add(className);
+                } else {
+                el.classList.remove(className);
+                }
+        },
         },
         created() {
             this.$store.commit('removeSignupPhoneNumber');
@@ -356,6 +365,12 @@
                 { deep:true }
             );
         },
+        mounted() {
+        this.toggleBodyClass('addClass', 'pt-0');
+        },
+        destroyed() {
+        this.toggleBodyClass('removeClass', 'pt-0');
+        }
     }
 </script>
 

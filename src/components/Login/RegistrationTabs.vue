@@ -69,18 +69,18 @@
                 <h2 class="gil-regular f-s-32 f-s-md-48 opa-85 sign-text"> 
                     <span class="text-secondery">{{ $t('gamehubbd', $store.state.locale) }}</span>
                      {{ $t('welcome_to', $store.state.locale) }} <span class="text-secondery">{{ $t('gamehube', $store.state.locale) }}</span></h2>
-                <h4 class="f-s-28 gil-medium mb-a-5">Create new account</h4>
+                <h4 class="f-s-28 gil-medium mb-a-5">{{ $t('create_new_account', $store.state.locale) }}</h4>
                 <!-- tabs -->
                 <div>
-                    <p class="gil-medium opa-85">Select a user type</p>
+                    <p class="gil-medium opa-85">{{ $t('select_a_user_type', $store.state.locale) }}</p>
                     <div class="d-grid grid-cols-2 grid-gap-20">
                         <router-link to="/user-registration" class="registration-tabs-box bg-login-input pointer">
-                            <p class="text-secondery gil-medium f-s-20 mb-2">User</p>
-                             <p class="gil-medium f-s-14 mb-0 opa-75">For personal use only.</p>
+                            <p class="text-secondery gil-medium f-s-20 mb-2">{{ $t('user', $store.state.locale) }}</p>
+                             <p class="gil-medium f-s-14 mb-0 opa-75">{{ $t('for_personal_use_only', $store.state.locale) }}</p>
                         </router-link>
                         <router-link to="/vendor-registration" class="registration-tabs-box bg-login-input pointer">
-                            <p class="text-secondery gil-medium f-s-20 mb-2">Vendor</p>
-                             <p class="gil-medium f-s-14 mb-0 opa-75">For personal use only.</p>
+                            <p class="text-secondery gil-medium f-s-20 mb-2">{{ $t('vendor', $store.state.locale) }}</p>
+                             <p class="gil-medium f-s-14 mb-0 opa-75">{{ $t('use_for_business_only', $store.state.locale) }}</p>
                         </router-link>
                     </div>
                     <router-view></router-view>
@@ -138,7 +138,22 @@
                   }
                 });
             },
+            toggleBodyClass(addRemoveClass, className) {
+            const el = document.body;
+
+                if (addRemoveClass === 'addClass') {
+                el.classList.add(className);
+                } else {
+                el.classList.remove(className);
+                }
+            },
         },
+         mounted() {
+        this.toggleBodyClass('addClass', 'pt-0');
+        },
+        destroyed() {
+        this.toggleBodyClass('removeClass', 'pt-0');
+        }
     }
 
 </script>

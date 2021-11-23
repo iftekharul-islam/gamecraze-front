@@ -148,6 +148,7 @@
   "cover_image" : "কভার ফটো",
   "i_agree" : "সকল নিয়মের সাথে একমত",
   "first_name" : "প্রথম নাম",
+  "full_name" : "পুরো নাম",
   "last_name" : "শেষ নাম",
   "update_profile" : "আপডেট প্রফাইল",
   "lifetime_earning" : "সর্বমোট আয়",
@@ -594,6 +595,16 @@
   "for_sell" : "ক্রয় করুন",
   "gamehube" : "",
   "welcome_back_to" : "ফিরে আসার জন্য স্বাগতম",
-  "gamehubbd" : "গেমহাবে"
+  "gamehubbd" : "গেমহাবে",
+  "type_new_password" : "নতুন পাসওয়ার্ড লিখুন",
+  "retype_password" : "পাসওয়ার্ড পুনরায় লিখুন",
+  "all_in_one_marketplace" : "নিবেদিত মার্কেটপ্লেস",
+  "dedicated_only_for_gamers" : "শুধুমাত্র গেমারদের জন্য",
+  "vendor" : "বিক্রেতা",
+  "user" : "ব্যবহারকারী",
+  "for_personal_use_only" : "শুধুমাত্র ব্যক্তিগত ব্যবহারের জন্য",
+  "use_for_business_only" : "শুধুমাত্র ব্যবসার জন্য ব্যবহার করুন",
+  "create_new_account" : "নতুন একাউন্ট তৈরি করুন",
+  "select_a_user_type" : "ব্যবহারকারীর ধরন নির্বাচন করুন"
 }
 

@@ -148,6 +148,7 @@
   "cover_image" : "Cover Image",
   "i_agree" : "I agree with all",
   "first_name" : "First Name",
+  "full_name" : "Full Name",
   "last_name" : "Last Name",
   "update_profile" : "Update Profile",
   "lifetime_earning" : "Lifetime earnings",
@@ -387,7 +388,7 @@
   "otp_expired" : "This OTP expired",
   "otp_not_found" : "The OTP not found. Please recheck.",
   "not_get_code" : "Didn’t get any code ?",
-  "try_resent_code" : "Try Resend Code ",
+  "try_resent_code" : "Resend OTP ",
   "set_password": "Set your password",
   "otp" : "OTP",
   "get_password_reset_code" : "Get Password Reset code in",
@@ -594,5 +595,16 @@
   "for_sell" : "For Buy",
   "gamehube" : "Gamehub",
   "welcome_back_to" : "Welcome back to",
-  "gamehubbd" : ""
+  "gamehubbd" : "",
+  "type_new_password" : "Type new password",
+  "retype_password" : "Retype password",
+  "all_in_one_marketplace" : "All in one marketplace",
+  "dedicated_only_for_gamers" : "dedicated only for gamers",
+  "vendor" : "Vendor",
+  "user" : "User",
+  "for_personal_use_only" : "For personal use only",
+  "use_for_business_only" : "Use for business only",
+  "create_new_account" : "Create new account",
+  "select_a_user_type" : "Select a user type"
+  
 }

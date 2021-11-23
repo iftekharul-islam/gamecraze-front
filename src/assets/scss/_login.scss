@@ -3,12 +3,13 @@ html {
 }
 
 .login-section,
-.registration-section {
+.registration-section,
+.forget-password-section {
     padding-top: 40px;
     padding-bottom: 40px;
     background: linear-gradient(90deg, rgba(11, 15, 24, 0.85) 0%, rgba(11, 15, 24, 0) 243.28%), url(../img/login-bg.webp);
     background-repeat: no-repeat;
-    min-height: calc(100vh - 68px);
+    min-height: calc(100vh - 90px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,7 +17,9 @@ html {
         padding-bottom: 150px;
     }
 }
-
+.registration-section {
+    background-size: cover;
+}
 .registration-form {
     margin-top: 100px;
     padding-bottom: 200px;
@@ -124,9 +127,7 @@ html {
 
 // otp button
 .otpbtn {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    margin-top: 40px;
     .resend-code {
         font-size: 14px;
         padding-left: 0;
@@ -326,3 +327,4 @@ html {
         }
     }
 }
+

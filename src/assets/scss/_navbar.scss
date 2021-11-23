@@ -669,6 +669,9 @@
 .gamehub-body {
     position: relative;
     min-height: 100vh;
+    &.registrationPadding {
+        padding-top: 65px !important;
+    }
     .container {
         @include for-min-1200 {
             max-width: 1180px;

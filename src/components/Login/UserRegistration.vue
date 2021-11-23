@@ -9,10 +9,10 @@
                     <!-- First Name -->
                     <div class="form-row margin-b-32">
                         <div class="col-md-12">
-                            <label for="firstName" class="opa-85">{{ $t('first_name', $store.state.locale) }}</label>
+                            <label for="firstName" class="opa-85">{{ $t('full_name', $store.state.locale) }}</label>
                             <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
                              <div class="floating-label-group" :class="{'error-input-group': errors[0]}">
-                                <input @keypress="isValidNameString($event)" type="text" class="login-input" id="firstName" value="" v-model="form.name" placeholder="First Name">
+                                <input @keypress="isValidNameString($event)" type="text" class="login-input" id="firstName" value="" v-model="form.name" :placeholder="$t('full_name', $store.state.locale)">
                                 <span v-if="errors.length" class="error-txt">{{ errors[0] }}</span>
                              </div>
                             </ValidationProvider>
@@ -33,7 +33,7 @@
                         <label for="Phone" class="opa-85">{{ $t('phone_number', $store.state.locale) }}</label>
                         <ValidationProvider name="Phone Number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
                           <div class="floating-label-group" :class="{'error-input-group': errors[0] || $store.state.numberExists}">
-                            <input @focus="changePhoneValidation" @keypress="isNumber($event)" type="text" class="login-input" id="Phone" v-model="form.phone_number" :readonly="phone_number !== ''">
+                            <input @focus="changePhoneValidation" @keypress="isNumber($event)" type="text" class="login-input" id="Phone" v-model="form.phone_number" :readonly="phone_number !== ''" :placeholder="$t('phone_number', $store.state.locale)">
                             <!-- <input type="text" class="login-input gray cursor-none" id="Phone" value="" v-model="form.phone_number" readonly> -->
                             <span v-if="errors.length" class="error-txt">{{ errors[0] }}</span>
                             <span class="error-txt d-block" v-if="$store.state.numberExists || isPhoneExists">{{ $t('phone_number_exits', $store.state.locale) }}</span>
@@ -45,7 +45,7 @@
                         <label for="email" class="opa-85">{{ $t('email', $store.state.locale) }} {{ $t('address', $store.state.locale) }}</label>
                         <ValidationProvider name="email" rules="email" v-slot="{ errors }">
                             <div class="floating-label-group" :class="{'error-input-group': errors[0]}">
-                                <input type="email" class="login-input gray" id="email" v-model="form.email" :readonly="exist_email">
+                                <input type="email" class="login-input gray" id="email" v-model="form.email" :readonly="exist_email" :placeholder="$t('email', $store.state.locale) + ' ' + $t('address', $store.state.locale)">
                                 <!-- <input @focus="onEmailChange" type="email" class="login-input" id="email" value="" v-model="form.email"> -->
                                 <span v-if="errors.length" class="error-txt">{{ errors[0] }}</span>
                                 <span class="error-txt d-block" v-if="isEmailExists">{{ $t('email_exits', $store.state.locale) }}</span>
@@ -57,7 +57,7 @@
                         <label for="gamepassword1" class="opa-85">{{ $t('password', $store.state.locale) }}</label>
                         <ValidationProvider name="password" rules="required|min:8" v-slot="{ errors }">
                             <div class="floating-label-group" :class="{'error-input-group': errors[0]}">
-                                <input @keypress="lengthLimit($event)" type="password" class="login-input" id="gamepassword1" placeholder="Password" v-model="form.password">
+                                <input @keypress="lengthLimit($event)" type="password" class="login-input" id="gamepassword1" :placeholder="$t('password', $store.state.locale)" v-model="form.password">
                                 <span v-if="errors.length" class="error-txt">{{ errors[0] }}</span>
                             </div>
                         </ValidationProvider>
@@ -185,7 +185,16 @@
           },
             changePhoneValidation: function() {
                 this.$store.dispatch('setNumberExist', false);
-            }
+            },
+            toggleBodyClass(addRemoveClass, className) {
+            const el = document.body;
+
+                if (addRemoveClass === 'addClass') {
+                el.classList.add(className);
+                } else {
+                el.classList.remove(className);
+                }
+            },
         },
         created () {
           console.log('email', localStorage.getItem('email'))
@@ -194,6 +203,12 @@
             console.log('hello from inner')
           }
         },
+         mounted() {
+        this.toggleBodyClass('addClass', 'registrationPadding');
+        },
+        destroyed() {
+        this.toggleBodyClass('removeClass', 'registrationPadding');
+        }
 
     }
 </script>

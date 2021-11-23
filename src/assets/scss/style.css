@@ -4582,6 +4582,10 @@ select option {
   min-height: 100vh;
 }
 
+.gamehub-body.registrationPadding {
+  padding-top: 65px !important;
+}
+
 @media (min-width: 1200px) {
   .gamehub-body .container {
     max-width: 1180px;
@@ -6369,13 +6373,14 @@ html {
 }
 
 .login-section,
-.registration-section {
+.registration-section,
+.forget-password-section {
   padding-top: 40px;
   padding-bottom: 40px;
   background: -webkit-gradient(linear, left top, right top, from(rgba(11, 15, 24, 0.85)), color-stop(243.28%, rgba(11, 15, 24, 0))), url(../img/login-bg.webp);
   background: linear-gradient(90deg, rgba(11, 15, 24, 0.85) 0%, rgba(11, 15, 24, 0) 243.28%), url(../img/login-bg.webp);
   background-repeat: no-repeat;
-  min-height: calc(100vh - 68px);
+  min-height: calc(100vh - 90px);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -6389,9 +6394,14 @@ html {
 
 @media (max-width: 575px) {
   .login-section,
-  .registration-section {
+  .registration-section,
+  .forget-password-section {
     padding-bottom: 150px;
   }
+}
+
+.registration-section {
+  background-size: cover;
 }
 
 .registration-form {
@@ -6529,16 +6539,7 @@ html {
 }
 
 .otpbtn {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
+  margin-top: 40px;
 }
 
 .otpbtn .resend-code {
@@ -11424,30 +11425,9 @@ html {
   margin-bottom: 40px;
 }
 
-.forget-password-section {
-  padding: 100px 0 160px 0;
-}
-
-.forget-password-section--card {
-  background: #141A27;
-  border-radius: 10px;
-  padding: 20px;
-}
-
 .forget-password-section--card--title {
   font-size: 40px;
   margin-bottom: 40px;
-}
-
-.forget-password-section--card form input {
-  border-radius: 0;
-  border: none;
-  color: #000 !important;
-}
-
-.forget-password-section--card form input:-webkit-autofill, .forget-password-section--card form input:-webkit-autofill:hover, .forget-password-section--card form input:-webkit-autofill:focus, .forget-password-section--card form input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #fff inset !important;
-  -webkit-text-fill-color: #000 !important;
 }
 
 .forget-password-section--card--input-group {

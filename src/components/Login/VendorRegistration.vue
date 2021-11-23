@@ -82,7 +82,22 @@
             }
         },
         methods: {
+          toggleBodyClass(addRemoveClass, className) {
+            const el = document.body;
+
+                if (addRemoveClass === 'addClass') {
+                el.classList.add(className);
+                } else {
+                el.classList.remove(className);
+                }
+            },
         },
+         mounted() {
+        this.toggleBodyClass('addClass', 'registrationPadding');
+        },
+        destroyed() {
+        this.toggleBodyClass('removeClass', 'registrationPadding');
+        }
 
     }
 </script>

@@ -101,10 +101,10 @@ let router = new Router({
         },
         {
             path: '/login',
+            name: 'login',
             component: Login,
             meta: {
                 requiresAuth: false,
-                bodyClass: 'bg-light'
             }
         },
         {

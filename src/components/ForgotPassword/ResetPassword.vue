@@ -2,7 +2,7 @@
     <div>
         <section class="forget-password-section">
             <div class="login-form">
-                    <h2 class="gil-regular f-s-32 f-s-md-48 opa-85"> <span class="text-secondery">{{ $t('gamehubbd', $store.state.locale) }}</span> {{ $t('welcome_back_to', $store.state.locale) }} <span class="text-secondery">{{ $t('gamehube', $store.state.locale) }}</span></h2>
+                    <h2 class="gil-regular f-s-32 f-s-md-48 opa-85"> <span class="text-secondery">{{ $t('gamehubbd', $store.state.locale) }}</span> {{ $t('welcome_back_to', $store.state.locale) }} <span class="text-secondery gil-medium">{{ $t('gamehube', $store.state.locale) }}</span></h2>
                      <p class="gil-medium f-s-28 sign-text">{{ $t('reset_password', $store.state.locale) }}</p>
                     <ValidationObserver v-slot="{ handleSubmit }">
                         <form method="post" @submit.prevent="handleSubmit(onReset)">

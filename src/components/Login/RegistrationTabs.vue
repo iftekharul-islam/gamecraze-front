@@ -68,7 +68,7 @@
             <div class="login-form">
                 <h2 class="gil-regular f-s-32 f-s-md-48 opa-85 sign-text"> 
                     <span class="text-secondery">{{ $t('gamehubbd', $store.state.locale) }}</span>
-                     {{ $t('welcome_to', $store.state.locale) }} <span class="text-secondery">{{ $t('gamehube', $store.state.locale) }}</span></h2>
+                     {{ $t('welcome_to', $store.state.locale) }} <span class="text-secondery gil-medium">{{ $t('gamehube', $store.state.locale) }}</span></h2>
                 <h4 class="f-s-28 gil-medium mb-a-5">{{ $t('create_new_account', $store.state.locale) }}</h4>
                 <!-- tabs -->
                 <div>

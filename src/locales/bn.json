@@ -375,15 +375,17 @@
   "through_this": "দিয়ে সাইন ইন করুন",
   "continue_with" : "",
   "sign_in_by" : "",
-  "phone_no" : "Phone no",
-  "mail_password" : "আপনার মেইল চেক করুন এবং আপনার পাসওয়ার্ড সেট করুন",
+  "phone_no" : "ফোন নং",
+  "mail_password" : "আমরা একটি পাসওয়ার্ড রিসেট লিঙ্ক পাঠিয়েছি",
   "password" : "পাসওয়ার্ড",
+  "please_email": "আপনার ইমেল চেক করুন এবং রিসেট করুন",
   "reset_password" : "পাসওয়ার্ড পুনরুদ্ধার করুন",
   "invalid_password" : "পাসওয়ার্ড সঠিক নয়",
   "invalid_otp" : "এই ওটিপি সময়সীমা জন্য সঠিক নয়",
   "inactive_user": "এই ব্যবহারকারী ইনএক্টিভ, হেল্পলাইনে যোগাযোগ করুন",
   "remember_me" : "মনে করিয়ে দিন",
   "forget_password" : "পাসওয়ার্ড ভুলে গেছেন ?",
+  "reset_now" : "রিসেট করুন",
   "insert_digit" : "আপনার ফোনে প্রেরিত 6 ডিজিটের কোড প্রদান করুন ",
   "wrong_otp" : "ভুল ওটিপি",
   "otp_expired" : "এই ওটিপি'র মেয়াদ শেষ হয়েছে",
@@ -605,6 +607,9 @@
   "for_personal_use_only" : "শুধুমাত্র ব্যক্তিগত ব্যবহারের জন্য",
   "use_for_business_only" : "শুধুমাত্র ব্যবসার জন্য ব্যবহার করুন",
   "create_new_account" : "নতুন একাউন্ট তৈরি করুন",
-  "select_a_user_type" : "ব্যবহারকারীর ধরন নির্বাচন করুন"
+  "select_a_user_type" : "ব্যবহারকারীর ধরন নির্বাচন করুন",
+  "phone_number_is_required" : "ফোন নম্বর প্রয়োজন",
+  "email_address_is_required" : "ইমেল এড্রেস প্রয়োজন",
+  "please_agree_with_terms_and_condition" : "Please agree with terms and condition"
 }
 

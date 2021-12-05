@@ -9,7 +9,7 @@
                     <!-- First Name -->
                     <div class="form-row margin-b-32">
                         <div class="col-md-12">
-                            <label for="firstName" class="opa-85">{{ $t('full_name', $store.state.locale) }}</label>
+                            <label for="firstName" class="opa-85"><span>{{ $t('full_name', $store.state.locale) }}</span></label>
                             <ValidationProvider name="first name" rules="required" v-slot="{ errors }">
                              <div class="floating-label-group" :class="{'error-input-group': errors[0]}">
                                 <input @keypress="isValidNameString($event)" type="text" class="login-input" id="firstName" value="" v-model="form.name" :placeholder="$t('full_name', $store.state.locale)">
@@ -30,7 +30,7 @@
                     </div>
                     <!-- Mobile No. -->
                     <div class="form-group margin-b-32">
-                        <label for="Phone" class="opa-85">{{ $t('phone_number', $store.state.locale) }}</label>
+                        <label for="Phone" class="opa-85"><span>{{ $t('mobile_no', $store.state.locale) }}</span></label>
                         <ValidationProvider name="Phone Number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
                           <div class="floating-label-group" :class="{'error-input-group': errors[0] || $store.state.numberExists}">
                             <input @focus="changePhoneValidation" @keypress="isNumber($event)" type="text" class="login-input" id="Phone" v-model="form.phone_number" :readonly="phone_number !== ''" :placeholder="$t('phone_number', $store.state.locale)">
@@ -42,8 +42,8 @@
                     </div>
                       <!-- user email -->
                     <div class="form-group margin-b-32">
-                        <label for="email" class="opa-85">{{ $t('email', $store.state.locale) }} {{ $t('address', $store.state.locale) }}</label>
-                        <ValidationProvider name="email" rules="email" v-slot="{ errors }">
+                        <label for="email" class="opa-85"><span>{{ $t('email', $store.state.locale) }}</span> <span class="text-lowercase">{{ $t('address', $store.state.locale) }}</span></label>
+                        <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
                             <div class="floating-label-group" :class="{'error-input-group': errors[0]}">
                                 <input type="email" class="login-input gray" id="email" v-model="form.email" :readonly="exist_email" :placeholder="$t('email', $store.state.locale) + ' ' + $t('address', $store.state.locale)">
                                 <!-- <input @focus="onEmailChange" type="email" class="login-input" id="email" value="" v-model="form.email"> -->
@@ -54,7 +54,7 @@
                     </div>
                     <!-- password -->
                     <div class="form-group margin-b-32">
-                        <label for="gamepassword1" class="opa-85">{{ $t('password', $store.state.locale) }}</label>
+                        <label for="gamepassword1" class="opa-85"><span>{{ $t('password', $store.state.locale) }}</span></label>
                         <ValidationProvider name="password" rules="required|min:8" v-slot="{ errors }">
                             <div class="floating-label-group" :class="{'error-input-group': errors[0]}">
                                 <input @keypress="lengthLimit($event)" type="password" class="login-input" id="gamepassword1" :placeholder="$t('password', $store.state.locale)" v-model="form.password">
@@ -77,7 +77,7 @@
                             <ValidationProvider name="Terms & Conditions" rules="required" v-slot="{ errors }">
                             <input type="checkbox" id="terms-agree" class="checkbox-parents--input" v-model="agreement" @change="onAgreement($event)">
                             <label for="terms-agree" class="checkbox-parents--label">{{ $t('i_agree', $store.state.locale) }}  <router-link to="/terms" target="_blank" class="text-secondery"><u>{{ $t('terms', $store.state.locale) }}</u></router-link></label>
-                            <span v-if="errors.length" class="error-txt d-block ml--30">{{ errors[0] }}</span>
+                            <span v-if="errors.length" class="error-txt text-danger d-block ml--30">{{ $t('please_agree_with_terms_and_condition', $store.state.locale) }}</span>
                         </ValidationProvider>
                         </div>
                     </div>

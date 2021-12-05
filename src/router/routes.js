@@ -109,6 +109,7 @@ let router = new Router({
         },
         {
             path: '/registration',
+            name: 'RegistrationTabs',
             component: RegistrationTabs,
             meta: {
                 requiresAuth: false

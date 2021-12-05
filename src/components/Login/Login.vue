@@ -3,14 +3,21 @@
         <!-- sign in  -->
         <section class="login-section">
             <div class="login-form">
-                <h2 class="gil-regular f-s-32 f-s-md-48 opa-85"> <span class="text-secondery">{{ $t('gamehubbd', $store.state.locale) }}</span> {{ $t('welcome_back_to', $store.state.locale) }} <span class="text-secondery">{{ $t('gamehube', $store.state.locale) }}</span></h2>
-                <p class="gil-medium f-s-28 sign-text"> {{ $t('sign_in', $store.state.locale) }}</p>
+                <a href="/login" class="back text-white-hover gil-medium d-inline-flex align-items-center mb-a-10" v-if="showOTP && ! $store.state.setPasswordPopUp">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9.57 5.92969L3.5 11.9997L9.57 18.0697" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path opacity="0.4" d="M20.4999 12H3.66992" stroke="white" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span class="ml-1">{{ $t('back', $store.state.locale) }}</span>
+                </a>
+                <h2 class="gil-regular f-s-32 f-s-md-48 opa-85" v-if="! $store.state.setPasswordPopUp"> <span class="text-secondery">{{ $t('gamehubbd', $store.state.locale) }}</span> {{ $t('welcome_back_to', $store.state.locale) }} <span class="text-secondery gil-medium">{{ $t('gamehube', $store.state.locale) }}</span></h2>
+                <p class="gil-medium f-s-28 sign-text" v-if="! $store.state.setPasswordPopUp"> {{ $t('sign_in', $store.state.locale) }}</p>
 
                 <div class="password-setup-popup" v-if="$store.state.setPasswordPopUp">
                     <div class="password-setup-popup--content">
-                        <p>{{ $t('mail_password', $store.state.locale) }}</p>
-                        <!-- <router-link to="/registration">ok</router-link> -->
-                        <button @click="hidePopUp" class="password-setup-popup--content--btn text-white gil-medium">{{ $t('submit', $store.state.locale) }}</button>
+                        <p class="text-white mb-0 f-s-48">{{ $t('mail_password', $store.state.locale) }}</p>
+                        <p class="text-secondery mb-0 f-s-48">example@mail.com</p>
+                        <button @click="hidePopUp" class="password-setup-popup--content--btn text-white gil-medium f-s-28">{{ $t('please_email', $store.state.locale) }}</button>
                     </div>
                 </div>
 
@@ -118,19 +125,19 @@
                             </div>
                             <!-- forget password -->
                             <div class="forget d-flex mt-4" v-if="!$store.state.notSetPassword">
-                                <p class="mb-0 mr-1">Forgottern password? </p><router-link to="forgot-password" class="text-error gil-medium"><u>{{ $t('forget_password', $store.state.locale) }}</u></router-link>
+                                <p class="mb-0 mr-1">{{ $t('forget_password', $store.state.locale) }}  </p><router-link to="forgot-password" class="text-error gil-medium"><u> {{ $t('reset_now', $store.state.locale) }}</u></router-link>
                             </div>
                             
                         </div>
                         <!-- all button -->
                         <div class="all-btn d-grid grid-md-cols-2 grid-gap-20">
                              <!-- email phone number collapse btn -->
-                            <button v-if="!$store.state.setPasswordPopUp"
+                            <button v-if="!$store.state.setPasswordPopUp && !showOTP"
                                     type="button"
                                     class="router_link btn--collision br-40 bg-login-input border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 pl-a-4 pr-a-4 d-inline-block position-relative"
                                     @click="onChangeLoginOption">
                                 <span>{{ $t('sign_in_by', $store.state.locale) }}
-                                        <span v-if="loginOption === 'email'">{{ $t('email', $store.state.locale) }}</span>
+                                        <span class="text-lowercase" v-if="loginOption === 'email'">{{ $t('email', $store.state.locale) }}</span>
                                         <span v-else>{{ $t('phone_no', $store.state.locale) }}</span>
                                     {{ $t('through_this', $store.state.locale) }}
                                 </span>
@@ -138,7 +145,7 @@
                             <!-- Continue btn -->
                                 <div class="text-center" v-if="!showOTP && loginOption === 'email'">
                                     <button class="w-full router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative" ref="sendOtpBtn" type="submit" :disabled="isLoading">
-                                        {{ $t('proceed', $store.state.locale) }}
+                                        {{ $t('continue', $store.state.locale) }}
                                         <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
                                     </button>
                                 </div>
@@ -146,9 +153,10 @@
                             <!-- sign in button -->
                             <div v-if="loginOption === 'phone_number'" class="text-center">
                                 <button class="w-full router_link btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative" type="submit" ref="emailLoginBtn" :disabled="isLoading && $store.state.notSetPassword && !$store.state.notFoundEmail">
-                                    {{ $t('sign_in', $store.state.locale) }}
+                                    <span v-if="$store.state.notSetPassword">{{ $t('continue', $store.state.locale) }}</span>
+                                    <span v-if="! $store.state.notSetPassword">{{ $t('sign_in', $store.state.locale) }}</span>
                                     <span v-if="$store.state.isEmailLoading"
-                                            class="spinner-border spinner-border-sm"></span>
+                                            class="spinner-border spinner-border-sm ml-2"></span>
                                 </button>
                             </div>
                            

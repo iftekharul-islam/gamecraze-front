@@ -117,7 +117,7 @@
                     </div>
                 </div>
             </div>
-            <div class="footer-section--content">
+            <div class="footer-section--content" v-if="smallFooter">
                 <div class="container">
                      <div class="row">
                          <div class="col-12">
@@ -142,7 +142,8 @@
     export default {
       data() {
         return {
-          largeFooter: false
+          largeFooter: false,
+          smallFooter: false,
         }
       },
       methods: {
@@ -181,6 +182,10 @@
             if (value.name === 'Home' || value.name === 'gamebazar' || value.name === 'sell-post' || value.name === 'rent-post-details' || value.name === 'CreateSellPost'){
                 this.largeFooter = true
             }
+             this.smallFooter = true;
+             if (value.name === 'login' || value.name === 'RegistrationTabs' || value.name === 'UserRegistration' || value.name === 'VendorRegistration')  {
+                  this.smallFooter = false
+             }
           },
           deep: true,
           immediate: true,

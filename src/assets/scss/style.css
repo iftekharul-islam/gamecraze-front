@@ -3740,6 +3740,10 @@ select option {
           animation-iteration-count: infinite;
 }
 
+.text-lowercase {
+  text-transform: lowercase;
+}
+
 @media (max-width: 575px) {
   .body-home .gamehub-menu {
     background: transparent;
@@ -6380,7 +6384,8 @@ html {
   background: -webkit-gradient(linear, left top, right top, from(rgba(11, 15, 24, 0.85)), color-stop(243.28%, rgba(11, 15, 24, 0))), url(../img/login-bg.webp);
   background: linear-gradient(90deg, rgba(11, 15, 24, 0.85) 0%, rgba(11, 15, 24, 0) 243.28%), url(../img/login-bg.webp);
   background-repeat: no-repeat;
-  min-height: calc(100vh - 90px);
+  background-size: cover;
+  min-height: calc(100vh);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -6398,6 +6403,12 @@ html {
   .forget-password-section {
     padding-bottom: 150px;
   }
+}
+
+.login-section label,
+.registration-section label,
+.forget-password-section label {
+  font-family: gilroy-medium;
 }
 
 .registration-section {
@@ -6602,7 +6613,6 @@ html {
 .password-setup-popup {
   width: 100%;
   height: 100%;
-  background: #000000a3;
   position: fixed;
   top: 0;
   left: 0;
@@ -6625,31 +6635,7 @@ html {
 }
 
 .password-setup-popup--content {
-  width: 540px;
-  height: 400px;
-  background: #FFD715;
-  border-radius: 5px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
-  text-align: center;
-}
-
-@media (max-width: 768px) {
-  .password-setup-popup--content {
-    width: 450px;
-    height: 350px;
-  }
+  max-width: 566px;
 }
 
 @media (max-width: 575px) {
@@ -6659,16 +6645,12 @@ html {
 }
 
 .password-setup-popup--content p {
-  font-size: 40px;
-  margin-bottom: 80px;
-  margin-top: 120px;
   color: #000;
+  line-height: 64px;
 }
 
 @media (max-width: 768px) {
   .password-setup-popup--content p {
-    margin-top: 100px;
-    margin-bottom: 35px;
     font-size: 26px;
   }
 }
@@ -6680,23 +6662,14 @@ html {
 }
 
 .password-setup-popup--content--btn {
-  width: 120px;
-  height: 48px;
-  background: #0B0F18;
+  background: transparent;
   border: none;
-  color: #fff;
-  border-radius: 5px;
-  -webkit-transition: all .3s ease-in;
-  transition: all .3s ease-in;
-  text-transform: uppercase;
+  margin-top: 40px;
+  display: inline-block;
 }
 
 .password-setup-popup--content--btn:focus {
   outline: none;
-}
-
-.password-setup-popup--content--btn:hover {
-  background: #141A27;
 }
 
 .floating-email {
@@ -6751,6 +6724,10 @@ html {
   margin-top: 40px;
 }
 
+.bn .all-btn button {
+  font-size: 14px;
+}
+
 .error-message {
   color: #F16A46;
   position: relative;
@@ -6803,6 +6780,10 @@ html {
 
 .error-input-group input:focus-visible {
   border-color: #F53A50 !important;
+}
+
+.text-white-hover:hover {
+  color: #fff;
 }
 
 .registration-tabs-box {

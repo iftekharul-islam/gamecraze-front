@@ -154,6 +154,7 @@ body {
         border-radius: 4px;
         p {
             margin-bottom: 0;
+            z-index: 9;
             @include gil-medium;
             &:nth-child(7) {
                 margin-left: auto;
@@ -191,6 +192,7 @@ body {
         width: 100%;
         flex: none;
         background: $game-details;
+        z-index: 1;
         &__content {
             display: flex;
             flex-wrap: wrap;
@@ -216,8 +218,8 @@ body {
     background: $game-details;
     .collaps-btn {
         &::before {
-            top: 3px;
-            transform: rotate(135deg);
+            top: 13px;
+            transform: rotate(-45deg);
         }
     }
 }
@@ -246,7 +248,10 @@ body {
 }
 .table-collapse-bottom {
     margin-top: 20px;
-    padding-left: 20px;
+    padding: 0 20px;
+    a {
+        height: 40px;
+    }
 }
 .details-group {
     margin-bottom: 20px;
@@ -263,8 +268,8 @@ body {
         height: 10px;
         right: 16px;
         position: absolute;
-        top: 10px;
-        transform: rotate(-45deg);
+        top: 7px;
+        transform: rotate(135deg);
         vertical-align: top;
         width: 10px;
         transition: all .3s ease-in;
@@ -311,6 +316,27 @@ body {
             p {
                 display: none;
             }
+        }
+    }
+}
+
+.alert-hover {
+    position: relative;
+    cursor: auto;
+    &__content {
+        background: $gamebazar-badge;
+        padding: 12px;
+        border-radius: 4px;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        z-index: 9;
+        width: 200px;
+        display: none;
+    }
+    &:hover {
+        .alert-hover__content {
+            display: block;
         }
     }
 }

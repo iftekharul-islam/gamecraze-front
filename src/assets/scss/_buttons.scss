@@ -170,6 +170,7 @@
         border: 1px solid $secondery !important;
         z-index: 1;
         overflow: hidden;
+        color: $primary;
         &:focus {
             outline: none;
         }

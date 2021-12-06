@@ -3012,20 +3012,7 @@ select {
     align-items: center;
     position: relative;
     width: fit-content;
-    &::after {
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        content: '!';
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        transform: rotate( 180deg);
-        margin-left: 12px;
-        font-weight: normal;
-        position: absolute;
-        right: -40px;
-    }
+    
 }
 
 .rejected {
@@ -3034,18 +3021,10 @@ select {
     padding: 2px 4px;
     border-radius: 4px;
     @include gil-medium;
-    &::after {
-        background: $rejected-opacity;
-        color: $gamebazar-badge;
-    }
 }
 
 .pending {
     color: $secondery;
-    &::after {
-        background: $secondery;
-        color: $text-dark;
-    }
 }
 
 .completed {

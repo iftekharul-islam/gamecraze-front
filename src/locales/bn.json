@@ -610,6 +610,9 @@
   "select_a_user_type" : "ব্যবহারকারীর ধরন নির্বাচন করুন",
   "phone_number_is_required" : "ফোন নম্বর প্রয়োজন",
   "email_address_is_required" : "ইমেল এড্রেস প্রয়োজন",
-  "please_agree_with_terms_and_condition" : "Please agree with terms and condition"
+  "please_agree_with_terms_and_condition" : "শর্তাবলীর সাথে একমত",
+  "shop_name" : "দোকানের নাম",
+  "trade_license" : "ট্রেড লাইসেন্স নম্বর",
+  "shop_owner_name" : "মালিকের নাম"
 }
 

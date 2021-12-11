@@ -40,7 +40,7 @@
                           </div>
                         </ValidationProvider>
                     </div>
-                      <!-- user email -->
+                    <!-- user email -->
                     <div class="form-group margin-b-32">
                         <label for="email" class="opa-85"><span>{{ $t('email', $store.state.locale) }}</span> <span class="text-lowercase">{{ $t('address', $store.state.locale) }}</span></label>
                         <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">

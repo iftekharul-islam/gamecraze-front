@@ -22,7 +22,7 @@
                     <label for="Phone" class="opa-85"><span>{{ $t('trade_license', $store.state.locale) }}</span></label>
                     <ValidationProvider name="Trade license" rules="required|max:7" v-slot="{ errors }">
                       <div class="floating-label-group" :class="{'error-input-group': errors[0]}">
-                        <input type="text" class="login-input" maxlength="7" v-model="form.tradeLicense"  :placeholder="$t('trade_license', $store.state.locale)">
+                        <input type="text" @keypress="isTradeNumber($event)" class="login-input" maxlength="7" v-model="form.tradeLicense"  :placeholder="$t('trade_license', $store.state.locale)">
                         <span v-if="errors.length" class="error-txt">{{ errors[0] }}</span>
                       </div>
                     </ValidationProvider>
@@ -162,6 +162,15 @@
           changePhoneValidation: function() {
             this.isPhoneExists = false,
             this.$store.dispatch('setNumberExist', false);
+          },
+          isTradeNumber: function(evt) {
+            evt = (evt) ? evt : window.event;
+            var charCode = (evt.which) ? evt.which : evt.keyCode;
+            if ((charCode > 31 && (charCode < 48 || charCode > 57)) || charCode === 46 || this.form.tradeLicense.length > 10) {
+              evt.preventDefault();;
+            } else {
+              return true;
+            }
           },
           isNumber: function(evt) {
             evt = (evt) ? evt : window.event;

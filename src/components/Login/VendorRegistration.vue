@@ -20,9 +20,9 @@
                   <!-- trade license No. -->
                   <div class="form-group margin-b-32">
                     <label for="Phone" class="opa-85"><span>{{ $t('trade_license', $store.state.locale) }}</span></label>
-                    <ValidationProvider name="Trade license" rules="required|max:6" v-slot="{ errors }">
+                    <ValidationProvider name="Trade license" rules="required|max:7" v-slot="{ errors }">
                       <div class="floating-label-group" :class="{'error-input-group': errors[0]}">
-                        <input type="text" class="login-input" maxlength="6" v-model="form.tradeLicense"  :placeholder="$t('trade_license', $store.state.locale)">
+                        <input type="text" class="login-input" maxlength="7" v-model="form.tradeLicense"  :placeholder="$t('trade_license', $store.state.locale)">
                         <span v-if="errors.length" class="error-txt">{{ errors[0] }}</span>
                       </div>
                     </ValidationProvider>

@@ -43,7 +43,7 @@
                   <div class="form-group margin-b-32">
                     <label for="Phone" class="opa-85"><span>{{ $t('mobile_no', $store.state.locale) }}</span></label>
                     <ValidationProvider name="Phone Number" :rules="`required|user-number:${form.phone_number}`" v-slot="{ errors }">
-                      <div class="floating-label-group" :class="{'error-input-group': errors[0] || $store.state.numberExists}">
+                      <div class="floating-label-group" :class="{'error-input-group': errors[0] || $store.state.numberExists || isPhoneExists}">
                         <input @focus="changePhoneValidation" @keypress="isNumber($event)" type="text" class="login-input" id="Phone" v-model="form.phone_number" :readonly="phone_number !== ''" :placeholder="$t('phone_number', $store.state.locale)">
                         <!-- <input type="text" class="login-input gray cursor-none" id="Phone" value="" v-model="form.phone_number" readonly> -->
                         <span v-if="errors.length" class="error-txt">{{ errors[0] }}</span>
@@ -55,8 +55,8 @@
                   <div class="form-group margin-b-32">
                     <label for="email" class="opa-85"><span>{{ $t('email', $store.state.locale) }}</span> <span class="text-lowercase">{{ $t('address', $store.state.locale) }}</span></label>
                     <ValidationProvider name="email" rules="required|email" v-slot="{ errors }">
-                      <div class="floating-label-group" :class="{'error-input-group': errors[0]}">
-                        <input type="email" class="login-input gray" id="email" v-model="form.email" :readonly="exist_email" :placeholder="$t('email', $store.state.locale) + ' ' + $t('address', $store.state.locale)">
+                      <div class="floating-label-group" :class="{'error-input-group': errors.length || isEmailExists }">
+                        <input @focus="onEmailChange" type="email" class="login-input gray" id="email" v-model="form.email" :readonly="exist_email" :placeholder="$t('email', $store.state.locale) + ' ' + $t('address', $store.state.locale)">
                         <!-- <input @focus="onEmailChange" type="email" class="login-input" id="email" value="" v-model="form.email"> -->
                         <span v-if="errors.length" class="error-txt">{{ errors[0] }}</span>
                         <span class="error-txt d-block" v-if="isEmailExists">{{ $t('email_exits', $store.state.locale) }}</span>
@@ -78,9 +78,8 @@
                   <div class="text-center sign-btn">
                       <button class="btn--secondery-hover gil-bold font-weight-bold primary-text d-inline-block position-relative w-100" type="button" @click.prevent="handleSubmit(onSubmit)" :disabled="isLoading">
                           {{ $t('sign_up', $store.state.locale) }}
-<!--                          <span v-if="$store.state.isSubmitLoading" class="spinner-border spinner-border-sm"></span>-->
+                          <span v-if="isLoading" class="spinner-border spinner-border-sm"></span>
                       </button>
-                      <!-- <button type="button" class="btn btn-primary mb-2" @click.prevent="handleSubmit(onSubmit)">Submit</button>-->
                   </div>
 
                 </form>
@@ -112,6 +111,9 @@
             }
         },
         methods: {
+          onEmailChange: function() {
+            this.isEmailExists = false;
+          },
           onSubmit: function () {
             if(this.phone_number){
               this.onPhoneSubmit();
@@ -127,8 +129,6 @@
                 'Authorization': 'Bearer ' + this.$store.state.token
               }
             }
-            console.log('form')
-            console.log(this.form)
             this.$api.put('update-users-by-phone', this.form, config).then(response => {
               if (response.data.error === false) {
                 this.$store.commit('setUser', response.data.data);
@@ -141,9 +141,11 @@
               if (response.data.error === true) {
                 if (response.data.data.isEmailExists) {
                   this.isEmailExists = true;
+                  this.isLoading = false;
                 }
                 if (response.data.data.isPhoneExists) {
                   this.isPhoneExists = true;
+                  this.isLoading = false;
                 }
                 return;
               }
@@ -158,6 +160,7 @@
             }
           },
           changePhoneValidation: function() {
+            this.isPhoneExists = false,
             this.$store.dispatch('setNumberExist', false);
           },
           isNumber: function(evt) {

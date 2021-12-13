@@ -66,3 +66,25 @@
 @mixin secondery-border-1 {
     border: 1px solid $secondery;
 }
+
+@mixin btn-collision {
+    &::before {
+        transform: translate(-50%, -50%);
+        left: -20px;
+      }
+    &::after {
+    transform: translate(50%, -50%);
+    right: -20px;
+    }
+      &:hover {
+          color: $primary;
+        &::before {
+            animation: move-left .6s both;
+            animation-direction: alternate;
+          }
+          &::after {
+            animation: move-right .6s both;
+            animation-direction: alternate;
+        }
+      }
+}

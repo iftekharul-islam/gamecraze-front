@@ -46,9 +46,9 @@
 }
 .new-sellpost {
     background: $secondery-gradient;
-    width: 132px;
+    min-width: 132px;
     height: 132px;
-    border-radius: 8px
+    border-radius: 8px;
 }
 .sellpost-count {
     font-size: 60px;

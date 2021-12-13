@@ -70,6 +70,13 @@ import ReferFriendContent from '../components/ReferFriendContent';
 import MyProfileContent from '../components/MyProfileContent';
 import SettingsContent from '../components/SettingsContent';
 import InboxContent from '../components/InboxContent';
+import MyProfileShopInfo from '../components/MyProfileShopInfo';
+import MyProfileTeamMember from '../components/MyProfileTeamMember';
+import MyProfileSecurity from '../components/MyProfileSecurity';
+
+
+
+
 
 let router = new Router({
     mode: 'history',
@@ -373,6 +380,23 @@ let router = new Router({
                     path: '/my-profile',
                     name: 'MyProfileContent',
                     component: MyProfileContent,
+                    children: [
+                        {
+                            path: '/my-profile/shop-info',
+                            name: 'MyProfileShopInfo',
+                            component: MyProfileShopInfo,
+                        },
+                        {
+                            path: '/my-profile/team-member',
+                            name: 'MyProfileTeamMember',
+                            component: MyProfileTeamMember,
+                        },
+                        {
+                            path: '/my-profile/security',
+                            name: 'MyProfileSecurity',
+                            component: MyProfileSecurity,
+                        },
+                    ]
                 },
                 {
                     path: '/settings',
@@ -386,6 +410,7 @@ let router = new Router({
                 },
             ]
         },
+        
         {
             path: '/reset-password',
             name: 'ResetPassword',

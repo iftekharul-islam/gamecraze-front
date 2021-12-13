@@ -137,25 +137,24 @@
             border-radius: 50%;
             z-index: -1;
         }
+        @include btn-collision;
+    }
+    &--collision-white {
+        color: $text-light;
+        overflow: hidden;
+        z-index: 2;
+        &::after,
         &::before {
-            transform: translate(-50%, -50%);
-            left: -20px;
-          }
-        &::after {
-        transform: translate(50%, -50%);
-        right: -20px;
+            position: absolute;
+            content: '';
+            width: 20px;
+            height: 20px;
+            background: $text-light;
+            top: 50%;
+            border-radius: 50%;
+            z-index: -1;
         }
-          &:hover {
-              color: $primary;
-            &::before {
-                animation: move-left .6s both;
-                animation-direction: alternate;
-              }
-              &::after {
-                animation: move-right .6s both;
-                animation-direction: alternate;
-            }
-          }
+       @include btn-collision;
     }
     &--secondery-hover {
         border-radius: 45px;

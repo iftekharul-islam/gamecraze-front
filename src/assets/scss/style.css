@@ -1781,6 +1781,10 @@ p {
   border-color: #FFD715 !important;
 }
 
+.border-white {
+  border-color: #fff;
+}
+
 .border-white-50 {
   border-color: #ffffff80;
 }
@@ -1876,6 +1880,10 @@ p {
 
 .text-success-ball {
   color: #40C057;
+}
+
+.text-success {
+  color: #6BFC54;
 }
 
 .text-danger-ball {
@@ -2507,6 +2515,10 @@ html {
 
 .max-520 {
   max-width: 520px;
+}
+
+.max-540 {
+  max-width: 540px;
 }
 
 .max-600 {
@@ -14323,6 +14335,7 @@ html {
 
 .dashboard-sidebar {
   padding-top: 48px;
+  padding-bottom: 50px;
   width: 160px;
   padding-left: 16px;
   height: 100%;
@@ -14619,7 +14632,7 @@ html {
 .new-sellpost {
   background: -webkit-gradient(linear, right top, left top, from(#FFD715), to(#FFB81F));
   background: linear-gradient(270deg, #FFD715 0%, #FFB81F 100%);
-  width: 132px;
+  min-width: 132px;
   height: 132px;
   border-radius: 8px;
 }
@@ -14971,12 +14984,16 @@ html {
   display: block;
 }
 
-.my-profile-right {
-  margin-top: 46px;
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-left: auto;
+.my-profile {
+  margin-top: -60px;
+}
+
+.shop-info__right {
+  max-width: 550px;
+}
+
+.shop-info__left {
+  max-width: 550px;
 }
 
 .logo-show {
@@ -14984,7 +15001,6 @@ html {
 }
 
 .shop-logo {
-  margin-top: 32px;
   margin-bottom: 32px;
 }
 
@@ -15105,6 +15121,281 @@ html {
 
 .star svg {
   color: #FFD715;
+}
+
+.profile-menu-header ul {
+  border: 1px solid rgba(255, 215, 21, 0.5);
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  border-radius: 8px;
+  padding: 0;
+  overflow: hidden;
+}
+
+.profile-menu-header ul li {
+  padding: 0;
+}
+
+.profile-menu-header ul li:first-of-type a {
+  border: 0;
+}
+
+.profile-menu-header ul li:last-of-type a {
+  border: 0;
+}
+
+.profile-menu-header ul li a {
+  height: 48px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 148px;
+  font-family: gilroy-medium;
+  color: #FFD715;
+  border-left: 1px solid rgba(255, 215, 21, 0.5);
+  border-right: 1px solid rgba(255, 215, 21, 0.5);
+}
+
+.profile-menu-header ul li a.router-link-active {
+  background: #FFD715;
+  color: #0B0F18;
+  font-family: gilroy-bold;
+}
+
+.team-member-box {
+  max-width: 380px;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.team-member-box__left {
+  background: #252D3F;
+  max-width: 140px;
+  width: 100%;
+}
+
+.team-member-box__right {
+  max-width: 240px;
+  width: 100%;
+  background: #323A4B;
+}
+
+.team-member-box__right .right-top {
+  padding: 20px 20px 12px 32px;
+}
+
+.team-member-box__top .team-member-box__left {
+  border-radius: 8px 0 0 0;
+}
+
+.team-member-box__top .team-member-box__right {
+  border-radius: 0 8px 0 0;
+}
+
+.team-member-box__bottom {
+  border-top: 1px solid #3D4658;
+  border-radius: 0 0 8px 8px;
+}
+
+.team-member-box__bottom .team-member-box__left,
+.team-member-box__bottom .team-member-box__right {
+  height: 56px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.team-member-box__bottom .team-member-box__left {
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 0 0 0 8px;
+}
+
+.team-member-box__bottom .team-member-box__right {
+  padding: 0 12px 0 32px;
+  border-radius: 0 0 8px 0;
+}
+
+.team-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid #3D4658;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: auto;
+  margin-bottom: 16px;
+  margin-top: 20px;
+}
+
+.team-img img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
+.team-status span {
+  height: 24px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 20px;
+  padding: 0 10px;
+}
+
+.team-status .active {
+  border: 1px solid rgba(107, 252, 84, 0.5);
+  color: #6BFC54;
+}
+
+.team-status .admin {
+  border: 1px solid rgba(115, 195, 255, 0.5);
+  color: #73C3FF;
+}
+
+.team-btn .btn-edit {
+  height: 32px;
+  min-width: 88px;
+  padding: 0;
+  font-family: gilroy-medium;
+  margin-right: 12px;
+}
+
+.team-btn .btn-remove {
+  border-color: #F53A50 !important;
+  height: 32px;
+  min-width: 88px;
+  padding: 0;
+  font-family: gilroy-medium;
+  color: #fff;
+}
+
+.btn-remove {
+  background: #F53A50 !important;
+  border-color: #F53A50 !important;
+  display: -webkit-inline-box !important;
+  display: -ms-inline-flexbox !important;
+  display: inline-flex !important;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.btn-edit {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border-radius: 40px;
+  border: 1px solid rgba(255, 215, 21, 0.5);
+}
+
+.edit-role {
+  background: #252D3F;
+  border-radius: 8px;
+  position: absolute;
+  width: 312px;
+  right: 0;
+}
+
+.role-bottom {
+  height: 64px;
+  border-top: 1px solid #3D4658;
+}
+
+.role-bottom .role-action-btn {
+  height: 32px;
+  width: 88px;
+  min-width: 88px;
+  padding: 0;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.role-top {
+  padding: 20px;
+}
+
+.role-item {
+  cursor: pointer;
+  border: 1px solid #a6b0c680;
+  padding: 2px 15px;
+  margin-right: 16px;
+  border-radius: 12px;
+  line-height: 18px;
+  margin-bottom: 12px;
+}
+
+.role-item:last-child {
+  margin-right: 0;
+}
+
+.role-item.active {
+  background: #FFD715;
+  font-family: gilroy-medium;
+  color: #000000;
+  border-color: #FFD715;
+}
+
+.icon-relative .i-icon {
+  position: absolute;
+  right: 20px;
+  top: 12px;
+}
+
+.current-pass {
+  margin-bottom: 58px;
+}
+
+.new-pass {
+  margin-bottom: 32px;
+}
+
+.save-btn {
+  margin-top: 48px;
+}
+
+.save-btn .btn--secondery-hover {
+  min-width: 200px;
 }
 
 .page_404 {
@@ -15334,6 +15625,53 @@ html {
 }
 
 .btn--collision:hover::after {
+  -webkit-animation: move-right .6s both;
+          animation: move-right .6s both;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+}
+
+.btn--collision-white {
+  color: #fff;
+  overflow: hidden;
+  z-index: 2;
+}
+
+.btn--collision-white::after, .btn--collision-white::before {
+  position: absolute;
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: #fff;
+  top: 50%;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.btn--collision-white::before {
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  left: -20px;
+}
+
+.btn--collision-white::after {
+  -webkit-transform: translate(50%, -50%);
+          transform: translate(50%, -50%);
+  right: -20px;
+}
+
+.btn--collision-white:hover {
+  color: #0B0F18;
+}
+
+.btn--collision-white:hover::before {
+  -webkit-animation: move-left .6s both;
+          animation: move-left .6s both;
+  -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+}
+
+.btn--collision-white:hover::after {
   -webkit-animation: move-right .6s both;
           animation: move-right .6s both;
   -webkit-animation-direction: alternate;

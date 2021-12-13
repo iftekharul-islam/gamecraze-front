@@ -1,6 +1,6 @@
 <template>
     <div class="d-flex">
-            <dashboard-sidebar></dashboard-sidebar>
+        <dashboard-sidebar></dashboard-sidebar>
         <router-view></router-view>
     </div>
 </template>

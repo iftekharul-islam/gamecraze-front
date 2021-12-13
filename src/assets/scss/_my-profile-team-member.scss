@@ -1,0 +1,160 @@
+.team-member {
+    &-box {
+        max-width: 380px;
+        width: 100%;
+        border-radius: 8px;
+        &__left {
+            background: $team-left;
+            max-width: 140px;
+            width: 100%;
+           
+        }
+        &__right {
+            max-width: 240px;
+            width: 100%;
+            background: $team-right;
+            .right-top {
+                padding: 20px 20px 12px 32px;
+                
+            }
+        }
+        &__top {
+            .team-member-box__left {
+                border-radius: 8px 0 0 0;
+            }
+            .team-member-box__right {
+                border-radius: 0 8px 0 0;
+            }
+        }
+        &__bottom {
+            border-top: 1px solid $team-border;
+            border-radius: 0 0 8px 8px;
+            .team-member-box__left,
+            .team-member-box__right {
+                height: 56px;
+                display: flex;
+                align-items: center;
+            }
+            .team-member-box__left {
+                justify-content: center;
+                border-radius: 0 0 0 8px;
+            }
+            .team-member-box__right {
+                padding: 0 12px 0 32px;
+                border-radius: 0 0 8px 0;
+            }
+        }
+    }
+}
+.team-img {
+    
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid $team-border;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    margin-bottom: 16px;
+    margin-top: 20px;
+    img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+    }
+}
+.team-status {
+    span {
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 20px;
+        padding: 0 10px;
+    }
+    .active {
+        border: 1px solid rgba(107, 252, 84, 0.5);
+        color: $success-text;
+    }
+    .admin {
+        border: 1px solid $admin-border;
+        color: $admin-text;
+    }
+}
+
+.team-btn {
+    .btn-edit {
+        height: 32px;
+        min-width: 88px;
+        padding: 0;
+        @include gil-medium;
+        margin-right: 12px;
+    }
+    .btn-remove {
+        border-color: $gamebazar-badge !important;
+        height: 32px;
+        min-width: 88px;
+        padding: 0;
+        @include gil-medium;
+        color: $text-light;
+       
+    }
+    
+}
+.btn-remove {
+    background: $gamebazar-badge !important;
+    border-color: $gamebazar-badge !important;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+}
+.btn-edit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 40px;
+    border: 1px solid $secondery-opa-5;
+}
+
+.edit-role {
+    background: $team-left;
+    border-radius: 8px;
+    position: absolute;
+    width: 312px;
+    right: 0;
+}
+.role-bottom {
+    height: 64px;
+    border-top: 1px solid $team-border;
+    .role-action-btn {
+        height: 32px;
+        width: 88px;
+        min-width: 88px;
+        padding: 0;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+.role-top {
+    padding: 20px;
+}
+.role-item {
+    cursor: pointer;
+    border: 1px solid $role-list-border;
+    padding: 2px 15px;
+    margin-right: 16px;
+    border-radius: 12px;
+    line-height: 18px;
+    margin-bottom: 12px;
+    &:last-child {
+        margin-right: 0;
+    }
+    &.active {
+        background: $secondery;
+        @include gil-medium;
+        color: $text-black;
+        border-color: $secondery;
+    }
+}

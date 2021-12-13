@@ -1,0 +1,19 @@
+.icon-relative {
+    .i-icon {
+        position: absolute;
+        right: 20px;
+        top: 12px;
+    }
+}
+.current-pass {
+    margin-bottom: 58px;
+}
+.new-pass {
+    margin-bottom: 32px;
+}
+.save-btn {
+    margin-top: 48px;
+    .btn--secondery-hover {
+        min-width: 200px;
+    }
+}

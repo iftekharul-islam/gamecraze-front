@@ -1,15 +1,20 @@
 .my-profile {
-    &-right {
-        margin-top: 46px;
-        width: fit-content;
-        margin-left: auto;
+    margin-top: -60px;
+}
+
+.shop-info {
+    &__right {
+        max-width: 550px;
+    }
+    &__left {
+        max-width: 550px;
+        
     }
 }
 .logo-show {
     max-width: 200px;
 }
 .shop-logo {
-    margin-top: 32px;
     margin-bottom: 32px;
     &__preview {
         width: 200px;
@@ -105,5 +110,43 @@
 .star {
     svg {
         color: $secondery;
+    }
+}
+.profile-menu-header {
+    ul {
+        border: 1px solid $secondery-opa-5 ;
+        width: fit-content;
+        border-radius: 8px;
+        padding: 0;
+        overflow: hidden;
+        li {
+            padding: 0;
+            &:first-of-type {
+                a {
+                    border: 0;
+                }
+            }
+            &:last-of-type {
+                a {
+                    border: 0;
+                }
+            }
+            a {
+                height: 48px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 148px;
+                @include gil-medium;
+                color: $secondery;
+                border-left: 1px solid $secondery-opa-5;
+                border-right: 1px solid $secondery-opa-5;
+                &.router-link-active {
+                    background: $secondery;
+                    color: $primary;
+                    @include gil-bold;
+                }
+            }
+        }
     }
 }

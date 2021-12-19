@@ -8,26 +8,33 @@
                     <div class="shop-logo">
                         <p class="gil-medium opa-5 text-white mb-3">Shop logo</p>
                         <div class="logo-show position-relative" >
-                            <div class="shop-logo__preview" v-if="imageData.length > 0">
+                            <div class="shop-logo__preview" v-if="profileImg != ''">
                                     <!-- preview img -->
-                                <img class="preview img-fluid" :src="imageData" >
+                                <img class="preview img-fluid" :src="profileImg" >
                             </div>
-                                <div class="shop-logo__preview" v-else>
+                              <div class="shop-logo__preview" v-else>
                                     <!-- preview img -->
                                 <img class="preview img-fluid" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/57216297664047.5ecab2dd7d7c9.jpg" >
                             </div>
                             
                             <!-- input btn -->
                             <div class="file-upload-form">
-                                <input type="file" @change="previewImage" accept="image/*">
-                                <span class="file-input-logo">
-                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle opacity="0.75" cx="16" cy="16" r="16" fill="white"/>
-                                        <path opacity="0.6" d="M12.07 23.5H19.93C22 23.5 22.825 22.2325 22.9225 20.6875L23.3125 14.4925C23.4175 12.8725 22.1275 11.5 20.5 11.5C20.0425 11.5 19.6225 11.2375 19.4125 10.8325L18.8725 9.745C18.5275 9.0625 17.6275 8.5 16.8625 8.5H15.145C14.3725 8.5 13.4725 9.0625 13.1275 9.745L12.5875 10.8325C12.3775 11.2375 11.9575 11.5 11.5 11.5C9.8725 11.5 8.5825 12.8725 8.6875 14.4925L9.0775 20.6875C9.1675 22.2325 10 23.5 12.07 23.5Z" fill="#0B0F18"/>
-                                        <path d="M17.125 13.5625H14.875C14.5675 13.5625 14.3125 13.3075 14.3125 13C14.3125 12.6925 14.5675 12.4375 14.875 12.4375H17.125C17.4325 12.4375 17.6875 12.6925 17.6875 13C17.6875 13.3075 17.4325 13.5625 17.125 13.5625Z" fill="#0B0F18"/>
-                                        <path d="M16 20.5975C17.4 20.5975 18.535 19.4625 18.535 18.0625C18.535 16.6625 17.4 15.5275 16 15.5275C14.6 15.5275 13.465 16.6625 13.465 18.0625C13.465 19.4625 14.6 20.5975 16 20.5975Z" fill="#0B0F18"/>
-                                    </svg>
-                                </span>
+                              <div class="avatar-edit">
+                                <form action="" method="post" id="profile-image-form">
+                                  <input
+                                      @change="onImageChange($event, 'profile')"
+                                      type="file"
+                                      id="profileUpload"
+                                      accept=".png, .jpg, .jpeg"
+                                  />
+                                  <label for="profileUpload"
+                                  ><i class="fas fa-camera camera-icon"></i
+                                  ></label>
+                                  <div class="avatar-edit--spinner" v-if="isProfileImgUpdating">
+                                    <i class="spinner-border spinner-border-sm"></i>
+                                  </div>
+                                </form>
+                              </div>
                             </div>
                         </div>
                     </div>
@@ -42,7 +49,7 @@
                             <p class="gil-medium opa-75 text-white ml-3 mb-0 word-break">Shop name</p>
                         </div>
                         <div class="d-flex justify-content-between">
-                            <h2 class="f-s-28 gil-bold mb-a-4 word-break">Samsul gaming</h2>
+                            <h2 class="f-s-28 gil-bold mb-a-4 word-break">{{ shopName }}</h2>
                                 <span class="edit-btn">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path opacity="0.4" d="M12.9003 2.5H6.26699C3.39199 2.5 1.66699 4.21667 1.66699 7.1V13.725C1.66699 16.6167 3.39199 18.3333 6.26699 18.3333H12.892C15.7753 18.3333 17.492 16.6167 17.492 13.7333V7.1C17.5003 4.21667 15.7753 2.5 12.9003 2.5Z" fill="#FFD715"/>
@@ -53,7 +60,9 @@
                         </div>
                         <p class="gil-medium opa-75 text-white">Vendor</p>
                         <div class="d-flex justify-content-between">
-                            <p class="opa-75 text-white mb-0 max-488 word-break">Amar sonar bangla ami tomai valobashi. Chirodin tomar akash tomar batash amar prane bazai bashi sonar bangla ami tomai valobashi. Amar sonar bangla ami tomai valobashi. Chirodin tomar akash tomar batash amar prane bazai bashi sonar bangla ami tomai valobashi.</p>
+                            <p class="opa-75 text-white mb-0 max-488 word-break">
+                              {{ shopDescription }}
+                            </p>
                             <span class="edit-btn">
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path opacity="0.4" d="M12.9003 2.5H6.26699C3.39199 2.5 1.66699 4.21667 1.66699 7.1V13.725C1.66699 16.6167 3.39199 18.3333 6.26699 18.3333H12.892C15.7753 18.3333 17.492 16.6167 17.492 13.7333V7.1C17.5003 4.21667 15.7753 2.5 12.9003 2.5Z" fill="#FFD715"/>
@@ -88,7 +97,7 @@
                         <p class="text-white mb-0 mt-3">House: 941, Road: 14, Avenue: 2,
                             Mirpur DOHS, Dhaka 1216</p>
                     </div>
-                        <div class="vendor-details">
+                    <div class="vendor-details">
                         <div class="d-flex align-items-center">
                             <span>
                                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -140,8 +149,6 @@
                         <!-- for verify number -->
                         
                     </div>
-
-
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -149,32 +156,37 @@
                         <div class="shop-logo cover-photo">
                         <p class="gil-medium opa-5 text-white mb-3">Cover photo</p>
                         <div class="logo-show position-relative" >
-                            <div class="shop-logo__preview border-1 border-secondery-opa-50" v-if="imageData.length > 0">
-                                    <!-- preview img -->
-                                <img class="preview img-fluid" :src="imageData" >
+                            <div class="shop-logo__preview border-1 border-secondery-opa-50" v-if="coverImg.length > 0">
+                                <img class="preview img-fluid" :src="coverImg" >
                             </div>
-                                <div class="shop-logo__preview border-1 border-secondery-opa-50" v-else>
-                                    <!-- preview img -->
+                            <div class="shop-logo__preview border-1 border-secondery-opa-50" v-else>
                                 <img class="preview img-fluid" src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/57216297664047.5ecab2dd7d7c9.jpg" >
                             </div>
                             
                             <!-- input btn -->
-                            <div class="file-upload-form">
-                                <input type="file" @change="previewImage" accept="image/*">
-                                <span class="file-input-logo">
-                                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <circle opacity="0.75" cx="16" cy="16" r="16" fill="white"/>
-                                        <path opacity="0.6" d="M12.07 23.5H19.93C22 23.5 22.825 22.2325 22.9225 20.6875L23.3125 14.4925C23.4175 12.8725 22.1275 11.5 20.5 11.5C20.0425 11.5 19.6225 11.2375 19.4125 10.8325L18.8725 9.745C18.5275 9.0625 17.6275 8.5 16.8625 8.5H15.145C14.3725 8.5 13.4725 9.0625 13.1275 9.745L12.5875 10.8325C12.3775 11.2375 11.9575 11.5 11.5 11.5C9.8725 11.5 8.5825 12.8725 8.6875 14.4925L9.0775 20.6875C9.1675 22.2325 10 23.5 12.07 23.5Z" fill="#0B0F18"/>
-                                        <path d="M17.125 13.5625H14.875C14.5675 13.5625 14.3125 13.3075 14.3125 13C14.3125 12.6925 14.5675 12.4375 14.875 12.4375H17.125C17.4325 12.4375 17.6875 12.6925 17.6875 13C17.6875 13.3075 17.4325 13.5625 17.125 13.5625Z" fill="#0B0F18"/>
-                                        <path d="M16 20.5975C17.4 20.5975 18.535 19.4625 18.535 18.0625C18.535 16.6625 17.4 15.5275 16 15.5275C14.6 15.5275 13.465 16.6625 13.465 18.0625C13.465 19.4625 14.6 20.5975 16 20.5975Z" fill="#0B0F18"/>
-                                    </svg>
-                                </span>
+                          <div class="file-upload-form">
+                            <div class="avatar-edit">
+                              <form action="" method="post">
+                                <input
+                                    @change="onImageChange($event, 'cover')"
+                                    type="file"
+                                    id="coverUpload"
+                                    accept=".png, .jpg, .jpeg"
+                                />
+                                <label for="coverUpload"
+                                ><i class="fas fa-camera camera-icon"></i
+                                ></label>
+                                <div class="avatar-edit--spinner" v-if="isCoverImgUpdating">
+                                  <i class="spinner-border spinner-border-sm"></i>
+                                </div>
+                              </form>
                             </div>
+                          </div>
                         </div>
                     </div>
                     <!-- id card passport -->
                     <div class="id-passport vendor-details">
-                        <p class="gil-medium opa-5 text-white mb-3">ID card/ Passport/ Birth cercificate copy</p>
+                        <p class="gil-medium opa-5 text-white mb-3">ID card/ Passport/ Birth certificate copy</p>
                         <div class="id-passport-show position-relative" >
                             <div class="id-passport__preview border-1 border-secondery-opa-50" v-if="imageData.length > 0">
                                     <!-- preview img -->
@@ -207,7 +219,7 @@
                                     <!-- preview img -->
                                 <img class="preview img-fluid" :src="imageData" >
                             </div>
-                                <div class="id-passport__preview border-1 border-secondery-opa-50" v-else>
+                            <div class="id-passport__preview border-1 border-secondery-opa-50" v-else>
                                 <input type="file" @change="previewImage" accept="image/*">
                                 <span class="file-input-logo text-center">
                                     <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -217,7 +229,7 @@
                                     </svg>
                                     <span class="d-block text-center gil-medium">Upload</span>
                                 </span>
-                                </div>
+                            </div>
                             
                             <!-- input btn -->
                             <div class="file-upload-form">
@@ -294,10 +306,76 @@
         name: 'MyProfileShopInfo',
         data() {
             return {
-                 imageData: "",
+              vendorId: '',
+              imageData: '',
+              shopName: '',
+              profileImg: '',
+              coverImg: '',
+              shopDescription: '',
+              tradeLicense: '',
+              isProfileImgUpdating: false,
+              isCoverImgUpdating: false,
             }
         },
         methods: {
+          onImageChange: function (event, imageType) {
+          let fileReader = new FileReader();
+          if (event.srcElement.files.length > 0) {
+            let allowedTypes = ["image/jpg", "image/jpeg", "image/png"];
+            if (allowedTypes.indexOf(event.srcElement.files[0].type) == -1) {
+              this.$toaster.warning(
+                  this.$t("image_validation", this.$store.state.locale)
+              );
+              return;
+            }
+            let fileSize = Math.round(event.srcElement.files[0].size / 1024);
+            if (fileSize > 5120) {
+              //5mb
+              this.$toaster.warning(
+                  this.$t("image_size_validation", this.$store.state.locale)
+              );
+              return;
+            }
+            fileReader.onload = (e) => {
+              this.uploadImage(e.target.result, imageType);
+            };
+            fileReader.readAsDataURL(event.target.files[0]);
+          }
+        },
+        uploadImage: function (imageBase64, type) {
+          let data = '';
+          if (type === "profile") {
+            this.isProfileImgUpdating = true;
+            data = {
+              id: this.vendorId,
+              profile_photo: imageBase64,
+            }
+          }
+          if (type === "cover") {
+            this.isCoverImgUpdating = true;
+            data = {
+              id: this.vendorId,
+              cover_photo: imageBase64,
+            }
+          }
+          let config = {
+            headers: {
+              Authorization: "Bearer " + this.$store.state.token,
+            },
+          }
+          this.$api.post( "vendor-update", data, config).then((response) => {
+            console.log('image update');
+            console.log(response);
+            if (type == "cover") {
+              this.coverImg = response.data.data.cover_photo;
+              this.isCoverImgUpdating = false;
+            }
+            if (type == "profile") {
+              this.profileImg = response.data.data.profile_photo;
+              this.isProfileImgUpdating = false;
+            }
+          });
+        },
         previewImage: function (event) {
         // Reference to the DOM input element
         var input = event.target;
@@ -314,8 +392,32 @@
                 // Start the reader job - read file as a data url (base64 format)
                 reader.readAsDataURL(input.files[0]);
             }
+        },
+        myVendor (){
+          let config = {
+            headers: {
+              Authorization: "Bearer " + this.$store.state.token,
+            },
+          }
+          this.$api.get( 'my-vendor?include=vendor.vendor', config ).then((response) => {
+            console.log('response');
+            console.log(response.data.data);
+            let data = response.data.data;
+            let vendor = data.vendor.data.vendor.data;
+            this.vendorId = vendor.id;
+            this.shopName = vendor.shop_name;
+            this.profileImg = vendor.profile_photo;
+            this.coverImg = vendor.cover_photo;
+            this.shopDescription = vendor.shop_description;
+            this.tradeLicense = vendor.trade_license;
+          }).catch( err => {
+            console.log(err)
+          });
         }
-    }
+    },
+        created() {
+          this.myVendor();
+        }
 
     }
 </script>

@@ -9,8 +9,8 @@
                             <!-- password -->
                              <ValidationProvider name="password" rules="required|min:8" v-slot="{ errors }">
                                 <div class="form-group" :class="{'error-input-group': errors[0] }">
-                                    <label for="gamepassword1" class="gil-medium opa-85 mb-2">{{ $t('type_new_password', $store.state.locale) }}</label>
-                                    <input type="password" class="login-input" id="gamepassword1" placeholder="Password" v-model="form.password">
+                                    <label class="gil-medium opa-85 mb-2">{{ $t('type_new_password', $store.state.locale) }}</label>
+                                    <input @keypress="passwordLengthLimit($event)" type="password" class="login-input" id="gamepassword1" placeholder="Password" v-model="form.password">
                                     <span v-if="errors.length" class="error-txt">{{ errors[0] }}</span>
                                 </div>
                              </ValidationProvider>
@@ -19,7 +19,7 @@
                             <ValidationProvider name="confirm" rules="required|min:8|confirmed:password" v-slot="{ errors }">
                                 <div class="form-group" :class="{'error-input-group': errors[0] }">
                                     <label for="gamepassword2" class="gil-medium opa-85 mb-2">{{ $t('retype_password', $store.state.locale) }}</label>
-                                    <input type="password" class="login-input" id="gamepassword2" placeholder="Confirm Password" v-model="form.confirmPassword">
+                                    <input @keypress="confirmPasswordLengthLimit($event)" type="password" class="login-input" id="gamepassword2" placeholder="Confirm Password" v-model="form.confirmPassword">
                                     <span v-if="errors.length" class="error-txt">{{ errors[0] }}</span>
                                 </div>
                             </ValidationProvider>
@@ -94,6 +94,18 @@
             }
         },
         methods: {
+            passwordLengthLimit: function(evt) {
+              evt = (evt) ? evt : window.event;
+              if(this.form.password.length > 14){
+                evt.preventDefault();
+              }
+            },
+            confirmPasswordLengthLimit: function(evt) {
+              evt = (evt) ? evt : window.event;
+              if(this.form.confirmPassword.length > 14){
+                evt.preventDefault();
+              }
+            },
             onReset() {
                 this.$store.dispatch('updateUserDetails', this.form)
             },

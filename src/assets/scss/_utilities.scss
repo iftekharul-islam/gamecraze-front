@@ -1716,6 +1716,7 @@ p {
 .border-t-3 {
     border-top: 3px solid;
 }
+// border color
 .black-border {
     border-color: $text-dark;
 }
@@ -2490,7 +2491,6 @@ html {
 // text-area
 textarea {
     &:focus {
-        background: $secondery;
         color: $text-light;
         @include gil-medium;
         opacity: 1;

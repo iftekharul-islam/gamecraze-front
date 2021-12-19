@@ -2636,7 +2636,6 @@ html {
 }
 
 textarea:focus {
-  background: #FFD715;
   color: #fff;
   font-family: gilroy-medium;
   opacity: 1;
@@ -6691,6 +6690,26 @@ html {
 }
 
 .login-input:focus-visible {
+  border-color: #FFD715 !important;
+}
+
+.text-area {
+  border-radius: 8px;
+  border: 1px solid rgba(255, 215, 21, 0.5);
+  background: #0D1527;
+  color: #ffffff80;
+  padding-left: 20px;
+  font-size: 14px;
+  font-family: gilroy-medium;
+  color: #fff;
+}
+
+.text-area:focus {
+  border-color: #FFD715;
+  outline: none;
+}
+
+.text-area:focus-visible {
   border-color: #FFD715 !important;
 }
 
@@ -15396,6 +15415,74 @@ html {
 
 .save-btn .btn--secondery-hover {
   min-width: 200px;
+}
+
+.shop-address-btn .address-btn input {
+  opacity: 0;
+  position: absolute;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.shop-address-btn .address-btn input:checked ~ label {
+  background: #FFD715;
+  color: #0B0F18;
+  border-color: #FFD715;
+}
+
+.shop-address-btn .address-btn label {
+  border: 1px solid #ffffff80;
+  width: 136px;
+  height: 32px;
+  border-radius: 26px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-family: gilroy-medium;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.shop-info-input {
+  margin-bottom: 8px;
+}
+
+.shop-info-input .login-input {
+  height: 32px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.mb-12 {
+  margin-bottom: 12px;
+}
+
+.photo-gallery {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(0, 122px))[5];
+      grid-template-columns: repeat(5, minmax(0, 122px));
+  -ms-grid-rows: 92px;
+      grid-template-rows: 92px;
+  grid-auto-rows: 92px;
+  grid-gap: 16px;
+}
+
+.photo-gallery__img {
+  border: 1px solid rgba(255, 215, 21, 0.5);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.photo-gallery__img img {
+  height: 100%;
 }
 
 .page_404 {

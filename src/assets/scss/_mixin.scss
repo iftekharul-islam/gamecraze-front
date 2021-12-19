@@ -88,3 +88,20 @@
         }
       }
 }
+@mixin default-input {
+    border-radius: 8px;
+    border: 1px solid $secondery-opa-5;
+    background: $login-input-bg;
+    color: $white-50;
+    padding-left: 20px;
+    font-size: 14px;
+    @include gil-medium;
+    color: $text-light;
+    &:focus {
+        border-color: $secondery;
+        outline: none;
+    }
+    &:focus-visible {
+        border-color: $secondery !important;
+    }
+}

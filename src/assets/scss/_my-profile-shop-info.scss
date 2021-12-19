@@ -1,0 +1,55 @@
+.shop-address-btn {
+    .address-btn {
+        input {
+            opacity: 0;
+            position: absolute;
+            width: fit-content;
+            &:checked {
+                ~label {
+                    background: $secondery;
+                    color: $primary;
+                    border-color: $secondery;
+                }
+            }
+        }
+        label {
+            border: 1px solid $white-50;
+            width: 136px;
+            height: 32px;
+            border-radius: 26px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @include gil-medium;
+            cursor: pointer;
+            margin-bottom: 0;
+            
+        }
+    }
+}
+.shop-info-input {
+    margin-bottom: 8px;
+    .login-input {
+        height: 32px;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+}
+.mb-12 {
+    margin-bottom: 12px;
+}
+.photo-gallery {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 122px));
+    grid-template-rows: 92px;
+    grid-auto-rows: 92px;
+    grid-gap: 16px;
+    &__img {
+        border: 1px solid $secondery-opa-5;
+        border-radius: 4px;
+        overflow: hidden;
+        img {
+            height: 100%;
+        }
+    }
+}

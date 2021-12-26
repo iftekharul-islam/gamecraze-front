@@ -152,9 +152,10 @@ body {
         padding: 22px 0;
         border-bottom: 1px solid $game-details;
         border-radius: 4px;
+        background: $primary !important;
         p {
             margin-bottom: 0;
-            z-index: 9;
+            // z-index: 9;
             @include gil-medium;
             &:nth-child(7) {
                 margin-left: auto;
@@ -162,6 +163,38 @@ body {
             }
             &:nth-child(2) {
                 @include gil-bold;
+            }
+        }
+    }
+    .card-body {
+        background: $game-details;
+    }
+    &-collapse__header {
+        flex-wrap: nowrap;
+        .collapse-btn {
+            margin-right: 20px;
+            width: initial;
+            background: transparent;
+            border: none;
+            color: $secondery;
+            @include gil-medium;
+            &::after {
+                border-color: $secondery !important;
+            }
+            &:active {
+                border: none !important;
+                background: none !important;
+                color: $secondery !important;
+            }
+            &:focus {
+                box-shadow: none !important;
+            }
+        }
+       > .card-text {
+            &:hover {
+                &:nth-child(5) {
+                    z-index: 99;
+                }
             }
         }
     }
@@ -187,12 +220,14 @@ body {
                 text-align: right;
             }
         }
+        
     }
     &-details {
         width: 100%;
         flex: none;
         background: $game-details;
         z-index: 1;
+        padding: 0;
         &__content {
             display: flex;
             flex-wrap: wrap;
@@ -213,6 +248,16 @@ body {
             }
         }
     }
+    .card {
+        overflow: initial;
+        border: 0;
+        margin-bottom: 1px;
+        &.active {
+            .card-header {
+                background: $game-details !important;
+            }
+        }
+    }
 }
 .collapseActive {
     background: $game-details;
@@ -226,7 +271,6 @@ body {
 
 .table-collapse-top {
     padding-top: 20px;
-    margin-top: 20px;
     position: relative;
     &::after,
     &::before {
@@ -247,8 +291,9 @@ body {
     }
 }
 .table-collapse-bottom {
-    margin-top: 20px;
     padding: 0 20px;
+    height: 80px;
+    align-items: center;
     a {
         height: 40px;
     }
@@ -280,8 +325,8 @@ body {
     display: none;
 }
 .selpostError {
-   > p {
-        color: $gamebazar-badge;
+    .sellpost-table-collapse__header {
+        color: $gamebazar-badge !important;
     }
      .collaps-btn {
          color: $secondery;
@@ -340,3 +385,8 @@ body {
         }
     }
 }
+
+.collapsed > .when-opened,
+    :not(.collapsed) > .when-closed {
+        display: none;
+    }

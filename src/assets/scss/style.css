@@ -14794,11 +14794,11 @@ html {
   padding: 22px 0;
   border-bottom: 1px solid #141A27;
   border-radius: 4px;
+  background: #0B0F18 !important;
 }
 
 .sellpost-table__content p {
   margin-bottom: 0;
-  z-index: 9;
   font-family: gilroy-medium;
 }
 
@@ -14809,6 +14809,43 @@ html {
 
 .sellpost-table__content p:nth-child(2) {
   font-family: gilroy-bold;
+}
+
+.sellpost-table .card-body {
+  background: #141A27;
+}
+
+.sellpost-table-collapse__header {
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+}
+
+.sellpost-table-collapse__header .collapse-btn {
+  margin-right: 20px;
+  width: initial;
+  background: transparent;
+  border: none;
+  color: #FFD715;
+  font-family: gilroy-medium;
+}
+
+.sellpost-table-collapse__header .collapse-btn::after {
+  border-color: #FFD715 !important;
+}
+
+.sellpost-table-collapse__header .collapse-btn:active {
+  border: none !important;
+  background: none !important;
+  color: #FFD715 !important;
+}
+
+.sellpost-table-collapse__header .collapse-btn:focus {
+  -webkit-box-shadow: none !important;
+          box-shadow: none !important;
+}
+
+.sellpost-table-collapse__header > .card-text:hover:nth-child(5) {
+  z-index: 99;
 }
 
 .sellpost-table__header {
@@ -14845,6 +14882,7 @@ html {
           flex: none;
   background: #141A27;
   z-index: 1;
+  padding: 0;
 }
 
 .sellpost-table-details__content {
@@ -14864,6 +14902,16 @@ html {
   font-family: gilroy-regular;
 }
 
+.sellpost-table .card {
+  overflow: initial;
+  border: 0;
+  margin-bottom: 1px;
+}
+
+.sellpost-table .card.active .card-header {
+  background: #141A27 !important;
+}
+
 .collapseActive {
   background: #141A27;
 }
@@ -14876,7 +14924,6 @@ html {
 
 .table-collapse-top {
   padding-top: 20px;
-  margin-top: 20px;
   position: relative;
 }
 
@@ -14900,8 +14947,11 @@ html {
 }
 
 .table-collapse-bottom {
-  margin-top: 20px;
   padding: 0 20px;
+  height: 80px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .table-collapse-bottom a {
@@ -14939,8 +14989,8 @@ html {
   display: none;
 }
 
-.selpostError > p {
-  color: #F53A50;
+.selpostError .sellpost-table-collapse__header {
+  color: #F53A50 !important;
 }
 
 .selpostError .collaps-btn {
@@ -15001,6 +15051,11 @@ html {
 
 .alert-hover:hover .alert-hover__content {
   display: block;
+}
+
+.collapsed > .when-opened,
+:not(.collapsed) > .when-closed {
+  display: none;
 }
 
 .my-profile {

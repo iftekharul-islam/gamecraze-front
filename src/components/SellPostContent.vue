@@ -180,166 +180,184 @@
                             </svg>
                         </p>
                     </div>
-                    <!-- content -->
-                    <div class="sellpost-table__content" :class="{collapseActive: detailsCollapse }" id="accordionExample">
-                        <p class="col-1" scope="row">G123565</p>
-                        <p class="col-3">Gaming PC for sell</p>
-                        <p class="col-1">New</p>
-                        <p class="col-1">Controller</p>
-                        <p class="col-1">
-                            <span class="d-flex">
-                                <span class="rejected d-inline-block">Inactive</span> 
-                                <span class="ml-1 alert-hover">
-                                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path opacity="0.4" d="M14.0003 2.33317C7.557 2.33317 2.33366 7.55651 2.33366 13.9998C2.33366 20.4432 7.557 25.6665 14.0003 25.6665C20.4436 25.6665 25.667 20.4432 25.667 13.9998C25.667 7.55651 20.4436 2.33317 14.0003 2.33317Z" fill="#F53A50"/>
-                                        <path d="M14 11.9582C13.5217 11.9582 13.125 12.3548 13.125 12.8332L13.125 18.6665C13.125 19.1448 13.5217 19.5415 14 19.5415C14.4783 19.5415 14.875 19.1448 14.875 18.6665L14.875 12.8332C14.875 12.3548 14.4783 11.9582 14 11.9582Z" fill="#F53A50"/>
-                                        <path d="M12.927 9.77664C12.9853 9.91664 13.067 10.045 13.172 10.1616C13.2887 10.2666 13.417 10.3483 13.557 10.4066C13.837 10.5233 14.1637 10.5233 14.4437 10.4066C14.5837 10.3483 14.712 10.2666 14.8287 10.1616C14.9337 10.045 15.0153 9.91664 15.0737 9.77664C15.132 9.63664 15.167 9.48497 15.167 9.33331C15.167 9.18164 15.132 9.02997 15.0737 8.88997C15.0153 8.73831 14.9337 8.62164 14.8287 8.50497C14.712 8.39997 14.5837 8.31831 14.4437 8.25997C14.3037 8.20164 14.152 8.16664 14.0003 8.16664C13.8487 8.16664 13.697 8.20164 13.557 8.25997C13.417 8.31831 13.2887 8.39997 13.172 8.50497C13.067 8.62164 12.9853 8.73831 12.927 8.88997C12.8687 9.02997 12.8337 9.18164 12.8337 9.33331C12.8337 9.48497 12.8687 9.63664 12.927 9.77664Z" fill="#F53A50"/>
-                                    </svg>
-                                    <!-- hover content -->
-                                    <div class="alert-hover__content">
-                                        <p class="mb-0">Your content has been inactiv without any reason</p>
+                     <!-- content -->
+                    <div class="accordion" role="tablist">
+                        <b-card no-body class="" :class="{'active': collapseBtn == 1}">
+                            <b-card-header header-tag="header" class="p-1 d-flex sellpost-table__content sellpost-table-collapse__header" role="tab">
+                                <b-card-text class="col-1">G123565</b-card-text>
+                                <b-card-text class="col-3">Gaming PC for sell</b-card-text>
+                                <b-card-text class="col-1">New</b-card-text>
+                                <b-card-text class="col-1">Controller</b-card-text>
+                                <b-card-text class="col-1 ">
+                                    <span class="d-flex">
+                                        <span class="rejected d-inline-block">Invite</span> 
+                                        <span class="ml-1 alert-hover">
+                                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path opacity="0.4" d="M14.0003 2.33317C7.557 2.33317 2.33366 7.55651 2.33366 13.9998C2.33366 20.4432 7.557 25.6665 14.0003 25.6665C20.4436 25.6665 25.667 20.4432 25.667 13.9998C25.667 7.55651 20.4436 2.33317 14.0003 2.33317Z" fill="#F53A50"/>
+                                                <path d="M14 11.9582C13.5217 11.9582 13.125 12.3548 13.125 12.8332L13.125 18.6665C13.125 19.1448 13.5217 19.5415 14 19.5415C14.4783 19.5415 14.875 19.1448 14.875 18.6665L14.875 12.8332C14.875 12.3548 14.4783 11.9582 14 11.9582Z" fill="#F53A50"/>
+                                                <path d="M12.927 9.77664C12.9853 9.91664 13.067 10.045 13.172 10.1616C13.2887 10.2666 13.417 10.3483 13.557 10.4066C13.837 10.5233 14.1637 10.5233 14.4437 10.4066C14.5837 10.3483 14.712 10.2666 14.8287 10.1616C14.9337 10.045 15.0153 9.91664 15.0737 9.77664C15.132 9.63664 15.167 9.48497 15.167 9.33331C15.167 9.18164 15.132 9.02997 15.0737 8.88997C15.0153 8.73831 14.9337 8.62164 14.8287 8.50497C14.712 8.39997 14.5837 8.31831 14.4437 8.25997C14.3037 8.20164 14.152 8.16664 14.0003 8.16664C13.8487 8.16664 13.697 8.20164 13.557 8.25997C13.417 8.31831 13.2887 8.39997 13.172 8.50497C13.067 8.62164 12.9853 8.73831 12.927 8.88997C12.8687 9.02997 12.8337 9.18164 12.8337 9.33331C12.8337 9.48497 12.8687 9.63664 12.927 9.77664Z" fill="#F53A50"/>
+                                            </svg>
+                                            <!-- hover content -->
+                                            <div class="alert-hover__content">
+                                                <p class="mb-0 text-white">Your content has been inactiv without any reason</p>
+                                            </div>
+                                        </span>
+                                    </span>
+                                </b-card-text>
+                                <b-card-text class="col-1 ">
+                                    <span class="d-flex">
+                                        <span class="sold">Sold</span>
+                                    </span>
+                                </b-card-text>
+                                <b-card-text class="col-1">25.08.2021</b-card-text>
+                                <b-card-text class="col-1">Tk. 432</b-card-text>
+                                <b-button  block v-b-toggle.accordion-1 variant="info" class="collapse-btn col-1">
+                                    <span class="when-opened" @click="collapseBtn = ''">Collapse</span>
+                                    <span class=" when-closed" @click="collapseBtn = 1">Details</span>
+                                </b-button>
+                            </b-card-header>
+                            <b-collapse id="accordion-1" visible accordion="my-accordion" role="tabpanel">
+                                <b-card-body class="sellpost-table-details">
+                                    <div class="table-collapse-top">
+                                        <div class="sellpost-table-details__content">
+                                            <div class="col-md-3 offset-md-1 content__left">
+                                                <div class="details-group">
+                                                    <p class="opa-75 text-white mb-2">Warranty</p>
+                                                    <p class="before-ball d-flex align-items-center text-success-ball mb-0">12 years</p>
+                                                </div>
+                                                <div class="details-group">
+                                                    <p class="opa-75 text-white mb-2">Mobile no</p>
+                                                    <p class="text-white gil-medium mb-0">0290209999</p>
+                                                </div>
+                                                <div class="details-group">
+                                                    <p class="opa-75 text-white mb-2">Address</p>
+                                                    <p class="text-white gil-medium mb-0">House: 941, Road: 14, Avenue: 2,
+                                                        Mirpur DOHS, Dhaka 1216</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 offset-md-1 content__right">
+                                                <div class="details-group">
+                                                    <p class="opa-75 text-white mb-2">Product details</p>
+                                                    <p class="text-white mb-0">This ads only who are collaborator antiquities
+                                                        for sale used retro machine 2001 PlayStation 2 slim NTSC U/ C model-77001
+                                                        hard moded official original first edition console
+                                                        working condition and smooth player. with 4 game cd listed shown picture. 1 official controller , a/v, adopter,cod with memory card its some time unsupported
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </span>
-                            </span>
-                        </p>
-                        <p class="col-1"><span class="sold">Sold</span></p>
-                        <p class="col-1">25.08.2021</p>
-                        <p class="col-1">Tk. 432</p>
-                        <buton @click="detailsCollapse = !detailsCollapse" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" class="collaps-btn col-1 pointer"><p v-if="detailsCollapse">Collapse</p> <p v-else>Details</p></buton>
-                        <!-- collapse content -->
-                        <div class="sellpost-table-details collapse show" id="collapseOne"  aria-labelledby="headingOne" data-parent="#accordionExample">
-                            <div class="table-collapse-top">
-                                <div class="sellpost-table-details__content">
-                                    <div class="col-md-3 offset-md-1 content__left">
-                                        <div class="details-group">
-                                            <p class="opa-75 text-white mb-2">Warranty</p>
-                                            <p class="before-ball d-flex align-items-center text-success-ball mb-0">12 years</p>
-                                        </div>
-                                        <div class="details-group">
-                                            <p class="opa-75 text-white mb-2">Mobile no</p>
-                                            <p class="text-white gil-medium mb-0">0290209999</p>
-                                        </div>
-                                        <div class="details-group">
-                                            <p class="opa-75 text-white mb-2">Address</p>
-                                            <p class="text-white gil-medium mb-0">House: 941, Road: 14, Avenue: 2,
-                                                Mirpur DOHS, Dhaka 1216</p>
+                                    <div class="table-collapse-bottom d-flex justify-content-end">
+                                        <router-link to="/" class="router_link w-100px btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 text-center d-inline-block position-relative mr-4">
+                                            Delete
+                                        </router-link>
+                                        <router-link to="/" class="router_link w-100px btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 text-center d-inline-block position-relative">
+                                            Edit
+                                        </router-link>
+                                        <div class="ml-4">
+                                            <router-link to="/" class="router_link btn--secondery-hover br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 text-center position-relative flex align-items-center justify-content-center">
+                                                View this post 
+                                                <svg class="ml-1" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path opacity="0.4" d="M13.4915 1.6665H6.50817C3.47484 1.6665 1.6665 3.47484 1.6665 6.50817V13.4832C1.6665 16.5248 3.47484 18.3332 6.50817 18.3332H13.4832C16.5165 18.3332 18.3248 16.5248 18.3248 13.4915V6.50817C18.3332 3.47484 16.5248 1.6665 13.4915 1.6665Z" fill="#292D32"/>
+                                                    <path d="M13.9569 5.8335H9.9319C9.59023 5.8335 9.3069 6.11683 9.3069 6.4585C9.3069 6.80016 9.59023 7.0835 9.9319 7.0835H12.4486L6.01523 13.5168C5.77357 13.7585 5.77357 14.1585 6.01523 14.4002C6.14023 14.5252 6.29857 14.5835 6.4569 14.5835C6.61523 14.5835 6.77357 14.5252 6.89857 14.4002L13.3319 7.96683V10.4835C13.3319 10.8252 13.6152 11.1085 13.9569 11.1085C14.2986 11.1085 14.5819 10.8252 14.5819 10.4835V6.4585C14.5819 6.11683 14.2986 5.8335 13.9569 5.8335Z" fill="#292D32"/>
+                                                </svg>
+                                            </router-link>
                                         </div>
                                     </div>
-                                    <div class="col-md-3 offset-md-1 content__right">
-                                        <div class="details-group">
-                                            <p class="opa-75 text-white mb-2">Product details</p>
-                                            <p class="text-white mb-0">This ads only who are collaborator antiquities
-                                                for sale used retro machine 2001 PlayStation 2 slim NTSC U/ C model-77001
-                                                hard moded official original first edition console
-                                                working condition and smooth player. with 4 game cd listed shown picture. 1 official controller , a/v, adopter,cod with memory card its some time unsupported
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="table-collapse-bottom d-flex">
-                                <router-link to="/" class="router_link w-100px btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 text-center d-inline-block position-relative mr-4">
-                                    Delete
-                                </router-link>
-                                <router-link to="/" class="router_link w-100px btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 text-center d-inline-block position-relative">
-                                    Edit
-                                </router-link>
-                                <div class="ml-auto">
-                                    <router-link to="/" class="router_link btn--secondery-hover br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 text-center position-relative flex align-items-center justify-content-center">
-                                        View this post 
-                                        <svg class="ml-1" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path opacity="0.4" d="M13.4915 1.6665H6.50817C3.47484 1.6665 1.6665 3.47484 1.6665 6.50817V13.4832C1.6665 16.5248 3.47484 18.3332 6.50817 18.3332H13.4832C16.5165 18.3332 18.3248 16.5248 18.3248 13.4915V6.50817C18.3332 3.47484 16.5248 1.6665 13.4915 1.6665Z" fill="#292D32"/>
-                                            <path d="M13.9569 5.8335H9.9319C9.59023 5.8335 9.3069 6.11683 9.3069 6.4585C9.3069 6.80016 9.59023 7.0835 9.9319 7.0835H12.4486L6.01523 13.5168C5.77357 13.7585 5.77357 14.1585 6.01523 14.4002C6.14023 14.5252 6.29857 14.5835 6.4569 14.5835C6.61523 14.5835 6.77357 14.5252 6.89857 14.4002L13.3319 7.96683V10.4835C13.3319 10.8252 13.6152 11.1085 13.9569 11.1085C14.2986 11.1085 14.5819 10.8252 14.5819 10.4835V6.4585C14.5819 6.11683 14.2986 5.8335 13.9569 5.8335Z" fill="#292D32"/>
-                                        </svg>
-                                    </router-link>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                                </b-card-body>
+                            </b-collapse>
+                        </b-card>
 
-                    <div class="sellpost-table__content selpostError" :class="{collapseActive: detailsCollapse2 }" id="accordionExample2">
-                        <p class="col-1" scope="row">G123565</p>
-                        <p class="col-3">Gaming PC for sell</p>
-                        <p class="col-1">New</p>
-                        <p class="col-1">Controller</p>
-                        <p class="col-1">Open</p>
-                        <p class="col-1 ">
-                            <span class="d-flex">
-                                <span class="rejected d-inline-block">Rejected</span> 
-                                <span class="ml-1 alert-hover">
-                                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path opacity="0.4" d="M14.0003 2.33317C7.557 2.33317 2.33366 7.55651 2.33366 13.9998C2.33366 20.4432 7.557 25.6665 14.0003 25.6665C20.4436 25.6665 25.667 20.4432 25.667 13.9998C25.667 7.55651 20.4436 2.33317 14.0003 2.33317Z" fill="#F53A50"/>
-                                        <path d="M14 11.9582C13.5217 11.9582 13.125 12.3548 13.125 12.8332L13.125 18.6665C13.125 19.1448 13.5217 19.5415 14 19.5415C14.4783 19.5415 14.875 19.1448 14.875 18.6665L14.875 12.8332C14.875 12.3548 14.4783 11.9582 14 11.9582Z" fill="#F53A50"/>
-                                        <path d="M12.927 9.77664C12.9853 9.91664 13.067 10.045 13.172 10.1616C13.2887 10.2666 13.417 10.3483 13.557 10.4066C13.837 10.5233 14.1637 10.5233 14.4437 10.4066C14.5837 10.3483 14.712 10.2666 14.8287 10.1616C14.9337 10.045 15.0153 9.91664 15.0737 9.77664C15.132 9.63664 15.167 9.48497 15.167 9.33331C15.167 9.18164 15.132 9.02997 15.0737 8.88997C15.0153 8.73831 14.9337 8.62164 14.8287 8.50497C14.712 8.39997 14.5837 8.31831 14.4437 8.25997C14.3037 8.20164 14.152 8.16664 14.0003 8.16664C13.8487 8.16664 13.697 8.20164 13.557 8.25997C13.417 8.31831 13.2887 8.39997 13.172 8.50497C13.067 8.62164 12.9853 8.73831 12.927 8.88997C12.8687 9.02997 12.8337 9.18164 12.8337 9.33331C12.8337 9.48497 12.8687 9.63664 12.927 9.77664Z" fill="#F53A50"/>
-                                    </svg>
-                                    <!-- hover content -->
-                                    <div class="alert-hover__content">
-                                        <p class="mb-0 text-white">Your content has been inactiv without any reason</p>
+                        <b-card no-body class=" selpostError" :class="{'active' : collapseBtn == 2}">
+                            <b-card-header header-tag="header" class="p-1 d-flex sellpost-table__content sellpost-table-collapse__header" role="tab">
+                                <b-card-text class="col-1">G123565</b-card-text>
+                                <b-card-text class="col-3">Gaming PC for sell</b-card-text>
+                                <b-card-text class="col-1">New</b-card-text>
+                                <b-card-text class="col-1">Controller</b-card-text>
+                                <b-card-text class="col-1">Open</b-card-text>
+                                <b-card-text class="col-1 ">
+                                    <span class="d-flex">
+                                        <span class="rejected d-inline-block">Rejected</span> 
+                                        <span class="ml-1 alert-hover">
+                                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path opacity="0.4" d="M14.0003 2.33317C7.557 2.33317 2.33366 7.55651 2.33366 13.9998C2.33366 20.4432 7.557 25.6665 14.0003 25.6665C20.4436 25.6665 25.667 20.4432 25.667 13.9998C25.667 7.55651 20.4436 2.33317 14.0003 2.33317Z" fill="#F53A50"/>
+                                                <path d="M14 11.9582C13.5217 11.9582 13.125 12.3548 13.125 12.8332L13.125 18.6665C13.125 19.1448 13.5217 19.5415 14 19.5415C14.4783 19.5415 14.875 19.1448 14.875 18.6665L14.875 12.8332C14.875 12.3548 14.4783 11.9582 14 11.9582Z" fill="#F53A50"/>
+                                                <path d="M12.927 9.77664C12.9853 9.91664 13.067 10.045 13.172 10.1616C13.2887 10.2666 13.417 10.3483 13.557 10.4066C13.837 10.5233 14.1637 10.5233 14.4437 10.4066C14.5837 10.3483 14.712 10.2666 14.8287 10.1616C14.9337 10.045 15.0153 9.91664 15.0737 9.77664C15.132 9.63664 15.167 9.48497 15.167 9.33331C15.167 9.18164 15.132 9.02997 15.0737 8.88997C15.0153 8.73831 14.9337 8.62164 14.8287 8.50497C14.712 8.39997 14.5837 8.31831 14.4437 8.25997C14.3037 8.20164 14.152 8.16664 14.0003 8.16664C13.8487 8.16664 13.697 8.20164 13.557 8.25997C13.417 8.31831 13.2887 8.39997 13.172 8.50497C13.067 8.62164 12.9853 8.73831 12.927 8.88997C12.8687 9.02997 12.8337 9.18164 12.8337 9.33331C12.8337 9.48497 12.8687 9.63664 12.927 9.77664Z" fill="#F53A50"/>
+                                            </svg>
+                                            <!-- hover content -->
+                                            <div class="alert-hover__content">
+                                                <p class="mb-0 text-white">Your content has been inactiv without any reason</p>
+                                            </div>
+                                        </span>
+                                    </span>
+                                </b-card-text>
+                                <b-card-text class="col-1">25.08.2021</b-card-text>
+                                <b-card-text class="col-1">Tk. 432</b-card-text>
+                                <b-button block v-b-toggle.accordion-2 variant="info" class="collapse-btn col-1">
+                                    <span class="when-opened" @click="collapseBtn = ''">Collapse</span>
+                                    <span class=" when-closed" @click="collapseBtn = 2">Details</span>
+                                </b-button>
+                            </b-card-header>
+                            <b-collapse id="accordion-2" visible accordion="my-accordion" role="tabpanel">
+                                <b-card-body class="sellpost-table-details">
+                                    <div class="table-collapse-top">
+                                        <div class="sellpost-table-details__content">
+                                            <div class="col-md-3 offset-md-1 content__left">
+                                                <div class="details-group">
+                                                    <p class="opa-75 text-white mb-2">Warranty</p>
+                                                    <p class="before-ball d-flex align-items-center text-success-ball mb-0">12 years</p>
+                                                </div>
+                                                <div class="details-group">
+                                                    <p class="opa-75 text-white mb-2">Mobile no</p>
+                                                    <p class="text-white gil-medium mb-0">0290209999</p>
+                                                </div>
+                                                <div class="details-group">
+                                                    <p class="opa-75 text-white mb-2">Address</p>
+                                                    <p class="text-white gil-medium mb-0">House: 941, Road: 14, Avenue: 2,
+                                                        Mirpur DOHS, Dhaka 1216</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3 offset-md-1 content__right">
+                                                <div class="details-group">
+                                                    <p class="opa-75 text-white mb-2">Product details</p>
+                                                    <p class="text-white mb-0">This ads only who are collaborator antiquities
+                                                        for sale used retro machine 2001 PlayStation 2 slim NTSC U/ C model-77001
+                                                        hard moded official original first edition console
+                                                        working condition and smooth player. with 4 game cd listed shown picture. 1 official controller , a/v, adopter,cod with memory card its some time unsupported
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3  content__right error-text pt-3">
+                                                <div class="details-group">
+                                                    <p class="mb-0">This ads only who are collaborator antiquities
+                                                        for sale used retro machine 2001 PlayStation 2 slim NTSC U/ C model-77001
+                                                        hard moded official original first edition console
+                                                        working condition and smooth player. with 4 game cd listed shown picture. 1 official controller , a/v, adopter,cod with memory card its some time unsupported
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
-                                </span>
-                            </span>
-                        </p>
-                        <p class="col-1">25.08.2021</p>
-                        <p class="col-1">Tk. 432</p>
-                        <buton @click="detailsCollapse2 = !detailsCollapse2" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo" class="collaps-btn col-1 pointer"><p v-if="detailsCollapse2">Collapse</p> <p v-else>Details</p></buton>
-                        <!-- collapse content -->
-                        <div class="sellpost-table-details collapse" id="collapseTwo"  aria-labelledby="headingTwo" data-parent="#accordionExample2">
-                            <div class="table-collapse-top">
-                                <div class="sellpost-table-details__content">
-                                    <div class="col-md-3 offset-md-1 content__left">
-                                        <div class="details-group">
-                                            <p class="opa-75 text-white mb-2">Warranty</p>
-                                            <p class="before-ball d-flex align-items-center text-success-ball mb-0">12 years</p>
-                                        </div>
-                                        <div class="details-group">
-                                            <p class="opa-75 text-white mb-2">Mobile no</p>
-                                            <p class="text-white gil-medium mb-0">0290209999</p>
-                                        </div>
-                                        <div class="details-group">
-                                            <p class="opa-75 text-white mb-2">Address</p>
-                                            <p class="text-white gil-medium mb-0">House: 941, Road: 14, Avenue: 2,
-                                                Mirpur DOHS, Dhaka 1216</p>
+                                    <div class="table-collapse-bottom d-flex justify-content-end">
+                                        <router-link to="/" class="router_link w-100px btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 text-center d-inline-block position-relative mr-4">
+                                            Delete
+                                        </router-link>
+                                        <router-link to="/" class="router_link w-100px btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 text-center d-inline-block position-relative">
+                                            Edit
+                                        </router-link>
+                                        <div class="ml-4">
+                                            <router-link to="/" class="router_link btn--secondery-hover br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 text-center position-relative flex align-items-center justify-content-center">
+                                                View this post 
+                                                <svg class="ml-1" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <path opacity="0.4" d="M13.4915 1.6665H6.50817C3.47484 1.6665 1.6665 3.47484 1.6665 6.50817V13.4832C1.6665 16.5248 3.47484 18.3332 6.50817 18.3332H13.4832C16.5165 18.3332 18.3248 16.5248 18.3248 13.4915V6.50817C18.3332 3.47484 16.5248 1.6665 13.4915 1.6665Z" fill="#292D32"/>
+                                                    <path d="M13.9569 5.8335H9.9319C9.59023 5.8335 9.3069 6.11683 9.3069 6.4585C9.3069 6.80016 9.59023 7.0835 9.9319 7.0835H12.4486L6.01523 13.5168C5.77357 13.7585 5.77357 14.1585 6.01523 14.4002C6.14023 14.5252 6.29857 14.5835 6.4569 14.5835C6.61523 14.5835 6.77357 14.5252 6.89857 14.4002L13.3319 7.96683V10.4835C13.3319 10.8252 13.6152 11.1085 13.9569 11.1085C14.2986 11.1085 14.5819 10.8252 14.5819 10.4835V6.4585C14.5819 6.11683 14.2986 5.8335 13.9569 5.8335Z" fill="#292D32"/>
+                                                </svg>
+                                            </router-link>
                                         </div>
                                     </div>
-                                    <div class="col-md-3 offset-md-1 content__right">
-                                        <div class="details-group">
-                                            <p class="opa-75 text-white mb-2">Product details</p>
-                                            <p class="text-white mb-0">This ads only who are collaborator antiquities
-                                                for sale used retro machine 2001 PlayStation 2 slim NTSC U/ C model-77001
-                                                hard moded official original first edition console
-                                                working condition and smooth player. with 4 game cd listed shown picture. 1 official controller , a/v, adopter,cod with memory card its some time unsupported
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3  content__right error-text pt-3">
-                                         <div class="details-group">
-                                            <p class="mb-0">This ads only who are collaborator antiquities
-                                                for sale used retro machine 2001 PlayStation 2 slim NTSC U/ C model-77001
-                                                hard moded official original first edition console
-                                                working condition and smooth player. with 4 game cd listed shown picture. 1 official controller , a/v, adopter,cod with memory card its some time unsupported
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="table-collapse-bottom d-flex">
-                                <router-link to="/" class="router_link w-100px btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 text-center d-inline-block position-relative mr-4">
-                                    Delete
-                                </router-link>
-                                <router-link to="/" class="router_link w-100px btn--collision br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 text-center d-inline-block position-relative">
-                                    Edit
-                                </router-link>
-                                <div class="ml-auto">
-                                    <router-link to="/" class="router_link btn--secondery-hover br-40 border-1 border-secondery-opa-50 gil-bold font-weight-bold py-2 text-center position-relative flex align-items-center justify-content-center">
-                                        View this post 
-                                        <svg class="ml-1" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                            <path opacity="0.4" d="M13.4915 1.6665H6.50817C3.47484 1.6665 1.6665 3.47484 1.6665 6.50817V13.4832C1.6665 16.5248 3.47484 18.3332 6.50817 18.3332H13.4832C16.5165 18.3332 18.3248 16.5248 18.3248 13.4915V6.50817C18.3332 3.47484 16.5248 1.6665 13.4915 1.6665Z" fill="#292D32"/>
-                                            <path d="M13.9569 5.8335H9.9319C9.59023 5.8335 9.3069 6.11683 9.3069 6.4585C9.3069 6.80016 9.59023 7.0835 9.9319 7.0835H12.4486L6.01523 13.5168C5.77357 13.7585 5.77357 14.1585 6.01523 14.4002C6.14023 14.5252 6.29857 14.5835 6.4569 14.5835C6.61523 14.5835 6.77357 14.5252 6.89857 14.4002L13.3319 7.96683V10.4835C13.3319 10.8252 13.6152 11.1085 13.9569 11.1085C14.2986 11.1085 14.5819 10.8252 14.5819 10.4835V6.4585C14.5819 6.11683 14.2986 5.8335 13.9569 5.8335Z" fill="#292D32"/>
-                                        </svg>
-                                    </router-link>
-                                </div>
-                            </div>
-                        </div>
+                                </b-card-body>
+                            </b-collapse>
+                        </b-card>
                     </div>
                 </div>
            </div>
@@ -354,8 +372,7 @@
             return {
                 sellPostTags: false,
                 filterOpen: false,
-                detailsCollapse: true,
-                detailsCollapse2: false,
+                collapseBtn: 1,
             }
         },
 

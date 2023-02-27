@@ -110,7 +110,7 @@
                   }
                 };
 
-                let data = {
+                http://103.134.90.121 = {
                     paymentMethod: this.paymentMethod,
                     cart_items: this.cart,
                     delivery_charge: this.deliveryCharge
